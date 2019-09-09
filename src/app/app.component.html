@@ -1,0 +1,8 @@
+<app-header></app-header>
+<app-banner></app-banner>
+
+<div class="main" #scrollContainer>
+    <router-outlet (activate)="onActivate($event, scrollContainer)">
+        <ngx-spinner></ngx-spinner>
+    </router-outlet>
+</div>

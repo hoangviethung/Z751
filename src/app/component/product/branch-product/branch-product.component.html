@@ -1,0 +1,15 @@
+<div *ngIf="listBranch" style="cursor: pointer;" (click)="redirectTypes('may-cong-nghiep')">
+    <h3>This Branch Product</h3>
+    <div *ngFor="let item of listBranch">
+        <h3>{{item.name}}</h3>
+        <p>{{item.productCount}}</p>
+        <div *ngFor="let item1 of item.childs">
+            <h3>{{item1.name}}</h3>
+            <p>{{item1.productCount}}</p>
+            <div *ngFor="let item2 of item1.childs">
+                <h3>{{item2.name}}</h3>
+                <p>{{item2.productCount}}</p>
+            </div>
+        </div>
+    </div>
+</div>
