@@ -7,8 +7,6 @@ import { enableProdMode } from '@angular/core';
 import * as express from 'express';
 import { join } from 'path';
 
-let fs = require('fs');
-
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
 
@@ -27,10 +25,10 @@ import { ngExpressEngine } from '@nguniversal/express-engine';
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
 app.engine('html', ngExpressEngine({
-  bootstrap: AppServerModuleNgFactory,
-  providers: [
-    provideModuleMap(LAZY_MODULE_MAP)
-  ]
+	bootstrap: AppServerModuleNgFactory,
+	providers: [
+		provideModuleMap(LAZY_MODULE_MAP)
+	]
 }));
 
 app.set('view engine', 'html');
@@ -38,7 +36,7 @@ app.set('views', join(DIST_FOLDER, 'browser'));
 
 // TODO: implement data requests securely
 app.get('/api/*', (req, res) => {
-  res.status(404).send('data requests are not supported');
+	res.status(404).send('data requests are not supported');
 });
 
 // Server static files from /browser
@@ -46,10 +44,13 @@ app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
 
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
-  res.render(join(DIST_FOLDER, 'browser', 'index.html'), { req });
+	res.render(join(DIST_FOLDER, 'browser', 'index.html'), {
+		req: req,
+		res: res
+	});
 });
 
 // Start up the Node server
 app.listen(PORT, () => {
-  console.log(`Node server listening on http://localhost:${PORT}`);
+	console.log(`Node server listening on http://localhost:${PORT}`);
 });

@@ -9,32 +9,32 @@ import { MetaGuard } from '@ngx-meta/core';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    pathMatch: 'full',
-    component: BranchProductComponent,
-    canActivate: [MetaGuard],
-    data: {
-      meta: {
-        title: 'META_TITLE.products',
-      }
-    }
-  },
-  {
-    path: ':type',
-    component: ProductTypesComponent,
-  },
-  {
-    path: ':type/:url',
-    component: ProductDetailComponent,
-  }
+	{
+		path: '',
+		pathMatch: 'full',
+		component: BranchProductComponent,
+		canActivate: [MetaGuard],
+		data: {
+			meta: {
+				title: 'META_TITLE.products',
+			}
+		}
+	},
+	{
+		path: ':type',
+		component: ProductTypesComponent,
+	},
+	{
+		path: ':type/:url',
+		component: ProductDetailComponent,
+	}
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes),
-    LocalizeRouterModule.forChild(routes)
-  ],
-  exports: [RouterModule, LocalizeRouterModule]
+	imports: [
+		RouterModule.forChild(routes),
+		LocalizeRouterModule.forChild(routes)
+	],
+	exports: [RouterModule, LocalizeRouterModule]
 })
 export class ProductRoutingModule { }
