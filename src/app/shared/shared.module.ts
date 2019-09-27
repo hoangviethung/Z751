@@ -7,8 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { UtilsService } from './services/utils.service';
-import { LocalStorageService } from './services/local-storage.service';
-import { ProductService } from '../component/product/product.service';
 
 
 
@@ -35,7 +33,7 @@ export class SharedModule {
 	static forRoot(): ModuleWithProviders {
 		return {
 			ngModule: SharedModule,
-			providers: [UtilsService, LocalStorageService, ProductService]
+			providers: [UtilsService]
 		};
 	}
 }

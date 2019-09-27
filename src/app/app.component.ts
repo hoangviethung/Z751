@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { Router, NavigationEnd } from '@angular/router';
 import { MetaService } from '@ngx-meta/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,7 +13,6 @@ import {environment as environments} from '../environments/environment';
 export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
-    private spinner: NgxSpinnerService,
     private router: Router,
     private readonly meta: MetaService,
     public translate: TranslateService,
@@ -36,15 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
     scrollContainer.scrollTop = 0;
   }
 
-  ngOnInit() {
-    /** spinner starts on init */
-    this.spinner.show();
-
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 2000);
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.meta.removeTag('property="og:type"');

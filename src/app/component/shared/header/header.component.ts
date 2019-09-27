@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 @Component({
   selector: 'app-header',
@@ -8,9 +8,7 @@ import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private localizeService: LocalizeRouterService,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) { }
+    private localizeService: LocalizeRouterService) { }
 
   ngOnInit() {
   }

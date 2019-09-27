@@ -10,7 +10,8 @@ import { ProductService } from '../product.service';
 	selector: 'app-product-types',
 	templateUrl: './product-types.component.html',
 	styleUrls: ['./product-types.component.css'],
-	animations: [routeAnimation]
+	animations: [routeAnimation],
+	providers: [ProductService]
 })
 export class ProductTypesComponent implements OnInit, OnDestroy {
 

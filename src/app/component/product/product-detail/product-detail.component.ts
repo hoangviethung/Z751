@@ -2,13 +2,14 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MetaService } from '@ngx-meta/core';
 import { routeAnimation } from '../../../shared/animations';
 import { ProductService } from '../product.service';
-import { Router, ActivationEnd, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-product-detail',
 	templateUrl: './product-detail.component.html',
 	styleUrls: ['./product-detail.component.css'],
-	animations: [routeAnimation]
+	animations: [routeAnimation],
+	providers: [ProductService]
 })
 export class ProductDetailComponent implements OnInit, OnDestroy {
 

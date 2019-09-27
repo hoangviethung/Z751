@@ -30,15 +30,15 @@ export class HttpService {
 		return token || "";
 	}
 
-	private get LANGUAGE(): string {
+	// private get LANGUAGE(): string {
 		// let language = this._localStorage.get(LOCAL_STORAGE_KEY.language);
 		// if (!language) {
 		//     language = LanguageEnum.DEFAULT_LANGUAGE;
 		//     this._localStorage.set(LOCAL_STORAGE_KEY.language, language);
 		// }
 		// return language;
-		return 'en'
-	}
+		// return 'en'
+	// }
 
 	private _apiPath = AppConfigModel.ApiConfig.url;
 	constructor(
@@ -49,12 +49,12 @@ export class HttpService {
 		private localeSvc: LocalizeRouterService,
 	) { }
 
-	public getUploadFileHeaders() {
-		const authHeaders = new HttpHeaders()
-			.set("Authorization", "bearer " + this.TOKEN)
-			.set("Accept-Language", this.LANGUAGE);
-		return authHeaders;
-	}
+	// public getUploadFileHeaders() {
+	// 	const authHeaders = new HttpHeaders()
+	// 		.set("Authorization", "bearer " + this.TOKEN)
+	// 		.set("Accept-Language", this.LANGUAGE);
+	// 	return authHeaders;
+	// }
 
 	get(url: string, params?: HttpParams) {
 		// debugger;
@@ -82,14 +82,11 @@ export class HttpService {
 
 	private getDefaultHeaders() {
 		let authHeaders = new HttpHeaders();
-		if (this.platformId === 'browser') {
-			this.locale = localStorage.getItem('locale');
-		}
 		authHeaders = authHeaders
 			.set("Content-Type", "application/json-patch+json")
 			.set("Data-Type", "application/json")
 			.set("Accept", "text/plain")
-			.set("Accept-Language", this.LANGUAGE)
+			.set("Accept-Language", this.localeSvc.parser.currentLang)
 			.set("Authorization", "bearer " + this.TOKEN)
 			.set('locale', this.localeSvc.parser.currentLang);
 		return authHeaders;
@@ -102,8 +99,6 @@ export class HttpService {
 					if (res.status === 500) {
 						this._router.navigate([ROUTE.GENERIC.ERROR_500_INTERNAL_ERROR()]);
 					}
-					// console.log(res)
-					// const result = <ApiResponse>Object.assign(new ApiResponse(), res);
 					return res;
 				}),
 				catchError((error: HttpErrorResponse) => this.handleError(error))
@@ -111,7 +106,6 @@ export class HttpService {
 	}
 
 	private handleError(error: HttpErrorResponse) {
-		// debugger;
 		if (error.error instanceof ErrorEvent) {
 			// A client-side or network error occurred. Handle it accordingly.
 			console.error("An error occurred:", error.error.message);
@@ -136,7 +130,7 @@ export class HttpService {
 		return throwError(
 			"Something bad happened; please try again later.");
 
-		// return        Observable.of();
+		// return Observable.of();
 	}
 
 	showAlert(title) {

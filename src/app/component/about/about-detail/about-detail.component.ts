@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { routeAnimation } from '../../../shared/animations';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-about-detail',
@@ -10,18 +9,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class AboutDetailComponent implements OnInit {
 
-  constructor(
-    private spinner: NgxSpinnerService
-  ) { }
+  constructor() { }
 
-  ngOnInit() {
-    /** spinner starts on init */
-    this.spinner.show();
-
-    setTimeout(() => {
-      /** spinner ends after 2 seconds */
-      this.spinner.hide();
-    }, 2000);
-  }
+  ngOnInit() { }
 
 }

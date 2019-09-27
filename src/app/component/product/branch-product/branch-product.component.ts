@@ -3,7 +3,6 @@ import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { Router } from '@angular/router';
 import { routeAnimation } from '../../../shared/animations';
 import { ProductService } from '../product.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { AppEnums } from '../../../shared/enum/AppEnums';
 
 @Component({
@@ -21,11 +20,9 @@ export class BranchProductComponent implements OnInit {
 		private localize: LocalizeRouterService,
 		private router: Router,
 		private _productSvc: ProductService,
-		private spinner: NgxSpinnerService,
 	) { }
 
 	ngOnInit() {
-		this.spinner.show();
 		this.fetchData();
 	}
 
@@ -38,7 +35,6 @@ export class BranchProductComponent implements OnInit {
 		this._productSvc.getHavingProduct().subscribe(rs => {
 			if (rs.result == AppEnums.Success) {
 				this.listBranch = rs.data;
-				this.spinner.hide();
 			} else {
 				this._productSvc.showAlert(rs.errorMessage);
 			}
