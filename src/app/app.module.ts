@@ -22,69 +22,69 @@ import { PaginationComponent } from './component/shared/pagination/pagination.co
 import { environment } from '../environments/environment';
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, `${environment.locales}assets/locales/`, '.json');
+	return new TranslateHttpLoader(http, `${environment.locales}assets/locales/`, '.json');
 }
 
 export function metaFactory(translate: TranslateService): MetaLoader {
-  return new MetaStaticLoader({
-    callback: (key: string) => translate.get(key),
-    pageTitlePositioning: PageTitlePositioning.PrependPageTitle,
-    pageTitleSeparator: '',
-    applicationName: '',
-    defaults: {
-      title: 'META_TITLE.default',
-      description: 'META_DESCRIPTION.default',
-      keywords: 'META_DESCRIPTION.default',
-      author: 'Web4G Solutions',
-      generator: 'ng-seed',
-      'og:image': 'https://upload.wikimedia.org/wikipedia/commons/f/f8/superraton.jpg',
-      'og:type': 'website',
-      'og:locale:alternate': 'en_US'
-    }
-  });
+	return new MetaStaticLoader({
+		callback: (key: string) => translate.get(key),
+		pageTitlePositioning: PageTitlePositioning.PrependPageTitle,
+		pageTitleSeparator: '',
+		applicationName: '',
+		defaults: {
+			title: 'META_TITLE.default',
+			description: 'META_DESCRIPTION.default',
+			keywords: 'META_DESCRIPTION.default',
+			author: 'Web4G Solutions',
+			generator: 'ng-seed',
+			'og:image': 'https://upload.wikimedia.org/wikipedia/commons/f/f8/superraton.jpg',
+			'og:type': 'website',
+			'og:locale:alternate': 'en_US'
+		}
+	});
 }
 
 @NgModule({
-  imports: [
-    BrowserModule.withServerTransition({ appId: 'z751' }),
-    FormsModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    SharedModule.forRoot(),
-    MetaModule.forRoot({
-      provide: MetaLoader,
-      useFactory: (metaFactory),
-      deps: [TranslateService]
-    }),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (createTranslateLoader),
-        deps: [HttpClient]
-      }
-    }),
-  ],
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    BannerComponent,
-    FooterComponent,
-    BreadcrumbComponent,
-    PaginationComponent
-  ],
-  exports: [
-    SharedModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+	imports: [
+		BrowserModule.withServerTransition({ appId: 'z751' }),
+		FormsModule,
+		AppRoutingModule,
+		BrowserAnimationsModule,
+		HttpClientModule,
+		SharedModule.forRoot(),
+		MetaModule.forRoot({
+			provide: MetaLoader,
+			useFactory: (metaFactory),
+			deps: [TranslateService]
+		}),
+		TranslateModule.forRoot({
+			loader: {
+				provide: TranslateLoader,
+				useFactory: (createTranslateLoader),
+				deps: [HttpClient]
+			}
+		}),
+	],
+	declarations: [
+		AppComponent,
+		HeaderComponent,
+		BannerComponent,
+		FooterComponent,
+		BreadcrumbComponent,
+		PaginationComponent
+	],
+	exports: [
+		SharedModule
+	],
+	providers: [],
+	bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: object,
-    @Inject(APP_ID) private appId: string) {
-    const platform = isPlatformBrowser(platformId) ?
-      'in the browser' : 'on the server';
-    console.log(`Running ${platform} with appId=${appId}`);
-  }
+	constructor(
+		@Inject(PLATFORM_ID) private platformId: object,
+		@Inject(APP_ID) private appId: string) {
+		const platform = isPlatformBrowser(platformId) ?
+			'in the browser' : 'on the server';
+		console.log(`Running ${platform} with appId=${appId}`);
+	}
 }

@@ -1,40 +1,40 @@
 {
-  "ROUTES": {
-    "": "home",
-    "about": "about-us",
-    "products": "product-lists",
-    "gallery": "gallery",
-    "images": "images",
-    "videos": "videos",
-    "news": "news",
-    "contact": "contact-us",
-    "notfound": "page-not-found"
-  },
-  "APP_NAME": "Z751",
-  "META_TITLE": {
-    "default": "Z751 Co.ltd",
-    "home": "Z751 Co.ltd",
-    "products": "Product Branchs",
-    "about": "About Us",
-    "gallery": "Gallery",
-    "news": "News",
-    "contact": "Contact",
-    "images": "Images",
-    "videos": "Videos",
-    "notfound": "404 Page"
-  },
-  "META_DESCRIPTION": {
-    "default": "Company 751 General Department of Engineering / Ministry of Defense, a heroic unit of the People's Armed Forces was established in 1975 on the basis of taking over the army ....."
-  },
-  "menu": {
-    "home": "Home",
-    "products": "Product Branchs",
-    "about": "About Us",
-    "gallery": "Gallery",
-    "news": "News",
-    "contact": "Contact",
-    "images": "Images",
-    "videos": "Videos",
-    "notfound": "404 Page"
-  }
+	"ROUTES": {
+		"": "home",
+		"about": "about-us",
+		"products": "products",
+		"gallery": "gallery",
+		"images": "images",
+		"videos": "videos",
+		"news": "news",
+		"contact": "contact-us",
+		"404": "page-not-found"
+	},
+	"APP_NAME": "Z751",
+	"META_TITLE": {
+		"default": "Z751 Co.ltd",
+		"home": "Z751 Co.ltd",
+		"products": "Product Branchs",
+		"about": "About Us",
+		"gallery": "Gallery",
+		"news": "News",
+		"contact": "Contact",
+		"images": "Images",
+		"videos": "Videos",
+		"404": "404 Page"
+	},
+	"META_DESCRIPTION": {
+		"default": "Company 751 General Department of Engineering / Ministry of Defense, a heroic unit of the People's Armed Forces was established in 1975 on the basis of taking over the army ....."
+	},
+	"menu": {
+		"home": "Home",
+		"products": "Product Branchs",
+		"about": "About Us",
+		"gallery": "Gallery",
+		"news": "News",
+		"contact": "Contact",
+		"images": "Images",
+		"videos": "Videos",
+		"404": "404 Page"
+	}
 }

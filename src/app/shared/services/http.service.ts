@@ -5,138 +5,141 @@ import { map, catchError } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { ROUTE } from "../../routes/routes";
 import { AppConfigModel } from '../models/common/app-config.model';
+import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 
 class RequestOption {
-    body?: any;
-    headers?: HttpHeaders | {
-        [header: string]: string | string[];
-    };
-    observe?: any;
-    params?: HttpParams | {
-        [param: string]: string | string[];
-    };
-    reportProgress?: boolean;
-    responseType: any;
-    withCredentials?: boolean;
+	body?: any;
+	headers?: HttpHeaders | {
+		[header: string]: string | string[];
+	};
+	observe?: any;
+	params?: HttpParams | {
+		[param: string]: string | string[];
+	};
+	reportProgress?: boolean;
+	responseType: any;
+	withCredentials?: boolean;
 }
 @Injectable({
-    providedIn: 'root'
+	providedIn: 'root'
 })
 export class HttpService {
-    private get TOKEN(): string {
-        const token = '';
-        return token || "";
-    }
+	public locale: string = 'vi';
+	private get TOKEN(): string {
+		const token = '';
+		return token || "";
+	}
 
-    private get LANGUAGE(): string {
-        // let language = this._localStorage.get(LOCAL_STORAGE_KEY.language);
-        // if (!language) {
-        //     language = LanguageEnum.DEFAULT_LANGUAGE;
-        //     this._localStorage.set(LOCAL_STORAGE_KEY.language, language);
-        // }
-        // return language;
-        return 'en'
-    }
+	private get LANGUAGE(): string {
+		// let language = this._localStorage.get(LOCAL_STORAGE_KEY.language);
+		// if (!language) {
+		//     language = LanguageEnum.DEFAULT_LANGUAGE;
+		//     this._localStorage.set(LOCAL_STORAGE_KEY.language, language);
+		// }
+		// return language;
+		return 'en'
+	}
 
-    private _apiPath = AppConfigModel.ApiConfig.url;
-    constructor(
-        private http: HttpClient,
-        // private _authService: AuthService,
-        private _router: Router,
-        @Inject(PLATFORM_ID) private platformId: Object
-    ) { }
-    public getUploadFileHeaders() {
-        const authHeaders = new HttpHeaders()
-            .set("Authorization", "bearer " + this.TOKEN)
-            .set("Accept-Language", this.LANGUAGE);
-        return authHeaders;
-    }
+	private _apiPath = AppConfigModel.ApiConfig.url;
+	constructor(
+		private http: HttpClient,
+		// private _authService: AuthService,
+		private _router: Router,
+		@Inject(PLATFORM_ID) private platformId: Object,
+		private localeSvc: LocalizeRouterService,
+	) { }
 
-    get(url: string, params?: HttpParams) {
-        // debugger;
-        url = this._apiPath + url;
-        const option = this.getDefaultRequestJsonOption();
-        option.params = params;
-        return this.executeJsonResponse("GET", url, option);
-    }
+	public getUploadFileHeaders() {
+		const authHeaders = new HttpHeaders()
+			.set("Authorization", "bearer " + this.TOKEN)
+			.set("Accept-Language", this.LANGUAGE);
+		return authHeaders;
+	}
 
-    post(url: string, data: any) {
-        url = this._apiPath + url;
-        const option = this.getDefaultRequestJsonOption();
-        option.body = data;
+	get(url: string, params?: HttpParams) {
+		// debugger;
+		url = this._apiPath + url;
+		const option = this.getDefaultRequestJsonOption();
+		option.params = params;
+		return this.executeJsonResponse("GET", url, option);
+	}
 
-        return this.executeJsonResponse("POST", url, option);
-    }
+	post(url: string, data: any) {
+		url = this._apiPath + url;
+		const option = this.getDefaultRequestJsonOption();
+		option.body = data;
 
-    private getDefaultRequestJsonOption() {
-        const option = new RequestOption();
-        option.headers = this.getDefaultHeaders();
-        option.observe = "body";
-        option.responseType = "json";
-        return option;
-    }
+		return this.executeJsonResponse("POST", url, option);
+	}
 
-    private getDefaultHeaders() {
-        let authHeaders = new HttpHeaders();
-        let locale;
-        if (this.platformId === 'browser') {
-            locale = localStorage.getItem('locale');
-        }
-        authHeaders = authHeaders
-            .set("Content-Type", "application/json-patch+json")
-            .set("Data-Type", "application/json")
-            .set("Accept", "text/plain")
-            .set("Accept-Language", this.LANGUAGE)
-            .set("Authorization", "bearer " + this.TOKEN)
-            .set('locale', locale);
-        return authHeaders;
-    }
+	private getDefaultRequestJsonOption() {
+		const option = new RequestOption();
+		option.headers = this.getDefaultHeaders();
+		option.observe = "body";
+		option.responseType = "json";
+		return option;
+	}
 
-    private executeJsonResponse(method: string, url: string, option: RequestOption) {
-        return this.http.request(method, url, option)
-            .pipe(
-                map((res: any) => {
-                    if (res.status === 500) {
-                        this._router.navigate([ROUTE.GENERIC.ERROR_500_INTERNAL_ERROR()]);
-                    }
-                    // console.log(res)
-                    // const result = <ApiResponse>Object.assign(new ApiResponse(), res);
-                    return res;
-                }),
-                catchError((error: HttpErrorResponse) => this.handleError(error))
-            );
-    }
+	private getDefaultHeaders() {
+		let authHeaders = new HttpHeaders();
+		if (this.platformId === 'browser') {
+			this.locale = localStorage.getItem('locale');
+		}
+		authHeaders = authHeaders
+			.set("Content-Type", "application/json-patch+json")
+			.set("Data-Type", "application/json")
+			.set("Accept", "text/plain")
+			.set("Accept-Language", this.LANGUAGE)
+			.set("Authorization", "bearer " + this.TOKEN)
+			.set('locale', this.localeSvc.parser.currentLang);
+		return authHeaders;
+	}
 
-    private handleError(error: HttpErrorResponse) {
-        // debugger;
-        if (error.error instanceof ErrorEvent) {
-            // A client-side or network error occurred. Handle it accordingly.
-            console.error("An error occurred:", error.error.message);
-        } else {
-            // The backend returned an unsuccessful response code.
-            // The response body may contain clues as to what went wrong,
-            console.error(
-                `Backend returned code ${error.status}, ` +
-                `body was: ${error.error}`);
+	private executeJsonResponse(method: string, url: string, option: RequestOption) {
+		return this.http.request(method, url, option)
+			.pipe(
+				map((res: any) => {
+					if (res.status === 500) {
+						this._router.navigate([ROUTE.GENERIC.ERROR_500_INTERNAL_ERROR()]);
+					}
+					// console.log(res)
+					// const result = <ApiResponse>Object.assign(new ApiResponse(), res);
+					return res;
+				}),
+				catchError((error: HttpErrorResponse) => this.handleError(error))
+			);
+	}
 
-            let routePath = "";
-            if (error.status === 404) {
-                routePath = ROUTE.GENERIC.ERROR_404_NOT_FOUND();
-            } else if (error.status === 401) {
-                routePath = ROUTE.GENERIC.ERROR_401_UNAUTHORIZED();
-            } else {
-                routePath = ROUTE.GENERIC.ERROR_500_INTERNAL_ERROR();
-            }
-            this._router.navigate([routePath]);
-        }
-        // return an observable with a user-facing error message
-        return throwError(
-            "Something bad happened; please try again later.");
+	private handleError(error: HttpErrorResponse) {
+		// debugger;
+		if (error.error instanceof ErrorEvent) {
+			// A client-side or network error occurred. Handle it accordingly.
+			console.error("An error occurred:", error.error.message);
+		} else {
+			// The backend returned an unsuccessful response code.
+			// The response body may contain clues as to what went wrong,
+			console.error(
+				`Backend returned code ${error.status}, ` +
+				`body was: ${error.error}`);
 
-        // return        Observable.of();
-    }
+			let routePath = "";
+			if (error.status === 404) {
+				routePath = ROUTE.GENERIC.ERROR_404_NOT_FOUND();
+			} else if (error.status === 401) {
+				routePath = ROUTE.GENERIC.ERROR_401_UNAUTHORIZED();
+			} else {
+				routePath = ROUTE.GENERIC.ERROR_500_INTERNAL_ERROR();
+			}
+			this._router.navigate([routePath]);
+		}
+		// return an observable with a user-facing error message
+		return throwError(
+			"Something bad happened; please try again later.");
 
-    showAlert(title) {
-        alert(title)
-    }
+		// return        Observable.of();
+	}
+
+	showAlert(title) {
+		alert(title)
+	}
 }

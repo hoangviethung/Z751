@@ -1,6 +1,6 @@
-<div [@routeAnimation]>
+<div [@routeAnimation] *ngIf="product">
     <app-image-list></app-image-list>
-    <app-general></app-general>
+    <app-general [general]="product.productContent"></app-general>
     <app-information></app-information>
     <app-comment></app-comment>
     <app-menu-right></app-menu-right>

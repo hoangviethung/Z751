@@ -7,41 +7,41 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { AppEnums } from '../../../shared/enum/AppEnums';
 
 @Component({
-  selector: 'app-branch-product',
-  templateUrl: './branch-product.component.html',
-  styleUrls: ['./branch-product.component.css'],
-  animations: [routeAnimation],
-  providers: [ProductService]
+	selector: 'app-branch-product',
+	templateUrl: './branch-product.component.html',
+	styleUrls: ['./branch-product.component.css'],
+	animations: [routeAnimation],
+	providers: [ProductService]
 })
 export class BranchProductComponent implements OnInit {
 
-  public listBranch: any;
+	public listBranch: any;
 
-  constructor(
-    private localize: LocalizeRouterService,
-    private router: Router,
-    private _productSvc: ProductService,
-    private spinner: NgxSpinnerService
-  ) { }
+	constructor(
+		private localize: LocalizeRouterService,
+		private router: Router,
+		private _productSvc: ProductService,
+		private spinner: NgxSpinnerService,
+	) { }
 
-  ngOnInit() {
-    this.spinner.show();
-    this.fetchData();
-  }
+	ngOnInit() {
+		this.spinner.show();
+		this.fetchData();
+	}
 
-  redirectTypes(type: string) {
-    let translatePath: any = this.localize.translateRoute(`/products/${type}`);
-    this.router.navigate([translatePath]);
-  }
+	redirectTypes(code: string) {
+		let translatePath: any = this.localize.translateRoute(`/products/${code}`);
+		this.router.navigate([translatePath]);
+	}
 
-  private fetchData() {
-    this._productSvc.getHavingProduct().subscribe(rs => {
-      if(rs.result == AppEnums.Success){
-        this.listBranch = rs.data;
-        this.spinner.hide();
-      } else {
-        this._productSvc.showAlert(rs.errorMessage);
-      }
-    })
-  }
+	private fetchData() {
+		this._productSvc.getHavingProduct().subscribe(rs => {
+			if (rs.result == AppEnums.Success) {
+				this.listBranch = rs.data;
+				this.spinner.hide();
+			} else {
+				this._productSvc.showAlert(rs.errorMessage);
+			}
+		})
+	}
 }
