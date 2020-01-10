@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PageInfoService } from 'src/app/_utilities/services/page-info.service';
+import { PageInfoService } from 'src/app/shared/services/page-info.service';
 
 @Component({
 	selector: 'app-index',
