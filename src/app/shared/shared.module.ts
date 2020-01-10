@@ -1,41 +1,23 @@
-import { NgModule, ModuleWithProviders, APP_INITIALIZER } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { ImageComponent } from './components/image/image.component';
-import { NgxSpinnerModule } from 'ngx-spinner';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
-import { UtilsService } from './services/utils.service';
-import { LocalStorageService } from './services/local-storage.service';
-import { ProductService } from '../component/product/product.service';
+import { IndexProductItemDirective } from './directives/index-product-item.directive';
+import { IndexNewsItemDirective } from './directives/index-news-item.directive';
 
 
 
 @NgModule({
 	declarations: [
-		ImageComponent
+		IndexProductItemDirective,
+		IndexNewsItemDirective
 	],
 	imports: [
-		FormsModule,
-		CommonModule,
-		RouterModule,
-		ReactiveFormsModule,
-		NgxSpinnerModule,
+		CommonModule
 	],
 	exports: [
-		CommonModule,
-		ImageComponent,
-		NgxSpinnerModule,
-		TranslateModule,
-		FormsModule
+		// IndexProductItemDirective,
+		// IndexNewsItemDirective
+	],
+	providers: [
 	]
 })
-export class SharedModule {
-	static forRoot(): ModuleWithProviders {
-		return {
-			ngModule: SharedModule,
-			providers: [UtilsService, LocalStorageService, ProductService]
-		};
-	}
-}
+export class SharedModule { }

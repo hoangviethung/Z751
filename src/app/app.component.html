@@ -1,8 +1,5 @@
 <app-header></app-header>
-<app-banner></app-banner>
-
-<div class="main" #scrollContainer>
-    <router-outlet (activate)="onActivate($event, scrollContainer)">
-        <ngx-spinner></ngx-spinner>
-    </router-outlet>
-</div>
+<main class="w4g-wrapper">
+	<router-outlet></router-outlet>
+</main>
+<app-footer></app-footer>

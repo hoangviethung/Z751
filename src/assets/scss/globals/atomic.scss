@@ -1,0 +1,149 @@
+@import "../abstracts/variables";
+
+// Display styles
+[hidden],
+.d-n,
+.hidden {
+	display: none;
+}
+
+.d-b {
+	display: block;
+}
+
+.d-ib {
+	display: inline-block;
+}
+
+.d-f {
+	display: flex;
+}
+
+.fw-w {
+	flex-wrap: wrap;
+}
+
+.d-if {
+	display: inline-flex;
+}
+
+.ai-c {
+	align-items: center;
+}
+
+.jc-c {
+	justify-content: center;
+}
+
+.jc-fe {
+	justify-content: flex-end;
+}
+
+.fcc {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+// List, ul, ol, dl
+.lst-n {
+	list-style-type: none;
+}
+
+// Padding
+.pl-0 {
+	padding-left: 0;
+}
+
+.pd-70 {
+	padding-top: 70px;
+	padding-bottom: 70px;
+
+	@media (max-width: 1199.98px) {
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+
+	@media (max-width: 768px) {
+		padding-top: 30px;
+		padding-bottom: 30px;
+	}
+}
+
+.pt-70 {
+	padding-top: 70px;
+
+	@media (max-width: 1199.98px) {
+		padding-top: 50px;
+	}
+
+	@media (max-width: 768px) {
+		padding-top: 30px;
+	}
+}
+
+.pb-70 {
+	padding-bottom: 70px;
+
+	@media (max-width: 1199.98px) {
+		padding-bottom: 50px;
+	}
+
+	@media (max-width: 768px) {
+		padding-bottom: 30px;
+	}
+}
+
+// Margin
+.ml-at {
+	margin-left: auto;
+}
+
+// Forms
+.form-control {
+	padding: 7px 15px;
+}
+
+.bd-0 {
+	border: 0px solid transparent;
+}
+
+.bd-main {
+	border: 1px solid map-get($mau, main);
+}
+
+.ov-h {
+	overflow: hidden;
+}
+
+.fw-300 {
+	font-weight: 300;
+}
+
+.fw-400 {
+	font-weight: 400;
+}
+
+.fw-700 {
+	font-weight: 700;
+}
+
+.tt-u {
+	text-transform: uppercase;
+}
+
+.ta-c {
+	text-align: center;
+}
+
+.cl-main {
+	color: map-get($mau, main);
+}
+
+.bg-gray {
+	background-color: rgba(#F3F3F3, .5);
+}
+
+.bg-white {
+	background-color: #ffffff;
+}
