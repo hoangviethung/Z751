@@ -1,18 +1,18 @@
 .ofcv {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+	width          : 100%;
+	height         : 100%;
+	object-fit     : cover;
 	object-position: center;
-	font-family: 'object-fit: cover, object-position: center';
+	font-family    : 'object-fit: cover, object-position: center';
 	background-size: cover;
 }
 
 .ofct {
-	width: 100%;
-	height: 100%;
-	object-fit: contain;
+	width          : 100%;
+	height         : 100%;
+	object-fit     : contain;
 	object-position: center;
-	font-family: 'object-fit: contain, object-position: center';
+	font-family    : 'object-fit: contain, object-position: center';
 	background-size: contain;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .blur-up {
-	filter: blur(10px);
+	filter    : blur(10px);
 	transition: filter 1s;
 
 	&.lazy-loaded {
@@ -43,37 +43,37 @@ main {
 
 .block-title {
 	&.center {
-		display: flex;
+		display        : flex;
 		justify-content: center;
 	}
 }
 
 .main-title {
-	font-size: 30px;
-	position: relative;
+	font-size    : 30px;
+	position     : relative;
 	margin-bottom: 70px;
-	padding: 5px 0;
+	padding      : 5px 0;
 
 	&.tag-line {
 		&:after {
-			position: absolute;
-			width: 65px;
-			height: 2px;
+			position        : absolute;
+			width           : 65px;
+			height          : 2px;
 			background-color: #E4322D;
-			top: 100%;
-			left: 0;
-			content: '';
+			top             : 100%;
+			left            : 0;
+			content         : '';
 		}
 	}
 
 
 	@media (max-width: 1199.98px) {
-		font-size: 25px;
+		font-size    : 25px;
 		margin-bottom: 50px;
 	}
 
 	@media (max-width: 768px) {
-		font-size: 20px;
+		font-size    : 20px;
 		margin-bottom: 30px;
 	}
 }
@@ -82,6 +82,25 @@ main {
 	&:after {
 		content: '';
 		display: table;
-		clear: both;
+		clear  : both;
+	}
+}
+
+.lcl {
+	overflow          : hidden;
+	display           : -webkit-box;
+	text-overflow     : ellipsis;
+	-webkit-box-orient: vertical;
+
+	&-1 {
+		-webkit-line-clamp: 1;
+	}
+
+	&-2 {
+		-webkit-line-clamp: 2;
+	}
+
+	&-3 {
+		-webkit-line-clamp: 3;
 	}
 }

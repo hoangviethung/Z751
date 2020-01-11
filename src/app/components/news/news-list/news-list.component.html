@@ -1,1 +1,25 @@
-<p>news-list works!</p>
+<section class="pt-70">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-news" *ngFor="let news of listNews">
+				<div class="news-item">
+					<a [routerLink]="news.url">
+						<figure class="d-f fw-w">
+							<div class="img ov-h">
+								<img class="ofcv" src="{{news.img}}" alt="" srcset="">
+							</div>
+							<figcaption class="col">
+								<div class="box-content">
+									<h3 class="lcl lcl-2 fw-700">{{news.title}}</h3>
+									<time>{{news.time}}</time>
+									<p class="lcl lcl-3">{{news.desc}}</p>
+									<span>Đọc tin</span>
+								</div>
+							</figcaption>
+						</figure>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
