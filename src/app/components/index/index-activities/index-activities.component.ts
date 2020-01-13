@@ -7,6 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexActivitiesComponent implements OnInit {
 
+	activicties: [
+		{
+			url: 'activities',
+			img: '/assets/images/products/p_1.jpg',
+			title: "ĐỒ GỖ GIA DỤNG VÀ XUẤT KHẨU"
+		},
+		{
+			url: 'activities',
+			img: '/assets/images/products/p_2.jpg',
+			title: "NGÀNH CƠ KHÍ, KẾT CẤU CÔNG NGHIỆP, CƠ ĐIỆN"
+		},
+	]
 	constructor() { }
 
 	ngOnInit() {

@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-lg-4 col-sm-6 col-product" *ngFor="let product of products">
 				<div class="product-item" appIndexProductItem>
-					<a [routerLink]="product.url">
+					<a [routerLink]="product.url | localize">
 						<div class="img ov-h">
 							<img src="{{product.img}}" alt={{product.title}}>
 						</div>

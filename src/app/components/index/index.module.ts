@@ -15,6 +15,9 @@ import { IndexNewsComponent } from './index-news/index-news.component';
 import { IndexAboutUsComponent } from './index-about-us/index-about-us.component';
 import { IndexActivitiesComponent } from './index-activities/index-activities.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { IndexNewsItemDirective } from 'src/app/shared/directives/index-news-item.directive';
+import { IndexProductItemDirective } from 'src/app/shared/directives/index-product-item.directive';
 
 // Swiper default config
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -29,7 +32,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 		IndexAboutUsComponent,
 		IndexProductsComponent,
 		IndexNewsComponent,
-		IndexActivitiesComponent
+		IndexActivitiesComponent,
+		IndexNewsItemDirective,
+		IndexProductItemDirective,
 	],
 	imports: [
 		CommonModule,

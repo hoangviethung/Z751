@@ -6,7 +6,7 @@
 		<div class="news-list clearfix">
 			<ng-container *ngFor="let news of newsList, let i = index">
 				<div class="news-item" [ngClass]="{'news-big': i == 0}" *ngIf="i<5" appIndexNewsItem>
-					<a [routerLink]="news.url" class="d-f fw-w">
+					<a [routerLink]="news.url | localize" class="d-f fw-w">
 						<div class="img ov-h">
 							<img src="{{news.img}}" alt="">
 						</div>

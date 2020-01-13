@@ -12,7 +12,7 @@ export class IndexNewsItemDirective implements AfterViewInit {
 	setEffect() {
 		const item = this.elementRef.nativeElement;
 		const itemWidth = item.querySelector('.img').clientWidth;
-		const itemDescription = item.querySelector('.description');
+		// const itemDescription = item.querySelector('.description');
 		item.querySelector('.img').style.height = `${itemWidth / this.ratio}px`;
 	}
 

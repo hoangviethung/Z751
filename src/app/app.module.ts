@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/_shared/header/header.component';
 import { FooterComponent } from './components/_shared/footer/footer.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { FooterComponent } from './components/_shared/footer/footer.component';
 		})
 	],
 	providers: [
-		Title
+		Title,
+		SharedModule
 	],
 	bootstrap: [AppComponent]
 })

@@ -14,8 +14,8 @@ import { IndexNewsItemDirective } from './directives/index-news-item.directive';
 		CommonModule
 	],
 	exports: [
-		// IndexProductItemDirective,
-		// IndexNewsItemDirective
+		IndexProductItemDirective,
+		IndexNewsItemDirective
 	],
 	providers: [
 	]
