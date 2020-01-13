@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-lg-12 col-news" *ngFor="let news of listNews">
 				<div class="news-item">
-					<a [routerLink]="news.url">
+					<a [routerLink]="['/news' | localize, news.id]">
 						<figure class="d-f fw-w">
 							<div class="img ov-h">
 								<img class="ofcv" src="{{news.img}}" alt="" srcset="">

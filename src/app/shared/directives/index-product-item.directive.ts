@@ -36,8 +36,6 @@ export class IndexProductItemDirective implements AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		console.log(1);
-		
 		this.setEffect();
 	}
 

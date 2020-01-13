@@ -32,14 +32,13 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 		IndexAboutUsComponent,
 		IndexProductsComponent,
 		IndexNewsComponent,
-		IndexActivitiesComponent,
-		IndexNewsItemDirective,
-		IndexProductItemDirective,
+		IndexActivitiesComponent
 	],
 	imports: [
 		CommonModule,
 		IndexRoutingModule,
 		SwiperModule,
+		SharedModule,
 		TranslateModule.forChild(),
 	],
 	providers: [

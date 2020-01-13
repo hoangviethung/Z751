@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexActivitiesComponent implements OnInit {
 
-	activicties: [
+	activities: [
 		{
 			url: 'activities',
 			img: '/assets/images/products/p_1.jpg',
