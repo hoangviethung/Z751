@@ -13,8 +13,6 @@ export class NewsDetailComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.activatedRoute.params.subscribe(params => {
-			console.log(params);
-		});
+		this.activatedRoute.params.subscribe(params => { });
 	}
 }

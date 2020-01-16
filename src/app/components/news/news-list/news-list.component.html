@@ -1,9 +1,9 @@
 <section class="pt-70">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-12 col-news" *ngFor="let news of listNews">
+			<div class="col-lg-12 col-news" *ngFor="let news of newsList">
 				<div class="news-item">
-					<a [routerLink]="['/news' | localize, news.id]">
+					<a [routerLink]="['/news' | localize, news.url]">
 						<figure class="d-f fw-w">
 							<div class="img ov-h">
 								<img class="ofcv" src="{{news.img}}" alt="" srcset="">

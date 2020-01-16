@@ -12,7 +12,7 @@ const routes: Routes = [
 		component: NewsListComponent
 	},
 	{
-		path: ':id',
+		path: ':url',
 		pathMatch: 'full',
 		component: NewsDetailComponent
 	}
