@@ -16,8 +16,6 @@ import { IndexNewsItemDirective } from './directives/index-news-item.directive';
 	exports: [
 		IndexProductItemDirective,
 		IndexNewsItemDirective
-	],
-	providers: [
 	]
 })
 export class SharedModule { }

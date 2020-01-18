@@ -1,0 +1,22 @@
+<section class="history">
+	<div class="container">
+		<div class="block-title">
+			<div class="main-title fw-700 tt-u">lịch sử hình thành và phát triển</div>
+		</div>
+		<div class="timeline">
+			<div class="swiper-container" [swiper]="sliderHistory">
+				<div class="swiper-wrapper">
+					<div *ngFor="let item of listTimeLine" class="swiper-slide">
+						<h3>Năm {{item.time}}</h3>
+						<div class="icon">
+							<img src="./assets/images/icons/timeline.png" alt="" srcset="">
+						</div>
+						<p>{{item.description}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-button-next"></div>
+			<div class="swiper-button-prev"></div>
+		</div>
+	</div>
+</section>

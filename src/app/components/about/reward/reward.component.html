@@ -1,0 +1,27 @@
+<section class="reward">
+	<div class="container">
+		<div class="block-title center">
+			<div class="main-title main-title fw-700 tt-u">giải thưởng và thành tự</div>
+		</div>
+		<div class="desc">Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
+			facilisis. Lorem ipsum dolor sit amet, consectetur lorem.</div>
+		<div class="slider-reward">
+			<div class="swiper-container" [swiper]="sliderReward">
+				<div class="swiper-wrapper">
+					<div *ngFor="let item of listReward" class="swiper-slide">
+						<figure>
+							<div class="box-img">
+								<img class="ofcv" src="{{item.image}}" alt="" srcset="">
+							</div>
+							<figcaption>
+								<h3 class="lcl lcl-2">{{item.name}}</h3>
+							</figcaption>
+						</figure>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-button-next"></div>
+			<div class="swiper-button-prev"></div>
+		</div>
+	</div>
+</section>
