@@ -1,0 +1,32 @@
+.contact {
+	.block-form {
+		padding-right: 30px;
+
+		textarea {
+			height: 200px;
+		}
+	}
+
+	.list-address {
+		padding-left: 30px;
+
+		.item-address {
+			padding-bottom: 30px;
+			margin-bottom : 30px;
+			border-bottom : 1px dotted #707070;
+
+			ul {
+				li {
+					font-size: 18px;
+					color    : #2B2B2B;
+				}
+			}
+
+			&:last-child {
+				margin-bottom : 0;
+				padding-bottom: 0;
+				border-bottom : 0;
+			}
+		}
+	}
+}
