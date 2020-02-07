@@ -99,13 +99,38 @@
 	margin-left: auto;
 }
 
+.mt-40 {
+	margin-top: 40px;
+}
+
+.mb-10 {
+	margin-bottom: 10px;
+}
+
+.mb-20 {
+	margin-bottom: 20px;
+}
+
 // Forms
 .form-control {
 	padding: 7px 15px;
+	resize : none;
+
+	&.bd-input {
+		border: 1px solid #707070;
+	}
+
+	&.bdr-input {
+		border-radius: 10px;
+	}
 }
 
 .bd-0 {
 	border: 0px solid transparent;
+}
+
+.w-100 {
+	width: 100%;
 }
 
 .bd-main {
@@ -140,6 +165,14 @@
 	color: map-get($mau, main);
 }
 
+.cl-main-2 {
+	color: map-get($mau, main-2) !important;
+}
+
+.cl-gray {
+	color: #707070;
+}
+
 .bg-gray {
 	background-color: rgba(#F3F3F3, .5);
 }
@@ -150,4 +183,12 @@
 
 .cl-white {
 	color: #ffffff;
+}
+
+.op-50 {
+	opacity: 50%;
+}
+
+.text-center {
+	text-align: center !important;
 }
