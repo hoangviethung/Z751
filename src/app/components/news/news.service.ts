@@ -4,13 +4,20 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 
-export class NewsListService {
+export class NewsService {
+
+	public newsList;
+
 	constructor(
 		private httpSvc: HttpService,
 	) {
 	}
 
-	fetchNews(url: string): Observable<any> {
+	fetchNews(url: string) {
+		return this.httpSvc.get(url);
+	}
+
+	fetchNewsDetail(url:string) {
 		return this.httpSvc.get(url);
 	}
 }

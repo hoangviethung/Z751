@@ -117,29 +117,79 @@ header {
 	}
 
 	.main-nav {
-		.nav-item {
-			padding: 5px 18px;
+		>ul {
+			>.nav-item {
+				padding: 5px 18px;
+				position: relative;
 
-			.nav-link {
-				padding: 7px 0;
-				font-size: 14px;
-				color: white;
-				border-bottom: 2px solid transparent;
-				transition: all .2s ease-in-out;
-			}
+				>.nav-link {
+					padding: 7px 0;
+					font-size: 14px;
+					color: white;
+					border-bottom: 2px solid transparent;
+					transition: all .2s ease-in-out;
+				}
 
-			&.active {
-				.nav-link {
-					border-bottom: 2px solid white;
+				&.active {
+					>.nav-link {
+						border-bottom: 2px solid white;
+					}
+				}
+
+				&:hover {
+					cursor: pointer;
+
+					>.nav-sub {
+						opacity: 1;
+						visibility: visible;
+						transform: translateY(0);
+					}
+				}
+
+				@media (min-width: 1200px) {
+					padding: 7px 25px;
+
+					>.nav-link {
+						padding: 10px 0;
+						font-size: 15px;
+					}
 				}
 			}
+		}
 
-			@media (min-width: 1200px) {
-				padding: 7px 25px;
+		.nav-sub {
+			background-color: white;
+			position: absolute;
+			top: 100%;
+			box-shadow: 2px 4px 12px rgba(black, .1);
+			left: 25px;
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY(10px);
+			transition: all .3s ease-out;
 
-				.nav-link {
-					padding: 10px 0;
-					font-size: 15px;
+			>.nav-item {
+				>.nav-link {
+					padding: 7px 25px;
+					display: block;
+					min-width: 320px;
+					color: map-get($mau, main);
+					font-size: 14px;
+
+					@media (min-width: 1200px) {
+						font-size: 15px;
+					}
+				}
+
+				&:hover {
+					>.nav-link {
+						background-color: map-get($mau, main);
+						color: white;
+					}
+				}
+
+				+.nav-item {
+					border-top: 1px solid rgba(map-get($mau, main), .5);
 				}
 			}
 		}

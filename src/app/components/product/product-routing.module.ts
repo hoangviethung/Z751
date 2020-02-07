@@ -9,7 +9,8 @@ const routes: Routes = [
 		path: '',
 		pathMatch: 'full',
 		component: ProductComponent
-	}];
+	}
+];
 
 @NgModule({
 	imports: [

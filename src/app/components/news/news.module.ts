@@ -1,17 +1,20 @@
 import { NgModule, ComponentRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NewsRoutingModule } from './news-routing.module';
-import { NewsListComponent } from './news-list/news-list.component';
-import { NewsDetailComponent } from './news-detail/news-detail.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { NewsComponent } from './news.component';
+import { NewsService } from './news.service';
+import { NewsSimpleComponent } from './news-simple/news-simple.component';
+import { NewsDetailComponent } from './news-detail/news-detail.component';
 import { NewsDetailContentComponent } from './news-detail/news-detail-content/news-detail-content.component';
 import { NewsDetailOthersComponent } from './news-detail/news-detail-others/news-detail-others.component';
-import { NewsListService } from './news-list/news-list.service';
 
 
 @NgModule({
 	declarations: [
-		NewsListComponent,
+		NewsComponent,
+		NewsComponent,
+		NewsSimpleComponent,
 		NewsDetailComponent,
 		NewsDetailContentComponent,
 		NewsDetailOthersComponent
@@ -22,7 +25,7 @@ import { NewsListService } from './news-list/news-list.service';
 		TranslateModule.forChild()
 	],
 	providers: [
-		NewsListService
+		NewsService
 	]
 })
 export class NewsModule { }

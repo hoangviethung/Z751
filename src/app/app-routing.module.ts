@@ -37,6 +37,20 @@ const routes: Routes = [
 		}
 	},
 	{
+		path: 'videos',
+		loadChildren: () => import('./components/activities/activities.module').then(m => m.ActivitiesModule),
+		data: {
+			preload: false,
+		}
+	},
+	{
+		path: 'images',
+		loadChildren: () => import('./components/activities/activities.module').then(m => m.ActivitiesModule),
+		data: {
+			preload: false,
+		}
+	},
+	{
 		path: 'profiles',
 		loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule),
 		data: {

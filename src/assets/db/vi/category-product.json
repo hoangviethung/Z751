@@ -1,0 +1,28 @@
+{
+	"data": [
+		{
+			"id": "product-1",
+			"name": "ĐỒ GỖ GIA DỤNG VÀ XUẤT KHẨU"
+		},
+		{
+			"id": "product-2",
+			"name": "NGÀNH CƠ KHÍ, KẾT CẤU CÔNG NGHIỆP, CƠ ĐIỆN"
+		},
+		{
+			"id": "product-3",
+			"name": "NGÀNH CAO SU"
+		},
+		{
+			"id": "product-4",
+			"name": "CHẾ TẠO, SỬA CHỮA THIẾT BỊ"
+		},
+		{
+			"id": "product-5",
+			"name": "MAY CÔNG NGHIỆP, DỊCH VỤ KHU BÃI, LƯU TRỮ HÀNG HÓA"
+		},
+		{
+			"id": "product-6",
+			"name": "NGÀNH ÔTÔ"
+		}
+	]
+}

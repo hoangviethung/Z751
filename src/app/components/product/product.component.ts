@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageInfoService } from 'src/app/shared/services/page-info.service';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
 	selector: 'app-product',
@@ -8,11 +10,18 @@ import { PageInfoService } from 'src/app/shared/services/page-info.service';
 })
 export class ProductComponent implements OnInit {
 
-	constructor(private pageService: PageInfoService) {
+	state$: Observable<object>;
+
+	constructor(
+		private pageService: PageInfoService,
+		private activatedRoute: ActivatedRoute
+	) {
 		this.pageService.setTitle('Sản phẩm');
 	}
 
 	ngOnInit() {
+		this.state$ = this.activatedRoute.paramMap
+
 	}
 
 }

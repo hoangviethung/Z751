@@ -31,13 +31,13 @@ export class HttpService {
 	}
 
 	// private get LANGUAGE(): string {
-		// let language = this._localStorage.get(LOCAL_STORAGE_KEY.language);
-		// if (!language) {
-		//     language = LanguageEnum.DEFAULT_LANGUAGE;
-		//     this._localStorage.set(LOCAL_STORAGE_KEY.language, language);
-		// }
-		// return language;
-		// return 'en'
+	// let language = this._localStorage.get(LOCAL_STORAGE_KEY.language);
+	// if (!language) {
+	//     language = LanguageEnum.DEFAULT_LANGUAGE;
+	//     this._localStorage.set(LOCAL_STORAGE_KEY.language, language);
+	// }
+	// return language;
+	// return 'en'
 	// }
 
 	private _apiPath = AppConfigModel.ApiConfig.url;
