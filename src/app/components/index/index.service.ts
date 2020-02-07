@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpService } from 'src/app/shared/services/markup.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -109,7 +110,7 @@ export class IndexService {
 		},
 	]
 
-	constructor() { }
+	constructor(private httpSvc: HttpService) { }
 
 	getListNews() {
 		return this.newsList;
@@ -117,5 +118,9 @@ export class IndexService {
 
 	getListActivities() {
 		return this.activitiesList;
+	}
+
+	getListCategoryProduct() {
+		return this.httpSvc.get('/assets/db/vi/category-product.json');
 	}
 }

@@ -1,26 +1,32 @@
 {
 	"data": [
 		{
+			"img": "/assets/images/products/category/cata-1.jpg",
 			"id": "product-1",
 			"name": "ĐỒ GỖ GIA DỤNG VÀ XUẤT KHẨU"
 		},
 		{
+			"img": "/assets/images/products/category/cata-2.jpg",
 			"id": "product-2",
 			"name": "NGÀNH CƠ KHÍ, KẾT CẤU CÔNG NGHIỆP, CƠ ĐIỆN"
 		},
 		{
+			"img": "/assets/images/products/category/cata-3.jpg",
 			"id": "product-3",
 			"name": "NGÀNH CAO SU"
 		},
 		{
+			"img": "/assets/images/products/category/cata-4.jpg",
 			"id": "product-4",
 			"name": "CHẾ TẠO, SỬA CHỮA THIẾT BỊ"
 		},
 		{
+			"img": "/assets/images/products/category/cata-5.jpg",
 			"id": "product-5",
 			"name": "MAY CÔNG NGHIỆP, DỊCH VỤ KHU BÃI, LƯU TRỮ HÀNG HÓA"
 		},
 		{
+			"img": "/assets/images/products/category/cata-6.jpg",
 			"id": "product-6",
 			"name": "NGÀNH ÔTÔ"
 		}
