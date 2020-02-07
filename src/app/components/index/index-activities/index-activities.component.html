@@ -5,12 +5,12 @@
 		</div>
 		<div class="row activities-list">
 			<ng-container *ngFor="let activities of activitiesList, let i = index">
-				<div class="col-lg-6 activities-item" *ngIf="i<2">
+				<div class="col-lg-6 index-activities-item" *ngIf="i<2">
 					<a [routerLink]="[ '/activitys.url' | localize]">
 						<div class="img ov-h mb-20">
 							<img src="{{activities.img}}" alt="">
 						</div>
-						<h3>{{activities.title}}</h3>
+						<h3 class="lcl lcl-1">{{activities.title}}</h3>
 						<div class="description">
 							<time class="d-b">{{activities.time}}</time>
 							<span class="viewmore">Xem {{activities.typeName}}</span>
@@ -18,6 +18,6 @@
 					</a>
 				</div>
 			</ng-container>
-		</div> `
+		</div>
 	</div>
 </section>

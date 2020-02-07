@@ -1,0 +1,25 @@
+<section class="activities pt-70">
+	<div class="container">
+		<div class="block-title center">
+			<h2 class="main-title tt-u tag-line">video</h2>
+		</div>
+		<div class="row activities-list">
+			<ng-container *ngFor="let activitiesVideo of activitiesVideoList let i = index">
+				<div class="col-lg-3 activities-item" *ngIf="i<12">
+					<figure>
+						<div class="img ov-h activities-video">
+							<img src="{{activitiesVideo.thumbnail}}" alt="">
+						</div>
+						<figcaption>
+							<h3 class="lcl lcl-1">{{activitiesVideo.title}}</h3>
+							<div class="description">
+								<time class="d-b">{{activitiesVideo.time}}</time>
+								<span class="viewmore">Xem {{activitiesVideo.typeName}}</span>
+							</div>
+						</figcaption>
+					</figure>
+				</div>
+			</ng-container>
+		</div>
+	</div>
+</section>

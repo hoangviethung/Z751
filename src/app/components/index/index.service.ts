@@ -55,56 +55,56 @@ export class IndexService {
 			typeName: 'Album',
 			time: '25/04/2019',
 			url: 'activities',
-			img: '/assets/images/products/p_1.jpg',
+			img: '/assets/images/activities/index-1.jpg',
 			title: "ĐỒ GỖ GIA DỤNG VÀ XUẤT KHẨU",
 		},
 		{
 			typeName: 'Video',
 			time: '25/04/2019',
 			url: 'activities',
-			img: '/assets/images/products/p_2.jpg',
+			img: '/assets/images/activities/index-2.jpg',
 			title: "NGÀNH CƠ KHÍ, KẾT CẤU CÔNG NGHIỆP, CƠ ĐIỆN"
 		},
 		{
 			typeName: 'Album',
 			time: '25/04/2019',
 			url: 'activities',
-			img: '/assets/images/products/p_1.jpg',
+			img: '/assets/images/activities/index-1.jpg',
 			title: "ĐỒ GỖ GIA DỤNG VÀ XUẤT KHẨU",
 		},
 		{
 			typeName: 'Video',
 			time: '25/04/2019',
 			url: 'activities',
-			img: '/assets/images/products/p_2.jpg',
+			img: '/assets/images/activities/index-2.jpg',
 			title: "NGÀNH CƠ KHÍ, KẾT CẤU CÔNG NGHIỆP, CƠ ĐIỆN"
 		},
 		{
 			typeName: 'Album',
 			time: '25/04/2019',
 			url: 'activities',
-			img: '/assets/images/products/p_1.jpg',
+			img: '/assets/images/activities/index-1.jpg',
 			title: "ĐỒ GỖ GIA DỤNG VÀ XUẤT KHẨU",
 		},
 		{
 			typeName: 'Video',
 			time: '25/04/2019',
 			url: 'activities',
-			img: '/assets/images/products/p_2.jpg',
+			img: '/assets/images/activities/index-2.jpg',
 			title: "NGÀNH CƠ KHÍ, KẾT CẤU CÔNG NGHIỆP, CƠ ĐIỆN"
 		},
 		{
 			typeName: 'Album',
 			time: '25/04/2019',
 			url: 'activities',
-			img: '/assets/images/products/p_1.jpg',
+			img: '/assets/images/activities/index-1.jpg',
 			title: "ĐỒ GỖ GIA DỤNG VÀ XUẤT KHẨU",
 		},
 		{
 			typeName: 'Video',
 			time: '25/04/2019',
 			url: 'activities',
-			img: '/assets/images/products/p_2.jpg',
+			img: '/assets/images/activities/index-2.jpg',
 			title: "NGÀNH CƠ KHÍ, KẾT CẤU CÔNG NGHIỆP, CƠ ĐIỆN"
 		},
 	]
