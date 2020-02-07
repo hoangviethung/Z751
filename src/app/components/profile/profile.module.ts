@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProfileRoutingModule } from './profile-routing.module';
 import { ProfileComponent } from './profile.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import { TranslateModule } from '@ngx-translate/core';
 		ProfileComponent
 	],
 	imports: [
+		SharedModule,
 		CommonModule,
 		ProfileRoutingModule,
 		TranslateModule.forChild(),
