@@ -1,1 +1,13 @@
-<p>product-simple works!</p>
+<a [routerLink]="['/products' | localize, product.id, url]">
+	<figure>
+		<div class="img ov-h">
+			<img src="{{product.img}}" alt="{{product.name}}" srcset="">
+		</div>
+		<figcaption>
+			<div class="description d-f">
+				<h3 class="lcl lcl-1 fw-700">{{product.name}}</h3>
+				<span class="text-right">Xem chi tiết</span>
+			</div>
+		</figcaption>
+	</figure>
+</a>

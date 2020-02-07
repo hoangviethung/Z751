@@ -10,6 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { HistoryComponent } from './history/history.component';
 import { StaffComponent } from './staff/staff.component';
 import { RewardComponent } from './reward/reward.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 // Swiper default config
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -22,9 +23,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 		AboutComponent,
 		HistoryComponent,
 		StaffComponent,
-		RewardComponent
+		RewardComponent,
 	],
 	imports: [
+		SharedModule,
 		SwiperModule,
 		CommonModule,
 		AboutRoutingModule,

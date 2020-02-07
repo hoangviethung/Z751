@@ -12,15 +12,14 @@ export class ProductComponent implements OnInit {
 
 	products = [];
 	title: string;
+	desc: string;
 
 	constructor(
 		private pageService: PageInfoService,
 		private activatedRoute: ActivatedRoute,
 		private httpSvc: HttpService,
 		private router: Router
-	) {
-		this.pageService.setTitle('Sản phẩm');
-	}
+	) { }
 
 	ngOnInit() {
 		this.fecthProducts();
@@ -30,7 +29,8 @@ export class ProductComponent implements OnInit {
 			if (event instanceof NavigationEnd) {
 				this.httpSvc.get(`/assets/db/vi/${id}.json`).subscribe(result => {
 					this.products = result.data.products;
-					this.title = result.data.title
+					this.title = result.data.title;
+					this.pageService.setTitle(this.title);
 				})
 			}
 		})
@@ -39,8 +39,9 @@ export class ProductComponent implements OnInit {
 	fecthProducts() {
 		const id = this.activatedRoute.snapshot.queryParams['id'];
 		this.httpSvc.get(`/assets/db/vi/${id}.json`).subscribe(result => {
+			this.title = result.data.title;
+			this.desc = result.data.desc;
 			this.products = result.data.products;
-			this.title = result.data.title
 		})
 	}
 }

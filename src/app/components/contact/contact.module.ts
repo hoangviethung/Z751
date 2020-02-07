@@ -6,6 +6,7 @@ import { ContactComponent } from './contact.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { MapComponent } from '../_shared/map/map.component';
 import { AgmCoreModule } from '@agm/core';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
 	declarations: [
@@ -13,6 +14,7 @@ import { AgmCoreModule } from '@agm/core';
 		MapComponent
 	],
 	imports: [
+		SharedModule,
 		CommonModule,
 		ContactRoutingModule,
 		TranslateModule.forChild(),

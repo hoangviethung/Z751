@@ -21,7 +21,7 @@ import { SharedModule } from './shared/shared.module';
 	declarations: [
 		AppComponent,
 		HeaderComponent,
-		FooterComponent
+		FooterComponent,
 	],
 	imports: [
 		BrowserModule.withServerTransition({ appId: 'serverApp' }),
