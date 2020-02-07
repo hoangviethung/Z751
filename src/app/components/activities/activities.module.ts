@@ -5,12 +5,16 @@ import { ActivitiesRoutingModule } from './activities-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { ActivitiesImageComponent } from './activities-image/activities-image.component';
 import { ActivitiesVideoComponent } from './activities-video/activities-video.component';
+import { ActivitiesPopupComponent } from './activities-popup/activities-popup.component';
+import { ImageSimpleComponent } from './activities-image/image-simple/image-simple.component';
 
 
 @NgModule({
 	declarations: [
 		ActivitiesImageComponent,
-		ActivitiesVideoComponent
+		ActivitiesVideoComponent,
+		ActivitiesPopupComponent,
+		ImageSimpleComponent
 	],
 	imports: [
 		CommonModule,
