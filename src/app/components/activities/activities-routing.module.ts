@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ActivitiesComponent } from './activities.component';
 import { LocalizeRouterModule } from '@gilsdav/ngx-translate-router';
+import { ActivitiesImageComponent } from './activities-image/activities-image.component';
+import { ActivitiesVideoComponent } from './activities-video/activities-video.component';
 
 
 const routes: Routes = [
 	{
-		path: '',
-		pathMatch: 'full',
-		component: ActivitiesComponent
-	}];
+		path: 'images',
+		component: ActivitiesImageComponent
+	},
+	{
+		path: 'videos',
+		component: ActivitiesVideoComponent
+	}
+];
 
 @NgModule({
 	imports: [
