@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NewsService } from '../news.service';
+import { HttpService } from 'src/app/shared/services/http.service';
 
 @Component({
 	selector: 'app-news-detail',
@@ -13,13 +13,13 @@ export class NewsDetailComponent implements OnInit {
 
 	constructor(
 		private activatedRoute: ActivatedRoute,
-		private newsSvc: NewsService
+		private httpSvc: HttpService
 	) { }
 
 	ngOnInit() {
-		this.activatedRoute.params.subscribe(result => {
-			this.newsSvc.fetchNewsDetail(`assets/db/vi/${result.id}.json`).subscribe(data => {
-				this.content = data;
+		this.activatedRoute.params.subscribe(param => {
+			this.httpSvc.get(`assets/db/vi/${param.id}.json`).subscribe(result => {
+				this.content = result.data;
 			})
 		})
 	}

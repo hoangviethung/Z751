@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IndexService } from '../index.service';
+import { HttpService } from 'src/app/shared/services/http.service';
 
 @Component({
 	selector: 'app-index-products',
@@ -7,24 +7,21 @@ import { IndexService } from '../index.service';
 	styleUrls: ['./index-products.component.scss']
 })
 export class IndexProductsComponent implements OnInit {
-
-	categoryProductsList = [];
+	ProductCategoryUrl = 'assets/db/vi/category-product.json';
+	categoryProduct = [];
 
 	constructor(
-		private _indexSvc: IndexService
+		private httpSvc: HttpService
 	) { }
 
 	ngOnInit() {
-		this.returnData();
+		this.productCategory();
 	}
 
-	returnData() {
-		this.getListCategoryProduct();
-	}
 
-	getListCategoryProduct() {
-		this._indexSvc.getListCategoryProduct().subscribe(result => {
-			this.categoryProductsList = result.data
+	productCategory() {
+		this.httpSvc.get(this.ProductCategoryUrl).subscribe(result => {
+			this.categoryProduct = result.data
 		});
 	}
 }

@@ -20,11 +20,13 @@ import 'zone.js/dist/zone-node';
 import * as express from 'express';
 import { join } from 'path';
 import { APP_BASE_HREF } from '@angular/common';
+const path = require('path');
 
 // Express server
 const app = express();
 
 const PORT = process.env.PORT || 4000;
+
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack

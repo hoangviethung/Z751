@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { HttpService } from 'src/app/shared/services/http.service';
 import { PageInfoService } from 'src/app/shared/services/page-info.service';
-import { ActivatedRoute, Router, NavigationStart, RoutesRecognized, NavigationEnd } from '@angular/router';
-import { HttpService } from 'src/app/shared/services/markup.service';
 
 @Component({
 	selector: 'app-product',
@@ -14,34 +14,27 @@ export class ProductComponent implements OnInit {
 	title: string;
 	desc: string;
 
+
 	constructor(
-		private pageService: PageInfoService,
-		private activatedRoute: ActivatedRoute,
+		private activatedRouteSvc: ActivatedRoute,
 		private httpSvc: HttpService,
-		private router: Router
+		private pageInfoSvc: PageInfoService
 	) { }
 
-	ngOnInit() {
-		this.fecthProducts();
 
-		this.router.events.subscribe(event => {
-			const id = this.activatedRoute.snapshot.queryParams['id'];
-			if (event instanceof NavigationEnd) {
-				this.httpSvc.get(`/assets/db/vi/${id}.json`).subscribe(result => {
-					this.products = result.data.products;
-					this.title = result.data.title;
-					this.pageService.setTitle(this.title);
-				})
-			}
-		})
+	ngOnInit() {
+		this.getProducts();
 	}
 
-	fecthProducts() {
-		const id = this.activatedRoute.snapshot.queryParams['id'];
-		this.httpSvc.get(`/assets/db/vi/${id}.json`).subscribe(result => {
-			this.title = result.data.title;
-			this.desc = result.data.desc;
-			this.products = result.data.products;
+	getProducts() {
+		this.activatedRouteSvc.params.subscribe(routeParams => {
+			const url = `assets/db/vi/${routeParams.id}.json`;
+			this.httpSvc.get(url).subscribe(result => {
+				this.pageInfoSvc.setTitle(result.data.title)
+				this.title = result.data.title;
+				this.desc = result.data.desc;
+				this.products = result.data.products;
+			})
 		})
 	}
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SwiperConfigInterface, SwiperDirective, SwiperComponent } from 'ngx-swiper-wrapper';
+import { ActivatedRoute } from '@angular/router';
+
 @Component({
 	selector: 'app-product-detail',
 	templateUrl: './product-detail.component.html',
@@ -15,10 +17,15 @@ export class ProductDetailComponent implements OnInit {
 			disableOnInteraction: false,
 		},
 	}
-	constructor() { }
+
+	constructor(
+		private activatedRoute: ActivatedRoute
+	) { }
 
 	ngOnInit() {
+		console.log(
+			this.activatedRoute.snapshot.paramMap.get('productId')
+		);
 	}
-
 
 }

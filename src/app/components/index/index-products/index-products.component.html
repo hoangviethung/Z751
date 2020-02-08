@@ -4,14 +4,14 @@
 			<h2 class="main-title tt-u tag-line">Sản phẩm</h2>
 		</div>
 		<div class="row">
-			<div class="col-lg-4 col-sm-6 col-product" *ngFor="let categoryProducts of categoryProductsList">
+			<div class="col-lg-4 col-sm-6 col-product" *ngFor="let item of categoryProduct">
 				<div class="product-item" appIndexProductItem>
-					<a [routerLink]="'/products' | localize" [queryParams]="{id:categoryProducts.id}">
+					<a [routerLink]="['/products' | localize, item.id]">
 						<div class="img ov-h">
-							<img src="{{categoryProducts.img}}" alt={{categoryProducts.name}}>
+							<img src="{{item.img}}" alt={{item.name}}>
 						</div>
 						<div class="description fcc">
-							<h3 class="tt-u ta-c" [innerHTML]="categoryProducts.name"></h3>
+							<h3 class="tt-u ta-c" [innerHTML]="item.name"></h3>
 						</div>
 						<span class="btn btn-red btn-viewmore">
 							Xem thêm

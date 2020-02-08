@@ -5,17 +5,17 @@
 			<h2 class="main-title tt-u tag-line">hình ảnh</h2>
 		</div>
 		<div class="row activities-list">
-			<ng-container *ngFor="let activitiesImage of activitiesImageList let i = index">
+			<ng-container *ngFor="let image of images let i = index">
 				<div class="col-lg-3 activities-item" *ngIf="i<12">
 					<figure>
 						<div class="img ov-h">
-							<img src="{{activitiesImage.thumbnail}}" alt="">
+							<img src="{{image.thumbnail}}" alt="">
 						</div>
 						<figcaption>
-							<h3 class="lcl lcl-1">{{activitiesImage.title}}</h3>
+							<h3 class="lcl lcl-1">{{image.title}}</h3>
 							<div class="description">
-								<time class="d-b">{{activitiesImage.time}}</time>
-								<span class="viewmore">Xem {{activitiesImage.typeName}}</span>
+								<time class="d-b">{{image.time}}</time>
+								<span class="viewmore">Xem {{image.typeName}}</span>
 							</div>
 						</figcaption>
 					</figure>

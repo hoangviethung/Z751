@@ -6,6 +6,7 @@ import { Router } from "@angular/router";
 import { ROUTE } from "../../routes/routes";
 import { AppConfigModel } from '../models/common/app-config.model';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
+import { environment } from 'src/environments/environment';
 
 class RequestOption {
 	body?: any;
@@ -24,7 +25,9 @@ class RequestOption {
 	providedIn: 'root'
 })
 export class HttpService {
+
 	public locale: string = 'vi';
+
 	private get TOKEN(): string {
 		const token = '';
 		return token || "";
@@ -42,11 +45,11 @@ export class HttpService {
 
 	private _apiPath = AppConfigModel.ApiConfig.url;
 	constructor(
-		private http: HttpClient,
 		// private _authService: AuthService,
-		private _router: Router,
-		@Inject(PLATFORM_ID) private platformId: Object,
+		private http: HttpClient,
+		private router: Router,
 		private localeSvc: LocalizeRouterService,
+		@Inject(PLATFORM_ID) private platformId: Object
 	) { }
 
 	// public getUploadFileHeaders() {
@@ -56,13 +59,24 @@ export class HttpService {
 	// 	return authHeaders;
 	// }
 
-	get(url: string, params?: HttpParams) {
-		// debugger;
-		url = this._apiPath + url;
-		const option = this.getDefaultRequestJsonOption();
+	// get(url: string, params?: HttpParams) {
+	// 	// debugger;
+	// 	url = this._apiPath + url;
+	// 	const option = this.getDefaultRequestJsonOption();
+	// 	option.params = params;
+	// 	return this.executeJsonResponse("GET", url, option);
+	// }
+
+	
+	// DEV without real API
+	get(url: string, params?: HttpParams): Observable<any> {
+		const fullUrl = environment.locales + url;
+		const option = new RequestOption();
 		option.params = params;
-		return this.executeJsonResponse("GET", url, option);
+		return this.http.request('GET', fullUrl, option);
 	}
+	// END
+
 
 	post(url: string, data: any) {
 		url = this._apiPath + url;
@@ -97,7 +111,7 @@ export class HttpService {
 			.pipe(
 				map((res: any) => {
 					if (res.status === 500) {
-						this._router.navigate([ROUTE.GENERIC.ERROR_500_INTERNAL_ERROR()]);
+						this.router.navigate([ROUTE.GENERIC.ERROR_500_INTERNAL_ERROR()]);
 					}
 					return res;
 				}),
@@ -108,7 +122,7 @@ export class HttpService {
 	private handleError(error: HttpErrorResponse) {
 		if (error.error instanceof ErrorEvent) {
 			// A client-side or network error occurred. Handle it accordingly.
-			console.error("An error occurred:", error.error.message);
+			console.error("An error occurred:", error);
 		} else {
 			// The backend returned an unsuccessful response code.
 			// The response body may contain clues as to what went wrong,
@@ -124,7 +138,7 @@ export class HttpService {
 			} else {
 				routePath = ROUTE.GENERIC.ERROR_500_INTERNAL_ERROR();
 			}
-			this._router.navigate([routePath]);
+			this.router.navigate([routePath]);
 		}
 		// return an observable with a user-facing error message
 		return throwError(

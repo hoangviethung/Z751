@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageInfoService } from 'src/app/shared/services/page-info.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-profile',
@@ -8,11 +9,14 @@ import { PageInfoService } from 'src/app/shared/services/page-info.service';
 })
 export class ProfileComponent implements OnInit {
 
-	constructor(private pageService: PageInfoService) {
-		this.pageService.setTitle('Năng lực');
+	constructor(
+		private pageInfoSvc: PageInfoService,
+		private translateSvc: TranslateService
+	) {
 	}
 
 	ngOnInit() {
+		this.pageInfoSvc.setTitle(this.translateSvc.instant('menu.profiles'));
 	}
 
 }

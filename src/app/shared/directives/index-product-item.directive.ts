@@ -13,7 +13,8 @@ export class IndexProductItemDirective implements AfterViewInit {
 		const item = this.elementRef.nativeElement;
 		const itemWidth = item.clientWidth;
 		const itemDescription = item.querySelector('.description');
-		item.querySelector('.img').style.height = `${itemWidth / this.ratio}px`;
+		const itemImage = item.querySelector('.img');
+		itemImage.style.height = `${itemWidth / this.ratio}px`;
 		itemDescription.setAttribute('data-default-height', itemDescription.clientHeight);
 		itemDescription.setAttribute('data-hovered-height', itemWidth / this.ratio);
 

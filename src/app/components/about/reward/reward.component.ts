@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AboutService } from '../about.service';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { HttpService } from 'src/app/shared/services/http.service';
 
 @Component({
 	selector: 'app-reward',
@@ -8,7 +8,8 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 	styleUrls: ['./reward.component.scss']
 })
 export class RewardComponent implements OnInit {
-	listReward = [];
+	RewardUrl = 'assets/db/vi/about-rewards.json';
+	rewards = [];
 
 	sliderReward: SwiperConfigInterface = {
 		slidesPerView: 3,
@@ -27,13 +28,15 @@ export class RewardComponent implements OnInit {
 	}
 
 	constructor(
-		private _abouSvc: AboutService,
+		private httpSvc: HttpService,
 	) { }
 
 	ngOnInit() {
 		this.getListReward();
 	}
 	getListReward() {
-		this.listReward = this._abouSvc.getListReward();
+		this.httpSvc.get(this.RewardUrl).subscribe(result => {
+			this.rewards = result.data;
+		})
 	}
 }

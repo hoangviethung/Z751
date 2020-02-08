@@ -4,16 +4,16 @@
 			<h2 class="main-title tt-u tag-line">Tin tức 751</h2>
 		</div>
 		<div class="news-list clearfix">
-			<ng-container *ngFor="let news of newsList, let i = index">
+			<ng-container *ngFor="let item of news, let i = index">
 				<div class="news-item" [ngClass]="{'news-big': i == 0}" *ngIf="i<5" appIndexNewsItem>
-					<a [routerLink]="news.url | localize" class="d-f fw-w">
+					<a [routerLink]="['/news' | localize, item.id, item.url]" class="d-f fw-w">
 						<div class="img ov-h">
-							<img src="{{news.img}}" alt="">
+							<img src="{{item.img}}" alt="">
 						</div>
 						<div class="description">
-							<h3>{{news.title}}</h3>
-							<time class="d-b">{{news.time}}</time>
-							<p *ngIf="i==0">{{news.description}}</p>
+							<h3>{{item.title}}</h3>
+							<time class="d-b">{{item.time}}</time>
+							<p *ngIf="i==0">{{item.description}}</p>
 							<span class="viewmore" *ngIf="i==0">Xem chi tiết</span>
 						</div>
 					</a>

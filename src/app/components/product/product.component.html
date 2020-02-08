@@ -7,10 +7,12 @@
 				<p class="lcl lcl-2 fs-i">{{desc}}</p>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-lg-4 item-product" *ngFor="let product of products">
-				<app-product-simple [product]="product"></app-product-simple>
+		<ng-container #productContainer>
+			<div class="row">
+				<div class="col-lg-4 item-product" *ngFor="let product of products">
+					<app-product-simple [product]="product"></app-product-simple>
+				</div>
 			</div>
-		</div>
+		</ng-container>
 	</div>
 </section>

@@ -2,8 +2,7 @@
 	"data": {
 		"title": "ĐỒ GỖ GIA DỤNG VÀ XUẤT KHẨU",
 		"desc": "Đồ gỗ chuyên dùng là ô tô có kết cấu và trang bị để thực hiện một chức năng công dụng đặc biệt, bao gồm: Ô tô quét đường; ô tô hút chất thải; ô tô trộn vữa; ô tô trộn bê tông; ôtô bơm bê tông; ô tô cần cẩu; ô tô thang ...",
-		"products": [
-			{
+		"products": [{
 				"id": "p-1",
 				"img": "/assets/images/products/list-product/do-gia-dung/1.jpg",
 				"name": "ĐỒ GỖ GIA DỤNG VÀ XUẤT KHẨU"

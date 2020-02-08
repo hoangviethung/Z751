@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageInfoService } from 'src/app/shared/services/page-info.service';
-import { NewsService } from './news.service';
+import { HttpService } from 'src/app/shared/services/http.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-news',
@@ -8,14 +9,15 @@ import { NewsService } from './news.service';
 	styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
-
+	NewsUrl = 'assets/db/vi/news.json';
 	newsLists = [];
 
 	constructor(
-		private newsListSvc: NewsService,
-		private pageService: PageInfoService
+		private httpSvc: HttpService,
+		private pageInfoSvc: PageInfoService,
+		private translateSvc: TranslateService
 	) {
-		this.pageService.setTitle('Tin tức');
+		this.pageInfoSvc.setTitle(this.translateSvc.instant('menu.news'));
 	}
 
 	ngOnInit() {
@@ -24,12 +26,10 @@ export class NewsComponent implements OnInit {
 	}
 
 	getNewsList() {
-		this.newsListSvc.fetchNews('assets/db/vi/news.json')
+		this.httpSvc.get(this.NewsUrl)
 			.subscribe(
 				result => {
-					this.newsLists = result;
-				},
-				error => {
+					this.newsLists = result.data;
 				}
 			)
 	}

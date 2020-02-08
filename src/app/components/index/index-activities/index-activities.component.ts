@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IndexService } from '../index.service';
+import { HttpService } from 'src/app/shared/services/http.service';
 
 @Component({
 	selector: 'app-index-activities',
@@ -7,22 +7,20 @@ import { IndexService } from '../index.service';
 	styleUrls: ['./index-activities.component.scss']
 })
 export class IndexActivitiesComponent implements OnInit {
-
-	activitiesList = [];
+	IndexActivitiesUrl = 'assets/db/vi/index-activities.json'
+	activities = [];
 
 	constructor(
-		private _indexSvc: IndexService
+		private httpSvc: HttpService
 	) { }
 
 	ngOnInit() {
-		this.returnData();
-	}
-
-	returnData() {
 		this.getActivitiesList();
 	}
 
 	getActivitiesList() {
-		this.activitiesList = this._indexSvc.activitiesList;
+		this.httpSvc.get(this.IndexActivitiesUrl).subscribe(result => {
+			this.activities = result.data;
+		});
 	}
 }

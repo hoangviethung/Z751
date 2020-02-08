@@ -50,12 +50,12 @@
 									<a class="nav-link fw-700 tt-u d-if">{{'menu.products' | translate}}</a>
 									<ul class="nav-sub lst-n pl-0">
 										<li class="nav-item" *ngFor="let category of productCategory">
-											<a class="nav-link" [routerLink]="['products' | localize]"
-												[queryParams]="{ id: category.id}">{{category.name}}</a>
+											<a class="nav-link"
+												[routerLink]="['products' | localize, category.id]">{{category.name}}</a>
 										</li>
 									</ul>
 								</li>
-								<li routerLinkActive=" active" class="nav-item">
+								<li routerLinkActive="active" class="nav-item">
 									<a class="nav-link fw-700 tt-u d-if">{{'menu.activities' | translate}}</a>
 									<ul class="nav-sub lst-n pl-0">
 										<li class="nav-item">
