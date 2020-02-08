@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
-import { AboutService } from '../about.service';
+import { HttpService } from 'src/app/shared/services/http.service';
+
 
 @Component({
 	selector: 'app-staff',
 	templateUrl: './staff.component.html',
 	styleUrls: ['./staff.component.scss']
 })
+
 export class StaffComponent implements OnInit {
-	listStaff = [];
+	StaffUrl = 'assets/db/vi/about-staffs.json';
+	staffs = [];
 
 	sliderStaff: SwiperConfigInterface = {
 		slidesPerView: 4,
@@ -23,7 +26,7 @@ export class StaffComponent implements OnInit {
 	}
 
 	constructor(
-		private _aboutSvc: AboutService,
+		private httpSvc: HttpService,
 	) { }
 
 	ngOnInit() {
@@ -31,7 +34,9 @@ export class StaffComponent implements OnInit {
 	}
 
 	getListStaff() {
-		this.listStaff = this._aboutSvc.getListStaff();
+		this.httpSvc.get(this.StaffUrl).subscribe(result => {
+			this.staffs = result.data;
+		})
 	}
 
 }

@@ -7,7 +7,9 @@ import { Title } from '@angular/platform-browser';
 
 export class PageInfoService {
 
-	constructor(private titleService: Title) { }
+	constructor(
+		private titleService: Title
+	) { }
 
 	public setTitle(newTitle: string) {
 		this.titleService.setTitle(newTitle);

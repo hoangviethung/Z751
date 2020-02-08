@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageInfoService } from 'src/app/shared/services/page-info.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-page-not-found',
@@ -8,8 +9,11 @@ import { PageInfoService } from 'src/app/shared/services/page-info.service';
 })
 export class PageNotFoundComponent implements OnInit {
 
-	constructor(private pageService: PageInfoService) {
-		this.pageService.setTitle('Không tìm thấy trang');
+	constructor(
+		private pageInfoSvc: PageInfoService,
+		private translateSvc: TranslateService
+	) {
+		this.pageInfoSvc.setTitle(this.translateSvc.instant('menu.404'));
 	}
 
 	ngOnInit() {

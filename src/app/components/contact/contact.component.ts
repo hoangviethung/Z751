@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageInfoService } from 'src/app/shared/services/page-info.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
 	selector: 'app-contact',
@@ -8,11 +9,15 @@ import { PageInfoService } from 'src/app/shared/services/page-info.service';
 })
 export class ContactComponent implements OnInit {
 
-	constructor(private pageService: PageInfoService) {
-		this.pageService.setTitle('Liên hệ');
+	constructor(
+		private pageInfoSvc: PageInfoService,
+		private translateSvc: TranslateService
+	) {
+
 	}
 
 	ngOnInit() {
+		this.pageInfoSvc.setTitle(this.translateSvc.instant('menu.contact'));
 	}
 
 }

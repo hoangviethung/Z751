@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
 	title = 'z751';
 
 	constructor(
@@ -32,13 +32,5 @@ export class AppComponent implements OnInit, OnDestroy {
 		// })
 	}
 
-	onActivate(event$: any, scrollContainer: any): void {
-		scrollContainer.scrollTop = 0;
-	}
-
 	ngOnInit() { }
-
-	ngOnDestroy() {
-		// this.meta.removeTag('property="og:type"');
-	}
 }

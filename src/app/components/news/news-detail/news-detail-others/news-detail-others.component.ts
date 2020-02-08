@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsService } from '../../news.service';
+import { HttpService } from 'src/app/shared/services/http.service';
 
 @Component({
 	selector: 'app-news-detail-others',
@@ -11,7 +11,7 @@ export class NewsDetailOthersComponent implements OnInit {
 	listNewsOthers = [];
 
 	constructor(
-		private newsListSvc: NewsService
+		private httpSvc: HttpService
 	) { }
 
 	ngOnInit() {
@@ -20,12 +20,10 @@ export class NewsDetailOthersComponent implements OnInit {
 	}
 
 	getNewsList() {
-		this.newsListSvc.fetchNews('assets/db/vi/news.json')
+		this.httpSvc.get('assets/db/vi/news.json')
 			.subscribe(
 				result => {
-					this.listNewsOthers = result;
-				},
-				error => {
+					this.listNewsOthers = result.data;
 				}
 			)
 	}

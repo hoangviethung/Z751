@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IndexService } from '../index.service';
+import { HttpService } from 'src/app/shared/services/http.service';
+import { UtilsService } from 'src/app/shared/services/utils.service';
 
 @Component({
 	selector: 'app-index-news',
@@ -7,23 +8,26 @@ import { IndexService } from '../index.service';
 	styleUrls: ['./index-news.component.scss']
 })
 export class IndexNewsComponent implements OnInit {
-
-	newsList = []
+	HomeNewsUrl = 'assets/db/vi/news.json';
+	news = [];
 
 	constructor(
-		private _indexSvc: IndexService
+		private httpSvc: HttpService,
+		private utilSvc: UtilsService
 	) {
 	}
 
 	ngOnInit() {
-		this.returnData();
+		this.getNews();
 	}
 
-	returnData() {
-		this.getListNews();
-	}
-
-	getListNews() {
-		this.newsList = this._indexSvc.getListNews();
+	getNews() {
+		this.httpSvc.get(this.HomeNewsUrl).subscribe(result => {
+			let data = result.data;
+			data.forEach(news => {
+				news['url'] = this.utilSvc.alias(news.title);
+				this.news.push(news);
+			});
+		});
 	}
 }

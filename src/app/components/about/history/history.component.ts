@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
-import { AboutService } from '../about.service';
+import { HttpService } from 'src/app/shared/services/http.service';
 
 @Component({
 	selector: 'app-history',
 	templateUrl: './history.component.html',
 	styleUrls: ['./history.component.scss']
 })
+
 export class HistoryComponent implements OnInit {
-	listTimeLine = [];
+
+	TimelineUrl = 'assets/db/vi/about-timeline.json'
+	years = [];
 
 	sliderHistory: SwiperConfigInterface = {
 		slidesPerView: 4,
@@ -24,7 +27,7 @@ export class HistoryComponent implements OnInit {
 	}
 
 	constructor(
-		private _abouSvc: AboutService,
+		private httpSvc: HttpService,
 	) { }
 
 	ngOnInit() {
@@ -32,7 +35,9 @@ export class HistoryComponent implements OnInit {
 	}
 
 	getListTimeLine() {
-		this.listTimeLine = this._abouSvc.getListTimeLine();
+		this.httpSvc.get(this.TimelineUrl).subscribe(result => {
+			this.years = result.data;
+		})
 	}
 
 }

@@ -24,7 +24,7 @@ import { SharedModule } from './shared/shared.module';
 		FooterComponent,
 	],
 	imports: [
-		BrowserModule.withServerTransition({ appId: 'serverApp' }),
+		BrowserModule.withServerTransition({ appId: 'z751' }),
 		AppRoutingModule,
 		HttpClientModule,
 		TranslateModule.forRoot({

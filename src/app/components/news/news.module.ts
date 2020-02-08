@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { NewsRoutingModule } from './news-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { NewsComponent } from './news.component';
-import { NewsService } from './news.service';
 import { NewsSimpleComponent } from './news-simple/news-simple.component';
 import { NewsDetailComponent } from './news-detail/news-detail.component';
 import { NewsDetailContentComponent } from './news-detail/news-detail-content/news-detail-content.component';
@@ -27,7 +26,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 		TranslateModule.forChild()
 	],
 	providers: [
-		NewsService
 	]
 })
 export class NewsModule { }

@@ -7,12 +7,11 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 
 const routes: Routes = [
 	{
-		path: '',
-		pathMatch: 'full',
-		component: ProductComponent
+		path: ':id',
+		component: ProductComponent,
 	},
 	{
-		path: ':id/:title',
+		path: ':id/:productId/:title',
 		component: ProductDetailComponent
 	}
 ];
