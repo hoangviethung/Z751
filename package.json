@@ -3,7 +3,8 @@
 	"version": "0.0.0",
 	"scripts": {
 		"ng": "ng",
-		"start": "ng serve --open",
+		"start": "node heroku.js",
+		"dev": "ng serve --open",
 		"build": "ng build",
 		"test": "ng test",
 		"lint": "ng lint",
@@ -12,9 +13,13 @@
 		"serve:ssr": "node dist/server",
 		"build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
 		"build:client-and-server-bundles": "ng build --prod && ng run z751:server:production --bundleDependencies all",
-		"ssr": "npm run build:ssr && npm run serve:ssr"
+		"ssr": "npm run build:ssr && npm run serve:ssr",
+		"heroku-postbuild": "ng build --prod"
 	},
-	"private": true,
+	"engines": {
+		"node": "12.14.1",
+		"npm": "6.13.6"
+	},
 	"dependencies": {
 		"@agm/core": "^1.1.0",
 		"@angular/animations": "~8.2.14",
