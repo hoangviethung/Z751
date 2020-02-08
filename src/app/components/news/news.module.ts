@@ -8,6 +8,7 @@ import { NewsSimpleComponent } from './news-simple/news-simple.component';
 import { NewsDetailComponent } from './news-detail/news-detail.component';
 import { NewsDetailContentComponent } from './news-detail/news-detail-content/news-detail-content.component';
 import { NewsDetailOthersComponent } from './news-detail/news-detail-others/news-detail-others.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { NewsDetailOthersComponent } from './news-detail/news-detail-others/news
 		NewsDetailOthersComponent
 	],
 	imports: [
+		SharedModule,
 		CommonModule,
 		NewsRoutingModule,
 		TranslateModule.forChild()

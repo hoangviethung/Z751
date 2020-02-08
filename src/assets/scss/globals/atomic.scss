@@ -107,6 +107,18 @@
 	margin-bottom: 10px;
 }
 
+.mb-70 {
+	margin-bottom: 70px;
+}
+
+.mb-50 {
+	margin-bottom: 50px !important;
+}
+
+.mb-0 {
+	margin-bottom: 0 !important;
+}
+
 .mb-20 {
 	margin-bottom: 20px;
 }
@@ -123,6 +135,10 @@
 	&.bdr-input {
 		border-radius: 10px;
 	}
+
+	&.line-height-45 {
+		line-height: 45px;
+	}
 }
 
 .bd-0 {
@@ -131,6 +147,10 @@
 
 .w-100 {
 	width: 100%;
+}
+
+.w-50 {
+	width: 50%;
 }
 
 .bd-main {
@@ -151,6 +171,10 @@
 
 .fw-700 {
 	font-weight: 700;
+}
+
+.fs-i {
+	font-style: italic;
 }
 
 .tt-u {
@@ -191,4 +215,13 @@
 
 .text-center {
 	text-align: center !important;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.mx-at {
+	margin-right: auto;
+	margin-left : auto;
 }

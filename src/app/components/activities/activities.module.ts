@@ -7,6 +7,7 @@ import { ActivitiesImageComponent } from './activities-image/activities-image.co
 import { ActivitiesVideoComponent } from './activities-video/activities-video.component';
 import { ActivitiesPopupComponent } from './activities-popup/activities-popup.component';
 import { ImageSimpleComponent } from './activities-image/image-simple/image-simple.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { ImageSimpleComponent } from './activities-image/image-simple/image-simp
 	],
 	imports: [
 		CommonModule,
+		SharedModule,
 		ActivitiesRoutingModule,
 		TranslateModule.forChild()
 	]

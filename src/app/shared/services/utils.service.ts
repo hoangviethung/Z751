@@ -11,7 +11,7 @@ export class UtilsService {
 		alert(title)
 	}
 
-	alias(string) {
+	public alias(string) {
 		string = string.toLowerCase();
 
 		// xóa dấu
