@@ -1,2 +1,60 @@
-<section class="product-detail pt-70">
+<app-breadcrumb></app-breadcrumb>
+<section class="product-detail">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-7 ">
+				<div class="slider-imgProduct">
+					<!-- HÌNH LỚN -->
+					<div class="swiper-container" [swiper]="swiperConfig">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<div class="img ov-h">
+									<img src="/assets/images/products/product-detail/1.png" alt="">
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div class="img ov-h">
+									<img src="/assets/images/products/product-detail/1.png" alt="">
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- CÁC HÌNH NHỎ -->
+					<div class="gallery-thumbs-wrapper">
+						<div class="swiper-container" [swiper]="swiperConfig">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<div class="img ov-h">
+										<img src="/assets/images/products/product-detail/1.png" alt="">
+									</div>
+								</div>
+								<div class="swiper-slide">
+									<div class="img ov-h">
+										<img src="/assets/images/products/product-detail/1.png" alt="">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-5">
+				<div class="product-info">
+					<div class="block-title">
+						<h2 class="tt-u main-title tag-line mb-0">xe chuyên dùng</h2>
+					</div>
+					<div class="view-like">
+						<ul class="d-f lst-n pl-0">
+							<li class="view">1234</li>
+							<li class="like">222</li>
+						</ul>
+					</div>
+					<div class="desc">
+						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
+						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
