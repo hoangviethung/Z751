@@ -1,0 +1,120 @@
+<header>
+	<div class="container">
+		<div class="row no-gutters aic">
+			<div class="logo">
+				<a [routerLink]="'/index' | localize">
+					<img alt="" src="./assets/images/logo.png">
+				</a>
+			</div>
+			<div class="navbar col">
+				<div class="header-top d-f ai-c">
+					<div class="header-name ml-at">
+						<h1>{{'pageTitle' | translate}}</h1>
+					</div>
+					<div class="header-social">
+						<a href="https://pinterest.com" class="ico-pinterest">
+							<svg xmlns="http://www.w3.org/2000/svg" width="11.352" height="14.592"
+								viewBox="0 0 11.352 14.592">
+								<path
+									d="M1495.067,82.925a3.973,3.973,0,0,1-1.958-.932c-.383,2.009-.851,3.935-2.237,4.941-.428-3.037.628-5.317,1.118-7.737-.837-1.408.1-4.241,1.864-3.543,2.17.858-1.88,5.234.839,5.78,2.839.57,4-4.925,2.237-6.712-2.543-2.581-7.4-.059-6.8,3.635.145.9,1.079,1.177.373,2.424-1.628-.361-2.113-1.644-2.051-3.356a5.477,5.477,0,0,1,4.941-5.035c3.066-.343,5.942,1.126,6.34,4.009.447,3.254-1.384,6.779-4.661,6.526Zm0,0"
+									transform="translate(-1488.442 -72.341)" /></svg>
+						</a>
+						<a href="https://facebook.com" class="ico-facebook">
+							<svg xmlns="http://www.w3.org/2000/svg" width="6.967" height="14.075"
+								viewBox="0 0 6.967 14.075">
+								<path
+									d="M1094.526, 73.651h-2.073v6.672h-3.074V73.651h-1.462V71.04h1.462v-1.69a2.882,2.882,0,0,1,3.1-3.1l2.277.01v2.535H1093.1a.626.626,0,0,0-.652.712v1.537h2.341Zm.358.078"
+									transform="translate(-1087.917 -66.248)" /></svg>
+						</a>
+						<a href="https://twitter.com" class="ico-twitter">
+							<svg xmlns="http://www.w3.org/2000/svg" width="15.48" height="12.58"
+								viewBox="0 0 15.48 12.58">
+								<path
+									d="M1234.873,68.6a6.335,6.335,0,0,1-1.824.5,3.186,3.186,0,0,0,1.4-1.757,6.36,6.36,0,0,1-2.017.77,3.178,3.178,0,0,0-5.412,2.9,9.015,9.015,0,0,1-6.546-3.319,3.178,3.178,0,0,0,.983,4.24,3.162,3.162,0,0,1-1.438-.4c0,.013,0,.027,0,.04a3.177,3.177,0,0,0,2.548,3.114,3.181,3.181,0,0,1-1.434.055,3.179,3.179,0,0,0,2.967,2.205,6.41,6.41,0,0,1-4.7,1.315,9.032,9.032,0,0,0,13.9-7.609q0-.207-.01-.411a6.453,6.453,0,0,0,1.585-1.644Zm0,0"
+									transform="translate(-1219.393 -67.11)" /></svg>
+						</a>
+					</div>
+					<div class="header-email">
+						<a href='mailto:info@congty751.com.vn'>info@congty751.com.vn</a>
+					</div>
+				</div>
+				<div class="header-bottom d-f jc-fe">
+					<div class="header-bottom-wrapper d-f ai-c">
+						<div class="main-nav ml-at">
+							<ul class="lst-n pl-0 d-f">
+								<li routerLinkActive="active" class="nav-item">
+									<a [routerLink]="'/about' | localize"
+										class="nav-link fw-700 tt-u d-if">{{'menu.about' | translate}}</a>
+								</li>
+								<li routerLinkActive="active" class="nav-item">
+									<a class="nav-link fw-700 tt-u d-if">{{'menu.products' | translate}}</a>
+									<ul class="nav-sub lst-n pl-0">
+										<li class="nav-item" *ngFor="let category of productCategory">
+											<a class="nav-link" [routerLink]="['products' | localize]"
+												[queryParams]="{ id: category.id}">{{category.name}}</a>
+										</li>
+									</ul>
+								</li>
+								<li routerLinkActive=" active" class="nav-item">
+									<a class="nav-link fw-700 tt-u d-if">{{'menu.activities' | translate}}</a>
+									<ul class="nav-sub lst-n pl-0">
+										<li class="nav-item">
+											<a class="nav-link"
+												[routerLink]="'/activities/images' | localize">{{'menu.images' | translate}}</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link"
+												[routerLink]="'/activities/videos' | localize">{{'menu.videos' | translate}}</a>
+										</li>
+									</ul>
+								</li>
+								<li routerLinkActive="active" class="nav-item">
+									<a [routerLink]="'/profiles' | localize"
+										class="nav-link fw-700 tt-u d-if">{{'menu.profiles' | translate}}</a>
+								</li>
+								<li routerLinkActive="active" class="nav-item">
+									<a [routerLink]="'/news' | localize"
+										class="nav-link fw-700 tt-u d-if">{{'menu.news' | translate}}</a>
+								</li>
+								<li routerLinkActive="active" class="nav-item">
+									<a [routerLink]="'/contact' | localize"
+										class="nav-link fw-700 tt-u d-if">{{'menu.contact' | translate}}</a>
+								</li>
+							</ul>
+						</div>
+						<div class="language">
+							<select name="langulage" id="language" class="bd-0 tt-u" (change)="switchLanguage($event)">
+								<ng-container *ngFor="let locale of locales">
+									<option value={{locale}} [selected]="currentLocale == locale">{{locale}}</option>
+								</ng-container>
+							</select>
+						</div>
+						<div class="search">
+							<label class="d-f ai-c" (click)="toggleSearchBox()">
+								<svg xmlns="http://www.w3.org/2000/svg" width="14.552" height="15.548"
+									viewBox="0 0 14.552 15.548">
+									<path
+										d="M215.546,328.481l-.207-.224a.738.738,0,0,0-1.081,1.005l.207.223a.738.738,0,0,0,1.081-1Z"
+										transform="translate(-201.191 -314.173)" fill="#fff" />
+									<path
+										d="M207.045,319.333a6,6,0,0,0,1.573-4.643h0a6.016,6.016,0,1,0-5.993,6.588c.19,0,.383-.009.576-.027a5.973,5.973,0,0,0,2.721-.959l1.921,2.068a.737.737,0,1,0,1.081-1Zm-3.984.449a4.541,4.541,0,0,1-.864-9.04c.146-.014.291-.021.434-.021a4.548,4.548,0,0,1,4.518,4.109h0A4.547,4.547,0,0,1,203.061,319.782Z"
+										transform="translate(-196.614 -309.246)" fill="#fff" /></svg>
+							</label>
+							<div class="form-search d-f" *ngIf="isSearchBoxShow">
+								<input type="search" name="search" id="search" class="bd-main form-control col">
+								<button class="btn btn-search fcc"><svg xmlns="http://www.w3.org/2000/svg"
+										width="14.552" height="15.548" viewBox="0 0 14.552 15.548">
+										<path
+											d="M215.546,328.481l-.207-.224a.738.738,0,0,0-1.081,1.005l.207.223a.738.738,0,0,0,1.081-1Z"
+											transform="translate(-201.191 -314.173)" fill="#fff" />
+										<path
+											d="M207.045,319.333a6,6,0,0,0,1.573-4.643h0a6.016,6.016,0,1,0-5.993,6.588c.19,0,.383-.009.576-.027a5.973,5.973,0,0,0,2.721-.959l1.921,2.068a.737.737,0,1,0,1.081-1Zm-3.984.449a4.541,4.541,0,0,1-.864-9.04c.146-.014.291-.021.434-.021a4.548,4.548,0,0,1,4.518,4.109h0A4.547,4.547,0,0,1,203.061,319.782Z"
+											transform="translate(-196.614 -309.246)" fill="#fff" /></svg></button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>

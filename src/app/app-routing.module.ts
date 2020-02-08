@@ -1,83 +1,81 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { Location } from '@angular/common';
-import { MetaGuard } from '@ngx-meta/core';
 
-import {
-	LocalizeRouterModule,
-	LocalizeRouterSettings,
-	LocalizeParser,
-	ManualParserLoader
-} from '@gilsdav/ngx-translate-router';
+import { LocalizeRouterModule, LocalizeRouterSettings, LocalizeParser, ManualParserLoader } from '@gilsdav/ngx-translate-router';
 import { TranslateService } from '@ngx-translate/core';
-
-import { PreloadSelectedModulesList } from './custom-preloading-strategy';
 
 
 const routes: Routes = [
 	{
 		path: '',
 		pathMatch: 'full',
-		loadChildren: () => import('./component/home/home.module').then(m => m.HomeModule),
-		canActivate: [MetaGuard],
+		loadChildren: () => import('./components/index/index.module').then(m => m.IndexModule),
 		data: {
-			preload: true
+			preload: false,
 		}
 	},
 	{
 		path: 'about',
-		loadChildren: () => import('./component/about/about.module').then(m => m.AboutModule),
-		canActivate: [MetaGuard],
+		loadChildren: () => import('./components/about/about.module').then(m => m.AboutModule),
 		data: {
-			meta: {
-				title: 'META_TITLE.about',
-			},
-			preload: false
+			preload: false,
 		}
 	},
 	{
 		path: 'products',
-		loadChildren: () => import('./component/product/product.module').then(m => m.ProductModule),
-		canActivate: [MetaGuard],
+		loadChildren: () => import('./components/product/product.module').then(m => m.ProductModule),
 		data: {
-			preload: true
+			preload: false,
 		}
 	},
 	{
-		path: 'gallery',
-		loadChildren: () => import('./component/gallery/gallery.module').then(m => m.GalleryModule),
-		canActivate: [MetaGuard],
+		path: 'activities',
+		loadChildren: () => import('./components/activities/activities.module').then(m => m.ActivitiesModule),
 		data: {
-			preload: false
+			preload: false,
+		}
+	},
+	// {
+	// 	path: 'videos',
+	// 	loadChildren: () => import('./components/activities/activities.module').then(m => m.ActivitiesModule),
+	// 	data: {
+	// 		preload: false,
+	// 	}
+	// },
+	// {
+	// 	path: 'images',
+	// 	loadChildren: () => import('./components/activities/activities.module').then(m => m.ActivitiesModule),
+	// 	data: {
+	// 		preload: false,
+	// 	}
+	// },
+	{
+		path: 'profiles',
+		loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule),
+		data: {
+			preload: false,
 		}
 	},
 	{
 		path: 'news',
-		loadChildren: () => import('./component/news/news.module').then(m => m.NewsModule),
-		canActivate: [MetaGuard],
+		loadChildren: () => import('./components/news/news.module').then(m => m.NewsModule),
 		data: {
-			preload: false
+			preload: false,
 		}
 	},
 	{
 		path: 'contact',
-		loadChildren: () => import('./component/contact/contact.module').then(m => m.ContactModule),
-		canActivate: [MetaGuard],
+		loadChildren: () => import('./components/contact/contact.module').then(m => m.ContactModule),
 		data: {
-			meta: {
-				title: 'META_TITLE.contact',
-			},
-			preload: false
+			preload: false,
 		}
 	},
 	{
 		path: '404',
-		loadChildren: () => import('./component/page-not-found/page-not-found.module').then(m => m.PageNotFoundModule),
-		canActivate: [MetaGuard],
+		loadChildren: () => import('./components/page-not-found/page-not-found.module').then(m => m.PageNotFoundModule),
 		data: {
-			meta: {
-				title: 'META_TITLE.notfound',
-			}
+			preload: false,
 		}
 	},
 	{
@@ -88,19 +86,19 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [
-		RouterModule.forRoot(routes,
-			{ preloadingStrategy: PreloadSelectedModulesList }),
+		RouterModule.forRoot(routes),
 		LocalizeRouterModule.forRoot(routes, {
 			alwaysSetPrefix: false,
+			useCachedLang: false,
 			parser: {
 				provide: LocalizeParser,
-				useFactory: (translate: TranslateService, location: Location, settings: LocalizeRouterSettings) =>
-					new ManualParserLoader(translate, location, settings, ['vi', 'en'], 'ROUTES.'),
-				deps: [TranslateService, Location, LocalizeRouterSettings],
+				useFactory: (translate: TranslateService, location: Location, settings: LocalizeRouterSettings) => {
+					return new ManualParserLoader(translate, location, settings, ['vi', 'en'], 'ROUTES.');
+				},
+				deps: [TranslateService, Location, LocalizeRouterSettings]
 			}
 		})
 	],
-	exports: [RouterModule, LocalizeRouterModule],
-	providers: [PreloadSelectedModulesList]
+	exports: [RouterModule, LocalizeRouterModule]
 })
 export class AppRoutingModule { }

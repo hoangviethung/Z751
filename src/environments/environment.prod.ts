@@ -1,4 +1,5 @@
 export const environment = {
-  production: true,
-  locales: 'http://localhost:4000/'
+	production: true,
+	locales: 'https://z751.herokuapp.com/',
+	browserDirPath: 'browser'
 };

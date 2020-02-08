@@ -1,0 +1,91 @@
+// about us
+.about-us {
+	margin-top   : 60px;
+	margin-bottom: 80px;
+
+	.block-title {
+		.main-title {
+			margin-bottom: 25px;
+		}
+	}
+
+	.content {
+		p {
+			font-size    : 18px;
+			margin-bottom: 30px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	figure {
+		overflow: hidden;
+	}
+}
+
+// mission-vision
+.mission-vision {
+	padding              : 60px 0 90px;
+	background-image     : url(/assets/images/about/bg-mission-vision.png);
+	background-size      : cover;
+	background-position  : center;
+	background-attachment: fixed;
+
+	.list-item {
+		display        : flex;
+		flex-wrap      : wrap;
+		justify-content: space-between;
+
+		.item {
+			flex     : 0 0 33.3333333333%;
+			max-width: 33.3333333333%;
+			padding  : 0 15px;
+
+			figure {
+				img {
+					display: block;
+					margin : 0 auto;
+					height : 73px;
+				}
+
+				figcaption {
+					margin-top: 35px;
+
+					h5 {
+						font-size     : 18px;
+						font-weight   : 700;
+						text-transform: uppercase;
+						color         : #FE0000;
+						text-align    : center;
+						margin-bottom : 15px;
+					}
+
+					p {
+						font-size : 14px;
+						color     : #ffffff;
+						width     : 80%;
+						margin    : 0 auto;
+						text-align: center;
+					}
+				}
+			}
+		}
+	}
+}
+
+// system
+.system {
+	position             : relative;
+	background-image     : url(/assets/images/about/bg-system.png);
+	background-attachment: fixed;
+	height               : 440px;
+
+	figure {
+		position : absolute;
+		top      : 50%;
+		left     : 50%;
+		transform: translate(-50%, -50%);
+	}
+}

@@ -1,0 +1,27 @@
+{
+	"pageTitle": "MINISTRY OF DEFENSE: ONE MEMBER CO., LTD 751",
+	"ROUTES": {
+		"index": "",
+		"about": "about-us",
+		"products": "products",
+		"activities": "activities",
+		"videos": "video",
+		"images": "images",
+		"profiles": "profiles",
+		"news": "news",
+		"contact": "contact-us",
+		"404": "page-not-found"
+	},
+	"menu": {
+		"index": "Index",
+		"about": "About Us",
+		"products": "Products",
+		"activities": "Activities",
+		"videos": "Videos",
+		"images": "Images",
+		"profiles": "Profiles",
+		"news": "News",
+		"contact": "Contact Us",
+		"404": "Page Not Found"
+	}
+}

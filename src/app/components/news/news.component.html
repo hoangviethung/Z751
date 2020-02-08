@@ -1,0 +1,13 @@
+<app-breadcrumb></app-breadcrumb>
+<section class="news-list">
+	<div class="container">
+		<div class="block-title center">
+			<h2 class="tt-u main-title tag-line">Tin tức</h2>
+		</div>
+		<div class="row">
+			<div class="col-lg-12 col-news" *ngFor="let news of newsLists">
+				<app-news-simple [news]="news"></app-news-simple>
+			</div>
+		</div>
+	</div>
+</section>

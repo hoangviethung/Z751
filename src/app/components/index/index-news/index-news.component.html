@@ -1,0 +1,28 @@
+<section class="pd-70 bg-gray">
+	<div class="container">
+		<div class="block-title">
+			<h2 class="main-title tt-u tag-line">Tin tức 751</h2>
+		</div>
+		<div class="news-list clearfix">
+			<ng-container *ngFor="let news of newsList, let i = index">
+				<div class="news-item" [ngClass]="{'news-big': i == 0}" *ngIf="i<5" appIndexNewsItem>
+					<a [routerLink]="news.url | localize" class="d-f fw-w">
+						<div class="img ov-h">
+							<img src="{{news.img}}" alt="">
+						</div>
+						<div class="description">
+							<h3>{{news.title}}</h3>
+							<time class="d-b">{{news.time}}</time>
+							<p *ngIf="i==0">{{news.description}}</p>
+							<span class="viewmore" *ngIf="i==0">Xem chi tiết</span>
+						</div>
+					</a>
+				</div>
+			</ng-container>
+		</div>
+		<div class="btn-wrapper d-f jc-fe">
+			<a [routerLink]="['/news' | localize]" class="btn-red btn-viewmore">Xem thêm
+				<img src="/assets/images/icons/icon_viewmore.svg" alt=""></a>
+		</div>
+	</div>
+</section>

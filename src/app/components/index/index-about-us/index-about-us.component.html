@@ -1,0 +1,40 @@
+<section class="index-about-us">
+	<div class="container-description pd-70">
+		<div class="container" *ngIf="aboutUs">
+			<div class="block-title">
+				<h2 class="tt-u main-title tag-line">Về chúng tôi</h2>
+			</div>
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="img">
+						<img src={{aboutUs.img}} alt="">
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="title">
+						<h2 class="tt-u cl-main">{{aboutUs.title}}</h2>
+						<h3 class="tt-u fw-400">{{aboutUs.subTitle}}</h3>
+					</div>
+					<div class="content" [innerHTML]="aboutUs.description"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-symbol pd-70 bg-gray">
+		<div class="container" *ngIf="symbols">
+			<div class="row">
+				<div class="col-lg-3 col-6 col-item" *ngFor="let symbol of symbols">
+					<div class="item">
+						<div class="img ta-c">
+							<img src="{{symbol.img}}" alt="">
+						</div>
+						<div class="description ta-c">
+							<h3 class="tt-u">{{symbol.title}}</h3>
+							<p>{{symbol.description}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

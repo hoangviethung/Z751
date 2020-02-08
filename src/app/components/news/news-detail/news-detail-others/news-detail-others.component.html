@@ -1,0 +1,14 @@
+<div class="title-news-others">tin liên quan</div>
+<div class="list-news-others">
+	<div class="item-news-others" *ngFor="let newsOthers of listNewsOthers">
+		<a [routerLink]="newsOthers.url">
+			<figure>
+				<img src="{{newsOthers.img}}" alt="" srcset="">
+				<figcaption>
+					<h3 class="lcl lcl-2 fw-400">{{newsOthers.desc}}</h3>
+					<time>{{newsOthers.time}}</time>
+				</figcaption>
+			</figure>
+		</a>
+	</div>
+</div>

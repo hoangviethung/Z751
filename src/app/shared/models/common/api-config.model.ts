@@ -5,6 +5,7 @@ export class ApiConfigModel {
     public logoPath: string;
     public defaultLogoPath: string;
     public apiPrefix: string;
+    // public get url(): string { return `http://localhost:4200/`; }
     public get url(): string { return `${this.server}/${this.apiPrefix}/`; }
 
     public constructor() {

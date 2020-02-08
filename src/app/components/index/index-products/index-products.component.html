@@ -1,0 +1,25 @@
+<section class="pd-70">
+	<div class="container">
+		<div class="block-title">
+			<h2 class="main-title tt-u tag-line">Sản phẩm</h2>
+		</div>
+		<div class="row">
+			<div class="col-lg-4 col-sm-6 col-product" *ngFor="let categoryProducts of categoryProductsList">
+				<div class="product-item" appIndexProductItem>
+					<a [routerLink]="'/products' | localize" [queryParams]="{id:categoryProducts.id}">
+						<div class="img ov-h">
+							<img src="{{categoryProducts.img}}" alt={{categoryProducts.name}}>
+						</div>
+						<div class="description fcc">
+							<h3 class="tt-u ta-c" [innerHTML]="categoryProducts.name"></h3>
+						</div>
+						<span class="btn btn-red btn-viewmore">
+							Xem thêm
+							<img src="/assets/images/icons/icon_viewmore.svg" alt="">
+						</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

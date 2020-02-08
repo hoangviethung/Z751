@@ -1,0 +1,78 @@
+<app-breadcrumb></app-breadcrumb>
+<div>
+	<!-- about us -->
+	<section class="about-us">
+		<div class="container">
+			<div class="row">
+				<div class="block-title col-lg-12">
+					<h2 class="tt-u main-title tag-line">VỀ Z751</h2>
+				</div>
+				<div class="col-lg-6">
+					<div class="content">
+						<p>Công ty 751 / Tổng cục Kỹ thuật / Bộ Quốc phòng, đơn vị anh hùng lực lượng vũ trang nhân nhân
+							được
+							thành lập từ năm 1975 trên cơ sở tiếp quản lục quân công xưởng của chế độ ngụy, sài gòn là
+							doanh
+							nghiệp trực tiếp phục vụ quốc phòng an ninh và là cơ sở đảm bảo kỹ thuật lớn nhất của Quân
+							đội ở
+							phía nam.</p>
+						<p>Công ty hiện được đầu tư nhiều trang thiết bị công nghệ hiện đại, tiên tiến; hệ thống mặt
+							bằng
+							trên
+							600.000 m2, nhà xưởng trên 150.000 m2; Đội ngũ cán bộ quản lý được đào tạo chính quy trong
+							và
+							ngoài
+							Quân đội, đội ngũ kỹ sư và công nhân lành nghề có kinh nghiệm sẵn sàng đáp ứng mọi yêu cầu
+							của
+							khách
+							hàng trong lĩnh vực kinh doanh và hợp tác, liên doanh liên kết với tất cả các đối tác trong
+							và
+							ngoài
+							nước.</p>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<figure>
+						<img class="ofcv" src="./assets/images/about/about-us.png" alt="" srcset="">
+					</figure>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- vision-mision -->
+	<section class="mission-vision">
+		<div class="container">
+			<div class="block-title center">
+				<div class="main-title fw-700 tt-u cl-white">tầm nhìn và sứ mệnh</div>
+			</div>
+			<div class="list-item">
+				<div class="item" *ngFor="let item of listMissionVision">
+					<figure>
+						<img src="{{item.image}}" alt="">
+						<figcaption>
+							<h5>{{item.title}}</h5>
+							<p>{{item.description}}</p>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- history -->
+	<app-history></app-history>
+
+	<!-- staff -->
+	<app-staff></app-staff>
+
+	<!-- system -->
+	<section class="system">
+		<figure>
+			<img src="./assets/images/about/system.png" alt="" srcset="">
+		</figure>
+	</section>
+
+	<!-- reward -->
+	<app-reward></app-reward>
+</div>
