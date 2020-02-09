@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SwiperConfigInterface, SwiperDirective, SwiperComponent } from 'ngx-swiper-wrapper';
 import { ActivatedRoute } from '@angular/router';
 @Component({
@@ -9,7 +9,10 @@ import { ActivatedRoute } from '@angular/router';
 
 export class ProductDetailComponent implements OnInit {
 
-	thumbs: SwiperConfigInterface = {
+	@ViewChild(SwiperDirective, { static: false }) thumbs: SwiperDirective;
+	@ViewChild(SwiperDirective, { static: false }) preview: SwiperDirective;
+
+	thumbsSliderConfig: SwiperConfigInterface = {
 		direction: 'vertical',
 		spaceBetween: 20,
 		slidesPerView: 4,
@@ -21,7 +24,7 @@ export class ProductDetailComponent implements OnInit {
 
 	}
 
-	preview: SwiperConfigInterface = {
+	previewSliderConfig: SwiperConfigInterface = {
 		simulateTouch: false,
 		loopedSlides: 5,
 		thumbs: {
