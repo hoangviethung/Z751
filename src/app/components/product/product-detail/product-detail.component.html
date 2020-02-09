@@ -1,11 +1,12 @@
 <app-breadcrumb></app-breadcrumb>
 <section class="product-detail">
 	<div class="container">
+		<!-- THÔNG TIN CHUNG SẢN PHẨM -->
 		<div class="row product-summary">
 			<div class="col-lg-7 ">
-				<div class="slider-imgProduct">
+				<div class="row slider-imgProduct">
 					<!-- HÌNH LỚN -->
-					<div class="preview-img-wrapper">
+					<div class="preview-img-wrapper col-lg-9">
 						<div class="swiper-container" [swiper]="previewSliderConfig">
 							<div class="swiper-wrapper">
 								<div class="swiper-slide">
@@ -39,8 +40,9 @@
 						<div class="swiper-button-prev"></div>
 					</div>
 					<!-- CÁC HÌNH NHỎ -->
-					<div class="gallery-thumbs-wrapper">
-						<div class="swiper-container" [swiper]="thumbsSliderConfig">
+					<div class="gallery-thumbs-wrapper col-lg-3">
+						<div class="swiper-container" [swiper]="thumbsSliderConfig"
+							(swiperClick)="changeBigSlider($event)">
 							<div class="swiper-wrapper">
 								<div class="swiper-slide">
 									<div class="img ov-h">
@@ -122,14 +124,63 @@
 				</div>
 			</div>
 		</div>
+		<!-- THÔNG TIN CHI TIẾT SẢN PHẨM -->
 		<div class="row">
 			<div class="col-lg-9 infoDetail-comments">
 				<div class="tab-container">
 					<ul class="list-tab d-f lst-n pl-0">
-						<li class="item w-100 text-center active">Thông tin sản phẩm</li>
-						<li class="item w-100 text-center">Bình luận</li>
+						<li class="item w-100 text-center active" toggle-for="item-1">Thông tin sản phẩm</li>
+						<li class="item w-100 text-center" toggle-for="item-1">Bình luận</li>
 					</ul>
+					<div class="tab-content">
+						<div class="content" tab-id="item-1">
+							<div class="desc">
+								<p style="margin-bottom: 10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing
+									elit. Aenean commodo ligula eget
+									dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+									nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+									quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
+									nec, vulputate eget, arcu.</p>
+								<p style="margin-bottom: 10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing
+									elit. Aenean commodo ligula eget
+									dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+									nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+									quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
+									nec, vulputate eget, arcu.</p>
+								<p style="margin-bottom: 10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing
+									elit. Aenean commodo ligula eget
+									dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+									nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+									quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
+									nec, vulputate eget, arcu.</p>
+								<p style="margin-bottom: 10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing
+									elit. Aenean commodo ligula eget
+									dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+									nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+									quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
+									nec, vulputate eget, arcu.</p>
+								<p style="margin-bottom: 10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing
+									elit. Aenean commodo ligula eget
+									dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+									nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+									quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
+									nec, vulputate eget, arcu.</p>
+							</div>
+						</div>
+						<div class="content" tab-id="item-2"></div>
+					</div>
 				</div>
+			</div>
+			<div class="col-lg-3 aside-category">
+				<div class="title-aside tt-u cl-white">danh mục sản phẩm</div>
+				<ul class="list-item lst-n pl-0">
+					<li class="item tt-u">xe chuyên dùng</li>
+					<li class="item tt-u">cơ khí chính xác</li>
+					<li class="item tt-u">cao su kĩ thuật</li>
+					<li class="item tt-u">đồ gỗ gia dụng xuất nhập khẩu</li>
+					<li class="item tt-u">chế tạo sửa chữa thiết bị</li>
+					<li class="item tt-u">dịch vụ</li>
+				</ul>
 			</div>
 		</div>
 	</div>

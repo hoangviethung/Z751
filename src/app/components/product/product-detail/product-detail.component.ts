@@ -15,13 +15,15 @@ export class ProductDetailComponent implements OnInit {
 	thumbsSliderConfig: SwiperConfigInterface = {
 		direction: 'vertical',
 		spaceBetween: 20,
-		slidesPerView: 4,
-		freeMode: true,
+		slidesPerView: 3,
 		loopedSlides: 5,
 		watchSlidesVisibility: true,
 		watchSlidesProgress: true,
 		slideToClickedSlide: true,
-
+		navigation: {
+			nextEl: '.preview-img-wrapper .swiper-button-next',
+			prevEl: '.preview-img-wrapper .swiper-button-prev',
+		},
 	}
 
 	previewSliderConfig: SwiperConfigInterface = {
@@ -46,4 +48,8 @@ export class ProductDetailComponent implements OnInit {
 		// );
 	}
 
+	changeBigSlider(e) {
+		const clickedIndex = Number((<HTMLElement>e.target).getAttribute('data-swiper-slide-index'));
+		this.preview.setIndex(clickedIndex);
+	}
 }

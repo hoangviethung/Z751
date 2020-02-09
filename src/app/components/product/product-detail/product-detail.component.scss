@@ -5,20 +5,11 @@
 		margin-bottom: 80px;
 
 		.slider-imgProduct {
-			display  : flex;
-			flex-wrap: wrap;
-			margin   : 0 -7.5px;
+			margin-right: 40px;
 
 			.preview-img-wrapper {
-				position : relative;
-				max-width: 70%;
-				width    : 100%;
-				padding  : 0 7.5px;
-
 				.swiper-slide {
 					.img {
-						box-shadow: 0 3px 6px rgba($color:#000000, $alpha: .16);
-
 						img {
 							width     : 100%;
 							height    : 100%;
@@ -50,27 +41,36 @@
 			}
 
 			.gallery-thumbs-wrapper {
-				max-width: 30%;
-				width    : 30%;
-				padding  : 0 7.5px;
+				.swiper-container {
+					max-height: 345px;
+					height    : 100%;
+				}
 
 				.swiper-slide {
-
 					.img {
-						position     : relative;
-						border-radius: 5px;
-						overflow     : hidden;
-						opacity      : .5;
-						cursor       : pointer;
-						transition   : .2s all ease-in-out;
-						border-bottom: 2px solid transparent;
+						position  : relative;
+						height    : 100%;
+						width     : 100%;
+						opacity   : .5;
+						cursor    : pointer;
+						transition: .2s all ease-in-out;
+
+						&:after {
+							content   : '';
+							position  : absolute;
+							bottom    : -5px;
+							left      : 50%;
+							transform : translateY(-50%);
+							width     : 50%;
+							height    : 1px;
+							background: #0028C3;
+						}
 					}
 
-					&.swiper-slide-thumb-active {
+					&.swiper-slide-active {
 						.img {
-							opacity      : 1;
-							border-bottom: 2px solid #D82F25;
-							box-shadow   : 0px 3px 6px rgba($color: #000000, $alpha: .16);
+							opacity   : 1;
+							box-shadow: 0px 3px 6px rgba($color: #000000, $alpha: .5);
 						}
 					}
 				}
@@ -193,6 +193,7 @@
 				justify-content: space-between;
 
 				.item {
+					cursor     : pointer;
 					line-height: 50px;
 					background : #ffffff;
 					border     : 1px solid #F3F3F3;
@@ -200,6 +201,45 @@
 					&.active {
 						background: rgba($color: #F3F3F3, $alpha: .5);
 					}
+				}
+			}
+
+			.tab-content {
+				padding   : 25px 50px;
+				background: rgba($color: #F3F3F3, $alpha: .5)
+			}
+		}
+	}
+
+	.aside-category {
+		.title-aside {
+			position   : relative;
+			background : #0028C3;
+			line-height: 50px;
+			padding    : 0 50px;
+
+			&:after {
+				content         : '';
+				position        : absolute;
+				top             : 50%;
+				transform       : translateY(-50%);
+				left            : 20px;
+				width           : 16px;
+				height          : 12px;
+				background-image: url(/assets/images/icons/list.svg);
+			}
+		}
+
+		.list-item {
+			background: rgba($color: #F3F3F3, $alpha: .5);
+
+			.item {
+				padding      : 15px 0;
+				margin       : 0 20px;
+				border-bottom: 1px solid #DFDFDF;
+
+				&:last-child {
+					border-bottom: 0;
 				}
 			}
 		}
