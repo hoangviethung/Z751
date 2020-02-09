@@ -23,4 +23,28 @@
 			</ng-container>
 		</div>
 	</div>
+
+	<!-- Demo Sync slider -->
+	<div class="container" style="max-width: 700px">
+		<div class="swiper-container" [swiper]="bigSliderConfig" #bigSlider>
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">Slider 1</div>
+				<div class="swiper-slide">Slider 2</div>
+				<div class="swiper-slide">Slider 3</div>
+				<div class="swiper-slide">Slider 4</div>
+				<div class="swiper-slide">Slider 5</div>
+				<div class="swiper-slide">Slider 6</div>
+			</div>
+		</div>
+		<div class="swiper-container" [swiper]="smallSliderConfig" #smallSlider (swiperClick)="changeBigSlider($event)">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">Slider 1</div>
+				<div class="swiper-slide">Slider 2</div>
+				<div class="swiper-slide">Slider 3</div>
+				<div class="swiper-slide">Slider 4</div>
+				<div class="swiper-slide">Slider 5</div>
+				<div class="swiper-slide">Slider 6</div>
+			</div>
+		</div>
+	</div>
 </section>
