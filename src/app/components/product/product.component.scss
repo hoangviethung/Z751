@@ -1,7 +1,15 @@
 .product-list {
 	margin-top: 25px;
 
-	.item-product {
+	.block-title {
+		.desc {
+			width: 100%;
+			max-width: 760px;
+		}
+	}
+
+	.product-col {
+		flex-direction: column;
 		margin-bottom: 25px;
 	}
 }
