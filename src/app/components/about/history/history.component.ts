@@ -24,6 +24,16 @@ export class HistoryComponent implements OnInit {
 			nextEl: '.timeline .swiper-button-next',
 			prevEl: '.timeline .swiper-button-prev',
 		},
+		breakpoints: {
+			1025: {
+				slidesPerView: 3,
+				spaceBetween: 60,
+			},
+			768: {
+				slidesPerView: 2,
+				spaceBetween: 30,
+			}
+		}
 	}
 
 	constructor(

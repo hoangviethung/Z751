@@ -66,9 +66,11 @@ header {
 				transition: all .2s ease-in-out;
 			}
 
-			&:hover {
-				svg {
-					fill: map-get($mau, main);
+			@media (min-width: 1025px) {
+				&:hover {
+					svg {
+						fill: map-get($mau, main);
+					}
 				}
 			}
 		}
@@ -130,19 +132,38 @@ header {
 					transition: all .2s ease-in-out;
 				}
 
+				&.has-sub {
+					>.nav-link {
+						position: relative;
+						padding-right: 15px;
+
+						&:after {
+							position: absolute;
+							top: 50%;
+							transform: translateY(-50%);
+							content: '\e874';
+							font-family: 'Linearicons-Free';
+							font-size: 10px;
+							right: 0;
+						}
+					}
+				}
+
 				&.active {
 					>.nav-link {
 						border-bottom: 2px solid white;
 					}
 				}
 
-				&:hover {
-					cursor: pointer;
+				@media (min-width: 1025px) {
+					&:hover {
+						cursor: pointer;
 
-					>.nav-sub {
-						opacity: 1;
-						visibility: visible;
-						transform: translateY(0);
+						>.nav-sub {
+							opacity: 1;
+							visibility: visible;
+							transform: translateY(0);
+						}
 					}
 				}
 
@@ -181,10 +202,12 @@ header {
 					}
 				}
 
-				&:hover {
-					>.nav-link {
-						background-color: map-get($mau, main);
-						color: white;
+				@media (min-width: 1025px) {
+					&:hover {
+						>.nav-link {
+							background-color: map-get($mau, main);
+							color: white;
+						}
 					}
 				}
 
@@ -213,6 +236,14 @@ header {
 			width: 275px;
 			height: 45px;
 			box-shadow: 0 2px 4px rgba(black, .1);
+
+			@media (min-width: 1025px) {
+				display: none;
+
+				&.active {
+					display: flex;
+				}
+			}
 		}
 
 		.btn-search {
@@ -240,6 +271,307 @@ header {
 
 		@media (min-width: 1200px) {
 			padding: 0 25px;
+		}
+	}
+}
+
+@media (max-width: 1024.98px) {
+	header {
+		height: auto;
+
+		.logo {
+			max-width: 45px;
+		}
+
+		.overlay {
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 99;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(black, .9);
+			opacity: 0;
+			visibility: hidden;
+			transition: all .3s ease-out;
+
+			&.active {
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+
+		.navbar {
+			position: fixed;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			max-width: 315px;
+			background-color: white;
+			display: flex;
+			flex-direction: column;
+			box-shadow: 2px 0px 12px rgba(map-get($mau, main), .2);
+			opacity: 0;
+			transform: translateX(-100%);
+			transition: all .3s ease-out;
+			z-index: 100;
+
+			&.active {
+				opacity: 1;
+				transform: translateX(0%);
+			}
+		}
+
+		.header-name {
+			-ms-flex: 0 0 100%;
+			-webkit-box-flex: 0;
+			flex: 0 0 100%;
+			max-width: 100%;
+			margin-bottom: 10px;
+
+			h1 {
+				text-align: center;
+				font-size: 14px;
+			}
+		}
+
+		.header-social {
+			margin-left: 0;
+			display: flex;
+
+			a {
+				display: block;
+				width: 25px;
+				height: 25px;
+				background-color: map-get($mau, main);
+				border-radius: 50%;
+				overflow: hidden;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				svg {
+					path {
+						fill: white;
+					}
+				}
+
+				+a {
+					margin-left: 10px;
+				}
+			}
+		}
+
+		.header-email {
+			font-size: 14px;
+			padding-left: 10px;
+			margin-left: 10px;
+		}
+
+		.header-top {
+			flex-wrap: wrap;
+			padding: 10px;
+			border-bottom: 1px solid map-get($mau, main);
+		}
+
+		.header-bottom {
+			display: block;
+			top: 98px;
+			bottom: 0;
+			width: 100%;
+			overflow: hidden;
+		}
+
+		.header-bottom-wrapper {
+			display: block;
+			background-color: transparent;
+			height: 100%;
+
+			&:before,
+			&:after {
+				content: none;
+			}
+
+			.main-nav {
+				// position: absolute;
+				// top: 40px;
+				// bottom: 0;
+				// width: 100%;
+				// transition: all .3s ease-out;
+				overflow-y: auto;
+				max-height: 100%;
+				padding-top: 40px;
+
+				>ul {
+					display: block;
+					border-top: 1px solid map-get($mau, main);
+
+					>.nav-item {
+						padding: 5px 10px;
+						position: static;
+
+						.nav-link {
+							display: block;
+							border-bottom: 0;
+							color: map-get($mau, main);
+						}
+
+						&.has-sub {
+							>.nav-link {
+								position: relative;
+
+								&:after {
+									content: '\e876';
+									position: absolute;
+									right: 0;
+									top: 50%;
+									font-size: 14px;
+									transform: translateY(-50%);
+									margin-left: auto;
+								}
+							}
+						}
+					}
+				}
+
+				.nav-sub {
+					left: 100%;
+					top: 31px;
+					width: 100%;
+					max-width: 100%;
+					box-shadow: none;
+					padding-right: 39px;
+					bottom: 0;
+					overflow-y: auto;
+
+					.nav-sub-close {
+						position: absolute;
+						width: 40px;
+						right: 0;
+						top: 0;
+						transition: all .3s ease-out;
+
+						svg {
+							width: 100%;
+						}
+					}
+
+					>.nav-item {
+						border: 0;
+
+						>.nav-link {
+							min-width: 100%;
+							padding: 10px;
+						}
+					}
+
+					&.active {
+						opacity: 1;
+						visibility: visible;
+						left: 0;
+						z-index: 5;
+					}
+				}
+			}
+		}
+
+		.language {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 50px;
+			height: 40px;
+			padding: 0;
+
+			select {
+				width: 50px;
+				height: 40px;
+				color: #333333;
+			}
+		}
+
+		.search {
+			padding-left: 0;
+			position: absolute;
+			top: 0;
+			left: 50px;
+			right: 0;
+			height: 40px;
+
+			label {
+				display: none;
+			}
+
+			.form-search {
+				position: static;
+				width: 100%;
+				padding: 0;
+				box-shadow: none;
+				height: auto;
+				display: flex;
+			}
+
+			.form-control {
+				height: 40px;
+				border-top: 0;
+				border-right: 0;
+				border-bottom: 0;
+			}
+
+			.btn-search {
+				width: 40px;
+				height: 40px
+			}
+		}
+
+		.hamburger {
+			width: 35px;
+			height: 35px;
+			border-radius: 50%;
+			border: 1px solid map-get($mau, main);
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			span {
+				display: block;
+				height: 2px;
+				width: 20px;
+				background-color: map-get($mau, main);
+				margin: 1.5px 0;
+			}
+		}
+
+		.navbar-close {
+			position: absolute;
+			width: 35px;
+			height: 35px;
+			background-color: map-get($mau, main);
+			left: 100%;
+			top: 0;
+
+
+			span {
+				transform-origin: 50% 50%;
+				display: block;
+				height: 2px;
+				width: 20px;
+				background-color: white;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+
+				&:nth-child(1) {
+					transform: translate(-50%, -50%) rotate(45deg);
+				}
+
+				&:nth-child(2) {
+					transform: translate(-50%, -50%) rotate(-45deg);
+				}
+			}
 		}
 	}
 }

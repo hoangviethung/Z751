@@ -27,6 +27,7 @@ import { SharedModule } from './shared/shared.module';
 		BrowserModule.withServerTransition({ appId: 'z751' }),
 		AppRoutingModule,
 		HttpClientModule,
+		SharedModule,
 		TranslateModule.forRoot({
 			loader: {
 				provide: TranslateLoader,
@@ -38,8 +39,7 @@ import { SharedModule } from './shared/shared.module';
 		})
 	],
 	providers: [
-		Title,
-		SharedModule
+		Title
 	],
 	bootstrap: [AppComponent]
 })

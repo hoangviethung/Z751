@@ -25,6 +25,15 @@ export class RewardComponent implements OnInit {
 			nextEl: '.slider-reward .swiper-button-next',
 			prevEl: '.slider-reward .swiper-button-prev',
 		},
+		breakpoints: {
+			1025: {
+				spaceBetween: 30,
+			},
+			768: {
+				spaceBetween: 15,
+				slidesPerView: 2,
+			}
+		}
 	}
 
 	constructor(

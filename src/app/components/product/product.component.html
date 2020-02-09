@@ -3,16 +3,14 @@
 	<div class="container">
 		<div class="block-title text-center mb-70">
 			<h2 class="tt-u main-title mb-0">{{title}}</h2>
-			<div class="desc mx-at w-50">
-				<p class="lcl lcl-2 fs-i">{{desc}}</p>
+			<div class="desc mx-at fs-i">
+				{{desc}}
 			</div>
 		</div>
-		<ng-container #productContainer>
-			<div class="row">
-				<div class="col-lg-4 item-product" *ngFor="let product of products">
-					<app-product-simple [product]="product"></app-product-simple>
-				</div>
+		<div class="row">
+			<div class="col-lg-4 col-sm-6 d-f product-col" *ngFor="let product of products">
+				<app-product-simple [product]="product"></app-product-simple>
 			</div>
-		</ng-container>
+		</div>
 	</div>
 </section>

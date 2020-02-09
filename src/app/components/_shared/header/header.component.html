@@ -6,6 +6,7 @@
 					<img alt="" src="./assets/images/logo.png">
 				</a>
 			</div>
+			<div class="overlay mobile"></div>
 			<div class="navbar col">
 				<div class="header-top d-f ai-c">
 					<div class="header-name ml-at">
@@ -43,42 +44,68 @@
 						<div class="main-nav ml-at">
 							<ul class="lst-n pl-0 d-f">
 								<li routerLinkActive="active" class="nav-item">
-									<a [routerLink]="'/about' | localize"
-										class="nav-link fw-700 tt-u d-if">{{'menu.about' | translate}}</a>
+									<a [routerLink]="'/about' | localize" class="nav-link fw-700 tt-u d-if"
+										appCloseMenu>{{'menu.about' | translate}}</a>
+								</li>
+								<li routerLinkActive="active" class="nav-item" [ngClass]="{'has-sub': productCategory}">
+									<a class="nav-link fw-700 tt-u d-if"
+										appToggleSubMenu>{{'menu.products' | translate}}</a>
+									<div class="nav-sub lst-n pl-0">
+										<div class="nav-item" *ngFor="let category of productCategory">
+											<a class="nav-link" [routerLink]="['products' | localize, category.id]"
+												appCloseMenu>{{category.name}}</a>
+										</div>
+										<div class="nav-sub-close mobile">
+											<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+												viewBox="0 0 40 40">
+												<g id="Group_3377" data-name="Group 3377"
+													transform="translate(-307 -2276)">
+													<path id="Path_1537" data-name="Path 1537"
+														d="M6.676,0,0,7.4l6.835,7.4"
+														transform="translate(321.73 2286.524)" fill="none"
+														stroke="#D22121" />
+												</g>
+											</svg>
+										</div>
+									</div>
+								</li>
+								<li routerLinkActive="active" class="nav-item has-sub">
+									<a class="nav-link fw-700 tt-u d-if"
+										appToggleSubMenu>{{'menu.activities' | translate}}</a>
+									<div class="nav-sub lst-n pl-0">
+										<div class="nav-item">
+											<a class="nav-link" [routerLink]="'/activities/images' | localize"
+												appCloseMenu>{{'menu.images' | translate}}</a>
+										</div>
+										<div class="nav-item">
+											<a class="nav-link" [routerLink]="'/activities/videos' | localize"
+												appCloseMenu>{{'menu.videos' | translate}}</a>
+										</div>
+										<div class="nav-sub-close mobile">
+											<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
+												viewBox="0 0 40 40">
+												<g id="Group_3377" data-name="Group 3377"
+													transform="translate(-307 -2276)">
+													<path id="Path_1537" data-name="Path 1537"
+														d="M6.676,0,0,7.4l6.835,7.4"
+														transform="translate(321.73 2286.524)" fill="none"
+														stroke="#D22121" />
+												</g>
+											</svg>
+										</div>
+									</div>
 								</li>
 								<li routerLinkActive="active" class="nav-item">
-									<a class="nav-link fw-700 tt-u d-if">{{'menu.products' | translate}}</a>
-									<ul class="nav-sub lst-n pl-0">
-										<li class="nav-item" *ngFor="let category of productCategory">
-											<a class="nav-link"
-												[routerLink]="['products' | localize, category.id]">{{category.name}}</a>
-										</li>
-									</ul>
+									<a [routerLink]="'/profiles' | localize" class="nav-link fw-700 tt-u d-if"
+										appCloseMenu>{{'menu.profiles' | translate}}</a>
 								</li>
 								<li routerLinkActive="active" class="nav-item">
-									<a class="nav-link fw-700 tt-u d-if">{{'menu.activities' | translate}}</a>
-									<ul class="nav-sub lst-n pl-0">
-										<li class="nav-item">
-											<a class="nav-link"
-												[routerLink]="'/activities/images' | localize">{{'menu.images' | translate}}</a>
-										</li>
-										<li class="nav-item">
-											<a class="nav-link"
-												[routerLink]="'/activities/videos' | localize">{{'menu.videos' | translate}}</a>
-										</li>
-									</ul>
+									<a [routerLink]="'/news' | localize" class="nav-link fw-700 tt-u d-if"
+										appCloseMenu>{{'menu.news' | translate}}</a>
 								</li>
 								<li routerLinkActive="active" class="nav-item">
-									<a [routerLink]="'/profiles' | localize"
-										class="nav-link fw-700 tt-u d-if">{{'menu.profiles' | translate}}</a>
-								</li>
-								<li routerLinkActive="active" class="nav-item">
-									<a [routerLink]="'/news' | localize"
-										class="nav-link fw-700 tt-u d-if">{{'menu.news' | translate}}</a>
-								</li>
-								<li routerLinkActive="active" class="nav-item">
-									<a [routerLink]="'/contact' | localize"
-										class="nav-link fw-700 tt-u d-if">{{'menu.contact' | translate}}</a>
+									<a [routerLink]="'/contact' | localize" class="nav-link fw-700 tt-u d-if"
+										appCloseMenu>{{'menu.contact' | translate}}</a>
 								</li>
 							</ul>
 						</div>
@@ -100,7 +127,7 @@
 										d="M207.045,319.333a6,6,0,0,0,1.573-4.643h0a6.016,6.016,0,1,0-5.993,6.588c.19,0,.383-.009.576-.027a5.973,5.973,0,0,0,2.721-.959l1.921,2.068a.737.737,0,1,0,1.081-1Zm-3.984.449a4.541,4.541,0,0,1-.864-9.04c.146-.014.291-.021.434-.021a4.548,4.548,0,0,1,4.518,4.109h0A4.547,4.547,0,0,1,203.061,319.782Z"
 										transform="translate(-196.614 -309.246)" fill="#fff" /></svg>
 							</label>
-							<div class="form-search d-f" *ngIf="isSearchBoxShow">
+							<div class="form-search" [ngClass]="{'active': isSearchBoxShow}">
 								<input type="search" name="search" id="search" class="bd-main form-control col">
 								<button class="btn btn-search fcc"><svg xmlns="http://www.w3.org/2000/svg"
 										width="14.552" height="15.548" viewBox="0 0 14.552 15.548">
@@ -113,6 +140,16 @@
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="mobile navbar-close">
+					<span></span><span></span>
+				</div>
+			</div>
+			<div class="mobile ml-at as-c">
+				<div class="hamburger" appToggleMenu>
+					<span></span>
+					<span></span>
+					<span></span>
 				</div>
 			</div>
 		</div>

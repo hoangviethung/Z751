@@ -31,6 +31,10 @@
 	align-items: center;
 }
 
+.as-c {
+	align-self: center;
+}
+
 .jc-c {
 	justify-content: center;
 }
@@ -40,9 +44,9 @@
 }
 
 .fcc {
-	display        : flex;
+	display: flex;
 	justify-content: center;
-	align-items    : center;
+	align-items: center;
 }
 
 // List, ul, ol, dl
@@ -56,16 +60,16 @@
 }
 
 .pd-70 {
-	padding-top   : 70px;
+	padding-top: 70px;
 	padding-bottom: 70px;
 
 	@media (max-width: 1199.98px) {
-		padding-top   : 50px;
+		padding-top: 50px;
 		padding-bottom: 50px;
 	}
 
 	@media (max-width: 768px) {
-		padding-top   : 30px;
+		padding-top: 30px;
 		padding-bottom: 30px;
 	}
 }
@@ -126,7 +130,7 @@
 // Forms
 .form-control {
 	padding: 7px 15px;
-	resize : none;
+	resize: none;
 
 	&.bd-input {
 		border: 1px solid #707070;
@@ -227,5 +231,5 @@
 
 .mx-at {
 	margin-right: auto;
-	margin-left : auto;
+	margin-left: auto;
 }
