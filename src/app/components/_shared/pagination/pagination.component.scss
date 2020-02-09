@@ -1,0 +1,56 @@
+.pagination {
+	background     : #FFFFFF;
+	display        : flex;
+	justify-content: center;
+	padding        : 20px 10px;
+	list-style-type: none;
+
+	@media (max-width: 1024.98px) {
+		justify-content: center;
+	}
+
+	li {
+		margin: 0 20px;
+
+		@media (max-width: 1024.98px) {
+			margin: 0 10px;
+		}
+
+		a {
+			display        : flex;
+			justify-content: center;
+			align-items    : center;
+			height         : 30px;
+			width          : 30px;
+			color          : #707070;
+			border-radius  : 5px;
+			font-weight    : 400;
+			font-size      : 12px;
+			border         : 1px solid #dedede;
+			transition     : all .2s cubic-bezier(.2, .5, .5, .8);
+		}
+
+		&.active {
+			a {
+				text-decoration: underline;
+				color          : #FE0000;
+			}
+		}
+
+		&.pagination-dot {
+			a {
+				border: 0;
+			}
+		}
+	}
+}
+
+.saleOff-product {
+	.list-item-product {
+		margin: 0 0;
+	}
+
+	.pagination {
+		background: transparent;
+	}
+}

@@ -6,6 +6,7 @@ import { BreadcrumbComponent } from '../components/_shared/breadcrumb/breadcrumb
 import { ToggleSubMenuDirective } from './directives/toggle-sub-menu.directive';
 import { ToggleMenuDirective } from './directives/toggle-menu.directive';
 import { CloseMenuDirective } from './directives/close-menu.directive';
+import { PaginationComponent } from '../components/_shared/pagination/pagination.component';
 
 
 
@@ -15,6 +16,7 @@ import { CloseMenuDirective } from './directives/close-menu.directive';
 		ToggleSubMenuDirective,
 		CloseMenuDirective,
 		BreadcrumbComponent,
+		PaginationComponent,
 		IndexProductItemDirective,
 		IndexNewsItemDirective,
 	],
@@ -26,6 +28,7 @@ import { CloseMenuDirective } from './directives/close-menu.directive';
 		ToggleSubMenuDirective,
 		CloseMenuDirective,
 		BreadcrumbComponent,
+		PaginationComponent,
 		IndexProductItemDirective,
 		IndexNewsItemDirective,
 	]
