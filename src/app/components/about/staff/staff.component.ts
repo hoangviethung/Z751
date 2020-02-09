@@ -23,6 +23,14 @@ export class StaffComponent implements OnInit {
 		autoplay: {
 			delay: 2000,
 		},
+		breakpoints: {
+			1025: {
+				slidesPerView: 3,
+			},
+			768: {
+				slidesPerView: 2,
+			}
+		}
 	}
 
 	constructor(

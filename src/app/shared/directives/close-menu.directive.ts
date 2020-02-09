@@ -13,6 +13,7 @@ export class CloseMenuDirective implements OnInit {
 		const anchor = <HTMLElement>this.elemenRef.nativeElement;
 		const header = document.querySelector('header');
 		const overlay = header.querySelector('.overlay');
+		const body = document.querySelector('body');
 
 		const getNavbar = (element) => {
 			if (Array.from(element.classList).includes('navbar')) {
@@ -24,6 +25,7 @@ export class CloseMenuDirective implements OnInit {
 		anchor.addEventListener('click', () => {
 			getNavbar(anchor).classList.remove('active');
 			overlay.classList.remove('active');
+			body.removeAttribute('style');
 		})
 	}
 }

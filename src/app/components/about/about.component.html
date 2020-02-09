@@ -1,7 +1,7 @@
 <app-breadcrumb></app-breadcrumb>
 <div>
 	<!-- about us -->
-	<section class="about-us">
+	<section class="about-us pd-70">
 		<div class="container">
 			<div class="row">
 				<div class="block-title col-lg-12">
@@ -40,13 +40,13 @@
 	</section>
 
 	<!-- vision-mision -->
-	<section class="mission-vision">
+	<section class="mission-vision pd-70">
 		<div class="container">
 			<div class="block-title center">
 				<div class="main-title fw-700 tt-u cl-white">tầm nhìn và sứ mệnh</div>
 			</div>
-			<div class="list-item">
-				<div class="item" *ngFor="let item of listMissionVision">
+			<div class="list-item row">
+				<div class="item col-md-4" *ngFor="let item of listMissionVision">
 					<figure>
 						<img src="{{item.image}}" alt="">
 						<figcaption>
@@ -66,7 +66,7 @@
 	<app-staff></app-staff>
 
 	<!-- system -->
-	<section class="system">
+	<section class="system pd-70">
 		<figure>
 			<img src="./assets/images/about/system.png" alt="" srcset="">
 		</figure>

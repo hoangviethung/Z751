@@ -1,22 +1,27 @@
 // about us
 .about-us {
-	margin-top   : 60px;
-	margin-bottom: 80px;
-
-	.block-title {
-		.main-title {
-			margin-bottom: 25px;
-		}
-	}
-
 	.content {
 		p {
-			font-size    : 18px;
+			font-size: 18px;
 			margin-bottom: 30px;
 
 			&:last-child {
 				margin-bottom: 0;
 			}
+
+			@media (max-width: 1199.98px) {
+				font-size: 16px;
+				margin-bottom: 20px;
+			}
+
+			@media (max-width: 767.98px) {
+				font-size: 14px;
+				margin-bottom: 10px;
+			}
+		}
+
+		@media (max-width: 1024.98px) {
+			margin-bottom: 15px;
 		}
 	}
 
@@ -27,48 +32,55 @@
 
 // mission-vision
 .mission-vision {
-	padding              : 60px 0 90px;
-	background-image     : url(/assets/images/about/bg-mission-vision.png);
-	background-size      : cover;
-	background-position  : center;
+	background-image: url(/assets/images/about/bg-mission-vision.png);
+	background-size: cover;
+	background-position: center;
 	background-attachment: fixed;
 
 	.list-item {
-		display        : flex;
-		flex-wrap      : wrap;
 		justify-content: space-between;
 
 		.item {
-			flex     : 0 0 33.3333333333%;
-			max-width: 33.3333333333%;
-			padding  : 0 15px;
-
 			figure {
 				img {
 					display: block;
-					margin : 0 auto;
-					height : 73px;
+					margin: 0 auto;
+					height: 73px;
 				}
 
 				figcaption {
 					margin-top: 35px;
 
 					h5 {
-						font-size     : 18px;
-						font-weight   : 700;
+						font-size: 18px;
+						font-weight: 700;
 						text-transform: uppercase;
-						color         : #FE0000;
-						text-align    : center;
-						margin-bottom : 15px;
+						color: #FE0000;
+						text-align: center;
+						margin-bottom: 15px;
 					}
 
 					p {
-						font-size : 14px;
-						color     : #ffffff;
-						width     : 80%;
-						margin    : 0 auto;
+						font-size: 14px;
+						color: #ffffff;
+						width: 80%;
+						margin: 0 auto;
 						text-align: center;
 					}
+
+					@media (max-width: 1199.98px) {
+						margin-top: 25px;
+					}
+
+					@media (max-width: 767.98px) {
+						margin-top: 15px;
+					}
+				}
+			}
+
+			@media (max-width: 767.98px) {
+				+.item {
+					margin-top: 45px;
 				}
 			}
 		}
@@ -77,15 +89,15 @@
 
 // system
 .system {
-	position             : relative;
-	background-image     : url(/assets/images/about/bg-system.png);
+	position: relative;
+	background-image: url(/assets/images/about/bg-system.png);
 	background-attachment: fixed;
-	height               : 440px;
+	// height: 440px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
 	figure {
-		position : absolute;
-		top      : 50%;
-		left     : 50%;
-		transform: translate(-50%, -50%);
+		padding: 0 30px;
 	}
 }
