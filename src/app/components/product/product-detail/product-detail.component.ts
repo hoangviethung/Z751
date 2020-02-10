@@ -9,16 +9,18 @@ import { ActivatedRoute } from '@angular/router';
 
 export class ProductDetailComponent implements OnInit {
 
-	@ViewChild(SwiperDirective, { static: false }) thumbs: SwiperDirective;
-	@ViewChild(SwiperDirective, { static: false }) preview: SwiperDirective;
+	tabId = 1;
+
+	@ViewChild(SwiperDirective, { static: false }) thumbsSlider: SwiperDirective;
+	@ViewChild(SwiperDirective, { static: false }) previewSlider: SwiperDirective;
 
 	thumbsSliderConfig: SwiperConfigInterface = {
 		direction: 'vertical',
 		spaceBetween: 20,
 		slidesPerView: 3,
-		loopedSlides: 5,
-		watchSlidesVisibility: true,
-		watchSlidesProgress: true,
+		loop: true,
+		observer: true,
+		observeParents: true,
 		slideToClickedSlide: true,
 		navigation: {
 			nextEl: '.preview-img-wrapper .swiper-button-next',
@@ -36,10 +38,12 @@ export class ProductDetailComponent implements OnInit {
 
 	previewSliderConfig: SwiperConfigInterface = {
 		simulateTouch: false,
-		loopedSlides: 5,
-		thumbs: {
-			swiper: this.thumbs,
+		speed: 500,
+		effect: 'fade',
+		fadeEffect: {
+			crossFade: true,
 		},
+		loopedSlides: 5,
 		navigation: {
 			nextEl: '.preview-img-wrapper .swiper-button-next',
 			prevEl: '.preview-img-wrapper .swiper-button-prev',
@@ -50,14 +54,26 @@ export class ProductDetailComponent implements OnInit {
 		private activatedRouteSvc: ActivatedRoute
 	) { }
 
+
 	ngOnInit() {
 		// console.log(
 		// 	this.activatedRouteSvc.snapshot.paramMap.get('productId')
 		// );
 	}
 
+	changeTab(id: number) {
+		this.tabId = id;
+	}
+
 	changeBigSlider(e) {
-		const clickedIndex = Number((<HTMLElement>e.target).getAttribute('data-swiper-slide-index'));
-		this.preview.setIndex(clickedIndex);
+		const getSwiperSlideDom = (htmlNode: HTMLElement) => {
+			if (Array.from(htmlNode.classList).includes('swiper-slide')) {
+				return htmlNode;
+			} else {
+				return getSwiperSlideDom(htmlNode.parentElement)
+			}
+		}
+		const clickedIndex = Number(getSwiperSlideDom((<HTMLElement>e.target)).getAttribute('data-swiper-slide-index'));
+		this.previewSlider.setIndex(clickedIndex);
 	}
 }

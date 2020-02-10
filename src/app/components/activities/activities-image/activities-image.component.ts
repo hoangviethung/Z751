@@ -79,7 +79,14 @@ export class ActivitiesImageComponent implements OnInit {
 	}
 
 	changeBigSlider(e) {
-		const clickedIndex = Number((<HTMLElement>e.target).getAttribute('data-swiper-slide-index'));
+		const getSwiperSlideDom = (htmlNode: HTMLElement) => {
+			if (Array.from(htmlNode.classList).includes('swiper-slide')) {
+				return htmlNode;
+			} else {
+				return getSwiperSlideDom(htmlNode.parentElement)
+			}
+		}
+		const clickedIndex = Number(getSwiperSlideDom((<HTMLElement>e.target)).getAttribute('data-swiper-slide-index'));
 		this.bigSlider.setIndex(clickedIndex);
 	}
 }
