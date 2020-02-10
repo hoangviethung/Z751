@@ -4,9 +4,9 @@
 		<!-- THÔNG TIN CHUNG SẢN PHẨM -->
 		<div class="row product-summary">
 			<div class="col-lg-7 ">
-				<div class="row slider-imgProduct">
+				<div class="row slider-imgProduct" appSetHeightSlider>
 					<!-- HÌNH LỚN -->
-					<div class="preview-img-wrapper col-lg-9">
+					<div class="preview-img-wrapper col-md-9">
 						<div class="swiper-container" [swiper]="previewSliderConfig" #previewSlider>
 							<div class="swiper-wrapper">
 								<div class="swiper-slide">
@@ -40,8 +40,9 @@
 						<div class="swiper-button-prev"></div>
 					</div>
 					<!-- CÁC HÌNH NHỎ -->
-					<div class="gallery-thumbs-wrapper col-lg-3">
-						<div class="swiper-container" [swiper]="thumbsSliderConfig" (swiperClick)="changeBigSlider($event)" #thumbsSlider>
+					<div class="gallery-thumbs-wrapper col-md-3">
+						<div class="swiper-container" [swiper]="thumbsSliderConfig"
+							(swiperClick)="changeBigSlider($event)" #thumbsSlider>
 							<div class="swiper-wrapper">
 								<div class="swiper-slide">
 									<div class="img ov-h">
@@ -106,7 +107,9 @@
 						</ul>
 					</div>
 					<div class="desc">
-						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
+						<p style="color:#2B2B2B;margin-bottom: 10px; font-size: 14px;">Lorem ipsum dolor sit amet,
+							consectetuer
+							adipiscing elit. Aenean commodo ligula eget
 							dolor.
 							Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur
 							ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
@@ -133,31 +136,36 @@
 					<div class="tab-content">
 						<div class="content" tab-id="item-1" *ngIf="tabId == 1">
 							<div class="desc">
-								<p style="margin-bottom: 10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing
+								<p style="margin-bottom: 10px; font-size: 14px">Lorem ipsum dolor sit amet, consectetuer
+									adipiscing
 									elit. Aenean commodo ligula eget
 									dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
 									nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
 									quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
 									nec, vulputate eget, arcu.</p>
-								<p style="margin-bottom: 10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing
+								<p style="margin-bottom: 10px; font-size: 14px">Lorem ipsum dolor sit amet, consectetuer
+									adipiscing
 									elit. Aenean commodo ligula eget
 									dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
 									nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
 									quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
 									nec, vulputate eget, arcu.</p>
-								<p style="margin-bottom: 10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing
+								<p style="margin-bottom: 10px; font-size: 14px">Lorem ipsum dolor sit amet, consectetuer
+									adipiscing
 									elit. Aenean commodo ligula eget
 									dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
 									nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
 									quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
 									nec, vulputate eget, arcu.</p>
-								<p style="margin-bottom: 10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing
+								<p style="margin-bottom: 10px; font-size: 14px">Lorem ipsum dolor sit amet, consectetuer
+									adipiscing
 									elit. Aenean commodo ligula eget
 									dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
 									nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
 									quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet
 									nec, vulputate eget, arcu.</p>
-								<p style="margin-bottom: 10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing
+								<p style="margin-bottom: 10px; font-size: 14px">Lorem ipsum dolor sit amet, consectetuer
+									adipiscing
 									elit. Aenean commodo ligula eget
 									dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
 									nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
@@ -166,7 +174,7 @@
 							</div>
 						</div>
 						<div class="content" tab-id="item-2" *ngIf="tabId == 2">
-
+							<app-product-comments></app-product-comments>
 						</div>
 					</div>
 				</div>

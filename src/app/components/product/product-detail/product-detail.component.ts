@@ -27,11 +27,9 @@ export class ProductDetailComponent implements OnInit {
 			prevEl: '.preview-img-wrapper .swiper-button-prev',
 		},
 		breakpoints: {
-			1025: {
-				slidesPerView: 3,
-			},
-			768: {
-				slidesPerView: 2,
+			575: {
+				spaceBetween: 10,
+				direction: 'horizontal',
 			}
 		}
 	}
@@ -56,9 +54,6 @@ export class ProductDetailComponent implements OnInit {
 
 
 	ngOnInit() {
-		// console.log(
-		// 	this.activatedRouteSvc.snapshot.paramMap.get('productId')
-		// );
 	}
 
 	changeTab(id: number) {

@@ -5,7 +5,7 @@
 		margin-bottom: 80px;
 
 		.slider-imgProduct {
-			margin-right: 40px;
+			padding-right: 55px;
 
 			.preview-img-wrapper {
 				.swiper-slide {
@@ -48,12 +48,16 @@
 
 				.swiper-slide {
 					.img {
-						position  : relative;
-						height    : 100%;
-						width     : 100%;
-						opacity   : .5;
 						cursor    : pointer;
+						position  : relative;
+						opacity   : .5;
 						transition: .2s all ease-in-out;
+
+						img {
+							width     : 100%;
+							height    : 100%;
+							object-fit: cover;
+						}
 
 						&:after {
 							content   : '';
@@ -128,11 +132,6 @@
 				height    : 155px;
 				overflow-y: auto;
 				margin-top: 30px;
-
-				p {
-					color        : #2B2B2B;
-					margin-bottom: 10px;
-				}
 			}
 		}
 
@@ -201,8 +200,115 @@
 
 	@media (max-width: 1024.98px) {
 		.product-summary {
+			margin-bottom: 30px;
+
 			.slider-imgProduct {
-				margin-right: 0;
+				padding-right: 0;
+
+				.preview-img-wrapper {
+
+					.swiper-button-next,
+					.swiper-button-prev {
+						display: none;
+					}
+				}
+
+				.gallery-thumbs-wrapper {
+					.swiper-container {
+						max-height: 414px;
+					}
+				}
+			}
+
+			.social-media {
+				display: none;
+			}
+
+			.product-info {
+				.desc {
+					height    : unset;
+					margin-top: 15px;
+				}
+			}
+
+			.button-contact {
+				margin-top: 15px;
+
+				.jc-fe {
+					justify-content: flex-start;
+				}
+			}
+		}
+
+		.infoDetail-comments {
+			margin-bottom: 30px;
+
+			.tab-container {
+				.tab-content {
+					padding: 25px;
+				}
+			}
+		}
+	}
+
+	@media (max-width: 767.98px) {
+		.product-summary {
+			margin-bottom: 15px;
+
+			.slider-imgProduct {
+				margin-bottom: 15px;
+
+				.preview-img-wrapper {
+					margin-bottom: 10px;
+				}
+
+				.gallery-thumbs-wrapper {
+					.swiper-container {
+						max-height: unset;
+					}
+				}
+			}
+
+			.product-info {
+				.desc {
+					margin-top: 15px;
+				}
+			}
+
+			.button-contact {
+				margin-top: 15px;
+
+				.jc-fe {
+					justify-content: flex-start;
+				}
+			}
+		}
+
+		.infoDetail-comments {
+			.tab-container {
+				.list-tab {
+					.item {
+						font-size  : 14px;
+						line-height: 35px;
+
+						&.active {
+							background: rgba($color: #F3F3F3, $alpha: .5);
+						}
+					}
+				}
+
+				.tab-content {
+					padding   : 15px;
+					background: rgba($color: #F3F3F3, $alpha: .5)
+				}
+			}
+		}
+
+		.aside-category {
+			.list-item {
+				.item {
+					font-size: 13px;
+				}
 			}
 		}
 	}

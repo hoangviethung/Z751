@@ -24,6 +24,15 @@ export class ProductOthersComponent implements OnInit {
 			nextEl: '.slider-product-othders .swiper-button-next',
 			prevEl: '.slider-product-othders .swiper-button-prev',
 		},
+		breakpoints: {
+			768: {
+				slidesPerView: 2,
+				spaceBetween: 15,
+			},
+			575: {
+				slidesPerView: 1,
+			}
+		}
 	}
 
 	ngOnInit() {

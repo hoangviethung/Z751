@@ -8,8 +8,6 @@ import { ToggleMenuDirective } from './directives/toggle-menu.directive';
 import { CloseMenuDirective } from './directives/close-menu.directive';
 import { PaginationComponent } from '../components/_shared/pagination/pagination.component';
 
-
-
 @NgModule({
 	declarations: [
 		ToggleMenuDirective,

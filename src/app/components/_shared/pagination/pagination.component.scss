@@ -5,16 +5,8 @@
 	padding        : 20px 10px;
 	list-style-type: none;
 
-	@media (max-width: 1024.98px) {
-		justify-content: center;
-	}
-
 	li {
 		margin: 0 20px;
-
-		@media (max-width: 1024.98px) {
-			margin: 0 10px;
-		}
 
 		a {
 			display        : flex;
@@ -42,15 +34,13 @@
 				border: 0;
 			}
 		}
-	}
-}
 
-.saleOff-product {
-	.list-item-product {
-		margin: 0 0;
-	}
+		@media (max-width: 1024.98px) {
+			margin: 0 10px;
+		}
 
-	.pagination {
-		background: transparent;
+		@media (max-width: 767.98px) {
+			margin: 0 5px;
+		}
 	}
 }
