@@ -24,6 +24,14 @@ export class ProductDetailComponent implements OnInit {
 			nextEl: '.preview-img-wrapper .swiper-button-next',
 			prevEl: '.preview-img-wrapper .swiper-button-prev',
 		},
+		breakpoints: {
+			1025: {
+				slidesPerView: 3,
+			},
+			768: {
+				slidesPerView: 2,
+			}
+		}
 	}
 
 	previewSliderConfig: SwiperConfigInterface = {

@@ -1,0 +1,48 @@
+.product-othders {
+	position  : relative;
+	background: rgba($color: #F3F3F3, $alpha: .5);
+	padding   : 40px 0;
+
+	.slider-product-othders {
+		position: relative;
+
+		figure {
+			padding   : 8px;
+			background: #ffffff;
+			box-shadow: 0px 3px 6px rgba($color: #000000, $alpha: .16);
+
+			figcaption {
+				margin-top: 15px;
+
+				h3 {
+					color: #707070;
+				}
+			}
+		}
+
+		.swiper-button-prev,
+		.swiper-button-next {
+			width          : 38px;
+			height         : 38px;
+			background-size: cover;
+
+			&:after {
+				content        : '';
+				background-size: cover;
+				width          : 100%;
+				height         : 100%;
+			}
+		}
+
+		.swiper-button-prev {
+			left            : -40px;
+			background-image: url(/assets/images/icons/prev-slider-reward.svg);
+		}
+
+		.swiper-button-next {
+			right           : -40px;
+			background-image: url(/assets/images/icons/next-slider-reward.svg);
+		}
+	}
+
+}
