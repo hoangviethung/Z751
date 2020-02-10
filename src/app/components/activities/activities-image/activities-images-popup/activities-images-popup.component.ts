@@ -22,8 +22,8 @@ export class ActivitiesImagesPopupComponent implements OnInit {
 		observer: true,
 		observeParents: true,
 		navigation: {
-			nextEl: '.slider-reward .swiper-button-next',
-			prevEl: '.slider-reward .swiper-button-prev',
+			nextEl: '.small-slider .swiper-button-next',
+			prevEl: '.small-slider .swiper-button-prev',
 		},
 		breakpoints: {
 			1025: {
@@ -35,6 +35,7 @@ export class ActivitiesImagesPopupComponent implements OnInit {
 			}
 		}
 	}
+
 	bigSliderConfig: SwiperConfigInterface = {
 		slidesPerView: 1,
 		speed: 500,
@@ -45,15 +46,15 @@ export class ActivitiesImagesPopupComponent implements OnInit {
 			crossFade: true,
 		},
 		navigation: {
-			nextEl: '.slider-reward .swiper-button-next',
-			prevEl: '.slider-reward .swiper-button-prev',
+			nextEl: '.small-slider .swiper-button-next',
+			prevEl: '.small-slider .swiper-button-prev',
 		}
 	}
 
 	constructor() { }
 
 	ngOnInit() {
-		console.log(this.imageList);
+		// console.log(this.imageList);
 	}
 
 	changeBigSlider(e) {
