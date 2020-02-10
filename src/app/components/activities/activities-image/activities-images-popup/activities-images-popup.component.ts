@@ -17,6 +17,7 @@ export class ActivitiesImagesPopupComponent implements OnInit {
 	smallSliderConfig: SwiperConfigInterface = {
 		slidesPerView: 4,
 		spaceBetween: 20,
+		slideToClickedSlide: true,
 		loop: true,
 		observer: true,
 		observeParents: true,
