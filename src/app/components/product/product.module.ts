@@ -9,8 +9,12 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductCommentsComponent } from './product-detail/product-comments/product-comments.component';
 import { ProductOthersComponent } from './product-detail/product-others/product-others.component';
-import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SwiperModule, SwiperConfigInterface, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+	direction: 'horizontal',
+	slidesPerView: 'auto'
+};
 
 @NgModule({
 	declarations: [
@@ -26,6 +30,12 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 		SwiperModule,
 		ProductRoutingModule,
 		TranslateModule.forChild(),
+	],
+	providers: [
+		{
+			provide: SWIPER_CONFIG,
+			useValue: DEFAULT_SWIPER_CONFIG
+		}
 	]
 })
 export class ProductModule { }

@@ -5,8 +5,7 @@ import { ActivitiesRoutingModule } from './activities-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { ActivitiesImageComponent } from './activities-image/activities-image.component';
 import { ActivitiesVideoComponent } from './activities-video/activities-video.component';
-import { ActivitiesPopupComponent } from './activities-popup/activities-popup.component';
-import { ImageSimpleComponent } from './activities-image/image-simple/image-simple.component';
+import { ActivitiesImagesPopupComponent } from './activities-image/activities-images-popup/activities-images-popup.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SwiperConfigInterface, SwiperModule, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 
@@ -19,8 +18,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	declarations: [
 		ActivitiesImageComponent,
 		ActivitiesVideoComponent,
-		ActivitiesPopupComponent,
-		ImageSimpleComponent
+		ActivitiesImagesPopupComponent
 	],
 	imports: [
 		CommonModule,

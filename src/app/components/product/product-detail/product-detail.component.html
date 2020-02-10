@@ -7,7 +7,7 @@
 				<div class="row slider-imgProduct">
 					<!-- HÌNH LỚN -->
 					<div class="preview-img-wrapper col-lg-9">
-						<div class="swiper-container" [swiper]="previewSliderConfig">
+						<div class="swiper-container" [swiper]="previewSliderConfig" #previewSlider>
 							<div class="swiper-wrapper">
 								<div class="swiper-slide">
 									<div class="img ov-h">
@@ -41,8 +41,7 @@
 					</div>
 					<!-- CÁC HÌNH NHỎ -->
 					<div class="gallery-thumbs-wrapper col-lg-3">
-						<div class="swiper-container" [swiper]="thumbsSliderConfig"
-							(swiperClick)="changeBigSlider($event)">
+						<div class="swiper-container" [swiper]="thumbsSliderConfig" (swiperClick)="changeBigSlider($event)" #thumbsSlider>
 							<div class="swiper-wrapper">
 								<div class="swiper-slide">
 									<div class="img ov-h">
@@ -71,7 +70,6 @@
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
 				<div class="social-media">
@@ -129,11 +127,11 @@
 			<div class="col-lg-9 infoDetail-comments">
 				<div class="tab-container">
 					<ul class="list-tab d-f lst-n pl-0">
-						<li class="item w-100 text-center active" toggle-for="item-1">Thông tin sản phẩm</li>
-						<li class="item w-100 text-center" toggle-for="item-1">Bình luận</li>
+						<li class="item w-100 text-center active" (click)="changeTab(1)">Thông tin sản phẩm</li>
+						<li class="item w-100 text-center" (click)="changeTab(2)">Bình luận</li>
 					</ul>
 					<div class="tab-content">
-						<div class="content" tab-id="item-1">
+						<div class="content" tab-id="item-1" *ngIf="tabId == 1">
 							<div class="desc">
 								<p style="margin-bottom: 10px;">Lorem ipsum dolor sit amet, consectetuer adipiscing
 									elit. Aenean commodo ligula eget
@@ -167,7 +165,9 @@
 									nec, vulputate eget, arcu.</p>
 							</div>
 						</div>
-						<div class="content" tab-id="item-2"></div>
+						<div class="content" tab-id="item-2" *ngIf="tabId == 2">
+
+						</div>
 					</div>
 				</div>
 			</div>

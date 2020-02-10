@@ -5,17 +5,17 @@
 			<h2 class="main-title tt-u tag-line">hình ảnh</h2>
 		</div>
 		<div class="row activities-list">
-			<ng-container *ngFor="let image of images let i = index">
+			<ng-container *ngFor="let item of images let i = index">
 				<div class="col-lg-3 activities-item" *ngIf="i<12">
-					<figure>
+					<figure (click)="getImageListPopup(item.popupImages)">
 						<div class="img ov-h">
-							<img src="{{image.thumbnail}}" alt="">
+							<img src="{{item.thumbnail}}" alt="">
 						</div>
 						<figcaption>
-							<h3 class="lcl lcl-1">{{image.title}}</h3>
+							<h3 class="lcl lcl-1">{{item.title}}</h3>
 							<div class="description">
-								<time class="d-b">{{image.time}}</time>
-								<span class="viewmore">Xem {{image.typeName}}</span>
+								<time class="d-b">{{item.time}}</time>
+								<span class="viewmore">Xem {{item.typeName}}</span>
 							</div>
 						</figcaption>
 					</figure>
@@ -23,28 +23,5 @@
 			</ng-container>
 		</div>
 	</div>
-
-	<!-- Demo Sync slider -->
-	<div class="container" style="max-width: 700px">
-		<div class="swiper-container" [swiper]="bigSliderConfig" #bigSlider>
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">Slider 1</div>
-				<div class="swiper-slide">Slider 2</div>
-				<div class="swiper-slide">Slider 3</div>
-				<div class="swiper-slide">Slider 4</div>
-				<div class="swiper-slide">Slider 5</div>
-				<div class="swiper-slide">Slider 6</div>
-			</div>
-		</div>
-		<div class="swiper-container" [swiper]="smallSliderConfig" #smallSlider (swiperClick)="changeBigSlider($event)">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">Slider 1</div>
-				<div class="swiper-slide">Slider 2</div>
-				<div class="swiper-slide">Slider 3</div>
-				<div class="swiper-slide">Slider 4</div>
-				<div class="swiper-slide">Slider 5</div>
-				<div class="swiper-slide">Slider 6</div>
-			</div>
-		</div>
-	</div>
+	<app-activities-images-popup [imageList]="list" *ngIf="popupShow" (close)="closePopup($event)"></app-activities-images-popup>
 </section>
