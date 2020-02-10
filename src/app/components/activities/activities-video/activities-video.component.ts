@@ -9,9 +9,10 @@ import { TranslateService } from '@ngx-translate/core';
 	styleUrls: ['./activities-video.component.scss']
 })
 export class ActivitiesVideoComponent implements OnInit {
-	VideoUrl = 'assets/db/vi/activities-images.json';
+	VideoUrl = 'assets/db/vi/activities-videos.json';
 	videos = [];
-
+	data: {};
+	popupShow = false;
 	constructor(
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,
@@ -26,6 +27,19 @@ export class ActivitiesVideoComponent implements OnInit {
 	getVideos() {
 		this.httpSvc.get(this.VideoUrl).subscribe(result => {
 			this.videos = result.data;
+
 		});
+	}
+
+	getVideoListPopup(thumbnail, url) {
+		this.data = {
+			thumbnail: thumbnail,
+			videoUrl: url
+		}
+		this.popupShow = true;
+	}
+
+	closePopup(event) {
+		this.popupShow = event;
 	}
 }

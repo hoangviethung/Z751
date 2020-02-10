@@ -8,6 +8,7 @@ import { ActivitiesVideoComponent } from './activities-video/activities-video.co
 import { ActivitiesImagesPopupComponent } from './activities-image/activities-images-popup/activities-images-popup.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SwiperConfigInterface, SwiperModule, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { ActivitiesVideosPopupComponent } from './activities-video/activities-videos-popup/activities-videos-popup.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	direction: 'horizontal',
@@ -18,7 +19,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	declarations: [
 		ActivitiesImageComponent,
 		ActivitiesVideoComponent,
-		ActivitiesImagesPopupComponent
+		ActivitiesImagesPopupComponent,
+		ActivitiesVideosPopupComponent
 	],
 	imports: [
 		CommonModule,

@@ -7,7 +7,7 @@
 		<div class="row activities-list">
 			<ng-container *ngFor="let video of videos let i = index">
 				<div class="col-lg-3 activities-item" *ngIf="i<12">
-					<figure>
+					<figure (click)="getVideoListPopup(video.thumbnail, video.videoUrl)">
 						<div class="img ov-h activities-video">
 							<img src="{{video.thumbnail}}" alt="">
 						</div>
@@ -23,4 +23,6 @@
 			</ng-container>
 		</div>
 	</div>
+	<app-activities-videos-popup [data]="data" *ngIf="popupShow" (close)="closePopup($event)">
+	</app-activities-videos-popup>
 </section>
