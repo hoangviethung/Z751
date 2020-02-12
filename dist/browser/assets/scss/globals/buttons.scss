@@ -1,0 +1,44 @@
+.btn {
+	display        : inline-flex;
+	justify-content: center;
+	align-items    : center;
+	border         : 0;
+	padding        : 0;
+}
+
+.btn-viewmore {
+	padding         : 0 15px;
+	font-size       : 14px;
+	color           : white;
+	white-space     : nowrap;
+	line-height     : 1;
+	height          : 30px;
+	background-color: #FE0000;
+	transition      : all .3s ease-in-out;
+	transition-delay: .2s;
+	display         : inline-flex;
+	justify-content : center;
+	align-items     : center;
+
+	img {
+		margin-left: 10px;
+	}
+
+	&.h-47 {
+		font-size  : 18px;
+		font-weight: 700;
+		height     : 47px;
+
+		@media (max-width: 1024.98px) {
+			font-size: 14px;
+			height   : 30px;
+		}
+	}
+}
+
+.btn-form {
+	font-size  : 14px;
+	background : #D22121;
+	padding    : 0 40px;
+	line-height: 30px;
+}

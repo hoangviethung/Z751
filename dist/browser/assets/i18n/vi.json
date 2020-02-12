@@ -1,0 +1,27 @@
+{
+	"pageTitle": "BỘ QUỐC PHÒNG CÔNG TY TNHH MỘT THÀNH VIÊN 751",
+	"ROUTES": {
+		"index": "",
+		"about": "gioi-thieu",
+		"products": "san-pham",
+		"activities": "hoat-dong",
+		"videos": "thu-vien-video",
+		"images": "thu-vien-anh",
+		"profiles": "nang-luc",
+		"news": "tin-tuc",
+		"contact": "lien-he",
+		"404": "khong-tim-thay-trang"
+	},
+	"menu": {
+		"index": "Trang chủ",
+		"about": "Giới thiệu",
+		"products": "Sản phẩm",
+		"activities": "Hoạt động",
+		"videos": "Video",
+		"images": "Hình ảnh",
+		"profiles": "Năng lực",
+		"news": "Tin tức",
+		"contact": "Liên hệ",
+		"404": "Không thấy trang"
+	}
+}
