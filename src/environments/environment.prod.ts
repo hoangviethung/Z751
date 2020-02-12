@@ -1,6 +1,8 @@
 export const environment = {
 	production: true,
-	// locales: 'https://z751.herokuapp.com/',
-	locales: 'http://localhost:4000/',
+	locales: 'http://27.71.234.45:4000/',
+	// locales: () => {
+	// 	return 'http://27.71.234.45/'
+	// },
 	browserDirPath: 'browser'
 };
