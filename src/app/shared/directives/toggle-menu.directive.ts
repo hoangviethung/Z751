@@ -1,4 +1,5 @@
-import { Directive, ElementRef, HostListener, OnInit } from '@angular/core';
+import { Directive, ElementRef, OnInit, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Directive({
 	selector: '[appToggleMenu]'
@@ -6,10 +7,12 @@ import { Directive, ElementRef, HostListener, OnInit } from '@angular/core';
 export class ToggleMenuDirective implements OnInit {
 
 	constructor(
-		private elemenRef: ElementRef
+		private elemenRef: ElementRef,
+		@Inject(DOCUMENT) private documentDOM: Document
 	) { }
 
 	ngOnInit() {
+		const document = this.documentDOM;
 		const hamburger = <HTMLElement>this.elemenRef.nativeElement;
 		const body = document.querySelector('body');
 		const header = document.querySelector('header')

@@ -18,16 +18,23 @@
 import 'zone.js/dist/zone-node';
 
 import * as express from 'express';
+import * as path from "path";
+import * as domino from "domino";
 import { join } from 'path';
 import { APP_BASE_HREF } from '@angular/common';
-const path = require('path');
-
+import { readFileSync } from "fs";
 // Express server
 const app = express();
 
 const PORT = process.env.PORT || 4000;
 
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
+const template = readFileSync(join(DIST_FOLDER, 'index.html')).toString();
+let window = domino.createWindow(template);
+
+(global as any).navigator = window.navigator;
+(global as any).navigator.language = 'vi';
+(global as any).window = window;
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP, ngExpressEngine, provideModuleMap } = require('./dist/server/main');

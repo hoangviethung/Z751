@@ -1,15 +1,19 @@
-import { Directive, OnInit, ElementRef } from '@angular/core';
+import { Directive, OnInit, ElementRef, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 @Directive({
 	selector: '[appCloseMenu]'
 })
+
 export class CloseMenuDirective implements OnInit {
 
 	constructor(
-		private elemenRef: ElementRef
+		private elemenRef: ElementRef,
+		@Inject(DOCUMENT) private documentDOM: Document
 	) { }
 
 	ngOnInit() {
+		const document = this.documentDOM;
 		const anchor = <HTMLElement>this.elemenRef.nativeElement;
 		const header = document.querySelector('header');
 		const body = document.querySelector('body');

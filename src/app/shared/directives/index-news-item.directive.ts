@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, AfterViewInit, PlatformRef } from '@angular/core';
+import { Directive, ElementRef, HostListener, AfterViewInit } from '@angular/core';
 
 @Directive({
 	selector: '[appIndexNewsItem]'
@@ -7,7 +7,9 @@ export class IndexNewsItemDirective implements AfterViewInit {
 
 	ratio = 578 / 350;
 
-	constructor(private elementRef: ElementRef) { }
+	constructor(
+		private elementRef: ElementRef,
+	) { }
 
 	setEffect() {
 		const item = this.elementRef.nativeElement;
