@@ -32,9 +32,11 @@ const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 const template = readFileSync(join(DIST_FOLDER, 'index.html')).toString();
 let window = domino.createWindow(template);
 
+(global as any).window = window;
 (global as any).navigator = window.navigator;
 (global as any).navigator.language = 'vi';
-(global as any).window = window;
+
+
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP, ngExpressEngine, provideModuleMap } = require('./dist/server/main');

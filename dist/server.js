@@ -129,9 +129,9 @@ const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = Object(path__WEBPACK_IMPORTED_MODULE_3__["join"])(process.cwd(), 'dist/browser');
 const template = Object(fs__WEBPACK_IMPORTED_MODULE_5__["readFileSync"])(Object(path__WEBPACK_IMPORTED_MODULE_3__["join"])(DIST_FOLDER, 'index.html')).toString();
 let window = domino__WEBPACK_IMPORTED_MODULE_2__["createWindow"](template);
+global.window = window;
 global.navigator = window.navigator;
 global.navigator.language = 'vi';
-global.window = window;
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const { AppServerModuleNgFactory, LAZY_MODULE_MAP, ngExpressEngine, provideModuleMap } = __webpack_require__(399);
 // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
