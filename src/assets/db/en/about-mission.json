@@ -1,0 +1,19 @@
+{
+	"data": [
+		{
+			"image": "./assets/images/about/mission-1.png",
+			"title": "staff",
+			"description": "Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis"
+		},
+		{
+			"image": "./assets/images/about/mission-2.png",
+			"title": "Revenue",
+			"description": "Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis"
+		},
+		{
+			"image": "./assets/images/about/mission-3.png",
+			"title": "leadership",
+			"description": "Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis"
+		}
+	]
+}

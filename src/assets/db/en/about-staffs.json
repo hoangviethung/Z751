@@ -1,0 +1,24 @@
+{
+	"data": [
+		{
+			"position": "general manager",
+			"name": "nguyen xuan vu",
+			"image": "./assets/images/about/staff-01.png"
+		},
+		{
+			"position": "general manager",
+			"name": "nguyen xuan vu",
+			"image": "./assets/images/about/staff-02.png"
+		},
+		{
+			"position": "general manager",
+			"name": "nguyen xuan vu",
+			"image": "./assets/images/about/staff-03.png"
+		},
+		{
+			"position": "general manager",
+			"name": "nguyen xuan vu",
+			"image": "./assets/images/about/staff-04.png"
+		}
+	]
+}

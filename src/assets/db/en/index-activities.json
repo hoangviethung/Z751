@@ -1,0 +1,60 @@
+{
+	"data": [
+		{
+			"typeName": "Album",
+			"time": "25/04/2019",
+			"url": "activities",
+			"img": "/assets/images/activities/index-1.jpg",
+			"title": "Household wooden furniture and export"
+		},
+		{
+			"typeName": "Video",
+			"time": "25/04/2019",
+			"url": "activities",
+			"img": "/assets/images/activities/index-2.jpg",
+			"title": "Mechanical industry, industrial structure, electromechanical"
+		},
+		{
+			"typeName": "Album",
+			"time": "25/04/2019",
+			"url": "activities",
+			"img": "/assets/images/activities/index-1.jpg",
+			"title": "Household wooden furniture and export"
+		},
+		{
+			"typeName": "Video",
+			"time": "25/04/2019",
+			"url": "activities",
+			"img": "/assets/images/activities/index-2.jpg",
+			"title": "Mechanical industry, industrial structure, electromechanical"
+		},
+		{
+			"typeName": "Album",
+			"time": "25/04/2019",
+			"url": "activities",
+			"img": "/assets/images/activities/index-1.jpg",
+			"title": "Household wooden furniture and export"
+		},
+		{
+			"typeName": "Video",
+			"time": "25/04/2019",
+			"url": "activities",
+			"img": "/assets/images/activities/index-2.jpg",
+			"title": "Mechanical industry, industrial structure, electromechanical"
+		},
+		{
+			"typeName": "Album",
+			"time": "25/04/2019",
+			"url": "activities",
+			"img": "/assets/images/activities/index-1.jpg",
+			"title": "Household wooden furniture and export"
+		},
+		{
+			"typeName": "Video",
+			"time": "25/04/2019",
+			"url": "activities",
+			"img": "/assets/images/activities/index-2.jpg",
+			"title": "Mechanical industry, industrial structure, electromechanical"
+		}
+	]
+}
