@@ -1,0 +1,53 @@
+{
+	"data": {
+		"title": "AUTOMOBILE INDUSTRY",
+		"desc": "Special-use cars are those with structure and equipment to perform a special function, including: road-sweeping cars; cars sucking waste; mortar-mixing cars; concrete-mixing cars; concrete pump cars; crane cars; Ladder cars ...",
+		"products": [
+			{
+				"id": "p-1",
+				"img": "/assets/images/products/list-product/do-gia-dung/1.jpg",
+				"name": "HOUSEHOLD WOOD AND EXPORT"
+			},
+			{
+				"id": "p-2",
+				"img": "/assets/images/products/list-product/do-gia-dung/4.jpg",
+				"name": "HOUSEHOLD WOOD AND EXPORT"
+			},
+			{
+				"id": "p-3",
+				"img": "/assets/images/products/list-product/do-gia-dung/5.jpg",
+				"name": "HOUSEHOLD WOOD AND EXPORT"
+			},
+			{
+				"id": "p-4",
+				"img": "/assets/images/products/list-product/do-gia-dung/6.jpg",
+				"name": "HOUSEHOLD WOOD AND EXPORT"
+			},
+			{
+				"id": "p-5",
+				"img": "/assets/images/products/list-product/do-gia-dung/7.jpg",
+				"name": "HOUSEHOLD WOOD AND EXPORT"
+			},
+			{
+				"id": "p-6",
+				"img": "/assets/images/products/list-product/do-gia-dung/8.jpg",
+				"name": "HOUSEHOLD WOOD AND EXPORT"
+			},
+			{
+				"id": "p-7",
+				"img": "/assets/images/products/list-product/do-gia-dung/9.jpg",
+				"name": "HOUSEHOLD WOOD AND EXPORT"
+			},
+			{
+				"id": "p-8",
+				"img": "/assets/images/products/list-product/do-gia-dung/2.jpg",
+				"name": "HOUSEHOLD WOOD AND EXPORT"
+			},
+			{
+				"id": "p-9",
+				"img": "/assets/images/products/list-product/do-gia-dung/3.jpg",
+				"name": "HOUSEHOLD WOOD AND EXPORT"
+			}
+		]
+	}
+}
