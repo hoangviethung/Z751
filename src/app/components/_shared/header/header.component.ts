@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
 import { Observable } from 'rxjs';
 import { HttpService } from 'src/app/shared/services/http.service';
+import { LanguageService } from 'src/app/shared/services/language.service';
 
 @Component({
 	selector: 'app-header',
@@ -17,11 +18,11 @@ export class HeaderComponent implements OnInit {
 	productCategory;
 
 	constructor(
-		private localizeRouterService: LocalizeRouterService,
 		private httpSvc: HttpService,
+		private languageSvc: LanguageService
 	) {
-		this.locales = this.localizeRouterService.parser.locales;
-		this.currentLocale = this.localizeRouterService.parser.currentLang;
+		this.locales = this.languageSvc.fetchLocales();
+		this.currentLocale = this.languageSvc.getCurrentLanguage();
 	}
 
 	ngOnInit() {
@@ -34,14 +35,22 @@ export class HeaderComponent implements OnInit {
 
 	switchLanguage(e: Event) {
 		const lang = (<HTMLInputElement>e.target).value
-		this.localizeRouterService.changeLanguage(lang);
+		this.languageSvc.changeLanguage(lang);
 		return false;
 	}
 
 	fetchProductCategory() {
-		const headerProductCategory: Observable<any> = this.httpSvc.get('assets/db/vi/category-product.json');
-		headerProductCategory.subscribe(result => {
-			this.productCategory = result.data
+		this.httpSvc.get(`assets/db/${this.currentLocale}/category-product.json`)
+			.subscribe(result => {
+				this.productCategory = result.data
+			})
+
+		this.languageSvc.getCurrentLanguageWhenChangeLanguage().subscribe(lang => {
+			this.currentLocale = lang;
+			this.httpSvc.get(`assets/db/${lang}/category-product.json`)
+				.subscribe(result => {
+					this.productCategory = result.data
+				})
 		})
 	}
 }

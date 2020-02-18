@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { PageInfoService } from 'src/app/shared/services/page-info.service';
+import { LanguageService } from 'src/app/shared/services/language.service';
 
 @Component({
 	selector: 'app-product',
@@ -13,13 +14,17 @@ export class ProductComponent implements OnInit {
 	products = [];
 	title: string;
 	desc: string;
+	currentLocale: string;
 
 
 	constructor(
 		private activatedRouteSvc: ActivatedRoute,
 		private httpSvc: HttpService,
-		private pageInfoSvc: PageInfoService
-	) { }
+		private pageInfoSvc: PageInfoService,
+		private languageSvc: LanguageService,
+	) {
+		this.currentLocale = this.languageSvc.getCurrentLanguage();
+	}
 
 
 	ngOnInit() {
@@ -28,13 +33,24 @@ export class ProductComponent implements OnInit {
 
 	getProducts() {
 		this.activatedRouteSvc.params.subscribe(routeParams => {
-			const url = `assets/db/vi/${routeParams.id}.json`;
+			const url = `assets/db/${this.currentLocale}/${routeParams.id}.json`;
 			this.httpSvc.get(url).subscribe(result => {
 				this.pageInfoSvc.setTitle(result.data.title)
 				this.title = result.data.title;
 				this.desc = result.data.desc;
 				this.products = result.data.products;
 			})
+
+			this.languageSvc.getCurrentLanguageWhenChangeLanguage().subscribe(lang => {
+				const url = `assets/db/${lang}/${routeParams.id}.json`;
+				this.httpSvc.get(url).subscribe(result => {
+					this.pageInfoSvc.setTitle(result.data.title)
+					this.title = result.data.title;
+					this.desc = result.data.desc;
+					this.products = result.data.products;
+				})
+			})
 		})
+
 	}
 }

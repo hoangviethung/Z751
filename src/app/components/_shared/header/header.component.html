@@ -52,8 +52,13 @@
 										appToggleSubMenu>{{'menu.products' | translate}}</a>
 									<div class="nav-sub lst-n pl-0">
 										<div class="nav-item" *ngFor="let category of productCategory">
-											<a class="nav-link" [routerLink]="['products' | localize, category.id]"
-												appCloseMenu>{{category.name}}</a>
+											<ng-container *ngIf="currentLocale == 'vi'">
+												<a class="nav-link" [routerLink]="['products' | localize, category.id]"
+													appCloseMenu>{{category.name}}</a>
+											</ng-container>
+											<ng-container *ngIf="currentLocale == 'en'">
+												<a class="nav-link" [routerLink]="['en/products' | localize, category.id]"
+													appCloseMenu>{{category.name}}</a></ng-container>
 										</div>
 										<div class="nav-sub-close mobile">
 											<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
