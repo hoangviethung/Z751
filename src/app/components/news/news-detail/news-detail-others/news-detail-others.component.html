@@ -2,11 +2,11 @@
 <div class="list-news-others">
 	<div class="row">
 		<div class="col-sm-6 col-lg-12" *ngFor="let newsOthers of listNewsOthers">
-			<a [routerLink]="newsOthers.url" appIndexNewsItem class="item-news-others">
+			<a [routerLink]="newsOthers.url" class="item-news-others">
 				<figure>
-					<div class="img">
+					<!-- <div class="img">
 						<img src="{{newsOthers.img}}" alt="" srcset="" class="ofcv">
-					</div>
+					</div> -->
 					<figcaption>
 						<h3 class="lcl lcl-2">{{newsOthers.title}}</h3>
 						<time>{{newsOthers.time}}</time>

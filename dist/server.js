@@ -125,7 +125,7 @@ __webpack_require__.r(__webpack_exports__);
 
 // Express server
 const app = express__WEBPACK_IMPORTED_MODULE_1__();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 40000;
 const DIST_FOLDER = Object(path__WEBPACK_IMPORTED_MODULE_3__["join"])(process.cwd(), 'dist/browser');
 const template = Object(fs__WEBPACK_IMPORTED_MODULE_5__["readFileSync"])(Object(path__WEBPACK_IMPORTED_MODULE_3__["join"])(DIST_FOLDER, 'index.html')).toString();
 let window = domino__WEBPACK_IMPORTED_MODULE_2__["createWindow"](template);

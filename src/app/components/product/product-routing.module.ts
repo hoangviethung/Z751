@@ -9,10 +9,16 @@ const routes: Routes = [
 	{
 		path: ':id',
 		component: ProductComponent,
+		data: {
+			breadcrumb: 'products'
+		}
 	},
 	{
 		path: ':id/:productId/:title',
-		component: ProductDetailComponent
+		component: ProductDetailComponent,
+		data: {
+			breadcrumb: 'products-detail'
+		}
 	}
 ];
 

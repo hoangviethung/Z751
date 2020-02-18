@@ -7,49 +7,7 @@ import { ToggleSubMenuDirective } from './directives/toggle-sub-menu.directive';
 import { ToggleMenuDirective } from './directives/toggle-menu.directive';
 import { CloseMenuDirective } from './directives/close-menu.directive';
 import { PaginationComponent } from '../components/_shared/pagination/pagination.component';
-import { NgxIndexedDBService, NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
-import { IndexedDbService } from './services/indexed-db.service';
 
-
-export const dbConfig: DBConfig = {
-	name: 'z751',
-	version: 1,
-	objectStoresMeta: [{
-		store: 'news',
-		storeConfig: { keyPath: 'id', autoIncrement: true },
-		storeSchema: [
-			{
-				name: 'id',
-				keypath: 'id',
-				options: { unique: true }
-			},
-
-			{
-				name: 'img',
-				keypath: 'img',
-				options: { unique: false }
-			},
-
-			{
-				name: 'title',
-				keypath: 'title',
-				options: { unique: false }
-			},
-
-			{
-				name: 'time',
-				keypath: 'time',
-				options: { unique: false }
-			},
-
-			{
-				name: 'description',
-				keypath: 'description',
-				options: { unique: false }
-			}
-		]
-	}]
-};
 
 @NgModule({
 	declarations: [
@@ -63,7 +21,6 @@ export const dbConfig: DBConfig = {
 	],
 	imports: [
 		CommonModule,
-		NgxIndexedDBModule.forRoot(dbConfig)
 	],
 	exports: [
 		BreadcrumbComponent,
@@ -75,8 +32,6 @@ export const dbConfig: DBConfig = {
 		IndexNewsItemDirective,
 	],
 	providers: [
-		IndexedDbService,
-		NgxIndexedDBService
 	]
 })
 export class SharedModule { }

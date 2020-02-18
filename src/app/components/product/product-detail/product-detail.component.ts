@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SwiperConfigInterface, SwiperDirective, SwiperComponent } from 'ngx-swiper-wrapper';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from "rxjs";
+import { HttpService } from 'src/app/shared/services/http.service';
+
 @Component({
 	selector: 'app-product-detail',
 	templateUrl: './product-detail.component.html',
@@ -10,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductDetailComponent implements OnInit {
 
 	tabId = 1;
+	productCategory;
 
 	@ViewChild(SwiperDirective, { static: false }) thumbsSlider: SwiperDirective;
 	@ViewChild(SwiperDirective, { static: false }) previewSlider: SwiperDirective;
@@ -49,11 +53,19 @@ export class ProductDetailComponent implements OnInit {
 	}
 
 	constructor(
-		private activatedRouteSvc: ActivatedRoute
+		private activatedRouteSvc: ActivatedRoute,
+		private httpSvc: HttpService,
 	) { }
 
-
 	ngOnInit() {
+		this.fetchProductCategory();
+	}
+
+	fetchProductCategory() {
+		const headerProductCategory: Observable<any> = this.httpSvc.get('assets/db/vi/category-product.json');
+		headerProductCategory.subscribe(result => {
+			this.productCategory = result.data
+		})
 	}
 
 	changeTab(id: number) {

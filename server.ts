@@ -26,7 +26,7 @@ import { readFileSync } from "fs";
 // Express server
 const app = express();
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 40000;
 
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 const template = readFileSync(join(DIST_FOLDER, 'index.html')).toString();
