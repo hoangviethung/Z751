@@ -1,0 +1,53 @@
+@import '../assets/scss/abstracts/variables.scss';
+
+#hotline {
+	position: fixed;
+	width: 50px;
+	height: 50px;
+	top: 350px;
+	right: 40px;
+	z-index: 2;
+
+	a {
+		height: 100%;
+		position: relative;
+		z-index: 2;
+		border-radius: 50%;
+		background-color: map-get($mau, main);
+		animation: shake 0.75s linear infinite forwards;
+	}
+
+	.spread-1,
+	.spread-2,
+	.spread-3 {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+	}
+
+	.spread-1 {
+		width: 80px;
+		height: 80px;
+		top: -15px;
+		left: -15px;
+		position: absolute;
+		background-color: rgba(map-get($mau, main), 0.7);
+		border-radius: 100% !important;
+		border: 2px solid transparent;
+		animation: spread1 1.1s infinite ease-in-out;
+	}
+
+	.spread-2 {
+		width: 90px;
+		height: 90px;
+		top: -20px;
+		left: -20px;
+		position: absolute;
+		background-color: rgba(map-get($mau, main), 0.6);
+		border-radius: 100% !important;
+		border: 2px solid transparent;
+		animation: spread2 2.2s infinite ease-in-out;
+	}
+}

@@ -84,16 +84,17 @@ const routes: Routes = [
 	}
 ];
 
+
 @NgModule({
 	imports: [
 		RouterModule.forRoot(routes),
 		LocalizeRouterModule.forRoot(routes, {
 			alwaysSetPrefix: false,
 			useCachedLang: false,
-			defaultLangFunction: () => 'vi',
 			parser: {
 				provide: LocalizeParser,
 				useFactory: (translate: TranslateService, location: Location, settings: LocalizeRouterSettings) => {
+					settings.defaultLangFunction = () => 'vi'
 					return new ManualParserLoader(translate, location, settings, ['vi', 'en'], 'ROUTES.');
 				},
 				deps: [TranslateService, Location, LocalizeRouterSettings]

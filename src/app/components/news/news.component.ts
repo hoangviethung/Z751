@@ -3,6 +3,7 @@ import { PageInfoService } from 'src/app/shared/services/page-info.service';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { TranslateService } from '@ngx-translate/core';
 import { NewsService } from './news.service';
+import { LanguageService } from 'src/app/shared/services/language.service';
 
 @Component({
 	selector: 'app-news',
@@ -10,15 +11,17 @@ import { NewsService } from './news.service';
 	styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit, OnDestroy {
-	NewsUrl = 'assets/db/vi/news.json';
 	newsList = [];
+	currentLocale: string;
 
 	constructor(
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,
 		private translateSvc: TranslateService,
-		private newsSvc: NewsService
+		private newsSvc: NewsService,
+		private languageSvc: LanguageService
 	) {
+		this.currentLocale = this.languageSvc.getCurrentLanguage();
 		this.pageInfoSvc.setTitle(this.translateSvc.instant('menu.news'));
 	}
 
@@ -30,13 +33,22 @@ export class NewsComponent implements OnInit, OnDestroy {
 	}
 
 	getNewsList() {
-		this.httpSvc.get(this.NewsUrl)
+		this.httpSvc.get(`assets/db/${this.currentLocale}/news.json`)
 			.subscribe(
 				result => {
 					this.newsSvc.setNewsListLoadedState();
 					this.newsList = result.data;
 				}
 			)
+		this.languageSvc.getCurrentLanguageWhenChangeLanguage().subscribe(lang => {
+			this.httpSvc.get(`assets/db/${lang}/news.json`)
+				.subscribe(
+					result => {
+						this.newsSvc.setNewsListLoadedState();
+						this.newsList = result.data;
+					}
+				)
+		})
 	}
 
 }

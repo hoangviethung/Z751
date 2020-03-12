@@ -8,17 +8,12 @@
 		"test": "ng test",
 		"lint": "ng lint",
 		"e2e": "ng e2e",
-		"start": "node heroku.js",
+		"start": "ng serve --open",
 		"compile:server": "webpack --config webpack.server.config.js --progress --colors",
 		"serve:ssr": "node dist/server",
 		"build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
 		"build:client-and-server-bundles": "ng build --prod && ng run z751:server:production --bundleDependencies all",
-		"ssr": "npm run build:ssr && npm run serve:ssr",
-		"heroku-postbuild": "ng build --prod"
-	},
-	"engines": {
-		"node": "12.14.1",
-		"npm": "6.13.6"
+		"ssr": "npm run build:ssr && npm run serve:ssr"
 	},
 	"dependencies": {
 		"@agm/core": "^1.1.0",
@@ -38,9 +33,6 @@
 		"@ngx-translate/http-loader": "^4.0.0",
 		"domino": "^2.1.4",
 		"express": "^4.15.2",
-		"fake-indexeddb": "^3.0.0",
-		"indexeddbshim": "^6.0.1",
-		"ngx-indexed-db": "^4.0.3",
 		"ngx-swiper-wrapper": "^8.0.2",
 		"rxjs": "~6.4.0",
 		"tslib": "^1.10.0",

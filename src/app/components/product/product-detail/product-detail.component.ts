@@ -3,6 +3,7 @@ import { SwiperConfigInterface, SwiperDirective, SwiperComponent } from 'ngx-swi
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from "rxjs";
 import { HttpService } from 'src/app/shared/services/http.service';
+import { LanguageService } from 'src/app/shared/services/language.service';
 
 @Component({
 	selector: 'app-product-detail',
@@ -14,6 +15,8 @@ export class ProductDetailComponent implements OnInit {
 
 	tabId = 1;
 	productCategory;
+	productId: string;
+	currentLocale: string;
 
 	@ViewChild(SwiperDirective, { static: false }) thumbsSlider: SwiperDirective;
 	@ViewChild(SwiperDirective, { static: false }) previewSlider: SwiperDirective;
@@ -54,17 +57,37 @@ export class ProductDetailComponent implements OnInit {
 
 	constructor(
 		private activatedRouteSvc: ActivatedRoute,
+		private languageSvc: LanguageService,
 		private httpSvc: HttpService,
-	) { }
+	) {
+		this.currentLocale = this.languageSvc.getCurrentLanguage();
+	}
 
 	ngOnInit() {
 		this.fetchProductCategory();
+		this.getParamId();
+	}
+
+	getParamId() {
+		this.activatedRouteSvc.params.subscribe(param => {
+			this.productId = param.id;
+		})
 	}
 
 	fetchProductCategory() {
-		const headerProductCategory: Observable<any> = this.httpSvc.get('assets/db/vi/category-product.json');
-		headerProductCategory.subscribe(result => {
-			this.productCategory = result.data
+		const url = `assets/db/${this.currentLocale}/category-product.json`;
+		this.httpSvc.get(url).subscribe(
+			result => {
+				this.productCategory = result.data;
+			}
+		)
+		this.languageSvc.getCurrentLanguageWhenChangeLanguage().subscribe(lang => {
+			const url = `assets/db/${lang}/category-product.json`;
+			this.httpSvc.get(url).subscribe(
+				result => {
+					this.productCategory = result.data;
+				}
+			)
 		})
 	}
 

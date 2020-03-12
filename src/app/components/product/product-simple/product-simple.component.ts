@@ -16,7 +16,7 @@ export class ProductSimpleComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-		this.url = this.utilSvc.alias(this.product.name);
+		this.url = this.utilSvc.alias(this.product.title);
 	}
 
 }

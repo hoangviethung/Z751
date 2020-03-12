@@ -18,11 +18,10 @@
 import 'zone.js/dist/zone-node';
 
 import * as express from 'express';
-import * as path from "path";
-import * as domino from "domino";
+import * as domino from 'domino';
 import { join } from 'path';
 import { APP_BASE_HREF } from '@angular/common';
-import { readFileSync } from "fs";
+import { readFileSync } from 'fs';
 // Express server
 const app = express();
 
@@ -30,7 +29,7 @@ const PORT = process.env.PORT || 40000;
 
 const DIST_FOLDER = join(process.cwd(), 'dist/browser');
 const template = readFileSync(join(DIST_FOLDER, 'index.html')).toString();
-let window = domino.createWindow(template);
+const window = domino.createWindow(template);
 
 (global as any).window = window;
 (global as any).navigator = window.navigator;

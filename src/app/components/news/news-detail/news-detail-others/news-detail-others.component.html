@@ -1,15 +1,15 @@
 <div class="title-news-others">tin liên quan</div>
 <div class="list-news-others">
 	<div class="row">
-		<div class="col-sm-6 col-lg-12" *ngFor="let newsOthers of listNewsOthers">
-			<a [routerLink]="newsOthers.url" class="item-news-others">
+		<div class="col-sm-6 col-lg-12" *ngFor="let news of listNewsOthers">
+			<a [routerLink]="['/news' | localize, news.id, news.url]" class="item-news-others">
 				<figure>
 					<!-- <div class="img">
-						<img src="{{newsOthers.img}}" alt="" srcset="" class="ofcv">
+						<img src="{{news.img}}" alt="" srcset="" class="ofcv">
 					</div> -->
 					<figcaption>
-						<h3 class="lcl lcl-2">{{newsOthers.title}}</h3>
-						<time>{{newsOthers.time}}</time>
+						<h3 class="lcl lcl-2">{{news.title}}</h3>
+						<time>{{news.time}}</time>
 					</figcaption>
 				</figure>
 			</a>

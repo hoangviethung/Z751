@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 		public translate: TranslateService,
 		@Inject(PLATFORM_ID) private platformId: Object
 	) {
-		this.translate.setDefaultLang('vi');
+		
 		// router.events.pipe(
 		// 	filter(event => event instanceof NavigationEnd)
 		// ).subscribe((event: NavigationEnd) => {

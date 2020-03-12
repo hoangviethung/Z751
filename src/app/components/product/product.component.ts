@@ -40,7 +40,6 @@ export class ProductComponent implements OnInit {
 				this.desc = result.data.desc;
 				this.products = result.data.products;
 			})
-
 			this.languageSvc.getCurrentLanguageWhenChangeLanguage().subscribe(lang => {
 				const url = `assets/db/${lang}/${routeParams.id}.json`;
 				this.httpSvc.get(url).subscribe(result => {
@@ -51,6 +50,5 @@ export class ProductComponent implements OnInit {
 				})
 			})
 		})
-
 	}
 }
