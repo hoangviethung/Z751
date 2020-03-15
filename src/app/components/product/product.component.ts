@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { PageInfoService } from 'src/app/shared/services/page-info.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
+import { BreadcrumbService } from '../_shared/breadcrumb/breadcrumb.service';
 
 @Component({
 	selector: 'app-product',
@@ -17,11 +18,13 @@ export class ProductComponent implements OnInit {
 	currentLocale: string;
 
 
+
 	constructor(
 		private activatedRouteSvc: ActivatedRoute,
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,
 		private languageSvc: LanguageService,
+		private brcSvc: BreadcrumbService
 	) {
 		this.currentLocale = this.languageSvc.getCurrentLanguage();
 	}
@@ -33,20 +36,32 @@ export class ProductComponent implements OnInit {
 
 	getProducts() {
 		this.activatedRouteSvc.params.subscribe(routeParams => {
+			let breadcrumbs = {
+				en: ['Home', 'Products'],
+				vi: ['Trang chủ', 'Sản phẩm'],
+			};
 			const url = `assets/db/${this.currentLocale}/${routeParams.id}.json`;
+			this.brcSvc.setBreadcrumb(breadcrumbs);
 			this.httpSvc.get(url).subscribe(result => {
-				this.pageInfoSvc.setTitle(result.data.title)
+				breadcrumbs[this.currentLocale].push(result.data.title);
+				this.pageInfoSvc.setTitle(result.data.title);
 				this.title = result.data.title;
 				this.desc = result.data.desc;
 				this.products = result.data.products;
 			})
 			this.languageSvc.getCurrentLanguageWhenChangeLanguage().subscribe(lang => {
+				let breadcrumbs = {
+					en: ['Home', 'Products'],
+					vi: ['Trang chủ', 'Sản phẩm'],
+				};
 				const url = `assets/db/${lang}/${routeParams.id}.json`;
+				this.brcSvc.setBreadcrumb(breadcrumbs);
 				this.httpSvc.get(url).subscribe(result => {
 					this.pageInfoSvc.setTitle(result.data.title)
 					this.title = result.data.title;
 					this.desc = result.data.desc;
 					this.products = result.data.products;
+					breadcrumbs[this.currentLocale].push(result.data.title)
 				})
 			})
 		})

@@ -3,6 +3,7 @@ import { HttpService } from 'src/app/shared/services/http.service';
 import { PageInfoService } from 'src/app/shared/services/page-info.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from 'src/app/shared/services/language.service';
+import { BreadcrumbService } from '../../_shared/breadcrumb/breadcrumb.service';
 
 @Component({
 	selector: 'app-activities-video',
@@ -15,18 +16,24 @@ export class ActivitiesVideoComponent implements OnInit {
 	data: {};
 	popupShow = false;
 	currentLocale: string;
+	breadcrumbs = {
+		en: ['Home', 'Videos'],
+		vi: ['Trang chủ', 'Video clip'],
+	}
 
 	constructor(
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,
 		private translateSvc: TranslateService,
 		private languageSvc: LanguageService,
+		private brcSvc: BreadcrumbService
 	) {
 		this.currentLocale = this.languageSvc.getCurrentLanguage();
 	}
 
 	ngOnInit() {
 		this.pageInfoSvc.setTitle(this.translateSvc.instant('menu.videos'));
+		this.brcSvc.setBreadcrumb(this.breadcrumbs);
 		this.getVideos();
 	}
 

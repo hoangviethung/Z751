@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalizeRouterService } from '@gilsdav/ngx-translate-router';
-import { Observable } from 'rxjs';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
 

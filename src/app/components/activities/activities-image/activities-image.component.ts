@@ -4,6 +4,7 @@ import { PageInfoService } from 'src/app/shared/services/page-info.service';
 import { TranslateService } from '@ngx-translate/core';
 import { SwiperConfigInterface, SwiperDirective } from 'ngx-swiper-wrapper';
 import { LanguageService } from 'src/app/shared/services/language.service';
+import { BreadcrumbService } from '../../_shared/breadcrumb/breadcrumb.service';
 
 @Component({
 	selector: 'app-activities-image',
@@ -15,18 +16,24 @@ export class ActivitiesImageComponent implements OnInit {
 	list = [];
 	popupShow = false;
 	currentLocale: string;
+	breadcrumbs = {
+		en: ['Home', 'Images'],
+		vi: ['Trang chủ', 'Hình ảnh'],
+	}
 
 	constructor(
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,
 		private translateSvc: TranslateService,
 		private languageSvc: LanguageService,
+		private brcSvc: BreadcrumbService
 	) {
 		this.currentLocale = this.languageSvc.getCurrentLanguage();
 	}
 
 	ngOnInit() {
 		this.pageInfoSvc.setTitle(this.translateSvc.instant('menu.images'));
+		this.brcSvc.setBreadcrumb(this.breadcrumbs);
 		this.getImages();
 	}
 

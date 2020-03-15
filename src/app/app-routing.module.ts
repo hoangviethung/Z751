@@ -13,6 +13,7 @@ const routes: Routes = [
 		loadChildren: () => import('./components/index/index.module').then(m => m.IndexModule),
 		data: {
 			preload: false,
+			breadcrumb: 'Home'
 		}
 	},
 	{
@@ -20,6 +21,7 @@ const routes: Routes = [
 		loadChildren: () => import('./components/about/about.module').then(m => m.AboutModule),
 		data: {
 			preload: false,
+			breadcrumb: 'About Z751'
 		}
 	},
 	{
@@ -27,6 +29,7 @@ const routes: Routes = [
 		loadChildren: () => import('./components/product/product.module').then(m => m.ProductModule),
 		data: {
 			preload: false,
+			breadcrumb: 'Products'
 		}
 	},
 	{
@@ -34,6 +37,7 @@ const routes: Routes = [
 		loadChildren: () => import('./components/activities/activities.module').then(m => m.ActivitiesModule),
 		data: {
 			preload: false,
+			breadcrumb: 'Activities'
 		}
 	},
 	// {
@@ -55,6 +59,7 @@ const routes: Routes = [
 		loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule),
 		data: {
 			preload: false,
+			breadcrumb: 'Profiles'
 		}
 	},
 	{
@@ -62,6 +67,7 @@ const routes: Routes = [
 		loadChildren: () => import('./components/news/news.module').then(m => m.NewsModule),
 		data: {
 			preload: false,
+			breadcrumb: 'News'
 		}
 	},
 	{
@@ -69,6 +75,7 @@ const routes: Routes = [
 		loadChildren: () => import('./components/contact/contact.module').then(m => m.ContactModule),
 		data: {
 			preload: false,
+			breadcrumb: 'Contact'
 		}
 	},
 	{
