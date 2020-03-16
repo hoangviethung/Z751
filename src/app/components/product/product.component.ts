@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, NavigationEnd, NavigationStart, ResolveEnd } from '@angular/router';
 import { HttpService } from 'src/app/shared/services/http.service';
 import { PageInfoService } from 'src/app/shared/services/page-info.service';
 import { LanguageService } from 'src/app/shared/services/language.service';
 import { BreadcrumbService } from '../_shared/breadcrumb/breadcrumb.service';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
 	selector: 'app-product',
@@ -24,7 +25,8 @@ export class ProductComponent implements OnInit {
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,
 		private languageSvc: LanguageService,
-		private brcSvc: BreadcrumbService
+		private brcSvc: BreadcrumbService,
+		private router: Router
 	) {
 		this.currentLocale = this.languageSvc.getCurrentLanguage();
 	}
@@ -32,9 +34,15 @@ export class ProductComponent implements OnInit {
 
 	ngOnInit() {
 		this.getProducts();
+		this.activatedRouteSvc.paramMap
+			.pipe(map(() => window.history.state))
+			.subscribe(state => {
+				console.log(state);
+			})
 	}
 
 	getProducts() {
+
 		this.activatedRouteSvc.params.subscribe(routeParams => {
 			let breadcrumbs = {
 				en: ['Home', 'Products'],
