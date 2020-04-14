@@ -1,33 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpService } from 'src/app/shared/services/http.service';
-import { UtilsService } from 'src/app/shared/services/utils.service';
+import { Component, OnInit, Input } from "@angular/core";
+import { HttpService } from "src/app/services/http.service";
+import { Article } from "src/app/models/core/Article.model";
 
 @Component({
-	selector: 'app-index-news',
-	templateUrl: './index-news.component.html',
-	styleUrls: ['./index-news.component.scss']
+	selector: "app-index-news",
+	templateUrl: "./index-news.component.html",
+	styleUrls: ["./index-news.component.scss"],
 })
 export class IndexNewsComponent implements OnInit {
-	HomeNewsUrl = 'assets/db/vi/news.json';
-	news = [];
+	newsItems: Array<Article>;
 
-	constructor(
-		private httpSvc: HttpService,
-		private utilSvc: UtilsService
-	) {
-	}
+	@Input("language") currentLanguage: string;
+
+	constructor(private httpSvc: HttpService) {}
 
 	ngOnInit() {
 		this.getNews();
 	}
 
 	getNews() {
-		this.httpSvc.get(this.HomeNewsUrl).subscribe(result => {
-			let data = result.data;
-			data.forEach(news => {
-				news['url'] = this.utilSvc.alias(news.title);
-				this.news.push(news);
-			});
+		const url =
+			this.currentLanguage == "en"
+				? `assets/api/${this.currentLanguage}/news/internal-news.json`
+				: `assets/api/${this.currentLanguage}/news/tin-noi-bo.json`;
+		this.httpSvc.get(url).subscribe((result) => {
+			this.newsItems = result.Data.News;
 		});
 	}
 }

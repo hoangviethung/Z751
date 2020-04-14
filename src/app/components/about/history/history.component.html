@@ -1,17 +1,23 @@
 <section class="history pd-70">
 	<div class="container">
 		<div class="block-title center">
-			<h2 class="main-title fw-700 tt-u ta-c">lịch sử hình thành và phát triển</h2>
+			<h2 class="main-title fw-700 tt-u ta-c">
+				{{ "about.history.title" | translate }}
+			</h2>
 		</div>
 		<div class="timeline">
-			<div class="swiper-container" [swiper]="sliderHistory">
+			<div class="swiper-container" [swiper]="sliderHistoryConfig">
 				<div class="swiper-wrapper">
 					<div *ngFor="let year of years" class="swiper-slide">
-						<h3>Năm {{year.time}}</h3>
+						<h3>{{ year.Description }}</h3>
 						<div class="icon">
-							<img src="./assets/images/icons/timeline.png" alt="" srcset="">
+							<img
+								src="./assets/images/icons/timeline.png"
+								alt=""
+								
+							/>
 						</div>
-						<p>{{year.description}}</p>
+						<p>{{ year.Title }}</p>
 					</div>
 				</div>
 			</div>

@@ -1,22 +1,26 @@
 <section class="pd-70">
 	<div class="container">
 		<div class="block-title">
-			<h2 class="main-title tt-u tag-line">Sản phẩm</h2>
+			<h2 class="main-title tt-u tag-line">
+				{{ "index.product-categories.title" | translate }}
+			</h2>
 		</div>
 		<div class="row">
-			<div class="col-lg-4 col-sm-6 col-product" *ngFor="let item of categoryProduct">
+			<div
+				class="col-lg-4 col-sm-6 col-product"
+				*ngFor="let item of productCategories"
+			>
 				<div class="product-item" appIndexProductItem>
-					<a [routerLink]="['/products' | localize, item.id]">
+					<a [routerLink]="['/products' | localize, item.Url]">
 						<div class="img ov-h">
-							<img src="{{item.img}}" alt={{item.name}}>f
+							<img
+								src="{{ item.Image }}"
+								alt="{{ item.Title }}"
+							/>
 						</div>
 						<div class="description fcc">
-							<h3 class="tt-u ta-c" [innerHTML]="item.name"></h3>
+							<h3 class="tt-u ta-c" [innerHTML]="item.Title"></h3>
 						</div>
-						<span class="btn btn-red btn-view-more">
-							Xem thêm
-							<img src="/assets/images/icons/icon_viewmore.svg" alt="">
-						</span>
 					</a>
 				</div>
 			</div>

@@ -1,0 +1,34 @@
+{
+	"Data": [
+		{
+			"Title": "Nhóm thiết bị gia công cơ khí",
+			"Image": "#",
+			"Url": "nhom-thiet-bi-gia-cong-co-khi"
+		},
+		{
+			"Title": "Nhóm thiết bị gia công áp lực và kết cấu thép",
+			"Image": "#",
+			"Url": "nhom-thiet-bi-gia-cong-ap-luc-va-ket-cau-thep"
+		},
+		{
+			"Title": "Nhóm thiết bị gia công vật liệu phi kim",
+			"Image": "#",
+			"Url": "nhom-thiet-bi-gia-cong-vat-lieu-phi-kim"
+		},
+		{
+			"Title": "Nhóm thiết bị nhiệt luyện & xử lý bề mặt",
+			"Image": "#",
+			"Url": "nhom-thiet-bi-nhiet-luyen-va-xu-ly-be-mat"
+		},
+		{
+			"Title": "Nhóm thiết bị kiểm tra, đo lường, thí nghiệm",
+			"Image": "#",
+			"Url": "nhom-thiet-bi-kiem-tra-do-luong-thi-nghiem"
+		},
+		{
+			"Title": "Thiết bị, phần mềm hỗ trợ nghiên cứu, thiết kế",
+			"Image": "#",
+			"Url": "thiet-bi-phan-mem-ho-tro-nghien-cuu-thiet-ke"
+		}
+	]
+}

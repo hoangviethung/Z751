@@ -5,7 +5,7 @@
 export const environment = {
 	production: false,
 	locales: "http://localhost:4200/",
-	browserDirPath: 'dist/browser'
+	browserDirPath: "dist/browser",
 };
 
 /*

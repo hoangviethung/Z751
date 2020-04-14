@@ -1,0 +1,97 @@
+{
+	"Data": {
+		"Title": "Xí nghiệp kim khí",
+		"Description": "<p>Công ty 751 / Tổng cục Kỹ thuật / Bộ Quốc phòng, đơn vị anh hùng lực lượng vũ trang nhân nhân được thành lập từ năm 1975 trên cơ sở tiếp quản lục quân công xưởng của chế độ ngụy, sài gòn là doanh nghiệp trực tiếp phục vụ quốc phòng an ninh và là cơ sở đảm bảo kỹ thuật lớn nhất của Quân đội ở phía nam.</p><p>Công ty hiện được đầu tư nhiều trang thiết bị công nghệ hiện đại, tiên tiến; hệ thống mặt bằng trên 600.000 m2, nhà xưởng trên 150.000 m2; Đội ngũ cán bộ quản lý được đào tạo chính quy trong và ngoài Quân đội, đội ngũ kỹ sư và công nhân lành nghề có kinh nghiệm sẵn sàng đáp ứng mọi yêu cầu của khách hàng trong lĩnh vực kinh doanh và hợp tác, liên doanh liên kết với tất cả các đối tác trong và ngoài nước.</p>",
+		"Image": "/assets/images/departments/d_1.jpg",
+		"Products": {
+			"DesignProducts": [
+				{
+					"Image": "/assets/images/products/category/cata-6.jpg",
+					"Url": "nghien-cuu-va-phat-trien",
+					"Title": "Nghiên cứu và phát triển"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-1.jpg",
+					"Url": "oto",
+					"Title": "Ngành Ô tô"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-4.jpg",
+					"Url": "co-khi-ket-cau-cong-nghiep",
+					"Title": "Ngành cơ khí, kết cấu công nghiệp"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-2.jpg",
+					"Url": "co-dien",
+					"Title": "Ngành cơ điện"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-6.jpg",
+					"Url": "may-cong-nghiep",
+					"Title": "Ngành may công nghiệp"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-6.jpg",
+					"Url": "kho-bai-luu-giu-hang-hoa",
+					"Title": "Dịch vụ kho bãi, lưu giữ hàng hóa"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-3.jpg",
+					"Url": "cao-su",
+					"Title": "Ngành cao su"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-5.jpg",
+					"Url": "do-go-gia-dung-xuat-khau",
+					"Title": "Ngành đồ gỗ gia dụng xuất khẩu"
+				}
+			],
+			"PrepairProducts": [
+				{
+					"Image": "/assets/images/products/category/cata-6.jpg",
+					"Url": "nghien-cuu-va-phat-trien",
+					"Title": "Nghiên cứu và phát triển"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-1.jpg",
+					"Url": "oto",
+					"Title": "Ngành Ô tô"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-4.jpg",
+					"Url": "co-khi-ket-cau-cong-nghiep",
+					"Title": "Ngành cơ khí, kết cấu công nghiệp"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-2.jpg",
+					"Url": "co-dien",
+					"Title": "Ngành cơ điện"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-6.jpg",
+					"Url": "may-cong-nghiep",
+					"Title": "Ngành may công nghiệp"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-6.jpg",
+					"Url": "kho-bai-luu-giu-hang-hoa",
+					"Title": "Dịch vụ kho bãi, lưu giữ hàng hóa"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-3.jpg",
+					"Url": "cao-su",
+					"Title": "Ngành cao su"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-5.jpg",
+					"Url": "do-go-gia-dung-xuat-khau",
+					"Title": "Ngành đồ gỗ gia dụng xuất khẩu"
+				}
+			]
+		},
+		"Information": {
+			"Address": "<p>18 Phan Văn Trị, P.10, Quận Gò Vấp, TP.HCM</p><p>Tel: 028 3895 8466</p><p>Website : congty751.com.vn</p><p>Email: info@congty751.com.vn</p>",
+			"WorkTime": "<p>Thứ 2 - Thứ 7: 7h30 - 16h30</p><p>Hotline ngoài giờ: 028 3895 8466 </p>"
+		}
+	}
+}

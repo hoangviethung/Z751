@@ -1,0 +1,49 @@
+{
+	"Data": {
+		"Title": "Group of pressure processing equipment and steel structure",
+		"Products": [
+			{
+				"Title": "Spray Booth 5",
+				"Url": "spray-booth-5",
+				"CategoryUrl": "group-of-mechanical-processing-equipment",
+				"Description": "<p>X<sub>max</sub> = 10.810mm; <sub>max</sub> =6.000mm;</p><p>Z<sub>max</sub> = 4.500mm. T<sup>o</sup>:60<sup>o</sup>C / 80<sup>o</sup>C</p>",
+				"Image": "/assets/images/capacities/c_5.jpg"
+			},
+			{
+				"Title": "Spray Booth 6",
+				"Url": "spray-booth-6",
+				"CategoryUrl": "group-of-mechanical-processing-equipment",
+				"Description": "<p>X<sub>max</sub> = 10.810mm; <sub>max</sub> =6.000mm;</p><p>Z<sub>max</sub> = 4.500mm. T<sup>o</sup>:60<sup>o</sup>C / 80<sup>o</sup>C</p>",
+				"Image": "/assets/images/capacities/c_6.jpg"
+			},
+			{
+				"Title": "Spray Booth 1",
+				"Url": "spray-booth-1",
+				"CategoryUrl": "group-of-mechanical-processing-equipment",
+				"Description": "<p>X<sub>max</sub> = 10.810mm; <sub>max</sub> =6.000mm;</p><p>Z<sub>max</sub> = 4.500mm. T<sup>o</sup>:60<sup>o</sup>C / 80<sup>o</sup>C</p>",
+				"Image": "/assets/images/capacities/c_1.jpg"
+			},
+			{
+				"Title": "Spray Booth 2",
+				"Url": "spray-booth-2",
+				"CategoryUrl": "group-of-mechanical-processing-equipment",
+				"Description": "<p>X<sub>max</sub> = 10.810mm; <sub>max</sub> =6.000mm;</p><p>Z<sub>max</sub> = 4.500mm. T<sup>o</sup>:60<sup>o</sup>C / 80<sup>o</sup>C</p>",
+				"Image": "/assets/images/capacities/c_2.jpg"
+			},
+			{
+				"Title": "Spray Booth 3",
+				"Url": "spray-booth-3",
+				"CategoryUrl": "group-of-mechanical-processing-equipment",
+				"Description": "<p>X<sub>max</sub> = 10.810mm; <sub>max</sub> =6.000mm;</p><p>Z<sub>max</sub> = 4.500mm. T<sup>o</sup>:60<sup>o</sup>C / 80<sup>o</sup>C</p>",
+				"Image": "/assets/images/capacities/c_3.jpg"
+			},
+			{
+				"Title": "Spray Booth 4",
+				"Url": "spray-booth-4",
+				"CategoryUrl": "group-of-mechanical-processing-equipment",
+				"Description": "<p>X<sub>max</sub> = 10.810mm; <sub>max</sub> =6.000mm;</p><p>Z<sub>max</sub> = 4.500mm. T<sup>o</sup>:60<sup>o</sup>C / 80<sup>o</sup>C</p>",
+				"Image": "/assets/images/capacities/c_4.jpg"
+			}
+		]
+	}
+}

@@ -1,23 +1,6 @@
 .contact {
 	margin-top: 25px;
 
-	.block-form {
-		padding-right: 30px;
-
-		input[type='text'] {
-			height: 45px;
-		}
-
-		textarea {
-			height: 200px;
-		}
-
-		@media (max-width: 1024.98px) {
-			padding-right: 0;
-			max-width: 650px;
-		}
-	}
-
 	.list-address {
 		padding-left: 30px;
 
@@ -29,7 +12,7 @@
 			ul {
 				li {
 					font-size: 18px;
-					color: #2B2B2B;
+					color: #2b2b2b;
 
 					@media (max-width: 1199.98px) {
 						font-size: 16px;
@@ -53,3 +36,6 @@
 		}
 	}
 }
+
+
+@import "../_shared/breadcrumb/breadcrumb.component.scss";

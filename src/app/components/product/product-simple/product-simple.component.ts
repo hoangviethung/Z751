@@ -1,22 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { UtilsService } from 'src/app/shared/services/utils.service';
+import { Component, OnInit, Input } from "@angular/core";
+import { Product } from "src/app/models/core/Product.model";
 
 @Component({
-	selector: 'app-product-simple',
-	templateUrl: './product-simple.component.html',
-	styleUrls: ['./product-simple.component.scss']
+	selector: "app-product-simple",
+	templateUrl: "./product-simple.component.html",
+	styleUrls: ["./product-simple.component.scss"],
 })
 export class ProductSimpleComponent implements OnInit {
+	@Input() product: Product;
 
-	@Input() product: any;
-	url: string;
+	constructor() {}
 
-	constructor(
-		private utilSvc: UtilsService
-	) { }
-
-	ngOnInit() {
-		this.url = this.utilSvc.alias(this.product.title);
-	}
-
+	ngOnInit() {}
 }

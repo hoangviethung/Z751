@@ -1,10 +1,10 @@
-@import '../assets/scss/abstracts/variables.scss';
+@import "../assets/scss/abstracts/variables.scss";
 
 #hotline {
 	position: fixed;
 	width: 50px;
 	height: 50px;
-	top: 350px;
+	bottom: 20%;
 	right: 40px;
 	z-index: 2;
 
@@ -49,5 +49,22 @@
 		border-radius: 100% !important;
 		border: 2px solid transparent;
 		animation: spread2 2.2s infinite ease-in-out;
+	}
+}
+@media (max-width: 1024.98px) {
+	#hotline {
+		width: 42px;
+		height: 42px;
+		bottom: 20px;
+		right: initial;
+		left: 20px;
+		a {
+			padding: 10px;
+		}
+	}
+	.spread-1,
+	.spread-2,
+	.spread-3 {
+		display: none;
 	}
 }

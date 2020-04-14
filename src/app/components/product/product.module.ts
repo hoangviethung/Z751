@@ -1,19 +1,21 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from "@angular/core";
 
-import { ProductRoutingModule } from './product-routing.module';
-import { ProductComponent } from './product.component';
-import { TranslateModule } from '@ngx-translate/core';
-import { ProductSimpleComponent } from './product-simple/product-simple.component';
-import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { ProductCommentsComponent } from './product-detail/product-comments/product-comments.component';
-import { ProductOthersComponent } from './product-detail/product-others/product-others.component';
-import { SwiperModule, SwiperConfigInterface, SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { ProductRoutingModule } from "./product-routing.module";
+import { ProductComponent } from "./product.component";
+import { ProductSimpleComponent } from "./product-simple/product-simple.component";
+import { ProductDetailComponent } from "./product-detail/product-detail.component";
+import { SharedModule } from "src/app/shared/shared.module";
+import { ProductOthersComponent } from "./product-detail/product-others/product-others.component";
+import { SwiperConfigInterface, SWIPER_CONFIG } from "ngx-swiper-wrapper";
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
-	direction: 'horizontal',
-	slidesPerView: 'auto'
+	observer: true,
+	direction: "horizontal",
+	spaceBetween: 30,
+	slidesPerView: 3,
+	loop: true,
+	centeredSlides: false,
+	loopAdditionalSlides: 2,
 };
 
 @NgModule({
@@ -21,21 +23,14 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 		ProductComponent,
 		ProductSimpleComponent,
 		ProductDetailComponent,
-		ProductCommentsComponent,
-		ProductOthersComponent
+		ProductOthersComponent,
 	],
-	imports: [
-		CommonModule,
-		SharedModule,
-		SwiperModule,
-		ProductRoutingModule,
-		TranslateModule.forChild(),
-	],
+	imports: [SharedModule, ProductRoutingModule],
 	providers: [
 		{
 			provide: SWIPER_CONFIG,
-			useValue: DEFAULT_SWIPER_CONFIG
-		}
-	]
+			useValue: DEFAULT_SWIPER_CONFIG,
+		},
+	],
 })
-export class ProductModule { }
+export class ProductModule {}

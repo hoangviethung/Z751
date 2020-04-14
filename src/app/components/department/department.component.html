@@ -1,0 +1,93 @@
+<div class="breadcrumb-wrapper">
+	<div class="container">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs">
+				<a>{{ breadcrumb }}</a>
+			</li>
+		</ol>
+	</div>
+</div>
+<section class="department">
+	<div class="container">
+		<div class="block-title text-center">
+			<div class="d-f jc-c">
+				<h1 class="tt-u main-title mb-0">{{ title }}</h1>
+			</div>
+		</div>
+		<div class="dpm-content">
+			<div class="row">
+				<div class="col-12">
+					<h2 class="main-title tag-line tt-u">
+						{{ "menu.about" | translate }}
+					</h2>
+				</div>
+				<div class="col-lg-6">
+					<div class="text" [innerHTML]="description"></div>
+				</div>
+				<div class="col-lg-6">
+					<div class="img">
+						<img src="{{ image }}" alt="" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="dpm-products">
+	<div class="container">
+		<div class="block-title center">
+			<h2 class="main-title tt-u mb-0">
+				{{ "ResourceKeys.Products" | translate }}
+			</h2>
+		</div>
+		<div class="content">
+			<h2 class="main-title tt-u tag-line">
+				{{ "ResourceKeys.DesignDevelope" | translate }}
+			</h2>
+			<div class="row" *ngIf="designProducts">
+				<div class="col-12">
+					<app-department-products
+						[products]="designProducts"
+					></app-department-products>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<h2 class="main-title tt-u tag-line">
+				{{ "ResourceKeys.MaintenanceRepair" | translate }}
+			</h2>
+			<div class="row" *ngIf="prepairProducts">
+				<div class="col-12">
+					<app-department-products
+						[products]="prepairProducts"
+					></app-department-products>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<app-department-capacity [language]="currentLanguage"></app-department-capacity>
+<app-index-news [language]="currentLanguage"></app-index-news>
+
+<section class="form-contact pd-70">
+	<div class="container">
+		<div class="block-title text-center">
+			<h2 class="main-title tt-u">Liên hệ</h2>
+		</div>
+		<div class="row">
+			<div class="col-lg-6">
+				<app-form-contact></app-form-contact>
+			</div>
+			<div class="col-lg-6">
+				<div class="information">
+					<h3>{{ title }}</h3>
+					<div class="text" [innerHTML]="address"></div>
+					<hr />
+					<h3>{{ "ResourceKeys.WorkTime" | translate }}</h3>
+					<div class="text" [innerHTML]="workTime"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

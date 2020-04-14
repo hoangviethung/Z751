@@ -1,22 +1,18 @@
-import { Injectable } from '@angular/core';
-import { LanguageService } from 'src/app/shared/services/language.service';
+import { Injectable } from "@angular/core";
+import { LanguageService } from "src/app/services/language.service";
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: "root",
 })
 export class BreadcrumbService {
-	breadcrumbs;
+	Breadcrumb: Array<any>;
+	constructor(private languageSvc: LanguageService) {}
 
-	constructor(
-		private languageSvc: LanguageService
-	) {
+	setBreadcrumb(Breadcrumb) {
+		this.Breadcrumb = Breadcrumb;
 	}
 
-	setBreadcrumb(breadcrumbObj) {
-		this.breadcrumbs = breadcrumbObj[this.languageSvc.getCurrentLanguage()];
-	}
-
-	getBreadcrumb() {
-		return this.breadcrumbs;
+	fetchBreadcrumb() {
+		return this.Breadcrumb[this.languageSvc.getCurrentLanguage()];
 	}
 }

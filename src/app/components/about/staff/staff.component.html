@@ -1,21 +1,29 @@
 <section class="staff pd-70">
 	<div class="container">
 		<div class="block-title center">
-			<div class="main-title fw-700 tt-u">ban lãnh đạo</div>
+			<div class="main-title fw-700 tt-u">
+				{{ "about.leadership.title" | translate }}
+			</div>
 		</div>
-		<div class="block-desc-title">Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel
-			facilisis. Lorem ipsum dolor sit amet, consectetur lorem.</div>
+		<div class="block-desc-title">
+			{{ "about.leadership.sub-title" | translate }}
+		</div>
 		<div class="slider-staff">
 			<div class="swiper-container" [swiper]="sliderStaff">
 				<div class="swiper-wrapper">
 					<div *ngFor="let item of staffs" class="swiper-slide">
 						<figure>
 							<div class="box-img">
-								<img class="ofcv" src="{{item.image}}" alt="" srcset="">
+								<img
+									class="ofcv"
+									src="{{ item.Image }}"
+									alt=""
+									
+								/>
 							</div>
 							<figcaption>
-								<p class="lcl lcl-1">{{item.position}}</p>
-								<h3 class="lcl lcl-1">{{item.name}}</h3>
+								<p class="lcl lcl-1">{{ item.Description }}</p>
+								<h3 class="lcl lcl-1">{{ item.Title }}</h3>
 							</figcaption>
 						</figure>
 					</div>

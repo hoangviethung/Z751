@@ -1,72 +1,52 @@
-<section class="product-othders">
+<section class="product-others">
 	<div class="container">
 		<div class="block-title center">
-			<div class="main-title fw-700 tt-u txt-d-under">sản phẩm cùng loại</div>
+			<div class="main-title fw-700 tt-u txt-d-under">
+				{{ "ResourceKeys.ProductLine" | translate }}
+			</div>
 		</div>
-		<div class="slider-product-othders">
+		<div class="slider-product-others">
 			<div class="swiper-container pb-10" [swiper]="sliderProductOthers">
 				<div class="swiper-wrapper">
-
-					<div class="swiper-slide" *ngFor="let product of productOthers">
-
-						<a [routerLink]="['/products/' | localize, routeParamId, product.id, product.url]">
+					<div
+						class="swiper-slide"
+						*ngFor="let product of productOthers"
+					>
+						<a
+							[routerLink]="[
+								'/products/' | localize,
+								routeParamUrl,
+								product.Url
+							]"
+						>
 							<figure>
 								<div class="img">
-									<img class="ofcv" src="{{product.img}}" alt="" srcset="">
+									<img
+										class="ofcv"
+										src="{{ product.Image }}"
+										alt=""
+									/>
 								</div>
 								<figcaption>
-									<h3 class="lcl lcl-1 fw-700">{{product.title}}</h3>
-									<div class="d-f jc-spa mt-10">
-										<div class="view-like">
+									<h3 class="lcl lcl-1 fw-700">
+										{{ product.Title }}
+									</h3>
+									<div class="d-f jc-fe mt-10">
+										<!-- <div class="view-like">
 											<ul class="d-f lst-n pl-0">
 												<li class="view">1234</li>
 												<li class="like">222</li>
 											</ul>
-										</div>
-										<span class="view-detail text-right">Xem chi tiết</span>
+										</div> -->
+										<span class="view-detail text-right">{{
+											"ResourceKeys.ViewDetail"
+												| translate
+										}}</span>
 									</div>
 								</figcaption>
 							</figure>
 						</a>
 					</div>
-					<!-- <div class="swiper-slide">
-						<figure>
-							<div class="img">
-								<img class="ofcv" src="/assets/images/products/product-others/2.png" alt="" srcset="">
-							</div>
-							<figcaption>
-								<h3 class="lcl lcl-1 fw-700">ROOMOC</h3>
-								<div class="d-f jc-spa mt-10">
-									<div class="view-like">
-										<ul class="d-f lst-n pl-0">
-											<li class="view">1234</li>
-											<li class="like">222</li>
-										</ul>
-									</div>
-									<span class="view-detail text-right">Xem chi tiết</span>
-								</div>
-							</figcaption>
-						</figure>
-					</div>
-					<div class="swiper-slide">
-						<figure>
-							<div class="img">
-								<img class="ofcv" src="/assets/images/products/product-others/3.png" alt="" srcset="">
-							</div>
-							<figcaption>
-								<h3 class="lcl lcl-1 fw-700">ROOMOC</h3>
-								<div class="d-f jc-spa mt-10">
-									<div class="view-like">
-										<ul class="d-f lst-n pl-0">
-											<li class="view">1234</li>
-											<li class="like">222</li>
-										</ul>
-									</div>
-									<span class="view-detail text-right">Xem chi tiết</span>
-								</div>
-							</figcaption>
-						</figure>
-					</div> -->
 				</div>
 			</div>
 			<div class="swiper-button-next"></div>

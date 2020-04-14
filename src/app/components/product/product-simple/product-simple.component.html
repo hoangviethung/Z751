@@ -1,12 +1,18 @@
 <div class="item-product">
-	<a [routerLink]="[product.id, url]">
+	<a [routerLink]="[product.Url]">
 		<figure>
 			<div class="img ov-h">
-				<img src="{{product.img}}" alt="{{product.title}}" srcset="" class="ofcv">
+				<img
+					src="{{ product.Image }}"
+					alt="{{ product.Title }}"
+					class="ofcv"
+				/>
 			</div>
 			<figcaption class="description d-f">
-				<h3>{{product.title}}</h3>
-				<span class="view-detail text-right">Xem chi tiết</span>
+				<h3>{{ product.Title }}</h3>
+				<span class="view-detail text-right">{{
+					"ResourceKeys.ViewDetail" | translate
+				}}</span>
 			</figcaption>
 		</figure>
 	</a>

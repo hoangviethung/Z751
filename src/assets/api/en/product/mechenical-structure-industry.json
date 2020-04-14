@@ -1,0 +1,63 @@
+{
+	"Code": 200,
+	"Data": {
+		"Title": "Mechanical, structure industry",
+		"Description": "Specialized mechanics means automobiles with structure and equipment to perform a special function, including: road sweeping cars; cars sucking waste; mortar-mixing cars; concrete-mixing cars; concrete pump cars; crane cars; Ladder cars ...",
+		"Products": [
+			{
+				"Id": "p-4",
+				"Image": "/assets/images/products/4.jpg",
+				"Title": "Watering Cart",
+				"Url": "watering-cart"
+			},
+			{
+				"Id": "p-5",
+				"Image": "/assets/images/products/5.jpg",
+				"Title": "Tank Truck",
+				"Url": "tank-truck"
+			},
+			{
+				"Id": "p-6",
+				"Image": "/assets/images/products/6.jpg",
+				"Title": "Dump Truck",
+				"Url": "dump-truck"
+			},
+			{
+				"Id": "p-7",
+				"Image": "/assets/images/products/7.jpg",
+				"Title": "Garbage Truck",
+				"Url": "garbage-truck"
+			},
+			{
+				"Id": "p-8",
+				"Image": "/assets/images/products/8.jpg",
+				"Title": "Tractor Truck",
+				"Url": "tractor-truck"
+			},
+			{
+				"Id": "p-9",
+				"Image": "/assets/images/products/9.jpg",
+				"Title": "Water Filter Truck",
+				"Url": "water-filter-truck"
+			},
+			{
+				"Id": "p-1",
+				"Image": "/assets/images/products/1.jpg",
+				"Title": "Specialized Vehicles",
+				"Url": "specialized-vehicles"
+			},
+			{
+				"Id": "p-2",
+				"Image": "/assets/images/products/2.jpg",
+				"Title": "TV Station Car",
+				"Url": "tv-station-car"
+			},
+			{
+				"Id": "p-3",
+				"Image": "/assets/images/products/3.jpg",
+				"Title": "Romooc",
+				"Url": "romooc"
+			}
+		]
+	}
+}

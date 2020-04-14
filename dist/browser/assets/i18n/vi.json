@@ -1,13 +1,13 @@
 {
-	"pageTitle": "BỘ QUỐC PHÒNG CÔNG TY TNHH MỘT THÀNH VIÊN 751",
 	"ROUTES": {
 		"index": "",
 		"about": "gioi-thieu",
 		"products": "san-pham",
 		"activities": "hoat-dong",
+		"departments": "don-vi-thanh-vien",
 		"videos": "thu-vien-video",
 		"images": "thu-vien-anh",
-		"profiles": "nang-luc",
+		"capacities": "nang-luc",
 		"news": "tin-tuc",
 		"contact": "lien-he",
 		"404": "khong-tim-thay-trang"
@@ -17,11 +17,92 @@
 		"about": "Giới thiệu",
 		"products": "Sản phẩm",
 		"activities": "Hoạt động",
+		"departments": "Đơn vị thành viên",
 		"videos": "Video",
 		"images": "Hình ảnh",
-		"profiles": "Năng lực",
+		"capacities": "Năng lực",
 		"news": "Tin tức",
 		"contact": "Liên hệ",
 		"404": "Không thấy trang"
+	},
+	"ResourceKeys": {
+		"PageTitle": "CÔNG TY TNHH MỘT THÀNH VIÊN 751",
+		"PageTitleShort": "CÔNG TY TNHH MTV 751",
+		"ViewDetail": "Chi tiết",
+		"ViewMore": "Xem thêm",
+		"Headquarter": "Trụ sở chính",
+		"AddressHeadquarter": "Số 9, Đường Số 1, Khu Công nghiệp Quốc phòng, P.Long Bình, TP. Biên Hòa.",
+		"OppositeOffice": "Văn phòng đại diện",
+		"AddressOppositeOffice": "Số 18 Phan Văn Trị, Phường 10, Quận Gò Vấp, TP Hồ Chí Minh",
+		"SubscribeUs": "Theo dõi bản tin của chúng tôi",
+		"Visits": "Lượt truy cập",
+		"Day": "Ngày",
+		"Month": "Tháng",
+		"ProductCategory": "Danh mục sản phẩm",
+		"ProductLine": "Sản phẩm cùng loại",
+		"ContactNow": "Liên hệ ngay",
+		"ProductInformation": "Thông tin sản phẩm",
+		"CountUnit": "lượt",
+		"ReadNews": "Đọc tin",
+		"Products": "Sản phẩm",
+		"DesignDevelope": "Thiết kế và phát triển",
+		"MaintenanceRepair": "Bảo dưỡng và sửa chữa",
+		"WorkTime": " Thời gian làm việc"
+	},
+	"404": {
+		"title": "Không tìm thấy trang!",
+		"content": "Trang bạn đang tìm kiếm có thể đạ bị xóa hoặc đã bị thay đổi nên tạm thời không khả dụng",
+		"return": "Quay về trang chủ"
+	},
+	"index": {
+		"about-us": {
+			"title": "VỀ CHÚNG TÔI",
+			"sub-title": "BỘ QUỐC PHÒNG",
+			"content": "Company 751 / General Department of Technology / Ministry of Defense, a heroic unit of the people's armed forces, was established in 1975 on the basis of taking over the army factory of puppet regime, TP. Ho Chi Minh is the enterprise directly serving the national defense and security and is the largest technical guarantee base of the Army in the south."
+		},
+		"symbols": {
+			"s-1": {
+				"title": "ĐOÀN KẾT",
+				"content": "Là sức mạnh để vượt qua mọi khó khăn, thử thách."
+			},
+			"s-2": {
+				"title": "SÁNG TẠO",
+				"content": "Là động lức trong đổi mới công nghệ, làm nền tảng cho sự phát triển bền vững."
+			},
+			"s-3": {
+				"title": "CHẤT LƯỢNG",
+				"content": "Là mục tiêu hàng đầu để trao gửi đến Quý khách hàng."
+			},
+			"s-4": {
+				"title": "HIỆU QUẢ",
+				"content": "Là mục đích mang đến cho Quý khách và Công ty."
+			}
+		},
+		"product-categories": {
+			"title": "LĨNH VỰC SẢN XUẤT KINH DOANH"
+		},
+		"news": {
+			"title": "Tin tức 751"
+		}
+	},
+	"about": {
+		"letter": {
+			"title": "Thư ngỏ",
+			"content": "<p>Công ty 751 / Tổng cục Kỹ thuật / Bộ Quốc phòng, đơn vị anh hùng lực lượng vũ trang nhân nhân được thành lập từ năm 1975 trên cơ sở tiếp quản lục quân công xưởng của chế độ ngụy, sài gòn là doanh nghiệp trực tiếp phục vụ quốc phòng an ninh và là cơ sở đảm bảo kỹ thuật lớn nhất của Quân đội ở phía nam.</p><p> Công ty hiện được đầu tư nhiều trang thiết bị công nghệ hiện đại, tiên tiến; hệ thống mặt bằng trên 600.000 m2, nhà xưởng trên 150.000 m2; Đội ngũ cán bộ quản lý được đào tạo chính quy trong và ngoài Quân đội, đội ngũ kỹ sư và công nhân lành nghề có kinh nghiệm sẵn sàng đáp ứng mọi yêu cầu của khách hàng trong lĩnh vực kinh doanh và hợp tác, liên doanh liên kết với tất cả các đối tác trong và ngoài nước.</p>"
+		},
+		"history": {
+			"title": "Lịch sử hình thành và phát triển"
+		},
+		"vision-mission": {
+			"title": "Tầm nhìn và sứ mệnh"
+		},
+		"leadership": {
+			"title": "Ban lãnh đạo",
+			"sub-title": "Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur lorem."
+		},
+		"reward": {
+			"title": "Giải thưởng và thành tựu",
+			"sub-title": "Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur lorem."
+		}
 	}
 }

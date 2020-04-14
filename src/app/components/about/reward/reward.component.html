@@ -1,19 +1,28 @@
 <section class="reward pd-70">
 	<div class="container">
 		<div class="block-title center">
-			<h2 class="main-title main-title fw-700 tt-u">giải thưởng và thành tựu</h2>
+			<h2 class="main-title main-title fw-700 tt-u">
+				{{ "about.reward.title" | translate }}
+			</h2>
 		</div>
-		<div class="block-desc-title">Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur lorem.</div>
+		<div class="block-desc-title">
+			{{ "about.reward.sub-title" | translate }}
+		</div>
 		<div class="slider-reward">
-			<div class="swiper-container" [swiper]="sliderReward">
+			<div class="swiper-container" [swiper]="sliderRewardConfig">
 				<div class="swiper-wrapper">
 					<div *ngFor="let reward of rewards" class="swiper-slide">
 						<figure>
 							<div class="box-img">
-								<img class="ofcv" src="{{reward.image}}" alt={{reward.name}} srcset="">
+								<img
+									class="ofcv"
+									src="{{ reward.Image }}"
+									alt="{{ reward.Title }}"
+									
+								/>
 							</div>
 							<figcaption>
-								<h3 class="lcl lcl-2">{{reward.name}}</h3>
+								<h3 class="lcl lcl-2">{{ reward.Title }}</h3>
 							</figcaption>
 						</figure>
 					</div>

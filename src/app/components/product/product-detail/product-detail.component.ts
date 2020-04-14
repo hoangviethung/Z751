@@ -1,28 +1,36 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { SwiperConfigInterface, SwiperDirective, SwiperComponent } from 'ngx-swiper-wrapper';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from "rxjs";
-import { HttpService } from 'src/app/shared/services/http.service';
-import { LanguageService } from 'src/app/shared/services/language.service';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { SwiperConfigInterface, SwiperDirective } from "ngx-swiper-wrapper";
+import { ActivatedRoute } from "@angular/router";
+import { HttpService } from "src/app/services/http.service";
+import { LanguageService } from "src/app/services/language.service";
+import { PageInfoService } from "src/app/services/page-info.service";
+import { Product } from "src/app/models/core/Product.model";
 
 @Component({
-	selector: 'app-product-detail',
-	templateUrl: './product-detail.component.html',
-	styleUrls: ['./product-detail.component.scss']
+	selector: "app-product-detail",
+	templateUrl: "./product-detail.component.html",
+	styleUrls: ["./product-detail.component.scss"],
 })
-
 export class ProductDetailComponent implements OnInit {
-
 	tabId = 1;
-	productCategory;
-	productId: string;
-	currentLocale: string;
+	productUrl: string;
+	productCategoryUrl: string;
+	productCategory: string;
+	currentLanguage: string;
+	product: Product;
+	Breadcrumb = {
+		en: ["Home", "Products"],
+		vi: ["Trang chủ", "Sản phẩm"],
+	};
+	breadcrumbs;
 
-	@ViewChild(SwiperDirective, { static: false }) thumbsSlider: SwiperDirective;
-	@ViewChild(SwiperDirective, { static: false }) previewSlider: SwiperDirective;
+	@ViewChild(SwiperDirective, { static: false })
+	thumbsSlider: SwiperDirective;
+	@ViewChild(SwiperDirective, { static: false })
+	previewSlider: SwiperDirective;
 
 	thumbsSliderConfig: SwiperConfigInterface = {
-		direction: 'vertical',
+		direction: "vertical",
 		spaceBetween: 20,
 		slidesPerView: 3,
 		loop: true,
@@ -30,65 +38,78 @@ export class ProductDetailComponent implements OnInit {
 		observeParents: true,
 		slideToClickedSlide: true,
 		navigation: {
-			nextEl: '.preview-img-wrapper .swiper-button-next',
-			prevEl: '.preview-img-wrapper .swiper-button-prev',
+			nextEl: ".preview-img-wrapper .swiper-button-next",
+			prevEl: ".preview-img-wrapper .swiper-button-prev",
 		},
 		breakpoints: {
 			575: {
 				spaceBetween: 10,
-				direction: 'horizontal',
-			}
-		}
-	}
+				direction: "horizontal",
+			},
+		},
+	};
 
 	previewSliderConfig: SwiperConfigInterface = {
 		simulateTouch: false,
 		speed: 500,
-		effect: 'fade',
+		effect: "fade",
 		fadeEffect: {
 			crossFade: true,
 		},
 		loopedSlides: 5,
 		navigation: {
-			nextEl: '.preview-img-wrapper .swiper-button-next',
-			prevEl: '.preview-img-wrapper .swiper-button-prev',
+			nextEl: ".preview-img-wrapper .swiper-button-next",
+			prevEl: ".preview-img-wrapper .swiper-button-prev",
 		},
-	}
+	};
 
 	constructor(
-		private activatedRouteSvc: ActivatedRoute,
+		private activatedRoute: ActivatedRoute,
 		private languageSvc: LanguageService,
 		private httpSvc: HttpService,
+		private pageSvc: PageInfoService
 	) {
-		this.currentLocale = this.languageSvc.getCurrentLanguage();
+		this.currentLanguage = this.languageSvc.getCurrentLanguage();
 	}
 
 	ngOnInit() {
 		this.fetchProductCategory();
-		this.getParamId();
+		this.getProductDetail();
 	}
 
-	getParamId() {
-		this.activatedRouteSvc.params.subscribe(param => {
-			this.productId = param.id;
-		})
+	getProductDetail() {
+		this.activatedRoute.params.subscribe(async (param) => {
+			this.productCategoryUrl = param.productCategory;
+			let Breadcrumb = {
+				en: ["Home", "Products"],
+				vi: ["Trang chủ", "Sản phẩm"],
+			};
+			await this.httpSvc
+				.get(
+					`assets/api/${this.currentLanguage}/product/${this.productCategoryUrl}.json`
+				)
+				.subscribe((result) => {
+					Breadcrumb[this.currentLanguage].push(result.Data.Title);
+					this.breadcrumbs = Breadcrumb[this.currentLanguage];
+				});
+			await this.httpSvc
+				.get(
+					`assets/api/${this.currentLanguage}/product/product-detail.json`
+				)
+				.subscribe((result) => {
+					this.product = result.Data;
+					this.pageSvc.setTitle(this.product.Title);
+					Breadcrumb[this.currentLanguage].push(result.Data.Title);
+					this.breadcrumbs = Breadcrumb[this.currentLanguage];
+				});
+		});
 	}
 
 	fetchProductCategory() {
-		const url = `assets/db/${this.currentLocale}/category-product.json`;
-		this.httpSvc.get(url).subscribe(
-			result => {
-				this.productCategory = result.data;
-			}
-		)
-		this.languageSvc.getCurrentLanguageWhenChangeLanguage().subscribe(lang => {
-			const url = `assets/db/${lang}/category-product.json`;
-			this.httpSvc.get(url).subscribe(
-				result => {
-					this.productCategory = result.data;
-				}
-			)
-		})
+		const url = `assets/api/${this.currentLanguage}/product/categories-product.json`;
+		this.httpSvc.get(url).subscribe((result) => {
+			this.productCategory = result.Data;
+		});
 	}
 
 	changeTab(id: number) {
@@ -97,13 +118,17 @@ export class ProductDetailComponent implements OnInit {
 
 	changeBigSlider(e) {
 		const getSwiperSlideDom = (htmlNode: HTMLElement) => {
-			if (Array.from(htmlNode.classList).includes('swiper-slide')) {
+			if (Array.from(htmlNode.classList).includes("swiper-slide")) {
 				return htmlNode;
 			} else {
-				return getSwiperSlideDom(htmlNode.parentElement)
+				return getSwiperSlideDom(htmlNode.parentElement);
 			}
-		}
-		const clickedIndex = Number(getSwiperSlideDom((<HTMLElement>e.target)).getAttribute('data-swiper-slide-index'));
+		};
+		const clickedIndex = Number(
+			getSwiperSlideDom(<HTMLElement>e.target).getAttribute(
+				"data-swiper-slide-index"
+			)
+		);
 		this.previewSlider.setIndex(clickedIndex);
 	}
 }

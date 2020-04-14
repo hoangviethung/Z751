@@ -1,1 +1,34 @@
-<p>page-not-found works!</p>
+<div id="notfound">
+	<div class="notfound">
+		<div class="notfound-error">
+			<h1>404</h1>
+		</div>
+		<h2>
+			{{ "404.title" | translate }}
+		</h2>
+		<p>
+			{{ "404.content" | translate }}
+			<a [routerLink]="['/index' | localize]">{{
+				"404.return" | translate
+			}}</a>
+		</p>
+		<div class="notfound-social">
+			<a
+				href="https://facebook.com"
+				rel="noreferrer"
+				class="ico-facebook"
+				target="_blank"
+			>
+				<img src="assets/images/icons/facebook-2.svg" alt="" />
+			</a>
+			<a
+				href="https://twitter.com"
+				rel="noreferrer"
+				class="ico-twitter"
+				target="_blank"
+			>
+				<img src="assets/images/icons/twitter-2.svg" alt="" />
+			</a>
+		</div>
+	</div>
+</div>

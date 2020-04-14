@@ -7,7 +7,7 @@ header {
 	left: 0;
 	height: 120px;
 	padding: 15px 0;
-	border-bottom: 5px solid #DC2424;
+	border-bottom: 5px solid #dc2424;
 	background-color: white;
 	z-index: 100;
 
@@ -19,18 +19,12 @@ header {
 		}
 	}
 
-	.header-top {
-		padding-top: 5px;
-	}
-
 	.header-name {
+		margin-bottom: 20px;
 		h1 {
-			font-size: 16px;
+			font-size: 24px;
+			line-height: 1;
 			color: map-get($mau, main);
-
-			@media (min-width: 1200px) {
-				font-size: 18px;
-			}
 		}
 
 		&.mobile {
@@ -39,49 +33,34 @@ header {
 			-webkit-box-flex: 1;
 			flex-basis: 0;
 			flex-grow: 1;
-			max-width: 255px;
+			max-width: 200px;
 			margin-bottom: 0;
+		}
+		@media (min-width: 1025px) {
+			position: absolute;
+			left: 0;
+			bottom: 100%;
+			margin-bottom: 25px;
+		}
+		@media (min-width: 1200px) {
+			h1 {
+				font-size: 30px;
+			}
 		}
 	}
 
 	.header-email {
 		font-size: 16px;
-		color: #2B2B2B;
-		padding-left: 15px;
-		position: relative;
-		margin-left: 15px;
-
-		&:before {
-			content: '';
-			position: absolute;
-			left: 0;
-			top: 50%;
-			transform: translateY(-50%);
-			height: 15px;
-			width: 1px;
-			background-color: #707070;
-		}
+		color: #2b2b2b;
+		padding-left: 10px;
 	}
 
 	.header-social {
 		margin-left: 50px;
 
 		a {
-			+a {
+			+ a {
 				margin-left: 15px;
-			}
-
-			svg {
-				fill: #707070;
-				transition: all .2s ease-in-out;
-			}
-
-			@media (min-width: 1025px) {
-				&:hover {
-					svg {
-						fill: map-get($mau, main);
-					}
-				}
 			}
 		}
 
@@ -102,49 +81,54 @@ header {
 	}
 
 	.header-bottom-wrapper {
-		background-color: #DC2424;
+		background-color: #dc2424;
 		position: relative;
 
 		&:after {
-			content: '';
+			content: "";
 			position: absolute;
 			top: 0;
 			right: -1000px;
 			height: 100%;
 			width: 1000px;
-			background-color: #DC2424;
+			background-color: #dc2424;
 		}
 
 		&:before {
-			content: '';
+			content: "";
 			position: absolute;
 			right: 100%;
 			margin-right: -1px;
 			top: 0;
 			height: 100%;
 			width: 50px;
-			background-image: url('/assets/images/main_nav_bg.png');
+			background-image: url("/assets/images/main_nav_bg.png");
 			background-repeat: no-repeat;
 			background-size: 100% 100%;
 		}
 	}
 
 	.main-nav {
-		>ul {
-			>.nav-item {
-				padding: 5px 18px;
+		> ul {
+			.nav-item {
+				+ .nav-item {
+					border-top: 1px solid rgba(map-get($mau, main), 0.5);
+				}
+			}
+			> .nav-item {
+				padding: 5px 7px;
 				position: relative;
 
-				>.nav-link {
+				> .nav-link {
 					padding: 7px 0;
 					font-size: 14px;
 					color: white;
 					border-bottom: 2px solid transparent;
-					transition: all .2s ease-in-out;
+					transition: all 0.2s ease-in-out;
 				}
 
 				&.has-sub {
-					>.nav-link {
+					> .nav-link {
 						position: relative;
 						padding-right: 15px;
 
@@ -152,8 +136,8 @@ header {
 							position: absolute;
 							top: 50%;
 							transform: translateY(-50%);
-							content: '\e874';
-							font-family: 'Linearicons-Free';
+							content: "\e874";
+							font-family: "Linearicons-Free";
 							font-size: 10px;
 							right: 0;
 						}
@@ -161,7 +145,7 @@ header {
 				}
 
 				&.active {
-					>.nav-link {
+					> .nav-link {
 						border-bottom: 2px solid white;
 					}
 				}
@@ -170,7 +154,7 @@ header {
 					&:hover {
 						cursor: pointer;
 
-						>.nav-sub {
+						> .nav-sub {
 							opacity: 1;
 							visibility: visible;
 							transform: translateY(0);
@@ -179,9 +163,9 @@ header {
 				}
 
 				@media (min-width: 1200px) {
-					padding: 7px 25px;
+					padding: 7px 10px;
 
-					>.nav-link {
+					> .nav-link {
 						padding: 10px 0;
 						font-size: 15px;
 					}
@@ -193,20 +177,21 @@ header {
 			background-color: white;
 			position: absolute;
 			top: 100%;
-			box-shadow: 2px 4px 12px rgba(black, .1);
-			left: 25px;
+			box-shadow: 2px 4px 12px rgba(black, 0.1);
+			left: 0;
 			opacity: 0;
 			visibility: hidden;
 			transform: translateY(10px);
-			transition: all .3s ease-out;
+			transition: all 0.3s ease-out;
 
-			>.nav-item {
-				>.nav-link {
-					padding: 7px 25px;
+			> .nav-item {
+				> .nav-link {
+					padding: 7px 15px;
 					display: block;
-					min-width: 320px;
+					min-width: 200px;
 					color: map-get($mau, main);
 					font-size: 14px;
+					white-space: nowrap;
 
 					@media (min-width: 1200px) {
 						font-size: 15px;
@@ -215,15 +200,11 @@ header {
 
 				@media (min-width: 1025px) {
 					&:hover {
-						>.nav-link {
+						> .nav-link {
 							background-color: map-get($mau, main);
 							color: white;
 						}
 					}
-				}
-
-				+.nav-item {
-					border-top: 1px solid rgba(map-get($mau, main), .5);
 				}
 			}
 		}
@@ -246,7 +227,7 @@ header {
 			padding: 5px;
 			width: 275px;
 			height: 45px;
-			box-shadow: 0 2px 4px rgba(black, .1);
+			box-shadow: 0 2px 4px rgba(black, 0.1);
 
 			@media (min-width: 1025px) {
 				display: none;
@@ -260,7 +241,7 @@ header {
 		.btn-search {
 			width: 35px;
 			height: 35px;
-			background-color: #DC2424;
+			background-color: #dc2424;
 		}
 
 		@media (min-width: 1200px) {
@@ -301,10 +282,10 @@ header {
 			z-index: 99;
 			width: 100%;
 			height: 100%;
-			background-color: rgba(black, .9);
+			background-color: rgba(black, 1);
 			opacity: 0;
 			visibility: hidden;
-			transition: all .3s ease-out;
+			transition: all 0.3s ease-out;
 
 			&.active {
 				opacity: 1;
@@ -322,10 +303,10 @@ header {
 			background-color: white;
 			display: flex;
 			flex-direction: column;
-			box-shadow: 2px 0px 12px rgba(map-get($mau, main), .2);
+			box-shadow: 2px 0px 12px rgba(map-get($mau, main), 0.2);
 			opacity: 0;
 			transform: translateX(-100%);
-			transition: all .3s ease-out;
+			transition: all 0.3s ease-out;
 			z-index: 100;
 
 			&.active {
@@ -343,7 +324,7 @@ header {
 
 			h1 {
 				text-align: center;
-				font-size: 14px;
+				font-size: 18px;
 			}
 		}
 
@@ -355,22 +336,11 @@ header {
 				display: block;
 				width: 25px;
 				height: 25px;
-				background-color: map-get($mau, main);
 				border-radius: 50%;
 				overflow: hidden;
 				display: flex;
 				justify-content: center;
 				align-items: center;
-
-				svg {
-					path {
-						fill: white;
-					}
-				}
-
-				+a {
-					margin-left: 10px;
-				}
 			}
 		}
 
@@ -405,20 +375,15 @@ header {
 			}
 
 			.main-nav {
-				// position: absolute;
-				// top: 40px;
-				// bottom: 0;
-				// width: 100%;
-				// transition: all .3s ease-out;
 				overflow-y: auto;
 				max-height: 100%;
 				padding-top: 40px;
 
-				>ul {
+				> ul {
 					display: block;
 					border-top: 1px solid map-get($mau, main);
 
-					>.nav-item {
+					> .nav-item {
 						padding: 5px 10px;
 						position: static;
 
@@ -429,11 +394,11 @@ header {
 						}
 
 						&.has-sub {
-							>.nav-link {
+							> .nav-link {
 								position: relative;
 
 								&:after {
-									content: '\e876';
+									content: "\e876";
 									position: absolute;
 									right: 0;
 									top: 50%;
@@ -461,17 +426,11 @@ header {
 						width: 40px;
 						right: 0;
 						top: 0;
-						transition: all .3s ease-out;
-
-						svg {
-							width: 100%;
-						}
+						transition: all 0.3s ease-out;
 					}
 
-					>.nav-item {
-						border: 0;
-
-						>.nav-link {
+					> .nav-item {
+						> .nav-link {
 							min-width: 100%;
 							padding: 10px;
 						}
@@ -534,7 +493,7 @@ header {
 
 			.btn-search {
 				width: 40px;
-				height: 40px
+				height: 40px;
 			}
 		}
 
@@ -564,7 +523,6 @@ header {
 			background-color: map-get($mau, main);
 			left: 100%;
 			top: 0;
-
 
 			span {
 				transform-origin: 50% 50%;

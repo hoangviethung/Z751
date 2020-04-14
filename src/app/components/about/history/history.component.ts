@@ -1,19 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
-import { HttpService } from 'src/app/shared/services/http.service';
+import { Component, OnInit, Input } from "@angular/core";
+import { SwiperConfigInterface } from "ngx-swiper-wrapper";
+import { HttpService } from "src/app/services/http.service";
+import { Article } from "src/app/models/core/Article.model";
 
 @Component({
-	selector: 'app-history',
-	templateUrl: './history.component.html',
-	styleUrls: ['./history.component.scss']
+	selector: "app-history",
+	templateUrl: "./history.component.html",
+	styleUrls: ["./history.component.scss"],
 })
-
 export class HistoryComponent implements OnInit {
-
-	TimelineUrl = 'assets/db/vi/about-timeline.json'
-	years = [];
-
-	sliderHistory: SwiperConfigInterface = {
+	sliderHistoryConfig: SwiperConfigInterface = {
 		slidesPerView: 4,
 		loop: true,
 		speed: 1200,
@@ -21,8 +17,8 @@ export class HistoryComponent implements OnInit {
 		observer: true,
 		observeParents: true,
 		navigation: {
-			nextEl: '.timeline .swiper-button-next',
-			prevEl: '.timeline .swiper-button-prev',
+			nextEl: ".timeline .swiper-button-next",
+			prevEl: ".timeline .swiper-button-prev",
 		},
 		breakpoints: {
 			1025: {
@@ -32,22 +28,24 @@ export class HistoryComponent implements OnInit {
 			768: {
 				slidesPerView: 2,
 				spaceBetween: 30,
-			}
-		}
-	}
+			},
+		},
+	};
+	years: Array<Article>;
 
-	constructor(
-		private httpSvc: HttpService,
-	) { }
+	@Input("language") currentLanguage;
+
+	constructor(private httpSvc: HttpService) {}
 
 	ngOnInit() {
 		this.getListTimeLine();
 	}
 
 	getListTimeLine() {
-		this.httpSvc.get(this.TimelineUrl).subscribe(result => {
-			this.years = result.data;
-		})
+		this.httpSvc
+			.get(`assets/api/${this.currentLanguage}/about/timeline.json`)
+			.subscribe((result) => {
+				this.years = result.Data;
+			});
 	}
-
 }

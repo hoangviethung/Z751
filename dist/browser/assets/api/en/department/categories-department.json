@@ -1,0 +1,49 @@
+{
+	"Data": [
+		{
+			"Title": "Automotives Factory",
+			"Image": "#",
+			"Url": "automotives-factory"
+		},
+		{
+			"Title": "Mechanical Factory",
+			"Image": "#",
+			"Url": "mechanical-factory"
+		},
+		{
+			"Title": "Wood Factory",
+			"Image": "#",
+			"Url": "wood-factory"
+		},
+		{
+			"Title": "Rubber Factory",
+			"Image": "#",
+			"Url": "rubber-factory"
+		},
+		{
+			"Title": "Metal Factory",
+			"Image": "#",
+			"Url": "metal-factory"
+		},
+		{
+			"Title": "Electromechanical Factory",
+			"Image": "#",
+			"Url": "electromechanical-factory"
+		},
+		{
+			"Title": "Automotives Prepair Factory",
+			"Image": "#",
+			"Url": "automotives-prepair-factory"
+		},
+		{
+			"Title": "Mechanical Prepair Factory",
+			"Image": "#",
+			"Url": "mechanical-prepair-factory"
+		},
+		{
+			"Title": "General Services Center",
+			"Image": "#",
+			"Url": "general-services-center"
+		}
+	]
+}

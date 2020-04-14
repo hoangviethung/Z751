@@ -1,0 +1,44 @@
+{
+	"Data": [
+		{
+			"Image": "/assets/images/products/category/cata-1.jpg",
+			"Url": "automotives-industry",
+			"Title": "Automotives Industry"
+		},
+		{
+			"Image": "/assets/images/products/category/cata-4.jpg",
+			"Url": "mechenical-structure-industry",
+			"Title": "Mechenical, Structure Industry"
+		},
+		{
+			"Image": "/assets/images/products/category/cata-2.jpg",
+			"Url": "electromechanical-industry",
+			"Title": "Electromechanical Industry"
+		},
+		{
+			"Image": "/assets/images/products/category/cata-3.jpg",
+			"Url": "rubber-industry",
+			"Title": "Rubber Industry"
+		},
+		{
+			"Image": "/assets/images/products/category/cata-5.jpg",
+			"Url": "household-furniture-for-exports",
+			"Title": "Household Furniture for Exports"
+		},
+		{
+			"Image": "/assets/images/products/category/cata-6.jpg",
+			"Url": "sewing-industry",
+			"Title": "Sewing Industry"
+		},
+		{
+			"Image": "/assets/images/products/category/cata-5.jpg",
+			"Url": "warehouse-storage-of-goods-services",
+			"Title": "Warehouse, Storage of Goods Services"
+		},
+		{
+			"Image": "/assets/images/products/category/cata-6.jpg",
+			"Url": "research-and-development",
+			"Title": "Research and Development"
+		}
+	]
+}

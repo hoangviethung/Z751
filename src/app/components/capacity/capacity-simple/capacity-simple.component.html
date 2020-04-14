@@ -1,0 +1,33 @@
+<div class="item-product">
+	<a
+		[routerLink]="[
+			'/capacities' | localize,
+			capacity.CategoryUrl,
+			capacity.Url
+		]"
+	>
+		<figure>
+			<div class="img ov-h">
+				<img
+					src="{{ capacity.Image }}"
+					alt="{{ capacity.Title }}"
+					class="ofcv"
+				/>
+			</div>
+			<figcaption class="description row no-gutters">
+				<div class="item-info col-md">
+					<h3>{{ capacity.Title }}</h3>
+					<div
+						class="item-title"
+						[innerHTML]="capacity.Description"
+					></div>
+				</div>
+				<div class="item-button col-md-auto">
+					<span class="text-right"
+						>{{ "ResourceKeys.ViewDetail" | translate }}
+					</span>
+				</div>
+			</figcaption>
+		</figure>
+	</a>
+</div>

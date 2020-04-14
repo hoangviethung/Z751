@@ -1,0 +1,44 @@
+{
+	"Data": [
+		{
+			"Image": "/assets/images/products/category/cata-1.jpg",
+			"Url": "oto",
+			"Title": "Ngành Ô tô"
+		},
+		{
+			"Image": "/assets/images/products/category/cata-4.jpg",
+			"Url": "co-khi-ket-cau-cong-nghiep",
+			"Title": "Ngành cơ khí, kết cấu công nghiệp"
+		},
+		{
+			"Image": "/assets/images/products/category/cata-2.jpg",
+			"Url": "co-dien",
+			"Title": "Ngành cơ điện"
+		},
+		{
+			"Image": "/assets/images/products/category/cata-3.jpg",
+			"Url": "cao-su",
+			"Title": "Ngành cao su"
+		},
+		{
+			"Image": "/assets/images/products/category/cata-5.jpg",
+			"Url": "do-go-gia-dung-xuat-khau",
+			"Title": "Ngành đồ gỗ gia dụng xuất khẩu"
+		},
+		{
+			"Image": "/assets/images/products/category/cata-6.jpg",
+			"Url": "may-cong-nghiep",
+			"Title": "Ngành may công nghiệp"
+		},
+		{
+			"Image": "/assets/images/products/category/cata-6.jpg",
+			"Url": "kho-bai-luu-giu-hang-hoa",
+			"Title": "Dịch vụ kho bãi, lưu giữ hàng hóa"
+		},
+		{
+			"Image": "/assets/images/products/category/cata-6.jpg",
+			"Url": "nghien-cuu-va-phat-trien",
+			"Title": "Nghiên cứu và phát triển"
+		}
+	]
+}

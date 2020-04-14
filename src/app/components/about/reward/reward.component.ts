@@ -1,17 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
-import { HttpService } from 'src/app/shared/services/http.service';
+import { Component, OnInit, Input } from "@angular/core";
+import { SwiperConfigInterface } from "ngx-swiper-wrapper";
+import { HttpService } from "src/app/services/http.service";
+import { Article } from "src/app/models/core/Article.model";
 
 @Component({
-	selector: 'app-reward',
-	templateUrl: './reward.component.html',
-	styleUrls: ['./reward.component.scss']
+	selector: "app-reward",
+	templateUrl: "./reward.component.html",
+	styleUrls: ["./reward.component.scss"],
 })
 export class RewardComponent implements OnInit {
-	RewardUrl = 'assets/db/vi/about-rewards.json';
-	rewards = [];
-
-	sliderReward: SwiperConfigInterface = {
+	sliderRewardConfig: SwiperConfigInterface = {
 		slidesPerView: 3,
 		loop: true,
 		speed: 1200,
@@ -22,8 +20,8 @@ export class RewardComponent implements OnInit {
 			delay: 2000,
 		},
 		navigation: {
-			nextEl: '.slider-reward .swiper-button-next',
-			prevEl: '.slider-reward .swiper-button-prev',
+			nextEl: ".slider-reward .swiper-button-next",
+			prevEl: ".slider-reward .swiper-button-prev",
 		},
 		breakpoints: {
 			1025: {
@@ -32,20 +30,24 @@ export class RewardComponent implements OnInit {
 			768: {
 				spaceBetween: 15,
 				slidesPerView: 2,
-			}
-		}
-	}
+			},
+		},
+	};
+	rewards: Array<Article>;
 
-	constructor(
-		private httpSvc: HttpService,
-	) { }
+	@Input("language") currentLanguage;
+
+	constructor(private httpSvc: HttpService) {}
 
 	ngOnInit() {
 		this.getListReward();
 	}
+
 	getListReward() {
-		this.httpSvc.get(this.RewardUrl).subscribe(result => {
-			this.rewards = result.data;
-		})
+		this.httpSvc
+			.get(`assets/api/${this.currentLanguage}/about/rewards.json`)
+			.subscribe((result) => {
+				this.rewards = result.Data;
+			});
 	}
 }

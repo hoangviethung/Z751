@@ -1,27 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpService } from 'src/app/shared/services/http.service';
+import { Component, OnInit, Input } from "@angular/core";
+import { HttpService } from "src/app/services/http.service";
+import { Category } from "src/app/models/core/Category.model";
 
 @Component({
-	selector: 'app-index-products',
-	templateUrl: './index-products.component.html',
-	styleUrls: ['./index-products.component.scss']
+	selector: "app-index-products",
+	templateUrl: "./index-products.component.html",
+	styleUrls: ["./index-products.component.scss"],
 })
 export class IndexProductsComponent implements OnInit {
-	ProductCategoryUrl = 'assets/db/vi/category-product.json';
-	categoryProduct = [];
+	productCategories: Array<Category>;
 
-	constructor(
-		private httpSvc: HttpService
-	) { }
+	@Input("language") currentLanguage: string;
+
+	constructor(private httpSvc: HttpService) {}
 
 	ngOnInit() {
 		this.productCategory();
 	}
 
-
 	productCategory() {
-		this.httpSvc.get(this.ProductCategoryUrl).subscribe(result => {
-			this.categoryProduct = result.data
+		const url =
+			this.currentLanguage == "en"
+				? `assets/api/${this.currentLanguage}/product/automotives-industry.json`
+				: `assets/api/${this.currentLanguage}/product/oto.json`;
+		this.httpSvc.get(url).subscribe((result) => {
+			this.productCategories = result.Data.Products;
 		});
 	}
 }

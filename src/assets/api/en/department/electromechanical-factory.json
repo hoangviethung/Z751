@@ -1,0 +1,97 @@
+{
+	"Data": {
+		"Title": "Electromechanical factory",
+		"Description": "<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum reprehenderit, tenetur necessitatibus ipsum atque modi, possimus quasi placeat consequuntur ipsa, architecto odio esse in. Tempore temporibus sunt voluptatibus itaque culpa.</p><p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae quas illum totam cumque odit reprehenderit suscipit facere ex perspiciatis nobis! Assumenda perferendis impedit ut molestias architecto quibusdam ipsa eaque alias. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Doloribus perferendis ex numquam nemo. Amet quos facere ducimus porro accusamus, aliquam voluptatum illum minima saepe accusantium iste libero praesentium assumenda. Excepturi!</p>",
+		"Image": "/assets/images/departments/d_1.jpg",
+		"Products": {
+			"DesignProducts": [
+				{
+					"Image": "/assets/images/products/category/cata-1.jpg",
+					"Url": "automotives-industry",
+					"Title": "Automotives Industry"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-4.jpg",
+					"Url": "mechenical-structure-industry",
+					"Title": "Mechenical, Structure Industry"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-2.jpg",
+					"Url": "electromechanical-industry",
+					"Title": "Electromechanical Industry"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-3.jpg",
+					"Url": "rubber-industry",
+					"Title": "Rubber Industry"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-5.jpg",
+					"Url": "household-furniture-for-exports",
+					"Title": "Household Furniture for Exports"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-6.jpg",
+					"Url": "sewing-industry",
+					"Title": "Sewing Industry"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-3.jpg",
+					"Url": "warehouse-storage-of-goods-services",
+					"Title": "Warehouse, Storage of Goods Services"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-4.jpg",
+					"Url": "research-and-development",
+					"Title": "Research and Development"
+				}
+			],
+			"PrepairProducts": [
+				{
+					"Image": "/assets/images/products/category/cata-1.jpg",
+					"Url": "automotives-industry",
+					"Title": "Automotives Industry"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-4.jpg",
+					"Url": "mechenical-structure-industry",
+					"Title": "Mechenical, Structure Industry"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-2.jpg",
+					"Url": "electromechanical-industry",
+					"Title": "Electromechanical Industry"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-3.jpg",
+					"Url": "rubber-industry",
+					"Title": "Rubber Industry"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-5.jpg",
+					"Url": "household-furniture-for-exports",
+					"Title": "Household Furniture for Exports"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-6.jpg",
+					"Url": "sewing-industry",
+					"Title": "Sewing Industry"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-3.jpg",
+					"Url": "warehouse-storage-of-goods-services",
+					"Title": "Warehouse, Storage of Goods Services"
+				},
+				{
+					"Image": "/assets/images/products/category/cata-4.jpg",
+					"Url": "research-and-development",
+					"Title": "Research and Development"
+				}
+			]
+		},
+		"Information": {
+			"Address": "<p>18 Phan Văn Trị, P.10, Quận Gò Vấp, TP.HCM</p><p>Tel: 028 3895 8466</p><p>Website : congty751.com.vn</p><p>Email: info@congty751.com.vn</p>",
+			"WorkTime": "<p>Thứ 2 - Thứ 7: 7h30 - 16h30</p><p>Hotline ngoài giờ: 028 3895 8466 </p>"
+		}
+	}
+}
