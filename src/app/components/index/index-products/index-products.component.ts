@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { HttpService } from "src/app/services/http.service";
-import { Category } from "src/app/models/core/Category.model";
+import { Product } from "src/app/models/core/Product.model";
 
 @Component({
 	selector: "app-index-products",
@@ -8,7 +8,7 @@ import { Category } from "src/app/models/core/Category.model";
 	styleUrls: ["./index-products.component.scss"],
 })
 export class IndexProductsComponent implements OnInit {
-	productCategories: Array<Category>;
+	productCategories: Array<Product>;
 
 	@Input("language") currentLanguage: string;
 

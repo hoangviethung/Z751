@@ -51,8 +51,6 @@ export class IndexDepartmentComponent implements OnInit {
 				item.querySelector(".description")
 			);
 			const itemImage = <HTMLElement>item.querySelector(".img");
-			console.log(itemImage);
-
 			itemImage.style.height = `${itemWidth / RATIO}px`;
 			itemDescription.setAttribute(
 				"data-default-height",

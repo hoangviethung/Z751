@@ -11,7 +11,13 @@
 				*ngFor="let item of productCategories"
 			>
 				<div class="product-item" appIndexProductItem>
-					<a [routerLink]="['/products' | localize, item.Url]">
+					<a
+						[routerLink]="[
+							'/products' | localize,
+							item.CategoryUrl,
+							item.Url
+						]"
+					>
 						<div class="img ov-h">
 							<img
 								src="{{ item.Image }}"
