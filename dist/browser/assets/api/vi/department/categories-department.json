@@ -2,47 +2,47 @@
 	"Data": [
 		{
 			"Title": "Xí nghiệp ôtô",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/1.jpg",
 			"Url": "xi-nghiep-oto"
 		},
 		{
 			"Title": "Xí nghiệp cơ khí",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/2.jpg",
 			"Url": "xi-nghiep-co-khi"
 		},
 		{
 			"Title": "Xí nghiệp mộc",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/3.jpg",
 			"Url": "xi-nghiep-moc"
 		},
 		{
 			"Title": "Xí nghiệp cao su",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/4.jpg",
 			"Url": "xi-nghiep-cao-su"
 		},
 		{
 			"Title": "Xí nghiệp kim khí",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/5.jpg",
 			"Url": "xi-nghiep-kim-khi"
 		},
 		{
 			"Title": "Xí nghiệp cơ điện",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/6.jpg",
 			"Url": "xi-nghiep-co-dien"
 		},
 		{
 			"Title": "Xí nghiệp sửa chữa xe công trình",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/5.jpg",
 			"Url": "xi-nghiep-sua-chua-xe-cong-trinh"
 		},
 		{
 			"Title": "Xí nghiệp cơ khí sửa chữa",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/4.jpg",
 			"Url": "xi-nghiep-co-khi-sua-chua"
 		},
 		{
 			"Title": "Trung tâm dịch vụ tổng hợp",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/3.jpg",
 			"Url": "trung-tam-dich-vu-tong-hop"
 		}
 	]

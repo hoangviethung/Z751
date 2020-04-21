@@ -120,6 +120,14 @@ const routes: Routes = [
 					settings: LocalizeRouterSettings
 				) => {
 					settings.defaultLangFunction = () => "vi";
+					console.log(new ManualParserLoader(
+						translate,
+						location,
+						settings,
+						["vi", "en"],
+						"ROUTES."
+					));
+					
 					return new ManualParserLoader(
 						translate,
 						location,

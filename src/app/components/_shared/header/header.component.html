@@ -9,36 +9,10 @@
 			<div class="overlay mobile"></div>
 			<div class="navbar col">
 				<div class="header-top d-f ai-c">
-					<!-- <div class="header-social">
-						<a
-							href="https://facebook.com"
-							rel="noreferrer"
-							class="ico-facebook"
-							target="_blank"
-						>
-							<img
-								src="assets/images/icons/facebook-2.svg"
-								alt=""
-							/>
-						</a>
-						<a
-							href="https://twitter.com"
-							rel="noreferrer"
-							class="ico-twitter"
-							target="_blank"
-						>
-							<img
-								src="assets/images/icons/twitter-2.svg"
-								alt=""
-							/>
-						</a>
-					</div> -->
 					<div class="header-email ml-at">
 						<p>
 							SĐT:
-							<a href="tel:02838958466"
-								>028 3895 8466</a
-							>
+							<a href="tel:02838958466">028 3895 8466</a>
 						</p>
 						<p>
 							Email:
@@ -303,19 +277,29 @@
 							</ul>
 						</div>
 						<div class="language">
+							<ng-container *ngFor="let language of languages">
+								<div
+									class="flag desktop"
+									*ngIf="currentLanguage == language.value"
+								>
+									<img src="{{ language.image }}" alt="" />
+								</div>
+							</ng-container>
 							<select
 								name="langulage"
 								id="language"
-								class="bd-0 tt-u"
+								class="bd-0"
 								(change)="switchLanguage($event)"
 							>
 								<ng-container
 									*ngFor="let language of languages"
 								>
 									<option
-										value="{{ language }}"
-										[selected]="currentLanguage == language"
-										>{{ language }}</option
+										value="{{ language.value }}"
+										[selected]="
+											currentLanguage == language.value
+										"
+										>{{ language.title }}</option
 									>
 								</ng-container>
 							</select>

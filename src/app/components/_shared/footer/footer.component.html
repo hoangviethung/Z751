@@ -37,22 +37,26 @@
 			<div class="col-lg-4 col-md-8">
 				<div class="subscribe">
 					<h4>
-						{{ "ResourceKeys.SubscribeUs" | translate }}
+						{{ "ResourceKeys.WebsiteRelative" | translate }}
 					</h4>
 					<form action="#">
 						<div class="form-group">
-							<input type="text" placeholder="Email..." />
-							<button class="p-0">
-								<img
-									src="./assets/images/icons/search.svg"
-									alt=""
-									
-								/>
-							</button>
+							<!-- <input type="text" placeholder="Email..." /> -->
+							<select
+								name="website-relative"
+								id="website-relative"
+							>
+								<option disabled>
+									- - Chọn website liên kết - -
+								</option>
+								<option value="#">Website 1</option>
+								<option value="#">Website 2</option>
+								<option value="#">Website 3</option>
+							</select>
 						</div>
 					</form>
 				</div>
-				<div class="list-social">
+				<!-- <div class="list-social">
 					<ul class="pl-0 d-f">
 						<li>
 							<a
@@ -81,7 +85,7 @@
 							</a>
 						</li>
 					</ul>
-				</div>
+				</div> -->
 			</div>
 			<div class="col-lg-2 col-md-4">
 				<div class="connect-count">

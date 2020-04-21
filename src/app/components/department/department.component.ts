@@ -5,6 +5,7 @@ import { PageInfoService } from "src/app/services/page-info.service";
 import { HttpService } from "src/app/services/http.service";
 import { Product } from "src/app/models/core/Product.model";
 import { BreadcrumbService } from "../_shared/breadcrumb/breadcrumb.service";
+import { Category } from "src/app/models/core/Category.model";
 
 @Component({
 	selector: "app-department",
@@ -25,6 +26,8 @@ export class DepartmentComponent implements OnInit {
 		vi: ["Trang chủ", "Đơn vị thành viên"],
 	};
 	breadcrumbs;
+	departments: Array<Category>;
+	categoryUrl: string;
 
 	constructor(
 		private languageSvc: LanguageService,
@@ -38,6 +41,7 @@ export class DepartmentComponent implements OnInit {
 
 	ngOnInit() {
 		this.getProducts();
+		this.getDepartmentList();
 	}
 
 	getProducts() {
@@ -47,6 +51,7 @@ export class DepartmentComponent implements OnInit {
 				vi: ["Trang chủ", "Đơn vị thành viên"],
 			};
 			this.breadcrumbSvc.setBreadcrumb(this.Breadcrumb);
+			this.categoryUrl = params.departmentCategory;
 			this.httpSvc
 				.get(
 					`assets/api/${this.currentLanguage}/department/${params.departmentCategory}.json`
@@ -64,5 +69,14 @@ export class DepartmentComponent implements OnInit {
 					this.breadcrumbs = Breadcrumb[this.currentLanguage];
 				});
 		});
+	}
+	getDepartmentList() {
+		this.httpSvc
+			.get(
+				`assets/api/${this.currentLanguage}/department/categories-department.json`
+			)
+			.subscribe((result) => {
+				this.departments = result.Data;
+			});
 	}
 }

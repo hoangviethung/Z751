@@ -26,8 +26,8 @@
 		"404": "Page Not Found"
 	},
 	"ResourceKeys": {
-		"PageTitle": "751 ONE MEMBER LIMITED LIABILITY COMPANY",
-		"PageTitleShort": "751 ONE MEMBER LIMITED LIABILITY COMPANY",
+		"PageTitle": "751 ONE MEMBER Co.LTD",
+		"PageTitleShort": "751 ONE MEMBER Co.LTD",
 		"ViewDetail": "Detail",
 		"ViewMore": "View More",
 		"Headquarter": "Headquarter",
@@ -35,6 +35,7 @@
 		"OppositeOffice": "Opposite Office",
 		"AddressOppositeOffice": "No.18 Phan Van Tri, Province 10, Go Vap District, Ho Chi Minh City",
 		"SubscribeUs": "Subscribe Us",
+		"WebsiteRelative": "Website relative",
 		"Visits": "Visits",
 		"Day": "Day",
 		"Month": "Month",

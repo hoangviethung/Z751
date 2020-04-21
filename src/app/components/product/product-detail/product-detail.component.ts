@@ -5,6 +5,7 @@ import { HttpService } from "src/app/services/http.service";
 import { LanguageService } from "src/app/services/language.service";
 import { PageInfoService } from "src/app/services/page-info.service";
 import { Product } from "src/app/models/core/Product.model";
+import { Category } from "src/app/models/core/Category.model";
 
 @Component({
 	selector: "app-product-detail",
@@ -42,7 +43,13 @@ export class ProductDetailComponent implements OnInit {
 			prevEl: ".preview-img-wrapper .swiper-button-prev",
 		},
 		breakpoints: {
-			575: {
+			768: {
+				slidesPerView: 5,
+				spaceBetween: 10,
+				direction: "horizontal",
+			},
+			576: {
+				slidesPerView: 3,
 				spaceBetween: 10,
 				direction: "horizontal",
 			},
@@ -62,7 +69,8 @@ export class ProductDetailComponent implements OnInit {
 			prevEl: ".preview-img-wrapper .swiper-button-prev",
 		},
 	};
-
+	isShowPopup: boolean = false;
+	categoryOfProduct: Array<Category>;
 	constructor(
 		private activatedRoute: ActivatedRoute,
 		private languageSvc: LanguageService,
@@ -77,9 +85,22 @@ export class ProductDetailComponent implements OnInit {
 		this.getProductDetail();
 	}
 
+	showPopup(condition: any) {
+		if (condition != null) {
+			this.isShowPopup = condition;
+		} else {
+			this.isShowPopup = !this.isShowPopup;
+		}
+	}
+
 	getProductDetail() {
 		this.activatedRoute.params.subscribe(async (param) => {
 			this.productCategoryUrl = param.productCategory;
+			this.categoryOfProduct = [].concat({
+				Title: this.productCategoryUrl,
+			});
+			console.log(this.categoryOfProduct);
+
 			let Breadcrumb = {
 				en: ["Home", "Products"],
 				vi: ["Trang chủ", "Sản phẩm"],

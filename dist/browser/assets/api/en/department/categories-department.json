@@ -2,47 +2,47 @@
 	"Data": [
 		{
 			"Title": "Automotives Factory",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/1.jpg",
 			"Url": "automotives-factory"
 		},
 		{
 			"Title": "Mechanical Factory",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/2.jpg",
 			"Url": "mechanical-factory"
 		},
 		{
 			"Title": "Wood Factory",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/3.jpg",
 			"Url": "wood-factory"
 		},
 		{
 			"Title": "Rubber Factory",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/4.jpg",
 			"Url": "rubber-factory"
 		},
 		{
 			"Title": "Metal Factory",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/5.jpg",
 			"Url": "metal-factory"
 		},
 		{
 			"Title": "Electromechanical Factory",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/6.jpg",
 			"Url": "electromechanical-factory"
 		},
 		{
 			"Title": "Automotives Prepair Factory",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/5.jpg",
 			"Url": "automotives-prepair-factory"
 		},
 		{
 			"Title": "Mechanical Prepair Factory",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/4.jpg",
 			"Url": "mechanical-prepair-factory"
 		},
 		{
 			"Title": "General Services Center",
-			"Image": "#",
+			"Image": "./assets/images/departments/categories/3.jpg",
 			"Url": "general-services-center"
 		}
 	]

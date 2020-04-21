@@ -4,10 +4,14 @@
 	input[type="text"] {
 		height: 45px;
 	}
+	select {
+		height: 45px;
+	}
 
 	textarea {
 		height: 200px;
 	}
+
 	.form-control {
 		border: 1px solid #707070;
 		border-radius: 8px;

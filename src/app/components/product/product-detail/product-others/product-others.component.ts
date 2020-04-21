@@ -7,6 +7,7 @@ import {
 } from "@angular/core";
 import { SwiperConfigInterface, SwiperDirective } from "ngx-swiper-wrapper";
 import { HttpService } from "src/app/services/http.service";
+import { Product } from "src/app/models/core/Product.model";
 
 @Component({
 	selector: "app-product-others",
@@ -14,7 +15,7 @@ import { HttpService } from "src/app/services/http.service";
 	styleUrls: ["./product-others.component.scss"],
 })
 export class ProductOthersComponent implements OnInit, AfterViewInit {
-	productOthers = [];
+	productOthers: Array<Product>;
 	sliderProductOthers: SwiperConfigInterface = {
 		initialSlide: 0,
 		slidesPerView: 3,
@@ -24,9 +25,6 @@ export class ProductOthersComponent implements OnInit, AfterViewInit {
 		spaceBetween: 30,
 		observer: true,
 		observeParents: true,
-		scrollbar: false,
-		keyboard: true,
-		mousewheel: true,
 		navigation: {
 			nextEl: ".slider-product-others .swiper-button-next",
 			prevEl: ".slider-product-others .swiper-button-prev",
@@ -54,9 +52,7 @@ export class ProductOthersComponent implements OnInit, AfterViewInit {
 	ngOnInit() {
 		this.getProductOthers();
 	}
-	ngAfterViewInit() {
-		this.swiperView.setIndex(0, 1000);
-	}
+	ngAfterViewInit() {}
 
 	getProductOthers() {
 		this.httpSvc

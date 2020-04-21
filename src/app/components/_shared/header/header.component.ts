@@ -10,7 +10,7 @@ import { Category } from "src/app/models/core/Category.model";
 })
 export class HeaderComponent implements OnInit {
 	isSearchBoxShow = false;
-	languages: Array<string>;
+	languages;
 	newsCategories: Array<Category>;
 	productCategories: Array<Category>;
 	capacityCategories: Array<Category>;
@@ -46,7 +46,22 @@ export class HeaderComponent implements OnInit {
 	}
 
 	getLanguages() {
-		this.languages = this.languageSvc.fetchLanguages();
+		this.languages = this.languageSvc.fetchLanguages().map((language) => {
+			if (language == "vi") {
+				return {
+					value: language,
+					title: "Việt Nam",
+					image: "./assets/images/vi.png",
+				};
+			}
+			if (language == "en") {
+				return {
+					value: language,
+					title: "English",
+					image: "./assets/images/en.png",
+				};
+			}
+		});
 	}
 
 	getProductCategories() {

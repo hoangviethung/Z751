@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core";
+import { Category } from "src/app/models/core/Category.model";
 
 @Component({
-  selector: 'app-form-contact',
-  templateUrl: './form-contact.component.html',
-  styleUrls: ['./form-contact.component.scss']
+	selector: "app-form-contact",
+	templateUrl: "./form-contact.component.html",
+	styleUrls: ["./form-contact.component.scss"],
 })
 export class FormContactComponent implements OnInit {
+	@Input("departments") departments: Array<Category>;
+	@Input("categoryUrl") categoryUrl: string;
+	constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+	ngOnInit() {
+		console.log(this.departments);
+	}
 }

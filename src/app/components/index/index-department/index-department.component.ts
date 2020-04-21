@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, ViewChild } from "@angular/core";
+import { Component, OnInit, Input, ViewChild, Inject } from "@angular/core";
 import { SwiperConfigInterface, SwiperDirective } from "ngx-swiper-wrapper";
 import { HttpService } from "src/app/services/http.service";
 import { Category } from "src/app/models/core/Category.model";
 import { LanguageService } from "src/app/services/language.service";
+import { DOCUMENT } from "@angular/common";
 
 @Component({
 	selector: "app-index-department",
@@ -20,12 +21,28 @@ export class IndexDepartmentComponent implements OnInit {
 			delay: 3500,
 			disableOnInteraction: false,
 		},
+		breakpoints: {
+			768: {
+				slidesPerView: 2,
+				spaceBetween: 15,
+			},
+			575: {
+				slidesPerView: 1,
+			},
+		},
+		navigation: {
+			nextEl: ".swiper-button-next",
+			prevEl: ".swiper-button-prev",
+		},
 	};
 	departments: Array<Category>;
 	@Input("language") currentLanguage: string;
 	@ViewChild(SwiperDirective, { static: false }) swiperView: SwiperDirective;
 
-	constructor(private httpSvc: HttpService) {}
+	constructor(
+		private httpSvc: HttpService,
+		@Inject(DOCUMENT) private documentDom: Document
+	) {}
 
 	ngOnInit() {
 		this.getDepartments();
@@ -65,16 +82,18 @@ export class IndexDepartmentComponent implements OnInit {
 				itemDescription.getAttribute("data-default-height")
 			);
 			itemDescription.style.height = `${currentHeight}px`;
-			item.addEventListener("mouseenter", () => {
-				itemDescription.style.height = `${Number(
-					itemDescription.getAttribute("data-hovered-height")
-				)}px`;
-			});
-			item.addEventListener("mouseleave", () => {
-				itemDescription.style.height = `${Number(
-					itemDescription.getAttribute("data-default-height")
-				)}px`;
-			});
+			if (this.documentDom.body.clientWidth > 1024) {
+				item.addEventListener("mouseenter", () => {
+					itemDescription.style.height = `${Number(
+						itemDescription.getAttribute("data-hovered-height")
+					)}px`;
+				});
+				item.addEventListener("mouseleave", () => {
+					itemDescription.style.height = `${Number(
+						itemDescription.getAttribute("data-default-height")
+					)}px`;
+				});
+			}
 		}
 	}
 }

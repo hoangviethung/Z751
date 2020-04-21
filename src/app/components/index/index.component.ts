@@ -20,5 +20,8 @@ export class IndexComponent implements OnInit {
 		this.currentLanguage = this.languageSvc.getCurrentLanguage();
 	}
 
-	ngOnInit() {}
+	ngOnInit() {
+		console.log(this.currentLanguage);
+		
+	}
 }

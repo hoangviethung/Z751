@@ -11,13 +11,12 @@ export class IndexNewsComponent implements OnInit {
 	newsItems: Array<Article>;
 
 	@Input("language") currentLanguage: string;
-
+	@Input("background") background: string;
 	constructor(private httpSvc: HttpService) {}
 
 	ngOnInit() {
 		this.getNews();
 	}
-
 	getNews() {
 		const url =
 			this.currentLanguage == "en"

@@ -62,8 +62,32 @@ footer {
 	.form-group {
 		position: relative;
 		background: #292b77;
+		max-width: 310px;
+		&:before {
+			position: absolute;
+			content: "";
+			height: 40px;
+			width: 40px;
+			background-color: rgba(#ffffff, 0.5);
+			right: 0;
+			top: 0;
+			pointer-events: none;
+		}
+		&:after {
+			content: "";
+			position: absolute;
+			width: 0;
+			height: 0;
+			border-left: 5px solid transparent;
+			border-right: 5px solid transparent;
+			border-top: 6px solid white;
+			top: 50%;
+			right: 15px;
+			transform: translateY(-50%);
+			
+		}
 
-		input {
+		select {
 			background: #292b77;
 			border: none;
 			padding: 7px 15px;
@@ -73,25 +97,26 @@ footer {
 			color: #ffffff;
 			width: 100%;
 			border-radius: 5px;
+			appearance: none;
 
 			&::placeholder {
 				color: rgba(white, 0.5);
 			}
 		}
 
-		button {
-			position: absolute;
-			right: 0;
-			top: 0;
-			height: 40px;
-			background: #ffffff;
-			border: none;
-			width: 40px;
-			border-radius: 0 5px 5px 0;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
+		// button {
+		// 	position: absolute;
+		// 	right: 0;
+		// 	top: 0;
+		// 	height: 40px;
+		// 	background: #ffffff;
+		// 	border: none;
+		// 	width: 40px;
+		// 	border-radius: 0 5px 5px 0;
+		// 	display: flex;
+		// 	justify-content: center;
+		// 	align-items: center;
+		// }
 	}
 
 	.list-social {

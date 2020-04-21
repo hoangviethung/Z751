@@ -55,7 +55,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="social-media">
+				<!-- <div class="social-media">
 					<ul class="d-if lst-n pl-0">
 						<li>
 							<a
@@ -84,7 +84,7 @@
 							</a>
 						</li>
 					</ul>
-				</div>
+				</div> -->
 			</div>
 			<div class="col-lg-5">
 				<div class="product-info">
@@ -108,8 +108,8 @@
 				<div class="button-contact">
 					<div class="btn-wrapper d-f jc-fe">
 						<a
-							[routerLink]="['/news' | localize]"
 							class="btn-red btn-viewmore tt-u h-47"
+							(click)="showPopup(null)"
 						>
 							{{ "ResourceKeys.ContactNow" | translate }}</a
 						>
@@ -186,7 +186,25 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="product-form" [ngClass]="{ active: isShowPopup }">
+		<div class="product-form-wrapper" *ngIf="categoryOfProduct">
+			<div class="product-form-content">
+				<h2 class="main-title text-center tt-u">
+					{{ "menu.contact" | translate }}
+				</h2>
+				<div class="close-popup" (click)="showPopup(false)">
+					<span></span><span></span>
+				</div>
+				<app-form-contact
+					[departments]="categoryOfProduct"
+					[categoryUrl]="productCategoryUrl"
+				></app-form-contact>
+			</div>
+		</div>
+	</div>
 </section>
+
 <app-product-others
 	[routeParamUrl]="productCategoryUrl"
 	[language]="currentLanguage"
