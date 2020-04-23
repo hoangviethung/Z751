@@ -18,6 +18,6 @@ export class SidebarLeftInnerComponent {
 		this.imageUrl = this.authenticSvc.getSession().imageUrl
 		this.imageUrl = this.imageUrl
 			? this.serverImage + this.imageUrl
-			: '/assets/img/user2-160x160.jpg'
+			: '/assets/images/user2-160x160.jpg'
 	}
 }

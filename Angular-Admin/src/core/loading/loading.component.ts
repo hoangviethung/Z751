@@ -5,7 +5,7 @@ import { LoadingService } from './loading.service'
 @Component({
 	selector: 'app-loading',
 	template: `
-		<img src="/assets/img/loading.gif" class="ico-loading" />
+		<img src="/assets/images/loading.gif" class="ico-loading" />
 		<div class="loading-background"></div>
 	`,
 	styleUrls: ['loading.component.scss']

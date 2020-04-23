@@ -15,8 +15,8 @@ export class AppConsts {
 	public static isLoaded: boolean = false
 	public static configUrl = 'assets/appconfig.json'
 	public static configDevUrl = 'assets/appconfig-dev.json'
-	public static logoDefaultUrl = 'assets/img/logo-default.png'
-	public static imageDefaultUrl = 'assets/img/image-default.png'
+	public static logoDefaultUrl = 'assets/images/logo-default.png'
+	public static imageDefaultUrl = 'assets/images/image-default.png'
 	public static userNamePattern = /^[a-zA-Z0-9@.]+$/
 	public static nonSpecialCharPattern = /^[a-zA-Z0-9]+$/
 	public static numberPattern = /^[0-9]+$/
@@ -80,7 +80,7 @@ export class UrlConsts {
 	// for business
 	public static urlDefaultOfContractor = '/my-tasks?page=Assignments'
 
-	public static imageDefaultProfile = 'assets/img/default-profile.png'
+	public static imageDefaultProfile = 'assets/images/default-profile.png'
 }
 
 export class ParamUrlKeys {
