@@ -1,10 +1,10 @@
 import { Component, Input, Injector } from '@angular/core'
 import { Router } from '@angular/router'
-import { AuthenticService } from 'src/app/core/authentication/authentic.service'
-import { UrlConsts, AppConsts } from 'src/app/core/constant/AppConsts'
+import { AuthenticService } from 'src/core/authentication/authentic.service'
+import { UrlConsts, AppConsts } from 'src/core/constant/AppConsts'
 import { inject } from '@angular/core/testing'
-import { AppBaseComponent } from 'src/app/core/basecommon/app-base.component'
-import { BaseComponent } from 'src/app/core/basecommon/base.component'
+import { AppBaseComponent } from 'src/core/basecommon/app-base.component'
+import { BaseComponent } from 'src/core/basecommon/base.component'
 
 @Component({
 	selector: 'app-header-inner',

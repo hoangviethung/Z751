@@ -1,5 +1,5 @@
 import { Component, OnInit, Injector } from '@angular/core'
-import { AppBaseComponent } from 'src/app/core/basecommon/app-base.component'
+import { AppBaseComponent } from '../../../core/basecommon/app-base.component'
 
 @Component({
 	selector: 'dashboard',

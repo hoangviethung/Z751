@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core'
-import { AuthenticService } from 'src/app/core/authentication/authentic.service'
-import { AppConsts } from 'src/app/core/constant/AppConsts'
+import { AuthenticService } from 'src/core/authentication/authentic.service'
+import { AppConsts } from 'src/core/constant/AppConsts'
 
 @Component({
 	selector: 'app-sidebar-left-inner',

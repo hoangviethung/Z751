@@ -5,13 +5,13 @@ import { HttpClientModule, HttpClient } from '@angular/common/http'
 import { AccountRoutingModule } from './account-routing.module'
 import { LogoutComponent } from './logout/logout.component'
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core'
-import { TranslateHttpLoaderFactory } from '../core/common/language.service'
+import { TranslateHttpLoaderFactory } from '../../core/common/language.service'
 import { BrowserModule } from '@angular/platform-browser'
 import { AccountComponent } from './account.component'
 import { CookieService } from 'ngx-cookie-service'
-import { HttpLoaderFactory } from '../core/common/config.service'
+import { HttpLoaderFactory } from '../../core/common/config.service'
 import { LoadingPageModule, MaterialBarModule } from 'angular-loading-page'
-import { PageNotFoundComponent } from '../core/layout/page-not-found/page-not-found.component'
+import { PageNotFoundComponent } from '../../core/layout/page-not-found/page-not-found.component'
 
 @NgModule({
 	imports: [

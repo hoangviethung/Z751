@@ -4,7 +4,7 @@ import { AppConsts } from '../constant/AppConsts'
 import { Config } from 'protractor'
 import { FuncHelper } from '../helpers/function-helper'
 import { Queue } from '../algorithms/datastructures/queue.structure'
-import { environment } from '../../../environments/environment'
+import { environment } from '../../environments/environment'
 
 @Injectable({
 	providedIn: 'root',

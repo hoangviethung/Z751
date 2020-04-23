@@ -7,9 +7,9 @@ import { LoginModel } from './login.model'
 import {
 	AuthenticService,
 	Session,
-} from '../../core/authentication/authentic.service'
-import { ResultModel } from '../../core/models/http.model'
-import { AppConsts } from '../../core/constant/AppConsts'
+} from '../../../core/authentication/authentic.service'
+import { ResultModel } from '../../../core/models/http.model'
+import { AppConsts } from '../../../core/constant/AppConsts'
 
 @Injectable({
 	providedIn: 'root',

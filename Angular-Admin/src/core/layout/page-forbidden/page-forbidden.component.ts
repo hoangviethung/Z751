@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core'
-import { AppBaseComponent } from 'src/app/core/basecommon/app-base.component'
+import { AppBaseComponent } from 'src/core/basecommon/app-base.component'
 
 @Component({
 	selector: 'app-page-forbidden',

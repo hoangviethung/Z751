@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, Injector, ViewChild } from '@angular/core'
-import { BaseComponent } from 'src/app/core/basecommon/base.component'
+import { BaseComponent } from 'src/core/basecommon/base.component'
 import { ServerDisconnectedService } from './server-disconnected.service'
-import { FuncHelper } from 'src/app/core/helpers/function-helper'
-import { AppConsts, UrlConsts } from 'src/app/core/constant/AppConsts'
-import { AuthenticService } from 'src/app/core/authentication/authentic.service'
-import { AppBaseComponent } from 'src/app/core/basecommon/app-base.component'
+import { FuncHelper } from 'src/core/helpers/function-helper'
+import { AppConsts, UrlConsts } from 'src/core/constant/AppConsts'
+import { AuthenticService } from 'src/core/authentication/authentic.service'
+import { AppBaseComponent } from 'src/core/basecommon/app-base.component'
 
 @Component({
 	selector: 'app-server-disconnected',
