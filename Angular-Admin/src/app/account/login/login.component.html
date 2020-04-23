@@ -38,10 +38,13 @@
 					<a href="#">{{lang.instant('Login.ForgotPassword')}}</a>
 				</div>
 			</div>
-			<div class="form-group col-lg-12 mb-0">
-				<button [disabled]="isLoading" (click)="login()">
+			<div class="form-group col-lg-12">
+				<button class="btn-submit" [disabled]="isLoading" (click)="login()">
 					{{ lang.instant('User.Login') }}
 				</button>
+			</div>
+			<div class="form-group col-lg-12 mb-0">
+				<a routerLink="/account/register" class="btn-submit">{{lang.instant('Login.CreateNewAccount')}}</a>
 			</div>
 		</div>
 		<span class="field-validation-error text-center d-block">{{ message }}</span>

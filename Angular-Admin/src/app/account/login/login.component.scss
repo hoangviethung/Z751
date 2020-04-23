@@ -60,15 +60,18 @@
 			background   : #303339;
 			border       : 1px solid rgb(34, 36, 40);
 		}
+	}
 
-		button {
-			color        : #ffffff;
-			width        : 100%;
-			border       : none;
-			line-height  : 40px;
-			border-radius: 3px;
-			background   : #677bc4;
-		}
+	.btn-submit {
+		display        : block;
+		text-align     : center;
+		color          : #ffffff;
+		width          : 100%;
+		border         : none;
+		line-height    : 40px;
+		border-radius  : 3px;
+		background     : #677bc4;
+		text-decoration: none;
 	}
 
 	.forgot-pass {
