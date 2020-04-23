@@ -1,0 +1,21 @@
+.th-header
+{
+  position: relative;
+  cursor: pointer;
+}
+
+.th-header .th-sort
+{
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+}
+.th-header .th-sort .fa
+{
+  display: block;
+}
+
+.th-header .th-sort .fa.gray
+{
+  color: gray;
+}

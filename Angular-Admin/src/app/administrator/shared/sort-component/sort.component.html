@@ -1,0 +1,7 @@
+<div class="th-header" (click)="onChanged()">
+  <span [innerHTML]="text"></span>
+  <div class="th-sort">
+    <i class="fa fa-caret-up" [class.gray]="state === 'desc'"></i>
+    <i class="fa fa-caret-down" [class.gray]="state === 'asc'"></i>
+  </div>
+</div>

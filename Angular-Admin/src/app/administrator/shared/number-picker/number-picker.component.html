@@ -1,0 +1,10 @@
+<input
+	class="form-control"
+	[class.text-alias-right]="isAliasRight"
+	type="number"
+	[(ngModel)]="data"
+	min="min"
+	max="max"
+	(change)="onValueChanged($event.target.value)"
+	(click)="onClick($event)"
+/>

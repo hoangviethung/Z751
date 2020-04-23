@@ -1,0 +1,9 @@
+{
+  "appName": "Voltage",
+  "appBaseUrl": "https://localhost:4200",
+  "imageDataUrl": "https://go24.vn:40001",
+  "appAccountUrl": "https://localhost:4200",
+  "remoteServiceBaseUrl": "http://103.9.156.117:50005",
+  "languageUrl": "/assets/lang/",
+  "defaultLang": "en"
+}

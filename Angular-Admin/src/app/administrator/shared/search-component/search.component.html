@@ -1,0 +1,20 @@
+<div style="height: 35px; width: 100%; min-width: 155px">
+  <div style="position: relative">
+    <i class="fa fa-search"></i>
+    <i *ngIf="(type === 'number' || type === 'date') && data" class="fa fa-remove" style="left: 30px; cursor: pointer" (click)="removeData()"></i>
+    <input *ngIf="type !== 'number'" (click)="mainClick()" (change)="onValueChanged()" [(ngModel)]="data"
+           class="input-main"
+           [class.cursor-pointer]="type !== 'text'" type="text">
+    <select *ngIf="type === 'select'" (change)="selectChanged($event.target.value)" class="input-support"
+            (focusout)="selectLoseFocus()">
+      <option [ngValue]="defaultId">{{ allSelect }}</option>
+      <option *ngFor="let data of dataSource" [ngValue]="data.id">{{ data.name || data.displayName || data.title }}</option>
+    </select>
+    <angular2-date-picker *ngIf="type === 'date'" [(ngModel)]="dateDate" [settings]="settings" class="input-support"
+                          (onDateSelect)="onDateSelect($event)">
+    </angular2-date-picker>
+    <app-number-picker *ngIf="type === 'number'" [isAliasRight]="true" class="input-main" [(data)]="data" [min]=1
+                       [max]=9999999 (OnChanged)="onValueChanged()" style="font-weight: normal">
+    </app-number-picker>
+  </div>
+</div>

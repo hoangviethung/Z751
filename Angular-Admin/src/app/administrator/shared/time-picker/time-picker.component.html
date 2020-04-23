@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="form-group">
+            <app-number-picker [min]=0 [max]=23 [(data)]="hours" (OnChanged)="onChanged()"></app-number-picker>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <app-number-picker [min]=0 [max]=59 [(data)]="minutes" (OnChanged)="onChanged()"></app-number-picker>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <app-number-picker [min]=0 [max]=59 [(data)]="seconds" (OnChanged)="onChanged()"></app-number-picker>
+        </div>
+    </div>
+</div>
