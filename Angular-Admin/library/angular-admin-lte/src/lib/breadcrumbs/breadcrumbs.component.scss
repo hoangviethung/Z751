@@ -1,0 +1,19 @@
+:host ::ng-deep {
+	margin-left: auto;
+}
+
+.breadcrumb {
+	display: flex;
+	list-style-type: none;
+	li {
+		a {
+			font-size: 12px;
+		}
+		+ li {
+			&:before {
+				content: '/';
+				margin: 0 5px;
+			}
+		}
+	}
+}

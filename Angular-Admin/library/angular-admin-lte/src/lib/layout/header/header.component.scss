@@ -1,0 +1,19 @@
+:host {
+	display: block;
+}
+
+.sidebar-right-toggle {
+	float: right;
+}
+
+.sidebar-right-toggle a {
+	padding: 15px;
+	display: block;
+	line-height: 20px;
+	cursor: pointer;
+}
+
+.navbar-static-top {
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	background: #e9ecee;
+}

@@ -28,7 +28,6 @@ const routes: Routes = [
 	},
 	{ path: '**', redirectTo: 'admin' },
 ]
-console.log(1)
 
 @NgModule({
 	imports: [

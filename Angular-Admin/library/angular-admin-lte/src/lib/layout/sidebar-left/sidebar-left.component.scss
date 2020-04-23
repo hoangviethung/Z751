@@ -1,0 +1,35 @@
+.treeview-menu.collapse {
+	display: none;
+}
+
+.treeview-menu,
+.treeview-menu.collapse.in {
+	display: block;
+}
+
+.main-sidebar {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	background-color: #222d32;
+	width: 280px;
+	height: 100%;
+}
+.sidebar-menu {
+	padding: 10px;
+	li {
+		a {
+			display: block;
+			padding: 10px;
+			color: white;
+			border-radius: 5px;
+		}
+		&:hover {
+			a {
+				background-color: rgba(white, 0.3);
+			}
+		}
+	}
+}

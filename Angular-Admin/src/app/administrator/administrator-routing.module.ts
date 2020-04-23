@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
-import { PageForbiddenComponent } from 'src/app/core/layout/page-forbidden/page-forbidden.component'
-import { PageNotFoundComponent } from 'src/app/core/layout/page-not-found/page-not-found.component'
+import { PageForbiddenComponent } from 'src/core/layout/page-forbidden/page-forbidden.component'
+import { PageNotFoundComponent } from 'src/core/layout/page-not-found/page-not-found.component'
 import { AdministratorComponent } from 'src/app/administrator/administrator.component'
 
 const routes: Routes = [
@@ -18,6 +18,14 @@ const routes: Routes = [
 						(m) => m.DashboardModule
 					),
 				data: { title: 'Dashboard' },
+			},
+			{
+				path: 'banner',
+				loadChildren: () =>
+					import('./banner/banner.module').then(
+						(m) => m.BannerModule
+					),
+				data: { title: 'Banner' },
 			},
 		],
 	},

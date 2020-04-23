@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Injector } from '@angular/core'
 import { LoginService } from '../login/login.service'
 import { Router } from '@angular/router'
-import { BaseComponent } from '../../core/basecommon/base.component'
-import { AuthenticService } from '../../core/authentication/authentic.service'
-import { UrlConsts, AppConsts } from '../../core/constant/AppConsts'
+import { BaseComponent } from '../../../core/basecommon/base.component'
+import { AuthenticService } from '../../../core/authentication/authentic.service'
+import { UrlConsts, AppConsts } from '../../../core/constant/AppConsts'
 
 @Component({
 	selector: 'app-register',

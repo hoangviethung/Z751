@@ -47,7 +47,7 @@ export class HeaderLogoMiniComponent {
 @Component({
 	selector: 'mk-layout-header',
 	templateUrl: './header.component.html',
-	styleUrls: ['./header.component.css'],
+	styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements AfterViewInit, OnDestroy {
 	private isSidebarLeftCollapsed: boolean

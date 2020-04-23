@@ -1,10 +1,10 @@
 import { Component, OnInit, Injector } from '@angular/core'
 import { LayoutService } from 'angular-admin-lte'
-import { BaseComponent } from '../core/basecommon/base.component'
+import { BaseComponent } from '../../core/basecommon/base.component'
 
 @Component({
 	selector: 'app-root',
-	templateUrl: '../core/layout/template/blank.html',
+	templateUrl: '../../core/layout/template/blank.html',
 })
 export class AccountComponent extends BaseComponent {
 	public customLayout: boolean

@@ -1,19 +1,17 @@
-import { Directive, Input, ElementRef } from '@angular/core';
+import { Directive, Input, ElementRef } from '@angular/core'
 
 /*
  *
  */
 @Directive({
-  selector: '[mkMenuToggle]'
+	selector: '[mkMenuToggle]',
 })
 export class SidebarLeftToggleDirective {
-  @Input('mkMenuToggle') item;
+	@Input('mkMenuToggle') item
 
-  /**
-   * @method constructor
-   * @param elementRef [description]
-   */
-  constructor(
-    public elementRef: ElementRef
-  ) {}
+	/**
+	 * @method constructor
+	 * @param elementRef [description]
+	 */
+	constructor(public elementRef: ElementRef) {}
 }
