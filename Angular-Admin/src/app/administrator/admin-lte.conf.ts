@@ -16,13 +16,20 @@ export const adminLteConf = {
 			label: 'Dashboard',
 			route: '/admin/dashboard',
 			routeActive: 'admin/dashboard',
-			iconClasses: 'fa fa-circle-o',
+			iconClasses: 'lnr lnr-chart-bars',
 		},
 		{
-			label: 'Banner',
-			route: '/admin/banner',
-			routeActive: 'admin/banner',
-			iconClasses: 'fa fa-circle-o',
+			label: 'Nội dung',
+			routeActive: 'admin/dashboard',
+			iconClasses: 'lnr lnr-laptop-phone',
+			children: [
+				{
+					label: 'Banner',
+					route: '/admin/banner',
+					routeActive: 'admin/banner',
+					iconClasses: 'lnr lnr-picture',
+				},
+			],
 		},
 	],
 
