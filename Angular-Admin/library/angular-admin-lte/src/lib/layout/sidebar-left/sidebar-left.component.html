@@ -1,3 +1,4 @@
+<!-- ASIDE MENU MAIN -->
 <aside class="main-sidebar">
 	<div class="sidebar-background"></div>
 	<!-- LOGO -->
@@ -9,6 +10,7 @@
 		</div>
 		<div class="button-close"><span class="line"></span></div>
 	</div>
+	<!-- ASIDE -->
 	<section class="aside-menu" #sidebarElement [style.height.px]="sidebarHeight" [style.overflow]="sidebarOverflow">
 		<ng-content></ng-content>
 		<ng-container *ngFor="let item of menu">
@@ -17,6 +19,7 @@
 	</section>
 </aside>
 
+<!-- TEMPLATE -->
 <ng-template #sidebarInner let-item="item">
 	<div class="aside-item" [class.active]="item.isActive" [class.header]="item.separator"
 		[class.menu-open]="!item.isCollapsed">
