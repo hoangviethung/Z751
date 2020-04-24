@@ -27,6 +27,14 @@ const routes: Routes = [
 					),
 				data: { title: 'Banner' },
 			},
+			{
+				path: 'article',
+				loadChildren: () =>
+					import('./article/article.module').then(
+						(m) => m.ArticleModule
+					),
+				data: { title: 'Article' },
+			},
 		],
 	},
 	{
@@ -46,4 +54,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class AdministratorRoutingModule {}
+export class AdministratorRoutingModule { }

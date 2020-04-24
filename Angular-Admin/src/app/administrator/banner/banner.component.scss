@@ -1,5 +1,6 @@
 .block-control {
 	display: flex;
+
 	.btn-add {
 		margin-left: auto;
 	}
@@ -7,20 +8,15 @@
 
 .block-table {
 	margin-top: 10px;
-	table {
-		text-align: center;
-		th,
-		td {
-			vertical-align: middle;
-			border: 1px solid darken(white, 12%);
-		}
-	}
+
 	.column-image {
 		width: 320px;
 	}
+
 	.column-button {
 		width: 100px;
 	}
+
 	.column-number {
 		width: 40px;
 	}
@@ -28,9 +24,10 @@
 
 .banner-buttons {
 	.btn {
-		width: 30px;
+		width : 30px;
 		height: 30px;
-		+ .btn {
+
+		+.btn {
 			margin-left: 10px;
 		}
 	}

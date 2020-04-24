@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ArticleComponent } from './article.component';
 
 
-const routes: Routes = [];
+const routes: Routes = [
+	{
+		path: '',
+		pathMatch: 'full',
+		component: ArticleComponent,
+		data: {
+			title: 'Bài viết',
+		},
+	},
+];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule]
 })
 export class ArticleRoutingModule { }

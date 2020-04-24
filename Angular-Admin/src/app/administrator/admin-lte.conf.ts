@@ -29,6 +29,12 @@ export const adminLteConf = {
 					routeActive: 'admin/banner',
 					iconClasses: 'lnr lnr-picture',
 				},
+				{
+					label: 'Bài viết',
+					route: '/admin/article',
+					routeActive: '/admin/article',
+					iconClasses: 'lnr lnr-book',
+				},
 			],
 		},
 	],

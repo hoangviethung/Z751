@@ -1,1 +1,71 @@
-<p>article works!</p>
+<div class="block-table">
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Tiêu đề</th>
+				<th>Đường dẫn</th>
+				<th>Danh mục</th>
+				<th>Ngày tạo</th>
+				<th class="text-center">Ngôn ngữ</th>
+				<th class="text-center">Hiển thị</th>
+				<th class="text-center">Tác vụ</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>Giày bóng đá Kamito Quang Hải đủ màu, đủ size</td>
+				<td>giay-bong-da-kamito-quang-hai-du-mau-du-size</td>
+				<td>Chính sách </td>
+				<td>12/11/2019 14:50</td>
+				<td class="text-center">VN</td>
+				<td class="text-center">
+					<label class="checkbox-custom-2">
+						<input class="custom-control-input" type="checkbox" checked="checked" onclick="return false">
+						<span class="custom-control-indicator"></span>
+					</label>
+				</td>
+				<td>
+					<div class="list-btn">
+						<!-- ĐỔI MẬT KHẨU-->
+						<div class="item">
+							<a class="btn btn-outline-success">
+								<span class="lnr lnr-pencil"></span>
+							</a>
+						</div>
+						<!-- XÓA-->
+						<div class="item">
+							<a class="btn btn-outline-danger">
+								<span class="lnr lnr-trash"></span>
+							</a>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="block-form mt-10">
+	<div class="tab-container" appTab>
+		<div class="block-list-tab">
+			<ul class="list-tab">
+				<li class="item" toggle-for="item-1">Nội dung</li>
+				<li class="item" toggle-for="item-2">SEO bài viết</li>
+				<li class="item" toggle-for="item-3">Hình ảnh</li>
+			</ul>
+		</div>
+		<div class="tab-content">
+			<div class="content" tab-id="item-1">
+				<p>1</p>
+			</div>
+			<div class="content" tab-id="item-2">
+				<p>2</p>
+			</div>
+			<div class="content" tab-id="item-3">
+				<p>3</p>
+			</div>
+		</div>
+	</div>
+</div>
