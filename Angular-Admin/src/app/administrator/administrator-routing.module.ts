@@ -35,6 +35,22 @@ const routes: Routes = [
 					),
 				data: { title: 'Article' },
 			},
+			{
+				path: 'setting',
+				loadChildren: () =>
+					import('./setting/setting.module').then(
+						(m) => m.SettingModule
+					),
+				data: { title: 'Cài Đặt' },
+			},
+			{
+				path: 'resource-key',
+				loadChildren: () =>
+					import('./resource-key/resource-key.module').then(
+						(m) => m.ResourceKeyModule
+					),
+				data: { title: 'Tài nguyên' },
+			},
 		],
 	},
 	{

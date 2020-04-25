@@ -13,7 +13,8 @@ import { PageForbiddenComponent } from '../../core/layout/page-forbidden/page-fo
 import { RouterModule } from '@angular/router'
 import { FormsModule } from '@angular/forms'
 import { LoadingModule } from '../../core/loading/loading.module'
-import { TabDirective } from '../directive/tab.directive'
+import { TabDirective } from '../directive/tab.directive';
+import { ResourceKeyComponent } from './resource-key/resource-key.component'
 
 @NgModule({
 	imports: [
@@ -32,6 +33,7 @@ import { TabDirective } from '../directive/tab.directive'
 		AdministratorComponent,
 		PageNotFoundComponent,
 		PageForbiddenComponent,
+		ResourceKeyComponent,
 	],
 	bootstrap: [AdministratorComponent],
 })

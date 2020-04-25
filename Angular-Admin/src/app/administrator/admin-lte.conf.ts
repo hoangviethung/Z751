@@ -37,6 +37,24 @@ export const adminLteConf = {
 				},
 			],
 		},
+		{
+			label: 'Cài đặt',
+			iconClasses: 'lnr lnr-cog',
+			children: [
+				{
+					label: 'Seting',
+					route: '/admin/setting',
+					routeActive: '/admin/setting',
+					iconClasses: 'lnr lnr-cog',
+				},
+				{
+					label: 'Tài nguyên',
+					route: '/admin/resource-key',
+					routeActive: '/admin/resource-key',
+					iconClasses: 'lnr lnr-layers',
+				},
+			],
+		},
 	],
 
 	// Menu nay la flexible menu neu muốn change. Xem trong file Administrator.component.ts
