@@ -1,9 +1,11 @@
 .btn {
+	font-size: 13px;
 	display: inline-flex;
 	justify-content: center;
 	align-items: center;
-	height: 40px;
-	padding: 0;
+	height: 35px;
+	padding: 0 20px;
+	font-size: 14px;
 	&:focus {
 		outline: none;
 	}
@@ -12,6 +14,7 @@
 .btn-submit {
 	width: 100%;
 	background-color: #677bc4;
+
 	&:hover {
 		background-color: darken(#677bc4, 8%);
 	}
@@ -19,9 +22,4 @@
 
 .btn-info {
 	width: 100%;
-}
-
-.btn-add {
-	padding: 0 30px;
-	font-size: 16px;
 }

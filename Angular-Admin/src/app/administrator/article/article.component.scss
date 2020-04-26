@@ -1,12 +1,14 @@
-.block-table {
-	table {
-		text-align: center;
-		th,
-		td {
-			vertical-align: middle;
-			border: 1px solid darken(white, 12%);
-		}
+.block-control {
+	display: flex;
+
+	.btn-add {
+		margin-left: auto;
 	}
+}
+
+.block-table {
+	margin-top: 10px;
+
 	.column-image {
 		width: 320px;
 	}
@@ -22,10 +24,10 @@
 
 .banner-buttons {
 	.btn {
-		width: 30px;
+		width : 30px;
 		height: 30px;
-		padding: 0 10px;
-		+ .btn {
+
+		+.btn {
 			margin-left: 10px;
 		}
 	}

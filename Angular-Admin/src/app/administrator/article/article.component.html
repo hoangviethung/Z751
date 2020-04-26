@@ -1,0 +1,163 @@
+<div class="block-table">
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Tiêu đề</th>
+				<th>Đường dẫn</th>
+				<th>Danh mục</th>
+				<th>Ngày tạo</th>
+				<th class="text-center">Ngôn ngữ</th>
+				<th class="text-center">Hiển thị</th>
+				<th class="text-center">Tác vụ</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>Giày bóng đá Kamito Quang Hải đủ màu, đủ size</td>
+				<td>giay-bong-da-kamito-quang-hai-du-mau-du-size</td>
+				<td>Chính sách </td>
+				<td>12/11/2019 14:50</td>
+				<td class="text-center">VN</td>
+				<td class="text-center">
+					<label class="checkbox-custom-2">
+						<input class="custom-control-input" type="checkbox" checked="checked" onclick="return false">
+						<span class="custom-control-indicator"></span>
+					</label>
+				</td>
+				<td>
+					<div class="list-btn">
+						<!-- ĐỔI MẬT KHẨU-->
+						<div class="item">
+							<a class="btn btn-outline-success">
+								<span class="lnr lnr-pencil"></span>
+							</a>
+						</div>
+						<!-- XÓA-->
+						<div class="item">
+							<a class="btn btn-outline-danger">
+								<span class="lnr lnr-trash"></span>
+							</a>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="block-form mt-10">
+	<div class="tab-container" appTab>
+		<div class="block-list-tab">
+			<ul class="list-tab">
+				<li class="item active" toggle-for="item-1">Nội dung</li>
+				<li class="item" toggle-for="item-2">SEO bài viết</li>
+				<li class="item" toggle-for="item-3">Hình ảnh</li>
+			</ul>
+		</div>
+		<div class="tab-content">
+			<div class="content show" tab-id="item-1">
+				<div class="row">
+					<div class="form-group col-lg-4">
+						<label>Tên nhóm *</label>
+						<select class="form-control">
+							<option>Ngôn ngữ</option>
+							<option>Vietnamese</option>
+							<option>English</option>
+						</select>
+					</div>
+					<div class="form-group col-lg-4">
+						<label>Danh mục *</label>
+						<select class="form-control">
+							<option>Tin tức - sự kiện</option>
+							<option>Tin tức - sự kiện</option>
+							<option>Tin tức - sự kiện</option>
+							<option>Tin tức - sự kiện</option>
+							<option>Tin tức - sự kiện</option>
+						</select>
+					</div>
+					<div class="w-100"></div>
+					<div class="form-group col-lg-4">
+						<label>Đường dẫn *</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text">http://localhost:4200/</span>
+							</div>
+							<input class="form-control" type="text" />
+						</div>
+					</div>
+					<div class="form-group col-lg-4">
+						<label>Đường dẫn mới *</label>
+						<input class="form-control" type="text" placeholder="Nhập đường dẫn mới" />
+					</div>
+					<div class="w-100"></div>
+					<div class="form-group col-lg-4">
+						<label>Tiêu đề *</label>
+						<input class="form-control" type="text" placeholder="Nhập tiêu đề" />
+					</div>
+					<div class="form-group col-lg-4">
+						<label>Ảnh đại diện *</label>
+						<input class="form-control" type="text" placeholder="Nhập đường dẫn ảnh đại diện" />
+					</div>
+					<div class="w-100"></div>
+					<div class="form-group col-lg-12">
+						<label>Mô tả *</label>
+						<textarea class="form-control" placeholder="Nhập mô tả"></textarea>
+					</div>
+					<div class="w-100"></div>
+					<div class="form-group col-lg-4">
+						<label>Ngày đăng</label>
+						<input class="form-control" type="date" />
+					</div>
+					<div class="w-100"></div>
+					<div class="form-group col-lg-2">
+						<label class="checkbox-custom">
+							Hiển thị
+							<input type="checkbox" />
+						</label>
+					</div>
+					<div class="form-group col-lg-2">
+						<label class="checkbox-custom">
+							Nổi bật
+							<input type="checkbox" />
+						</label>
+					</div>
+					<div class="form-group col-lg-12">
+						<a class="btn btn-danger" href="#">Hủy</a>
+						<a class="btn btn-success" href="#">Thêm mới</a>
+					</div>
+				</div>
+			</div>
+			<div class="content" tab-id="item-2">
+				<div class="row">
+					<div class="form-group col-lg-6">
+						<label>Meta Title *</label>
+						<input class="form-control" type="text" />
+					</div>
+					<div class="w-100"></div>
+					<div class="form-group col-lg-6">
+						<label>Meta Image *</label>
+						<input class="form-control" type="text" />
+					</div>
+					<div class="w-100"></div>
+					<div class="form-group col-lg-6">
+						<label>Meta Description</label>
+						<input class="form-control" type="text" />
+					</div>
+					<div class="w-100"></div>
+					<div class="form-group col-lg-6">
+						<label>Meta Keywords </label>
+						<input class="form-control" type="text" />
+					</div>
+					<div class="form-group col-lg-12">
+						<a class="btn btn-success" href="#">Xác nhận</a>
+					</div>
+				</div>
+			</div>
+			<div class="content" tab-id="item-3">
+				<p>3</p>
+			</div>
+		</div>
+	</div>
+</div>

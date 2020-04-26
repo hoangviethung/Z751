@@ -9,7 +9,8 @@ import { ToastrModule } from 'ngx-toastr'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FormsModule } from '@angular/forms'
 import { LoadingService } from '../core/loading/loading.service'
-import { AuthenticService } from '../core/authentication/authentic.service'
+import { AuthenticService } from '../core/authentication/authentic.service';
+import { TabDirective } from './directive/tab.directive'
 
 @NgModule({
 	imports: [

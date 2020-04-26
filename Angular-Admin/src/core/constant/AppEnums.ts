@@ -1,10 +1,10 @@
 export enum ResultCode {
 	FailMsg = -2,
-	Fail = -1,
-	Success = 0,
+	Fail = 401,
+	Success = 200,
 	Warning = 1,
 
-	error404 = -11,
+	error404 = 404,
 }
 
 export enum Modes {

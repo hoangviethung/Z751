@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 import { BannerComponent } from './banner.component'
+import { AddEditComponent } from './add-edit/add-edit.component'
 
 const routes: Routes = [
 	{
@@ -9,6 +10,20 @@ const routes: Routes = [
 		component: BannerComponent,
 		data: {
 			title: 'Banner',
+		},
+	},
+	{
+		path: 'add',
+		component: AddEditComponent,
+		data: {
+			title: 'Thêm banner',
+		},
+	},
+	{
+		path: 'edit/:banner-id',
+		component: AddEditComponent,
+		data: {
+			title: 'Sửa banner',
 		},
 	},
 ]

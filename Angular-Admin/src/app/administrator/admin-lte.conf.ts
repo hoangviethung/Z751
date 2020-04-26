@@ -16,13 +16,44 @@ export const adminLteConf = {
 			label: 'Dashboard',
 			route: '/admin/dashboard',
 			routeActive: 'admin/dashboard',
-			iconClasses: 'fa fa-circle-o',
+			iconClasses: 'lnr lnr-chart-bars',
 		},
 		{
-			label: 'Banner',
-			route: '/admin/banner',
-			routeActive: 'admin/banner',
-			iconClasses: 'fa fa-circle-o',
+			label: 'Nội dung',
+			routeActive: 'admin/dashboard',
+			iconClasses: 'lnr lnr-laptop-phone',
+			children: [
+				{
+					label: 'Banner',
+					route: '/admin/banner',
+					routeActive: 'admin/banner',
+					iconClasses: 'lnr lnr-picture',
+				},
+				{
+					label: 'Bài viết',
+					route: '/admin/article',
+					routeActive: '/admin/article',
+					iconClasses: 'lnr lnr-book',
+				},
+			],
+		},
+		{
+			label: 'Cài đặt',
+			iconClasses: 'lnr lnr-cog',
+			children: [
+				{
+					label: 'Seting',
+					route: '/admin/setting',
+					routeActive: '/admin/setting',
+					iconClasses: 'lnr lnr-cog',
+				},
+				{
+					label: 'Tài nguyên',
+					route: '/admin/resource-key',
+					routeActive: '/admin/resource-key',
+					iconClasses: 'lnr lnr-layers',
+				},
+			],
 		},
 	],
 

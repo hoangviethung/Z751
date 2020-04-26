@@ -1,0 +1,99 @@
+<div class="block-content">
+	<div class="block-control">
+		<a class="btn btn-danger btn-cancel" routerLink="/admin/banner"
+			>Hủy bỏ</a
+		>
+		<a class="btn btn-success btn-add">Thêm</a>
+	</div>
+	<form>
+		<div class="form-row row">
+			<div class="col-lg-4">
+				<div class="row">
+					<div class="form-group col-12">
+						<label for="">Ngôn ngữ</label>
+						<select
+							[(ngModel)]="banner.languageId"
+							name="langulage"
+							id="language"
+							class="form-control"
+							(change)="showValue()"
+						>
+							<option value="1">Tiếng việt</option>
+							<option value="2">English</option>
+						</select>
+					</div>
+					<div class="form-group col-12">
+						<label id="ResourcePathName">Đường dẫn của ảnh</label>
+						<div class="input-group shadow-sm">
+							<input
+								class="form-control"
+								id="ResourcePath"
+								name="ResourcePath"
+								type="text"
+								value=""
+								[(ngModel)]="banner.resourcePath"
+							/>
+						</div>
+						<span class="field-validation-valid"></span>
+					</div>
+					<div class="form-group col-12">
+						<label>Liên kết</label>
+						<div class="input-group shadow-sm">
+							<input
+								class="form-control"
+								id="Link"
+								name="Link"
+								type="text"
+								value=""
+								[(ngModel)]="banner.link"
+							/>
+						</div>
+						<span class="field-validation-valid"></span>
+					</div>
+					<div class="form-group col-12">
+						<label>Thứ tự</label>
+						<div class="input-group shadow-sm">
+							<input
+								class="form-control valid"
+								id="Order"
+								name="Order"
+								type="number"
+								value="0"
+								[(ngModel)]="banner.order"
+							/>
+						</div>
+						<span class="field-validation-valid"></span>
+					</div>
+					<div class="form-group col-auto">
+						<label class="checkbox-custom"
+							>Hiển thị
+							<input
+								checked="checked"
+								class="check-box"
+								data-val="true"
+								data-val-required="The IsPublished field is required."
+								id="IsPublished"
+								name="IsPublished"
+								type="checkbox"
+								value="true"
+								[(ngModel)]="banner.IsPublished"
+							/>
+						</label>
+					</div>
+					<div class="form-group col-auto">
+						<label class="checkbox-custom">
+							Đặt làm video
+							<input
+								class="check-box"
+								id="IsVideo"
+								name="isVideo"
+								type="checkbox"
+								[(ngModel)]="banner.isVideo"
+							/>
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
