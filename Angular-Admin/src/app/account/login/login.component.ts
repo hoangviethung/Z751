@@ -72,11 +72,11 @@ export class LoginComponent extends BaseComponent {
 			(result) => {
 				this.isLoading = false
 				let lang = this.langCurrent
-				if (result.result == ResultCode.Success) {
+				if (result.code == ResultCode.Success) {
 					this.authenticSvc.saveSession(result.data)
 					this.router.navigate([UrlConsts.urlHome])
 				} else {
-					this.message = result.errorMessage
+					this.message = result.message
 				}
 			},
 			(error) => {

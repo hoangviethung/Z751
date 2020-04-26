@@ -15,7 +15,7 @@ import { AppConsts } from '../../../core/constant/AppConsts'
 	providedIn: 'root',
 })
 export class LoginService {
-	private urlLogin: string = '/api/Authen/login'
+	private urlLogin: string = '/api/User/login'
 	constructor(
 		private http: HttpClient,
 		private authenticSvc: AuthenticService

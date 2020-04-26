@@ -81,7 +81,7 @@ export abstract class AppBaseComponent extends BaseComponent implements OnInit {
 
 		if (!url.startsWith(UrlConsts.urlLogin)) {
 			this.authenticSvc.checkAccessToken((result) => {
-				if (result.result < 0) {
+				if (result.code == 401) {
 					this.showError(
 						'Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại để tiếp tục'
 					)

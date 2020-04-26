@@ -1,12 +1,4 @@
-.block-control {
-	display: flex;
-	.btn-add {
-		margin-left: auto;
-	}
-}
-
 .block-table {
-	margin-top: 10px;
 	table {
 		text-align: center;
 		th,
@@ -30,6 +22,7 @@
 	.btn {
 		width: 30px;
 		height: 30px;
+		padding: 0 10px;
 		+ .btn {
 			margin-left: 10px;
 		}

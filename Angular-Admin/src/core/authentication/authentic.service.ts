@@ -9,12 +9,12 @@ import { ResultCode } from '../constant/AppEnums'
 
 export class Session {
 	accessToken: string = ''
-	id: number = 0
+	// id: number = 0
 	userName: string = ''
 	email: string = ''
 	imageUrl: string
 	roles: Array<string> = []
-	isExternalUser: boolean
+	// isExternalUser: boolean
 
 	constructor() {
 		this.accessToken = ''
@@ -28,7 +28,7 @@ export class Session {
 	providedIn: 'root',
 })
 export class AuthenticService {
-	private urlCheckAccessToken: string = '/api/Authen/checklogin'
+	private urlCheckAccessToken: string = '/api/User/check'
 	private urlLogout: string = '/api/Authen/logout'
 
 	constructor(
@@ -114,8 +114,8 @@ export class AuthenticService {
 		else {
 			let session: ResultModel<Session> = {
 				data: null,
-				result: -2,
-				errorMessage: 'You signed out',
+				code: -2,
+				message: 'You signed out',
 			}
 			callback(session)
 		}
@@ -130,7 +130,7 @@ export class AuthenticService {
 				.get<ResultModel<Session>>(
 					`${AppConsts.remoteServiceBaseUrl}${
 						this.urlCheckAccessToken
-					}?accessToken=${encodeURIComponent(token)}`
+					}?token=${encodeURIComponent(token)}`
 				)
 				.subscribe(
 					(result) => {
@@ -141,8 +141,8 @@ export class AuthenticService {
 						callback(
 							new ResultModel<Session>({
 								data: null,
-								errorMessage: error.code,
-								result: ResultCode.error404,
+								message: error.code,
+								code: ResultCode.error404,
 							})
 						)
 					}

@@ -184,38 +184,38 @@ export class AlertService {
 
 	alertByHttpResult(result: ResultModel<any>) {
 		let alert: Alert
-		switch (result.result) {
+		switch (result.code) {
 			case ResultCode.Fail:
 			case ResultCode.FailMsg:
 				alert = new ErrorAlert({
 					title: 'Alert.TitleError',
-					text: FuncHelper.isNull(result.errorMessage)
+					text: FuncHelper.isNull(result.message)
 						? 'Alert.TextError'
-						: result.errorMessage,
+						: result.message,
 				})
 				break
 			case ResultCode.Success:
 				alert = new SuccessAlert({
 					title: 'Alert.TitleSuccess',
-					text: FuncHelper.isNull(result.errorMessage)
+					text: FuncHelper.isNull(result.message)
 						? 'Alert.TextSuccess'
-						: result.errorMessage,
+						: result.message,
 				})
 				break
 			case ResultCode.Warning:
 				alert = new WarningAlert({
 					title: 'Alert.TitleWarning',
-					text: FuncHelper.isNull(result.errorMessage)
+					text: FuncHelper.isNull(result.message)
 						? 'Alert.TextWarning'
-						: result.errorMessage,
+						: result.message,
 				})
 				break
 			default:
 				alert = new WarningAlert({
 					title: 'Alert.TitleInfo',
-					text: FuncHelper.isNull(result.errorMessage)
+					text: FuncHelper.isNull(result.message)
 						? 'Alert.TextInfo'
-						: result.errorMessage,
+						: result.message,
 				})
 				break
 		}
