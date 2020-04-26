@@ -29,6 +29,30 @@ export const adminLteConf = {
 					routeActive: 'admin/banner',
 					iconClasses: 'lnr lnr-picture',
 				},
+				{
+					label: 'Bài viết',
+					route: '/admin/article',
+					routeActive: '/admin/article',
+					iconClasses: 'lnr lnr-book',
+				},
+			],
+		},
+		{
+			label: 'Cài đặt',
+			iconClasses: 'lnr lnr-cog',
+			children: [
+				{
+					label: 'Seting',
+					route: '/admin/setting',
+					routeActive: '/admin/setting',
+					iconClasses: 'lnr lnr-cog',
+				},
+				{
+					label: 'Tài nguyên',
+					route: '/admin/resource-key',
+					routeActive: '/admin/resource-key',
+					iconClasses: 'lnr lnr-layers',
+				},
 			],
 		},
 	],

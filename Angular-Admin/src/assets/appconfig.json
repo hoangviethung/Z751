@@ -3,7 +3,11 @@
 	"appBaseUrl": "http://localhost:4200",
 	"imageDataUrl": "http://localhost:4200",
 	"appAccountUrl": "http://localhost:4200",
+<<<<<<< HEAD
 	"remoteServiceBaseUrl": "http://27.71.234.45:8080",
+=======
+	"remoteServiceBaseUrl": "http://103.9.156.117:50006",
+>>>>>>> fddcb485cb1a5ea832455c0983fc756327b31e80
 	"languageUrl": "/assets/lang/",
 	"defaultLang": "vi"
 }

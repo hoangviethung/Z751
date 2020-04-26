@@ -1,16 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ArticleComponent } from './article.component';
+import { ResourceKeyComponent } from './resource-key.component';
 
 
 const routes: Routes = [
 	{
 		path: '',
-		pathMatch: 'full',
-		component: ArticleComponent,
-		data: {
-			title: 'Bài viết',
-		},
+		component: ResourceKeyComponent,
 	},
 ];
 
@@ -18,4 +14,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule]
 })
-export class ArticleRoutingModule { }
+export class ResourceKeyRoutingModule { }

@@ -12,6 +12,7 @@ export class BannerModel {
 	isVideo: boolean
 	languageId: number
 }
+
 @Component({
 	selector: 'app-add-edit',
 	templateUrl: './add-edit.component.html',
