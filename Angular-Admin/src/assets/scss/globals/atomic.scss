@@ -1,4 +1,4 @@
-@import "../abstracts/variables";
+@import '../abstracts/variables';
 
 // Display styles
 [hidden],
@@ -48,9 +48,9 @@
 }
 
 .fcc {
-	display        : flex;
+	display: flex;
 	justify-content: center;
-	align-items    : center;
+	align-items: center;
 }
 
 // List, ul, ol, dl
@@ -68,16 +68,16 @@
 }
 
 .pd-70 {
-	padding-top   : 70px;
+	padding-top: 70px;
 	padding-bottom: 70px;
 
 	@media (max-width: 1199.98px) {
-		padding-top   : 50px;
+		padding-top: 50px;
 		padding-bottom: 50px;
 	}
 
 	@media (max-width: 768px) {
-		padding-top   : 30px;
+		padding-top: 30px;
 		padding-bottom: 30px;
 	}
 }
@@ -142,7 +142,7 @@
 // Forms
 .form-control {
 	padding: 7px 15px;
-	resize : none;
+	resize: none;
 }
 
 .bd-0 {
@@ -155,10 +155,6 @@
 
 .w-50 {
 	width: 50%;
-}
-
-.bd-main {
-	border: 1px solid map-get($mau, main);
 }
 
 .ov-h {
@@ -206,7 +202,7 @@
 }
 
 .bg-gray {
-	background-color: rgba(#F3F3F3, .5);
+	background-color: rgba(#f3f3f3, 0.5);
 }
 
 .bg-white {
@@ -221,19 +217,7 @@
 	opacity: 50%;
 }
 
-.text-center {
-	text-align: center !important;
-}
-
-.text-right {
-	text-align: right;
-}
-
-.txt-d-under {
-	text-decoration: underline;
-}
-
 .mx-at {
 	margin-right: auto;
-	margin-left : auto;
+	margin-left: auto;
 }

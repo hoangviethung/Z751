@@ -1,98 +1,49 @@
 .block-table {
-	background   : #ffffff;
-	padding      : 1.25rem;
+	background: #ffffff;
 	border-radius: 5px;
 
 	table {
-		font-size: 13px;
-
+		font-size: 14px;
 		tr {
-			color     : #495057;
-			transition: .2s all ease-in-out;
-
-			th {
-				padding      : .55rem;
-				border-bottom: 2px solid #e9ecef;
-			}
-
-			td {
-				padding: .44rem;
-			}
-
 			th,
 			td {
 				vertical-align: middle;
-
-				&:first-child {
-					text-align: center;
-				}
-
-				&.left {
-					text-align: left;
-				}
-
-				&.bold {
-					font-weight: 700;
-				}
+				border: 1px solid darken(white, 24%);
+				border-bottom: 1px solid darken(white, 24%);
 			}
 		}
-
-		thead {
-			tr {
-				cursor: pointer;
-			}
-		}
-
-		tbody {
-			tr {
-				@media (min-width: 1025px) {
-					&:hover {
-						background-color: #e0f3ff;
-					}
-				}
-			}
+		.table-info {
+			text-align: center;
 		}
 	}
 
-	.list-btn {
-		display        : flex;
-		justify-content: center;
-
-		.item {
-			+.item {
-				margin-left: 15px;
-			}
-
-			.btn {
-				width : 30px;
-				height: 30px;
-			}
-		}
+	.column-number {
+		width: 40px;
 	}
 
-	&.table-input {
-		.form-group {
-			margin-bottom: 0;
+	.column-language {
+		width: 100px;
+	}
 
-			.input-group {
-				.input-group-text {
-					font-size: 14px;
+	.column-title {
+		width: 280px;
+	}
 
-					svg {
-						width  : 20px;
-						height : 20px;
-						opacity: .6;
-					}
-				}
+	.column-image {
+		width: 280px;
+	}
 
-				select {
-					font-size: 14px;
-					cursor   : pointer;
-				}
+	.column-button {
+		width: 100px;
+	}
 
-				input {
-					font-size: 14px;
-				}
+	.table-buttons {
+		.btn {
+			width: 30px;
+			height: 30px;
+			padding: 0 10px;
+			+ .btn {
+				margin-left: 10px;
 			}
 		}
 	}

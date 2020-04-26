@@ -5,6 +5,7 @@ import { BannerRoutingModule } from './banner-routing.module'
 import { BannerComponent } from './banner.component'
 import { AddEditComponent } from './add-edit/add-edit.component'
 import { FormsModule } from '@angular/forms'
+import { BannerService } from './banner.service'
 
 @NgModule({
 	declarations: [BannerComponent, AddEditComponent],

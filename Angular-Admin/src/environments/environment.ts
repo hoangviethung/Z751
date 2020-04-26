@@ -3,8 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+	production: false,
+	appName: 'z751',
+	appBaseUrl: 'http://localhost:4200',
+	imageDataUrl: 'http://localhost:4200',
+	appAccountUrl: 'http://localhost:4200',
+	remoteServiceBaseUrl: 'http://27.71.234.45:8080',
+	languageUrl: '/assets/lang/',
+	defaultLang: 'vi',
+}
 
 /*
  * For easier debugging in development mode, you can import the following file
