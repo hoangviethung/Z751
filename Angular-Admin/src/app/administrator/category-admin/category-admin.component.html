@@ -1,0 +1,141 @@
+<div class="block-content">
+	<div class="block-control">
+		<a class="btn btn-success btn-add" routerLink="add">Thêm mới</a>
+	</div>
+	<div class="block-table">
+		<table class="table">
+			<tr class="table-info">
+				<th>#</th>
+				<th>Tên danh mục</th>
+				<th>Danh mục cha</th>
+				<th>Đường dẫn</th>
+				<th>Tác vụ</th>
+			</tr>
+			<tr>
+				<td class="column-number ta-c">1</td>
+				<td class="column-title">
+					Liên hệ
+				</td>
+				<td class="column-category ta-c">Null</td>
+				<td class="column-url ta-c">/lien-he
+				</td>
+				<td class="column-button ta-c">
+					<div class="table-buttons">
+						<span class="btn btn-outline-success btn-edit">
+							<span class="lnr lnr-pencil"></span>
+						</span>
+						<span class="btn btn-outline-danger btn-remove">
+							<span class="lnr lnr-trash"></span>
+						</span>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="block-form mt-10">
+	<div class="block-content">
+		<div class="block-control">
+			<a class="btn btn-danger btn-cancel" routerLink="">Hủy bỏ</a>
+			<a class="btn btn-success btn-add">Thêm</a>
+		</div>
+		<div class="tab-container" appTab>
+			<div class="block-list-tab">
+				<ul class="list-tab">
+					<li class="item active" toggle-for="item-1">Nội dung</li>
+					<li class="item" toggle-for="item-2">SEO bài viết</li>
+					<li class="item" toggle-for="item-3">Hình ảnh</li>
+				</ul>
+			</div>
+			<div class="tab-content">
+				<div class="content show" tab-id="item-1">
+					<div class="row">
+						<div class="form-group col-lg-4">
+							<label>Tên nhóm *</label>
+							<select class="form-control">
+								<option>Ngôn ngữ</option>
+								<option>Vietnamese</option>
+								<option>English</option>
+							</select>
+						</div>
+						<div class="form-group col-lg-4">
+							<label>Danh mục cha</label>
+							<select class="form-control">
+								<option>Tin tức - sự kiện</option>
+								<option>Tin tức - sự kiện</option>
+								<option>Tin tức - sự kiện</option>
+								<option>Tin tức - sự kiện</option>
+								<option>Tin tức - sự kiện</option>
+							</select>
+						</div>
+						<div class="form-group col-lg-4">
+							<label>Đường dẫn *</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">http://localhost:4200/</span>
+								</div>
+								<input class="form-control" type="text" />
+							</div>
+						</div>
+						<div class="form-group col-lg-4">
+							<label>Đường dẫn mới *</label>
+							<input class="form-control" type="text" placeholder="Nhập đường dẫn mới" />
+						</div>
+						<div class="form-group col-lg-4">
+							<label>Tiêu đề *</label>
+							<input class="form-control" type="text" placeholder="Nhập tiêu đề" />
+						</div>
+						<div class="form-group col-lg-4">
+							<label>Ảnh đại diện *</label>
+							<input class="form-control" type="text" placeholder="Nhập đường dẫn ảnh đại diện" />
+						</div>
+						<div class="form-group col-lg-12">
+							<label>Mô tả *</label>
+							<textarea class="form-control" placeholder="Nhập mô tả"></textarea>
+						</div>
+						<div class="form-group col-lg-4">
+							<label>Chọn mẫu template</label>
+							<select class="form-control">
+								<option>Mẫu số 1</option>
+								<option>Mẫu số 1</option>
+								<option>Mẫu số 1</option>
+								<option>Mẫu số 1</option>
+								<option>Mẫu số 1</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="content" tab-id="item-2">
+					<div class="row">
+						<div class="form-group col-lg-6">
+							<label>Meta Title *</label>
+							<input class="form-control" type="text" />
+						</div>
+						<div class="w-100"></div>
+						<div class="form-group col-lg-6">
+							<label>Meta Image *</label>
+							<input class="form-control" type="text" />
+						</div>
+						<div class="w-100"></div>
+						<div class="form-group col-lg-6">
+							<label>Meta Description</label>
+							<input class="form-control" type="text" />
+						</div>
+						<div class="w-100"></div>
+						<div class="form-group col-lg-6">
+							<label>Meta Keywords </label>
+							<input class="form-control" type="text" />
+						</div>
+						<div class="form-group col-lg-12">
+							<a class="btn btn-success" href="#">Xác nhận</a>
+						</div>
+					</div>
+				</div>
+				<div class="content" tab-id="item-3">
+					<p>3</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

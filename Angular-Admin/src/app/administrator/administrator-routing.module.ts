@@ -51,6 +51,35 @@ const routes: Routes = [
 					),
 				data: { title: 'Tài nguyên' },
 			},
+			{
+				path: 'category-admin',
+				loadChildren: () =>
+					import('./category-admin/category-admin.module').then(
+						(m) => m.CategoryAdminModule
+					),
+				data: { title: 'Danh Mục Admin' },
+			},
+			{
+				path: 'about',
+				loadChildren: () =>
+					import('./about/about.module').then(
+						(m) => m.AboutModule),
+				data: { title: 'Giới thiệu' },
+			},
+			{
+				path: 'user',
+				loadChildren: () =>
+					import('./user/user.module').then(
+						(m) => m.UserModule),
+				data: { title: 'Tài khoản' },
+			},
+			{
+				path: 'role',
+				loadChildren: () =>
+					import('./role/role.module').then(
+						(m) => m.RoleModule),
+				data: { title: 'Quản lí quyền' },
+			},
 		],
 	},
 	{

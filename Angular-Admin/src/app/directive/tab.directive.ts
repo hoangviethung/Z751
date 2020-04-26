@@ -8,7 +8,7 @@ import {
 	selector: '[appTab]',
 })
 export class TabDirective implements AfterViewInit {
-	constructor(private elementRef: ElementRef) {}
+	constructor(private elementRef: ElementRef) { }
 
 	ngAfterViewInit(): void {
 		//Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.

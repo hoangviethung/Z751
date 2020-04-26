@@ -35,6 +35,18 @@ export const adminLteConf = {
 					routeActive: '/admin/article',
 					iconClasses: 'lnr lnr-book',
 				},
+				{
+					label: 'Danh mục',
+					route: '/admin/category-admin',
+					routeActive: '/admin/category-admin',
+					iconClasses: 'lnr lnr-list',
+				},
+				{
+					label: 'Giới thiệu',
+					route: '/admin/about',
+					routeActive: '/admin/about',
+					iconClasses: 'lnr lnr-pushpin',
+				},
 			],
 		},
 		{
@@ -51,6 +63,24 @@ export const adminLteConf = {
 					label: 'Tài nguyên',
 					route: '/admin/resource-key',
 					routeActive: '/admin/resource-key',
+					iconClasses: 'lnr lnr-layers',
+				},
+			],
+		},
+		{
+			label: 'Thành viên',
+			iconClasses: 'lnr lnr-users',
+			children: [
+				{
+					label: 'Tài khoản quản trị',
+					route: '/admin/user',
+					routeActive: '/admin/user',
+					iconClasses: 'lnr lnr-user',
+				},
+				{
+					label: 'Quản lí quyền',
+					route: '/admin/role',
+					routeActive: '/admin/role',
 					iconClasses: 'lnr lnr-layers',
 				},
 			],

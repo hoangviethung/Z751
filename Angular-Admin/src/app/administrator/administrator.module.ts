@@ -14,7 +14,8 @@ import { RouterModule } from '@angular/router'
 import { FormsModule } from '@angular/forms'
 import { LoadingModule } from '../../core/loading/loading.module'
 import { TabDirective } from '../directive/tab.directive';
-import { ResourceKeyComponent } from './resource-key/resource-key.component'
+import { ResourceKeyComponent } from './resource-key/resource-key.component';
+import { CategoryAdminComponent } from './category-admin/category-admin.component'
 
 @NgModule({
 	imports: [
@@ -34,6 +35,7 @@ import { ResourceKeyComponent } from './resource-key/resource-key.component'
 		PageNotFoundComponent,
 		PageForbiddenComponent,
 		ResourceKeyComponent,
+		CategoryAdminComponent,
 	],
 	bootstrap: [AdministratorComponent],
 })
