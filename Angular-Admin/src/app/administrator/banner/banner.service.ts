@@ -8,7 +8,7 @@ import { BannerModel } from 'src/_core/models/banner.model'
 export class BannerService {
 	constructor() {}
 
-	get(id: string): Observable<BannerModel> {}
+	get(id: string) {}
 	getAll() {}
 	add() {}
 	update() {}
