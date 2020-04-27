@@ -9,6 +9,7 @@ import {
 import { Observable, throwError } from 'rxjs'
 import { map, catchError } from 'rxjs/operators'
 import { environment } from 'src/environments/environment'
+import { CookieService } from 'ngx-cookie-service'
 
 class RequestOption {
 	body?: any
@@ -34,7 +35,11 @@ class RequestOption {
 export class HttpService {
 	public locale: string = 'vi'
 
-	constructor(private http: HttpClient, private router: Router) {}
+	constructor(
+		private http: HttpClient,
+		private router: Router,
+		private cookieSvc: CookieService
+	) {}
 
 	public requestErrorHandler() {
 		return {
@@ -51,7 +56,7 @@ export class HttpService {
 	}
 
 	private get TOKEN(): string {
-		const token = ''
+		const token = JSON.parse(this.cookieSvc.get('userinfo')).accessToken
 		return token || ''
 	}
 
@@ -64,7 +69,7 @@ export class HttpService {
 		return this.request('GET', url, option)
 	}
 
-	post(url: string, data: any) {
+	post(url: string, data?: any) {
 		const option = this.getDefautRequestOptions()
 		option.body = data
 		return this.request('POST', url, option)
@@ -85,7 +90,7 @@ export class HttpService {
 			.set('Content-Type', 'application/json-patch+json')
 			.set('Data-Type', 'application/json')
 			.set('Accept', 'text/plain')
-			.set('token', 'bearer ' + this.TOKEN)
+			.set('Authorization', 'Bearer ' + this.TOKEN)
 		return authHeaders
 	}
 

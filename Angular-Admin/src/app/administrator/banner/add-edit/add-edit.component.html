@@ -1,9 +1,15 @@
 <div class="block-content">
 	<div class="block-control">
-		<a class="btn btn-danger btn-cancel" routerLink="/admin/banner"
-			>Hủy bỏ</a
+		<a
+			class="btn btn-danger btn-cancel"
+			routerLink="/admin/banner"
+			*ngIf="!isEdit.status"
 		>
-		<a class="btn btn-success btn-add">Thêm</a>
+			Hủy bỏ
+		</a>
+		<a class="btn btn-success btn-add" (click)="bannerAction($event)">
+			{{ isEdit.status ? isEdit.buttonText : 'Thêm' }}
+		</a>
 	</div>
 	<form>
 		<div class="form-row row">
@@ -12,11 +18,9 @@
 					<div class="form-group col-12">
 						<label for="">Ngôn ngữ</label>
 						<select
-							[(ngModel)]="banner.languageId"
-							name="langulage"
-							id="language"
 							class="form-control"
-							(change)="showValue()"
+							name="languageid"
+							[(ngModel)]="banner.languageId"
 						>
 							<option value="1">Tiếng việt</option>
 							<option value="2">English</option>
@@ -27,11 +31,9 @@
 						<div class="input-group shadow-sm">
 							<input
 								class="form-control"
-								id="ResourcePath"
-								name="ResourcePath"
-								type="text"
-								value=""
+								name="resourcepath"
 								[(ngModel)]="banner.resourcePath"
+								type="text"
 							/>
 						</div>
 						<span class="field-validation-valid"></span>
@@ -41,11 +43,9 @@
 						<div class="input-group shadow-sm">
 							<input
 								class="form-control"
-								id="Link"
-								name="Link"
-								type="text"
-								value=""
+								name="link"
 								[(ngModel)]="banner.link"
+								type="text"
 							/>
 						</div>
 						<span class="field-validation-valid"></span>
@@ -54,11 +54,10 @@
 						<label>Thứ tự</label>
 						<div class="input-group shadow-sm">
 							<input
-								class="form-control valid"
-								id="Order"
-								name="Order"
+								class="form-control"
 								type="number"
 								value="0"
+								name="order"
 								[(ngModel)]="banner.order"
 							/>
 						</div>
@@ -68,15 +67,10 @@
 						<label class="checkbox-custom"
 							>Hiển thị
 							<input
-								checked="checked"
 								class="check-box"
-								data-val="true"
-								data-val-required="The IsPublished field is required."
-								id="IsPublished"
-								name="IsPublished"
 								type="checkbox"
-								value="true"
-								[(ngModel)]="banner.IsPublished"
+								name="ispublished"
+								[(ngModel)]="banner.isPublished"
 							/>
 						</label>
 					</div>
@@ -85,9 +79,8 @@
 							Đặt làm video
 							<input
 								class="check-box"
-								id="IsVideo"
-								name="isVideo"
 								type="checkbox"
+								name="isvideo"
 								[(ngModel)]="banner.isVideo"
 							/>
 						</label>

@@ -20,7 +20,7 @@ const routes: Routes = [
 		},
 	},
 	{
-		path: 'edit/:banner-id',
+		path: 'edit/:bannerid',
 		component: AddEditComponent,
 		data: {
 			title: 'Sửa banner',
