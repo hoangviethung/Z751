@@ -1,10 +1,4 @@
 export const environment = {
 	production: true,
-	appName: 'z751',
-	appBaseUrl: 'http://localhost:4200',
-	imageDataUrl: 'http://localhost:4200',
-	appAccountUrl: 'http://localhost:4200',
-	remoteServiceBaseUrl: 'http://27.71.234.45:8080',
-	languageUrl: '/assets/lang/',
-	defaultLang: 'vi',
+	remoteBaseUrl: 'http://27.71.234.45:8080',
 }
