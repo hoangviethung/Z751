@@ -1,0 +1,80 @@
+<div class="block-content">
+	<div class="block-control">
+		<a class="btn btn-success btn-add" routerLink="add">Thêm mới</a>
+	</div>
+	<div class="block-table">
+		<table class="table">
+			<tr class="table-info">
+				<th>#</th>
+				<th>Tên</th>
+				<th>Hình ảnh</th>
+				<th>Tác vụ</th>
+			</tr>
+			<tr>
+				<th class="column-number">1</th>
+				<th class="column-title ta-c">Thương hiệu 1</th>
+				<td class="column-image">
+					<img src="./assets/images/photo3.jpg" alt="" />
+				</td>
+				<td class="column-button ta-c">
+					<div class="table-buttons">
+						<span class="btn btn-outline-success btn-edit">
+							<span class="lnr lnr-pencil"></span>
+						</span>
+						<span class="btn btn-outline-danger btn-remove">
+							<span class="lnr lnr-trash"></span>
+						</span>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="block-form mt-10">
+	<div class="block-content">
+		<div class="block-control">
+			<a class="btn btn-danger btn-cancel" routerLink="">Hủy bỏ</a>
+			<a class="btn btn-success btn-add">Thêm</a>
+		</div>
+		<div class="tab-container" appTab>
+			<div class="block-list-tab">
+				<ul class="list-tab">
+					<li class="item active" toggle-for="item-1">Nội dung</li>
+					<li class="item" toggle-for="item-2">Hình ảnh</li>
+				</ul>
+			</div>
+			<div class="tab-content">
+				<div class="content show" tab-id="item-1">
+					<div class="row">
+						<div class="form-group col-lg-4">
+							<label>Tiêu đề *</label>
+							<input class="form-control" type="text" placeholder="Nhập tiêu đề" />
+						</div>
+						<div class="form-group col-lg-4">
+							<label>Ảnh đại diện *</label>
+							<input class="form-control" type="text" placeholder="Nhập đường dẫn ảnh đại diện" />
+						</div>
+						<div class="form-group col-lg-4">
+							<label>Alt</label>
+							<input class="form-control" type="text" placeholder="Nhập alt hình ảnh" />
+						</div>
+						<div class="form-group col-lg-4">
+							<label>Thứ tự</label>
+							<input class="form-control" type="number" placeholder="Chọn thứ tự" />
+						</div>
+						<div class="form-group col-lg-2">
+							<label class="checkbox-custom">
+								Hiển thị trang chủ
+								<input type="checkbox" />
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="content" tab-id="item-2">
+					<p>2</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

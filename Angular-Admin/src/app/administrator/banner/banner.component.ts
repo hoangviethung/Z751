@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core'
+import { BannerService } from './banner.service';
+import { BannerModel } from 'src/_core/models/banner.model';
 
 @Component({
 	selector: 'app-banner',
@@ -6,7 +8,20 @@ import { Component, OnInit } from '@angular/core'
 	styleUrls: ['./banner.component.scss'],
 })
 export class BannerComponent implements OnInit {
-	constructor() {}
+	banners: Array<BannerModel>;
+	constructor(
+		private BannerSvc: BannerService,
+	) {
+		this.BannerSvc.fetch();
+	}
 
-	ngOnInit(): void {}
+	ngOnInit() {
+		// this.getBannerList();
+	}
+
+	getBannerList() {
+		this.BannerSvc.fetch().subscribe(response => {
+			console.log(response);
+		})
+	}
 }

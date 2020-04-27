@@ -15,14 +15,14 @@ class RequestOption {
 	headers?:
 		| HttpHeaders
 		| {
-				[header: string]: string | string[]
-		  }
+			[header: string]: string | string[]
+		}
 	observe?: any
 	params?:
 		| HttpParams
 		| {
-				[param: string]: string | string[]
-		  }
+			[param: string]: string | string[]
+		}
 	reportProgress?: boolean
 	responseType: any
 	withCredentials?: boolean
@@ -34,7 +34,7 @@ class RequestOption {
 export class HttpService {
 	public locale: string = 'vi'
 
-	constructor(private http: HttpClient, private router: Router) {}
+	constructor(private http: HttpClient, private router: Router) { }
 
 	public requestErrorHandler() {
 		return {
@@ -111,9 +111,11 @@ export class HttpService {
 		} else {
 			// The backend returned an unsuccessful response code.
 			// The response body may contain clues as to what went wrong,
-			console.error(
-				`Backend returned code ${error.status}, body was: ${error.error}`
-			)
+			console.log(error);
+
+			// console.error(
+			// 	`Backend returned code ${error.status}, body was: ${error.error}`
+			// )
 
 			let routePath = ''
 			if (error.status === 404) {

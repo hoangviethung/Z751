@@ -1,16 +1,21 @@
 import { Injectable } from '@angular/core'
+import { HttpService } from 'src/_core/services/http.service'
 import { Observable } from 'rxjs'
-import { BannerModel } from 'src/_core/models/banner.model'
+import { ResultCode } from 'src/core/constant/AppEnums'
 
 @Injectable({
 	providedIn: 'root',
 })
 export class BannerService {
-	constructor() {}
+	constructor(
+		private httpSvc: HttpService
+	) { }
 
-	get(id: string) {}
-	getAll() {}
-	add() {}
-	update() {}
-	delete() {}
+	fetch(): Observable<ResultCode> {
+		return this.httpSvc.get('http://27.71.234.45:8080/api/Article/used/gets')
+	}
+
+	add() { }
+	update() { }
+	delete() { }
 }

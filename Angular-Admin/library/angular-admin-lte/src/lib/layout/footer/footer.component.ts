@@ -47,10 +47,10 @@ export class FooterComponent implements OnInit {
 	constructor(
 		private elementRef: ElementRef,
 		private footerService: FooterService
-	) {}
+	) { }
 
 	ngOnInit() {
-		
+
 		this.footerService.elementRef = this.elementRef
 	}
 }

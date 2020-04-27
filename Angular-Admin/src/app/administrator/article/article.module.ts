@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common'
 
 import { ArticleRoutingModule } from './article-routing.module'
 import { ArticleComponent } from './article.component'
-import { TabDirective } from '../../directive/tab.directive'
+import { SharedModule } from 'src/_core/shared/shared.module'
 
 @NgModule({
-	declarations: [ArticleComponent, TabDirective],
-	imports: [CommonModule, ArticleRoutingModule],
+	declarations: [ArticleComponent],
+	imports: [CommonModule, ArticleRoutingModule, SharedModule],
 })
-export class ArticleModule {}
+export class ArticleModule { }

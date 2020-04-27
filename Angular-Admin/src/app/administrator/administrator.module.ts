@@ -12,10 +12,7 @@ import { PageNotFoundComponent } from '../../core/layout/page-not-found/page-not
 import { PageForbiddenComponent } from '../../core/layout/page-forbidden/page-forbidden.component'
 import { RouterModule } from '@angular/router'
 import { FormsModule } from '@angular/forms'
-import { LoadingModule } from '../../core/loading/loading.module'
-import { TabDirective } from '../directive/tab.directive';
-import { ResourceKeyComponent } from './resource-key/resource-key.component';
-import { CategoryAdminComponent } from './category-admin/category-admin.component'
+import { LoadingModule } from '../../core/loading/loading.module';
 
 @NgModule({
 	imports: [
@@ -34,8 +31,6 @@ import { CategoryAdminComponent } from './category-admin/category-admin.componen
 		AdministratorComponent,
 		PageNotFoundComponent,
 		PageForbiddenComponent,
-		ResourceKeyComponent,
-		CategoryAdminComponent,
 	],
 	bootstrap: [AdministratorComponent],
 })

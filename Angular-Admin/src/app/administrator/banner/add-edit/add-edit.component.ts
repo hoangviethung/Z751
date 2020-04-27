@@ -9,13 +9,13 @@ import { BannerModel } from 'src/_core/models/banner.model'
 	styleUrls: ['./add-edit.component.scss'],
 })
 export class AddEditComponent implements OnInit {
-	@Input() banner: BannerModel = new BannerModel()
+	@Input() banner: BannerModel;
 
-	constructor(private bannerSvc: BannerService, private http: HttpClient) {}
+	constructor(private bannerSvc: BannerService, private http: HttpClient) { }
 
 	ngOnInit(): void {
-		setTimeout(() => {}, 1000)
+		setTimeout(() => { }, 1000)
 	}
 
-	showValue() {}
+	showValue() { }
 }

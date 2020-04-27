@@ -10,7 +10,7 @@ import { ModalModule } from '../../../core/modal/modal.module'
 import { ContentViewer } from './dynamic-content-viewer/dynamic-content-viewer'
 import { SearchComponent } from './search-component/search.component'
 import { SortComponent } from './sort-component/sort.component'
-
+import { TabDirective } from 'src/app/directive/tab.directive'
 @NgModule({
 	imports: [
 		CommonModule,
@@ -26,6 +26,7 @@ import { SortComponent } from './sort-component/sort.component'
 		SearchComponent,
 		SortComponent,
 		ContentViewer,
+		TabDirective
 	],
 	exports: [
 		PagingComponent,
@@ -40,4 +41,4 @@ import { SortComponent } from './sort-component/sort.component'
 		AngularDateTimePickerModule,
 	],
 })
-export class SharedModule {}
+export class SharedModule { }

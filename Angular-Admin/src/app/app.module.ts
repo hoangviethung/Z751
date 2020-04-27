@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { FormsModule } from '@angular/forms'
 import { LoadingService } from '../core/loading/loading.service'
 import { AuthenticService } from '../core/authentication/authentic.service';
-import { TabDirective } from './directive/tab.directive'
+import { TabDirective } from './directive/tab.directive';
 
 @NgModule({
 	imports: [
@@ -29,4 +29,4 @@ import { TabDirective } from './directive/tab.directive'
 	bootstrap: [AppComponent],
 	providers: [LoadingService, AuthenticService],
 })
-export class AppModule {}
+export class AppModule { }

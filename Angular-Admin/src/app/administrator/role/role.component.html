@@ -1,1 +1,54 @@
-<p>role works!</p>
+<div class="block-content">
+	<div class="block-control">
+		<a class="btn btn-success btn-add" routerLink="add">Thêm mới</a>
+	</div>
+	<div class="block-table">
+		<table class="table">
+			<tr class="table-info">
+				<th>#</th>
+				<th>Tên Bộ Quền</th>
+				<th>Mô tả chức năng nộ quyền</th>
+				<th>Tác vụ</th>
+			</tr>
+			<tr>
+				<th class="column-number">1</th>
+				<td class="column-title">
+					<div class="badge badge-primary">Admin</div>
+					<div class="badge badge-primary">Admin</div>
+				</td>
+				<td class="column-desc">
+					Null
+				</td>
+				<td class="column-button ta-c">
+					<div class="table-buttons">
+						<span class="btn btn-outline-success btn-edit">
+							<span class="lnr lnr-pencil"></span>
+						</span>
+						<span class="btn btn-outline-danger btn-remove">
+							<span class="lnr lnr-trash"></span>
+						</span>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="block-form mt-10">
+	<div class="block-content">
+		<div class="block-control">
+			<a class="btn btn-danger btn-cancel" routerLink="">Hủy bỏ</a>
+			<a class="btn btn-success btn-add">Thêm</a>
+		</div>
+		<div class="row">
+			<div class="form-group col-lg-4">
+				<label>Tên bột quyền *</label>
+				<input class="form-control" type="text" placeholder="Nhập tên bộ quyền" />
+			</div>
+			<div class="form-group col-lg-12">
+				<label>Mô tả *</label>
+				<textarea class="form-control" placeholder="Nhập mô tả"></textarea>
+			</div>
+		</div>
+	</div>
+</div>

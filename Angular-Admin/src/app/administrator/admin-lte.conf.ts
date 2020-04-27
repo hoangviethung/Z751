@@ -85,6 +85,60 @@ export const adminLteConf = {
 				},
 			],
 		},
+		{
+			label: 'Menu',
+			iconClasses: 'lnr lnr-menu-circle',
+			children: [
+				{
+					label: 'Main Menu',
+					route: '/admin/main-menu',
+					routeActive: '/admin/main-menu',
+					iconClasses: 'lnr lnr-menu-circle',
+				},
+				{
+					label: 'Footer Menu',
+					route: '/admin/footer-menu',
+					routeActive: '/admin/footer-menu',
+					iconClasses: 'lnr lnr-layers',
+				},
+			],
+		},
+		{
+			label: 'Thương mai điện tử',
+			iconClasses: 'lnr lnr-cart',
+			children: [
+				{
+					label: 'Danh mục',
+					route: '/admin/commerce-category',
+					routeActive: '/admin/commerce-category',
+					iconClasses: 'lnr lnr-menu-circle',
+				},
+				{
+					label: 'Thương hiệu',
+					route: '/admin/brand',
+					routeActive: '/admin/brand',
+					iconClasses: 'lnr lnr-tag',
+				},
+				{
+					label: 'Sản phẩm',
+					route: '/admin/products',
+					routeActive: '/admin/products',
+					iconClasses: 'lnr lnr-linearicons',
+				},
+			],
+		},
+		{
+			label: 'Chi nhánh',
+			route: '/admin/branch',
+			routeActive: 'admin/branch',
+			iconClasses: 'lnr lnr-map',
+		},
+		{
+			label: 'Khách hàng liên lạc',
+			route: '/admin/contact',
+			routeActive: 'admin/contact',
+			iconClasses: 'lnr lnr-envelope',
+		},
 	],
 
 	// Menu nay la flexible menu neu muốn change. Xem trong file Administrator.component.ts
