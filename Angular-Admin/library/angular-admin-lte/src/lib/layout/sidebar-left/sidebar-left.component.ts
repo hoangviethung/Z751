@@ -106,8 +106,6 @@ export class SidebarLeftComponent implements OnInit, AfterViewInit, OnDestroy {
 	ngOnInit() {
 		this.subscriptions.push(
 			this.layoutStore.sidebarLeftMenu.subscribe((value) => {
-				console.log(value)
-
 				this.menu = value
 				this.monkeyPatchMenu(this.menu)
 				if (this.initialized) {

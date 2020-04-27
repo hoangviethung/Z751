@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
-import { BannerService } from './banner.service';
-import { BannerModel } from 'src/_core/models/banner.model';
+import { BannerService } from './banner.service'
+import { BannerModel } from 'src/_core/models/banner.model'
+import { Router } from '@angular/router'
 
 @Component({
 	selector: 'app-banner',
@@ -8,20 +9,26 @@ import { BannerModel } from 'src/_core/models/banner.model';
 	styleUrls: ['./banner.component.scss'],
 })
 export class BannerComponent implements OnInit {
-	banners: Array<BannerModel>;
-	constructor(
-		private BannerSvc: BannerService,
-	) {
-		this.BannerSvc.fetch();
+	banners: Array<BannerModel>
+	constructor(private bannerSvc: BannerService, private router: Router) {}
+
+	ngOnInit(): void {
+		this.getBanners()
+	}
+	getBanners() {
+		this.bannerSvc.fetch({ languageId: 1 }).subscribe((response) => {
+			this.banners = response.data
+			this.bannerSvc.banners = this.banners
+		})
 	}
 
-	ngOnInit() {
-		// this.getBannerList();
+	editBanner(id) {
+		this.router.navigate([`/admin/banner/edit/${id}`])
 	}
-
-	getBannerList() {
-		this.BannerSvc.fetch().subscribe(response => {
-			console.log(response);
+	deleteBanner(id) {
+		this.bannerSvc.delete(id).subscribe((result) => {
+			console.log(result)
+			this.getBanners()
 		})
 	}
 }

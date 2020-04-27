@@ -11,19 +11,28 @@
 				<th>Hiển thị</th>
 				<th>Tác vụ</th>
 			</tr>
-			<tr>
-				<th class="column-number">1</th>
+			<tr *ngFor="let banner of banners; let i = index">
+				<th class="column-number ta-c">{{ i + 1 }}</th>
 				<td class="column-image">
-					<img src="./assets/images/photo3.jpg" alt="" />
+					<img
+						src="{{ banner.resourcePath }}"
+						alt="{{ banner.name }}"
+					/>
 				</td>
 				<td class="column-language ta-c">VN</td>
-				<td class="column-display">@mdo</td>
+				<td class="column-display">{{ banner.isPublished }}</td>
 				<td class="column-button ta-c">
 					<div class="table-buttons">
-						<span class="btn btn-outline-success btn-edit">
+						<span
+							class="btn btn-outline-success btn-edit"
+							(click)="editBanner(banner.id)"
+						>
 							<span class="lnr lnr-pencil"></span>
 						</span>
-						<span class="btn btn-outline-danger btn-remove">
+						<span
+							class="btn btn-outline-danger btn-remove"
+							(click)="deleteBanner(banner.id)"
+						>
 							<span class="lnr lnr-trash"></span>
 						</span>
 					</div>

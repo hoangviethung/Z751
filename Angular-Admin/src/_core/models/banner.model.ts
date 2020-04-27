@@ -1,4 +1,4 @@
-export interface BannerModel {
+export class BannerModel {
 	id: number
 	name: string
 	description: string
@@ -8,5 +8,5 @@ export interface BannerModel {
 	order: number
 	isPublished: boolean
 	isVideo: boolean
-	languageI: number
+	languageId: number
 }
