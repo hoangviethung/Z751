@@ -23,7 +23,7 @@ export class DepartmentCapacityComponent implements OnInit {
 				? `assets/api/${this.currentLanguage}/capacity/equipment-and-software-supporting-research-and-design.json`
 				: `assets/api/${this.currentLanguage}/capacity/nhom-thiet-bi-gia-cong-ap-luc-va-ket-cau-thep.json`;
 		this.httpSvc.get(url).subscribe((result) => {
-			this.capacities = result.Data.Products;
+			this.capacities = result.data.Products;
 		});
 	}
 }

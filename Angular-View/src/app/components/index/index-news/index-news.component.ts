@@ -12,18 +12,14 @@ export class IndexNewsComponent implements OnInit {
 
 	@Input("language") currentLanguage: string;
 	@Input("background") background: string;
-	constructor(private httpSvc: HttpService) {}
+	constructor(private httpSvc: HttpService) { }
 
 	ngOnInit() {
 		this.getNews();
 	}
 	getNews() {
-		const url =
-			this.currentLanguage == "en"
-				? `assets/api/${this.currentLanguage}/news/internal-news.json`
-				: `assets/api/${this.currentLanguage}/news/tin-noi-bo.json`;
-		this.httpSvc.get(url).subscribe((result) => {
-			this.newsItems = result.Data.News;
+		this.httpSvc.get('/api/Category/used/get').subscribe((result) => {
+			this.newsItems = result.data;
 		});
 	}
 }

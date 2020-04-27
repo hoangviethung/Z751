@@ -16,9 +16,7 @@
 						</p>
 						<p>
 							Email:
-							<a href="mailto:info@congty751.com.vn"
-								>info@congty751.com.vn</a
-							>
+							<a href="mailto:info@congty751.com.vn">info@congty751.com.vn</a>
 						</p>
 					</div>
 				</div>
@@ -32,300 +30,156 @@
 						<div class="main-nav ml-at">
 							<ul class="lst-n pl-0 d-f">
 								<li class="nav-item">
-									<a
-										[routerLink]="'/index' | localize"
-										class="nav-link fw-700 tt-u d-if"
-										appCloseMenu
-									>
+									<a [routerLink]="'/index' | localize" class="nav-link fw-700 tt-u d-if"
+										appCloseMenu>
 										{{ "menu.index" | translate }}
 									</a>
 								</li>
 								<li routerLinkActive="active" class="nav-item">
-									<a
-										[routerLink]="'/about' | localize"
-										class="nav-link fw-700 tt-u d-if"
-										appCloseMenu
-									>
+									<a [routerLink]="'/about' | localize" class="nav-link fw-700 tt-u d-if"
+										appCloseMenu>
 										{{ "menu.about" | translate }}
 									</a>
 								</li>
-								<li
-									routerLinkActive="active"
-									class="nav-item"
-									[ngClass]="{ 'has-sub': productCategories }"
-								>
-									<a
-										class="nav-link fw-700 tt-u d-if"
-										appToggleSubMenu
-									>
+								<li routerLinkActive="active" class="nav-item"
+									[ngClass]="{ 'has-sub': productCategories }">
+									<a class="nav-link fw-700 tt-u d-if" appToggleSubMenu>
 										{{ "menu.products" | translate }}
 									</a>
 									<div class="nav-sub lst-n pl-0">
-										<div
-											class="nav-item"
-											*ngFor="
+										<div class="nav-item" *ngFor="
 												let Category of productCategories
-											"
-										>
-											<ng-container
-												*ngIf="currentLanguage == 'vi'"
-											>
-												<a
-													class="nav-link"
-													[routerLink]="[
+											">
+											<ng-container *ngIf="currentLanguage == 'vi'">
+												<a class="nav-link" [routerLink]="[
 														'products' | localize,
 														Category.Url
-													]"
-													appCloseMenu
-													>{{ Category.Title }}</a
-												>
+													]" appCloseMenu>{{ Category.Title }}</a>
 											</ng-container>
-											<ng-container
-												*ngIf="currentLanguage == 'en'"
-											>
-												<a
-													class="nav-link"
-													[routerLink]="[
+											<ng-container *ngIf="currentLanguage == 'en'">
+												<a class="nav-link" [routerLink]="[
 														'en/products'
 															| localize,
 														Category.Url
-													]"
-													appCloseMenu
-													>{{ Category.Title }}</a
-												></ng-container
-											>
+													]" appCloseMenu>{{ Category.Title }}</a></ng-container>
 										</div>
 										<div class="nav-sub-close mobile">
-											<img
-												src="assets/images/icons/arrow-left.svg"
-											/>
+											<img src="assets/images/icons/arrow-left.svg" />
 										</div>
 									</div>
 								</li>
-								<li
-									routerLinkActive="active"
-									class="nav-item"
-									[ngClass]="{
+								<li routerLinkActive="active" class="nav-item" [ngClass]="{
 										'has-sub': departmentCategories
-									}"
-								>
-									<a
-										class="nav-link fw-700 tt-u d-if"
-										appToggleSubMenu
-									>
+									}">
+									<a class="nav-link fw-700 tt-u d-if" appToggleSubMenu>
 										{{ "menu.departments" | translate }}
 									</a>
 									<div class="nav-sub lst-n pl-0">
-										<div
-											class="nav-item"
-											*ngFor="
+										<div class="nav-item" *ngFor="
 												let Category of departmentCategories
-											"
-										>
-											<ng-container
-												*ngIf="currentLanguage == 'vi'"
-											>
-												<a
-													class="nav-link"
-													[routerLink]="[
+											">
+											<ng-container *ngIf="currentLanguage == 'vi'">
+												<a class="nav-link" [routerLink]="[
 														'/departments'
 															| localize,
 														Category.Url
-													]"
-													appCloseMenu
-													>{{ Category.Title }}</a
-												>
+													]" appCloseMenu>{{ Category.Title }}</a>
 											</ng-container>
-											<ng-container
-												*ngIf="currentLanguage == 'en'"
-											>
-												<a
-													class="nav-link"
-													[routerLink]="[
+											<ng-container *ngIf="currentLanguage == 'en'">
+												<a class="nav-link" [routerLink]="[
 														'en/departments'
 															| localize,
 														Category.Url
-													]"
-													appCloseMenu
-													>{{ Category.Title }}</a
-												></ng-container
-											>
+													]" appCloseMenu>{{ Category.Title }}</a></ng-container>
 										</div>
 										<div class="nav-sub-close mobile">
-											<img
-												src="assets/images/icons/arrow-left.svg"
-											/>
+											<img src="assets/images/icons/arrow-left.svg" />
 										</div>
 									</div>
 								</li>
-								<li
-									routerLinkActive="active"
-									class="nav-item"
-									[ngClass]="{
+								<li routerLinkActive="active" class="nav-item" [ngClass]="{
 										'has-sub': capacityCategories
-									}"
-								>
-									<a
-										class="nav-link fw-700 tt-u d-if"
-										appToggleSubMenu
-									>
+									}">
+									<a class="nav-link fw-700 tt-u d-if" appToggleSubMenu>
 										{{ "menu.capacities" | translate }}
 									</a>
 									<div class="nav-sub lst-n pl-0">
-										<div
-											class="nav-item"
-											*ngFor="
+										<div class="nav-item" *ngFor="
 												let Category of capacityCategories
-											"
-										>
-											<ng-container
-												*ngIf="currentLanguage == 'vi'"
-											>
-												<a
-													class="nav-link"
-													[routerLink]="[
+											">
+											<ng-container *ngIf="currentLanguage == 'vi'">
+												<a class="nav-link" [routerLink]="[
 														'/capacities'
 															| localize,
 														Category.Url
-													]"
-													appCloseMenu
-													>{{ Category.Title }}</a
-												>
+													]" appCloseMenu>{{ Category.Title }}</a>
 											</ng-container>
-											<ng-container
-												*ngIf="currentLanguage == 'en'"
-											>
-												<a
-													class="nav-link"
-													[routerLink]="[
+											<ng-container *ngIf="currentLanguage == 'en'">
+												<a class="nav-link" [routerLink]="[
 														'en/capacities'
 															| localize,
 														Category.Url
-													]"
-													appCloseMenu
-													>{{ Category.Title }}</a
-												></ng-container
-											>
+													]" appCloseMenu>{{ Category.Title }}</a></ng-container>
 										</div>
 										<div class="nav-sub-close mobile">
-											<img
-												src="assets/images/icons/arrow-left.svg"
-											/>
+											<img src="assets/images/icons/arrow-left.svg" />
 										</div>
 									</div>
 								</li>
-								<li
-									routerLinkActive="active"
-									class="nav-item"
-									[ngClass]="{ 'has-sub': newsCategories }"
-								>
-									<a
-										class="nav-link fw-700 tt-u d-if"
-										appToggleSubMenu
-									>
+								<li routerLinkActive="active" class="nav-item"
+									[ngClass]="{ 'has-sub': newsCategories }">
+									<a class="nav-link fw-700 tt-u d-if" appToggleSubMenu>
 										{{ "menu.news" | translate }}
 									</a>
 									<div class="nav-sub lst-n pl-0">
-										<div
-											class="nav-item"
-											*ngFor="
+										<div class="nav-item" *ngFor="
 												let Category of newsCategories
-											"
-										>
-											<ng-container
-												*ngIf="currentLanguage == 'vi'"
-											>
-												<a
-													class="nav-link"
-													[routerLink]="[
+											">
+											<ng-container *ngIf="currentLanguage == 'vi'">
+												<a class="nav-link" [routerLink]="[
 														'/news' | localize,
 														Category.Url
-													]"
-													appCloseMenu
-													>{{ Category.Title }}</a
-												>
+													]" appCloseMenu>{{ Category.Title }}</a>
 											</ng-container>
-											<ng-container
-												*ngIf="currentLanguage == 'en'"
-											>
-												<a
-													class="nav-link"
-													[routerLink]="[
+											<ng-container *ngIf="currentLanguage == 'en'">
+												<a class="nav-link" [routerLink]="[
 														'en/news' | localize,
 														Category.Url
-													]"
-													appCloseMenu
-													>{{ Category.Title }}</a
-												></ng-container
-											>
+													]" appCloseMenu>{{ Category.Title }}</a></ng-container>
 										</div>
 										<div class="nav-sub-close mobile">
-											<img
-												src="assets/images/icons/arrow-left.svg"
-											/>
+											<img src="assets/images/icons/arrow-left.svg" />
 										</div>
 									</div>
 								</li>
 								<li routerLinkActive="active" class="nav-item">
-									<a
-										[routerLink]="'/contact' | localize"
-										class="nav-link fw-700 tt-u d-if"
-										appCloseMenu
-										>{{ "menu.contact" | translate }}</a
-									>
+									<a [routerLink]="'/contact' | localize" class="nav-link fw-700 tt-u d-if"
+										appCloseMenu>{{ "menu.contact" | translate }}</a>
 								</li>
 							</ul>
 						</div>
 						<div class="language">
 							<ng-container *ngFor="let language of languages">
-								<div
-									class="flag desktop"
-									*ngIf="currentLanguage == language.value"
-								>
+								<div class="flag desktop" *ngIf="currentLanguage == language.value">
 									<img src="{{ language.image }}" alt="" />
 								</div>
 							</ng-container>
-							<select
-								name="langulage"
-								id="language"
-								class="bd-0"
-								(change)="switchLanguage($event)"
-							>
-								<ng-container
-									*ngFor="let language of languages"
-								>
-									<option
-										value="{{ language.value }}"
-										[selected]="
+							<select name="langulage" id="language" class="bd-0" (change)="switchLanguage($event)">
+								<ng-container *ngFor="let language of languages">
+									<option value="{{ language.value }}" [selected]="
 											currentLanguage == language.value
-										"
-										>{{ language.title }}</option
-									>
+										">{{ language.title }}</option>
 								</ng-container>
 							</select>
 						</div>
 						<div class="search">
 							<label class="d-f ai-c" (click)="toggleSearchBox()">
-								<img
-									src="assets/images/icons/magnify.svg"
-									alt=""
-								/>
+								<img src="assets/images/icons/magnify.svg" alt="" />
 							</label>
-							<div
-								class="form-search"
-								[ngClass]="{ active: isSearchBoxShow }"
-							>
-								<input
-									type="search"
-									name="search"
-									id="search"
-									class="bd-main form-control col"
-								/>
+							<div class="form-search" [ngClass]="{ active: isSearchBoxShow }">
+								<input type="search" name="search" id="search" class="bd-main form-control col" />
 								<button class="btn btn-search fcc">
-									<img
-										src="assets/images/icons/magnify.svg"
-										alt=""
-									/>
+									<img src="assets/images/icons/magnify.svg" alt="" />
 								</button>
 							</div>
 						</div>

@@ -41,7 +41,7 @@ export class NewsDetailComponent implements OnInit {
 					`assets/api/${this.currentLanguage}/news/${this.newsCategoryUrl}.json`
 				)
 				.subscribe((result) => {
-					Breadcrumb[this.currentLanguage].push(result.Data.Title);
+					Breadcrumb[this.currentLanguage].push(result.data.Title);
 					this.breadcrumbs = Breadcrumb[this.currentLanguage];
 				});
 			await this.httpSvc
@@ -49,9 +49,9 @@ export class NewsDetailComponent implements OnInit {
 					`assets/api/${this.currentLanguage}/news/${param.newsTitle}.json`
 				)
 				.subscribe((result) => {
-					this.article = result.Data;
-					this.pageInfoSvc.setTitle(result.Data.Title);
-					Breadcrumb[this.currentLanguage].push(result.Data.Title);
+					this.article = result.data;
+					this.pageInfoSvc.setTitle(result.data.Title);
+					Breadcrumb[this.currentLanguage].push(result.data.Title);
 					this.breadcrumbs = Breadcrumb[this.currentLanguage];
 				});
 		});

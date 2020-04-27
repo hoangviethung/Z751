@@ -42,7 +42,7 @@ export class IndexDepartmentComponent implements OnInit {
 	constructor(
 		private httpSvc: HttpService,
 		@Inject(DOCUMENT) private documentDom: Document
-	) {}
+	) { }
 
 	ngOnInit() {
 		this.getDepartments();
@@ -51,10 +51,10 @@ export class IndexDepartmentComponent implements OnInit {
 	getDepartments() {
 		this.httpSvc
 			.get(
-				`assets/api/${this.currentLanguage}/department/categories-department.json`
+				`/api/Category/used/get`
 			)
 			.subscribe((result) => {
-				this.departments = result.Data;
+				this.departments = result.data;
 			});
 	}
 	setSizeSlideItem(e) {

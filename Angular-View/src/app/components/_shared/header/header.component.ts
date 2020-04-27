@@ -67,38 +67,39 @@ export class HeaderComponent implements OnInit {
 	getProductCategories() {
 		this.httpSvc
 			.get(
-				`assets/api/${this.currentLanguage}/product/categories-product.json`
+				`/api/Category/used/get`
 			)
 			.subscribe((result) => {
-				this.productCategories = result.Data;
+				console.log(result);
+				this.productCategories = result.data;
 			});
 	}
 
 	getNewsCategories() {
 		this.httpSvc
-			.get(`assets/api/${this.currentLanguage}/news/categories-news.json`)
+			.get(`/api/Category/used/get`)
 			.subscribe((result) => {
-				this.newsCategories = result.Data;
+				this.newsCategories = result.data;
 			});
 	}
 
 	getDepartmentCategories() {
 		this.httpSvc
 			.get(
-				`assets/api/${this.currentLanguage}/department/categories-department.json`
+				`/api/Category/used/get`
 			)
 			.subscribe((result) => {
-				this.departmentCategories = result.Data;
+				this.departmentCategories = result.data;
 			});
 	}
 
 	getCapacityCategories() {
 		this.httpSvc
 			.get(
-				`assets/api/${this.currentLanguage}/capacity/categories-capacity.json`
+				`/api/Category/used/get`
 			)
 			.subscribe((result) => {
-				this.capacityCategories = result.Data;
+				this.capacityCategories = result.data;
 			});
 	}
 }

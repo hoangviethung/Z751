@@ -22,7 +22,7 @@ export class NewsDetailOthersComponent implements OnInit {
 				? `assets/api/${this.currentLanguage}/news/internal-news.json`
 				: `assets/api/${this.currentLanguage}/news/tin-noi-bo.json`;
 		this.httpSvc.get(url).subscribe((result) => {
-			this.newsOthers = result.Data.News;
+			this.newsOthers = result.data.News;
 		});
 	}
 }

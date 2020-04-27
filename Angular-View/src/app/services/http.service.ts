@@ -21,14 +21,14 @@ class RequestOption {
 	headers?:
 		| HttpHeaders
 		| {
-				[header: string]: string | string[];
-		  };
+			[header: string]: string | string[];
+		};
 	observe?: any;
 	params?:
 		| HttpParams
 		| {
-				[param: string]: string | string[];
-		  };
+			[param: string]: string | string[];
+		};
 	reportProgress?: boolean;
 	responseType: any;
 	withCredentials?: boolean;
@@ -46,7 +46,7 @@ export class HttpService {
 		private http: HttpClient,
 		private router: Router,
 		private localizeSvc: LocalizeRouterService // @Inject(PLATFORM_ID) private platformId: Object
-	) {}
+	) { }
 
 	public errorRouteHandler() {
 		const _this = this;
@@ -95,13 +95,15 @@ export class HttpService {
 
 	// DEV without real API
 	get(url: string, params?: HttpParams): Observable<any> {
-		const fullUrl = environment.locales + url;
+		const fullUrl = environment.remoteBaseUrl + url;
 		const option = this.getDefaultRequestJsonOption();
 		option.params = params;
+		console.log(fullUrl);
+
 		return this.executeJsonResponse("GET", fullUrl, option);
 	}
-	post(url: string, data: any) {
-		const fullUrl = environment.locales + url;
+	post(url: string, data?: any) {
+		const fullUrl = environment.remoteBaseUrl + url;
 		const option = this.getDefaultRequestJsonOption();
 		option.body = data;
 		return this.executeJsonResponse("POST", fullUrl, option);
@@ -122,9 +124,6 @@ export class HttpService {
 			.set("Content-Type", "application/json-patch+json")
 			.set("Data-Type", "application/json")
 			.set("Accept", "text/plain")
-			.set("Accept-Language", this.localizeSvc.parser.currentLang)
-			.set("Authorization", "bearer " + this.TOKEN)
-			.set("locale", this.localizeSvc.parser.currentLang);
 		return authHeaders;
 	}
 
@@ -156,6 +155,8 @@ export class HttpService {
 		} else {
 			// The backend returned an unsuccessful response code.
 			// The response body may contain clues as to what went wrong,
+			console.log(error);
+
 			console.error(
 				`Backend returned code ${error.status}, body was: ${error.error}`
 			);

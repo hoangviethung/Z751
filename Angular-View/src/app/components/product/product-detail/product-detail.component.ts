@@ -110,7 +110,7 @@ export class ProductDetailComponent implements OnInit {
 					`assets/api/${this.currentLanguage}/product/${this.productCategoryUrl}.json`
 				)
 				.subscribe((result) => {
-					Breadcrumb[this.currentLanguage].push(result.Data.Title);
+					Breadcrumb[this.currentLanguage].push(result.data.Title);
 					this.breadcrumbs = Breadcrumb[this.currentLanguage];
 				});
 			await this.httpSvc
@@ -118,9 +118,9 @@ export class ProductDetailComponent implements OnInit {
 					`assets/api/${this.currentLanguage}/product/product-detail.json`
 				)
 				.subscribe((result) => {
-					this.product = result.Data;
+					this.product = result.data;
 					this.pageSvc.setTitle(this.product.Title);
-					Breadcrumb[this.currentLanguage].push(result.Data.Title);
+					Breadcrumb[this.currentLanguage].push(result.data.Title);
 					this.breadcrumbs = Breadcrumb[this.currentLanguage];
 				});
 		});
@@ -129,7 +129,7 @@ export class ProductDetailComponent implements OnInit {
 	fetchProductCategory() {
 		const url = `assets/api/${this.currentLanguage}/product/categories-product.json`;
 		this.httpSvc.get(url).subscribe((result) => {
-			this.productCategory = result.Data;
+			this.productCategory = result.data;
 		});
 	}
 

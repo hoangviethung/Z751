@@ -37,7 +37,7 @@ export class ActivitiesImageComponent implements OnInit {
 		this.httpSvc
 			.get(`assets/api/${this.currentLanguage}/activities-images.json`)
 			.subscribe((result) => {
-				this.images = result.Data;
+				this.images = result.data;
 			});
 	}
 

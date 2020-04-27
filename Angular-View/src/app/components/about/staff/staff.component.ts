@@ -42,7 +42,7 @@ export class StaffComponent implements OnInit {
 		this.httpSvc
 			.get(`assets/api/${this.currentLanguage}/about/staffs.json`)
 			.subscribe((result) => {
-				this.staffs = result.Data;
+				this.staffs = result.data;
 			});
 	}
 }

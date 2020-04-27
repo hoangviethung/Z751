@@ -12,19 +12,15 @@ export class IndexProductsComponent implements OnInit {
 
 	@Input("language") currentLanguage: string;
 
-	constructor(private httpSvc: HttpService) {}
+	constructor(private httpSvc: HttpService) { }
 
 	ngOnInit() {
 		this.productCategory();
 	}
 
 	productCategory() {
-		const url =
-			this.currentLanguage == "en"
-				? `assets/api/${this.currentLanguage}/product/automotives-industry.json`
-				: `assets/api/${this.currentLanguage}/product/oto.json`;
-		this.httpSvc.get(url).subscribe((result) => {
-			this.productCategories = result.Data.Products;
+		this.httpSvc.get('/api/Category/used/get').subscribe((result) => {
+			this.productCategories = result.data;
 		});
 	}
 }

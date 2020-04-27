@@ -47,7 +47,7 @@ export class RewardComponent implements OnInit {
 		this.httpSvc
 			.get(`assets/api/${this.currentLanguage}/about/rewards.json`)
 			.subscribe((result) => {
-				this.rewards = result.Data;
+				this.rewards = result.data;
 			});
 	}
 }

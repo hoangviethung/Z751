@@ -60,7 +60,7 @@ export class ProductOthersComponent implements OnInit, AfterViewInit {
 				`assets/api/${this.currentLanguage}/product/${this.routeParamUrl}.json`
 			)
 			.subscribe((result) => {
-				this.productOthers = result.Data.Products;
+				this.productOthers = result.data.Products;
 			});
 	}
 }

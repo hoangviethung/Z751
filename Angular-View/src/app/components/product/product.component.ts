@@ -43,11 +43,11 @@ export class ProductComponent implements OnInit {
 					`assets/api/${this.currentLanguage}/product/${routeParams.productCategory}.json`
 				)
 				.subscribe((result) => {
-					this.pageInfoSvc.setTitle(result.Data.Title);
-					this.title = result.Data.Title;
-					this.description = result.Data.Description;
-					this.products = result.Data.Products;
-					Breadcrumb[this.currentLanguage].push(result.Data.Title);
+					this.pageInfoSvc.setTitle(result.data.Title);
+					this.title = result.data.Title;
+					this.description = result.data.Description;
+					this.products = result.data.Products;
+					Breadcrumb[this.currentLanguage].push(result.data.Title);
 					this.breadcrumbs = Breadcrumb[this.currentLanguage];
 				});
 		});
