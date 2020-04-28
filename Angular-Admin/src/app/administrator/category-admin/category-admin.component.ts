@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { CategoryModel } from 'src/_core/models/category.model'
 import { CrudService } from 'src/_core/services/crud.service'
 import { ApiConfig } from 'src/_core/configs/api'
+import { Router } from '@angular/router'
 
 @Component({
 	selector: 'app-category-admin',
@@ -11,7 +12,7 @@ import { ApiConfig } from 'src/_core/configs/api'
 export class CategoryAdminComponent implements OnInit {
 	categories: Array<CategoryModel>
 
-	constructor(private crudSvc: CrudService) {}
+	constructor(private crudSvc: CrudService, private router: Router) {}
 
 	ngOnInit(): void {
 		this.getCategories()
@@ -19,12 +20,17 @@ export class CategoryAdminComponent implements OnInit {
 
 	getCategories() {
 		this.crudSvc
-			.fetch(ApiConfig.category.gets, { languageId: 1 })
+			.gets(ApiConfig.category.gets, { languageId: 1 })
 			.subscribe((response) => {
-				this.categories = response.items
+				this.categories = response.data.items
 			})
 	}
-	delete(id: string) {
+
+	editCategory(id) {
+		this.router.navigate([`/admin/category-admin/edit/${id}`])
+	}
+
+	deleteCategory(id: string) {
 		this.crudSvc
 			.delete(ApiConfig.category.delete, id)
 			.subscribe((response) => {

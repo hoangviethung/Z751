@@ -16,7 +16,7 @@ const routes: Routes = [
 		},
 	},
 	{
-		path: 'edit/:bannerid',
+		path: 'edit/:categoryAdminId',
 		component: AddEditComponent,
 		data: {
 			title: 'Sửa danh mục',

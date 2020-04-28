@@ -12,6 +12,7 @@ export const ApiConfig = {
 		delete: '/api/Banner/delete',
 	},
 	category: {
+		get: '/api/Category/get',
 		gets: '/api/Category/gets',
 		add: '/api/Category/add',
 		update: '/api/Category/update',

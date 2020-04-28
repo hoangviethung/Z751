@@ -20,7 +20,7 @@ export class BannerComponent implements OnInit {
 
 	getBanners() {
 		this.crudSvc
-			.fetch(ApiConfig.banner.gets, { languageId: 1 })
+			.gets(ApiConfig.banner.gets, { languageId: 1 })
 			.subscribe((response) => {
 				this.banners = response.data
 			})

@@ -12,10 +12,7 @@ import { ApiConfig } from 'src/_core/configs/api'
 })
 export class AddEditComponent implements OnInit {
 	banner: BannerModel = new BannerModel()
-	isEdit = {
-		status: false,
-		buttonText: 'Cập nhật',
-	}
+	isEdit = false
 
 	constructor(
 		private crudSvc: CrudService,
@@ -28,16 +25,16 @@ export class AddEditComponent implements OnInit {
 			.pipe(map((params) => params.bannerid))
 			.subscribe((bannerId) => {
 				if (bannerId) {
-					this.isEdit.status = true
+					this.isEdit = true
 					this.crudSvc
-						.fetch(ApiConfig.banner.gets, { languageId: 1 })
+						.gets(ApiConfig.banner.gets, { languageId: 1 })
 						.subscribe((result) => {
 							this.banner = result.data.filter(
 								(item) => item.id == bannerId
 							)[0]
 						})
 				} else {
-					this.isEdit.status = false
+					this.isEdit = false
 				}
 			})
 	}

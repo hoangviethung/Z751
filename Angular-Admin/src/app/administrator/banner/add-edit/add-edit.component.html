@@ -3,24 +3,24 @@
 		<a
 			class="btn btn-danger btn-cancel"
 			routerLink="/admin/banner"
-			*ngIf="!isEdit.status"
+			*ngIf="!isEdit"
 		>
 			Hủy bỏ
 		</a>
 		<a class="btn btn-success btn-add" (click)="bannerAction($event)">
-			{{ isEdit.status ? isEdit.buttonText : 'Thêm' }}
+			{{ isEdit ? isEdit.buttonText : 'Thêm' }}
 		</a>
 	</div> -->
 
 	<!-- Sửa banner -->
-	<div class="block-control" *ngIf="isEdit.status == true">
+	<div class="block-control" *ngIf="isEdit == true">
 		<a class="btn btn-danger btn-cancel" routerLink="/admin/banner">
 			Hủy bỏ
 		</a>
 		<a class="btn btn-success btn-add" (click)="updateBanner()">Cập nhật</a>
 	</div>
 	<!-- Thêm banner -->
-	<div class="block-control" *ngIf="isEdit.status == false">
+	<div class="block-control" *ngIf="isEdit == false">
 		<a class="btn btn-danger btn-cancel" routerLink="/admin/banner">
 			Hủy bỏ
 		</a>

@@ -19,7 +19,7 @@ export class ArticleComponent implements OnInit {
 
 	getArticles() {
 		this.crudSvc
-			.fetch(ApiConfig.article.gets, { languageId: 1 })
+			.gets(ApiConfig.article.gets, { languageId: 1 })
 			.subscribe((response) => {
 				console.log(response)
 				this.articles = response.data.items
