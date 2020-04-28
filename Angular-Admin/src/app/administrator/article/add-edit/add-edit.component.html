@@ -1,1 +1,116 @@
-<p>add-edit works!</p>
+<div class="block-form mt-10">
+	<div class="block-content">
+		<!-- SỬA -->
+		<div class="block-control" *ngIf="isEdit.status == true">
+			<a class="btn btn-danger btn-cancel" routerLink="/admin/article">Hủy bỏ</a>
+			<a class="btn btn-success btn-add" (click)="updateArticle()">Cập nhật</a>
+		</div>
+		<!-- THÊM -->
+		<div class="block-control" *ngIf="isEdit.status == false">
+			<a class="btn btn-danger btn-cancel" routerLink="/admin/article">Hủy bỏ</a>
+			<a class="btn btn-success btn-add" (click)="addArticle()">Thêm</a>
+		</div>
+		<div class="tab-container" appTab>
+			<div class="block-list-tab">
+				<ul class="list-tab">
+					<li class="item active" toggle-for="item-1">Nội dung</li>
+					<li class="item" toggle-for="item-2">SEO bài viết</li>
+					<li class="item" toggle-for="item-3">Hình ảnh</li>
+				</ul>
+			</div>
+			<div class="tab-content">
+				<div class="content show" tab-id="item-1">
+					<div class="row">
+						<div class="form-group col-lg-4">
+							<label>Tên nhóm *</label>
+							<select class="form-control" [(ngModel)]="article.languageId">
+								<option value="1">Vietnamese</option>
+								<option value="2">English</option>
+							</select>
+						</div>
+						<div class="form-group col-lg-4">
+							<label>Danh mục *</label>
+							<select class="form-control" [(ngModel)]="article.categoryId">
+								<option value="11">test</option>
+							</select>
+						</div>
+						<div class="form-group col-lg-4">
+							<label>Đường dẫn *</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">http://localhost:4200/</span>
+								</div>
+								<input class="form-control" type="text" [(ngModel)]="article.seName" />
+							</div>
+						</div>
+						<div class="form-group col-lg-4">
+							<label>Đường dẫn mới *</label>
+							<input class="form-control" type="text" placeholder="Nhập đường dẫn mới"
+								[(ngModel)]="article.externalUrl" />
+						</div>
+						<div class="form-group col-lg-4">
+							<label>Tiêu đề *</label>
+							<input class="form-control" type="text" placeholder="Nhập tiêu đề"
+								[(ngModel)]="article.title" />
+						</div>
+						<div class="form-group col-lg-4">
+							<label>Ảnh đại diện *</label>
+							<input class="form-control" type="text" placeholder="Nhập đường dẫn ảnh đại diện"
+								[(ngModel)]="article.image" />
+						</div>
+						<div class="form-group col-lg-12">
+							<label>Mô tả *</label>
+							<textarea class="form-control" placeholder="Nhập mô tả"
+								[(ngModel)]="article.description"></textarea>
+						</div>
+						<div class="form-group col-lg-4">
+							<label>Ngày đăng</label>
+							<input class="form-control" type="date" [(ngModel)]="article.createDate" />
+						</div>
+						<div class="form-group col-lg-2">
+							<label class="checkbox-custom">
+								Hiển thị
+								<input type="checkbox" [(ngModel)]="article.isPublished" />
+							</label>
+						</div>
+						<div class="form-group col-lg-2">
+							<label class="checkbox-custom">
+								Nổi bật
+								<input type="checkbox" [(ngModel)]="article.isHot" />
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="content" tab-id="item-2">
+					<div class="row">
+						<div class="form-group col-lg-6">
+							<label>Meta Title *</label>
+							<input class="form-control" type="text" />
+						</div>
+						<div class="w-100"></div>
+						<div class="form-group col-lg-6">
+							<label>Meta Image *</label>
+							<input class="form-control" type="text" />
+						</div>
+						<div class="w-100"></div>
+						<div class="form-group col-lg-6">
+							<label>Meta Description</label>
+							<input class="form-control" type="text" />
+						</div>
+						<div class="w-100"></div>
+						<div class="form-group col-lg-6">
+							<label>Meta Keywords </label>
+							<input class="form-control" type="text" />
+						</div>
+						<div class="form-group col-lg-12">
+							<a class="btn btn-success" href="#">Xác nhận</a>
+						</div>
+					</div>
+				</div>
+				<div class="content" tab-id="item-3">
+					<p>3</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
