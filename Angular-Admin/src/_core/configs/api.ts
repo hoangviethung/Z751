@@ -19,6 +19,7 @@ export const ApiConfig = {
 	},
 	article: {
 		gets: '/api/Article/gets',
+		get: '/api/Article/get',
 		add: '/api/Article/add',
 		update: '/api/Article/update',
 		delete: '/api/Article/delete',

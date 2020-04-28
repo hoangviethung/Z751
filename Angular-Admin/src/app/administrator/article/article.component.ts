@@ -26,14 +26,6 @@ export class ArticleComponent implements OnInit {
 			})
 	}
 
-	getArticleById(id) {
-		this.crudSvc.get(ApiConfig.article.update, id)
-			.subscribe((response) => {
-				console.log(response);
-				this.getArticles();
-			})
-	}
-
 	editArticle(id) {
 		this.router.navigate([`/admin/article/edit/${id}`])
 	}
