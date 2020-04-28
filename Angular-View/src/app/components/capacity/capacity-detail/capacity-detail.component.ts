@@ -88,7 +88,7 @@ export class CapacityDetailComponent implements OnInit {
 					`assets/api/${this.currentLanguage}/capacity/${this.productCategoryUrl}.json`
 				)
 				.subscribe((result) => {
-					Breadcrumb[this.currentLanguage].push(result.Data.Title);
+					Breadcrumb[this.currentLanguage].push(result.data.Title);
 					this.breadcrumbs = Breadcrumb[this.currentLanguage];
 				});
 			await this.httpSvc
@@ -96,9 +96,9 @@ export class CapacityDetailComponent implements OnInit {
 					`assets/api/${this.currentLanguage}/capacity/capacity-detail.json`
 				)
 				.subscribe((result) => {
-					this.product = result.Data;
+					this.product = result.data;
 					this.pageSvc.setTitle(this.product.Title);
-					Breadcrumb[this.currentLanguage].push(result.Data.Title);
+					Breadcrumb[this.currentLanguage].push(result.data.Title);
 					this.breadcrumbs = Breadcrumb[this.currentLanguage];
 				});
 		});
@@ -107,7 +107,7 @@ export class CapacityDetailComponent implements OnInit {
 	fetchProductCategory() {
 		const url = `assets/api/${this.currentLanguage}/capacity/categories-capacity.json`;
 		this.httpSvc.get(url).subscribe((result) => {
-			this.productCategory = result.Data;
+			this.productCategory = result.data;
 		});
 	}
 

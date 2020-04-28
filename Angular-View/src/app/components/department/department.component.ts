@@ -57,15 +57,15 @@ export class DepartmentComponent implements OnInit {
 					`assets/api/${this.currentLanguage}/department/${params.departmentCategory}.json`
 				)
 				.subscribe((result) => {
-					this.pageSvc.setTitle(result.Data.Title);
-					this.title = result.Data.Title;
-					this.image = result.Data.Image;
-					this.description = result.Data.Description;
-					this.address = result.Data.Information.Address;
-					this.workTime = result.Data.Information.WorkTime;
-					this.designProducts = result.Data.Products.DesignProducts;
-					this.prepairProducts = result.Data.Products.PrepairProducts;
-					Breadcrumb[this.currentLanguage].push(result.Data.Title);
+					this.pageSvc.setTitle(result.data.Title);
+					this.title = result.data.Title;
+					this.image = result.data.Image;
+					this.description = result.data.Description;
+					this.address = result.data.Information.Address;
+					this.workTime = result.data.Information.WorkTime;
+					this.designProducts = result.data.Products.DesignProducts;
+					this.prepairProducts = result.data.Products.PrepairProducts;
+					Breadcrumb[this.currentLanguage].push(result.data.Title);
 					this.breadcrumbs = Breadcrumb[this.currentLanguage];
 				});
 		});
@@ -76,7 +76,7 @@ export class DepartmentComponent implements OnInit {
 				`assets/api/${this.currentLanguage}/department/categories-department.json`
 			)
 			.subscribe((result) => {
-				this.departments = result.Data;
+				this.departments = result.data;
 			});
 	}
 }

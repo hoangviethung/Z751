@@ -49,7 +49,7 @@ export class CapacityOthersComponent implements OnInit {
 				`assets/api/${this.currentLanguage}/capacity/${this.routeParamUrl}.json`
 			)
 			.subscribe((result) => {
-				this.productOthers = result.Data.Products;
+				this.productOthers = result.data.Products;
 			});
 	}
 }

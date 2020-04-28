@@ -38,7 +38,7 @@ export class AboutComponent implements OnInit {
 		this.httpSvc
 			.get(`assets/api/${this.currentLanguage}/about/mission.json`)
 			.subscribe((result) => {
-				this.missionVisionItems = result.Data;
+				this.missionVisionItems = result.data;
 			});
 	}
 }

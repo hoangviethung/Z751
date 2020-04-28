@@ -43,10 +43,10 @@ export class CapacityComponent implements OnInit {
 					`assets/api/${this.currentLanguage}/capacity/${routeParams.capacityCategory}.json`
 				)
 				.subscribe((result) => {
-					this.pageInfoSvc.setTitle(result.Data.Title);
-					this.title = result.Data.Title;
-					this.capacities = result.Data.Products;
-					Breadcrumb[this.currentLanguage].push(result.Data.Title);
+					this.pageInfoSvc.setTitle(result.data.Title);
+					this.title = result.data.Title;
+					this.capacities = result.data.Products;
+					Breadcrumb[this.currentLanguage].push(result.data.Title);
 					this.breadcrumbs = Breadcrumb[this.currentLanguage];
 				});
 		});

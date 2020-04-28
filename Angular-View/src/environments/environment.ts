@@ -6,6 +6,7 @@ export const environment = {
 	production: false,
 	locales: "http://localhost:4200/",
 	browserDirPath: "dist/browser",
+	remoteBaseUrl: "http://27.71.234.45:8080",
 };
 
 /*

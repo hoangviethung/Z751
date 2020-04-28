@@ -45,10 +45,10 @@ export class NewsComponent implements OnInit {
 					`assets/api/${this.currentLanguage}/news/${params.newsCategory}.json`
 				)
 				.subscribe((result) => {
-					this.newsList = result.Data.News;
-					this.pageTitle = result.Data.Title;
-					this.pageInfoSvc.setTitle(result.Data.Title);
-					Breadcrumb[this.currentLanguage].push(result.Data.Title);
+					this.newsList = result.data.News;
+					this.pageTitle = result.data.Title;
+					this.pageInfoSvc.setTitle(result.data.Title);
+					Breadcrumb[this.currentLanguage].push(result.data.Title);
 					this.breadcrumbs = Breadcrumb[this.currentLanguage];
 				});
 		});

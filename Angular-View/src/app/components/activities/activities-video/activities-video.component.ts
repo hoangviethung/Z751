@@ -37,7 +37,7 @@ export class ActivitiesVideoComponent implements OnInit {
 		this.httpSvc
 			.get(`assets/api/${this.currentLanguage}/activities-videos.json`)
 			.subscribe((result) => {
-				this.videos = result.Data;
+				this.videos = result.data;
 			});
 	}
 

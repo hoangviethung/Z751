@@ -12,7 +12,7 @@ import { ApiConfig } from 'src/_core/configs/api'
 })
 export class BannerComponent implements OnInit {
 	banners: Array<BannerModel>
-	
+
 	constructor(
 		private bannerSvc: BannerService,
 		private router: Router,

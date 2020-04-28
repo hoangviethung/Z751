@@ -45,7 +45,7 @@ export class HistoryComponent implements OnInit {
 		this.httpSvc
 			.get(`assets/api/${this.currentLanguage}/about/timeline.json`)
 			.subscribe((result) => {
-				this.years = result.Data;
+				this.years = result.data;
 			});
 	}
 }

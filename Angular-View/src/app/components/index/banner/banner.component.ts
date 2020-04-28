@@ -26,7 +26,7 @@ export class BannerComponent implements OnInit {
 
 	@Input("language") currentLanguage;
 
-	constructor(private httpSvc: HttpService) {}
+	constructor(private httpSvc: HttpService) { }
 
 	ngOnInit() {
 		this.getBanners();
@@ -34,9 +34,10 @@ export class BannerComponent implements OnInit {
 
 	getBanners() {
 		this.httpSvc
-			.get(`assets/api/${this.currentLanguage}/banner/banners.json`)
+			.get('/api/Banner/used/gets')
 			.subscribe((result) => {
-				this.banners = result.Data;
+				console.log(result);
+				this.banners = result.data;
 			});
 	}
 }
