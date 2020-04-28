@@ -11,7 +11,7 @@ import { Router } from '@angular/router'
 export class BannerComponent implements OnInit {
 	banners: Array<BannerModel>
 	constructor(private bannerSvc: BannerService, private router: Router) {}
-
+	
 	ngOnInit(): void {
 		this.getBanners()
 	}

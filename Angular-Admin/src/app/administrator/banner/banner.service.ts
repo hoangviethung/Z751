@@ -12,7 +12,7 @@ import { HttpParams } from '@angular/common/http'
 export class BannerService {
 	banners: Array<BannerModel>
 
-	constructor(private httpSvc: HttpService, private router: Router) {}
+	constructor(private httpSvc: HttpService, private router: Router) { }
 
 	fetch(params?): Observable<any> {
 		return this.httpSvc.get(ApiConfig.banner.gets, params)

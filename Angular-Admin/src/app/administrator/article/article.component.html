@@ -10,12 +10,12 @@
 				<th>Danh mục</th>
 				<th>Tác vụ</th>
 			</tr>
-			<tr>
-				<td class="column-number ta-c">1</td>
+			<tr *ngFor="let article of articles; let i = index">
+				<td class="column-number ta-c">{{ i + 1 }}</td>
 				<td class="column-title">
-					Giày bóng đá Kamito Quang Hải đủ màu, đủ size
+					{{ article.title }}
 				</td>
-				<td class="column-category ta-c">Chính sách</td>
+				<td class="column-category ta-c">{{ article.category }}</td>
 				<td class="column-button ta-c">
 					<div class="table-buttons">
 						<span class="btn btn-outline-success btn-edit">
@@ -34,9 +34,7 @@
 <div class="block-form mt-10">
 	<div class="block-content">
 		<div class="block-control">
-			<a class="btn btn-danger btn-cancel" routerLink=""
-				>Hủy bỏ</a
-			>
+			<a class="btn btn-danger btn-cancel" routerLink="">Hủy bỏ</a>
 			<a class="btn btn-success btn-add">Thêm</a>
 		</div>
 		<div class="tab-container" appTab>
@@ -72,43 +70,26 @@
 							<label>Đường dẫn *</label>
 							<div class="input-group">
 								<div class="input-group-prepend">
-									<span class="input-group-text"
-										>http://localhost:4200/</span
-									>
+									<span class="input-group-text">http://localhost:4200/</span>
 								</div>
 								<input class="form-control" type="text" />
 							</div>
 						</div>
 						<div class="form-group col-lg-4">
 							<label>Đường dẫn mới *</label>
-							<input
-								class="form-control"
-								type="text"
-								placeholder="Nhập đường dẫn mới"
-							/>
+							<input class="form-control" type="text" placeholder="Nhập đường dẫn mới" />
 						</div>
 						<div class="form-group col-lg-4">
 							<label>Tiêu đề *</label>
-							<input
-								class="form-control"
-								type="text"
-								placeholder="Nhập tiêu đề"
-							/>
+							<input class="form-control" type="text" placeholder="Nhập tiêu đề" />
 						</div>
 						<div class="form-group col-lg-4">
 							<label>Ảnh đại diện *</label>
-							<input
-								class="form-control"
-								type="text"
-								placeholder="Nhập đường dẫn ảnh đại diện"
-							/>
+							<input class="form-control" type="text" placeholder="Nhập đường dẫn ảnh đại diện" />
 						</div>
 						<div class="form-group col-lg-12">
 							<label>Mô tả *</label>
-							<textarea
-								class="form-control"
-								placeholder="Nhập mô tả"
-							></textarea>
+							<textarea class="form-control" placeholder="Nhập mô tả"></textarea>
 						</div>
 						<div class="form-group col-lg-4">
 							<label>Ngày đăng</label>
