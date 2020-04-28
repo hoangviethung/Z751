@@ -114,7 +114,7 @@ export class AuthenticService {
 		else {
 			let session: ResultModel<Session> = {
 				data: null,
-				code: -2,
+				code: 401,
 				message: 'You signed out',
 			}
 			callback(session)

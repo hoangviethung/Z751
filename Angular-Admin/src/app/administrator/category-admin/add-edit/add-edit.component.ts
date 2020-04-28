@@ -69,7 +69,6 @@ export class AddEditComponent implements OnInit {
 		this.crudSvc
 			.update(ApiConfig.category.update, this.category)
 			.subscribe((response) => {
-				console.log(response)
 				this.router.navigateByUrl('/admin/category-admin')
 			})
 	}

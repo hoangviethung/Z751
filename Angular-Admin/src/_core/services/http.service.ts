@@ -10,6 +10,7 @@ import { Observable, throwError } from 'rxjs'
 import { map, catchError } from 'rxjs/operators'
 import { environment } from 'src/environments/environment'
 import { CookieService } from 'ngx-cookie-service'
+import { AuthenticService } from 'src/core/authentication/authentic.service'
 
 class RequestOption {
 	body?: any
@@ -38,7 +39,8 @@ export class HttpService {
 	constructor(
 		private http: HttpClient,
 		private router: Router,
-		private cookieSvc: CookieService
+		private cookieSvc: CookieService,
+		private authenticSvc: AuthenticService
 	) {}
 
 	public requestErrorHandler() {

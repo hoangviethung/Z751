@@ -4,15 +4,14 @@ export class CategoryModel {
 	externalUrl: string
 	id: number
 	image: string
-	isSystem: false
+	isSystem: boolean
 	languageId: number
 	metaDescription: string
 	metaImage: string
 	metaKeywords: string
 	metaTitle: string
 	order: number
-	parent: string
-	parentId: string
+	parentId: number
 	parentName: string
 	previewUrl: string
 	seName: string
