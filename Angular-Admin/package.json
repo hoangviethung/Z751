@@ -34,8 +34,6 @@
 		"angular2-datetimepicker": "^1.1.1",
 		"bootstrap": "^4.4.1",
 		"dateformat": "^3.0.3",
-		"devextreme": "19.2.7",
-		"devextreme-angular": "^19.2.7",
 		"mdi": "^2.2.43",
 		"ngx-cookie-service": "^3.0.4",
 		"ngx-device-detector": "^1.4.2",

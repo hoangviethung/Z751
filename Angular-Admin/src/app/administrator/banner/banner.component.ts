@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core'
-import { BannerService } from './banner.service'
 import { BannerModel } from 'src/_core/models/banner.model'
 import { Router } from '@angular/router'
 import { CrudService } from 'src/_core/services/crud.service'
@@ -13,11 +12,7 @@ import { ApiConfig } from 'src/_core/configs/api'
 export class BannerComponent implements OnInit {
 	banners: Array<BannerModel>
 
-	constructor(
-		private bannerSvc: BannerService,
-		private router: Router,
-		private crudSvc: CrudService
-	) {}
+	constructor(private router: Router, private crudSvc: CrudService) {}
 
 	ngOnInit(): void {
 		this.getBanners()
@@ -28,7 +23,6 @@ export class BannerComponent implements OnInit {
 			.fetch(ApiConfig.banner.gets, { languageId: 1 })
 			.subscribe((response) => {
 				this.banners = response.data
-				this.bannerSvc.banners = this.banners
 			})
 	}
 
