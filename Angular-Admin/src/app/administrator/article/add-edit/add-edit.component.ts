@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { ArticleModel } from 'src/_core/models/article.model';
-import { CrudService } from 'src/_core/services/crud.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { ApiConfig } from 'src/_core/configs/api';
-import { log } from 'util';
+import { Component, OnInit } from '@angular/core'
+import { ArticleModel } from 'src/_core/models/article.model'
+import { CrudService } from 'src/_core/services/crud.service'
+import { ActivatedRoute, Router } from '@angular/router'
+import { map } from 'rxjs/operators'
+import { ApiConfig } from 'src/_core/configs/api'
 
 @Component({
 	selector: 'app-add-edit',
 	templateUrl: './add-edit.component.html',
-	styleUrls: ['./add-edit.component.scss']
+	styleUrls: ['./add-edit.component.scss'],
 })
 export class AddEditComponent implements OnInit {
-	article: ArticleModel = new ArticleModel();
+	article: ArticleModel = new ArticleModel()
 	isEdit = {
 		status: false,
 		buttonText: 'Cập nhật',
@@ -21,7 +20,7 @@ export class AddEditComponent implements OnInit {
 		private crudSvc: CrudService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router
-	) { }
+	) {}
 
 	ngOnInit(): void {
 		this.activatedRoute.params
@@ -30,11 +29,10 @@ export class AddEditComponent implements OnInit {
 				if (articleId) {
 					this.isEdit.status = true
 					this.crudSvc
-						.gets(ApiConfig.article.gets, { languageId: 1 })
+						.get(ApiConfig.article.get, articleId)
 						.subscribe((result) => {
-							this.article = result.data.filter(
-								(item) => item.id == articleId
-							)[0]
+							console.log(result.data)
+							this.article = result.data
 						})
 				} else {
 					this.isEdit.status = false
