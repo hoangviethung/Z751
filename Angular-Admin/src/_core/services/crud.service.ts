@@ -7,9 +7,14 @@ import { HttpParams } from '@angular/common/http'
 	providedIn: 'root',
 })
 export class CrudService {
-	constructor(private httpSvc: HttpService) {}
+	constructor(private httpSvc: HttpService) { }
 
 	fetch(url: string, params?): Observable<any> {
+		return this.httpSvc.get(url, params)
+	}
+
+	get(url: string, id: string): Observable<any> {
+		const params = new HttpParams().set('id', id)
 		return this.httpSvc.get(url, params)
 	}
 

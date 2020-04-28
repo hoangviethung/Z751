@@ -17,7 +17,7 @@ export class BannerComponent implements OnInit {
 		private bannerSvc: BannerService,
 		private router: Router,
 		private crudSvc: CrudService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.getBanners()
