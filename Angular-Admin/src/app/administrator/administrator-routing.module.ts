@@ -51,6 +51,84 @@ const routes: Routes = [
 					),
 				data: { title: 'Tài nguyên' },
 			},
+			{
+				path: 'category-admin',
+				loadChildren: () =>
+					import('./category-admin/category-admin.module').then(
+						(m) => m.CategoryAdminModule
+					),
+				data: { title: 'Danh Mục Admin' },
+			},
+			{
+				path: 'about',
+				loadChildren: () =>
+					import('./about/about.module').then(
+						(m) => m.AboutModule),
+				data: { title: 'Giới thiệu' },
+			},
+			{
+				path: 'user',
+				loadChildren: () =>
+					import('./user/user.module').then(
+						(m) => m.UserModule),
+				data: { title: 'Tài khoản' },
+			},
+			{
+				path: 'role',
+				loadChildren: () =>
+					import('./role/role.module').then(
+						(m) => m.RoleModule),
+				data: { title: 'Quản lí quyền' },
+			},
+			{
+				path: 'main-menu',
+				loadChildren: () =>
+					import('./main-menu/main-menu.module').then(
+						(m) => m.MainMenuModule),
+				data: { title: 'Menu chính' },
+			},
+			{
+				path: 'footer-menu',
+				loadChildren: () =>
+					import('./footer-menu/footer-menu.module').then(
+						(m) => m.FooterMenuModule),
+				data: { title: 'Footer Menu' },
+			},
+			{
+				path: 'branch',
+				loadChildren: () =>
+					import('./branch/branch.module').then(
+						(m) => m.BranchModule),
+				data: { title: 'Chi nhánh' },
+			},
+			{
+				path: 'commerce-category',
+				loadChildren: () =>
+					import('./commerce-category/commerce-category.module').then(
+						(m) => m.CommerceCategoryModule),
+				data: { title: 'Danh mục sản phẩm' },
+			},
+			{
+				path: 'brand',
+				loadChildren: () =>
+					import('./brand/brand.module').then(
+						(m) => m.BrandModule),
+				data: { title: 'Thương hiệu' },
+			},
+			{
+				path: 'products',
+				loadChildren: () =>
+					import('./products/products.module').then(
+						(m) => m.ProductsModule),
+				data: { title: 'Danh sách sản phẩm' },
+			},
+			{
+				path: 'contact',
+				loadChildren: () =>
+					import('./contact/contact.module').then(
+						(m) => m.ContactModule),
+				data: { title: 'Danh sách khách hàng liên lạc' },
+			},
 		],
 	},
 	{

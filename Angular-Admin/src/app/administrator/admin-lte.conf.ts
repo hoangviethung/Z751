@@ -35,6 +35,18 @@ export const adminLteConf = {
 					routeActive: '/admin/article',
 					iconClasses: 'lnr lnr-book',
 				},
+				{
+					label: 'Danh mục',
+					route: '/admin/category-admin',
+					routeActive: '/admin/category-admin',
+					iconClasses: 'lnr lnr-list',
+				},
+				{
+					label: 'Giới thiệu',
+					route: '/admin/about',
+					routeActive: '/admin/about',
+					iconClasses: 'lnr lnr-pushpin',
+				},
 			],
 		},
 		{
@@ -54,6 +66,78 @@ export const adminLteConf = {
 					iconClasses: 'lnr lnr-layers',
 				},
 			],
+		},
+		{
+			label: 'Thành viên',
+			iconClasses: 'lnr lnr-users',
+			children: [
+				{
+					label: 'Tài khoản quản trị',
+					route: '/admin/user',
+					routeActive: '/admin/user',
+					iconClasses: 'lnr lnr-user',
+				},
+				{
+					label: 'Quản lí quyền',
+					route: '/admin/role',
+					routeActive: '/admin/role',
+					iconClasses: 'lnr lnr-layers',
+				},
+			],
+		},
+		{
+			label: 'Menu',
+			iconClasses: 'lnr lnr-menu-circle',
+			children: [
+				{
+					label: 'Main Menu',
+					route: '/admin/main-menu',
+					routeActive: '/admin/main-menu',
+					iconClasses: 'lnr lnr-menu-circle',
+				},
+				{
+					label: 'Footer Menu',
+					route: '/admin/footer-menu',
+					routeActive: '/admin/footer-menu',
+					iconClasses: 'lnr lnr-layers',
+				},
+			],
+		},
+		{
+			label: 'Thương mai điện tử',
+			iconClasses: 'lnr lnr-cart',
+			children: [
+				{
+					label: 'Danh mục',
+					route: '/admin/commerce-category',
+					routeActive: '/admin/commerce-category',
+					iconClasses: 'lnr lnr-menu-circle',
+				},
+				{
+					label: 'Thương hiệu',
+					route: '/admin/brand',
+					routeActive: '/admin/brand',
+					iconClasses: 'lnr lnr-tag',
+				},
+				{
+					label: 'Sản phẩm',
+					route: '/admin/products',
+					routeActive: '/admin/products',
+					iconClasses: 'lnr lnr-linearicons',
+				},
+			],
+		},
+		{
+			label: 'Chi nhánh',
+			route: '/admin/branch',
+			routeActive: 'admin/branch',
+			iconClasses: 'lnr lnr-map',
+		},
+		{
+			label: 'Khách hàng liên lạc',
+			route: '/admin/contact',
+			routeActive: 'admin/contact',
+			iconClasses: 'lnr lnr-envelope',
 		},
 	],
 

@@ -1,5 +1,5 @@
 <div class="block-content">
-	<div class="block-control">
+	<!-- <div class="block-control">
 		<a
 			class="btn btn-danger btn-cancel"
 			routerLink="/admin/banner"
@@ -10,7 +10,23 @@
 		<a class="btn btn-success btn-add" (click)="bannerAction($event)">
 			{{ isEdit.status ? isEdit.buttonText : 'Thêm' }}
 		</a>
+	</div> -->
+
+	<!-- Sửa banner -->
+	<div class="block-control" *ngIf="isEdit.status == true">
+		<a class="btn btn-danger btn-cancel" routerLink="/admin/banner">
+			Hủy bỏ
+		</a>
+		<a class="btn btn-success btn-add" (click)="updateBanner()">Cập nhật</a>
 	</div>
+	<!-- Thêm banner -->
+	<div class="block-control" *ngIf="isEdit.status == false">
+		<a class="btn btn-danger btn-cancel" routerLink="/admin/banner">
+			Hủy bỏ
+		</a>
+		<a class="btn btn-success btn-add" (click)="addBanner()">Thêm</a>
+	</div>
+
 	<form>
 		<div class="form-row row">
 			<div class="col-lg-4">
@@ -90,3 +106,5 @@
 		</div>
 	</form>
 </div>
+
+<app-file-manager></app-file-manager>

@@ -116,9 +116,11 @@ export class HttpService {
 		} else {
 			// The backend returned an unsuccessful response code.
 			// The response body may contain clues as to what went wrong,
-			console.error(
-				`Backend returned code ${error.status}, body was: ${error.error}`
-			)
+			console.log(error)
+
+			// console.error(
+			// 	`Backend returned code ${error.status}, body was: ${error.error}`
+			// )
 
 			let routePath = ''
 			if (error.status === 404) {

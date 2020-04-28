@@ -1,0 +1,68 @@
+<div class="block-content">
+	<div class="block-control">
+		<a class="btn btn-success btn-add" routerLink="add">Thêm mới</a>
+	</div>
+	<div class="block-table">
+		<table class="table">
+			<tr class="table-info">
+				<th>#</th>
+				<th>Tên danh mục</th>
+				<th>Danh mục cha</th>
+				<th>Đường dẫn</th>
+				<th>Tác vụ</th>
+			</tr>
+			<tr>
+				<td class="column-number ta-c">1</td>
+				<td class="column-title">
+					Liên hệ
+				</td>
+				<td class="column-category ta-c">Null</td>
+				<td class="column-url ta-c">/lien-he
+				</td>
+				<td class="column-button ta-c">
+					<div class="table-buttons">
+						<span class="btn btn-outline-success btn-edit">
+							<span class="lnr lnr-pencil"></span>
+						</span>
+						<span class="btn btn-outline-danger btn-remove">
+							<span class="lnr lnr-trash"></span>
+						</span>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="block-form mt-10">
+	<div class="block-content">
+		<div class="block-control">
+			<a class="btn btn-danger btn-cancel" routerLink="">Hủy bỏ</a>
+			<a class="btn btn-success btn-add">Thêm</a>
+		</div>
+		<div class="row">
+			<div class="form-group col-lg-4">
+				<label>Tên đăng nhập *</label>
+				<input class="form-control" type="text" placeholder="Nhập tên đăng nhập" />
+			</div>
+			<div class="form-group col-lg-4">
+				<label>Email</label>
+				<input class="form-control" type="text" placeholder="Nhập Email" />
+			</div>
+			<div class="form-group col-lg-4">
+				<label>Mật khẩu</label>
+				<input class="form-control" type="password" placeholder="Nhập mật khẩu" />
+			</div>
+			<div class="form-group col-lg-4">
+				<label>Nhập lại mật khẩu</label>
+				<input class="form-control" type="password" placeholder="Nhập lại mật khẩu" />
+			</div>
+			<div class="form-group col-lg-2">
+				<label class="checkbox-custom">
+					Kích hoạt
+					<input type="checkbox" />
+				</label>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core'
-import { BannerService } from '../banner.service'
 import { BannerModel } from 'src/_core/models/banner.model'
 import { ActivatedRoute, Router } from '@angular/router'
-import { map, filter } from 'rxjs/operators'
+import { map } from 'rxjs/operators'
+import { CrudService } from 'src/_core/services/crud.service'
+import { ApiConfig } from 'src/_core/configs/api'
 
 @Component({
 	selector: 'app-add-edit',
@@ -11,14 +12,13 @@ import { map, filter } from 'rxjs/operators'
 })
 export class AddEditComponent implements OnInit {
 	banner: BannerModel = new BannerModel()
-
 	isEdit = {
 		status: false,
 		buttonText: 'Cập nhật',
 	}
 
 	constructor(
-		private bannerSvc: BannerService,
+		private crudSvc: CrudService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router
 	) {}
@@ -29,8 +29,8 @@ export class AddEditComponent implements OnInit {
 			.subscribe((bannerId) => {
 				if (bannerId) {
 					this.isEdit.status = true
-					this.bannerSvc
-						.fetch({ languageId: 1 })
+					this.crudSvc
+						.fetch(ApiConfig.banner.gets, { languageId: 1 })
 						.subscribe((result) => {
 							this.banner = result.data.filter(
 								(item) => item.id == bannerId
@@ -42,24 +42,21 @@ export class AddEditComponent implements OnInit {
 			})
 	}
 
-	bannerAction(e) {
-		this.banner.name = this.banner.resourcePath
-		if (this.isEdit.status) {
-			this.updateBanner(this.banner)
-		} else {
-			this.addBanner(this.banner)
-		}
+	updateBanner() {
+		this.crudSvc
+			.update(ApiConfig.banner.update, this.banner)
+			.subscribe((response) => {
+				console.log(response)
+				this.router.navigateByUrl('/admin/banner')
+			})
 	}
 
-	updateBanner(data: BannerModel) {
-		this.bannerSvc.update(data).subscribe((response) => {
-			this.router.navigateByUrl('/admin/banner')
-		})
-	}
-
-	addBanner(data: BannerModel) {
-		this.bannerSvc.add(data).subscribe((response) => {
-			this.router.navigateByUrl('/admin/banner')
-		})
+	addBanner() {
+		this.crudSvc
+			.add(ApiConfig.banner.add, this.banner)
+			.subscribe((response) => {
+				console.log(response)
+				this.router.navigateByUrl('/admin/banner')
+			})
 	}
 }

@@ -5,9 +5,7 @@
 <ng-template #noCustomLayout>
 	<mk-layout-wrapper>
 		<mk-layout-header>
-			<mk-layout-header-logo
-				><b>{{AppName}} </b>Admin</mk-layout-header-logo
-			>
+			<mk-layout-header-logo><b>{{AppName}} </b>Admin</mk-layout-header-logo>
 			<mk-layout-header-logo-mini><b>App</b></mk-layout-header-logo-mini>
 			<app-header-inner></app-header-inner>
 		</mk-layout-header>
@@ -19,9 +17,7 @@
 		</mk-layout-sidebar-right>
 		<mk-layout-content>
 			<div mk-layout-content-before-header style="height: 4px;">
-				<div
-					*mkLoadingPage="{checkPendingHttp: true, checkPendingRoute: true}"
-				>
+				<div *mkLoadingPage="{checkPendingHttp: true, checkPendingRoute: true}">
 					<mk-material-bar></mk-material-bar>
 				</div>
 			</div>
@@ -31,9 +27,7 @@
 		</mk-layout-content>
 		<mk-layout-footer>
 			<mk-layout-footer-left>
-				<strong
-					>Powered by <a href="http://app.com">{{AppName}}</a></strong
-				>
+				<strong>Powered by <a href="http://app.com">{{AppName}}</a></strong>
 			</mk-layout-footer-left>
 			<mk-layout-footer-right>
 				<b>Version</b> 1.0.0

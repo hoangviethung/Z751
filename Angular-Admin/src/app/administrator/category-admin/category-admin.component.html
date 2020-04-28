@@ -1,0 +1,35 @@
+<div class="block-content">
+	<div class="block-control">
+		<a class="btn btn-success btn-add" routerLink="add">Thêm mới</a>
+	</div>
+	<div class="block-table">
+		<table class="table">
+			<tr class="table-info">
+				<th>#</th>
+				<th>Tên danh mục</th>
+				<th>Danh mục cha</th>
+				<th>Đường dẫn</th>
+				<th>Tác vụ</th>
+			</tr>
+			<tr *ngFor="let category of categories; let i = index">
+				<td class="column-number ta-c">{{ i }}</td>
+				<td class="column-title">{{ category.title }}</td>
+				<td class="column-category ta-c">{{ category.parentName }}</td>
+				<td class="column-url ta-c">{{ category.reviewUrl }}</td>
+				<td class="column-button ta-c">
+					<div class="table-buttons">
+						<span class="btn btn-outline-success btn-edit">
+							<span class="lnr lnr-pencil"></span>
+						</span>
+						<span
+							class="btn btn-outline-danger btn-remove"
+							(click)="delete(category.id)"
+						>
+							<span class="lnr lnr-trash"></span>
+						</span>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
