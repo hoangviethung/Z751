@@ -4,12 +4,13 @@ export class ArticleModel {
 	seName: string
 	description: string
 	content: string
-	imageDefault: string
+	image: string
 	imageFolder: string
 	isPublished: boolean
 	isHot: boolean
 	order: string
 	categoryId: number
+	categoryName: string
 	languageId: number
 	metaTitle: string
 	metaImage: string

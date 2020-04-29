@@ -4,6 +4,8 @@ import { CrudService } from 'src/_core/services/crud.service'
 import { ActivatedRoute, Router } from '@angular/router'
 import { map } from 'rxjs/operators'
 import { ApiConfig } from 'src/_core/configs/api'
+import { UtilService } from 'src/_core/services/util.service'
+import { CategoryModel } from 'src/_core/models/category.model'
 
 @Component({
 	selector: 'app-add-edit',
@@ -12,17 +14,22 @@ import { ApiConfig } from 'src/_core/configs/api'
 })
 export class AddEditComponent implements OnInit {
 	article: ArticleModel = new ArticleModel()
+	categories: Array<CategoryModel>
+	category: CategoryModel = new CategoryModel()
 	isEdit = {
 		status: false,
-		buttonText: 'Cập nhật',
 	}
+	originUrl: string
 	constructor(
 		private crudSvc: CrudService,
 		private activatedRoute: ActivatedRoute,
-		private router: Router
-	) {}
+		private router: Router,
+		private utilSvc: UtilService
+	) { }
 
 	ngOnInit(): void {
+		this.getCategories();
+		this.originUrl = this.utilSvc.getOriginUrl();
 		this.activatedRoute.params
 			.pipe(map((params) => params.articleid))
 			.subscribe((articleId) => {
@@ -55,6 +62,36 @@ export class AddEditComponent implements OnInit {
 			.subscribe((response) => {
 				console.log(response)
 				this.router.navigateByUrl('/admin/article')
+			})
+	}
+
+	setAliasTitleToUrl() {
+		this.article.seName = this.utilSvc.alias(this.article.title)
+	}
+
+	getCategories() {
+		const homepage = new CategoryModel()
+		homepage.parentId = null
+		homepage.title = 'Danh mục gốc'
+		homepage.externalUrl = '/'
+		this.crudSvc
+			.gets(ApiConfig.category.gets, { languageId: 1 })
+			.subscribe((response) => {
+				console.log(response)
+				this.categories = response.data.items
+				this.categories.unshift(homepage)
+			})
+	}
+
+	addCategory() {
+		if (!this.category.parentId) {
+			this.category.parentId = null
+		}
+		this.crudSvc
+			.add(ApiConfig.category.add, this.category)
+			.subscribe((response) => {
+				console.log(response)
+				this.router.navigateByUrl('/admin/category-admin')
 			})
 	}
 }

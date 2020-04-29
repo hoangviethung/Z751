@@ -3,6 +3,7 @@ import { ArticleModel } from 'src/_core/models/article.model'
 import { CrudService } from 'src/_core/services/crud.service'
 import { ApiConfig } from 'src/_core/configs/api'
 import { Router } from '@angular/router'
+import { CategoryModel } from 'src/_core/models/category.model'
 
 @Component({
 	selector: 'app-article',
@@ -11,17 +12,18 @@ import { Router } from '@angular/router'
 })
 export class ArticleComponent implements OnInit {
 	articles: Array<ArticleModel>
-
+	categories: Array<CategoryModel>;
 	constructor(private crudSvc: CrudService, private router: Router, ) { }
 
 	ngOnInit(): void {
-		this.getArticles()
+		this.getArticles();
 	}
 
 	getArticles() {
 		this.crudSvc
 			.gets(ApiConfig.article.gets, { languageId: 1 })
 			.subscribe((response) => {
+				console.log(response);
 				this.articles = response.data.items
 			})
 	}
