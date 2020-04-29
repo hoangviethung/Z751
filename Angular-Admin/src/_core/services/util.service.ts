@@ -38,7 +38,7 @@ export class UtilService {
 		return str
 	}
 
-	getOriginUrl() {
-		return this.document.location.origin + '/'
+	getOriginUrl(url?: string) {
+		return `${this.document.location.origin}${url}/`
 	}
 }

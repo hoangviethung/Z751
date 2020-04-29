@@ -26,11 +26,7 @@ export class AddEditComponent implements OnInit {
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
 		private utilSvc: UtilService
-	) {}
-
-	ngOnInit(): void {
-		this.originUrl = this.utilSvc.getOriginUrl()
-		this.getCategories()
+	) {
 		this.activatedRoute.params
 			.pipe(map((params) => params.categoryAdminId))
 			.subscribe((categoryAdminId) => {
@@ -38,8 +34,13 @@ export class AddEditComponent implements OnInit {
 					this.isEdit = true
 					this.crudSvc
 						.get(ApiConfig.category.get, categoryAdminId)
-						.subscribe((result) => {
-							this.category = result.data
+						.pipe(map((response) => response.data))
+						.subscribe((response) => {
+							this.category = response
+							if (this.category.parentId == null) {
+								this.category.parentId = 0
+							}
+							this.getCategories()
 						})
 				} else {
 					this.isEdit = false
@@ -47,17 +48,20 @@ export class AddEditComponent implements OnInit {
 			})
 	}
 
+	ngOnInit(): void {}
+
 	getCategories() {
-		const homepage = new CategoryModel()
-		homepage.parentId = null
-		homepage.title = 'Danh mục gốc'
-		homepage.externalUrl = '/'
+		const baseCategory: CategoryModel = new CategoryModel()
+		baseCategory.previewUrl = ''
+		baseCategory.id = 0
+		baseCategory.title = 'Danh mục gốc'
 		this.crudSvc
 			.gets(ApiConfig.category.gets, { languageId: 1 })
+			.pipe(map((response) => response.data.items))
 			.subscribe((response) => {
-				console.log(response)
-				this.categories = response.data.items
-				this.categories.unshift(homepage)
+				this.categories = response
+				this.categories.unshift(baseCategory)
+				this.setBaseUrl()
 			})
 	}
 
@@ -65,12 +69,12 @@ export class AddEditComponent implements OnInit {
 		this.category.seName = this.utilSvc.alias(this.category.title)
 	}
 
-	updateCategory() {
-		this.crudSvc
-			.update(ApiConfig.category.update, this.category)
-			.subscribe((response) => {
-				this.router.navigateByUrl('/admin/category-admin')
-			})
+	setBaseUrl() {
+		const parentId = Number(this.category.parentId)
+		const parentCategory = this.categories.find(
+			(category) => category.id == parentId
+		)
+		this.originUrl = this.utilSvc.getOriginUrl(parentCategory.previewUrl)
 	}
 
 	addCategory() {
@@ -80,7 +84,19 @@ export class AddEditComponent implements OnInit {
 		this.crudSvc
 			.add(ApiConfig.category.add, this.category)
 			.subscribe((response) => {
-				console.log(response)
+				this.router.navigateByUrl('/admin/category-admin')
+			})
+	}
+
+	updateCategory() {
+		if (this.category.parentId == null || this.category.parentId == 0) {
+			this.category.parentId = null
+		} else {
+			this.category.parentId = Number(this.category.parentId)
+		}
+		this.crudSvc
+			.update(ApiConfig.category.update, this.category)
+			.subscribe((response) => {
 				this.router.navigateByUrl('/admin/category-admin')
 			})
 	}

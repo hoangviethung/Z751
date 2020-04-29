@@ -5,6 +5,7 @@
 export const environment = {
 	production: false,
 	remoteBaseUrl: 'http://27.71.234.45:8080',
+	// remoteBaseUrl: 'http://192.168.1.113:8080',
 }
 
 /*
