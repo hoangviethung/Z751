@@ -24,8 +24,11 @@
 						<div class="form-group col-lg-4">
 							<label>Ngôn ngữ *</label>
 							<select class="form-control" [(ngModel)]="article.languageId">
-								<option value="1">Vietnamese</option>
-								<option value="2">English</option>
+								<ng-container *ngFor="let language of languages">
+									<option value="{{ language.key }}">
+										{{ language.name }}
+									</option>
+								</ng-container>
 							</select>
 						</div>
 						<div class="w-100"></div>

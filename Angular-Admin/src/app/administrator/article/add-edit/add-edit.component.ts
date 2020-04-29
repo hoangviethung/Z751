@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators'
 import { ApiConfig } from 'src/_core/configs/api'
 import { UtilService } from 'src/_core/services/util.service'
 import { CategoryModel } from 'src/_core/models/category.model'
+import { LanguageService } from 'src/_core/services/language.service'
+import { LanguageModel } from 'src/_core/models/language'
 
 @Component({
 	selector: 'app-add-edit',
@@ -13,7 +15,8 @@ import { CategoryModel } from 'src/_core/models/category.model'
 	styleUrls: ['./add-edit.component.scss'],
 })
 export class AddEditComponent implements OnInit {
-	article: ArticleModel = new ArticleModel()
+	article: ArticleModel = new ArticleModel();
+	languages: Array<LanguageModel>;
 	categories: Array<CategoryModel>
 	category: CategoryModel = new CategoryModel()
 	isEdit = {
@@ -24,10 +27,12 @@ export class AddEditComponent implements OnInit {
 		private crudSvc: CrudService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router,
-		private utilSvc: UtilService
+		private utilSvc: UtilService,
+		private languageSvc: LanguageService
 	) { }
 
 	ngOnInit(): void {
+		this.getLanguages();
 		this.getCategories();
 		this.originUrl = this.utilSvc.getOriginUrl();
 		this.activatedRoute.params
@@ -77,7 +82,6 @@ export class AddEditComponent implements OnInit {
 		this.crudSvc
 			.gets(ApiConfig.category.gets, { languageId: 1 })
 			.subscribe((response) => {
-				console.log(response)
 				this.categories = response.data.items
 				this.categories.unshift(homepage)
 			})
@@ -92,6 +96,14 @@ export class AddEditComponent implements OnInit {
 			.subscribe((response) => {
 				console.log(response)
 				this.router.navigateByUrl('/admin/category-admin')
+			})
+	}
+
+	getLanguages() {
+		this.languageSvc
+			.gets(ApiConfig.language.gets)
+			.subscribe((response) => {
+				this.languages = response
 			})
 	}
 }

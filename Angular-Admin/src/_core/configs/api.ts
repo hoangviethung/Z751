@@ -25,4 +25,9 @@ export const ApiConfig = {
 		update: '/api/Article/update',
 		delete: '/api/Article/delete',
 	},
+	language: {
+		gets: '/api/Language/gets',
+		get: '/api/Language/get',
+		switch: '/api/Language/switch',
+	},
 }

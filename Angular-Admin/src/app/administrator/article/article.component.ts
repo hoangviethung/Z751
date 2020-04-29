@@ -11,7 +11,7 @@ import { CategoryModel } from 'src/_core/models/category.model'
 	styleUrls: ['./article.component.scss'],
 })
 export class ArticleComponent implements OnInit {
-	articles: Array<ArticleModel>
+	articles: Array<ArticleModel>;
 	categories: Array<CategoryModel>;
 	constructor(private crudSvc: CrudService, private router: Router, ) { }
 
