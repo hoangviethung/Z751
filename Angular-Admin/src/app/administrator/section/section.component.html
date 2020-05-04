@@ -1,0 +1,22 @@
+<div class="block-content">
+	<div class="block-table">
+		<table class="table">
+			<tr class="table-info">
+				<th>#</th>
+				<th>Mục</th>
+				<th>Thao tác</th>
+			</tr>
+			<tr *ngFor="let section of secitons; let i = index">
+				<th class="column-number ta-c">{{i+1}}</th>
+				<td class="column-title ta-c">{{section.ordertitle}}</td>
+				<td class="column-button ta-c">
+					<div class="table-buttons">
+						<span class="btn btn-outline-success btn-view" (click)="editSection(section.id)">
+							<span class="lnr lnr-pencil"></span>
+						</span>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>

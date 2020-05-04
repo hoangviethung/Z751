@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators'
 	providedIn: 'root',
 })
 export class CrudService {
-	constructor(private httpSvc: HttpService) {}
+	constructor(private httpSvc: HttpService) { }
 
 	get(url: string, id: string) {
 		const params = new HttpParams().set('id', id)
