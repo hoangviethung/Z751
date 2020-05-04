@@ -4,6 +4,7 @@ import { AppBaseComponent } from '../../core/basecommon/app-base.component'
 import { LoginType } from '../../core/constant/AppEnums'
 import { adminLteConf } from './admin-lte.conf'
 import { LoadingService } from '../../core/loading/loading.service'
+import { LanguageService } from 'src/_core/services/language.service'
 
 @Component({
 	selector: 'app-root',
@@ -13,11 +14,13 @@ import { LoadingService } from '../../core/loading/loading.service'
 export class AdministratorComponent extends AppBaseComponent {
 	public customLayout: boolean = false
 
-	constructor(injector: Injector, private layoutStore: LayoutStore) {
+	constructor(
+		injector: Injector,
+		private layoutStore: LayoutStore,
+	) {
 		super(injector)
 
 		let session = this.authenticSvc.getSession()
-
 		// Example for switch menu
 		// if (session.type == LoginType.internalUser) {
 		//   this.layoutStore.setSidebarLeftMenu(adminLteConf.sidebarInternalUserLeftMenu);

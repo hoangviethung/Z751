@@ -34,7 +34,6 @@ export class CategoryAdminComponent implements OnInit {
 		this.crudSvc
 			.delete(ApiConfig.category.delete, id)
 			.subscribe((response) => {
-				console.log(response)
 				this.getCategories()
 			})
 	}

@@ -10,6 +10,7 @@ export class ArticleModel {
 	isHot: boolean
 	order: string
 	categoryId: number
+	categoryName: string
 	languageId: number
 	metaTitle: string
 	metaImage: string

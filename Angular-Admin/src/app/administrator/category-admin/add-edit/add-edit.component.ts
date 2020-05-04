@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core'
 import { Router, ActivatedRoute } from '@angular/router'
-import { CategoryModel } from 'src/_core/models/category.model'
-import { CrudService } from 'src/_core/services/crud.service'
+import { map } from 'rxjs/operators'
 import { ApiConfig } from 'src/_core/configs/api'
 import { templates } from 'src/_core/configs/templates'
+import { CrudService } from 'src/_core/services/crud.service'
 import { UtilService } from 'src/_core/services/util.service'
 import { TemplateModel } from 'src/_core/models/template.model'
-import { map } from 'rxjs/operators'
+import { CategoryModel } from 'src/_core/models/category.model'
+import { LanguageModel } from 'src/_core/models/language'
+import { LanguageService } from 'src/_core/services/language.service'
 
 @Component({
 	selector: 'app-add-edit',
@@ -18,15 +20,26 @@ export class AddEditComponent implements OnInit {
 	category: CategoryModel = new CategoryModel()
 	originUrl: string
 	isEdit = false
-
+	languages: Array<LanguageModel>
 	templates: Array<TemplateModel> = templates
+	currentPreviewUrl: string
 
 	constructor(
 		private crudSvc: CrudService,
 		private router: Router,
 		private activatedRoute: ActivatedRoute,
-		private utilSvc: UtilService
+		private utilSvc: UtilService,
+		private languageSvc: LanguageService
 	) {
+		this.category.template = 1
+		this.category.parentId = 0
+	}
+
+	ngOnInit(): void {
+		this.getCategories()
+		this.getLanguages()
+		this.setBaseUrl()
+
 		this.activatedRoute.params
 			.pipe(map((params) => params.categoryAdminId))
 			.subscribe((categoryAdminId) => {
@@ -40,7 +53,7 @@ export class AddEditComponent implements OnInit {
 							if (this.category.parentId == null) {
 								this.category.parentId = 0
 							}
-							this.getCategories()
+							this.updateBaseUrl()
 						})
 				} else {
 					this.isEdit = false
@@ -48,7 +61,21 @@ export class AddEditComponent implements OnInit {
 			})
 	}
 
-	ngOnInit(): void {}
+	setBaseUrl() {
+		this.originUrl = this.utilSvc.getOriginUrl()
+	}
+	updateBaseUrl() {
+		const parentId = Number(this.category.parentId)
+		const item = this.categories.find((item) => {
+			if (parentId == item.parentId) {
+				return item
+			}
+		})
+	}
+
+	setAliasTitleToUrl() {
+		this.category.seName = this.utilSvc.alias(this.category.title)
+	}
 
 	getCategories() {
 		const baseCategory: CategoryModel = new CategoryModel()
@@ -57,30 +84,28 @@ export class AddEditComponent implements OnInit {
 		baseCategory.title = 'Danh mục gốc'
 		this.crudSvc
 			.gets(ApiConfig.category.gets, { languageId: 1 })
-			.pipe(map((response) => response.data.items))
+			.pipe(
+				map((response) => response.data.items),
+				map((items) => items)
+			)
 			.subscribe((response) => {
 				this.categories = response
 				this.categories.unshift(baseCategory)
-				this.setBaseUrl()
 			})
 	}
 
-	setAliasTitleToUrl() {
-		this.category.seName = this.utilSvc.alias(this.category.title)
-	}
-
-	setBaseUrl() {
-		const parentId = Number(this.category.parentId)
-		const parentCategory = this.categories.find(
-			(category) => category.id == parentId
-		)
-		this.originUrl = this.utilSvc.getOriginUrl(parentCategory.previewUrl)
+	getLanguages() {
+		this.languageSvc
+			.gets(ApiConfig.language.gets)
+			.subscribe((languages) => {
+				this.languages = languages
+			})
 	}
 
 	addCategory() {
-		if (!this.category.parentId) {
-			this.category.parentId = null
-		}
+		this.category.parentId = Number(this.category.parentId)
+		this.category.template = Number(this.category.template)
+		this.category.languageId = Number(this.category.languageId)
 		this.crudSvc
 			.add(ApiConfig.category.add, this.category)
 			.subscribe((response) => {
@@ -89,11 +114,10 @@ export class AddEditComponent implements OnInit {
 	}
 
 	updateCategory() {
-		if (this.category.parentId == null || this.category.parentId == 0) {
-			this.category.parentId = null
-		} else {
-			this.category.parentId = Number(this.category.parentId)
-		}
+		this.category.id = Number(this.category.id)
+		this.category.parentId = Number(this.category.parentId)
+		this.category.template = Number(this.category.template)
+		this.category.languageId = Number(this.category.languageId)
 		this.crudSvc
 			.update(ApiConfig.category.update, this.category)
 			.subscribe((response) => {

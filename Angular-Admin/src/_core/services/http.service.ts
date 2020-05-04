@@ -97,7 +97,7 @@ export class HttpService {
 	}
 
 	private request(method: string, url: string, option: RequestOption) {
-		const absoluteUrl = environment.remoteBaseUrl + url
+		const absoluteUrl = environment.remoteServerUrl + url
 		return this.http.request(method, absoluteUrl, option).pipe(
 			map((res: any) => {
 				if (res.status === 500) {

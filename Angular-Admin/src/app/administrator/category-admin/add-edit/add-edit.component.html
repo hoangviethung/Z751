@@ -34,8 +34,13 @@
 								name="languageid"
 								[(ngModel)]="category.languageId"
 							>
-								<option value="1">Tiếng việt</option>
-								<option value="2">English</option>
+								<ng-container
+									*ngFor="let language of languages"
+								>
+									<option value="{{ language.id }}">
+										{{ language.name }}
+									</option>
+								</ng-container>
 							</select>
 						</div>
 						<div class="form-group col-lg-6">
@@ -44,9 +49,8 @@
 								class="form-control"
 								name="parentid"
 								[(ngModel)]="category.parentId"
-								(change)="setBaseUrl()"
+								(change)="updateBaseUrl()"
 							>
-								<!-- <option value="0">Danh mục gốc</option> -->
 								<ng-container
 									*ngFor="let category of categories"
 								>
@@ -111,7 +115,10 @@
 								[(ngModel)]="category.template"
 							>
 								<ng-container
-									*ngFor="let template of templates"
+									*ngFor="
+										let template of templates;
+										let i = index
+									"
 								>
 									<option value="{{ template.id }}">
 										{{ template.title }}
@@ -119,14 +126,26 @@
 								</ng-container>
 							</select>
 						</div>
+						<!-- <div class="form-group col-lg-6">
+							<label>Vị trí</label>
+							<input
+								class="form-control"
+								type="number"
+								placeholder="Sắp xếp vị trí trang"
+								name="order"
+								[(ngModel)]="category.order"
+							/>
+						</div> -->
 						<div class="form-group col-lg-12">
 							<label>Mô tả *</label>
-							<textarea
+							
+							<ckeditor [(ngModel)]="category.description"></ckeditor>
+							<!-- <textarea
 								class="form-control"
 								placeholder="Nhập mô tả"
 								name="description"
 								[(ngModel)]="category.description"
-							></textarea>
+							></textarea> -->
 						</div>
 					</div>
 				</div>

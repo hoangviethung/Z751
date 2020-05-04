@@ -29,4 +29,9 @@ export const ApiConfig = {
 		gets: (lang: string) => `/assets/${lang}.json`,
 		update: '/api/Resource/update',
 	},
+	language: {
+		gets: '/api/Language/gets',
+		get: '/api/Language/get',
+		switch: '/api/Language/switch',
+	},
 }
