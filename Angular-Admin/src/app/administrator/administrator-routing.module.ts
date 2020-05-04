@@ -60,10 +60,10 @@ const routes: Routes = [
 				data: { title: 'Danh Mục Admin' },
 			},
 			{
-				path: 'about',
+				path: 'section',
 				loadChildren: () =>
-					import('./about/about.module').then(
-						(m) => m.AboutModule),
+					import('./section/section.module').then(
+						(m) => m.SectionModule),
 				data: { title: 'Giới thiệu' },
 			},
 			{

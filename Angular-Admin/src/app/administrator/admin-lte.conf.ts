@@ -43,8 +43,8 @@ export const adminLteConf = {
 				},
 				{
 					label: 'Giới thiệu',
-					route: '/admin/about',
-					routeActive: '/admin/about',
+					route: '/admin/section',
+					routeActive: '/admin/section',
 					iconClasses: 'lnr lnr-pushpin',
 				},
 			],

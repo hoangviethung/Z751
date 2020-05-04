@@ -34,4 +34,9 @@ export const ApiConfig = {
 		get: '/api/Language/get',
 		switch: '/api/Language/switch',
 	},
+	section: {
+		gets: '/api/Section/gets',
+		get: '/api/Section/used/get',
+		update: '/api/Section/update',
+	},
 }
