@@ -1,5 +1,6 @@
 import { Injectable, Inject } from '@angular/core'
 import { DOCUMENT } from '@angular/common'
+import { environment } from 'src/environments/environment'
 
 @Injectable({
 	providedIn: 'root',
@@ -38,7 +39,10 @@ export class UtilService {
 		return str
 	}
 
-	getOriginUrl() {
-		return this.document.location.origin + '/'
+	getOriginUrl(url?: string) {
+		if (url) {
+			return `${environment.websiteUrl}${url}/`
+		}
+		return `${environment.websiteUrl}/`
 	}
 }

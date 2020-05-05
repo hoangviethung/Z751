@@ -25,6 +25,10 @@ export const ApiConfig = {
 		update: '/api/Article/update',
 		delete: '/api/Article/delete',
 	},
+	resource: {
+		gets: (lang: string) => `/assets/${lang}.json`,
+		update: '/api/Resource/update',
+	},
 	language: {
 		gets: '/api/Language/gets',
 		get: '/api/Language/get',

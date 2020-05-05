@@ -5,7 +5,7 @@ export class CategoryModel {
 	id: number
 	image: string
 	isSystem: boolean
-	languageId: number
+	languageId: number = 1
 	metaDescription: string
 	metaImage: string
 	metaKeywords: string
@@ -15,7 +15,7 @@ export class CategoryModel {
 	parentName: string
 	previewUrl: string
 	seName: string
-	template: number
+	template: number = 0
 	title: string
 	updateDate: string
 }

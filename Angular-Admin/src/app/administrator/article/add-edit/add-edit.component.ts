@@ -8,6 +8,7 @@ import { UtilService } from 'src/_core/services/util.service'
 import { CategoryModel } from 'src/_core/models/category.model'
 import { LanguageService } from 'src/_core/services/language.service'
 import { LanguageModel } from 'src/_core/models/language'
+import { CKEditorToolbarConfig } from 'src/_core/configs/ckeditor'
 
 @Component({
 	selector: 'app-add-edit',
@@ -15,26 +16,27 @@ import { LanguageModel } from 'src/_core/models/language'
 	styleUrls: ['./add-edit.component.scss'],
 })
 export class AddEditComponent implements OnInit {
-	article: ArticleModel = new ArticleModel();
-	languages: Array<LanguageModel>;
+	article: ArticleModel = new ArticleModel()
+	languages: Array<LanguageModel>
 	categories: Array<CategoryModel>
 	category: CategoryModel = new CategoryModel()
 	isEdit = {
 		status: false,
 	}
 	originUrl: string
+	CKEditorToolbarConfig
 	constructor(
 		private crudSvc: CrudService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router,
 		private utilSvc: UtilService,
 		private languageSvc: LanguageService
-	) { }
+	) {}
 
 	ngOnInit(): void {
-		this.getLanguages();
-		this.getCategories();
-		this.originUrl = this.utilSvc.getOriginUrl();
+		this.getLanguages()
+		this.getCategories()
+		this.originUrl = this.utilSvc.getOriginUrl()
 		this.activatedRoute.params
 			.pipe(map((params) => params.articleid))
 			.subscribe((articleId) => {
@@ -43,7 +45,6 @@ export class AddEditComponent implements OnInit {
 					this.crudSvc
 						.get(ApiConfig.article.get, articleId)
 						.subscribe((result) => {
-							console.log(result.data)
 							this.article = result.data
 						})
 				} else {
@@ -64,7 +65,6 @@ export class AddEditComponent implements OnInit {
 		this.crudSvc
 			.add(ApiConfig.article.add, this.article)
 			.subscribe((response) => {
-				console.log(response)
 				this.router.navigateByUrl('/admin/article')
 			})
 	}
@@ -93,16 +93,16 @@ export class AddEditComponent implements OnInit {
 		this.crudSvc
 			.add(ApiConfig.category.add, this.category)
 			.subscribe((response) => {
-				console.log(response)
 				this.router.navigateByUrl('/admin/category-admin')
 			})
 	}
 
 	getLanguages() {
-		this.languageSvc
-			.gets(ApiConfig.language.gets)
-			.subscribe((response) => {
-				this.languages = response
-			})
+		this.languageSvc.gets(ApiConfig.language.gets).subscribe((response) => {
+			this.languages = response
+		})
+	}
+	onChangeEmitter(content) {
+		this.article.description = content.editor.getData()
 	}
 }

@@ -4,7 +4,9 @@
 
 export const environment = {
 	production: false,
-	remoteBaseUrl: 'http://27.71.234.45:8080',
+	remoteServerUrl: 'http://27.71.234.45:8080',
+	websiteUrl: 'http://27.71.234.45:40000',
+	// remoteBaseUrl: 'http://192.168.1.113:8080',
 }
 
 /*
