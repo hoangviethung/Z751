@@ -1,59 +1,70 @@
-import { Component, OnInit } from '@angular/core';
-import { CrudService } from 'src/_core/services/crud.service';
-import { ApiConfig } from 'src/_core/configs/api';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
-import { SectionModel } from 'src/_core/models/section.model';
-import { Section } from 'src/_core/configs/section';
-import { __values } from 'tslib';
+import { Component, OnInit } from '@angular/core'
+import { CrudService } from 'src/_core/services/crud.service'
+import { ApiConfig } from 'src/_core/configs/api'
+import { ActivatedRoute, Router } from '@angular/router'
+import { map } from 'rxjs/operators'
+import { SectionModel } from 'src/_core/models/section.model'
+import { SectionService } from '../section.service'
+import { Image } from 'src/_core/models/image.model'
 
 @Component({
 	selector: 'app-edit',
 	templateUrl: './edit.component.html',
-	styleUrls: ['./edit.component.scss']
+	styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent implements OnInit {
-	section: SectionModel = new SectionModel();
+	section: SectionModel = new SectionModel()
+	images: Array<Image>
 	constructor(
 		private crudSvc: CrudService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router,
-	) { }
+		private sectionSvc: SectionService
+	) {}
 
 	ngOnInit(): void {
-		this.activatedRoute.params
-			.subscribe((response) => {
-				this.crudSvc.gets(ApiConfig.section.gets, { languageId: 1 })
-					.subscribe((result) => {
-						// ID CỦA ITEM CHỈNH SỦA
-						const thisItemId = response.templateid;
-						// ARRAY KẾT QUẢ TRẢ VỀ TẤT CẢ CÁC DATA SECTION
-						const arrayData = result.data;
-						console.log(arrayData);
-						// MẢNG MỚI TẬP HỢP CÁC IDs
-						const listID = arrayData.map(itemId => itemId.id)
-						let sectionEditId;
-						// LẶP MẢNG MỚI ĐÓ TÌM RA ID TRÙNG
-						for (let item of listID) {
-							// NẾU 1 TRONG NHƯNG ID KIA TRÙNG VS THIS ID
-							if (item == thisItemId) {
-								sectionEditId = item
-							}
-						}
-						arrayData.forEach(objects => {
-							if (objects['id'] == sectionEditId) {
-								this.section = objects
-							}
-						});
+		this.getSection()
+	}
+
+	getSection() {
+		this.activatedRoute.params.subscribe((params) => {
+			this.sectionSvc
+				.getSections()
+				.pipe(
+					map((response) => {
+						return response.find(
+							(item) => item.id == params.templateid
+						)
 					})
-			})
+				)
+				.subscribe((response) => {
+					this.section = response
+					this.images = this.section.images
+				})
+		})
+	}
+
+	addSectionImage(event) {
+		const image = new Image()
+		image.propertyName = ''
+		image.path = ''
+		image.order = 0
+		image.name = ''
+		image.content = ''
+		image.alt = ''
+		this.images.push(image)
 	}
 
 	updateSection() {
+		this.section.images = this.images
 		this.crudSvc
 			.update(ApiConfig.section.update, this.section)
 			.subscribe((response) => {
 				this.router.navigateByUrl('/admin/section')
 			})
+	}
+	deleteSectionImage(index) {
+		this.images.splice(index, 1)
+		console.log(this.images)
 	}
 }
