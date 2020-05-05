@@ -91,8 +91,10 @@
 					</div>
 					<div class="form-group col-lg-12">
 						<label>Mô tả *</label>
-						
-						<ckeditor [(ngModel)]="article.description"></ckeditor>
+						<app-ckeditor
+							[data]="article.description"
+							(change)="onChangeEmitter($event)"
+						></app-ckeditor>
 						<!-- <textarea
 							class="form-control"
 							placeholder="Nhập mô tả"

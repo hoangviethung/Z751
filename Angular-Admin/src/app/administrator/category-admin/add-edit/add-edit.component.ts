@@ -39,26 +39,6 @@ export class AddEditComponent implements OnInit {
 		this.getCategories()
 		this.getLanguages()
 		this.setBaseUrl()
-
-		this.activatedRoute.params
-			.pipe(map((params) => params.categoryAdminId))
-			.subscribe((categoryAdminId) => {
-				if (categoryAdminId) {
-					this.isEdit = true
-					this.crudSvc
-						.get(ApiConfig.category.get, categoryAdminId)
-						.pipe(map((response) => response.data))
-						.subscribe((response) => {
-							this.category = response
-							if (this.category.parentId == null) {
-								this.category.parentId = 0
-							}
-							this.updateBaseUrl()
-						})
-				} else {
-					this.isEdit = false
-				}
-			})
 	}
 
 	setBaseUrl() {
@@ -68,6 +48,7 @@ export class AddEditComponent implements OnInit {
 		const parentId = Number(this.category.parentId)
 		const item = this.categories.find((item) => {
 			if (parentId == item.parentId) {
+				console.log(item)
 				return item
 			}
 		})
@@ -91,6 +72,26 @@ export class AddEditComponent implements OnInit {
 			.subscribe((response) => {
 				this.categories = response
 				this.categories.unshift(baseCategory)
+
+				this.activatedRoute.params
+					.pipe(map((params) => params.categoryAdminId))
+					.subscribe((categoryAdminId) => {
+						if (categoryAdminId) {
+							this.isEdit = true
+							this.crudSvc
+								.get(ApiConfig.category.get, categoryAdminId)
+								.pipe(map((response) => response.data))
+								.subscribe((response) => {
+									this.category = response
+									if (this.category.parentId == null) {
+										this.category.parentId = 0
+									}
+									this.updateBaseUrl()
+								})
+						} else {
+							this.isEdit = false
+						}
+					})
 			})
 	}
 
@@ -123,5 +124,8 @@ export class AddEditComponent implements OnInit {
 			.subscribe((response) => {
 				this.router.navigateByUrl('/admin/category-admin')
 			})
+	}
+	onChangeEmitter(content) {
+		this.category.description = content.editor.getData()
 	}
 }
