@@ -1,6 +1,22 @@
 <div class="block-content">
-	<div class="block-control">
-		<a class="btn btn-success btn-add" routerLink="add">Thêm mới</a>
+	<div class="block-control ai-c">
+		<div class="form-group">
+			<label for="">Lọc theo ngôn ngữ</label>
+			<select
+				name="language"
+				id="language"
+				class="form-control"
+				(change)="fetchBanner($event)"
+			>
+				<option
+					*ngFor="let language of languages"
+					value="{{ language.id }}"
+					[selected]="language.isDefault ? 'selected' : ''"
+					>{{ language.name }}</option
+				>
+			</select>
+		</div>
+		<a class="btn btn-success btn-add ml-at" routerLink="add">Thêm mới</a>
 	</div>
 	<div class="block-table">
 		<table class="table">
