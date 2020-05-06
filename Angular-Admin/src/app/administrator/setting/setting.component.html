@@ -2,7 +2,7 @@
 	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
-				<th>#</th>
+				<th class="ta-c">#</th>
 				<th>Từ khóa</th>
 				<th>Giá trị</th>
 				<th class="ta-c column-button">Thao tác</th>
@@ -10,16 +10,13 @@
 		</thead>
 		<tbody>
 			<tr *ngFor="let setting of settings; let i = index">
-				<td>{{ i }}</td>
+				<td class="ta-c">{{ i }}</td>
 				<td>{{ setting.name }}</td>
 				<td>{{ setting.value }}</td>
 				<td class="ta-c">
 					<div class="table-buttons">
 						<!-- ĐỔI MẬT KHẨU-->
-						<span
-							class="btn btn-outline-success btn-edit"
-							(click)="getSetting(setting)"
-						>
+						<span class="btn btn-outline-success btn-edit" (click)="getSetting(setting)">
 							<span class="lnr lnr-pencil"></span>
 						</span>
 					</div>
@@ -28,4 +25,3 @@
 		</tbody>
 	</table>
 </div>
-
