@@ -8,7 +8,6 @@ import { UtilService } from 'src/_core/services/util.service'
 import { CategoryModel } from 'src/_core/models/category.model'
 import { LanguageService } from 'src/_core/services/language.service'
 import { LanguageModel } from 'src/_core/models/language'
-import { CKEditorToolbarConfig } from 'src/_core/configs/ckeditor'
 
 @Component({
 	selector: 'app-add-edit',
@@ -24,7 +23,6 @@ export class AddEditComponent implements OnInit {
 		status: false,
 	}
 	originUrl: string
-	CKEditorToolbarConfig
 	constructor(
 		private crudSvc: CrudService,
 		private activatedRoute: ActivatedRoute,
@@ -43,7 +41,7 @@ export class AddEditComponent implements OnInit {
 				if (articleId) {
 					this.isEdit.status = true
 					this.crudSvc
-						.get(ApiConfig.article.get, articleId)
+						.get(ApiConfig.article.get, { id: articleId })
 						.subscribe((result) => {
 							this.article = result.data
 						})
@@ -98,7 +96,7 @@ export class AddEditComponent implements OnInit {
 	}
 
 	getLanguages() {
-		this.languageSvc.gets(ApiConfig.language.gets).subscribe((response) => {
+		this.languageSvc.getLanguages().subscribe((response) => {
 			this.languages = response
 		})
 	}

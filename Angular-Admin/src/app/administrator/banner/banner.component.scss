@@ -1,0 +1,8 @@
+.block-control {
+	.form-group + .btn {
+		margin-left: auto;
+	}
+	.form-group + .form-group {
+		margin-left: 10px;
+	}
+}

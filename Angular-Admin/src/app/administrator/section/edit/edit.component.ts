@@ -38,6 +38,7 @@ export class EditComponent implements OnInit {
 					})
 				)
 				.subscribe((response) => {
+					console.log(1)
 					this.section = response
 					this.images = this.section.images
 				})

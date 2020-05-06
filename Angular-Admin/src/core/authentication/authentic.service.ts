@@ -29,7 +29,7 @@ export class Session {
 })
 export class AuthenticService {
 	private urlCheckAccessToken: string = '/api/User/check'
-	private urlLogout: string = '/api/Authen/logout'
+	private urlLogout: string = '/api/User/logout'
 
 	constructor(
 		private cookieSvc: CookieService,

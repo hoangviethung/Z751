@@ -3,12 +3,10 @@ import { SectionModel } from 'src/_core/models/section.model'
 import { CrudService } from 'src/_core/services/crud.service'
 import { ApiConfig } from 'src/_core/configs/api'
 import { map } from 'rxjs/operators'
-import { Observable, observable } from 'rxjs'
+import { Observable } from 'rxjs'
 import { Image } from 'src/_core/models/image.model'
 
-@Injectable({
-	providedIn: 'root',
-})
+@Injectable()
 export class SectionService {
 	public sections: Array<SectionModel> = []
 	public images: Array<Image>

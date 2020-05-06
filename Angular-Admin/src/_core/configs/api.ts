@@ -39,4 +39,7 @@ export const ApiConfig = {
 		get: '/api/Section/used/get',
 		update: '/api/Section/update',
 	},
+	setting: {
+		gets: '/api/Setting/gets',
+	},
 }

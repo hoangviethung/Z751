@@ -11,19 +11,18 @@ import { CategoryModel } from 'src/_core/models/category.model'
 	styleUrls: ['./article.component.scss'],
 })
 export class ArticleComponent implements OnInit {
-	articles: Array<ArticleModel>;
-	categories: Array<CategoryModel>;
-	constructor(private crudSvc: CrudService, private router: Router, ) { }
+	articles: Array<ArticleModel>
+	categories: Array<CategoryModel>
+	constructor(private crudSvc: CrudService, private router: Router) {}
 
 	ngOnInit(): void {
-		this.getArticles();
+		this.getArticles()
 	}
 
 	getArticles() {
 		this.crudSvc
 			.gets(ApiConfig.article.gets, { languageId: 1 })
 			.subscribe((response) => {
-				console.log(response);
 				this.articles = response.data.items
 			})
 	}
@@ -34,7 +33,7 @@ export class ArticleComponent implements OnInit {
 
 	deleteArticle(id) {
 		this.crudSvc
-			.delete(ApiConfig.article.delete, id)
+			.delete(ApiConfig.article.delete, { id: id })
 			.subscribe((response) => {
 				console.log(response)
 				this.getArticles()

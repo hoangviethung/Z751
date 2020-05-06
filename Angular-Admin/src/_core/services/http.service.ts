@@ -62,27 +62,23 @@ export class HttpService {
 		return token || ''
 	}
 
-	// END
-
-	// DEV without real API
 	get(url: string, params?: HttpParams): Observable<any> {
-		const option = this.getDefautRequestOptions()
-		option.params = params
+		const option = this.getDefautRequestOptions(params)
 		return this.request('GET', url, option)
 	}
 
-	post(url: string, data?: any) {
-		const option = this.getDefautRequestOptions()
+	post(url: string, data?: any, params?: HttpParams) {
+		const option = this.getDefautRequestOptions(params)
 		option.body = data
 		return this.request('POST', url, option)
 	}
-	// END
 
-	private getDefautRequestOptions() {
+	private getDefautRequestOptions(params) {
 		const option = new RequestOption()
 		option.headers = this.getDefaultHeaders()
 		option.observe = 'body'
 		option.responseType = 'json'
+		option.params = params
 		return option
 	}
 
@@ -100,10 +96,14 @@ export class HttpService {
 		const absoluteUrl = environment.remoteServerUrl + url
 		return this.http.request(method, absoluteUrl, option).pipe(
 			map((res: any) => {
-				if (res.status === 500) {
+				if (res.code === 500) {
 					return this.router.navigate([
 						this.requestErrorHandler().ERROR_500_INTERNAL_ERROR(),
 					])
+				}
+				if (res.code == 403 || res.code == 400) {
+					// this.cookieSvc.deleteAll()
+					// return this.router.navigateByUrl('/auth/login')
 				}
 				return res
 			}),
@@ -118,11 +118,10 @@ export class HttpService {
 		} else {
 			// The backend returned an unsuccessful response code.
 			// The response body may contain clues as to what went wrong,
-			console.log(error)
 
-			// console.error(
-			// 	`Backend returned code ${error.status}, body was: ${error.error}`
-			// )
+			console.error(
+				`Backend returned code ${error.status}, body was: ${error}`
+			)
 
 			let routePath = ''
 			if (error.status === 404) {
