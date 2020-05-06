@@ -21,7 +21,6 @@ export class IndexComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		console.log(this.currentLanguage);
-		
+		// console.log(this.currentLanguage);
 	}
 }

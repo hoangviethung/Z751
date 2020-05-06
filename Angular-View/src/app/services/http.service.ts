@@ -39,7 +39,7 @@ class RequestOption {
 })
 export class HttpService {
 	public locale: string = "vi";
-	// private _apiPath = AppConfigModel.ApiConfig.url;
+	// private _apiPath = AppConfigModel.ApiConfigModel.url;
 
 	constructor(
 		// private _authService: AuthService,
@@ -95,25 +95,22 @@ export class HttpService {
 
 	// DEV without real API
 	get(url: string, params?: HttpParams): Observable<any> {
-		const fullUrl = environment.remoteBaseUrl + url;
-		const option = this.getDefaultRequestJsonOption();
-		option.params = params;
-		console.log(fullUrl);
-
-		return this.executeJsonResponse("GET", fullUrl, option);
+		const option = this.getDefaultRequestJsonOption(params);
+		return this.executeJsonResponse("GET", url, option);
 	}
-	post(url: string, data?: any) {
-		const fullUrl = environment.remoteBaseUrl + url;
-		const option = this.getDefaultRequestJsonOption();
+
+	post(url: string, data?: any, params?: HttpParams) {
+		const option = this.getDefaultRequestJsonOption(params);
 		option.body = data;
-		return this.executeJsonResponse("POST", fullUrl, option);
+		return this.executeJsonResponse("POST", url, option);
 	}
 	// END
 
-	private getDefaultRequestJsonOption() {
+	private getDefaultRequestJsonOption(params) {
 		const option = new RequestOption();
 		option.headers = this.getDefaultHeaders();
 		option.observe = "body";
+		option.params = params;
 		option.responseType = "json";
 		return option;
 	}
@@ -132,7 +129,8 @@ export class HttpService {
 		url: string,
 		option: RequestOption
 	) {
-		return this.http.request(method, url, option).pipe(
+		const fullUrl = environment.remoteBaseUrl + url;
+		return this.http.request(method, fullUrl, option).pipe(
 			map((res: any) => {
 				if (res.status === 500) {
 					// this.router.navigate([

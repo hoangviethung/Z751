@@ -36,6 +36,7 @@ export class BannerComponent implements OnInit {
 		this.httpSvc
 			.get('/api/Banner/used/gets')
 			.subscribe((result) => {
+
 				console.log(result);
 				this.banners = result.data;
 			});

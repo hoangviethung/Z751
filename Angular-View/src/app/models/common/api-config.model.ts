@@ -1,26 +1,31 @@
-export class ApiConfigModel {
-	public server: string;
-	public avatarPath: string;
-	public defaultAvatarPath: string;
-	public logoPath: string;
-	public defaultLogoPath: string;
-	public apiPrefix: string;
-	// public get url(): string { return `http://localhost:4200/`; }
-	public get url(): string {
-		return `${this.server}/${this.apiPrefix}/`;
-	}
+export const ApiConfigModel = {
+	// public server: string;
+	// public avatarPath: string;
+	// public defaultAvatarPath: string;
+	// public logoPath: string;
+	// public defaultLogoPath: string;
+	// public apiPrefix: string;
+	// // public get url(): string { return `http://localhost:4200/`; }
+	// public get url(): string {
+	// 	return `${this.server}/${this.apiPrefix}/`;
+	// }
 
-	public constructor() {
-		const config = {
-			server: "http://27.71.232.114:40003/",
-			avatarPath: "/Upload/Avatar/",
-			logoPath: "/Upload/Logo/",
-			apiPrefix: "api",
-		};
+	// public constructor() {
+	// 	const config = {
+	// 		server: "http://27.71.232.114:40003/",
+	// 		avatarPath: "/Upload/Avatar/",
+	// 		logoPath: "/Upload/Logo/",
+	// 		apiPrefix: "api",
+	// 	};
 
-		this.server = config.server;
-		this.avatarPath = config.avatarPath;
-		this.logoPath = config.logoPath;
-		this.apiPrefix = config.apiPrefix;
-	}
+	// 	this.server = config.server;
+	// 	this.avatarPath = config.avatarPath;
+	// 	this.logoPath = config.logoPath;
+	// 	this.apiPrefix = config.apiPrefix;
+	// }
+	language: {
+		gets: '/api/Language/gets',
+		get: '/api/Language/get',
+		switch: '/api/Language/switch',
+	},
 }

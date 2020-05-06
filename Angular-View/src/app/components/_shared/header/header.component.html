@@ -30,19 +30,16 @@
 						<div class="main-nav ml-at">
 							<ul class="lst-n pl-0 d-f">
 								<li class="nav-item">
-									<a [routerLink]="'/index' | localize" class="nav-link fw-700 tt-u d-if"
-										appCloseMenu>
+									<a [routerLink]="'/index' | localize" class="nav-link fw-700 tt-u d-if" appCloseMenu>
 										{{ "menu.index" | translate }}
 									</a>
 								</li>
 								<li routerLinkActive="active" class="nav-item">
-									<a [routerLink]="'/about' | localize" class="nav-link fw-700 tt-u d-if"
-										appCloseMenu>
+									<a [routerLink]="'/about' | localize" class="nav-link fw-700 tt-u d-if" appCloseMenu>
 										{{ "menu.about" | translate }}
 									</a>
 								</li>
-								<li routerLinkActive="active" class="nav-item"
-									[ngClass]="{ 'has-sub': productCategories }">
+								<li routerLinkActive="active" class="nav-item" [ngClass]="{ 'has-sub': productCategories }">
 									<a class="nav-link fw-700 tt-u d-if" appToggleSubMenu>
 										{{ "menu.products" | translate }}
 									</a>
@@ -126,8 +123,7 @@
 										</div>
 									</div>
 								</li>
-								<li routerLinkActive="active" class="nav-item"
-									[ngClass]="{ 'has-sub': newsCategories }">
+								<li routerLinkActive="active" class="nav-item" [ngClass]="{ 'has-sub': newsCategories }">
 									<a class="nav-link fw-700 tt-u d-if" appToggleSubMenu>
 										{{ "menu.news" | translate }}
 									</a>
@@ -153,22 +149,21 @@
 									</div>
 								</li>
 								<li routerLinkActive="active" class="nav-item">
-									<a [routerLink]="'/contact' | localize" class="nav-link fw-700 tt-u d-if"
-										appCloseMenu>{{ "menu.contact" | translate }}</a>
+									<a [routerLink]="'/contact' | localize" class="nav-link fw-700 tt-u d-if" appCloseMenu>{{ "menu.contact" | translate }}</a>
 								</li>
 							</ul>
 						</div>
 						<div class="language">
 							<ng-container *ngFor="let language of languages">
-								<div class="flag desktop" *ngIf="currentLanguage == language.value">
+								<div class="flag desktop" *ngIf="currentLanguage == language.key">
 									<img src="{{ language.image }}" alt="" />
 								</div>
 							</ng-container>
 							<select name="langulage" id="language" class="bd-0" (change)="switchLanguage($event)">
 								<ng-container *ngFor="let language of languages">
-									<option value="{{ language.value }}" [selected]="
-											currentLanguage == language.value
-										">{{ language.title }}</option>
+									<option value="{{ language.key }}" [selected]="
+											currentLanguage == language.isDefault
+										">{{ language.name }}</option>
 								</ng-container>
 							</select>
 						</div>

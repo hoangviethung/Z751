@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from 'src/app/services/http.service';
+import { ApiConfigModel } from 'src/app/models/common/api-config.model';
 
 @Component({
 	selector: 'app-index-about-us',
@@ -7,8 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexAboutUsComponent implements OnInit {
 
-	constructor() { }
+	constructor(
+		private HttpSvc: HttpService
+	) { }
 
 	ngOnInit() {
+	}
+
+	getContent() {
+		// this.HttpSvc.get(ApiConfigModel.section.get)
 	}
 }
