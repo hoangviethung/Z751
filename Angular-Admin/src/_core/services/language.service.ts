@@ -1,18 +1,33 @@
 import { Injectable } from '@angular/core'
-import { HttpService } from './http.service'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
-import { LanguageModel } from '../models/language'
+import { LanguageModel, EnumLanguage } from '../models/language'
+import { CrudService } from './crud.service'
+import { ApiConfig } from '../configs/api'
 
 @Injectable({
 	providedIn: 'root',
 })
 export class LanguageService {
-	public languages: Array<LanguageModel>
+	private languages: Array<LanguageModel> = []
+	private currentLanguage: string
 
-	constructor(private httpSvc: HttpService) {}
+	constructor(private crudSvc: CrudService) {}
 
-	gets(url: string): Observable<any> {
-		return this.httpSvc.get(url).pipe(map((response) => response.data))
+	getLanguages(): Observable<Array<LanguageModel>> {
+		if (this.languages.length > 0) {
+			return new Observable((observer) => observer.next(this.languages))
+		} else {
+			return this.crudSvc.gets(ApiConfig.language.gets).pipe(
+				map((response) => {
+					this.setLanguages(response.data)
+					return response.data
+				})
+			)
+		}
+	}
+
+	setLanguages(languages: Array<LanguageModel>) {
+		this.languages = languages
 	}
 }

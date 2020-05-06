@@ -1,30 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { CrudService } from 'src/_core/services/crud.service';
-import { ApiConfig } from 'src/_core/configs/api';
-import { SettingModel } from 'src/_core/models/setting.model';
+import { Component, OnInit } from '@angular/core'
+import { CrudService } from 'src/_core/services/crud.service'
+import { ApiConfig } from 'src/_core/configs/api'
+import { map } from 'rxjs/operators'
 
 @Component({
 	selector: 'app-setting',
 	templateUrl: './setting.component.html',
-	styleUrls: ['./setting.component.scss']
+	styleUrls: ['./setting.component.scss'],
 })
 export class SettingComponent implements OnInit {
-	settings: Array<SettingModel>
-	constructor(
-		private CruSvc: CrudService
-	) { }
+	settings: any
+	setting: any
+	constructor(private crudSvc: CrudService) {}
 
 	ngOnInit(): void {
-		this.getsSetting();
+		this.getSettings()
 	}
 
-	getsSetting() {
-		console.log();
-
-		this.CruSvc.gets(ApiConfig.setting.gets)
+	getSettings() {
+		this.crudSvc
+			.gets(ApiConfig.setting.gets)
+			.pipe(map((response) => response.data))
 			.subscribe((response) => {
-				console.log(response.data);
-				this.settings = response.data
+				this.settings = response
+				console.log(this.settings)
 			})
+	}
+	getSetting(setting) {
+		this.setting = setting
 	}
 }

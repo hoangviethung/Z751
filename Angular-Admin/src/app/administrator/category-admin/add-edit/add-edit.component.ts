@@ -48,7 +48,6 @@ export class AddEditComponent implements OnInit {
 		const parentId = Number(this.category.parentId)
 		const item = this.categories.find((item) => {
 			if (parentId == item.parentId) {
-				console.log(item)
 				return item
 			}
 		})
@@ -79,7 +78,9 @@ export class AddEditComponent implements OnInit {
 						if (categoryAdminId) {
 							this.isEdit = true
 							this.crudSvc
-								.get(ApiConfig.category.get, categoryAdminId)
+								.get(ApiConfig.category.get, {
+									id: categoryAdminId,
+								})
 								.pipe(map((response) => response.data))
 								.subscribe((response) => {
 									this.category = response
@@ -96,11 +97,10 @@ export class AddEditComponent implements OnInit {
 	}
 
 	getLanguages() {
-		this.languageSvc
-			.gets(ApiConfig.language.gets)
-			.subscribe((languages) => {
-				this.languages = languages
-			})
+		this.languageSvc.getLanguages().subscribe((languages) => {
+			this.languages = languages
+			this.languageSvc.setLanguages(languages)
+		})
 	}
 
 	addCategory() {

@@ -2,16 +2,19 @@
 	<div class="block-table">
 		<table class="table">
 			<tr class="table-info">
-				<th>#</th>
-				<th>Mục</th>
-				<th>Thao tác</th>
+				<th class="column-number ta-c">#</th>
+				<th class="column-title">Mục</th>
+				<th class="column-button ta-c">Thao tác</th>
 			</tr>
-			<tr *ngFor="let section of secitons; let i = index">
-				<th class="column-number ta-c">{{i+1}}</th>
-				<td class="column-title ta-c">{{section.ordertitle}}</td>
-				<td class="column-button ta-c">
+			<tr *ngFor="let section of sections; let i = index">
+				<td class="ta-c">{{ i + 1 }}</td>
+				<td>{{ section.orderTitle }}</td>
+				<td class="ta-c">
 					<div class="table-buttons">
-						<span class="btn btn-outline-success btn-view" (click)="editSection(section.id)">
+						<span
+							class="btn btn-outline-success btn-view"
+							(click)="editSection(section.id)"
+						>
 							<span class="lnr lnr-pencil"></span>
 						</span>
 					</div>

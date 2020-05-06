@@ -5,21 +5,27 @@
 				<th>#</th>
 				<th>Từ khóa</th>
 				<th>Giá trị</th>
-				<th class="ta-c">Thao tác</th>
+				<th class="ta-c column-button">Thao tác</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr *ngFor="let setting of settings; let i = index">
-				<td>{{i+1}}</td>
-				<td>{{setting.name}} </td>
-				<td>{{setting.value}}</td>
+				<td>{{ i }}</td>
+				<td>{{ setting.name }}</td>
+				<td>{{ setting.value }}</td>
 				<td class="ta-c">
-					<!-- ĐỔI MẬT KHẨU-->
-					<a class="btn btn-outline-success">
-						<span class="lnr lnr-pencil"></span>
-					</a>
+					<div class="table-buttons">
+						<!-- ĐỔI MẬT KHẨU-->
+						<span
+							class="btn btn-outline-success btn-edit"
+							(click)="getSetting(setting)"
+						>
+							<span class="lnr lnr-pencil"></span>
+						</span>
+					</div>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 </div>
+

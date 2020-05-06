@@ -91,14 +91,14 @@ export const adminLteConf = {
 			children: [
 				{
 					label: 'Main Menu',
-					route: '/admin/main-menu',
-					routeActive: '/admin/main-menu',
+					route: '/admin/menu/main',
+					routeActive: '/admin/menu/main',
 					iconClasses: 'lnr lnr-menu-circle',
 				},
 				{
 					label: 'Footer Menu',
-					route: '/admin/footer-menu',
-					routeActive: '/admin/footer-menu',
+					route: '/admin/menu/footer',
+					routeActive: '/admin/menu/footer',
 					iconClasses: 'lnr lnr-layers',
 				},
 			],

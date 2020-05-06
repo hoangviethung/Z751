@@ -4,3 +4,8 @@ export class LanguageModel {
 	key: string
 	isDefault: boolean
 }
+
+export enum EnumLanguage {
+	vi = 1,
+	en = 2,
+}

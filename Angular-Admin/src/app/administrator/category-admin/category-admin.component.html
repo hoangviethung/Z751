@@ -5,18 +5,18 @@
 	<div class="block-table">
 		<table class="table">
 			<tr class="table-info">
-				<th>#</th>
-				<th>Tên danh mục</th>
-				<th>Danh mục cha</th>
-				<th>Đường dẫn</th>
-				<th>Tác vụ</th>
+				<th class="column-number ta-c">#</th>
+				<th class="column-title">Tên danh mục</th>
+				<th class="column-category ta-c">Danh mục cha</th>
+				<th class="column-url ta-c">Đường dẫn</th>
+				<th class="column-button ta-c">Tác vụ</th>
 			</tr>
 			<tr *ngFor="let category of categories; let i = index">
-				<td class="column-number ta-c">{{ i }}</td>
-				<td class="column-title">{{ category.title }}</td>
-				<td class="column-category ta-c">{{ category.parentName }}</td>
-				<td class="column-url ta-c">{{ category.previewUrl }}</td>
-				<td class="column-button ta-c">
+				<th class="ta-c">{{ i }}</th>
+				<td>{{ category.title }}</td>
+				<td>{{ category.parentName }}</td>
+				<td>{{ category.previewUrl }}</td>
+				<td class="ta-c">
 					<div class="table-buttons">
 						<span
 							class="btn btn-outline-success btn-edit"

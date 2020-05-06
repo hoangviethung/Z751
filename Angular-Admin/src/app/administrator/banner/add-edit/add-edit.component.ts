@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { map } from 'rxjs/operators'
 import { CrudService } from 'src/_core/services/crud.service'
 import { ApiConfig } from 'src/_core/configs/api'
+import { BannerService } from '../banner.service'
+import { LanguageService } from 'src/_core/services/language.service'
+import { LanguageModel } from 'src/_core/models/language'
 
 @Component({
 	selector: 'app-add-edit',
@@ -13,25 +16,33 @@ import { ApiConfig } from 'src/_core/configs/api'
 export class AddEditComponent implements OnInit {
 	banner: BannerModel = new BannerModel()
 	isEdit = false
+	languages: Array<LanguageModel>
 
 	constructor(
 		private crudSvc: CrudService,
 		private activatedRoute: ActivatedRoute,
-		private router: Router
+		private router: Router,
+		private bannerSvc: BannerService,
+		private languageSvc: LanguageService
 	) {}
 
 	ngOnInit(): void {
+		this.getLanguages()
+		this.getBanner()
+	}
+
+	getBanner() {
 		this.activatedRoute.params
 			.pipe(map((params) => params.bannerid))
 			.subscribe((bannerId) => {
 				if (bannerId) {
 					this.isEdit = true
-					this.crudSvc
-						.gets(ApiConfig.banner.gets, { languageId: 1 })
-						.subscribe((result) => {
-							this.banner = result.data.filter(
-								(item) => item.id == bannerId
-							)[0]
+					this.bannerSvc
+						.getBanners(ApiConfig.banner.gets)
+						.subscribe((banners) => {
+							this.banner = banners.find((item) => {
+								return item.id == bannerId
+							})
 						})
 				} else {
 					this.isEdit = false
@@ -43,7 +54,6 @@ export class AddEditComponent implements OnInit {
 		this.crudSvc
 			.update(ApiConfig.banner.update, this.banner)
 			.subscribe((response) => {
-				console.log(response)
 				this.router.navigateByUrl('/admin/banner')
 			})
 	}
@@ -52,8 +62,12 @@ export class AddEditComponent implements OnInit {
 		this.crudSvc
 			.add(ApiConfig.banner.add, this.banner)
 			.subscribe((response) => {
-				console.log(response)
 				this.router.navigateByUrl('/admin/banner')
 			})
+	}
+	getLanguages() {
+		this.languageSvc.getLanguages().subscribe((languages) => {
+			this.languages = languages
+		})
 	}
 }

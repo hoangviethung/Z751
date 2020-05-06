@@ -6,8 +6,8 @@ import { CKEditorModule } from 'ckeditor4-angular'
 import { CKEditorComponent } from '../components/ckeditor/ckeditor.component'
 
 @NgModule({
-	declarations: [TabDirective, CKEditorComponent],
+	declarations: [CKEditorComponent, TabDirective],
 	imports: [CommonModule, FormsModule, CKEditorModule],
-	exports: [TabDirective, FormsModule, CKEditorModule, CKEditorComponent],
+	exports: [FormsModule, CKEditorModule, CKEditorComponent, TabDirective],
 })
 export class SharedModule {}

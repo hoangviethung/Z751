@@ -1,11 +1,19 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
-import { SettingComponent } from './setting.component'
+import { MenuComponent } from './menu.component'
 
 const routes: Routes = [
 	{
 		path: '',
-		component: SettingComponent,
+		pathMatch: 'full',
+	},
+	{
+		path: 'main',
+		component: MenuComponent,
+	},
+	{
+		path: 'footer',
+		component: MenuComponent,
 	},
 ]
 
@@ -13,4 +21,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class SettingRoutingModule {}
+export class MenuRoutingModule {}
