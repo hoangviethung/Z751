@@ -1,6 +1,13 @@
 <div class="block-content">
-	<div class="block-control">
-		<a class="btn btn-success btn-add" routerLink="add">Thêm mới</a>
+	<div class="block-control ai-c">
+		<div class="form-group">
+			<label for="">Lọc theo ngôn ngữ</label>
+			<select name="language" id="language" class="form-control" (change)="fetchBranch($event)">
+				<option *ngFor="let language of languages" value="{{ language.id }}"
+					[selected]="language.isDefault ? 'selected' : ''">{{ language.name }}</option>
+			</select>
+		</div>
+		<a class="btn btn-success btn-add ml-at" routerLink="add">Thêm mới</a>
 	</div>
 	<div class="block-table">
 		<table class="table">
@@ -10,64 +17,21 @@
 				<th>Địa chỉ</th>
 				<th>Tác vụ</th>
 			</tr>
-			<tr>
+			<tr *ngFor="let branch of branchs">
 				<th class="column-number ta-c">1</th>
-				<td class="column-title">
-					Địa chỉ 1
-				</td>
-				<td class="column-address">
-					thông tin địa chỉ
-				</td>
+				<th class="ta-c">{{branch.officeName}}</th>
+				<th class="ta-c">{{branch.address}}</th>
 				<td class="column-button ta-c">
 					<div class="table-buttons">
-						<span class="btn btn-outline-success btn-edit">
+						<span class="btn btn-outline-success btn-edit" (click)="editBranch(branch.id)">
 							<span class="lnr lnr-pencil"></span>
 						</span>
-						<span class="btn btn-outline-danger btn-remove">
+						<!-- <span class="btn btn-outline-danger btn-remove" (click)="deleteBranch(branch.id)">
 							<span class="lnr lnr-trash"></span>
-						</span>
+						</span> -->
 					</div>
 				</td>
 			</tr>
 		</table>
-	</div>
-</div>
-
-<div class="block-form mt-10">
-	<div class="block-content">
-		<div class="block-control">
-			<a class="btn btn-danger btn-cancel" routerLink="">Hủy bỏ</a>
-			<a class="btn btn-success btn-add">Thêm</a>
-		</div>
-		<div class="row">
-			<div class="form-group col-lg-4">
-				<label>Tên chi nhánh *</label>
-				<input class="form-control" type="text" placeholder="Nhập tên chi nhánh" />
-			</div>
-			<div class="form-group col-lg-12">
-				<label>Địa chỉ *</label>
-				<textarea class="form-control" placeholder="Nhập mô tả"></textarea>
-			</div>
-			<div class="form-group col-lg-4">
-				<label>Email</label>
-				<input class="form-control" type="email" placeholder="Nhập địa chỉ Email" />
-			</div>
-			<div class="form-group col-lg-4">
-				<label>Địa chỉ Google Map</label>
-				<input class="form-control" type="email" placeholder="Nhập địa chỉ GoogleMap" />
-			</div>
-			<div class="form-group col-lg-4">
-				<label>Số điện thoại</label>
-				<input class="form-control" type="phone" placeholder="Nhập số điện thoại" />
-			</div>
-			<div class="form-group col-lg-4">
-				<label>Lat</label>
-				<input class="form-control" type="number" placeholder="Nhập Lat" />
-			</div>
-			<div class="form-group col-lg-4">
-				<label>Lng </label>
-				<input class="form-control" type="number" placeholder="Nhập Lng" />
-			</div>
-		</div>
 	</div>
 </div>

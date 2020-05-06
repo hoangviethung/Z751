@@ -29,7 +29,7 @@ export class AddEditComponent implements OnInit {
 		private router: Router,
 		private utilSvc: UtilService,
 		private languageSvc: LanguageService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.getLanguages()
@@ -100,6 +100,7 @@ export class AddEditComponent implements OnInit {
 			this.languages = response
 		})
 	}
+
 	onChangeEmitter(content) {
 		this.article.description = content.editor.getData()
 	}

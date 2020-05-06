@@ -48,4 +48,10 @@ export const ApiConfig = {
 		gets: '/api/Resource/gets',
 		update: '/api/Resource/update',
 	},
+	branch: {
+		gets: '/api/Branch/gets',
+		add: '/api/Branch/add',
+		delete: '/api/Branch/delete',
+		update: '/api/Branch/update',
+	},
 }

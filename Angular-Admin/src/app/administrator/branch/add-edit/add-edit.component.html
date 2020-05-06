@@ -1,1 +1,61 @@
-<p>add-edit works!</p>
+<div class="block-form mt-10">
+
+	<div class="block-content">
+		<!-- SỬA -->
+		<div class="block-control" *ngIf="isEdit.status == true">
+			<a class="btn btn-danger btn-cancel" routerLink="/admin/branch">
+				Hủy bỏ
+			</a>
+			<a class="btn btn-success btn-add" (click)="updateBranch()">
+				Cập nhật
+			</a>
+		</div>
+		<!-- THÊM -->
+		<div class="block-control" *ngIf="isEdit.status == false">
+			<a class="btn btn-danger btn-cancel" routerLink="/admin/branch">
+				Hủy bỏ
+			</a>
+			<a class="btn btn-success btn-add" (click)="addBranch()">
+				Thêm
+			</a>
+		</div>
+		<div class="row">
+			<div class="form-group col-lg-4">
+				<label for="">Ngôn ngữ</label>
+				<select name="language" id="language" class="form-control" [(ngModel)]="branch.languageId">
+					<option *ngFor="let language of languages" value="{{ language.id }}">{{ language.name }}</option>
+				</select>
+			</div>
+			<div class="form-group col-lg-4">
+				<label>Tên chi nhánh *</label>
+				<input class="form-control" type="text" placeholder="Nhập tên chi nhánh"
+					[(ngModel)]="branch.officeName" />
+			</div>
+			<div class="form-group col-lg-12">
+				<label>Địa chỉ *</label>
+				<textarea [(ngModel)]="branch.description" class="form-control" placeholder="Nhập mô tả"></textarea>
+			</div>
+			<div class="form-group col-lg-4">
+				<label>Email</label>
+				<input class="form-control" type="email" placeholder="Nhập địa chỉ Email" [(ngModel)]="branch.email" />
+			</div>
+			<div class="form-group col-lg-4">
+				<label>Địa chỉ Google Map</label>
+				<input class="form-control" type="text" placeholder="Nhập địa chỉ GoogleMap"
+					[(ngModel)]="branch.addressMap" />
+			</div>
+			<div class="form-group col-lg-4">
+				<label>Số điện thoại</label>
+				<input class="form-control" type="phone" placeholder="Nhập số điện thoại" [(ngModel)]="branch.phone" />
+			</div>
+			<div class="form-group col-lg-4">
+				<label>Lat</label>
+				<input class="form-control" type="number" placeholder="Nhập Lat" [(ngModel)]="branch.lat" />
+			</div>
+			<div class="form-group col-lg-4">
+				<label>Lng </label>
+				<input class="form-control" type="number" placeholder="Nhập Lng" [(ngModel)]="branch.lng" />
+			</div>
+		</div>
+	</div>
+</div>
