@@ -47,6 +47,12 @@ export const adminLteConf = {
 					routeActive: '/admin/section',
 					iconClasses: 'lnr lnr-pushpin',
 				},
+				{
+					label: 'Sản phẩm',
+					route: '/admin/products',
+					routeActive: '/admin/products',
+					iconClasses: 'lnr lnr-linearicons',
+				},
 			],
 		},
 		{
@@ -103,30 +109,24 @@ export const adminLteConf = {
 				},
 			],
 		},
-		{
-			label: 'Thương mai điện tử',
-			iconClasses: 'lnr lnr-cart',
-			children: [
-				{
-					label: 'Danh mục',
-					route: '/admin/commerce-category',
-					routeActive: '/admin/commerce-category',
-					iconClasses: 'lnr lnr-menu-circle',
-				},
-				{
-					label: 'Thương hiệu',
-					route: '/admin/brand',
-					routeActive: '/admin/brand',
-					iconClasses: 'lnr lnr-tag',
-				},
-				{
-					label: 'Sản phẩm',
-					route: '/admin/products',
-					routeActive: '/admin/products',
-					iconClasses: 'lnr lnr-linearicons',
-				},
-			],
-		},
+		// {
+		// 	label: 'Thương mai điện tử',
+		// 	iconClasses: 'lnr lnr-cart',
+		// 	children: [
+		// 		{
+		// 			label: 'Danh mục',
+		// 			route: '/admin/commerce-category',
+		// 			routeActive: '/admin/commerce-category',
+		// 			iconClasses: 'lnr lnr-menu-circle',
+		// 		},
+		// 		{
+		// 			label: 'Thương hiệu',
+		// 			route: '/admin/brand',
+		// 			routeActive: '/admin/brand',
+		// 			iconClasses: 'lnr lnr-tag',
+		// 		},
+		// 	],
+		// },
 		{
 			label: 'Chi nhánh',
 			route: '/admin/branch',
