@@ -54,4 +54,8 @@ export const ApiConfig = {
 		delete: '/api/Branch/delete',
 		update: '/api/Branch/update',
 	},
+	contact: {
+		gets: '/api/Contact/gets',
+		delete: '/api/Contact/detele',
+	},
 }

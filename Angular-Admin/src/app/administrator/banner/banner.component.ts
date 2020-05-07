@@ -22,7 +22,7 @@ export class BannerComponent implements OnInit {
 		private crudSvc: CrudService,
 		private bannerSvc: BannerService,
 		private languageSvc: LanguageService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.getBanners()

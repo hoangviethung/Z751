@@ -1,7 +1,4 @@
 <div class="block-content">
-	<div class="block-control">
-		<a class="btn btn-success btn-add" routerLink="add">Thêm mới</a>
-	</div>
 	<div class="block-table">
 		<table class="table">
 			<tr class="table-info">
@@ -12,18 +9,21 @@
 				<th>Ngày gửi</th>
 				<th>Tác vụ</th>
 			</tr>
-			<tr>
-				<th class="column-number">1</th>
+			<tr *ngFor="let contact of contacts; let i = index">
+				<th class="column-number ta-c">{{i+1}}</th>
 				<td class="column-name">
-					Sơn
+					{{contact.name}}
 				</td>
-				<td class="column-phone ta-c">19001024</td>
-				<td class="column-display">vuson2510@gmai.com</td>
-				<td class="column-display">27/4/2020</td>
+				<td class="column-phone ta-c">{{contact.phone}}</td>
+				<td class="ta-c">{{contact.email}}</td>
+				<td class="ta-c">{{contact.createdDate}}</td>
 				<td class="column-button ta-c">
 					<div class="table-buttons">
-						<span class="btn btn-outline-success btn-view">
+						<span class="btn btn-outline-success btn-view" (click)="viewDetailContact(contact.id)">
 							<span class="lnr lnr-eye"></span>
+						</span>
+						<span class="btn btn-outline-danger btn-remove" (click)="deleteContact(contact.id)">
+							<span class="lnr lnr-trash"></span>
 						</span>
 					</div>
 				</td>
