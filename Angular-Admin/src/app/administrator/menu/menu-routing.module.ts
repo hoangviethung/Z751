@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
 import { MenuComponent } from './menu.component'
+import { AddEditComponent } from './add-edit/add-edit.component'
 
 const routes: Routes = [
 	{
@@ -8,17 +9,21 @@ const routes: Routes = [
 		pathMatch: 'full',
 	},
 	{
-		path: 'main',
+		path: ':menuTitle',
 		component: MenuComponent,
 	},
 	{
-		path: 'footer',
-		component: MenuComponent,
+		path: ':menuTitle/add',
+		component: AddEditComponent,
 	},
+	{
+		path: ':menuTitle/edit/:menuId',
+		component: AddEditComponent,
+	}
 ]
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class MenuRoutingModule {}
+export class MenuRoutingModule { }

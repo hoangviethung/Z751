@@ -44,6 +44,7 @@ export class AddEditComponent implements OnInit {
 	setBaseUrl() {
 		this.originUrl = this.utilSvc.getOriginUrl()
 	}
+
 	updateBaseUrl() {
 		const parentId = Number(this.category.parentId)
 		const item = this.categories.find((item) => {
@@ -125,6 +126,7 @@ export class AddEditComponent implements OnInit {
 				this.router.navigateByUrl('/admin/category-admin')
 			})
 	}
+	
 	onChangeEmitter(content) {
 		this.category.description = content.editor.getData()
 	}

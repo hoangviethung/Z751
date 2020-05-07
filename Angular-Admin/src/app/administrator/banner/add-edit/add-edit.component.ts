@@ -24,7 +24,7 @@ export class AddEditComponent implements OnInit {
 		private router: Router,
 		private bannerSvc: BannerService,
 		private languageSvc: LanguageService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.getLanguages()
@@ -53,7 +53,7 @@ export class AddEditComponent implements OnInit {
 	updateBanner() {
 		this.crudSvc
 			.update(ApiConfig.banner.update, this.banner)
-			.subscribe((response) => {
+			.subscribe(() => {
 				this.router.navigateByUrl('/admin/banner')
 			})
 	}
