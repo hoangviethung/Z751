@@ -1,0 +1,95 @@
+<div class="admin-aside-menu">
+	<app-aside-menu></app-aside-menu>
+</div>
+<div class="layout">
+	<header>
+		<div class="header-right">
+			<div class="accounts">
+				<div
+					class="avatar item-click-dropdown"
+					(click)="toggleInfoDetail()"
+				>
+					<figure class="shadow">
+						<img
+							class="ofc"
+							src="./assets/images/icons/avatar-default.svg"
+						/>
+					</figure>
+				</div>
+				<div class="basic-info-accounts">
+					<div class="name">Administrator</div>
+					<div class="position">Quản trị viên</div>
+				</div>
+				<div
+					class="detail-info-accounts content-dropdown"
+					[class.show]="isDetailInfoShow"
+				>
+					<div class="header-image">
+						<div class="avatar">
+							<figure class="shadow-sm">
+								<img
+									class="ofc"
+									src="./assets/images/icons/avatar-default.svg"
+								/>
+							</figure>
+						</div>
+						<div class="basic-info-accounts">
+							<div class="name">Administrator</div>
+							<div class="position">Quản trị viên</div>
+						</div>
+						<div class="logout" (click)="logout()">
+							<a class="badge badge-danger">Đăng xuất</a>
+						</div>
+					</div>
+					<div class="list-link">
+						<div class="name-list">TÀI KHOẢN</div>
+						<div class="link">
+							<a href="#">Thông tin tài khoản</a>
+						</div>
+						<div class="link">
+							<a href="#">Sửa thông tin tài khoản</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div
+				class="view-website"
+				data-toggle="tooltip"
+				data-placement="bottom"
+				title="Review"
+			>
+				<a href="/" target="_blank"
+					><svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="30"
+						height="30"
+						class="svg replaced-svg"
+						viewBox="0 0 30 30"
+					>
+						<g>
+							<rect
+								fill="none"
+								id="canvas_background"
+								height="32"
+								width="32"
+								y="-1"
+								x="-1"
+							></rect>
+						</g>
+						<g>
+							<path
+								stroke="null"
+								fill="rgba(0, 0, 0, 0.7)"
+								id="svg_1"
+								d="m15,11.274768c0,2.056328 -1.668904,3.725232 -3.725232,3.725232c0,2.056328 1.668904,3.725232 3.725232,3.725232s3.725232,-1.668904 3.725232,-3.725232s-1.668904,-3.725232 -3.725232,-3.725232zm0,-7.450464c-7.640451,0 -14.900928,8.657439 -14.900928,11.175696s7.260477,11.175696 14.900928,11.175696s14.900928,-8.657439 14.900928,-11.175696s-7.260477,-11.175696 -14.900928,-11.175696zm0,18.62616c-4.114519,0 -7.450464,-3.335945 -7.450464,-7.450464s3.335945,-7.450464 7.450464,-7.450464s7.450464,3.335945 7.450464,7.450464s-3.335945,7.450464 -7.450464,7.450464z"
+							></path>
+						</g></svg
+				></a>
+			</div>
+		</div>
+	</header>
+	<app-breadcrumb></app-breadcrumb>
+	<div class="content">
+		<router-outlet></router-outlet>
+	</div>
+</div>

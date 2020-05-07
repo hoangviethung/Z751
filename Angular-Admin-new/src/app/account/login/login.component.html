@@ -1,0 +1,52 @@
+<section class="login">
+	<div class="block-form-login">
+		<div class="item__header d-f ai-c fw-w">
+			<div class="item__logo">
+				<a href="http://web4gsolutions.com/">
+					<img class="ofcv" src="./assets/images/logo.png" alt="" />
+				</a>
+			</div>
+			<div class="item__say-hi">Xin chào z751 !</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-lg-12">
+				<label>Username</label>
+				<input
+					placeholder="Username"
+					type="text"
+					class="form-control"
+					[(ngModel)]="loginInfo.userName"
+				/>
+				<!-- <span class="field-validation-error">{{ msgPwd }}</span> -->
+			</div>
+			<div class="form-group col-lg-12">
+				<label>Password</label>
+				<input
+					placeholder="Password"
+					type="password"
+					class="form-control"
+					[(ngModel)]="loginInfo.password"
+				/>
+				<!-- <span class="field-validation-error">{{ msgPwd }}</span> -->
+			</div>
+			<div class="form-group col-lg-6">
+				<label class="checkbox-custom">
+					Duy trì đăng nhập
+					<input
+						type="checkbox"
+						[(ngModel)]="loginInfo.isRememberMe"
+					/>
+				</label>
+			</div>
+			<div class="form-group col-lg-12">
+				<button
+					class="btn btn-primary btn-submit"
+					(click)="login($event)"
+				>
+					Đăng nhập
+				</button>
+			</div>
+		</div>
+		<span class="field-validation-error text-center d-block">error</span>
+	</div>
+</section>

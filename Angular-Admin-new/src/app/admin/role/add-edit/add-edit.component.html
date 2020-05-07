@@ -1,0 +1,173 @@
+<div class="block-form mt-10">
+	<div class="block-content">
+		<div class="block-control">
+			<a class="btn btn-danger btn-cancel" routerLink="/admin/role">
+				Hủy bỏ
+			</a>
+			<!-- Sửa banner -->
+			<a
+				class="btn btn-success btn-add"
+				(click)="updateRole()"
+				*ngIf="isEdit == true"
+				>Cập nhật</a
+			>
+			<!-- Thêm banner -->
+			<a
+				class="btn btn-success btn-add"
+				(click)="addRole()"
+				*ngIf="isEdit == false"
+				>Thêm</a
+			>
+		</div>
+		<div class="row">
+			<div class="form-group col-lg-4">
+				<label>Tên bột quyền *</label>
+				<input
+					class="form-control"
+					type="text"
+					placeholder="Nhập tên bộ quyền"
+				/>
+			</div>
+			<div class="form-group col-lg-12">
+				<label>Mô tả *</label>
+				<textarea
+					class="form-control"
+					placeholder="Nhập mô tả"
+				></textarea>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="block-table">
+	<table class="table">
+		<thead>
+			<tr class="table-info">
+				<th class="text-center">Quyền</th>
+				<th class="text-center">Tất cả</th>
+				<th class="text-center">Xem</th>
+				<th class="text-center">Thêm</th>
+				<th class="text-center">Sửa</th>
+				<th class="text-center">Xóa</th>
+			</tr>
+		</thead>
+		<tbody class="table-multiple-checkbox">
+			<tr class="role-row">
+				<td class="bold left" colspan="6">CMS</td>
+			</tr>
+			<tr class="role-row">
+				<td class="left">Quản lý Danh sách đăng nhập của users</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+			</tr>
+			<tr class="role-row">
+				<td class="left">Quản lý Giới thiệu</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+				<td>
+					<div class="input-custom m-auto"></div>
+				</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+			</tr>
+			<tr class="role-row">
+				<td class="bold left" colspan="6">Thương mại điện tử</td>
+			</tr>
+			<tr class="role-row">
+				<td class="left">Quản lý Giảm giá</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+			</tr>
+			<tr class="role-row">
+				<td class="left">Quản lý Thuộc tính sản phẩm</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+				<td>
+					<label class="checkbox-custom">
+						<input type="checkbox" />
+					</label>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

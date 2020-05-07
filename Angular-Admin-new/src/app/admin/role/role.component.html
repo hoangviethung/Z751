@@ -1,0 +1,38 @@
+<div class="block-content">
+	<div class="block-control">
+		<a class="btn btn-success btn-add" routerLink="add">Thêm mới</a>
+	</div>
+	<div class="block-table">
+		<table class="table">
+			<tr class="table-info">
+				<th class="column-number ta-c">#</th>
+				<th class="column-title">Tên bộ quyền</th>
+				<th class="column-category ta-c">Mô tả</th>
+				<th class="column-button ta-c">Tác vụ</th>
+			</tr>
+			<tr *ngFor="let role of roles; let i = index">
+				<td>{{ i + 1 }}</td>
+				<td>
+					{{ role.name }}
+				</td>
+				<td>{{ role.description }}</td>
+				<td>
+					<div class="table-buttons">
+						<span
+							class="btn btn-outline-success btn-edit"
+							(click)="editRole(role.id)"
+						>
+							<span class="lnr lnr-pencil"></span>
+						</span>
+						<span
+							class="btn btn-outline-danger btn-remove"
+							(click)="deleteRole(role.id)"
+						>
+							<span class="lnr lnr-trash"></span>
+						</span>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>

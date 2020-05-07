@@ -1,0 +1,39 @@
+<div class="aside-logo">
+	<div class="logo">
+		<a [routerLink]="['/admin/dashboard']">
+			<img src="./assets/images/logo.png" />
+		</a>
+	</div>
+	<div class="button-close"><span class="line"></span></div>
+</div>
+<section class="aside-menu" asideMenu>
+	<ng-container *ngFor="let item of menus">
+		<ng-container
+			*ngTemplateOutlet="sidebarInner; context: { item: item }"
+		></ng-container>
+	</ng-container>
+</section>
+
+<ng-template #sidebarInner let-item="item">
+	<div class="menu-item" menuItem>
+		<div class="menu-title">
+			<a routerLink="{{ item.route }}" routerLinkActive="active">
+				<div class="menu-icon">
+					<span [class]="item.iconClasses"></span>
+				</div>
+				<h5>{{ item.label }}</h5>
+				<div class="menu-toggle" *ngIf="item.children">
+					<span class="lnr lnr-chevron-down"></span>
+				</div>
+			</a>
+		</div>
+		<div class="menu-child" *ngIf="item.children" routerLinkActive="show">
+			<ng-container *ngFor="let item of item.children">
+				<ng-container
+					*ngTemplateOutlet="sidebarInner; context: { item: item }"
+				>
+				</ng-container>
+			</ng-container>
+		</div>
+	</div>
+</ng-template>
