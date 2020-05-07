@@ -35,10 +35,11 @@ export const ApiConfig = {
 		get: '/api/Section/used/get',
 		update: '/api/Section/update',
 	},
-	mainMenus: {
-		gets: '/api/Section/gets',
-		get: '/api/Section/used/get',
-		update: '/api/Section/update',
+	menu: {
+		gets: '/api/Menu/gets',
+		add: '/api/Menu/add',
+		update: '/api/Menu/update',
+		delete: '/api/Menu/delete',
 	},
 	setting: {
 		gets: '/api/Setting/gets',

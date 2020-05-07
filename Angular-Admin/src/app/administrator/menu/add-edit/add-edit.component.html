@@ -1,0 +1,64 @@
+<div class="block-form mt-10">
+	<div class="block-content">
+		<!-- Sửa banner -->
+		<div class="block-control" *ngIf="isEdit == true">
+			<a class="btn btn-danger btn-cancel" routerLink="{{urlBack}}">
+				Hủy bỏ
+			</a>
+			<a class="btn btn-success btn-add" (click)="updateMenu()">Cập nhật</a>
+		</div>
+		<!-- Thêm banner -->
+		<div class="block-control" *ngIf="isEdit == false">
+			<a class="btn btn-danger btn-cancel" routerLink="{{urlBack}}">
+				Hủy bỏ
+			</a>
+			<a class="btn btn-success btn-add" (click)="addMenu()">Thêm</a>
+		</div>
+		<div class="row">
+			<div class="form-group col-lg-4">
+				<label>Ngôn ngữ *</label>
+				<select class="form-control" [(ngModel)]="menu.languageId">
+					<option value="0" disabled>
+						Chọn ngôn ngữ
+					</option>
+					<option *ngFor="let language of languages" value="{{ language.id }}"
+						[selected]="language.isDefault ? 'selected' : ''">
+						{{ language.name }}
+					</option>
+				</select>
+			</div>
+			<div class="form-group col-lg-4">
+				<label>Danh mục cha (nếu có)</label>
+				<select class="form-control" [(ngModel)]="menu.parentId">
+					<option value="0">
+						Danh mục gốc
+					</option>
+					<option *ngFor="let menu of menus" value="{{ menu.id }}">
+						{{ menu.title }}
+					</option>
+				</select>
+			</div>
+			<div class="form-group col-lg-4">
+				<label>Tiêu đề *</label>
+				<input class="form-control" type="text" placeholder="Nhập tiêu đề" [(ngModel)]="menu.title"
+					(keyup)="setAliasTitleToUrl()" />
+			</div>
+			<div class="form-group col-lg-4">
+				<label>Đường dẫn *</label>
+				<input class="form-control" type="text" placeholder="Nhập đường dẫn mới" [(ngModel)]="menu.link" />
+			</div>
+			<div class="form-group col-lg-4">
+				<label>Thứ tự *</label>
+				<input class="form-control" type="number" placeholder="Nhập thứ tự" [(ngModel)]="menu.order" />
+			</div>
+			<div class="form-group col-lg-4">
+				<label>Target Menu *</label>
+				<select class="form-control" [(ngModel)]="menu.type">
+					<option value="0">Cửa sổ hiện tại</option>
+					<option value="1">Cửa số mới</option>
+					<option value="2">Popup</option>
+				</select>
+			</div>
+		</div>
+	</div>
+</div>
