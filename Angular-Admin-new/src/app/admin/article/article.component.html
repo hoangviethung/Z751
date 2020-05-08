@@ -1,1 +1,44 @@
-<p>article works!</p>
+<div class="block-content" *ngIf="!isShowPopup">
+	<div class="block-control ai-c">
+		<div class="form-group">
+			<label for="">Lọc theo ngôn ngữ</label>
+			<select name="language" id="language" class="form-control" (change)="fetchArticle($event)">
+				<option *ngFor="let language of languages" value="{{ language.id }}"
+					[selected]="language.isDefault ? 'selected' : ''">{{ language.name }}</option>
+			</select>
+		</div>
+		<a class="btn btn-success btn-add ml-at" (click)="onOpenPopup(true)">Thêm mới</a>
+	</div>
+	<div class="block-table">
+		<table class="table">
+			<tr class="table-info">
+				<th>#</th>
+				<th>Tiêu đề</th>
+				<th>Danh mục</th>
+				<th>Tác vụ</th>
+			</tr>
+			<tr *ngFor="let article of articles; let i = index">
+				<td class="column-number ta-c">{{ i + 1 }}</td>
+				<td class="column-title">
+					{{ article.title }}
+				</td>
+				<td class="column-category ta-c">{{ article.categoryId }}</td>
+				<td class="column-button ta-c">
+					<div class="table-buttons">
+						<span class="btn btn-outline-success btn-edit" (click)="onOpenPopup(true, article, true)">
+							<span class="lnr lnr-pencil"></span>
+						</span>
+						<span class="btn btn-outline-danger btn-remove" (click)="deleteArticle(article.id)">
+							<span class="lnr lnr-trash"></span>
+						</span>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+
+<div class="popup-wrapper" *ngIf="isShowPopup">
+	<app-add-edit [article]="article" [isEdit]="isEdit" (close)="onClosePopup($event)"></app-add-edit>
+</div>
