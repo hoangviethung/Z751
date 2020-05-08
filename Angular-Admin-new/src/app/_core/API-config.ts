@@ -1,4 +1,9 @@
 export const APIConfig = {
+	Language: {
+		Gets: '/api/Language/gets',
+		Get: '/api/Language/get',
+		Switch: '/api/Language/switch',
+	},
 	Role: {
 		GetFeatures: '/api/Role/features/gets',
 		Gets: '/api/Role/gets',
@@ -7,4 +12,10 @@ export const APIConfig = {
 		Delete: '/api/Role/delete',
 		GetPermissions: '/api/Role/permission/get',
 	},
+	Banner: {
+		Gets: '/api/Banner/gets',
+		Add: '/api/Banner/add',
+		Update: '/api/Banner/update',
+		Delete: '/api/Banner/delete',
+	}
 };

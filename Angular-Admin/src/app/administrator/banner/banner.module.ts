@@ -14,4 +14,4 @@ import { BannerService } from './banner.service'
 	bootstrap: [BannerComponent],
 	providers: [BannerService],
 })
-export class BannerModule {}
+export class BannerModule { }

@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class RoleComponent implements OnInit {
 	roles: Array<RoleModel>;
 
-	constructor(private httpSvc: HttpService, private router: Router) {}
+	constructor(private httpSvc: HttpService, private router: Router) { }
 
 	ngOnInit(): void {
 		this.fetchRole();
@@ -32,5 +32,5 @@ export class RoleComponent implements OnInit {
 		this.router.navigate([`/admin/role/edit/${id}`]);
 	}
 
-	deleteRole(id: string | number) {}
+	deleteRole(id: string | number) { }
 }

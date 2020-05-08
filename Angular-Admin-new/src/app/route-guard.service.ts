@@ -11,7 +11,7 @@ export class RouteGuardService implements CanActivate {
 	constructor(
 		private router: Router,
 		private authenticateSvc: AuthenticateService
-	) {}
+	) { }
 	canActivate(): Observable<boolean> {
 		return this.authenticateSvc.checkIsAuthenticate().pipe(
 			map((response) => {

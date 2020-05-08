@@ -8,7 +8,7 @@ import { AdminRoutingConfig } from '../../routing-config';
 })
 export class AsideMenuComponent implements OnInit {
 	menus = AdminRoutingConfig;
-	
+
 	constructor() {}
 
 	ngOnInit(): void {}
