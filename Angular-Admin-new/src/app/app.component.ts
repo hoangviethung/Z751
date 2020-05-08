@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
 		this.httpSvc.get(APIConfig.Language.Gets)
 			.subscribe((languages) => {
 				this.languages = languages.data
-				console.log(this.languages);
+				localStorage.setItem('dataLanguages', JSON.stringify(this.languages));
 			})
 	}
 }

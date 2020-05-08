@@ -1,7 +1,7 @@
 <div class="block-content">
 	<!-- Sửa banner -->
 	<div class="block-control" *ngIf="isEdit == true">
-		<a class="btn btn-danger btn-cancel" routerLink="/admin/banner">
+		<a class="btn btn-danger btn-cancel" (click)="closePopup(false)">
 			Hủy bỏ
 		</a>
 		<a class="btn btn-success btn-add" (click)="updateBanner()">Cập nhật</a>
@@ -17,14 +17,14 @@
 		<div class="form-row row">
 			<div class="col-lg-4">
 				<div class="row">
-					<!-- <div class="form-group col-12">
+					<div class="form-group col-12">
 						<label for="">Ngôn ngữ</label>
 						<select class="form-control" name="languageid" [(ngModel)]="banner.languageId">
 							<option *ngFor="let language of languages" value="{{ language.id }}" [selected]="
 									language.isDefault ? 'selected' : ''
 								">{{ language.name }}</option>
 						</select>
-					</div> -->
+					</div>
 					<div class="form-group col-12">
 						<label id="ResourcePathName">Đường dẫn của ảnh</label>
 						<div class="input-group shadow-sm">

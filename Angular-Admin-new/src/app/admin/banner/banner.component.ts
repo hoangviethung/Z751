@@ -3,6 +3,7 @@ import { APIConfig } from 'src/app/_core/API-config';
 import { HttpService, InputRequestOption } from 'src/app/_core/services/http.service';
 import { map } from 'rxjs/operators';
 import { BannerModel } from 'src/app/_core/models/banner.model';
+import { LanguageModel } from 'src/app/_core/models/language';
 @Component({
 	selector: 'app-banner',
 	templateUrl: './banner.component.html',
@@ -12,21 +13,25 @@ export class BannerComponent implements OnInit {
 	banners: Array<BannerModel>
 	banner: BannerModel
 	isShowPopup: boolean = false
-
+	isEdit: boolean;
+	languages: Array<LanguageModel>
 	constructor(
 		private httpSvc: HttpService,
 	) { }
 
 	ngOnInit(): void {
 		this.getBanners();
+		this.languages = JSON.parse(localStorage.getItem('dataLanguages'))
 	}
 
-	onOpenPopup(status, itemEdit?) {
+	onOpenPopup(status, itemEdit?, isEdit?) {
 		this.isShowPopup = status;
 		if (itemEdit) {
 			this.banner = itemEdit;
+			this.isEdit = isEdit
 		} else {
 			this.banner = new BannerModel();
+			this.isEdit = false
 		}
 	}
 
@@ -44,6 +49,7 @@ export class BannerComponent implements OnInit {
 			.pipe(map((response) => response.data))
 			.subscribe((banners) => {
 				this.banners = banners;
+				console.log(this.banners);
 			});
 	}
 

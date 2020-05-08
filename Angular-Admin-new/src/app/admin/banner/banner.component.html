@@ -1,12 +1,12 @@
 <div class="block-content" *ngIf="!isShowPopup">
 	<div class="block-control ai-c">
-		<!-- <div class="form-group">
+		<div class="form-group mr-at">
 			<label>Lọc theo ngôn ngữ</label>
 			<select name="language" class="form-control" (change)="fetchBanner($event)">
 				<option *ngFor="let language of languages" value="{{ language.id }}"
 					[selected]="language.isDefault ? 'selected' : ''">{{ language.name }}</option>
 			</select>
-		</div> -->
+		</div>
 		<a class="btn btn-success btn-add " (click)="onOpenPopup(true)">Thêm mới</a>
 	</div>
 	<div class="block-table">
@@ -27,7 +27,7 @@
 				<td class="column-language ta-c">{{ banner.isPublished }}</td>
 				<td class="column-language ta-c">
 					<div class="table-buttons">
-						<span class="btn btn-outline-success btn-edit" (click)="onOpenPopup(true, banner)">
+						<span class="btn btn-outline-success btn-edit" (click)="onOpenPopup(true, banner, true)">
 							<span class="lnr lnr-pencil"></span>
 						</span>
 						<span class="btn btn-outline-danger btn-remove" (click)="deleteBanner(banner.id)">
@@ -42,5 +42,5 @@
 
 
 <div class="popup-wrappe" *ngIf="isShowPopup">
-	<app-add-edit [banner]="banner" (close)="onClosePopup($event)"></app-add-edit>
+	<app-add-edit [banner]="banner" [isEdit]="isEdit" (close)="onClosePopup($event)"></app-add-edit>
 </div>
