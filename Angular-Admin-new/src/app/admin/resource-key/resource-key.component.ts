@@ -48,7 +48,9 @@ export class ResourceKeyComponent implements OnInit {
 					})
 			})
 		}
+
 		const pm: [Promise<Array<ResourceModel>>, Promise<Array<ResourceModel>>] = [getEnglishResource(), getVietnameseResources()]
+
 		Promise.all(pm).then(([enResource, viResource]) => {
 			this.resources = enResource.map((item, index) => {
 				return {
