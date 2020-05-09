@@ -31,5 +31,13 @@ export const APIConfig = {
 		Add: '/api/Category/add',
 		Update: '/api/Category/update',
 		Delete: '/api/Category/delete',
-	}
+	},
+	Setting: {
+		Gets: '/api/Setting/gets',
+		Update: '/api/Setting/update',
+	},
+	Resource: {
+		Gets: '/api/Resource/gets',
+		Update: '/api/Resource/update',
+	},
 };

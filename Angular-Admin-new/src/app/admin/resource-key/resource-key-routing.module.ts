@@ -3,15 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { ResourceKeyComponent } from './resource-key.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    pathMatch: 'full',
-    component: ResourceKeyComponent,
-  },
+	{
+		path: '',
+		pathMatch: 'full',
+		component: ResourceKeyComponent,
+	},
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule],
 })
-export class ResourceKeyRoutingModule {}
+export class ResourceKeyRoutingModule { }
