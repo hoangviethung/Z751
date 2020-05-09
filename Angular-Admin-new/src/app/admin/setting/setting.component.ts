@@ -23,7 +23,6 @@ export class SettingComponent implements OnInit {
 	getSettings() {
 		this.httpSvc.get(APIConfig.Setting.Gets)
 			.subscribe((response) => {
-				console.log(response);
 				this.settings = response.data
 			})
 	}
@@ -31,7 +30,6 @@ export class SettingComponent implements OnInit {
 	onOpenPopup(status, setting?) {
 		this.isShowPopup = status;
 		this.setting = setting;
-		console.log(this.setting);
 	}
 
 	onClosePopup(status: boolean) {

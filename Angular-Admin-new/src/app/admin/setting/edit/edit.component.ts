@@ -25,7 +25,10 @@ export class EditComponent implements OnInit {
 
 	updateSetting() {
 		const params = new InputRequestOption();
-		params.body = this.setting;
+		params.body = {
+			key: this.setting.name,
+			value: this.setting.value
+		}
 		this.httpSvc.post(APIConfig.Setting.Update, params)
 			.subscribe(() => {
 				this.close.emit(false)
