@@ -64,7 +64,7 @@ export class HttpService {
 
 	private getDefaultHeaders(): HttpHeaders {
 		return new HttpHeaders({
-			'Content-Type': 'application/json',
+			'Content-Type': 'application/json-patch+json',
 			Accept: 'application/json',
 			'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, DELETE, PUT',
 			'Access-Control-Allow-Origin': '*',

@@ -15,8 +15,8 @@ import { RouterModule } from '@angular/router';
 		FormsModule,
 		HttpClientModule,
 		RouterModule,
-		AsideMenuDirective,
 		BreadcrumbComponent,
+		AsideMenuDirective,
 	],
 	providers: [RoutingService],
 })

@@ -29,9 +29,7 @@ export class AsideMenuDirective implements OnInit, AfterViewInit {
 		const link = <HTMLElement>links.find((link) => {
 			const href = link.getAttribute('href');
 			if (pathname.indexOf(href) >= 0) {
-				console.log(link);
 				return link;
-				
 			}
 		});
 		const menuItem = this.getAsideMenuFromChild(link);

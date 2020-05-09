@@ -10,6 +10,17 @@ import { map } from 'rxjs/operators';
 export class CrudService {
 	constructor(private httpSvc: HttpService) {}
 
+	get(url: string, options?: InputRequestOption): Observable<ResponseModel> {
+		return this.httpSvc.get(url, options).pipe(
+			map((response) => {
+				if (response.code !== 200) {
+					console.log(response);
+				}
+				return response;
+			})
+		);
+	}
+
 	add(url: string, options: InputRequestOption): Observable<ResponseModel> {
 		return this.httpSvc.post(url, options).pipe(
 			map((response) => {
@@ -35,8 +46,11 @@ export class CrudService {
 		);
 	}
 
-	get(url: string, options?: InputRequestOption): Observable<ResponseModel> {
-		return this.httpSvc.get(url, options).pipe(
+	delete(
+		url: string,
+		options: InputRequestOption
+	): Observable<ResponseModel> {
+		return this.httpSvc.post(url, options).pipe(
 			map((response) => {
 				if (response.code !== 200) {
 					console.log(response);
