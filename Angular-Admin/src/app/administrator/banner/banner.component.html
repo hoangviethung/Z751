@@ -2,18 +2,9 @@
 	<div class="block-control ai-c">
 		<div class="form-group">
 			<label for="">Lọc theo ngôn ngữ</label>
-			<select
-				name="language"
-				id="language"
-				class="form-control"
-				(change)="fetchBanner($event)"
-			>
-				<option
-					*ngFor="let language of languages"
-					value="{{ language.id }}"
-					[selected]="language.isDefault ? 'selected' : ''"
-					>{{ language.name }}</option
-				>
+			<select name="language" id="language" class="form-control" (change)="fetchBanner($event)">
+				<option *ngFor="let language of languages" value="{{ language.id }}"
+					[selected]="language.isDefault ? 'selected' : ''">{{ language.name }}</option>
 			</select>
 		</div>
 		<a class="btn btn-success btn-add " routerLink="add">Thêm mới</a>
@@ -30,25 +21,16 @@
 			<tr *ngFor="let banner of banners; let i = index">
 				<th class="ta-c">{{ i + 1 }}</th>
 				<td>
-					<img
-						src="{{ banner.resourcePath }}"
-						alt="{{ banner.name }}"
-					/>
+					<img src="{{ banner.resourcePath }}" alt="{{ banner.name }}" />
 				</td>
 				<td class="column-language ta-c">VN</td>
 				<td class="column-language ta-c">{{ banner.isPublished }}</td>
 				<td class="column-language ta-c">
 					<div class="table-buttons">
-						<span
-							class="btn btn-outline-success btn-edit"
-							(click)="editBanner(banner.id)"
-						>
+						<span class="btn btn-outline-success btn-edit" (click)="editBanner(banner.id)">
 							<span class="lnr lnr-pencil"></span>
 						</span>
-						<span
-							class="btn btn-outline-danger btn-remove"
-							(click)="deleteBanner(banner.id)"
-						>
+						<span class="btn btn-outline-danger btn-remove" (click)="deleteBanner(banner.id)">
 							<span class="lnr lnr-trash"></span>
 						</span>
 					</div>

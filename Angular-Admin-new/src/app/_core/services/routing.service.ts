@@ -21,7 +21,7 @@ export interface Path {
 /*
  *
  */
-export interface Paths extends Array<Path> {}
+export interface Paths extends Array<Path> { }
 
 /*
  *

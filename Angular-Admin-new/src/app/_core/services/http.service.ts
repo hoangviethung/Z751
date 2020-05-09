@@ -4,7 +4,6 @@ import { CookieService } from './cookie.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { APPConfig } from '../APP-config';
-import { AuthenticateService } from './authenticate.service';
 
 export class RequestOption {
 	body?: any;
@@ -25,7 +24,7 @@ export class InputRequestOption {
 	providedIn: 'root',
 })
 export class HttpService {
-	constructor(private http: HttpClient, private cookieSvc: CookieService) {}
+	constructor(private http: HttpClient, private cookieSvc: CookieService) { }
 	private TOKEN: string;
 
 	get(url: string, options?: InputRequestOption): Observable<any> {

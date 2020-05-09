@@ -14,7 +14,7 @@ export class AuthenticateService {
 	constructor(
 		private httpSvc: HttpService,
 		private cookieSvc: CookieService
-	) {}
+	) { }
 
 	public checkIsAuthenticate() {
 		const option = new InputRequestOption();
