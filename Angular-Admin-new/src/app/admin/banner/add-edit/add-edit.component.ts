@@ -3,6 +3,7 @@ import { BannerModel } from 'src/app/_core/models/banner.model';
 import { HttpService, InputRequestOption } from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
 import { LanguageModel } from 'src/app/_core/models/language';
+import { CategoryModel } from 'src/app/_core/models/category.model';
 
 @Component({
 	selector: 'app-add-edit',
@@ -12,14 +13,15 @@ import { LanguageModel } from 'src/app/_core/models/language';
 export class AddEditComponent implements OnInit {
 	@Input('banner') banner: BannerModel = new BannerModel()
 	@Input('isEdit') isEdit: boolean
-	@Output('close') close: EventEmitter<boolean> = new EventEmitter<boolean>()
-	languages: Array<LanguageModel>
+	@Output('close') close: EventEmitter<boolean> = new EventEmitter<boolean>();
+	languages: Array<LanguageModel>;
+	categories: Array<CategoryModel>;
 	constructor(
 		private httpSvc: HttpService,
 	) { }
 
 	ngOnInit(): void {
-		this.languages = JSON.parse(localStorage.getItem('dataLanguages'))
+		this.languages = JSON.parse(localStorage.getItem('languages'))
 	}
 
 	addBanner() {

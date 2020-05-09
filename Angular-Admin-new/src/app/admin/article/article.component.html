@@ -22,7 +22,7 @@
 				<td class="column-title">
 					{{ article.title }}
 				</td>
-				<td class="column-category ta-c">{{ article.categoryId }}</td>
+				<td class="column-category ta-c">{{ article.categoryName }}</td>
 				<td class="column-button ta-c">
 					<div class="table-buttons">
 						<span class="btn btn-outline-success btn-edit" (click)="onOpenPopup(true, article, true)">
@@ -40,5 +40,6 @@
 
 
 <div class="popup-wrapper" *ngIf="isShowPopup">
-	<app-add-edit [article]="article" [isEdit]="isEdit" (close)="onClosePopup($event)"></app-add-edit>
+	<app-add-edit [article]="article" [isEdit]="isEdit" (close)="onClosePopup($event)">
+	</app-add-edit>
 </div>

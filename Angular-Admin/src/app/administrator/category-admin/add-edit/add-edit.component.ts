@@ -126,7 +126,7 @@ export class AddEditComponent implements OnInit {
 				this.router.navigateByUrl('/admin/category-admin')
 			})
 	}
-	
+
 	onChangeEmitter(content) {
 		this.category.description = content.editor.getData()
 	}

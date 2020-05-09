@@ -1,1 +1,38 @@
-<p>category works!</p>
+<div class="block-content" *ngIf="!isShowPopup">
+	<div class="block-control">
+		<a class="btn btn-success btn-add" (click)="onOpenPopup(true)">Thêm mới</a>
+	</div>
+	<div class="block-table">
+		<table class="table">
+			<tr class="table-info">
+				<th class="column-number ta-c">#</th>
+				<th class="column-title">Tên danh mục</th>
+				<th class="column-category ta-c">Danh mục cha</th>
+				<th class="column-url ta-c">Đường dẫn</th>
+				<th class="column-button ta-c">Tác vụ</th>
+			</tr>
+			<tr *ngFor="let category of categories; let i = index">
+				<th class="ta-c">{{ i }}</th>
+				<td>{{ category.title }}</td>
+				<td>{{ category.parentName }}</td>
+				<td>{{ category.previewUrl }}</td>
+				<td class="ta-c">
+					<div class="table-buttons">
+						<span class="btn btn-outline-success btn-edit" (click)="onOpenPopup(true, category, true)">
+							<span class="lnr lnr-pencil"></span>
+						</span>
+						<span class="btn btn-outline-danger btn-remove" (click)="deleteCategory(category.id)">
+							<span class="lnr lnr-trash"></span>
+						</span>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+
+<div class="popup-wrapper" *ngIf="isShowPopup">
+	<app-add-edit [category]="category" [categories]="categories" [isEdit]="isEdit" (close)="onClosePopup($event)">
+	</app-add-edit>
+</div>

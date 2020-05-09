@@ -21,7 +21,7 @@ export class BannerComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.getBanners();
-		this.languages = JSON.parse(localStorage.getItem('dataLanguages'))
+		this.languages = JSON.parse(localStorage.getItem('languages'))
 	}
 
 	onOpenPopup(status, itemEdit?, isEdit?) {

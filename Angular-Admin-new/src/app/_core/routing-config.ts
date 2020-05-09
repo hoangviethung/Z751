@@ -20,7 +20,7 @@ export const AdminRoutingConfig = [
 			},
 			{
 				label: 'Danh mục',
-				route: '/admin/category-admin',
+				route: '/admin/category',
 				iconClasses: 'lnr lnr-list',
 			},
 			{

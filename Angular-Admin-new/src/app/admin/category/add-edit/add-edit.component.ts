@@ -1,10 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ArticleModel } from 'src/app/_core/models/article.model';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { CategoryModel } from 'src/app/_core/models/category.model';
 import { LanguageModel } from 'src/app/_core/models/language';
 import { InputRequestOption, HttpService } from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
-import { CategoryModel } from 'src/app/_core/models/category.model';
+import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { UtilService } from 'src/app/_core/services/util.service';
+import { TemplateModel } from 'src/app/_core/models/template.model';
 
 @Component({
 	selector: 'app-add-edit',
@@ -12,31 +13,34 @@ import { UtilService } from 'src/app/_core/services/util.service';
 	styleUrls: ['./add-edit.component.scss']
 })
 export class AddEditComponent implements OnInit {
-	@Input('article') article: ArticleModel = new ArticleModel();
+	@Input('category') category: CategoryModel = new CategoryModel();
+	@Input('categories') categories: Array<CategoryModel>
 	@Input('isEdit') isEdit: boolean;
-	originUrl: string;
 	@Output('close') close: EventEmitter<boolean> = new EventEmitter<boolean>();
 	languages: Array<LanguageModel>;
-	categories: Array<CategoryModel>;
+	templates: Array<TemplateModel> = TemplatesConfig
+	originUrl: string;
 	constructor(
 		private httpSvc: HttpService,
-		private utilSvc: UtilService
+		private utilSvc: UtilService,
 	) { }
 
 	ngOnInit(): void {
+		this.languages = JSON.parse(localStorage.getItem('languages'))
 		this.setBaseUrl();
-		this.getCategories();
-		this.languages = JSON.parse(localStorage.getItem('languages'));
+		this.addRootCaetegory();
 	}
+
 
 	setBaseUrl() {
 		this.originUrl = this.utilSvc.getOriginUrl()
 	}
 
 	updateBaseUrl() {
-		const categoryId = Number(this.article.categoryId)
+		const parentId = Number(this.category.parentId)
+
 		const item = this.categories.find((item) => {
-			if (categoryId == item.id) {
+			if (parentId == item.id) {
 				return item
 			}
 		})
@@ -44,24 +48,24 @@ export class AddEditComponent implements OnInit {
 	}
 
 	setAliasTitleToUrl() {
-		this.article.seName = this.utilSvc.alias(this.article.title)
+		this.category.seName = this.utilSvc.alias(this.category.title)
 	}
 
-	addArticle() {
-		this.article.languageId = Number(this.article.languageId)
+	addCategory() {
+		this.category.languageId = Number(this.category.languageId)
 		const params = new InputRequestOption();
-		params.body = this.article
-		this.httpSvc.post(APIConfig.Article.Add, params)
+		params.body = this.category
+		this.httpSvc.post(APIConfig.Category.Add, params)
 			.subscribe(() => {
 				this.close.emit(false)
 			})
 	}
 
-	updateArticle() {
-		this.article.languageId = Number(this.article.languageId)
+	updateCategory() {
+		this.category.languageId = Number(this.category.languageId)
 		const params = new InputRequestOption();
-		params.body = this.article
-		this.httpSvc.post(APIConfig.Article.Update, params)
+		params.body = this.category
+		this.httpSvc.post(APIConfig.Category.Update, params)
 			.subscribe(() => {
 				this.close.emit(false)
 				console.log('Cập nhật thành công');
@@ -72,30 +76,19 @@ export class AddEditComponent implements OnInit {
 		this.close.emit(status)
 	}
 
-	getCategories() {
-		const params = new InputRequestOption();
-		params.params = {
-			languageId: '1',
-		}
-		this.httpSvc.get(APIConfig.Category.Gets, params)
-			.subscribe((categories) => {
-				this.categories = categories.data.items
-			})
-	}
-
 	addRootCaetegory() {
 		const baseCategory: CategoryModel = new CategoryModel()
 		baseCategory.previewUrl = ''
 		baseCategory.id = 0
 		baseCategory.title = 'Danh mục gốc'
 		this.categories.unshift(baseCategory)
-		if (this.article.categoryId == null) {
-			this.article.categoryId = 0
+		if (this.category.parentId == null) {
+			this.category.parentId = 0
 		}
 		this.updateBaseUrl()
 	}
 
 	onChangeEmitter(content) {
-		this.article.description = content.editor.getData()
+		this.category.description = content.editor.getData()
 	}
 }

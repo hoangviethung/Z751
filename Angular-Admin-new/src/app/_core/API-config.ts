@@ -24,5 +24,12 @@ export const APIConfig = {
 		Add: '/api/Article/add',
 		Update: '/api/Article/update',
 		Delete: '/api/Article/delete',
+	},
+	Category: {
+		Gets: '/api/Category/gets',
+		Get: '/api/Category/get',
+		Add: '/api/Category/add',
+		Update: '/api/Category/update',
+		Delete: '/api/Category/delete',
 	}
 };

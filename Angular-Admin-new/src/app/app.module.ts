@@ -9,9 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
-  providers: [RouteGuardService],
-  bootstrap: [AppComponent],
+	declarations: [AppComponent],
+	imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+	providers: [RouteGuardService],
+	bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

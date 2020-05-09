@@ -4,6 +4,7 @@ import { APIConfig } from 'src/app/_core/API-config';
 import { map } from 'rxjs/operators';
 import { ArticleModel } from 'src/app/_core/models/article.model';
 import { LanguageModel } from 'src/app/_core/models/language';
+import { CategoryModel } from 'src/app/_core/models/category.model';
 
 @Component({
 	selector: 'app-article',
@@ -14,6 +15,7 @@ export class ArticleComponent implements OnInit {
 	articles: Array<ArticleModel>
 	article: ArticleModel
 	languages: Array<LanguageModel>
+	categories: Array<CategoryModel>;
 	isShowPopup: boolean = false
 	isEdit: boolean;
 	constructor(
@@ -22,7 +24,7 @@ export class ArticleComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.getArticles();
-		this.languages = JSON.parse(localStorage.getItem('dataLanguages'))
+		this.languages = JSON.parse(localStorage.getItem('languages'))
 	}
 
 	getArticles() {
@@ -33,6 +35,21 @@ export class ArticleComponent implements OnInit {
 		this.httpSvc.get(APIConfig.Article.Gets, params)
 			.subscribe((articles) => {
 				this.articles = articles.data.items
+				this.articles.forEach((article) => {
+					const params = new InputRequestOption();
+					params.params = {
+						languageId: '1',
+					}
+					this.httpSvc.get(APIConfig.Category.Gets, params)
+						.subscribe((categories) => {
+							this.categories = categories.data.items
+							this.categories.forEach((category) => {
+								if (article.categoryId == category.id) {
+									article.categoryName = category.title
+								}
+							})
+						})
+				})
 			})
 	}
 
@@ -53,9 +70,8 @@ export class ArticleComponent implements OnInit {
 			languageId: e.target.value,
 		}
 		this.httpSvc.get(APIConfig.Article.Gets, params)
-			.pipe(map((response) => response.data))
 			.subscribe((articles) => {
-				this.articles = articles;
+				this.articles = articles.data.items
 			});
 	}
 
