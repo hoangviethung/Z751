@@ -40,4 +40,8 @@ export const APIConfig = {
 		Gets: '/api/Resource/gets',
 		Update: '/api/Resource/update',
 	},
+	Section: {
+		Gets: '/api/Section/gets',
+		Update: '/api/Section/update',
+	},
 };
