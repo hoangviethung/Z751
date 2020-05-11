@@ -3,6 +3,8 @@ import { LoginModel } from 'src/app/_core/models/login.model';
 import { AuthenticateService } from 'src/app/_core/services/authenticate.service';
 import { CookieService } from 'src/app/_core/services/cookie.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { ResponseModel } from 'src/app/_core/models/response.model';
 
 @Component({
 	selector: 'app-login',
@@ -15,10 +17,14 @@ export class LoginComponent implements OnInit {
 		password: '',
 		isRememberMe: false,
 	});
+
+	errorAlert: string;
+
 	constructor(
 		private authenticateSvc: AuthenticateService,
 		private cookieSvc: CookieService,
-		private router: Router
+		private router: Router,
+		private toastrSvc: ToastrService
 	) {}
 
 	ngOnInit(): void {}
@@ -26,13 +32,15 @@ export class LoginComponent implements OnInit {
 	login() {
 		this.authenticateSvc
 			.login(this.loginInfo)
-			.subscribe((response: any) => {
+			.subscribe((response: ResponseModel) => {
 				if (response.code == 200) {
 					this.cookieSvc.set('user', JSON.stringify(response.data));
+					this.toastrSvc.success(response.message);
 					this.router.navigateByUrl('/admin/dashboard');
 				}
 				if (response.code == 400) {
-					console.log('Tài khoản không tồn tại');
+					this.errorAlert = response.message;
+					this.toastrSvc.error(response.message);
 				}
 			});
 	}

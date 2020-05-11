@@ -6,13 +6,8 @@ import { BannerComponent } from './banner.component';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import { SharedModule } from 'src/app/_core/shared.module';
 
-
 @NgModule({
 	declarations: [BannerComponent, AddEditComponent],
-	imports: [
-		CommonModule,
-		BannerRoutingModule,
-		SharedModule
-	]
+	imports: [CommonModule, BannerRoutingModule, SharedModule],
 })
-export class BannerModule { }
+export class BannerModule {}

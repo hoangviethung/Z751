@@ -1,0 +1,7 @@
+.checkbox-custom {
+	justify-content: center;
+	input[type="checkbox"] {
+		margin-right: 0;
+		border: 1px solid lighten(black, 50%);
+	}
+}

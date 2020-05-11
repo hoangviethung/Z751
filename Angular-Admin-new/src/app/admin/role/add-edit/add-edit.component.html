@@ -1,41 +1,37 @@
-<div class="block-form mt-10">
-	<div class="block-content">
-		<div class="block-control">
-			<a class="btn btn-danger btn-cancel" routerLink="/admin/role">
-				Hủy bỏ
-			</a>
-			<!-- Sửa banner -->
-			<a
-				class="btn btn-success btn-add"
-				(click)="updateRole()"
-				*ngIf="isEdit == true"
-				>Cập nhật</a
-			>
-			<!-- Thêm banner -->
-			<a
-				class="btn btn-success btn-add"
-				(click)="addRole()"
-				*ngIf="isEdit == false"
-				>Thêm</a
-			>
-		</div>
-		<div class="row">
-			<div class="form-group col-lg-4">
-				<label>Tên bột quyền *</label>
-				<input
-					class="form-control"
-					type="text"
-					placeholder="Nhập tên bộ quyền"
-				/>
-			</div>
-			<div class="form-group col-lg-12">
-				<label>Mô tả *</label>
-				<textarea
-					class="form-control"
-					placeholder="Nhập mô tả"
-				></textarea>
-			</div>
-		</div>
+<div class="block-control">
+	<a class="btn btn-danger btn-cancel" routerLink="/admin/role">
+		Hủy bỏ
+	</a>
+	<a
+		class="btn btn-success btn-add"
+		(click)="updateRole()"
+		*ngIf="isEdit == true"
+		>Cập nhật</a
+	>
+	<a
+		class="btn btn-success btn-add"
+		(click)="addRole()"
+		*ngIf="isEdit == false"
+		>Thêm</a
+	>
+</div>
+<div class="row">
+	<div class="form-group col-lg-4">
+		<label>Tên bột quyền *</label>
+		<input
+			class="form-control"
+			type="text"
+			placeholder="Nhập tên bộ quyền"
+			[(ngModel)]="name"
+		/>
+	</div>
+	<div class="form-group col-lg-12">
+		<label>Mô tả *</label>
+		<textarea
+			class="form-control"
+			placeholder="Nhập mô tả"
+			[(ngModel)]="description"
+		></textarea>
 	</div>
 </div>
 
@@ -51,123 +47,89 @@
 				<th class="text-center">Xóa</th>
 			</tr>
 		</thead>
-		<tbody class="table-multiple-checkbox">
-			<tr class="role-row">
-				<td class="bold left" colspan="6">CMS</td>
-			</tr>
-			<tr class="role-row">
-				<td class="left">Quản lý Danh sách đăng nhập của users</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-			</tr>
-			<tr class="role-row">
-				<td class="left">Quản lý Giới thiệu</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-				<td>
-					<div class="input-custom m-auto"></div>
-				</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-			</tr>
-			<tr class="role-row">
-				<td class="bold left" colspan="6">Thương mại điện tử</td>
-			</tr>
-			<tr class="role-row">
-				<td class="left">Quản lý Giảm giá</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-			</tr>
-			<tr class="role-row">
-				<td class="left">Quản lý Thuộc tính sản phẩm</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-				<td>
-					<label class="checkbox-custom">
-						<input type="checkbox" />
-					</label>
-				</td>
-			</tr>
+		<tbody class="table-multiple-checkbox" *ngIf="featuresObject">
+			<ng-container *ngFor="let featureRow of features">
+				<tr class="role-row">
+					<th class="bold left" colspan="6">{{ featureRow.name }}</th>
+				</tr>
+				<ng-container *ngFor="let featureValue of featureRow.features">
+					<tr class="role-row">
+						<td class="left">
+							{{ featureValue.name }}
+						</td>
+						<td>
+							<label class="checkbox-custom">
+								<input
+									type="checkbox"
+									[name]="featureValue.value"
+									[(ngModel)]="
+										featuresObject[featureValue.value].All
+									"
+									(change)="
+										updateAllFeature(
+											$event,
+											featureValue.value
+										)
+									"
+								/>
+							</label>
+						</td>
+						<td>
+							<label class="checkbox-custom">
+								<input
+									type="checkbox"
+									[name]="featureValue.value"
+									[value]="PermissionCollection.View"
+									[(ngModel)]="
+										featuresObject[featureValue.value].View
+									"
+									(change)="updateFeature(featureValue.value)"
+								/>
+							</label>
+						</td>
+						<td>
+							<label class="checkbox-custom">
+								<input
+									type="checkbox"
+									[name]="featureValue.value"
+									[value]="PermissionCollection.Add"
+									[(ngModel)]="
+										featuresObject[featureValue.value].Add
+									"
+									(change)="updateFeature(featureValue.value)"
+								/>
+							</label>
+						</td>
+						<td>
+							<label class="checkbox-custom">
+								<input
+									type="checkbox"
+									[name]="featureValue.value"
+									[value]="PermissionCollection.Edit"
+									[(ngModel)]="
+										featuresObject[featureValue.value].Edit
+									"
+									(change)="updateFeature(featureValue.value)"
+								/>
+							</label>
+						</td>
+						<td>
+							<label class="checkbox-custom">
+								<input
+									type="checkbox"
+									[name]="featureValue.value"
+									[value]="PermissionCollection.Delete"
+									[(ngModel)]="
+										featuresObject[featureValue.value]
+											.Delete
+									"
+									(change)="updateFeature(featureValue.value)"
+								/>
+							</label>
+						</td>
+					</tr>
+				</ng-container>
+			</ng-container>
 		</tbody>
 	</table>
 </div>

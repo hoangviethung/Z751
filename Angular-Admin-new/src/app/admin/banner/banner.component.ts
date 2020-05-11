@@ -1,78 +1,101 @@
 import { Component, OnInit } from '@angular/core';
 import { APIConfig } from 'src/app/_core/API-config';
-import { HttpService, InputRequestOption } from 'src/app/_core/services/http.service';
+import {
+	HttpService,
+	InputRequestOption,
+} from 'src/app/_core/services/http.service';
 import { map } from 'rxjs/operators';
 import { BannerModel } from 'src/app/_core/models/banner.model';
 import { LanguageModel } from 'src/app/_core/models/language';
+import { ToastrService } from 'ngx-toastr';
+import { LanguageFlag } from 'src/app/_core/enums/general.enum';
+import { CrudService } from 'src/app/_core/services/crud.service';
+
 @Component({
 	selector: 'app-banner',
 	templateUrl: './banner.component.html',
-	styleUrls: ['./banner.component.scss']
+	styleUrls: ['./banner.component.scss'],
 })
 export class BannerComponent implements OnInit {
-	banners: Array<BannerModel>
-	banner: BannerModel
-	isShowPopup: boolean = false
+	banners: Array<BannerModel>;
+	banner: BannerModel;
+	isShowPopup: boolean = false;
 	isEdit: boolean;
-	languages: Array<LanguageModel>
+	languages: Array<LanguageModel>;
+	flag = {
+		vi: LanguageFlag.vi,
+		en: LanguageFlag.en,
+	};
 	constructor(
-		private httpSvc: HttpService,
-	) { }
+		private crudSvc: CrudService,
+		private toastrSvc: ToastrService
+	) {}
 
 	ngOnInit(): void {
 		this.getBanners();
-		this.languages = JSON.parse(localStorage.getItem('languages'))
+		this.languages = JSON.parse(localStorage.getItem('languages'));
 	}
 
 	onOpenPopup(status, itemEdit?, isEdit?) {
 		this.isShowPopup = status;
 		if (itemEdit) {
 			this.banner = itemEdit;
-			this.isEdit = isEdit
+			this.isEdit = isEdit;
 		} else {
 			this.banner = new BannerModel();
-			this.isEdit = false
+			this.isEdit = false;
 		}
 	}
 
 	onClosePopup(status: boolean) {
 		this.isShowPopup = status;
-		this.getBanners()
+		this.getBanners();
 	}
 
 	fetchBanner(e) {
-		const params = new InputRequestOption()
+		const params = new InputRequestOption();
 		params.params = {
 			languageId: e.target.value,
-		}
-		this.httpSvc.get(APIConfig.Banner.Gets, params)
-			.pipe(map((response) => response.data))
+		};
+		this.crudSvc
+			.get(APIConfig.Banner.Gets, params)
+			.pipe(
+				map((response) => {
+					return response.data;
+				})
+			)
 			.subscribe((banners) => {
 				this.banners = banners;
-				console.log(this.banners);
 			});
 	}
 
 	getBanners() {
-		const params = new InputRequestOption()
+		const params = new InputRequestOption();
 		params.params = {
 			languageId: '1',
-		}
-		this.httpSvc.get(APIConfig.Banner.Gets, params)
+		};
+		this.crudSvc
+			.get(APIConfig.Banner.Gets, params)
 			.pipe(map((response) => response.data))
 			.subscribe((banners) => {
 				this.banners = banners;
 			});
 	}
 
-	deleteBanner(id) {
-		const params = new InputRequestOption()
+	deleteBanner(id: string) {
+		const params = new InputRequestOption();
 		params.params = {
 			id: id,
-		}
-		this.httpSvc.post(APIConfig.Banner.Delete, params)
-			.subscribe(() => {
-				this.getBanners()
-			})
+		};
+		this.crudSvc
+			.delete(APIConfig.Banner.Delete, params)
+			.subscribe((response) => {
+				this.getBanners();
+				if (response.code == 200) {
+					this.toastrSvc.success(response.message);
+				} else {
+					this.toastrSvc.error(response.message);
+				}
+			});
 	}
 }

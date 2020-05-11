@@ -11,22 +11,19 @@ import { APIConfig } from './_core/API-config';
 	styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-	languages: Array<LanguageModel>
+	languages: Array<LanguageModel>;
 	title = 'admin';
 
-	constructor(
-		private httpSvc: HttpService
-	) { }
+	constructor(private httpSvc: HttpService) {}
 
 	ngOnInit() {
 		this.getLanguages();
 	}
 
 	getLanguages() {
-		this.httpSvc.get(APIConfig.Language.Gets)
-			.subscribe((languages) => {
-				this.languages = languages.data
-				localStorage.setItem('languages', JSON.stringify(this.languages));
-			})
+		this.httpSvc.get(APIConfig.Language.Gets).subscribe((languages) => {
+			this.languages = languages.data;
+			localStorage.setItem('languages', JSON.stringify(this.languages));
+		});
 	}
 }

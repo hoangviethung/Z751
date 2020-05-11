@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { RoutingService } from '../../services/routing.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
 	selector: 'app-breadcrumb',
@@ -14,7 +15,10 @@ export class BreadcrumbComponent implements OnInit {
 
 	homeIcon = 'lnr lnr-home';
 
-	constructor(private routingService: RoutingService) {}
+	constructor(
+		private routingService: RoutingService,
+		private titleSvc: Title
+	) {}
 
 	/**
 	 * @method ngOnInit
@@ -22,6 +26,9 @@ export class BreadcrumbComponent implements OnInit {
 	ngOnInit(): void {
 		this.subscription = this.routingService.onChange.subscribe((value) => {
 			this.breadcrumbs = value;
+			this.titleSvc.setTitle(
+				this.breadcrumbs[this.breadcrumbs.length - 1].data.title
+			);
 		});
 	}
 

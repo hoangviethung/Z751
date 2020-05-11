@@ -94,13 +94,6 @@
 	}
 }
 .menu-title {
-	a {
-		display: flex;
-		align-items: center;
-		padding: 10px;
-		color: white;
-		border-radius: 5px;
-	}
 	h5 {
 		font-weight: 400;
 	}
@@ -112,7 +105,16 @@
 		transform-origin: 50% 50%;
 		font-size: 12px;
 	}
-	&:hover {
+	a {
+		display: flex;
+		align-items: center;
+		padding: 10px;
+		color: white;
+		border-radius: 5px;
+
+	}
+	&:hover,
+	&.active {
 		a {
 			background-color: rgba(white, 0.2);
 		}

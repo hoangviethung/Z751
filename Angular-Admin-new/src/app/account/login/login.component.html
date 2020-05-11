@@ -29,13 +29,13 @@
 				/>
 				<!-- <span class="field-validation-error">{{ msgPwd }}</span> -->
 			</div>
-			<div class="form-group col-lg-6">
+			<div class="form-group col-lg-12">
 				<label class="checkbox-custom">
-					Duy trì đăng nhập
 					<input
 						type="checkbox"
 						[(ngModel)]="loginInfo.isRememberMe"
 					/>
+					Duy trì đăng nhập
 				</label>
 			</div>
 			<div class="form-group col-lg-12">
@@ -47,6 +47,8 @@
 				</button>
 			</div>
 		</div>
-		<span class="field-validation-error text-center d-block">error</span>
+		<span class="field-validation-error text-center d-block">
+			{{ errorAlert }}
+		</span>
 	</div>
 </section>

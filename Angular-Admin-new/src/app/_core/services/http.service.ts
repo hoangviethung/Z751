@@ -4,6 +4,8 @@ import { CookieService } from './cookie.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { APPConfig } from '../APP-config';
+import { AuthenticateService } from './authenticate.service';
+import { Router } from '@angular/router';
 
 export class RequestOption {
 	body?: any;
@@ -24,7 +26,11 @@ export class InputRequestOption {
 	providedIn: 'root',
 })
 export class HttpService {
-	constructor(private http: HttpClient, private cookieSvc: CookieService) { }
+	constructor(
+		private http: HttpClient,
+		private cookieSvc: CookieService,
+		private router: Router
+	) {}
 	private TOKEN: string;
 
 	get(url: string, options?: InputRequestOption): Observable<any> {
@@ -54,7 +60,11 @@ export class HttpService {
 		return this.http.request(method, fullUrl, option).pipe(
 			map((response: any) => {
 				if (response.code != 200) {
-					console.log(response);
+					console.log(response.code, response.message);
+				}
+				if (response.code == 403) {
+					this.cookieSvc.deleteAll();
+					this.router.navigate(['/account/login']);
 				}
 				return response;
 			})
@@ -63,7 +73,7 @@ export class HttpService {
 
 	private getDefaultHeaders(): HttpHeaders {
 		return new HttpHeaders({
-			'Content-Type': 'application/json',
+			'Content-Type': 'application/json-patch+json',
 			Accept: 'application/json',
 			'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, DELETE, PUT',
 			'Access-Control-Allow-Origin': '*',
