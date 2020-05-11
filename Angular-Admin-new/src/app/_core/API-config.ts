@@ -31,5 +31,24 @@ export const APIConfig = {
 		Add: '/api/Category/add',
 		Update: '/api/Category/update',
 		Delete: '/api/Category/delete',
-	}
+	},
+	Setting: {
+		Gets: '/api/Setting/gets',
+		Update: '/api/Setting/update',
+	},
+	Resource: {
+		Gets: '/api/Resource/gets',
+		Update: '/api/Resource/update',
+	},
+	Section: {
+		Gets: '/api/Section/gets',
+		Update: '/api/Section/update',
+	},
+	User: {
+		Gets: '/api/User/gets',
+		Add: '/api/User/add',
+		Changepasword: '/api/User/changepasword',
+		Update: '/api/User/update',
+		Active: '/api/User/Active',
+	},
 };

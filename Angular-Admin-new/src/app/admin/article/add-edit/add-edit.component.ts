@@ -80,14 +80,15 @@ export class AddEditComponent implements OnInit {
 		this.httpSvc.get(APIConfig.Category.Gets, params)
 			.subscribe((categories) => {
 				this.categories = categories.data.items
+				this.addRootCaetegory()
 			})
 	}
 
 	addRootCaetegory() {
 		const baseCategory: CategoryModel = new CategoryModel()
-		baseCategory.previewUrl = ''
-		baseCategory.id = 0
-		baseCategory.title = 'Danh mục gốc'
+		baseCategory.previewUrl = '';
+		baseCategory.id = 0;
+		baseCategory.title = 'Danh mục gốc';
 		this.categories.unshift(baseCategory)
 		if (this.article.categoryId == null) {
 			this.article.categoryId = 0

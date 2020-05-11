@@ -1,1 +1,35 @@
-<p>setting works!</p>
+<div class="block-content" *ngIf="!isShowPopup">
+	<div class="block-table">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Từ khóa</th>
+					<th>Giá trị</th>
+					<th>Mô tả</th>
+					<th>Loại setting</th>
+					<th class="ta-c">Thao tác</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let setting of settings, let i = index">
+					<td>{{i+1}}</td>
+					<td>{{setting.name}}</td>
+					<td>{{setting.value}}</td>
+					<td>{{setting.description}}</td>
+					<td class="ta-c">{{setting.type}}</td>
+					<td class="ta-c">
+						<a class="btn btn-outline-success" (click)="onOpenPopup(true, setting)">
+							<span class="lnr lnr-pencil"></span>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class="popup-wrapper" *ngIf="isShowPopup">
+	<app-edit [setting]="setting" (close)="onClosePopup($event)">
+	</app-edit>
+</div>

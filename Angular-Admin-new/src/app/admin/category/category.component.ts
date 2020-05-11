@@ -45,7 +45,6 @@ export class CategoryComponent implements OnInit {
 		this.httpSvc.get(APIConfig.Category.Gets, params)
 			.subscribe((categories) => {
 				this.categories = categories.data.items
-				console.log(this.categories);
 			})
 	}
 
