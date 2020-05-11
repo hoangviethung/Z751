@@ -27,7 +27,7 @@ export class CategoryComponent implements OnInit {
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
 		private toastrSvc: ToastrService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();

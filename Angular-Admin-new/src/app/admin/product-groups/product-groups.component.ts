@@ -3,6 +3,8 @@ import { ProductGroupModel } from 'src/app/_core/models/product-groups';
 import { HttpService, InputRequestOption } from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
 import { map } from 'rxjs/operators';
+import { LanguageModel } from 'src/app/_core/models/language';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-product-groups',
@@ -12,21 +14,31 @@ import { map } from 'rxjs/operators';
 export class ProductGroupsComponent implements OnInit {
 	isShowPopup: boolean = false;
 	isEdit: boolean;
+	languages: Array<LanguageModel>
 	productGroups: Array<ProductGroupModel>
 	productGroup: ProductGroupModel
 	constructor(
-		private httpSvc: HttpService
+		private httpSvc: HttpService,
+		private toastrSvc: ToastrService
 	) { }
 
 	ngOnInit(): void {
 		this.getProductGroups();
+		this.languages = JSON.parse(localStorage.getItem('languages'))
 	}
 
-	getProductGroups() {
+	getProductGroups(languageId?) {
 		const params = new InputRequestOption();
-		params.params = {
-			languageId: '1'
+		if (languageId) {
+			params.params = {
+				languageId: languageId
+			}
+		} else {
+			params.params = {
+				languageId: '1'
+			}
 		}
+
 		this.httpSvc.get(APIConfig.ProductGroup.Gets, params)
 			.pipe(map((response) => response.data))
 			.subscribe((prodcutGroups) => {
@@ -57,8 +69,17 @@ export class ProductGroupsComponent implements OnInit {
 			id: id,
 		}
 		this.httpSvc.post(APIConfig.ProductGroup.Delete, params)
-			.subscribe(() => {
-				this.getProductGroups()
+			.subscribe((response) => {
+				if (response.code == 200) {
+					this.toastrSvc.success(response.message);
+					this.getProductGroups();
+				} else {
+					this.toastrSvc.error(response.message);
+				}
 			})
+	}
+
+	fetchProductGroup(e) {
+		this.getProductGroups(e.target.value)
 	}
 }

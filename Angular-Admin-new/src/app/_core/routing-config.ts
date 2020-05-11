@@ -31,7 +31,7 @@ export const AdminRoutingConfig = [
 			{
 				label: 'Nhóm sản phẩm',
 				route: '/admin/product-groups',
-				iconClasses: 'lnr lnr-envelope',
+				iconClasses: 'lnr lnr-layers',
 			},
 			{
 				label: 'Sản phẩm',

@@ -1,5 +1,12 @@
 <div class="block-content" *ngIf="!isShowPopup">
 	<div class="block-control ai-c">
+		<div class="mr-at">
+			<select name="language" class="form-control" (change)="fetchProductGroup($event)">
+				<option *ngFor="let language of languages" value="{{ language.id }}"
+					[selected]="language.isDefault ? 'selected' : ''">{{ language.name }}
+				</option>
+			</select>
+		</div>
 		<a class="btn btn-success btn-add " (click)="onOpenPopup(true)">Thêm mới</a>
 	</div>
 	<div class="block-table">
