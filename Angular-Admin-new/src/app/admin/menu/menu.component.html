@@ -1,1 +1,45 @@
-<p>menu works!</p>
+<div class="block-content" *ngIf="!isShowPopup">
+	<div class="block-control">
+		<div class="form-group mr-at">
+			<label>Lọc theo ngôn ngữ</label>
+			<select name="language" class="form-control" (change)="fetchMenu($event)">
+				<option *ngFor="let language of languages" value="{{ language.id }}"
+					[selected]="language.isDefault ? 'selected' : ''">{{ language.name }}</option>
+			</select>
+		</div>
+		<a class="btn btn-success btn-add" (click)="onOpenPopup(true)">Thêm mới</a>
+	</div>
+	<div class="block-table">
+		<table class="table">
+			<tr class="table-info">
+				<th>#</th>
+				<th>Tên Menu</th>
+				<th>Danh mục cha ( nếu có )</th>
+				<th>Đường dẫn</th>
+				<th>Thứ tự</th>
+				<th>Tác vụ</th>
+			</tr>
+			<tr *ngFor="let menu of menus; let i = index">
+				<th class="column-number ta-c">{{i+1}}</th>
+				<td class="column-title">{{menu.title}}</td>
+				<td class="column-category">{{menu.parentId}}</td>
+				<td class="column-url">{{menu.link}}</td>
+				<td class="column-order ta-c">{{menu.order}}</td>
+				<td class="column-button ta-c">
+					<div class="table-buttons">
+						<span class="btn btn-outline-success btn-edit" (click)="onOpenPopup(true, menu, true)">
+							<span class="lnr lnr-pencil"></span>
+						</span>
+						<span class="btn btn-outline-danger btn-remove" (click)="deleteMenu(menu.id)">
+							<span class="lnr lnr-trash"></span>
+						</span>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="popup-wrapper" *ngIf="isShowPopup">
+	<app-add-edit [menu]="menu" [isEdit]="isEdit" (close)="onClosePopup($event)"></app-add-edit>
+</div>

@@ -18,7 +18,7 @@ export class SectionComponent implements OnInit {
 		private crudSvc: CrudService,
 		private router: Router,
 		private sectionSvc: SectionService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.getSections()

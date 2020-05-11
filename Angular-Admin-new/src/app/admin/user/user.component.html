@@ -22,7 +22,7 @@
 					<td class="ta-c">{{user.email}}</td>
 					<td class="ta-c">{{user.roles}}</td>
 					<td class="ta-c">{{user.dayOfBirth}}</td>
-					<td class="ta-c"></td>
+					<td class="ta-c">{{user.isActive}}</td>
 					<td class="ta-c">
 						<div class="table-buttons">
 							<a class="btn btn-outline-success" (click)="onOpenPopupAddEdit(true, user, true)">
@@ -31,6 +31,9 @@
 							<a class="btn btn-outline-info" (click)="onOpenPopupChangePass(true, user)">
 								<span class="lnr lnr-text-size"></span>
 							</a>
+							<span class="btn btn-outline-danger btn-remove" (click)="deleteUser(user.userName)">
+								<span class="lnr lnr-trash"></span>
+							</span>
 						</div>
 					</td>
 				</tr>
