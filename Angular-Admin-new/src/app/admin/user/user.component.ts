@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from 'src/app/_core/services/http.service';
+import { HttpService, InputRequestOption } from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
 import { map } from 'rxjs/operators';
 import { UserModel } from 'src/app/_core/models/user.model';
@@ -29,6 +29,17 @@ export class UserComponent implements OnInit {
 			.subscribe((users) => {
 				this.users = users
 				console.log(this.users);
+			})
+	}
+
+	deleteUser(id) {
+		const params = new InputRequestOption();
+		params.params = {
+			id: id
+		}
+		this.httpSvc.post(APIConfig.User.Delete, params)
+			.subscribe(() => {
+				this.getUsers();
 			})
 	}
 

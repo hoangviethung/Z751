@@ -89,7 +89,7 @@ const routes: Routes = [
 				canActivate: [RouteGuardService],
 			},
 			{
-				path: 'menu',
+				path: 'menu/:menuTitle',
 				loadChildren: () =>
 					import('./menu/menu.module').then((m) => m.MenuModule),
 				data: { title: 'Menu' },

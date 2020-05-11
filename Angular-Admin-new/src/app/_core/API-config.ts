@@ -49,6 +49,12 @@ export const APIConfig = {
 		Add: '/api/User/add',
 		Changepasword: '/api/User/changepasword',
 		Update: '/api/User/update',
-		Active: '/api/User/Active',
+		Delete: '/api/User/delete',
+	},
+	Menu: {
+		Gets: '/api/Menu/gets',
+		Add: '/api/User/add',
+		Update: '/api/User/update',
+		Delete: '/api/User/delete',
 	},
 };
