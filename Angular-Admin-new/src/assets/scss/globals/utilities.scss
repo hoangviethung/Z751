@@ -60,6 +60,11 @@ body {
 		}
 	}
 }
+.block-filters {
+	.form-group + .form-group {
+		margin-left: 10px;
+	}
+}
 
 .block-content {
 	background-color: white;
@@ -67,16 +72,6 @@ body {
 	padding: 10px;
 }
 
-// .content-wrapper {
-// 	position: absolute;
-// 	left: 280px;
-// 	right: 0;
-// }
-// .content-header {
-// 	display: flex;
-// 	align-items: center;
-// 	padding: 10px;
-// }
-.content {
+.content-router-outlet {
 	padding: 10px;
 }

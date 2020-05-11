@@ -15,7 +15,7 @@ export class CategoryModel {
 	parentName: string
 	previewUrl: string
 	seName: string
-	template: number = 0
+	template: number = 1
 	title: string
 	updateDate: string
 }

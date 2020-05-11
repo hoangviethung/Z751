@@ -11,3 +11,8 @@ export class PermissionCollection {
 	Edit = 15;
 	Delete = 20;
 }
+
+export enum LanguageFlag {
+	vi = 'http://27.71.234.45:40000/assets/images/vi.png',
+	en = 'http://27.71.234.45:40000/assets/images/en.png',
+}

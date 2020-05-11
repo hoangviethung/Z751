@@ -8,6 +8,7 @@ const routes: Routes = [
 		path: '',
 		pathMatch: 'full',
 		component: BannerComponent,
+		data: { title: 'Banner' },
 	},
 ];
 
@@ -15,4 +16,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class BannerRoutingModule { }
+export class BannerRoutingModule {}
