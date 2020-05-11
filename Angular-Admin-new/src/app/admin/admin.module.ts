@@ -6,7 +6,7 @@ import { AsideMenuComponent } from '../_core/components/aside-menu/aside-menu.co
 import { SharedModule } from '../_core/shared.module';
 
 @NgModule({
-  declarations: [AdminComponent, AsideMenuComponent],
-  imports: [AdminRoutingModule, SharedModule],
+	declarations: [AdminComponent, AsideMenuComponent],
+	imports: [AdminRoutingModule, SharedModule],
 })
-export class AdminModule {}
+export class AdminModule { }

@@ -57,4 +57,17 @@ export const APIConfig = {
 		Update: '/api/User/update',
 		Delete: '/api/User/delete',
 	},
+	ProductGroup: {
+		Gets: '/api/ProductGroup/gets',
+		Add: '/api/ProductGroup/add',
+		Update: '/api/ProductGroup/update',
+		Delete: '/api/ProductGroup/delete',
+	},
+	Product: {
+		Gets: '/api/Product/gets',
+		Get: '/api/Product/get',
+		Add: '/api/Product/add',
+		Update: '/api/Product/update',
+		Delete: '/api/Product/delete',
+	},
 };

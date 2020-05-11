@@ -29,6 +29,11 @@ export const AdminRoutingConfig = [
 				iconClasses: 'lnr lnr-tag',
 			},
 			{
+				label: 'Nhóm sản phẩm',
+				route: '/admin/product-groups',
+				iconClasses: 'lnr lnr-envelope',
+			},
+			{
 				label: 'Sản phẩm',
 				route: '/admin/products',
 				iconClasses: 'lnr lnr-linearicons',
@@ -97,5 +102,5 @@ export const AdminRoutingConfig = [
 		label: 'Khách hàng liên lạc',
 		route: '/admin/contact',
 		iconClasses: 'lnr lnr-envelope',
-	},
+	}
 ];
