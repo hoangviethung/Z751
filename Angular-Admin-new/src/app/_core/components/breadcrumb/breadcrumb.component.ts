@@ -26,8 +26,6 @@ export class BreadcrumbComponent implements OnInit {
 	ngOnInit(): void {
 		this.subscription = this.routingService.onChange.subscribe((value) => {
 			this.breadcrumbs = value;
-			console.log(this.breadcrumbs);
-
 			this.titleSvc.setTitle(
 				this.breadcrumbs[this.breadcrumbs.length - 1].data.title
 			);

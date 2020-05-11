@@ -112,28 +112,51 @@
 							/>
 						</div>
 						<div class="form-group col-lg-6">
-							<label>Chọn mẫu template</label>
-							<select
-								class="form-control"
-								name="template"
-								[(ngModel)]="category.template"
-							>
-								<ng-container
-									*ngFor="
-										let template of templates;
-										let i = index
+							<div class="form-group">
+								<label>Chọn mẫu template</label>
+								<select
+									class="form-control"
+									name="template"
+									[(ngModel)]="category.template"
+									(change)="
+										showProductGroups(category.template)
 									"
 								>
-									<option
-										value="{{ template.id }}"
-										[selected]="
-											template.isDefault ? 'selected' : ''
+									<ng-container
+										*ngFor="
+											let template of templates;
+											let i = index
 										"
 									>
-										{{ template.title }}
-									</option>
-								</ng-container>
-							</select>
+										<option
+											value="{{ template.id }}"
+											[selected]="
+												template.isDefault
+													? 'selected'
+													: ''
+											"
+										>
+											{{ template.title }}
+										</option>
+									</ng-container>
+								</select>
+							</div>
+							<div class="form-group" *ngIf="isShowProductGroup">
+								<label for="">Chọn nhóm sản phẩm</label>
+								<mat-form-field>
+									<mat-select
+										[formControl]="templatesControl"
+										multiple
+										(ngModelChange)="show()"
+									>
+										<mat-option
+											*ngFor="let template of templates"
+											[value]="template"
+											>{{ template.title }}</mat-option
+										>
+									</mat-select>
+								</mat-form-field>
+							</div>
 						</div>
 						<div class="form-group col-lg-6">
 							<label>Vị trí</label>

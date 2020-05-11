@@ -13,6 +13,7 @@ import { CrudService } from 'src/app/_core/services/crud.service';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { FormControl } from '@angular/forms';
 
 @Component({
 	selector: 'app-add-edit',
@@ -20,12 +21,15 @@ import { ToastrService } from 'ngx-toastr';
 	styleUrls: ['./add-edit.component.scss'],
 })
 export class AddEditComponent implements OnInit {
+	templates: Array<TemplateModel> = TemplatesConfig;
+	templatesControl = new FormControl();
 	category: CategoryModel = new CategoryModel();
 	languages: Array<LanguageModel>;
 	categories: Array<CategoryModel>;
 	isEdit: boolean;
-	templates: Array<TemplateModel> = TemplatesConfig;
 	originUrl: string;
+	isShowProductGroup: boolean;
+
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
@@ -79,11 +83,13 @@ export class AddEditComponent implements OnInit {
 						this.category = response.data;
 						this.setBaseUrl();
 						this.getCategories(this.category.languageId.toString());
+						this.showProductGroups(this.category.template);
 					});
 			} else {
 				this.isEdit = false;
 				this.setBaseUrl();
 				this.getCategories();
+				this.showProductGroups(1);
 			}
 		});
 	}
@@ -106,6 +112,19 @@ export class AddEditComponent implements OnInit {
 
 	setAliasTitleToUrl() {
 		this.category.seName = this.utilSvc.alias(this.category.title);
+	}
+
+	showProductGroups(template) {
+		const item = this.templates.find((item) => {
+			if (item.id == template) {
+				return item;
+			}
+		});
+		if (item.haveList) {
+			this.isShowProductGroup = true;
+		} else {
+			this.isShowProductGroup = false;
+		}
 	}
 
 	addCategory() {
@@ -142,5 +161,9 @@ export class AddEditComponent implements OnInit {
 
 	onChangeEmitter(content) {
 		this.category.description = content.editor.getData();
+	}
+
+	show() {
+		console.log(this.templatesControl.value);
 	}
 }

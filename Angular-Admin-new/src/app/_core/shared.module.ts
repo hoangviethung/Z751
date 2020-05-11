@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AsideMenuDirective } from './components/aside-menu/aside-menu.directive';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
@@ -8,7 +8,8 @@ import { RoutingService } from './services/routing.service';
 import { RouterModule } from '@angular/router';
 import { TabDirective } from './directive/tab.directive';
 import { CKEditorComponent } from './components/ckeditor/ckeditor.component';
-import { CKEditorModule } from 'ckeditor4-angular'
+import { CKEditorModule } from 'ckeditor4-angular';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
 	declarations: [
 		AsideMenuDirective,
@@ -22,6 +23,7 @@ import { CKEditorModule } from 'ckeditor4-angular'
 		HttpClientModule,
 		RouterModule,
 		CKEditorModule,
+		ReactiveFormsModule,
 	],
 	exports: [
 		CommonModule,
@@ -32,9 +34,9 @@ import { CKEditorModule } from 'ckeditor4-angular'
 		AsideMenuDirective,
 		CKEditorComponent,
 		TabDirective,
+		ReactiveFormsModule,
+		MatSelectModule,
 	],
-	providers: [
-		RoutingService
-	],
+	providers: [RoutingService],
 })
-export class SharedModule { }
+export class SharedModule {}

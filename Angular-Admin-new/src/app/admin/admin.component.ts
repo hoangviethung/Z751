@@ -14,15 +14,15 @@ export class AdminComponent implements OnInit {
 		private authenticateSvc: AuthenticateService,
 		private cookieSvc: CookieService,
 		private router: Router
-	) { }
+	) {}
 
-	ngOnInit(): void { }
+	ngOnInit(): void {}
 
 	toggleInfoDetail() {
 		this.isDetailInfoShow = !this.isDetailInfoShow;
 	}
 	logout() {
-		this.authenticateSvc.logout().subscribe((response) => { });
+		this.authenticateSvc.logout().subscribe((response) => {});
 		this.cookieSvc.delete('user');
 		this.router.navigateByUrl('/account/login');
 	}
