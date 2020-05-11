@@ -20,6 +20,7 @@ export class AddEditComponent implements OnInit {
 	languages: Array<LanguageModel>;
 	product: ProductModel = new ProductModel();
 	categories: Array<CategoryModel>;
+	originUrl: string;
 
 	constructor(
 		private crudSvc: CrudService,
@@ -75,7 +76,15 @@ export class AddEditComponent implements OnInit {
 		});
 	}
 
+	setBaseUrl() {
+		this.originUrl = this.utilSvc.getOriginUrl();
+	}
+
 	updateCategory() {}
 
 	addCategory() {}
+
+	onChangeEmitter(content) {
+		this.product.description = content.editor.getData();
+	}
 }
