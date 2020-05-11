@@ -44,4 +44,11 @@ export const APIConfig = {
 		Gets: '/api/Section/gets',
 		Update: '/api/Section/update',
 	},
+	User: {
+		Gets: '/api/User/gets',
+		Add: '/api/User/add',
+		Changepasword: '/api/User/changepasword',
+		Update: '/api/User/update',
+		Active: '/api/User/Active',
+	},
 };

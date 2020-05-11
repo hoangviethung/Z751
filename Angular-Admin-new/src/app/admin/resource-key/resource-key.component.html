@@ -1,30 +1,31 @@
-<div class="block-table" *ngIf="!isShowPopup">
-	<table class="table table-bordered table-striped">
-		<thead>
-			<tr>
-				<th>#</th>
-				<th>Từ khóa</th>
-				<th>Giá trị (Tiếng việt)</th>
-				<th>Giá trị (Tiếng anh)</th>
-				<th class="ta-c">Thao tác</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr *ngFor="let resource of resources, let i = index">
-				<td>{{i+1}}</td>
-				<td>{{resource.name}}</td>
-				<td>{{resource.value.vi}}</td>
-				<td>{{resource.value.en}}</td>
-				<td class="ta-c">
-					<a class="btn btn-outline-success" (click)="onOpenPopup(true, resource)">
-						<span class="lnr lnr-pencil"></span>
-					</a>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+<div class="block-content" *ngIf="!isShowPopup">
+	<div class="block-table">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Từ khóa</th>
+					<th>Giá trị (Tiếng việt)</th>
+					<th>Giá trị (Tiếng anh)</th>
+					<th class="ta-c">Thao tác</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let resource of resources, let i = index">
+					<td>{{i+1}}</td>
+					<td>{{resource.name}}</td>
+					<td>{{resource.value.vi}}</td>
+					<td>{{resource.value.en}}</td>
+					<td class="ta-c">
+						<a class="btn btn-outline-success" (click)="onOpenPopup(true, resource)">
+							<span class="lnr lnr-pencil"></span>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>
-
 
 <div class="popup-wrapper" *ngIf="isShowPopup">
 	<app-edit [resource]="resource" (close)="onClosePopup($event)">

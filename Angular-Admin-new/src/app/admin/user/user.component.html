@@ -1,1 +1,50 @@
-<p>user works!</p>
+<div class="block-content" *ngIf="!isShowPopupAddEdit && !isShowPopupChangPass">
+	<div class="block-control ai-c">
+		<a class="btn btn-success btn-add " (click)="onOpenPopupAddEdit(true)">Thêm mới</a>
+	</div>
+	<div class="block-table">
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th class="ta-c">#</th>
+					<th class="ta-c">Tên tài khoản</th>
+					<th class="ta-c">Email</th>
+					<th class="ta-c">Thuộc bộ quyền</th>
+					<th class="ta-c">Ngày tạo</th>
+					<th class="ta-c">Trạng thái</th>
+					<th class="ta-c">Thao tác</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let user of users, let i = index">
+					<td class="ta-c">{{i+1}}</td>
+					<td class="ta-c">{{user.userName}}</td>
+					<td class="ta-c">{{user.email}}</td>
+					<td class="ta-c">{{user.roles}}</td>
+					<td class="ta-c">{{user.dayOfBirth}}</td>
+					<td class="ta-c"></td>
+					<td class="ta-c">
+						<div class="table-buttons">
+							<a class="btn btn-outline-success" (click)="onOpenPopupAddEdit(true, user, true)">
+								<span class="lnr lnr-pencil"></span>
+							</a>
+							<a class="btn btn-outline-info" (click)="onOpenPopupChangePass(true, user)">
+								<span class="lnr lnr-text-size"></span>
+							</a>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+
+
+<div class="popup-wrapper" *ngIf="isShowPopupAddEdit">
+	<app-add-edit [user]="user" [isEdit]="isEdit" (close)="onClosePopup($event)"></app-add-edit>
+</div>
+
+<div class="popup-wrapper" *ngIf="isShowPopupChangPass">
+	<app-changepasword [user]="user" (close)="onClosePopup($event)"></app-changepasword>
+</div>
