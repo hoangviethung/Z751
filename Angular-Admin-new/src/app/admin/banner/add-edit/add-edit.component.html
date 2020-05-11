@@ -1,74 +1,108 @@
-<div class="block-content">
-	<!-- Sửa banner -->
-	<div class="block-control" *ngIf="isEdit == true">
-		<a class="btn btn-danger btn-cancel" (click)="closePopup(false)">
-			Hủy bỏ
-		</a>
-		<a class="btn btn-success btn-add" (click)="updateBanner()">Cập nhật</a>
-	</div>
-	<!-- Thêm banner -->
-	<div class="block-control" *ngIf="isEdit == false">
-		<a class="btn btn-danger btn-cancel" (click)="closePopup(false)">
-			Hủy bỏ
-		</a>
-		<a class="btn btn-success btn-add" (click)="addBanner()">Thêm</a>
-	</div>
-	<form>
-		<div class="form-row row">
-			<div class="col-lg-4">
-				<div class="row">
-					<div class="form-group col-12">
-						<label for="">Ngôn ngữ</label>
-						<select class="form-control" name="languageid" [(ngModel)]="banner.languageId">
-							<option *ngFor="let language of languages" value="{{ language.id }}" [selected]="
-									language.isDefault ? 'selected' : ''
-								">{{ language.name }}</option>
-						</select>
+<!-- Sửa banner -->
+<div class="block-control" *ngIf="isEdit == true">
+	<a class="btn btn-danger btn-cancel" (click)="closePopup(false)">
+		Hủy bỏ
+	</a>
+	<a class="btn btn-success btn-add" (click)="updateBanner()">Cập nhật</a>
+</div>
+<!-- Thêm banner -->
+<div class="block-control" *ngIf="isEdit == false">
+	<a class="btn btn-danger btn-cancel" (click)="closePopup(false)">
+		Hủy bỏ
+	</a>
+	<a class="btn btn-success btn-add" (click)="addBanner()">Thêm</a>
+</div>
+<form>
+	<div class="form-row row">
+		<div class="col-lg-4">
+			<div class="row">
+				<div class="form-group col-12">
+					<label for="">Ngôn ngữ</label>
+					<select
+						class="form-control"
+						name="languageid"
+						[(ngModel)]="banner.languageId"
+					>
+						<option
+							*ngFor="let language of languages"
+							value="{{ language.id }}"
+							[selected]="language.isDefault ? 'selected' : ''"
+							>{{ language.name }}</option
+						>
+					</select>
+				</div>
+				<div class="form-group col-12">
+					<label id="ResourcePathName">Đường dẫn của ảnh</label>
+					<div class="input-group shadow-sm">
+						<input
+							class="form-control"
+							name="resourcepath"
+							[(ngModel)]="banner.resourcePath"
+							type="text"
+						/>
 					</div>
-					<div class="form-group col-12">
-						<label id="ResourcePathName">Đường dẫn của ảnh</label>
-						<div class="input-group shadow-sm">
-							<input class="form-control" name="resourcepath" [(ngModel)]="banner.resourcePath"
-								type="text" />
-						</div>
-						<span class="field-validation-valid"></span>
+					<span class="field-validation-valid"></span>
+				</div>
+				<div class="form-group col-12">
+					<label>Liên kết</label>
+					<div class="input-group shadow-sm">
+						<input
+							class="form-control"
+							name="link"
+							[(ngModel)]="banner.link"
+							type="text"
+						/>
 					</div>
-					<div class="form-group col-12">
-						<label>Liên kết</label>
-						<div class="input-group shadow-sm">
-							<input class="form-control" name="link" [(ngModel)]="banner.link" type="text" />
-						</div>
-						<span class="field-validation-valid"></span>
+					<span class="field-validation-valid"></span>
+				</div>
+				<div class="form-group col-12">
+					<label>Tên</label>
+					<div class="input-group shadow-sm">
+						<input
+							class="form-control"
+							name="link"
+							[(ngModel)]="banner.name"
+							type="text"
+						/>
 					</div>
-					<div class="form-group col-12">
-						<label>Tên</label>
-						<div class="input-group shadow-sm">
-							<input class="form-control" name="link" [(ngModel)]="banner.name" type="text" />
-						</div>
-						<span class="field-validation-valid"></span>
+					<span class="field-validation-valid"></span>
+				</div>
+				<div class="form-group col-12">
+					<label>Thứ tự</label>
+					<div class="input-group shadow-sm">
+						<input
+							class="form-control"
+							type="number"
+							value="0"
+							name="order"
+							[(ngModel)]="banner.order"
+						/>
 					</div>
-					<div class="form-group col-12">
-						<label>Thứ tự</label>
-						<div class="input-group shadow-sm">
-							<input class="form-control" type="number" value="0" name="order"
-								[(ngModel)]="banner.order" />
-						</div>
-						<span class="field-validation-valid"></span>
-					</div>
-					<div class="form-group col-auto">
-						<label class="checkbox-custom">Hiển thị
-							<input class="check-box" type="checkbox" name="ispublished"
-								[(ngModel)]="banner.isPublished" />
-						</label>
-					</div>
-					<div class="form-group col-auto">
-						<label class="checkbox-custom">
-							Đặt làm video
-							<input class="check-box" type="checkbox" name="isvideo" [(ngModel)]="banner.isVideo" />
-						</label>
-					</div>
+					<span class="field-validation-valid"></span>
+				</div>
+				<div class="form-group col-auto">
+					<label class="checkbox-custom"
+						>Hiển thị
+						<input
+							class="check-box"
+							type="checkbox"
+							name="ispublished"
+							[(ngModel)]="banner.isPublished"
+						/>
+					</label>
+				</div>
+				<div class="form-group col-auto">
+					<label class="checkbox-custom">
+						Đặt làm video
+						<input
+							class="check-box"
+							type="checkbox"
+							name="isvideo"
+							[(ngModel)]="banner.isVideo"
+						/>
+					</label>
 				</div>
 			</div>
 		</div>
-	</form>
-</div>
+	</div>
+</form>

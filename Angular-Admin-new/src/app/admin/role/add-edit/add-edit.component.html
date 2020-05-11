@@ -47,7 +47,7 @@
 				<th class="text-center">Xóa</th>
 			</tr>
 		</thead>
-		<tbody class="table-multiple-checkbox">
+		<tbody class="table-multiple-checkbox" *ngIf="featuresObject">
 			<ng-container *ngFor="let featureRow of features">
 				<tr class="role-row">
 					<th class="bold left" colspan="6">{{ featureRow.name }}</th>
