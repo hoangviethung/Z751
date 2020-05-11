@@ -1,15 +1,39 @@
 import { Component, OnInit } from '@angular/core';
+import { SettingModel } from 'src/app/_core/models/setting.model';
+import { HttpService } from 'src/app/_core/services/http.service';
+import { APIConfig } from 'src/app/_core/API-config';
 
 @Component({
-  selector: 'app-setting',
-  templateUrl: './setting.component.html',
-  styleUrls: ['./setting.component.scss']
+	selector: 'app-setting',
+	templateUrl: './setting.component.html',
+	styleUrls: ['./setting.component.scss']
 })
 export class SettingComponent implements OnInit {
+	isShowPopup: boolean = false;
+	settings: Array<SettingModel>;
+	setting: SettingModel
+	constructor(
+		private httpSvc: HttpService
+	) { }
 
-  constructor() { }
+	ngOnInit(): void {
+		this.getSettings()
+	}
 
-  ngOnInit(): void {
-  }
+	getSettings() {
+		this.httpSvc.get(APIConfig.Setting.Gets)
+			.subscribe((response) => {
+				this.settings = response.data
+			})
+	}
 
+	onOpenPopup(status, setting?) {
+		this.isShowPopup = status;
+		this.setting = setting;
+	}
+
+	onClosePopup(status: boolean) {
+		this.isShowPopup = status;
+		this.getSettings();
+	}
 }

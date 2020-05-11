@@ -1,0 +1,28 @@
+<div class="block-content">
+	<div class="block-control">
+		<a class="btn btn-danger btn-cancel" (click)="closePopup(false)">
+			Hủy bỏ
+		</a>
+		<a class="btn btn-success btn-add" (click)="updateResource()">
+			Cập nhật
+		</a>
+	</div>
+	<div class="block-form">
+		<div class="row">
+			<div class="form-group col-lg-6">
+				<label>Từ khóa *</label>
+				<input readonly class="form-control" type="text" name="name" [(ngModel)]="resource.name" />
+			</div>
+			<div class="w-100"></div>
+			<div class="form-group col-lg-6">
+				<label>Giá trị tiếng việt</label>
+				<input class="form-control" type="text" name="valueVi" [(ngModel)]="resource.value.vi" />
+			</div>
+			<div class="w-100"></div>
+			<div class="form-group col-lg-6">
+				<label>Giá trị tiếng anh</label>
+				<input class="form-control" type="text" name="valueEn" [(ngModel)]="resource.value.en" />
+			</div>
+		</div>
+	</div>
+</div>

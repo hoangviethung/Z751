@@ -20,7 +20,7 @@ export class EditComponent implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		private router: Router,
 		private sectionSvc: SectionService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.getSection()
@@ -66,6 +66,5 @@ export class EditComponent implements OnInit {
 	}
 	deleteSectionImage(index) {
 		this.images.splice(index, 1)
-		console.log(this.images)
 	}
 }

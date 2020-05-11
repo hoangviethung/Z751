@@ -1,74 +1,32 @@
-<div class="block-table">
+<div class="block-table" *ngIf="!isShowPopup">
 	<table class="table table-bordered table-striped">
 		<thead>
 			<tr>
 				<th>#</th>
 				<th>Từ khóa</th>
-				<th>Giá trị</th>
-				<th class="text-center">Thao tác</th>
+				<th>Giá trị (Tiếng việt)</th>
+				<th>Giá trị (Tiếng anh)</th>
+				<th class="ta-c">Thao tác</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td>1</td>
-				<td>SmtpServer</td>
-				<td>smtp.gmail.com</td>
-				<td>
-					<div class="list-btn">
-						<!-- ĐỔI MẬT KHẨU-->
-						<div class="item">
-							<a class="btn btn-outline-success">
-								<span class="lnr lnr-pencil"></span>
-							</a>
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>SmtpServer</td>
-				<td>smtp.gmail.com</td>
-				<td>
-					<div class="list-btn">
-						<!-- ĐỔI MẬT KHẨU-->
-						<div class="item">
-							<a class="btn btn-outline-success">
-								<span class="lnr lnr-pencil"></span>
-							</a>
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>SmtpServer</td>
-				<td>smtp.gmail.com</td>
-				<td>
-					<div class="list-btn">
-						<!-- ĐỔI MẬT KHẨU-->
-						<div class="item">
-							<a class="btn btn-outline-success">
-								<span class="lnr lnr-pencil"></span>
-							</a>
-						</div>
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>SmtpServer</td>
-				<td>smtp.gmail.com</td>
-				<td>
-					<div class="list-btn">
-						<!-- ĐỔI MẬT KHẨU-->
-						<div class="item">
-							<a class="btn btn-outline-success">
-								<span class="lnr lnr-pencil"></span>
-							</a>
-						</div>
-					</div>
+			<tr *ngFor="let resource of resources, let i = index">
+				<td>{{i+1}}</td>
+				<td>{{resource.name}}</td>
+				<td>{{resource.value.vi}}</td>
+				<td>{{resource.value.en}}</td>
+				<td class="ta-c">
+					<a class="btn btn-outline-success" (click)="onOpenPopup(true, resource)">
+						<span class="lnr lnr-pencil"></span>
+					</a>
 				</td>
 			</tr>
 		</tbody>
 	</table>
+</div>
+
+
+<div class="popup-wrapper" *ngIf="isShowPopup">
+	<app-edit [resource]="resource" (close)="onClosePopup($event)">
+	</app-edit>
 </div>
