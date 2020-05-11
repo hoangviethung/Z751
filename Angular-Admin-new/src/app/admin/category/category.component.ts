@@ -35,18 +35,18 @@ export class CategoryComponent implements OnInit {
 	}
 
 	getCategories(e?) {
-		const params = new InputRequestOption();
+		const options = new InputRequestOption();
 		if (e) {
-			params.params = {
+			options.params = {
 				languageId: e.target.value,
 			};
 		} else {
-			params.params = {
+			options.params = {
 				languageId: '1',
 			};
 		}
 		this.crudSvc
-			.get(APIConfig.Category.Gets, params)
+			.get(APIConfig.Category.Gets, options)
 			.subscribe((categories) => {
 				this.categories = categories.data.items;
 			});
