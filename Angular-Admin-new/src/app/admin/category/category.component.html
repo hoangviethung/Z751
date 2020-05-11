@@ -1,18 +1,10 @@
 <div class="block-control ai-c">
 	<div class="block-filters mr-at d-f ai-c fw-w">
 		<div class="form-group mb-0">
-			<select
-				name="language"
-				id="language"
-				class="form-control"
-				[(ngModel)]="search.languageId"
-				(change)="getCategories($event)"
-			>
-				<option
-					*ngFor="let language of languages"
-					value="{{ language.id }}"
-					[selected]="language.isDefault ? 'selected' : ''"
-				>
+			<select name="language" id="language" class="form-control" [(ngModel)]="search.languageId"
+				(change)="getCategories($event)">
+				<option *ngFor="let language of languages" value="{{ language.id }}"
+					[selected]="language.isDefault ? 'selected' : ''">
 					{{ language.name }}
 				</option>
 			</select>
@@ -43,16 +35,10 @@
 			<td>{{ category.previewUrl }}</td>
 			<td class="ta-c">
 				<div class="table-buttons">
-					<a
-						class="btn btn-outline-success btn-edit"
-						[routerLink]="['/admin/category/edit', category.id]"
-					>
+					<a class="btn btn-outline-success btn-edit" [routerLink]="['/admin/category/edit', category.id]">
 						<span class="lnr lnr-pencil"></span>
 					</a>
-					<span
-						class="btn btn-outline-danger btn-remove"
-						(click)="deleteCategory(category.id)"
-					>
+					<span class="btn btn-outline-danger btn-remove" (click)="deleteCategory(category.id)">
 						<span class="lnr lnr-trash"></span>
 					</span>
 				</div>

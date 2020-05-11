@@ -29,7 +29,7 @@ export class BannerComponent implements OnInit {
 	constructor(
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.getBanners();

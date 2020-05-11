@@ -36,7 +36,7 @@ export class AddEditComponent implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		private toastrSvc: ToastrService,
 		private router: Router
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();
