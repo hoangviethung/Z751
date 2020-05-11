@@ -7,6 +7,10 @@ import {
 import { map } from 'rxjs/operators';
 import { BannerModel } from 'src/app/_core/models/banner.model';
 import { LanguageModel } from 'src/app/_core/models/language';
+import { ToastrService } from 'ngx-toastr';
+import { LanguageFlag } from 'src/app/_core/enums/general.enum';
+import { CrudService } from 'src/app/_core/services/crud.service';
+
 @Component({
 	selector: 'app-banner',
 	templateUrl: './banner.component.html',
@@ -18,7 +22,14 @@ export class BannerComponent implements OnInit {
 	isShowPopup: boolean = false;
 	isEdit: boolean;
 	languages: Array<LanguageModel>;
-	constructor(private httpSvc: HttpService) {}
+	flag = {
+		vi: LanguageFlag.vi,
+		en: LanguageFlag.en,
+	};
+	constructor(
+		private crudSvc: CrudService,
+		private toastrSvc: ToastrService
+	) {}
 
 	ngOnInit(): void {
 		this.getBanners();
@@ -46,9 +57,13 @@ export class BannerComponent implements OnInit {
 		params.params = {
 			languageId: e.target.value,
 		};
-		this.httpSvc
+		this.crudSvc
 			.get(APIConfig.Banner.Gets, params)
-			.pipe(map((response) => response.data))
+			.pipe(
+				map((response) => {
+					return response.data;
+				})
+			)
 			.subscribe((banners) => {
 				this.banners = banners;
 			});
@@ -59,7 +74,7 @@ export class BannerComponent implements OnInit {
 		params.params = {
 			languageId: '1',
 		};
-		this.httpSvc
+		this.crudSvc
 			.get(APIConfig.Banner.Gets, params)
 			.pipe(map((response) => response.data))
 			.subscribe((banners) => {
@@ -72,8 +87,15 @@ export class BannerComponent implements OnInit {
 		params.params = {
 			id: id,
 		};
-		this.httpSvc.post(APIConfig.Banner.Delete, params).subscribe(() => {
-			this.getBanners();
-		});
+		this.crudSvc
+			.delete(APIConfig.Banner.Delete, params)
+			.subscribe((response) => {
+				this.getBanners();
+				if (response.code == 200) {
+					this.toastrSvc.success(response.message);
+				} else {
+					this.toastrSvc.error(response.message);
+				}
+			});
 	}
 }

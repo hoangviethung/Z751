@@ -35,8 +35,23 @@
 						alt="{{ banner.name }}"
 					/>
 				</td>
-				<td class="column-language ta-c">VN</td>
-				<td class="column-language ta-c">{{ banner.isPublished }}</td>
+				<td class="column-language ta-c">
+					<img
+						src="{{ banner.languageId == 1 ? flag.vi : flag.en }}"
+						alt=""
+					/>
+				</td>
+				<td class="column-language ta-c">
+					<label class="checkbox-custom jc-c">
+						<input
+							class="check-box"
+							type="checkbox"
+							name="isvideo"
+							disabled
+							checked="{{ banner.isPublished ? 'checked' : '' }}"
+						/>
+					</label>
+				</td>
 				<td class="column-language ta-c">
 					<div class="table-buttons">
 						<span

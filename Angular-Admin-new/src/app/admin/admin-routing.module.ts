@@ -35,7 +35,7 @@ const routes: Routes = [
 					import('./article/article.module').then(
 						(m) => m.ArticleModule
 					),
-				data: { title: 'Article' },
+				data: { title: 'Bài viết' },
 				canActivate: [RouteGuardService],
 			},
 			{
@@ -62,7 +62,7 @@ const routes: Routes = [
 					import('./category/category.module').then(
 						(m) => m.CategoryModule
 					),
-				data: { title: 'Danh Mục Admin' },
+				data: { title: 'Danh Mục' },
 				canActivate: [RouteGuardService],
 			},
 			{
@@ -137,4 +137,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

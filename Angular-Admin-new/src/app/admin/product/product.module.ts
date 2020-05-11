@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
+import { AddEditComponent } from './add-edit/add-edit.component';
 
 
 @NgModule({
-  declarations: [ProductComponent],
+  declarations: [ProductComponent, AddEditComponent],
   imports: [
     CommonModule,
     ProductRoutingModule
