@@ -1,0 +1,35 @@
+<div class="block-content" *ngIf="!isShowPopup">
+	<div class="block-control ai-c">
+		<a class="btn btn-success btn-add " (click)="onOpenPopup(true)">Thêm mới</a>
+	</div>
+	<div class="block-table">
+		<table class="table">
+			<tr class="table-info">
+				<th class="column-number ta-c">#</th>
+				<th class="column-title">Hình ảnh</th>
+				<th class="column-language ta-c">Ngôn ngữ</th>
+				<th class="column-button">Hiển thị</th>
+				<th class="column-button ta-c">Tác vụ</th>
+			</tr>
+			<tr *ngFor="let productGroup of productGroups; let i = index">
+				<th class="ta-c">{{ i + 1 }}</th>
+				<td class="column-language ta-c">{{productGroup}}</td>
+				<td class="column-language ta-c">
+					<div class="table-buttons">
+						<span class="btn btn-outline-success btn-edit" (click)="onOpenPopup(true, productGroup, true)">
+							<span class="lnr lnr-pencil"></span>
+						</span>
+						<span class="btn btn-outline-danger btn-remove" (click)="deleteProductGroup(productGroup.id)">
+							<span class="lnr lnr-trash"></span>
+						</span>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+
+<div class="popup-wrapper" *ngIf="isShowPopup">
+	<app-add-edit [productGroup]="productGroup" [isEdit]="isEdit" (close)="onClosePopup($event)"></app-add-edit>
+</div>

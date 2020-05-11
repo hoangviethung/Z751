@@ -1,0 +1,40 @@
+<div class="block-content">
+	<!-- Sửa banner -->
+	<div class="block-control" *ngIf="isEdit == true">
+		<a class="btn btn-danger btn-cancel" (click)="closePopup(false)">
+			Hủy bỏ
+		</a>
+		<a class="btn btn-success btn-add" (click)="updateProdcutGroup()">Cập nhật</a>
+	</div>
+	<!-- Thêm banner -->
+	<div class="block-control" *ngIf="isEdit == false">
+		<a class="btn btn-danger btn-cancel" (click)="closePopup(false)">
+			Hủy bỏ
+		</a>
+		<a class="btn btn-success btn-add" (click)="addProdcutGroup()">Thêm</a>
+	</div>
+	<div class="block-form">
+		<div class="row">
+			<div class="form-group col-lg-6">
+				<label>Ngôn ngữ</label>
+				<!-- <option *ngFor="let language of languages" value="{{ product.id }}">
+					{{ product.title }}
+				</option> -->
+			</div>
+			<div class="w-100"></div>
+			<div class="form-group col-lg-6">
+				<label>Tên nhóm</label>
+				<input class="form-control" type="text" name="name" [(ngModel)]="productGroup.name" />
+			</div>
+			<div class="w-100"></div>
+			<div class="form-group col-lg-6">
+				<label>Danh sách sản phẩm</label>
+				<select name="product" class="form-control">
+					<option *ngFor="let product of products" value="{{ product.id }}">
+						{{ product.title }}
+					</option>
+				</select>
+			</div>
+		</div>
+	</div>
+</div>

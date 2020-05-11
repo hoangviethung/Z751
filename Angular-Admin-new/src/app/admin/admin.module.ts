@@ -9,4 +9,4 @@ import { SharedModule } from '../_core/shared.module';
 	declarations: [AdminComponent, AsideMenuComponent],
 	imports: [AdminRoutingModule, SharedModule],
 })
-export class AdminModule {}
+export class AdminModule { }

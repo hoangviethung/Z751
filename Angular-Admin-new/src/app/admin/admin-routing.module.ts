@@ -129,6 +129,15 @@ const routes: Routes = [
 				data: { title: 'Danh sách khách hàng liên lạc' },
 				canActivate: [RouteGuardService],
 			},
+			{
+				path: 'product-groups',
+				loadChildren: () =>
+					import('./product-groups/product-groups.module').then(
+						(m) => m.ProductGroupsModule
+					),
+				data: { title: 'Nhóm sản phẩm' },
+				canActivate: [RouteGuardService],
+			},
 		],
 	},
 ];
