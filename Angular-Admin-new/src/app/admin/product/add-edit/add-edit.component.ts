@@ -63,15 +63,13 @@ export class AddEditComponent implements OnInit {
 				this.crudSvc
 					.get(APIConfig.Product.Get, options)
 					.subscribe((response) => {
-						console.log(response);
-
 						this.product = response.data;
-						// this.getCategories(this.product.languageId.toString());
+						this.getCategories(this.product.languageId.toString());
 					});
 			} else {
 				this.isEdit = false;
-				// this.setBaseUrl();
-				// this.getCategories();
+				this.setBaseUrl();
+				this.getCategories();
 			}
 		});
 	}
@@ -80,9 +78,25 @@ export class AddEditComponent implements OnInit {
 		this.originUrl = this.utilSvc.getOriginUrl();
 	}
 
-	updateCategory() {}
+	updateBaseUrl() {
+		const categoryId = Number(this.product.categoryId);
+		const item = this.categories.find((item) => {
+			if (categoryId == item.id) {
+				return item;
+			}
+		});
+		if (item) {
+			this.originUrl = this.utilSvc.getOriginUrl(item.seName);
+		}
+	}
 
-	addCategory() {}
+	updateProduct() {}
+
+	setAliasTitleToUrl() {
+		this.product.seName = this.utilSvc.alias(this.product.title);
+	}
+
+	addProduct() {}
 
 	onChangeEmitter(content) {
 		this.product.description = content.editor.getData();
