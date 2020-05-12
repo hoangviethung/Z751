@@ -64,6 +64,7 @@ export class EditComponent implements OnInit {
 				this.router.navigateByUrl('/admin/section')
 			})
 	}
+
 	deleteSectionImage(index) {
 		this.images.splice(index, 1)
 	}

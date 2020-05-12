@@ -1,4 +1,4 @@
-export class Image {
+export class ImageModel {
 	id: number
 	name: string
 	order: number

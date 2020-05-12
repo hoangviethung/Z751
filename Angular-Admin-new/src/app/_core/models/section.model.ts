@@ -1,4 +1,4 @@
-import { Image } from './image.model'
+import { ImageModel } from './image.model'
 
 export class SectionModel {
 	id: number
@@ -6,6 +6,6 @@ export class SectionModel {
 	content: string
 	image: string
 	order: number
-	images: Array<Image>
+	images: Array<ImageModel> = []
 	orderTitle: string
 }

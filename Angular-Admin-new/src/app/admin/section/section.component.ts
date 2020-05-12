@@ -3,6 +3,7 @@ import { SectionModel } from 'src/app/_core/models/section.model';
 import { HttpService, InputRequestOption } from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
 import { Section } from 'src/app/_core/section';
+import { ImageModel } from 'src/app/_core/models/image.model';
 @Component({
 	selector: 'app-section',
 	templateUrl: './section.component.html',
@@ -13,6 +14,7 @@ export class SectionComponent implements OnInit {
 	section: SectionModel;
 	isShowPopup: boolean = false;
 	isEdit: boolean;
+	images: Array<ImageModel>
 	constructor(
 		private httpSvc: HttpService
 	) { }
@@ -38,6 +40,17 @@ export class SectionComponent implements OnInit {
 	onOpenPopup(status, itemEdit?) {
 		this.isShowPopup = status;
 		this.section = itemEdit;
+	}
+
+	addSectionImage(event) {
+		const image = new ImageModel()
+		image.propertyName = ''
+		image.path = ''
+		image.order = 0
+		image.name = ''
+		image.content = ''
+		image.alt = ''
+		this.images.push(image)
 	}
 
 	onClosePopup(status: boolean) {

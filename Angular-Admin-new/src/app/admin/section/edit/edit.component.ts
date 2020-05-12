@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { SectionModel } from 'src/app/_core/models/section.model';
-import { Image } from 'src/app/_core/models/image.model';
+import { ImageModel } from 'src/app/_core/models/image.model';
 import { HttpService, InputRequestOption } from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
 
@@ -12,12 +12,13 @@ import { APIConfig } from 'src/app/_core/API-config';
 export class EditComponent implements OnInit {
 	@Input('section') section: SectionModel = new SectionModel();
 	@Output('close') close: EventEmitter<boolean> = new EventEmitter<boolean>();
-	images: Array<Image>
+	images: Array<ImageModel>
 	constructor(
 		private httpSvc: HttpService
 	) { }
 
 	ngOnInit(): void {
+		this.images = this.section.images
 	}
 
 	updateSection() {
@@ -31,13 +32,13 @@ export class EditComponent implements OnInit {
 	}
 
 	addSectionImage() {
-		const image = new Image()
-		image.propertyName = ''
-		image.path = ''
-		image.order = 0
-		image.name = ''
-		image.content = ''
-		image.alt = ''
+		const image = new ImageModel()
+		image.propertyName = '';
+		image.path = '';
+		image.order = 0;
+		image.name = '';
+		image.content = '';
+		image.alt = '';
 		this.images.push(image)
 	}
 

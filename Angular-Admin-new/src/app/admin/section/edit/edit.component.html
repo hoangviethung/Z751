@@ -41,15 +41,12 @@
 									<th>Alt</th>
 									<th class="column-button ta-c">Thứ tự</th>
 									<th class="column-button ta-c">
-										<span class="btn btn-success btn-add" appAddRow (click)="addSectionImage()">
+										<span class="btn btn-success btn-add" (click)="addSectionImage($event)">
 											Thêm
 										</span>
 									</th>
 								</tr>
-								<tr *ngFor="
-										let image of section.images;
-										let i = index
-									" class="section-row">
+								<tr *ngFor="let image of section.images;let i = index" class="section-row">
 									<th class="column-number ta-c">
 										{{ i + 1 }}
 									</th>

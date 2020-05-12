@@ -8,7 +8,7 @@
 			</tr>
 			<tr *ngFor="let section of sections; let i = index">
 				<th class="ta-c">{{ i }}</th>
-				<td class="ta-c">{{ section.orderTitle }}</td>
+				<td>{{ section.orderTitle }}</td>
 				<td class="ta-c">
 					<div class="table-buttons">
 						<span class="btn btn-outline-success btn-edit" (click)="onOpenPopup(true, section)">
