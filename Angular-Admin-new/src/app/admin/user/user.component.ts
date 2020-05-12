@@ -3,6 +3,7 @@ import { HttpService, InputRequestOption } from 'src/app/_core/services/http.ser
 import { APIConfig } from 'src/app/_core/API-config';
 import { map } from 'rxjs/operators';
 import { UserModel } from 'src/app/_core/models/user.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-user',
@@ -16,7 +17,8 @@ export class UserComponent implements OnInit {
 	isShowPopupAddEdit: boolean = false;
 	isShowPopupChangPass: boolean = false;
 	constructor(
-		private httpSvc: HttpService
+		private httpSvc: HttpService,
+		private toastrSvc: ToastrService
 	) { }
 
 	ngOnInit(): void {
@@ -28,6 +30,7 @@ export class UserComponent implements OnInit {
 			.pipe(map((response) => response.data))
 			.subscribe((users) => {
 				this.users = users
+				console.log('Danh sách user admin hiện có:');
 				console.log(this.users);
 			})
 	}
@@ -38,8 +41,13 @@ export class UserComponent implements OnInit {
 			id: id
 		}
 		this.httpSvc.post(APIConfig.User.Delete, params)
-			.subscribe(() => {
-				this.getUsers();
+			.subscribe((response) => {
+				if (response.code === 200) {
+					this.getUsers();
+					this.toastrSvc.success(response.message);
+				} else {
+					this.toastrSvc.error(response.message);
+				}
 			})
 	}
 
@@ -48,7 +56,10 @@ export class UserComponent implements OnInit {
 		if (itemEdit) {
 			this.user = itemEdit;
 			this.isEdit = isEdit
+			console.log('Thông tin tài khoản chỉnh sửa:');
+			console.log(this.user);
 		} else {
+			console.log('Đây là trang tạo tài khoản mới.');
 			this.user = new UserModel();
 			this.isEdit = false
 		}
@@ -58,6 +69,8 @@ export class UserComponent implements OnInit {
 		this.isShowPopupChangPass = status;
 		if (itemEdit) {
 			this.user = itemEdit;
+			console.log('Thông tin tài khoản thay đổi mật khẩu:');
+			console.log(this.user);
 		} else {
 			this.user = new UserModel();
 			this.isEdit = false

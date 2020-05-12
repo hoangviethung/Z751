@@ -5,6 +5,7 @@ import { APIConfig } from 'src/app/_core/API-config';
 import { map } from 'rxjs/operators';
 import { RoleModel } from 'src/app/_core/models/role.model';
 import { RegisterUserModel } from 'src/app/_core/models/register-user.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-add-edit',
@@ -17,7 +18,8 @@ export class AddEditComponent implements OnInit {
 	@Input('isEdit') isEdit: boolean;
 	@Output('close') close: EventEmitter<boolean> = new EventEmitter<boolean>();
 	constructor(
-		private httpSvc: HttpService
+		private httpSvc: HttpService,
+		private toastrSvc: ToastrService
 	) { }
 
 	ngOnInit(): void {
@@ -35,19 +37,29 @@ export class AddEditComponent implements OnInit {
 	addUser() {
 		const params = new InputRequestOption();
 		params.body = this.user
+		console.log(this.user);
 		this.httpSvc.post(APIConfig.User.Add, params)
-			.subscribe(() => {
-				this.close.emit(false)
+			.subscribe((response) => {
+				if (response.code === 200) {
+					this.close.emit(false)
+					this.toastrSvc.success(response.message);
+				} else {
+					this.toastrSvc.error(response.message);
+				}
 			})
 	}
 
 	updateUser() {
-		console.log(this.user);
 		const params = new InputRequestOption();
 		params.body = this.user
 		this.httpSvc.post(APIConfig.User.Update, params)
-			.subscribe(() => {
-				this.close.emit(false)
+			.subscribe((response) => {
+				if (response.code === 200) {
+					this.close.emit(false)
+					this.toastrSvc.success(response.message);
+				} else {
+					this.toastrSvc.error(response.message);
+				}
 			})
 	}
 

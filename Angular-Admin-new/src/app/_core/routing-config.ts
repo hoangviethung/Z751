@@ -24,11 +24,6 @@ export const AdminRoutingConfig = [
 				iconClasses: 'lnr lnr-list',
 			},
 			{
-				label: 'Thương hiệu',
-				route: '/admin/brand',
-				iconClasses: 'lnr lnr-tag',
-			},
-			{
 				label: 'Nhóm sản phẩm',
 				route: '/admin/product-groups',
 				iconClasses: 'lnr lnr-layers',

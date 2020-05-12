@@ -105,13 +105,6 @@ const routes: Routes = [
 				canActivate: [RouteGuardService],
 			},
 			{
-				path: 'brand',
-				loadChildren: () =>
-					import('./brand/brand.module').then((m) => m.BrandModule),
-				data: { title: 'Thương hiệu' },
-				canActivate: [RouteGuardService],
-			},
-			{
 				path: 'products',
 				loadChildren: () =>
 					import('./product/product.module').then(
@@ -146,4 +139,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class AdminRoutingModule {}
+export class AdminRoutingModule { }
