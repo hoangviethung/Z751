@@ -97,6 +97,10 @@ export class AddEditComponent implements OnInit {
 
 	addArticle() {
 		this.article.languageId = Number(this.article.languageId);
+		this.article.categoryId = Number(this.article.categoryId);
+		if (!this.article.order) {
+			this.article.order = new Date().toString();
+		}
 		const params = new InputRequestOption();
 		params.body = this.article;
 		this.crudSvc

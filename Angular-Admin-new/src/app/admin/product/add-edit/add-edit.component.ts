@@ -9,6 +9,7 @@ import { CrudService } from 'src/app/_core/services/crud.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ProductModel } from 'src/app/_core/models/product.model';
+import { FormControl } from '@angular/forms';
 
 @Component({
 	selector: 'app-add-edit',
@@ -21,6 +22,7 @@ export class AddEditComponent implements OnInit {
 	product: ProductModel = new ProductModel();
 	categories: Array<CategoryModel>;
 	originUrl: string;
+	createdDate = new FormControl(new Date());
 
 	constructor(
 		private crudSvc: CrudService,
@@ -31,8 +33,8 @@ export class AddEditComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.getProduct();
 		this.languages = this.utilSvc.getLanguages();
+		this.getProduct();
 	}
 
 	getCategories(languageId: string = '1') {
@@ -64,7 +66,11 @@ export class AddEditComponent implements OnInit {
 					.get(APIConfig.Product.Get, options)
 					.subscribe((response) => {
 						this.product = response.data;
+						this.setBaseUrl();
 						this.getCategories(this.product.languageId.toString());
+						this.createdDate = new FormControl(
+							new Date(this.product.order).toISOString()
+						);
 					});
 			} else {
 				this.isEdit = false;
@@ -85,18 +91,35 @@ export class AddEditComponent implements OnInit {
 				return item;
 			}
 		});
+
 		if (item) {
 			this.originUrl = this.utilSvc.getOriginUrl(item.seName);
 		}
 	}
 
-	updateProduct() {}
+	updateProduct(method: string) {
+		this.product.languageId = Number(this.product.languageId);
+		const params = new InputRequestOption();
+		params.body = this.product;
+		this.crudSvc
+			.add(APIConfig.Product[method], params)
+			.subscribe((response) => {
+				if (response.code == 200) {
+					this.toastrSvc.success(response.message);
+					this.router.navigate(['/admin/products']);
+				} else {
+					this.toastrSvc.error(response.message);
+				}
+			});
+	}
 
 	setAliasTitleToUrl() {
 		this.product.seName = this.utilSvc.alias(this.product.title);
 	}
 
-	addProduct() {}
+	onDateChangeEmitter(e) {
+		console.log(e);
+	}
 
 	onChangeEmitter(content) {
 		this.product.description = content.editor.getData();

@@ -51,25 +51,48 @@ body {
 .block-control {
 	display: flex;
 	justify-content: flex-end;
-	padding-bottom: 10px;
-	margin-bottom: 10px;
+	padding: 10px 0;
 	border-bottom: 1px dashed darken(white, 12%);
+	// position: sticky;
+	// background-color: white;
+	// top: 0;
+	// left: 0;
+	// z-index: 100;
+	// &:before {
+	// 	content: "";
+	// 	position: absolute;
+	// 	left: -20px;
+	// 	right: -20px;
+	// 	background-color: white;
+	// 	box-shadow: 0 0 10px rgba(black, 0.15);
+	// 	top: 0;
+	// 	height: 100%;
+	// }
+	* {
+		position: relative;
+		z-index: 10;
+	}
 	.btn {
 		+ .btn {
 			margin-left: 10px;
 		}
 	}
 }
+
 .block-filters {
 	.form-group + .form-group {
 		margin-left: 10px;
 	}
 }
 
+.block-form {
+	padding: 10px 0;
+}
+
 .block-content {
 	background-color: white;
 	border-radius: 5px;
-	padding: 10px;
+	padding: 0 10px;
 }
 
 .content-router-outlet {

@@ -4,12 +4,17 @@
 			Hủy bỏ
 		</a>
 		<ng-container *ngIf="isEdit == true">
-			<a class="btn btn-success btn-add" (click)="updateCategory()">
+			<a
+				class="btn btn-success btn-add"
+				(click)="updateProduct('Update')"
+			>
 				Cập nhật
 			</a>
 		</ng-container>
 		<ng-container *ngIf="isEdit == false">
-			<a class="btn btn-success btn-add" (click)="addCategory()">Thêm</a>
+			<a class="btn btn-success btn-add" (click)="updateProduct('Add')"
+				>Thêm</a
+			>
 		</ng-container>
 	</div>
 </div>
@@ -25,13 +30,19 @@
 		<div class="content show" tab-id="item-1">
 			<div class="row">
 				<div class="form-group col-lg-6">
-					<label>Ngôn ngữ *</label>
+					<label>Ngôn ngữ</label>
 					<select
 						class="form-control"
+						name="languageid"
 						[(ngModel)]="product.languageId"
 					>
 						<ng-container *ngFor="let language of languages">
-							<option value="{{ language.id }}">
+							<option
+								value="{{ language.id }}"
+								[selected]="
+									language.isDefault ? 'selected' : ''
+								"
+							>
 								{{ language.name }}
 							</option>
 						</ng-container>
@@ -52,12 +63,12 @@
 					</select>
 				</div>
 				<div class="form-group col-lg-6">
-					<label>Tiêu đề *</label>
+					<label>Tên sản phẩm *</label>
 					<input
 						class="form-control"
 						type="text"
-						placeholder="Nhập tiêu đề"
-						[(ngModel)]="product.title"
+						placeholder="Nhập tên"
+						[(ngModel)]="this.product.title"
 						(keyup)="setAliasTitleToUrl()"
 					/>
 				</div>
@@ -72,7 +83,7 @@
 						<input
 							class="form-control"
 							type="text"
-							[(ngModel)]="product.seName"
+							[(ngModel)]="this.product.seName"
 						/>
 					</div>
 				</div>
@@ -82,7 +93,6 @@
 						class="form-control"
 						type="text"
 						placeholder="Nhập đường dẫn mới"
-						[(ngModel)]="product.externalUrl"
 					/>
 				</div>
 				<div class="form-group col-lg-6">
@@ -91,79 +101,70 @@
 						class="form-control"
 						type="text"
 						placeholder="Nhập đường dẫn ảnh đại diện"
-						[(ngModel)]="product.image"
 					/>
 				</div>
 				<div class="form-group col-lg-12">
 					<label>Mô tả *</label>
+
 					<app-ckeditor
 						[data]="product.description"
 						(change)="onChangeEmitter($event)"
 					></app-ckeditor>
 				</div>
+				<div class="form-group col-lg-12">
+					<label>Mô tả chi tiết *</label>
+
+					<app-ckeditor
+						[data]="product.content"
+						(change)="onChangeEmitter($event)"
+					></app-ckeditor>
+				</div>
 				<div class="form-group col-lg-6">
 					<label>Ngày đăng</label>
-					<input
-						class="form-control"
-						type="date"
-						[(ngModel)]="product.order"
-					/>
+					<mat-form-field>
+						<input
+							(ngModelChange)="onDateChangeEmitter($event)"
+							matInput
+							[matDatepicker]="productDatePicker"
+							[formControl]="createdDate"
+						/>
+						<mat-datepicker-toggle
+							matSuffix
+							[for]="productDatePicker"
+						></mat-datepicker-toggle>
+						<mat-datepicker #productDatePicker></mat-datepicker>
+					</mat-form-field>
 				</div>
-				<div class="w-100"></div>
 				<div class="form-group col-lg-2">
 					<label class="checkbox-custom">
-						<input
-							type="checkbox"
-							[(ngModel)]="product.isPublished"
-						/>
 						Hiển thị
+						<input type="checkbox" />
 					</label>
 				</div>
 				<div class="form-group col-lg-2">
 					<label class="checkbox-custom">
-						<input type="checkbox" [(ngModel)]="product.isHot" />
 						Nổi bật
+						<input type="checkbox" />
 					</label>
 				</div>
 			</div>
 		</div>
 		<div class="content" tab-id="item-2">
-			<div class="row">
-				<div class="form-group col-lg-6">
-					<label>Meta Title *</label>
-					<input
-						class="form-control"
-						type="text"
-						[(ngModel)]="product.metaTitle"
-					/>
-				</div>
-				<div class="w-100"></div>
-				<div class="form-group col-lg-6">
-					<label>Meta Image *</label>
-					<input
-						class="form-control"
-						type="text"
-						[(ngModel)]="product.metaImage"
-					/>
-				</div>
-				<div class="w-100"></div>
-				<div class="form-group col-lg-6">
-					<label>Meta Description</label>
-					<input
-						class="form-control"
-						type="text"
-						[(ngModel)]="product.metaDescription"
-					/>
-				</div>
-				<div class="w-100"></div>
-				<div class="form-group col-lg-6">
-					<label>Meta Keywords </label>
-					<input
-						class="form-control"
-						type="text"
-						[(ngModel)]="product.metaKeywords"
-					/>
-				</div>
+			<div class="form-group">
+				<label>Meta Title *</label>
+				<input class="form-control" type="text" />
+			</div>
+			<div class="form-group">
+				<label>Meta Image *</label>
+				<input class="form-control" type="text" />
+			</div>
+			<div class="form-group">
+				<label>Meta Description</label>
+				<input class="form-control" type="text" />
+			</div>
+			<div class="form-group">
+				<label>Meta Keywords </label>
+				<input class="form-control" type="text" />
 			</div>
 		</div>
 		<div class="content" tab-id="item-3">
