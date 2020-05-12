@@ -97,12 +97,17 @@ export class AddEditComponent implements OnInit {
 
 	addArticle() {
 		this.article.languageId = Number(this.article.languageId);
+		this.article.categoryId = Number(this.article.categoryId);
+		if (!this.article.order) {
+			this.article.order = new Date().toString();
+		}
 		const params = new InputRequestOption();
 		params.body = this.article;
 		this.crudSvc
 			.add(APIConfig.Article.Add, params)
 			.subscribe((response) => {
 				if (response.code == 200) {
+					this.router.navigate(['/admin/article']);
 					this.toastrSvc.success(response.message);
 				} else {
 					this.toastrSvc.error(response.message);
@@ -118,11 +123,11 @@ export class AddEditComponent implements OnInit {
 			.update(APIConfig.Article.Update, params)
 			.subscribe((response) => {
 				if (response.code == 200) {
+					this.router.navigate(['/admin/article']);
 					this.toastrSvc.success(response.message);
 				} else {
 					this.toastrSvc.error(response.message);
 				}
-				this.router.navigate(['/admin/article']);
 			});
 	}
 

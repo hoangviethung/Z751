@@ -1,9 +1,4 @@
-.block-list-tab {
-	position: relative;
-	margin-bottom: 35px;
-}
-
-.list-tab {
+.tab-items {
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
@@ -16,7 +11,6 @@
 		cursor: pointer;
 		padding: 0.5rem 0.75rem;
 		margin-right: 15px;
-		margin-bottom: 15px;
 		font-size: 13px;
 		color: black;
 		font-weight: 500;
@@ -44,7 +38,8 @@
 	}
 }
 
-.tab-content {
+.tab-contents {
+	margin-top: 20px;
 	.content {
 		display: none;
 		opacity: 0;

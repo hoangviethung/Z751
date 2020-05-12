@@ -1,10 +1,7 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CategoryModel } from 'src/app/_core/models/category.model';
 import { LanguageModel } from 'src/app/_core/models/language';
-import {
-	InputRequestOption,
-	HttpService,
-} from 'src/app/_core/services/http.service';
+import { InputRequestOption } from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { UtilService } from 'src/app/_core/services/util.service';
@@ -14,6 +11,7 @@ import { map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl } from '@angular/forms';
+import { ProductGroupModel } from 'src/app/_core/models/product-groups';
 
 @Component({
 	selector: 'app-add-edit',
@@ -29,6 +27,8 @@ export class AddEditComponent implements OnInit {
 	isEdit: boolean;
 	originUrl: string;
 	isShowProductGroup: boolean;
+	productGroups: Array<ProductGroupModel>;
+	categoryProductGroups: Array<number>;
 
 	constructor(
 		private crudSvc: CrudService,
@@ -36,11 +36,24 @@ export class AddEditComponent implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		private toastrSvc: ToastrService,
 		private router: Router
-	) { }
+	) {}
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();
+		this.getProductGroups();
 		this.getCategory();
+	}
+
+	getProductGroups() {
+		const opts = new InputRequestOption();
+		opts.params = {
+			languageId: this.category.languageId.toString(),
+		};
+		this.crudSvc
+			.get(APIConfig.ProductGroup.Gets, opts)
+			.subscribe((response) => {
+				this.productGroups = response.data;
+			});
 	}
 
 	getCategories(languageId: string = '1') {
@@ -157,13 +170,34 @@ export class AddEditComponent implements OnInit {
 					this.toastrSvc.error(response.message);
 				}
 			});
+
+		const categoryProducGroupsOpts = new InputRequestOption();
+		categoryProducGroupsOpts.body = {
+			categoryId: this.category.id,
+			productGroupIds: this.categoryProductGroups,
+		};
+		this.crudSvc
+			.update(
+				APIConfig.ProductGroup.CategoryUpdate,
+				categoryProducGroupsOpts
+			)
+			.subscribe((response) => {
+				if (response.code == 200) {
+					this.toastrSvc.success(response.message);
+					this.router.navigate(['/admin/category']);
+				} else {
+					this.toastrSvc.error(response.message);
+				}
+			});
 	}
 
 	onChangeEmitter(content) {
 		this.category.description = content.editor.getData();
 	}
 
-	show() {
-		console.log(this.templatesControl.value);
+	updateCategoryProductsGroups() {
+		this.categoryProductGroups = this.templatesControl.value.map(
+			(item) => item.id
+		);
 	}
 }

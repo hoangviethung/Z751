@@ -1,19 +1,24 @@
-<!-- Sửa banner -->
-<div class="block-control" *ngIf="isEdit == true">
-	<a class="btn btn-danger btn-cancel" (click)="closePopup(false)">
-		Hủy bỏ
-	</a>
-	<a class="btn btn-success btn-add" (click)="updateBanner()">Cập nhật</a>
+<div class="block-control">
+	<div class="block-buttons">
+		<a class="btn btn-danger btn-cancel" (click)="closePopup(false)">
+			Hủy bỏ
+		</a>
+		<a
+			class="btn btn-success btn-add"
+			(click)="updateBanner()"
+			*ngIf="isEdit == true"
+			>Cập nhật</a
+		>
+		<a
+			class="btn btn-success btn-add"
+			(click)="addBanner()"
+			*ngIf="isEdit == false"
+			>Thêm</a
+		>
+	</div>
 </div>
-<!-- Thêm banner -->
-<div class="block-control" *ngIf="isEdit == false">
-	<a class="btn btn-danger btn-cancel" (click)="closePopup(false)">
-		Hủy bỏ
-	</a>
-	<a class="btn btn-success btn-add" (click)="addBanner()">Thêm</a>
-</div>
-<form>
-	<div class="form-row row">
+<div class="block-form">
+	<div class="row">
 		<div class="col-lg-4">
 			<div class="row">
 				<div class="form-group col-12">
@@ -103,4 +108,4 @@
 			</div>
 		</div>
 	</div>
-</form>
+</div>

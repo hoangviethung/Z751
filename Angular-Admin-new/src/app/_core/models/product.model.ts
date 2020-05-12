@@ -12,7 +12,7 @@ export class ProductModel {
 	isHot: boolean;
 	isPublished: boolean;
 	language: null;
-	languageId: number;
+	languageId: number = 1;
 	metaDescription: string;
 	metaImage: string;
 	metaKeywords: string;

@@ -62,6 +62,7 @@ export const APIConfig = {
 		Add: '/api/ProductGroup/add',
 		Update: '/api/ProductGroup/update',
 		Delete: '/api/ProductGroup/delete',
+		CategoryUpdate: '/api/ProductGroup/category/update',
 	},
 	Product: {
 		Gets: '/api/Product/gets',
