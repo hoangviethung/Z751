@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService, InputRequestOption } from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
 import { ResourceModel } from 'src/app/_core/models/resource.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-resource-key',
@@ -15,7 +16,8 @@ export class ResourceKeyComponent implements OnInit {
 	resource: ResourceModel
 	resources: Array<any>
 	constructor(
-		private httpSvc: HttpService
+		private httpSvc: HttpService,
+		private toastrSvc: ToastrService
 	) { }
 
 	ngOnInit(): void {

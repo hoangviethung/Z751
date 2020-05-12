@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { CrudService } from 'src/app/_core/services/crud.service';
 import { InputRequestOption } from 'src/app/_core/services/http.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-role',
@@ -14,7 +15,11 @@ import { InputRequestOption } from 'src/app/_core/services/http.service';
 export class RoleComponent implements OnInit {
 	roles: Array<RoleModel>;
 
-	constructor(private crudSvc: CrudService, private router: Router) {}
+	constructor(
+		private crudSvc: CrudService,
+		private router: Router,
+		private toastrSvc: ToastrService
+	) { }
 
 	ngOnInit(): void {
 		this.fetchRole();
@@ -41,7 +46,12 @@ export class RoleComponent implements OnInit {
 		this.crudSvc
 			.delete(APIConfig.Role.Delete, options)
 			.subscribe((response) => {
-				this.fetchRole();
+				if (response.code === 200) {
+					this.toastrSvc.success(response.message);
+					this.fetchRole();
+				} else {
+					this.toastrSvc.error(response.message);
+				}
 			});
 	}
 }

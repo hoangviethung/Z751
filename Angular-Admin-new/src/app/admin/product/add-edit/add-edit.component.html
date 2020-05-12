@@ -4,45 +4,31 @@
 			Hủy bỏ
 		</a>
 		<ng-container *ngIf="isEdit == true">
-			<a
-				class="btn btn-success btn-add"
-				(click)="updateProduct('Update')"
-			>
+			<a class="btn btn-success btn-add" (click)="updateProduct('Update')">
 				Cập nhật
 			</a>
 		</ng-container>
 		<ng-container *ngIf="isEdit == false">
-			<a class="btn btn-success btn-add" (click)="updateProduct('Add')"
-				>Thêm</a
-			>
+			<a class="btn btn-success btn-add" (click)="updateProduct('Add')">Thêm</a>
 		</ng-container>
 	</div>
 </div>
-<div class="tab-container" appTab>
-	<div class="block-list-tab">
-		<ul class="list-tab">
-			<li class="item active" toggle-for="item-1">Nội dung</li>
-			<li class="item" toggle-for="item-2">SEOs</li>
-			<li class="item" toggle-for="item-3">Hình ảnh</li>
-		</ul>
-	</div>
-	<div class="tab-content">
+<div class="tab-container block-form" appTab>
+	<ul class="tab-items">
+		<li class="item active" toggle-for="item-1">Nội dung</li>
+		<li class="item" toggle-for="item-2">SEOs</li>
+		<li class="item" toggle-for="item-3">Hình ảnh</li>
+	</ul>
+	<div class="tab-contents">
 		<div class="content show" tab-id="item-1">
 			<div class="row">
 				<div class="form-group col-lg-6">
 					<label>Ngôn ngữ</label>
-					<select
-						class="form-control"
-						name="languageid"
-						[(ngModel)]="product.languageId"
-					>
+					<select class="form-control" name="languageid" [(ngModel)]="product.languageId">
 						<ng-container *ngFor="let language of languages">
-							<option
-								value="{{ language.id }}"
-								[selected]="
+							<option value="{{ language.id }}" [selected]="
 									language.isDefault ? 'selected' : ''
-								"
-							>
+								">
 								{{ language.name }}
 							</option>
 						</ng-container>
@@ -50,11 +36,8 @@
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Danh mục *</label>
-					<select
-						class="form-control"
-						[(ngModel)]="product.categoryId"
-						(change)="updateBaseUrl(product.categoryId)"
-					>
+					<select class="form-control" [(ngModel)]="product.categoryId"
+						(change)="updateBaseUrl(product.categoryId)">
 						<ng-container *ngFor="let category of categories">
 							<option value="{{ category.id }}">
 								{{ category.title }}
@@ -64,13 +47,8 @@
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Tên sản phẩm *</label>
-					<input
-						class="form-control"
-						type="text"
-						placeholder="Nhập tên"
-						[(ngModel)]="this.product.title"
-						(keyup)="setAliasTitleToUrl()"
-					/>
+					<input class="form-control" type="text" placeholder="Nhập tên" [(ngModel)]="this.product.title"
+						(keyup)="setAliasTitleToUrl()" />
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Đường dẫn *</label>
@@ -80,58 +58,33 @@
 								{{ originUrl }}
 							</span>
 						</div>
-						<input
-							class="form-control"
-							type="text"
-							[(ngModel)]="this.product.seName"
-						/>
+						<input class="form-control" type="text" [(ngModel)]="this.product.seName" />
 					</div>
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Đường dẫn mới *</label>
-					<input
-						class="form-control"
-						type="text"
-						placeholder="Nhập đường dẫn mới"
-					/>
+					<input class="form-control" [(ngModel)]="this.product.externalUrl" type="text"
+						placeholder="Nhập đường dẫn mới" />
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Ảnh đại diện *</label>
-					<input
-						class="form-control"
-						type="text"
-						placeholder="Nhập đường dẫn ảnh đại diện"
-					/>
+					<input class="form-control" type="text" [(ngModel)]="this.product.image"
+						placeholder="Nhập đường dẫn ảnh đại diện" />
 				</div>
 				<div class="form-group col-lg-12">
 					<label>Mô tả *</label>
-
-					<app-ckeditor
-						[data]="product.description"
-						(change)="onChangeEmitter($event)"
-					></app-ckeditor>
+					<app-ckeditor [data]="product.description" (change)="onChangeEmitterDescription($event)"></app-ckeditor>
 				</div>
 				<div class="form-group col-lg-12">
 					<label>Mô tả chi tiết *</label>
-
-					<app-ckeditor
-						[data]="product.content"
-						(change)="onChangeEmitter($event)"
-					></app-ckeditor>
+					<app-ckeditor [data]="product.content" (change)="onChangeEmitterContent($event)"></app-ckeditor>
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Ngày đăng</label>
 					<mat-form-field>
-						<input
-							(ngModelChange)="onDateChangeEmitter($event)"
-							matInput
-							[matDatepicker]="productDatePicker"
-							[formControl]="createdDate"
-						/>
-						<mat-datepicker-toggle
-							matSuffix
-							[for]="productDatePicker"
-						></mat-datepicker-toggle>
+						<input (ngModelChange)="onDateChangeEmitter($event)" matInput
+							[matDatepicker]="productDatePicker" [formControl]="createdDate" />
+						<mat-datepicker-toggle matSuffix [for]="productDatePicker"></mat-datepicker-toggle>
 						<mat-datepicker #productDatePicker></mat-datepicker>
 					</mat-form-field>
 				</div>
@@ -152,19 +105,19 @@
 		<div class="content" tab-id="item-2">
 			<div class="form-group">
 				<label>Meta Title *</label>
-				<input class="form-control" type="text" />
+				<input class="form-control" [(ngModel)]="this.product.metaTitle" type="text" />
 			</div>
 			<div class="form-group">
 				<label>Meta Image *</label>
-				<input class="form-control" type="text" />
+				<input class="form-control" [(ngModel)]="this.product.metaImage" type="text" />
 			</div>
 			<div class="form-group">
 				<label>Meta Description</label>
-				<input class="form-control" type="text" />
+				<input class="form-control" [(ngModel)]="this.product.metaDescription" type="text" />
 			</div>
 			<div class="form-group">
 				<label>Meta Keywords </label>
-				<input class="form-control" type="text" />
+				<input class="form-control" [(ngModel)]="this.product.metaKeywords" type="text" />
 			</div>
 		</div>
 		<div class="content" tab-id="item-3">

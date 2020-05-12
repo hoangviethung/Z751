@@ -10,6 +10,7 @@ import {
 } from 'src/app/_core/models/role.model';
 import { InputRequestOption } from 'src/app/_core/services/http.service';
 import { PermissionCollection } from 'src/app/_core/enums/general.enum';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-add-edit',
@@ -27,8 +28,9 @@ export class AddEditComponent implements OnInit {
 	constructor(
 		private crudSvc: CrudService,
 		private activatedRoute: ActivatedRoute,
-		private router: Router
-	) {}
+		private router: Router,
+		private toastrSvc: ToastrService
+	) { }
 
 	ngOnInit(): void {
 		this.getListFeatures();
@@ -165,7 +167,12 @@ export class AddEditComponent implements OnInit {
 		this.crudSvc
 			.update(APIConfig.Role.Add, options)
 			.subscribe((response) => {
-				this.router.navigateByUrl('/admin/role');
+				if (response.code === 200) {
+					this.toastrSvc.success(response.message);
+					this.router.navigateByUrl('/admin/role');
+				} else {
+					this.toastrSvc.error(response.message);
+				}
 			});
 	}
 
@@ -179,7 +186,12 @@ export class AddEditComponent implements OnInit {
 		this.crudSvc
 			.update(APIConfig.Role.Update, options)
 			.subscribe((response) => {
-				this.router.navigateByUrl('/admin/role');
+				if (response.code === 200) {
+					this.toastrSvc.success(response.message);
+					this.router.navigateByUrl('/admin/role');
+				} else {
+					this.toastrSvc.error(response.message);
+				}
 			});
 	}
 

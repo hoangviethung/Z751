@@ -3,6 +3,7 @@ import { SectionModel } from 'src/app/_core/models/section.model';
 import { ImageModel } from 'src/app/_core/models/image.model';
 import { HttpService, InputRequestOption } from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-edit',
@@ -14,7 +15,8 @@ export class EditComponent implements OnInit {
 	@Output('close') close: EventEmitter<boolean> = new EventEmitter<boolean>();
 	images: Array<ImageModel>
 	constructor(
-		private httpSvc: HttpService
+		private httpSvc: HttpService,
+		private toastrSvc: ToastrService
 	) { }
 
 	ngOnInit(): void {
@@ -26,8 +28,13 @@ export class EditComponent implements OnInit {
 		const params = new InputRequestOption();
 		params.body = this.section
 		this.httpSvc.post(APIConfig.Section.Update, params)
-			.subscribe(() => {
-				this.close.emit(false)
+			.subscribe((response) => {
+				if (response.code === 200) {
+					this.close.emit(false)
+					this.toastrSvc.success(response.message);
+				} else {
+					this.toastrSvc.error(response.message);
+				}
 			})
 	}
 

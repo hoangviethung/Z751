@@ -30,7 +30,7 @@ export class AddEditComponent implements OnInit {
 		private toastrSvc: ToastrService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();
@@ -121,7 +121,11 @@ export class AddEditComponent implements OnInit {
 		console.log(e);
 	}
 
-	onChangeEmitter(content) {
+	onChangeEmitterDescription(content) {
 		this.product.description = content.editor.getData();
+	}
+
+	onChangeEmitterContent(content) {
+		this.product.content = content.editor.getData();
 	}
 }

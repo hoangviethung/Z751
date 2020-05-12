@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ResourceModel } from 'src/app/_core/models/resource.model';
 import { HttpService, InputRequestOption } from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-edit',
@@ -13,7 +14,8 @@ export class EditComponent implements OnInit {
 	@Output('close') close: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 	constructor(
-		private httpSvc: HttpService
+		private httpSvc: HttpService,
+		private toastrSvc: ToastrService
 	) { }
 
 	ngOnInit(): void {
@@ -33,10 +35,14 @@ export class EditComponent implements OnInit {
 		}
 		params.body = enResource
 		console.log(this.resource.value.vi);
-
 		this.httpSvc.post(APIConfig.Resource.Update, params)
-			.subscribe(() => {
-				this.close.emit(false)
+			.subscribe((response) => {
+				if (response.code === 200) {
+					this.close.emit(false)
+					this.toastrSvc.success(response.message);
+				} else {
+					this.toastrSvc.error(response.message);
+				}
 			})
 
 		const viResource = {
@@ -46,8 +52,13 @@ export class EditComponent implements OnInit {
 		}
 		params.body = viResource
 		this.httpSvc.post(APIConfig.Resource.Update, params)
-			.subscribe(() => {
-				this.close.emit(false)
+			.subscribe((response) => {
+				if (response.code === 200) {
+					this.close.emit(false)
+					this.toastrSvc.success(response.message);
+				} else {
+					this.toastrSvc.error(response.message);
+				}
 			})
 	}
 }

@@ -4,14 +4,12 @@
 			<a class="btn btn-danger btn-cancel" (click)="closePopup(false)">Hủy bỏ</a>
 			<a class="btn btn-success btn-add" (click)="updateSection()">Cập nhập</a>
 		</div>
-		<div class="tab-container" appTab>
-			<div class="block-list-tab">
-				<ul class="list-tab">
-					<li class="item active" toggle-for="item-1">Nội dung</li>
-					<li class="item" toggle-for="item-2">Hình ảnh</li>
-				</ul>
-			</div>
-			<div class="tab-content">
+		<div class="tab-container block-form" appTab>
+			<ul class="tab-items">
+				<li class="item active" toggle-for="item-1">Nội dung</li>
+				<li class="item" toggle-for="item-2">Hình ảnh</li>
+			</ul>
+			<div class="tab-contents">
 				<div class="content show" tab-id="item-1">
 					<div class="row">
 						<div class="form-group col-lg-4">
