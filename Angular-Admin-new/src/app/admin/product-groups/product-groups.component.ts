@@ -61,6 +61,7 @@ export class ProductGroupsComponent implements OnInit {
 
 	onClosePopup(status: boolean) {
 		this.isShowPopup = status;
+		this.getProductGroups();
 	}
 
 	deleteProductGroup(id) {

@@ -70,8 +70,8 @@ export class AddEditComponent implements OnInit {
 		this.httpSvc.post(APIConfig.ProductGroup.Add, params)
 			.subscribe((response) => {
 				if (response.code == 200) {
-					this.toastrSvc.success(response.message);
 					this.close.emit(false)
+					this.toastrSvc.success(response.message);
 				} else {
 					this.toastrSvc.error(response.message);
 				}

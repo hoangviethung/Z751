@@ -6,6 +6,7 @@ import { MenuModel } from 'src/app/_core/models/menu.model';
 import { ActivatedRoute } from '@angular/router';
 import { LanguageModel } from 'src/app/_core/models/language';
 import { CategoryModel } from 'src/app/_core/models/category.model';
+import { ToastrService } from 'ngx-toastr';
 
 export enum Menu {
 	main = 0,
@@ -28,6 +29,7 @@ export class MenuComponent implements OnInit {
 	constructor(
 		private httpSvc: HttpService,
 		private activatedRoute: ActivatedRoute,
+		private toastrSvc: ToastrService,
 	) { }
 
 	ngOnInit(): void {
@@ -55,19 +57,23 @@ export class MenuComponent implements OnInit {
 			.pipe(map((response) => response.data))
 			.subscribe((menus) => {
 				this.menus = menus
-				console.log(this.menus);
 			})
 	}
 
 	deleteMenu(id) {
 		const params = new InputRequestOption()
 		params.body = id
-		this.httpSvc.post(APIConfig.Banner.Delete, params)
-			.subscribe(() => {
-				this.activatedRoute.params.subscribe(params => {
-					const type = Menu[params.menuTitle]
-					this.getMenus(type)
-				})
+		this.httpSvc.post(APIConfig.Menu.Delete, params)
+			.subscribe((response) => {
+				if (response.code === 200) {
+					this.activatedRoute.params.subscribe(params => {
+						const type = Menu[params.menuTitle]
+						this.getMenus(type)
+					})
+					this.toastrSvc.success(response.message);
+				} else {
+					this.toastrSvc.error(response.message);
+				}
 			})
 	}
 

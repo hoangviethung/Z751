@@ -53,9 +53,9 @@ export const APIConfig = {
 	},
 	Menu: {
 		Gets: '/api/Menu/gets',
-		Add: '/api/User/add',
-		Update: '/api/User/update',
-		Delete: '/api/User/delete',
+		Add: '/api/Menu/add',
+		Update: '/api/Menu/update',
+		Delete: '/api/Menu/delete',
 	},
 	ProductGroup: {
 		Gets: '/api/ProductGroup/gets',
