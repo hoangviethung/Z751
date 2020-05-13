@@ -1,23 +1,14 @@
 <ng-container *ngIf="!isShowPopup">
 	<div class="block-control ai-c">
 		<div class="block-filters mr-at d-f ai-c fw-w">
-			<select
-				name="language"
-				class="form-control"
-				(change)="fetchBanner($event)"
-			>
-				<option
-					*ngFor="let language of languages"
-					value="{{ language.id }}"
-					[selected]="language.isDefault ? 'selected' : ''"
-					>{{ language.name }}
+			<select name="language" class="form-control" (change)="fetchBanner($event)">
+				<option *ngFor="let language of languages" value="{{ language.id }}"
+					[selected]="language.isDefault ? 'selected' : ''">{{ language.name }}
 				</option>
 			</select>
 		</div>
 		<div class="block-buttons">
-			<a class="btn btn-success btn-add" (click)="onOpenPopup(true)"
-				>Thêm mới</a
-			>
+			<a class="btn btn-success btn-add" (click)="onOpenPopup(true)">Thêm mới</a>
 		</div>
 	</div>
 	<div class="block-table">
@@ -32,40 +23,23 @@
 			<tr *ngFor="let banner of banners; let i = index">
 				<th class="ta-c">{{ i + 1 }}</th>
 				<td>
-					<img
-						src="{{ banner.resourcePath }}"
-						alt="{{ banner.name }}"
-					/>
+					<img src="{{ banner.resourcePath }}" alt="{{ banner.name }}" />
 				</td>
 				<td class="column-language ta-c">
-					<img
-						src="{{ banner.languageId == 1 ? flag.vi : flag.en }}"
-						alt=""
-					/>
+					<img src="{{ banner.languageId == 1 ? flag.vi : flag.en }}" alt="" />
 				</td>
 				<td class="column-language ta-c">
 					<label class="checkbox-custom jc-c">
-						<input
-							class="check-box"
-							type="checkbox"
-							name="isvideo"
-							disabled
-							checked="{{ banner.isPublished ? 'checked' : '' }}"
-						/>
+						<input class="check-box" type="checkbox" name="isvideo" disabled
+							checked="{{ banner.isPublished ? 'checked' : '' }}" />
 					</label>
 				</td>
 				<td class="column-language ta-c">
 					<div class="table-buttons">
-						<span
-							class="btn btn-outline-success btn-edit"
-							(click)="onOpenPopup(true, banner, true)"
-						>
+						<span class="btn btn-outline-success btn-edit" (click)="onOpenPopup(true, banner, true)">
 							<span class="lnr lnr-pencil"></span>
 						</span>
-						<span
-							class="btn btn-outline-danger btn-remove"
-							(click)="deleteBanner(banner.id)"
-						>
+						<span class="btn btn-outline-danger btn-remove" (click)="deleteBanner(banner.id)">
 							<span class="lnr lnr-trash"></span>
 						</span>
 					</div>
@@ -76,9 +50,5 @@
 </ng-container>
 
 <div class="popup-wrapper" *ngIf="isShowPopup">
-	<app-add-edit
-		[banner]="banner"
-		[isEdit]="isEdit"
-		(close)="onClosePopup($event)"
-	></app-add-edit>
+	<app-add-edit [banner]="banner" [isEdit]="isEdit" (close)="onClosePopup($event)"></app-add-edit>
 </div>

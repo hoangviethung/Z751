@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { HttpService, InputRequestOption } from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
 import { map } from 'rxjs/operators';
 import { UserModel } from 'src/app/_core/models/user.model';
 import { ToastrService } from 'ngx-toastr';
+import { CookieService } from 'src/app/_core/services/cookie.service';
 
 @Component({
 	selector: 'app-user',
@@ -18,7 +19,8 @@ export class UserComponent implements OnInit {
 	isShowPopupChangPass: boolean = false;
 	constructor(
 		private httpSvc: HttpService,
-		private toastrSvc: ToastrService
+		private toastrSvc: ToastrService,
+		private cookieSvc: CookieService
 	) { }
 
 	ngOnInit(): void {
@@ -26,12 +28,21 @@ export class UserComponent implements OnInit {
 	}
 
 	getUsers() {
+		const responseCookieLogged = this.cookieSvc.get('user');
+		const jsonCookieLogged = JSON.parse(responseCookieLogged);
+		const userLogged = jsonCookieLogged.userName
 		this.httpSvc.get(APIConfig.User.Gets)
 			.pipe(map((response) => response.data))
 			.subscribe((users) => {
 				this.users = users
-				console.log('Danh sách user admin hiện có:');
+				this.users.forEach((item) => {
+					if (item.userName == userLogged) {
+						item.isDisabled = true
+					}
+				})
+				console.log('Danh sách tất cả user admin hiện có:');
 				console.log(this.users);
+				this.users = this.users.filter(isDisabled => isDisabled.isDisabled != true);
 			})
 	}
 

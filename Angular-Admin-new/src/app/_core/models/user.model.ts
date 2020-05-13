@@ -15,4 +15,5 @@ export class UserModel {
 	fullName: string
 	imageUrl: string
 	isActive: boolean
+	isDisabled: boolean
 }

@@ -1,11 +1,14 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { UserModel } from 'src/app/_core/models/user.model';
 import { InputRequestOption, HttpService } from 'src/app/_core/services/http.service';
+import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { APIConfig } from 'src/app/_core/API-config';
 import { map } from 'rxjs/operators';
 import { RoleModel } from 'src/app/_core/models/role.model';
 import { RegisterUserModel } from 'src/app/_core/models/register-user.model';
 import { ToastrService } from 'ngx-toastr';
+import { TemplateModel } from 'src/app/_core/models/template.model';
+import { FormControl } from '@angular/forms';
 
 @Component({
 	selector: 'app-add-edit',
@@ -17,13 +20,15 @@ export class AddEditComponent implements OnInit {
 	@Input('user') user: RegisterUserModel = new RegisterUserModel();
 	@Input('isEdit') isEdit: boolean;
 	@Output('close') close: EventEmitter<boolean> = new EventEmitter<boolean>();
+	templates: Array<TemplateModel> = TemplatesConfig;
+	templatesControl = new FormControl();
 	constructor(
 		private httpSvc: HttpService,
 		private toastrSvc: ToastrService
 	) { }
 
 	ngOnInit(): void {
-		this.getRoles()
+		this.getRoles();
 	}
 
 	getRoles() {
@@ -37,7 +42,6 @@ export class AddEditComponent implements OnInit {
 	addUser() {
 		const params = new InputRequestOption();
 		params.body = this.user
-		console.log(this.user);
 		this.httpSvc.post(APIConfig.User.Add, params)
 			.subscribe((response) => {
 				if (response.code === 200) {

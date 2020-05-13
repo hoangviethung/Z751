@@ -28,6 +28,7 @@ export class AddEditComponent implements OnInit {
 	ngOnInit(): void {
 		this.getProducts();
 		this.languages = JSON.parse(localStorage.getItem('languages'))
+		console.log(this.productGroup);
 	}
 
 	closePopup(status) {
@@ -43,8 +44,6 @@ export class AddEditComponent implements OnInit {
 			.pipe(map((response) => response.data.items))
 			.subscribe((products) => {
 				this.products = products
-				console.log('Danh sách sản phẩm hiện có:');
-				console.log(this.products);
 			})
 	}
 

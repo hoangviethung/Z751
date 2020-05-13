@@ -159,13 +159,13 @@
 									<img src="{{ language.image }}" alt="" />
 								</div>
 							</ng-container>
-							<select name="langulage" id="language" class="bd-0" (change)="switchLanguage($event)">
+							<!-- <select name="langulage" id="language" class="bd-0" (change)="switchLanguage($event)">
 								<ng-container *ngFor="let language of languages">
 									<option value="{{ language.key }}" [selected]="
 											currentLanguage == language.isDefault
 										">{{ language.name }}</option>
 								</ng-container>
-							</select>
+							</select> -->
 						</div>
 						<div class="search">
 							<label class="d-f ai-c" (click)="toggleSearchBox()">
