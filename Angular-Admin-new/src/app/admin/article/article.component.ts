@@ -44,7 +44,6 @@ export class ArticleComponent implements OnInit {
 
 	getPermissions() {
 		const FeaturesObj = JSON.parse(this.cookieSvc.get('user-feature'));
-		console.log(FeaturesObj);
 	}
 
 	getArticles() {

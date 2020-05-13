@@ -61,7 +61,6 @@ export class ProductComponent implements OnInit {
 		this.crudSvc
 			.get(APIConfig.Product.Gets, options)
 			.subscribe((response) => {
-				console.log(response.data.items);
 				this.products = response.data.items;
 			});
 	}

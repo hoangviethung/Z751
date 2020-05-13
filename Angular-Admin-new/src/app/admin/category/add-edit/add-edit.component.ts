@@ -103,7 +103,6 @@ export class AddEditComponent implements OnInit {
 					.get(APIConfig.Category.Get, opts1)
 					.subscribe((response) => {
 						this.category = response.data;
-						console.log(this.category);
 						this.setBaseUrl();
 						this.getCategories(this.category.languageId.toString());
 						this.showProductGroups(this.category.template);
@@ -149,7 +148,6 @@ export class AddEditComponent implements OnInit {
 					.pipe(map((response) => response.data))
 					.subscribe((itemsChecked) => {
 						this.categoryProductGroupsChecked = itemsChecked;
-						console.log(this.categoryProductGroupsChecked);
 					});
 			} else {
 				this.isEdit = false;
