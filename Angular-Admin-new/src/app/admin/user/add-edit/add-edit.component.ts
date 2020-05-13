@@ -28,7 +28,7 @@ export class AddEditComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-		this.getRoles()
+		this.getRoles();
 	}
 
 	getRoles() {
@@ -42,7 +42,6 @@ export class AddEditComponent implements OnInit {
 	addUser() {
 		const params = new InputRequestOption();
 		params.body = this.user
-		console.log(this.user);
 		this.httpSvc.post(APIConfig.User.Add, params)
 			.subscribe((response) => {
 				if (response.code === 200) {
