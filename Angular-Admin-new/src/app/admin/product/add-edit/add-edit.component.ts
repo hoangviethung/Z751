@@ -10,7 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ProductModel } from 'src/app/_core/models/product.model';
 import { FormControl } from '@angular/forms';
-
+import { TemplateModel } from 'src/app/_core/models/template.model';
+import { TemplatesConfig } from 'src/app/_core/templates-config';
 @Component({
 	selector: 'app-add-edit',
 	templateUrl: './add-edit.component.html',
@@ -20,10 +21,12 @@ export class AddEditComponent implements OnInit {
 	isEdit: boolean = false;
 	languages: Array<LanguageModel>;
 	product: ProductModel = new ProductModel();
-	categories: Array<CategoryModel>;
+	categories: Array<CategoryModel> = [];
 	originUrl: string;
 	createdDate = new FormControl(new Date());
-
+	templates: Array<TemplateModel> = TemplatesConfig;
+	languageControl = new FormControl();
+	categoryControl = new FormControl();
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
@@ -119,6 +122,7 @@ export class AddEditComponent implements OnInit {
 
 	onDateChangeEmitter(e) {
 		console.log(e);
+		this.product.order = e
 	}
 
 	onChangeEmitterDescription(content) {

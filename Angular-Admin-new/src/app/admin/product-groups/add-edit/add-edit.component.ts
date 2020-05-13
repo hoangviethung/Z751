@@ -7,7 +7,8 @@ import { FormControl } from '@angular/forms';
 import { LanguageModel } from 'src/app/_core/models/language';
 import { ProductGroupModel } from 'src/app/_core/models/product-groups';
 import { ToastrService } from 'ngx-toastr';
-
+import { TemplateModel } from 'src/app/_core/models/template.model';
+import { TemplatesConfig } from 'src/app/_core/templates-config';
 @Component({
 	selector: 'app-add-edit',
 	templateUrl: './add-edit.component.html',
@@ -19,7 +20,9 @@ export class AddEditComponent implements OnInit {
 	@Output('close') close: EventEmitter<boolean> = new EventEmitter<boolean>();
 	products: Array<ProductModel>;
 	languages: Array<LanguageModel>
-	templatesControl = new FormControl();
+	productsControl = new FormControl();
+	languageControl = new FormControl();
+	templates: Array<TemplateModel> = TemplatesConfig;
 	constructor(
 		private httpSvc: HttpService,
 		private toastrSvc: ToastrService,
@@ -79,6 +82,6 @@ export class AddEditComponent implements OnInit {
 
 	checkData() {
 		console.log('Danh sách các sản phẩm đã chọn:');
-		console.log(this.templatesControl.value);
+		console.log(this.productsControl.value);
 	}
 }
