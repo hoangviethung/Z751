@@ -1,0 +1,143 @@
+{
+	"Data": {
+		"Title": "Xí nghiệp mộc",
+		"Description": "<p>Công ty 751 / Tổng cục Kỹ thuật / Bộ Quốc phòng, đơn vị anh hùng lực lượng vũ trang nhân nhân được thành lập từ năm 1975 trên cơ sở tiếp quản lục quân công xưởng của chế độ ngụy, sài gòn là doanh nghiệp trực tiếp phục vụ quốc phòng an ninh và là cơ sở đảm bảo kỹ thuật lớn nhất của Quân đội ở phía nam.</p><p>Công ty hiện được đầu tư nhiều trang thiết bị công nghệ hiện đại, tiên tiến; hệ thống mặt bằng trên 600.000 m2, nhà xưởng trên 150.000 m2; Đội ngũ cán bộ quản lý được đào tạo chính quy trong và ngoài Quân đội, đội ngũ kỹ sư và công nhân lành nghề có kinh nghiệm sẵn sàng đáp ứng mọi yêu cầu của khách hàng trong lĩnh vực kinh doanh và hợp tác, liên doanh liên kết với tất cả các đối tác trong và ngoài nước.</p>",
+		"Image": "/assets/images/departments/d_1.jpg",
+		"Products": {
+			"DesignProducts": [
+				{
+					"Id": "p-4",
+					"Image": "/assets/images/products/4.jpg",
+					"Title": "Xe tưới đường",
+					"CategoryUrl": "cao-su",
+					"Url": "xe-tuoi-duong"
+				},
+				{
+					"Id": "p-5",
+					"Image": "/assets/images/products/5.jpg",
+					"CategoryUrl": "cao-su",
+					"Title": "Xe bồn",
+					"Url": "xe-bon"
+				},
+				{
+					"Id": "p-6",
+					"Image": "/assets/images/products/6.jpg",
+					"CategoryUrl": "cao-su",
+					"Title": "Xe ben",
+					"Url": "xe-ben"
+				},
+				{
+					"Id": "p-7",
+					"Image": "/assets/images/products/7.jpg",
+					"CategoryUrl": "cao-su",
+					"Title": "Xe ép rác",
+					"Url": "xe-ep-rac"
+				},
+				{
+					"Id": "p-8",
+					"Image": "/assets/images/products/8.jpg",
+					"CategoryUrl": "cao-su",
+					"Title": "Xe đầu kéo",
+					"Url": "xe-dau-keo"
+				},
+				{
+					"Id": "p-9",
+					"Image": "/assets/images/products/9.jpg",
+					"CategoryUrl": "cao-su",
+					"Title": "Xe lọc nước",
+					"Url": "xe-loc-nuoc"
+				},
+				{
+					"Id": "p-1",
+					"Image": "/assets/images/products/1.jpg",
+					"CategoryUrl": "cao-su",
+					"Title": "Xe chuyên dụng",
+					"Url": "xe-chuyen-dung"
+				},
+				{
+					"Id": "p-2",
+					"Image": "/assets/images/products/2.jpg",
+					"CategoryUrl": "cao-su",
+					"Title": "Xe truyền hình",
+					"Url": "xe-truyen-hinh"
+				},
+				{
+					"Id": "p-3",
+					"Image": "/assets/images/products/3.jpg",
+					"CategoryUrl": "cao-su",
+					"Title": "Rơ móc",
+					"Url": "ro-moc"
+				}
+			],
+			"PrepairProducts": [
+				{
+					"Id": "p-4",
+					"Image": "/assets/images/products/4.jpg",
+					"Title": "Xe tưới đường",
+					"CategoryUrl": "cao-su",
+					"Url": "xe-tuoi-duong"
+				},
+				{
+					"Id": "p-5",
+					"Image": "/assets/images/products/5.jpg",
+					"CategoryUrl": "cao-su",
+					"Title": "Xe bồn",
+					"Url": "xe-bon"
+				},
+				{
+					"Id": "p-6",
+					"Image": "/assets/images/products/6.jpg",
+					"CategoryUrl": "cao-su",
+					"Title": "Xe ben",
+					"Url": "xe-ben"
+				},
+				{
+					"Id": "p-7",
+					"Image": "/assets/images/products/7.jpg",
+					"CategoryUrl": "cao-su",
+					"Title": "Xe ép rác",
+					"Url": "xe-ep-rac"
+				},
+				{
+					"Id": "p-8",
+					"Image": "/assets/images/products/8.jpg",
+					"CategoryUrl": "cao-su",
+					"Title": "Xe đầu kéo",
+					"Url": "xe-dau-keo"
+				},
+				{
+					"Id": "p-9",
+					"Image": "/assets/images/products/9.jpg",
+					"CategoryUrl": "cao-su",
+					"Title": "Xe lọc nước",
+					"Url": "xe-loc-nuoc"
+				},
+				{
+					"Id": "p-1",
+					"Image": "/assets/images/products/1.jpg",
+					"CategoryUrl": "cao-su",
+					"Title": "Xe chuyên dụng",
+					"Url": "xe-chuyen-dung"
+				},
+				{
+					"Id": "p-2",
+					"Image": "/assets/images/products/2.jpg",
+					"CategoryUrl": "cao-su",
+					"Title": "Xe truyền hình",
+					"Url": "xe-truyen-hinh"
+				},
+				{
+					"Id": "p-3",
+					"Image": "/assets/images/products/3.jpg",
+					"CategoryUrl": "cao-su",
+					"Title": "Rơ móc",
+					"Url": "ro-moc"
+				}
+			]
+		},
+		"Information": {
+			"Address": "<p>18 Phan Văn Trị, P.10, Quận Gò Vấp, TP.HCM</p><p>Tel: 028 3895 8466</p><p>Website : congty751.com.vn</p><p>Email: info@congty751.com.vn</p>",
+			"WorkTime": "<p>Thứ 2 - Thứ 7: 7h30 - 16h30</p><p>Hotline ngoài giờ: 028 3895 8466 </p>"
+		}
+	}
+}

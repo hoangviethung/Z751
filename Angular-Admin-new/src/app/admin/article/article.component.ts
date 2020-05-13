@@ -29,6 +29,7 @@ export class ArticleComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
+		this.getCategories();
 		this.getArticles();
 		this.languages = this.utilSvc.getLanguages();
 	}
@@ -44,23 +45,24 @@ export class ArticleComponent implements OnInit {
 				this.articles = articles.data.items;
 			});
 	}
-	// fetchArticle(e) {
-	// 	const params = new InputRequestOption();
-	// 	params.params = {
-	// 		languageId: e.target.value,
-	// 	};
-	// 	this.crudSvc
-	// 		.get(APIConfig.Article.Gets, params)
-	// 		.subscribe((response) => {
-	// 			this.articles = response.data.items;
-	// 		});
-	// }
+	getCategories() {
+		const params = new InputRequestOption();
+		params.params = {
+			languageId: '1',
+		};
+		this.crudSvc
+			.get(APIConfig.Category.Gets, params)
+			.subscribe((response) => {
+				this.categories = response.data.items;
+			});
+	}
 
 	filterArticle() {
 		const options = new InputRequestOption();
 		options.params = {
 			languageId: this.search.languageId,
 			text: this.search.keywords || '',
+			categoryId: this.search.categoryId,
 		};
 		this.crudSvc
 			.get(APIConfig.Article.Gets, options)

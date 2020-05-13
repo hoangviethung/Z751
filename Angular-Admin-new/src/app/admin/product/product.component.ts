@@ -7,6 +7,7 @@ import { UtilService } from 'src/app/_core/services/util.service';
 import { FilterSearchModel } from 'src/app/_core/models/filter.model';
 import { ProductModel } from 'src/app/_core/models/product.model';
 import { ToastrService } from 'ngx-toastr';
+import { CategoryModel } from 'src/app/_core/models/category.model';
 
 @Component({
 	selector: 'app-product',
@@ -17,6 +18,7 @@ export class ProductComponent implements OnInit {
 	languages: LanguageModel[] = [];
 	search: FilterSearchModel = new FilterSearchModel();
 	products: ProductModel[] = [];
+	categories: Array<CategoryModel>;
 
 	constructor(
 		private crudSvc: CrudService,
@@ -25,15 +27,18 @@ export class ProductComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.languages = this.utilSvc.getLanguages();
+		this.getCategories();
 		this.getProducts();
+		this.languages = this.utilSvc.getLanguages();
 	}
 
 	filterProduct() {
 		const options = new InputRequestOption();
+
 		options.params = {
 			languageId: this.search.languageId,
 			text: this.search.keywords || '',
+			categoryId: this.search.categoryId,
 		};
 		this.crudSvc
 			.get(APIConfig.Product.Gets, options)
@@ -58,6 +63,18 @@ export class ProductComponent implements OnInit {
 			.subscribe((response) => {
 				console.log(response.data.items);
 				this.products = response.data.items;
+			});
+	}
+
+	getCategories() {
+		const params = new InputRequestOption();
+		params.params = {
+			languageId: '1',
+		};
+		this.crudSvc
+			.get(APIConfig.Category.Gets, params)
+			.subscribe((response) => {
+				this.categories = response.data.items;
 			});
 	}
 

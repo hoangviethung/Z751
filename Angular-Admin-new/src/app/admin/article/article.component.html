@@ -11,9 +11,26 @@
 					<option
 						*ngFor="let language of languages"
 						value="{{ language.id }}"
-						[selected]="language.isDefault ? 'selected' : ''"
 					>
 						{{ language.name }}
+					</option>
+				</select>
+			</div>
+			<div class="form-group mb-0">
+				<select
+					name="category"
+					id="category"
+					class="form-control"
+					[(ngModel)]="search.categoryId"
+				>
+					<option selected="selected" value="0"
+						>Lọc theo danh mục</option
+					>
+					<option
+						*ngFor="let category of categories"
+						value="{{ category.id }}"
+					>
+						{{ category.title }}
 					</option>
 				</select>
 			</div>
