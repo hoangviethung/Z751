@@ -1,11 +1,14 @@
 <ng-container *ngIf="!isShowPopup">
 	<div class="block-control ai-c">
 		<div class="block-filters mr-at d-f ai-c fw-w">
-			<select name="language" class="form-control" (change)="fetchBanner($event)">
-				<option *ngFor="let language of languages" value="{{ language.id }}"
-					[selected]="language.isDefault ? 'selected' : ''">{{ language.name }}
-				</option>
-			</select>
+			<mat-form-field>
+				<mat-select name="language" [formControl]="templatesControl" (ngModelChange)="fetchBanner($event)"
+					[ngModel]=1>
+					<mat-option *ngFor="let language of languages" [value]="language.id">
+						{{ language.name }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
 		</div>
 		<div class="block-buttons">
 			<a class="btn btn-success btn-add" (click)="onOpenPopup(true)">Thêm mới</a>

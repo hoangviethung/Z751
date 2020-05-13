@@ -8,7 +8,9 @@ import { ToastrService } from 'ngx-toastr';
 import { CrudService } from 'src/app/_core/services/crud.service';
 import { FilterSearchModel } from 'src/app/_core/models/filter.model';
 import { UtilService } from 'src/app/_core/services/util.service';
-
+import { TemplateModel } from 'src/app/_core/models/template.model';
+import { TemplatesConfig } from 'src/app/_core/templates-config';
+import { FormControl } from '@angular/forms';
 @Component({
 	selector: 'app-article',
 	templateUrl: './article.component.html',
@@ -22,11 +24,13 @@ export class ArticleComponent implements OnInit {
 	isShowPopup: boolean = false;
 	isEdit: boolean;
 	search: FilterSearchModel = new FilterSearchModel();
+	templates: Array<TemplateModel> = TemplatesConfig;
+	templatesControl = new FormControl();
 	constructor(
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService,
 		private utilSvc: UtilService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.getArticles();
@@ -44,17 +48,18 @@ export class ArticleComponent implements OnInit {
 				this.articles = articles.data.items;
 			});
 	}
-	// fetchArticle(e) {
-	// 	const params = new InputRequestOption();
-	// 	params.params = {
-	// 		languageId: e.target.value,
-	// 	};
-	// 	this.crudSvc
-	// 		.get(APIConfig.Article.Gets, params)
-	// 		.subscribe((response) => {
-	// 			this.articles = response.data.items;
-	// 		});
-	// }
+
+	fetchArticle(e) {
+		const params = new InputRequestOption();
+		params.params = {
+			languageId: e,
+		};
+		this.crudSvc
+			.get(APIConfig.Article.Gets, params)
+			.subscribe((response) => {
+				this.articles = response.data.items;
+			});
+	}
 
 	filterArticle() {
 		const options = new InputRequestOption();

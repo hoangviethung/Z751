@@ -10,7 +10,9 @@ import { LanguageModel } from 'src/app/_core/models/language';
 import { ToastrService } from 'ngx-toastr';
 import { LanguageFlag } from 'src/app/_core/enums/general.enum';
 import { CrudService } from 'src/app/_core/services/crud.service';
-
+import { TemplateModel } from 'src/app/_core/models/template.model';
+import { TemplatesConfig } from 'src/app/_core/templates-config';
+import { FormControl } from '@angular/forms';
 @Component({
 	selector: 'app-banner',
 	templateUrl: './banner.component.html',
@@ -22,10 +24,13 @@ export class BannerComponent implements OnInit {
 	isShowPopup: boolean = false;
 	isEdit: boolean;
 	languages: Array<LanguageModel>;
+	languageDefault: boolean
 	flag = {
 		vi: LanguageFlag.vi,
 		en: LanguageFlag.en,
 	};
+	templates: Array<TemplateModel> = TemplatesConfig;
+	templatesControl = new FormControl();
 	constructor(
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService
@@ -55,7 +60,7 @@ export class BannerComponent implements OnInit {
 	fetchBanner(e) {
 		const params = new InputRequestOption();
 		params.params = {
-			languageId: e.target.value,
+			languageId: e,
 		};
 		this.crudSvc
 			.get(APIConfig.Banner.Gets, params)

@@ -10,7 +10,9 @@ import { LanguageModel } from 'src/app/_core/models/language';
 import { UtilService } from 'src/app/_core/services/util.service';
 import { ToastrService } from 'ngx-toastr';
 import { CrudService } from 'src/app/_core/services/crud.service';
-
+import { TemplateModel } from 'src/app/_core/models/template.model';
+import { TemplatesConfig } from 'src/app/_core/templates-config';
+import { FormControl } from '@angular/forms';
 @Component({
 	selector: 'app-category',
 	templateUrl: './category.component.html',
@@ -23,6 +25,8 @@ export class CategoryComponent implements OnInit {
 	categories: Array<CategoryModel>;
 	languages: Array<LanguageModel>;
 	search: FilterSearchModel = new FilterSearchModel();
+	templates: Array<TemplateModel> = TemplatesConfig;
+	languageControl = new FormControl();
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
@@ -38,7 +42,7 @@ export class CategoryComponent implements OnInit {
 		const options = new InputRequestOption();
 		if (e) {
 			options.params = {
-				languageId: e.target.value,
+				languageId: e,
 			};
 		} else {
 			options.params = {
@@ -49,6 +53,7 @@ export class CategoryComponent implements OnInit {
 			.get(APIConfig.Category.Gets, options)
 			.subscribe((categories) => {
 				this.categories = categories.data.items;
+				console.log(this.categories);
 			});
 	}
 

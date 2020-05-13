@@ -24,24 +24,24 @@
 			<div class="row">
 				<div class="form-group col-lg-6">
 					<label>Ngôn ngữ</label>
-					<select class="form-control" name="languageid" [(ngModel)]="category.languageId">
-						<ng-container *ngFor="let language of languages">
-							<option value="{{ language.id }}">
+					<mat-form-field>
+						<mat-select name="language" [formControl]="languageControl" [(ngModel)]="category.languageId">
+							<mat-option *ngFor="let language of languages" [value]="language.id">
 								{{ language.name }}
-							</option>
-						</ng-container>
-					</select>
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Danh mục cha</label>
-					<select class="form-control" name="parentid" [(ngModel)]="category.parentId"
-						(change)="updateBaseUrl()">
-						<ng-container *ngFor="let category of categories">
-							<option value="{{ category.id }}">
+					<mat-form-field>
+						<mat-select name="parentid" [formControl]="categoryControl" [(ngModel)]="category.parentId"
+							(ngModelChange)="updateBaseUrl()">
+							<mat-option *ngFor="let category of categories" [value]="category.id">
 								{{ category.title }}
-							</option>
-						</ng-container>
-					</select>
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Tiêu đề *</label>
@@ -72,24 +72,19 @@
 				<div class="form-group col-lg-6">
 					<div class="form-group">
 						<label>Chọn mẫu template</label>
-						<select class="form-control" name="template" [(ngModel)]="category.template"
-							(change)="showProductGroups(category.template)">
-							<ng-container *ngFor="
-									let template of templates;
-									let i = index
-								">
-								<option value="{{ template.id }}" [selected]="
-										template.isDefault ? 'selected' : ''
-									">
+						<mat-form-field>
+							<mat-select [formControl]="templatesControl" name="template" [(ngModel)]="category.template"
+								(ngModelChange)="showProductGroups(category.template)">
+								<mat-option *ngFor="let template of templates;let i = index" [value]="template.id">
 									{{ template.title }}
-								</option>
-							</ng-container>
-						</select>
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
 					</div>
 					<div class="form-group" *ngIf="isShowProductGroup">
 						<label for="">Chọn nhóm sản phẩm</label>
 						<mat-form-field>
-							<mat-select [formControl]="templatesControl" multiple
+							<mat-select [formControl]="productGroupControl" multiple
 								(ngModelChange)="updateCategoryProductsGroups()">
 								<mat-option *ngFor="let productGroup of productGroups" [value]="productGroup">
 									{{ productGroup.name }}</mat-option>
