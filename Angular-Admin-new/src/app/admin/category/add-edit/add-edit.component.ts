@@ -20,7 +20,7 @@ import { ProductGroupModel } from 'src/app/_core/models/product-groups';
 })
 export class AddEditComponent implements OnInit {
 	templates: Array<TemplateModel> = TemplatesConfig;
-	templatesControl = new FormControl();
+	productGroupsControl: FormControl = new FormControl();
 	category: CategoryModel = new CategoryModel();
 	languages: Array<LanguageModel>;
 	categories: Array<CategoryModel>;
@@ -86,17 +86,49 @@ export class AddEditComponent implements OnInit {
 		this.activatedRoute.params.subscribe((params) => {
 			if (params.CategoryId) {
 				this.isEdit = true;
-				const options = new InputRequestOption();
-				options.params = {
+				const opts1 = new InputRequestOption();
+				opts1.params = {
 					id: params.CategoryId,
 				};
 				this.crudSvc
-					.get(APIConfig.Category.Get, options)
+					.get(APIConfig.Category.Get, opts1)
 					.subscribe((response) => {
 						this.category = response.data;
 						this.setBaseUrl();
 						this.getCategories(this.category.languageId.toString());
 						this.showProductGroups(this.category.template);
+						const opts2 = new InputRequestOption();
+						opts2.params = {
+							categoryId: params.CategoryId,
+						};
+						this.crudSvc
+							.get(APIConfig.ProductGroup.UsedGet, opts2)
+							.subscribe((response) => {
+								const productGroupsSelected = [];
+								for (
+									let i = 0;
+									i < this.productGroups.length;
+									i++
+								) {
+									for (
+										let j = 0;
+										j < response.data.length;
+										j++
+									) {
+										if (
+											response.data[j].id ==
+											this.productGroups[i].id
+										) {
+											productGroupsSelected.push(
+												this.productGroups[i]
+											);
+										}
+									}
+								}
+								this.productGroupsControl.setValue(
+									productGroupsSelected
+								);
+							});
 					});
 			} else {
 				this.isEdit = false;
@@ -165,26 +197,25 @@ export class AddEditComponent implements OnInit {
 			.subscribe((response) => {
 				if (response.code == 200) {
 					this.toastrSvc.success(response.message);
-					this.router.navigate(['/admin/category']);
-				} else {
-					this.toastrSvc.error(response.message);
-				}
-			});
 
-		const categoryProducGroupsOpts = new InputRequestOption();
-		categoryProducGroupsOpts.body = {
-			categoryId: this.category.id,
-			productGroupIds: this.categoryProductGroups,
-		};
-		this.crudSvc
-			.update(
-				APIConfig.ProductGroup.CategoryUpdate,
-				categoryProducGroupsOpts
-			)
-			.subscribe((response) => {
-				if (response.code == 200) {
-					this.toastrSvc.success(response.message);
-					this.router.navigate(['/admin/category']);
+					const categoryProducGroupsOpts = new InputRequestOption();
+					categoryProducGroupsOpts.body = {
+						categoryId: this.category.id,
+						productGroupIds: this.categoryProductGroups,
+					};
+					this.crudSvc
+						.update(
+							APIConfig.ProductGroup.CategoryUpdate,
+							categoryProducGroupsOpts
+						)
+						.subscribe((response) => {
+							if (response.code == 200) {
+								this.toastrSvc.success(response.message);
+								this.router.navigate(['/admin/category']);
+							} else {
+								this.toastrSvc.error(response.message);
+							}
+						});
 				} else {
 					this.toastrSvc.error(response.message);
 				}
@@ -196,7 +227,7 @@ export class AddEditComponent implements OnInit {
 	}
 
 	updateCategoryProductsGroups() {
-		this.categoryProductGroups = this.templatesControl.value.map(
+		this.categoryProductGroups = this.productGroupsControl.value.map(
 			(item) => item.id
 		);
 	}

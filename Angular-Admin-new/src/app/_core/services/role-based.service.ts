@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from './cookie.service';
 import { PermissionCollection } from '../enums/general.enum';
+import { FeaturesListModel } from '../models/role.model';
 import { CrudService } from './crud.service';
 import { APIConfig } from '../API-config';
 import { map } from 'rxjs/operators';
-import { FeaturesListModel } from '../models/role.model';
 
 @Injectable({
 	providedIn: 'root',
@@ -14,13 +14,23 @@ export class RoleBasedService {
 	private featuresObject: any = {};
 	features: Array<FeaturesListModel> = [];
 
-	constructor(private cookieSvc: CookieService) {}
+	constructor(
+		private cookieSvc: CookieService,
+		private crudSvc: CrudService
+	) {}
 
 	getUserRole() {
 		return JSON.parse(this.cookieSvc.get('user')).roles;
 	}
 
+	getUserFeatures() {
+		return this.crudSvc
+			.get(APIConfig.Role.GetFeatures)
+			.pipe(map((response) => response.data));
+	}
+
 	getUserFeaturesCanDo(features) {
+		this.featuresObject = {};
 		const FeaturesNumberArray = features.map((item, index) => item.feature);
 		const FeaturesNumberArray1 = FeaturesNumberArray.filter(
 			(item, index) => FeaturesNumberArray.indexOf(item) == index

@@ -69,23 +69,20 @@ export class AddEditComponent implements OnInit {
 	}
 
 	getListFeatures() {
-		this.crudSvc
-			.get(APIConfig.Role.GetFeatures)
-			.pipe(map((response) => response.data))
-			.subscribe((features) => {
-				this.features = features;
-				this.features.forEach((featureItem) => {
-					featureItem.features.forEach((feature) => {
-						this.featuresObject[feature.value] = {
-							View: false,
-							Add: false,
-							Edit: false,
-							Delete: false,
-							All: false,
-						};
-					});
+		this.roleBasedSvc.getUserFeatures().subscribe((features) => {
+			this.features = features;
+			this.features.forEach((featureItem) => {
+				featureItem.features.forEach((feature) => {
+					this.featuresObject[feature.value] = {
+						View: false,
+						Add: false,
+						Edit: false,
+						Delete: false,
+						All: false,
+					};
 				});
 			});
+		});
 	}
 
 	addRole() {

@@ -46,11 +46,14 @@ export class AdminComponent implements OnInit {
 			this.crudSvc
 				.get(APIConfig.Role.GetPermissions, opts)
 				.subscribe((response) => {
-					console.log(response.data);
+					const featuresObjects = this.roleBasedSvc.getUserFeaturesCanDo(
+						response.data.features
+					);
+					this.cookieSvc.set(
+						'user-features',
+						JSON.stringify(featuresObjects)
+					);
 				});
 		});
-		// console.log(userRole);
-		// const featuresUserCanDo = this.roleBasedSvc.getUserFeaturesCanDo(){
-		// }
 	}
 }

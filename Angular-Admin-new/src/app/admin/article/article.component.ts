@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CrudService } from 'src/app/_core/services/crud.service';
 import { FilterSearchModel } from 'src/app/_core/models/filter.model';
 import { UtilService } from 'src/app/_core/services/util.service';
+import { CookieService } from 'src/app/_core/services/cookie.service';
 
 @Component({
 	selector: 'app-article',
@@ -22,16 +23,26 @@ export class ArticleComponent implements OnInit {
 	isShowPopup: boolean = false;
 	isEdit: boolean;
 	search: FilterSearchModel = new FilterSearchModel();
+	FeatureNumber: number = -12;
+	permissions: any = {};
+
 	constructor(
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService,
-		private utilSvc: UtilService
+		private utilSvc: UtilService,
+		private cookieSvc: CookieService
 	) {}
 
 	ngOnInit(): void {
 		this.getCategories();
 		this.getArticles();
 		this.languages = this.utilSvc.getLanguages();
+		this.getPermissions();
+	}
+
+	getPermissions() {
+		const FeaturesObj = JSON.parse(this.cookieSvc.get('user-feature'))
+		console.log(FeaturesObj);
 	}
 
 	getArticles() {
