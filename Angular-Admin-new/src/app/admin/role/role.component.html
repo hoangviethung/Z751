@@ -16,8 +16,8 @@
 					{{ role.name }}
 				</td>
 				<td>{{ role.description }}</td>
-				<td>
-					<div class="table-buttons">
+				<td class="ta-c">
+					<div class="table-buttons" *ngIf="!role.isSystem">
 						<span
 							class="btn btn-outline-success btn-edit"
 							(click)="editRole(role.name)"
