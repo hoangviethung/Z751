@@ -14,13 +14,18 @@
 			<tr class="table-info">
 				<th class="column-number ta-c">#</th>
 				<th class="ta-c">Tên nhóm sản phẩm</th>
-				<th class="ta-c">Ngôn ngữ</th>
+				<th class="ta-c">Năng lực</th>
 				<th class="column-button ta-c">Tác vụ</th>
 			</tr>
 			<tr *ngFor="let productGroup of productGroups; let i = index">
 				<th class="ta-c">{{ i + 1 }}</th>
 				<td class="ta-c">{{productGroup.name}}</td>
-				<td class="ta-c">{{productGroup.languageId}}</td>
+				<td class="ta-c">
+					<label class="checkbox-custom jc-c">
+						<input class="check-box" type="checkbox" name="isPotential" disabled
+							checked="{{ productGroup.isPotential ? 'checked' : '' }}" />
+					</label>
+				</td>
 				<td class="ta-c">
 					<div class="table-buttons">
 						<span class="btn btn-outline-success btn-edit" (click)="onOpenPopup(true, productGroup, true)">

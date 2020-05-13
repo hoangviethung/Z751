@@ -3,4 +3,5 @@ export class ProductGroupModel {
 	name: string;
 	languageId: number;
 	productIds: Array<number>;
+	isPotential: boolean
 }

@@ -44,8 +44,6 @@ export class AddEditComponent implements OnInit {
 			.pipe(map((response) => response.data.items))
 			.subscribe((products) => {
 				this.products = products
-				console.log('Danh sách sản phẩm hiện có:');
-				console.log(this.products);
 			})
 	}
 

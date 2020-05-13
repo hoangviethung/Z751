@@ -29,7 +29,13 @@
 				<input class="form-control" type="text" name="name" [(ngModel)]="productGroup.name" />
 			</div>
 			<div class="w-100"></div>
-
+			<div class="form-group col-auto">
+				<label class="checkbox-custom">
+					<input class="check-box" type="checkbox" name="isCapacity" [(ngModel)]="productGroup.isPotential" />
+					Năng lực
+				</label>
+			</div>
+			<div class="w-100"></div>
 			<div class="form-group col-lg-6">
 				<div class="form-group">
 					<label for="">Chọn sản phẩm</label>
