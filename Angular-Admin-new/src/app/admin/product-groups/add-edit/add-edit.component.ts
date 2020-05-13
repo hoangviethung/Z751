@@ -28,6 +28,7 @@ export class AddEditComponent implements OnInit {
 	ngOnInit(): void {
 		this.getProducts();
 		this.languages = JSON.parse(localStorage.getItem('languages'))
+		console.log(this.productGroup);
 	}
 
 	closePopup(status) {

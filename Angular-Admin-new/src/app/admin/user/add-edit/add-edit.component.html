@@ -47,11 +47,13 @@
 					</div>
 					<div class="form-group col-12">
 						<label>Chọn bộ quyền</label>
-						<select name="roles" class="form-control" [(ngModel)]="user.role">
-							<option *ngFor="let role of roles" value="{{ role.name }}">
-								{{ role.name }}
-							</option>
-						</select>
+						<mat-form-field>
+							<mat-select name="roles" [(ngModel)]="user.role" [formControl]="templatesControl">
+								<mat-option *ngFor="let role of roles" value="{{ role.name }}">
+									{{ role.name }}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
 					</div>
 				</div>
 			</div>

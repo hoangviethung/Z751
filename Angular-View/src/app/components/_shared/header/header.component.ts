@@ -64,7 +64,6 @@ export class HeaderComponent implements OnInit {
 		this.http.get(environment.remoteBaseUrl + ApiConfigModel.language.get)
 			.pipe(map(response => {
 				console.log({ key: response });
-
 				return { key: response }
 			}))
 			.subscribe(res => {

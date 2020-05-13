@@ -5,4 +5,5 @@ export class RegisterUserModel {
 	email: string
 	isActive: boolean
 	role: string
+	roles: any
 }
