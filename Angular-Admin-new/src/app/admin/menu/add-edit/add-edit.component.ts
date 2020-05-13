@@ -6,7 +6,9 @@ import { APIConfig } from 'src/app/_core/API-config';
 import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-
+import { TemplateModel } from 'src/app/_core/models/template.model';
+import { TemplatesConfig } from 'src/app/_core/templates-config';
+import { FormControl } from '@angular/forms';
 export enum Menu {
 	main = 0,
 	footer = 1
@@ -25,6 +27,10 @@ export class AddEditComponent implements OnInit {
 	languages: Array<LanguageModel>;
 	menus: Array<MenuModel>;
 	originUrl: string;
+	templates: Array<TemplateModel> = TemplatesConfig;
+	languageControl = new FormControl();
+	menuControl = new FormControl();
+	typeMenuControl = new FormControl();
 	constructor(
 		private httpSvc: HttpService,
 		private toastrSvc: ToastrService,
