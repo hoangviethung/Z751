@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryModel } from 'src/app/_core/models/category.model';
 import { LanguageModel } from 'src/app/_core/models/language';
-import { InputRequestOption } from 'src/app/_core/services/http.service';
+import {
+	InputRequestOption,
+	HttpService,
+} from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { UtilService } from 'src/app/_core/services/util.service';
@@ -21,18 +24,22 @@ import { ProductGroupModel } from 'src/app/_core/models/product-groups';
 export class AddEditComponent implements OnInit {
 	templates: Array<TemplateModel> = TemplatesConfig;
 	productGroupsControl: FormControl = new FormControl();
+	templatesControl = new FormControl();
+	languageControl = new FormControl();
+	categoryControl = new FormControl();
 	category: CategoryModel = new CategoryModel();
 	languages: Array<LanguageModel>;
-	categories: Array<CategoryModel>;
+	categories: Array<CategoryModel> = [];
 	isEdit: boolean;
 	originUrl: string;
 	isShowProductGroup: boolean;
 	productGroups: Array<ProductGroupModel>;
-	categoryProductGroups: Array<number>;
-
+	categoryProductGroups: Array<number> = [];
+	categoryProductGroupsChecked: Array<ProductGroupModel>;
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
+		private httpSvc: HttpService,
 		private activatedRoute: ActivatedRoute,
 		private toastrSvc: ToastrService,
 		private router: Router
@@ -55,6 +62,8 @@ export class AddEditComponent implements OnInit {
 				this.productGroups = response.data;
 			});
 	}
+
+	getProductGroupsChecked() {}
 
 	getCategories(languageId: string = '1') {
 		const params = new InputRequestOption();
@@ -94,6 +103,7 @@ export class AddEditComponent implements OnInit {
 					.get(APIConfig.Category.Get, opts1)
 					.subscribe((response) => {
 						this.category = response.data;
+						console.log(this.category);
 						this.setBaseUrl();
 						this.getCategories(this.category.languageId.toString());
 						this.showProductGroups(this.category.template);
@@ -130,6 +140,17 @@ export class AddEditComponent implements OnInit {
 								);
 							});
 					});
+				const categoryId = new InputRequestOption();
+				categoryId.params = {
+					categoryId: params.CategoryId,
+				};
+				this.httpSvc
+					.get(APIConfig.ProductGroup.GetItemsChecked, categoryId)
+					.pipe(map((response) => response.data))
+					.subscribe((itemsChecked) => {
+						this.categoryProductGroupsChecked = itemsChecked;
+						console.log(this.categoryProductGroupsChecked);
+					});
 			} else {
 				this.isEdit = false;
 				this.setBaseUrl();
@@ -165,7 +186,7 @@ export class AddEditComponent implements OnInit {
 				return item;
 			}
 		});
-		if (item.haveList) {
+		if (item.haveList == true) {
 			this.isShowProductGroup = true;
 		} else {
 			this.isShowProductGroup = false;

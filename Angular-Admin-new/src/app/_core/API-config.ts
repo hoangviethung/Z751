@@ -60,6 +60,7 @@ export const APIConfig = {
 	ProductGroup: {
 		UsedGet: '/api/ProductGroup/used/get',
 		Gets: '/api/ProductGroup/gets',
+		GetItemsChecked: '/api/ProductGroup/used/get',
 		Add: '/api/ProductGroup/add',
 		Update: '/api/ProductGroup/update',
 		Delete: '/api/ProductGroup/delete',

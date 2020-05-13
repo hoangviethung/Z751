@@ -9,7 +9,9 @@ import { CrudService } from 'src/app/_core/services/crud.service';
 import { FilterSearchModel } from 'src/app/_core/models/filter.model';
 import { UtilService } from 'src/app/_core/services/util.service';
 import { CookieService } from 'src/app/_core/services/cookie.service';
-
+import { TemplateModel } from 'src/app/_core/models/template.model';
+import { TemplatesConfig } from 'src/app/_core/templates-config';
+import { FormControl } from '@angular/forms';
 @Component({
 	selector: 'app-article',
 	templateUrl: './article.component.html',
@@ -41,7 +43,7 @@ export class ArticleComponent implements OnInit {
 	}
 
 	getPermissions() {
-		const FeaturesObj = JSON.parse(this.cookieSvc.get('user-feature'))
+		const FeaturesObj = JSON.parse(this.cookieSvc.get('user-feature'));
 		console.log(FeaturesObj);
 	}
 

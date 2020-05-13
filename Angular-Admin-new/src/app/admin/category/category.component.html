@@ -1,13 +1,14 @@
 <div class="block-control ai-c">
 	<div class="block-filters mr-at d-f ai-c fw-w">
 		<div class="form-group mb-0">
-			<select name="language" id="language" class="form-control" [(ngModel)]="search.languageId"
-				(change)="getCategories($event)">
-				<option *ngFor="let language of languages" value="{{ language.id }}"
-					[selected]="language.isDefault ? 'selected' : ''">
-					{{ language.name }}
-				</option>
-			</select>
+			<mat-form-field>
+				<mat-select name="language" [formControl]="languageControl" (ngModelChange)="getCategories($event)"
+					[ngModel]=1>
+					<mat-option *ngFor="let language of languages" [value]="language.id">
+						{{ language.name }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
 		</div>
 	</div>
 	<div class="block-buttons">

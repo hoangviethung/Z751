@@ -2,6 +2,7 @@
 	<div class="block-control ai-c">
 		<div class="block-filters mr-at d-f ai-c fw-w">
 			<div class="form-group mb-0">
+<<<<<<< HEAD
 				<select
 					name="language"
 					id="language"
@@ -43,6 +44,20 @@
 					id="article-keywords"
 					[(ngModel)]="search.keywords"
 				/>
+=======
+				<mat-form-field>
+					<mat-select name="language" [formControl]="templatesControl" (ngModelChange)="fetchArticle($event)"
+						[ngModel]=1>
+						<mat-option *ngFor="let language of languages" [value]="language.id">
+							{{ language.name }}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="form-group mb-0">
+				<input class="form-control" placeholder="Tìm kiếm..." type="text" name="article-keywords"
+					id="article-keywords" [(ngModel)]="search.keywords" />
+>>>>>>> Hung
 			</div>
 			<div class="form-group mb-0 form-button">
 				<button (click)="filterArticle()" class="btn btn-success">
@@ -51,10 +66,7 @@
 			</div>
 		</div>
 		<div class="block-buttons">
-			<a
-				class="btn btn-success btn-add ml-at"
-				[routerLink]="['/admin/article/add']"
-			>
+			<a class="btn btn-success btn-add ml-at" [routerLink]="['/admin/article/add']">
 				Thêm mới
 			</a>
 		</div>
@@ -75,16 +87,10 @@
 				<td class="column-category ta-c">{{ article.categoryName }}</td>
 				<td class="column-button ta-c">
 					<div class="table-buttons">
-						<a
-							class="btn btn-outline-success btn-edit"
-							[routerLink]="['/admin/article/edit', article.id]"
-						>
+						<a class="btn btn-outline-success btn-edit" [routerLink]="['/admin/article/edit', article.id]">
 							<span class="lnr lnr-pencil"></span>
 						</a>
-						<span
-							class="btn btn-outline-danger btn-remove"
-							(click)="deleteArticle(article.id)"
-						>
+						<span class="btn btn-outline-danger btn-remove" (click)="deleteArticle(article.id)">
 							<span class="lnr lnr-trash"></span>
 						</span>
 					</div>

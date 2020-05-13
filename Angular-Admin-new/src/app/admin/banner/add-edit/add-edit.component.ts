@@ -9,7 +9,9 @@ import { LanguageModel } from 'src/app/_core/models/language';
 import { CategoryModel } from 'src/app/_core/models/category.model';
 import { ToastrService } from 'ngx-toastr';
 import { CrudService } from 'src/app/_core/services/crud.service';
-
+import { TemplateModel } from 'src/app/_core/models/template.model';
+import { TemplatesConfig } from 'src/app/_core/templates-config';
+import { FormControl } from '@angular/forms';
 @Component({
 	selector: 'app-add-edit',
 	templateUrl: './add-edit.component.html',
@@ -21,11 +23,12 @@ export class AddEditComponent implements OnInit {
 	@Output('close') close: EventEmitter<boolean> = new EventEmitter<boolean>();
 	languages: Array<LanguageModel>;
 	categories: Array<CategoryModel>;
-
+	templates: Array<TemplateModel> = TemplatesConfig;
+	templatesControl = new FormControl();
 	constructor(
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.languages = JSON.parse(localStorage.getItem('languages'));

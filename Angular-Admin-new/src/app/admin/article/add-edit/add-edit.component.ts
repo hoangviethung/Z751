@@ -9,7 +9,9 @@ import { ToastrService } from 'ngx-toastr';
 import { CrudService } from 'src/app/_core/services/crud.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
-
+import { TemplateModel } from 'src/app/_core/models/template.model';
+import { TemplatesConfig } from 'src/app/_core/templates-config';
+import { FormControl } from '@angular/forms';
 @Component({
 	selector: 'app-add-edit',
 	templateUrl: './add-edit.component.html',
@@ -18,16 +20,19 @@ import { map } from 'rxjs/operators';
 export class AddEditComponent implements OnInit {
 	article: ArticleModel = new ArticleModel();
 	languages: Array<LanguageModel>;
-	categories: Array<CategoryModel>;
+	categories: Array<CategoryModel> = [];
 	isEdit: boolean;
 	originUrl: string;
+	templates: Array<TemplateModel> = TemplatesConfig;
+	LanguageControl = new FormControl();
+	CategoryControl = new FormControl();
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
 		private toastrSvc: ToastrService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.getArticle();
