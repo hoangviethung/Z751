@@ -1,0 +1,56 @@
+<div class="ckf-panel-scrollable ckf-panel-left ui-panel ui-panel-position-left ui-panel-display-push ui-panel-closed ui-body-a ui-panel-fixed ckf-folders-panel ckf-folders-panel-default"
+	data-ckf-panel="folders" data-position="left" data-theme="a" data-display="push" aria-hidden="true">
+	<div class="ui-panel-inner">
+		<div class="ckf-panel-contents" style="height: 646px; overflow: auto;">
+			<ul role="tree" data-role="listview" tabindex="20" class="ckf-tree ui-listview">
+				<li role="presentation" [class]="item.isExpanded ? 'ckf-folders-tree ui-li-has-alt ckf-tree-expanded'
+            : 'ckf-folders-tree ui-li-has-alt'" *ngFor="let item of folders">
+					<a role="treeitem" tabindex="-1" data-ckf-drop="true" [attr.aria-labelledby]="item.id"
+						aria-busy="false" [attr.aria-expanded]="item.isExpanded" [attr.aria-level]="item.level"
+						(click)="onLeftClick($event, item)" [contextMenu]="basicMenu" [contextMenuSubject]="item"
+						[class]="item == currentFolder ? 'ckf-folders-tree-label ui-btn ui-btn-active' : 'ckf-folders-tree-label ui-btn'">
+						<span id="{{item.id}}">{{item.name}}</span></a>
+					<a [className]="item.items.length == 0 ? 'ckf-folders-tree-expander ui-btn ui-btn-icon-notext ckf-folders-tree-no-children'
+            : (item.isExpanded ? 'ckf-folders-tree-expander ui-btn ui-btn-icon-notext ui-icon-custom ui-icon-ckf-arrow-d'
+              : 'ckf-folders-tree-expander ui-btn ui-btn-icon-notext ui-icon-custom ui-icon-ckf-arrow-r')"
+						(click)="onArrowClick($event, item)"></a>
+					<!-- Sub folders of current folder -->
+					<app-sub-folder [parent]="item" [currentFolder]="currentFolder" [basicMenu]="basicMenu"
+						(valueUpdate)="changeCurrentFolder($event)"></app-sub-folder>
+				</li>
+			</ul>
+		</div>
+		<context-menu>
+			<div class="ui-popup-container">
+				<div class="ckf-contextmenu ui-popup ui-body-a ui-overlay-shadow ui-corner-all" data-theme="a">
+					<ul class="ui-listview">
+						<li class="ui-first-child">
+							<ng-template contextMenuItem (execute)="createSubFolder($event)">
+								<span tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-folder-add"
+									data-ckf-name="CreateFolder">
+									Tạo thư mục con
+								</span>
+							</ng-template>
+						</li>
+						<li>
+							<ng-template contextMenuItem (execute)="renameFolder($event)">
+								<span tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-folder-rename"
+									data-ckf-name="RenameFolder">Đổi tên</span>
+							</ng-template>
+						</li>
+						<li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">
+						</li>
+						<li class="ui-last-child">
+							<ng-template contextMenuItem (execute)="deleteFolder($event)">
+								<span tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-folder-delete"
+									data-ckf-name="DeleteFolder">
+									Xóa
+								</span>
+							</ng-template>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</context-menu>
+	</div>
+</div>

@@ -97,5 +97,10 @@ export const AdminRoutingConfig = [
 		label: 'Khách hàng liên lạc',
 		route: '/admin/contact',
 		iconClasses: 'lnr lnr-envelope',
+	},
+	{
+		label: 'Quản lý thư mục',
+		route: '/admin/file-manager',
+		iconClasses: 'lnr lnr-cloud-check',
 	}
 ];

@@ -13,9 +13,9 @@ export class FileService {
     }
 
     gets(path: string = "") {
-        path = path.replace("http://localhost:56958/upload/", "");
-        
-        return this.http.get("http://localhost:56958/api/File/gets?folder=" + path);
+        path = path.replace("http://27.71.234.45:8080/upload/", "");
+
+        return this.http.get("http://27.71.234.45:8080/api/File/gets?folder=" + path);
     }
 
     randomId(files: FileModel[], parentId: string) : FileModel[] {

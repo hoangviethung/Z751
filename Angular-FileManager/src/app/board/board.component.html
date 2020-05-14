@@ -1,0 +1,78 @@
+<div class="ckf-main-region" data-ckf-priority="50" style="min-height: 648px;">
+	<ul data-role="listview" tabindex="30" role="list"
+		class="ckf-files-view ckf-files-view-borders ui-body-inherit ui-listview ckf-files-thumbs ckf-files-thumbs-xs"
+		aria-label="Files pane" style="min-height: 638px;">
+		<li *ngFor="let item of files" [attr.id]="item.id"
+			class="fileHover != null ? 'ckf-file-item ui-li-has-thumb ckf-file-show-thumb' : 'ckf-file-item ui-li-has-thumb'"
+			style="width: 150px; height: 150px;" data-icon="false" role="presentation">
+			<a href="javascript:void(0)"
+				[class]="activeFiles.indexOf(item) != -1 ? 'lckf-files-inner ui-btn ut-btn-active' : 'lckf-files-inner ui-btn'"
+				tabindex="-1" draggable="true" role="listitem" [attr.aria-label]="item.name" clickDirective
+				[file]="item" [attr.aria-describedby]="'ckf-file-desc-' + item.id"
+				[attr.data-ckf-drag-preview]="'ckf-drag-prev-' + item.id" [attr.data-ckf-view]="item.id"
+				[contextMenu]="basicMenu" [contextMenuSubject]="item">
+				<img id="ckf-drag-prev-{{item.id}}" class="ui-li-thumb" alt="" src="{{item.path}}" draggable="true"
+					[attr.data-ckf-drag-preview]="'ckf-drag-prev-' + item.id" (mouseenter)="mouseEnter(item) "
+					(mouseleave)="mouseLeave(item)">
+				<div class="ckf-file-desc ui-bar-a" draggable="true">
+					<h2 title="{{item.name}}" dir="auto">{{item.name}}</h2>
+					<p draggable="true" id="ckf-file-desc-{{item.id}}"
+						[attr.data-ckf-drag-preview]="'ckf-drag-prev-' + item.id">
+						{{item.createdDate | date: 'dd/MM/yyyy HH:mm'}}<br>{{item.length}} KB
+					</p>
+				</div>
+			</a>
+		</li>
+	</ul>
+</div>
+<context-menu>
+	<div class="ckf-contextmenu ui-popup ui-body-a ui-overlay-shadow ui-corner-all" data-theme="a">
+		<ul class="ui-listview ui-listview-menutask">
+			<ng-template contextMenuItem (execute)="createSubFolder($event)">
+				<li class="ui-first-child"><a tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-view"
+						data-ckf-name="View">View</a>
+				</li>
+			</ng-template>
+			<ng-template contextMenuItem (execute)="createSubFolder($event)">
+				<li>
+					<a tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-file-download"
+						data-ckf-name="Download">Download</a>
+				</li>
+			</ng-template>
+			<ng-template contextMenuItem (execute)="createSubFolder($event)">
+				<li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit"></li>
+				<li>
+					<a tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-file-edit" data-ckf-name="EditImage">
+						Edit
+					</a>
+				</li>
+			</ng-template>
+			<ng-template contextMenuItem (execute)="createSubFolder($event)">
+				<li>
+					<a tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-file-rename" data-ckf-name="RenameFile">
+						Rename
+					</a>
+				</li>
+			</ng-template>
+			<ng-template contextMenuItem (execute)="createSubFolder($event)">
+				<li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit"></li>
+				<li class="ui-last-child">
+					<a tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-file-delete"
+						data-ckf-name="DeleteFiles">
+						Delete
+					</a>
+				</li>
+			</ng-template>
+		</ul>
+	</div>
+</context-menu>
+<div class="ckf-file-preview-root" tabindex="0" role="application" dir="ltr" *ngIf="!isSingleClick"
+	(click)="isSingleClick=true">
+	<div class="ckf-file-preview-info">
+		<div class="ckf-file-preview-info-name">{{activeFile.name}}</div>
+	</div>
+	<div class="ckf-file-preview">
+		<img alt="1.jpg&quot;" src="{{activeFile.path}}" id="ckf-image-preview"
+			style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; margin: auto; max-width: calc(100% - 6em); max-height: calc(100% - 2em);">
+	</div>
+</div>

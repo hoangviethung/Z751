@@ -1,0 +1,19 @@
+.active {
+    color: red;
+}
+
+.ui-btn.ui-btn-icon-left:after {
+    background-size: cover;
+}
+
+.ui-btn.ui-btn-icon-left.ui-icon-ckf-folder-add:after {
+    background-image: url("../../assets/icons/add.png");
+}
+
+.ui-btn.ui-btn-icon-left.ui-icon-ckf-folder-rename:after {
+    background-image: url("../../assets/icons/rename.png");
+}
+
+.ui-btn.ui-btn-icon-left.ui-icon-ckf-folder-delete:after {
+    background-image: url("../../assets/icons/delete.png");
+}
