@@ -10,13 +10,12 @@ import { ContextMenuComponent } from 'ngx-contextmenu';
 })
 export class BoardComponent implements OnInit {
 	@Input() currentFolder;
-	@ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
+	@ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
 	isSingleClick: Boolean = true;
 	isMultiSelect: Boolean = false;
 	activeFiles = [];
 	fileHover: FileModel;
 	files = [];
-
 	constructor(
 		private fileSvc: FileService,
 		private renderer: Renderer2

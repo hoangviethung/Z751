@@ -15,7 +15,7 @@ export class FoldersComponent implements OnInit {
 	@Output() valueUpdate = new EventEmitter<FolderModel>();
 	@Output() showDialogToggle = new EventEmitter<Boolean>();
 	@Output() isReloadFolders = new EventEmitter<Boolean>();
-	@ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
+	@ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
 	files = [];
 	constructor(
 		private folderSvc: FolderService
