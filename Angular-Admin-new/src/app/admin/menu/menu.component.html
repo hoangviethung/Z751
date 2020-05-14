@@ -2,10 +2,14 @@
 	<div class="block-control">
 		<div class="form-group mr-at">
 			<label>Lọc theo ngôn ngữ</label>
-			<select name="language" class="form-control" (change)="fetchMenu($event)">
-				<option *ngFor="let language of languages" value="{{ language.id }}"
-					[selected]="language.isDefault ? 'selected' : ''">{{ language.name }}</option>
-			</select>
+			<mat-form-field>
+				<mat-select name="language" [formControl]="languageControl" (ngModelChange)="fetchMenu($event)"
+					[ngModel]=1>
+					<mat-option *ngFor="let language of languages" [value]="language.id">
+						{{ language.name }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
 		</div>
 		<a class="btn btn-success btn-add" (click)="onOpenPopup(true)">Thêm mới</a>
 	</div>

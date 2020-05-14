@@ -1,20 +1,13 @@
 <div class="block-control">
 	<div class="block-filters mr-at d-f ai-c fw-w">
 		<div class="form-group mb-0">
-			<select
-				name="language"
-				id="language"
-				class="form-control"
-				[(ngModel)]="search.languageId"
-			>
-				<option
-					*ngFor="let language of languages"
-					value="{{ language.id }}"
-					[selected]="language.isDefault ? 'selected' : ''"
-				>
-					{{ language.name }}
-				</option>
-			</select>
+			<mat-form-field>
+				<mat-select name="language" [formControl]="languageControl" [(ngModel)]="search.languageId">
+					<mat-option *ngFor="let language of languages" [value]="language.id">
+						{{ language.name }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
 		</div>
 		<div class="form-group mb-0">
 			<select
@@ -49,10 +42,7 @@
 		</div>
 	</div>
 	<div class="block-buttons">
-		<a
-			class="btn btn-success btn-add"
-			[routerLink]="['/admin/products/add']"
-		>
+		<a class="btn btn-success btn-add" [routerLink]="['/admin/products/add']">
 			Thêm mới
 		</a>
 	</div>
@@ -65,29 +55,37 @@
 			<th class="column-title">Sản Phẩm</th>
 			<th class="column-category ta-c">Danh mục cha</th>
 			<th class="column-url ta-c">Đường dẫn</th>
+			<th class="column-view ta-c">Hiển thị</th>
+			<th class="column-view ta-c">Nổi bật</th>
 			<th class="column-button ta-c">Ngày đăng</th>
 			<th class="column-button ta-c">Tác vụ</th>
 		</tr>
 		<tr *ngFor="let product of products; let i = index">
-			<th class="ta-c">{{ i }}</th>
+			<th class="ta-c">{{ i + 1 }}</th>
 			<td>{{ product.title }}</td>
 			<td>{{ product.categoryName }}</td>
 			<td>{{ product.previewUrl }}</td>
+			<td>
+				<label class="checkbox-custom jc-c">
+					<input class="check-box" type="checkbox" name="isPublished" disabled
+						checked="{{ product.isPublished ? 'checked' : '' }}" />
+				</label>
+			</td>
+			<td>
+				<label class="checkbox-custom jc-c">
+					<input class="check-box" type="checkbox" name="isHot" disabled
+						checked="{{ product.isHot ? 'checked' : '' }}" />
+				</label>
+			</td>
 			<td class="ta-c">
 				{{ product.updateDate | date: "hh:mm:ss \n dd/MM/yyyy" }}
 			</td>
 			<td class="ta-c">
 				<div class="table-buttons">
-					<a
-						class="btn btn-outline-success btn-edit"
-						[routerLink]="['/admin/products/edit', product.id]"
-					>
+					<a class="btn btn-outline-success btn-edit" [routerLink]="['/admin/products/edit', product.id]">
 						<span class="lnr lnr-pencil"></span>
 					</a>
-					<span
-						class="btn btn-outline-danger btn-remove"
-						(click)="deleteProduct(product.id)"
-					>
+					<span class="btn btn-outline-danger btn-remove" (click)="deleteProduct(product.id)">
 						<span class="lnr lnr-trash"></span>
 					</span>
 				</div>

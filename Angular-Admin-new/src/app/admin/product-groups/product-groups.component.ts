@@ -5,7 +5,9 @@ import { APIConfig } from 'src/app/_core/API-config';
 import { map } from 'rxjs/operators';
 import { LanguageModel } from 'src/app/_core/models/language';
 import { ToastrService } from 'ngx-toastr';
-
+import { TemplateModel } from 'src/app/_core/models/template.model';
+import { TemplatesConfig } from 'src/app/_core/templates-config';
+import { FormControl } from '@angular/forms';
 @Component({
 	selector: 'app-product-groups',
 	templateUrl: './product-groups.component.html',
@@ -17,6 +19,8 @@ export class ProductGroupsComponent implements OnInit {
 	languages: Array<LanguageModel>
 	productGroups: Array<ProductGroupModel>
 	productGroup: ProductGroupModel
+	templates: Array<TemplateModel> = TemplatesConfig;
+	languageControl = new FormControl();
 	constructor(
 		private httpSvc: HttpService,
 		private toastrSvc: ToastrService
@@ -79,6 +83,6 @@ export class ProductGroupsComponent implements OnInit {
 	}
 
 	fetchProductGroup(e) {
-		this.getProductGroups(e.target.value)
+		this.getProductGroups(e)
 	}
 }

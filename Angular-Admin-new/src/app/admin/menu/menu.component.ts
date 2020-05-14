@@ -10,7 +10,9 @@ import { ActivatedRoute } from '@angular/router';
 import { LanguageModel } from 'src/app/_core/models/language';
 import { CategoryModel } from 'src/app/_core/models/category.model';
 import { ToastrService } from 'ngx-toastr';
-
+import { TemplateModel } from 'src/app/_core/models/template.model';
+import { TemplatesConfig } from 'src/app/_core/templates-config';
+import { FormControl } from '@angular/forms';
 export enum Menu {
 	main = 0,
 	footer = 1,
@@ -28,6 +30,8 @@ export class MenuComponent implements OnInit {
 	isEdit: boolean;
 	languages: Array<LanguageModel>;
 	categories: Array<CategoryModel>;
+	templates: Array<TemplateModel> = TemplatesConfig;
+	languageControl = new FormControl();
 	constructor(
 		private httpSvc: HttpService,
 		private activatedRoute: ActivatedRoute,
@@ -103,7 +107,7 @@ export class MenuComponent implements OnInit {
 	fetchMenu(e) {
 		this.activatedRoute.params.subscribe((params) => {
 			const type = Menu[params.menuTitle];
-			this.getMenus(type, e.target.value);
+			this.getMenus(type, e);
 		});
 	}
 }

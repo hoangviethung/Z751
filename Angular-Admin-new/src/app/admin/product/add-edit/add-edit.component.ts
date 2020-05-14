@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { InputRequestOption } from 'src/app/_core/services/http.service';
+import { InputRequestOption, HttpService } from 'src/app/_core/services/http.service';
 import { LanguageModel } from 'src/app/_core/models/language';
 import { APIConfig } from 'src/app/_core/API-config';
 import { CategoryModel } from 'src/app/_core/models/category.model';
@@ -10,7 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { ProductModel } from 'src/app/_core/models/product.model';
 import { FormControl } from '@angular/forms';
-
+import { TemplateModel } from 'src/app/_core/models/template.model';
+import { TemplatesConfig } from 'src/app/_core/templates-config';
+import { ProductGroupModel } from 'src/app/_core/models/product-groups';
 @Component({
 	selector: 'app-add-edit',
 	templateUrl: './add-edit.component.html',
@@ -19,13 +21,17 @@ import { FormControl } from '@angular/forms';
 export class AddEditComponent implements OnInit {
 	isEdit: boolean = false;
 	languages: Array<LanguageModel>;
+	potentials: Array<ProductGroupModel> = [];
 	product: ProductModel = new ProductModel();
-	categories: Array<CategoryModel>;
+	categories: Array<CategoryModel> = [];
 	originUrl: string;
 	createdDate = new FormControl(new Date());
-
+	templates: Array<TemplateModel> = TemplatesConfig;
+	languageControl = new FormControl();
+	categoryControl = new FormControl();
 	constructor(
 		private crudSvc: CrudService,
+		private httpSvc: HttpService,
 		private utilSvc: UtilService,
 		private toastrSvc: ToastrService,
 		private activatedRoute: ActivatedRoute,
@@ -119,6 +125,7 @@ export class AddEditComponent implements OnInit {
 
 	onDateChangeEmitter(e) {
 		console.log(e);
+		this.product.order = e
 	}
 
 	onChangeEmitterDescription(content) {

@@ -1,3 +1,5 @@
+import { ProductGroupModel } from './product-groups';
+
 export class ProductModel {
 	category: string;
 	categoryId: number;

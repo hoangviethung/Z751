@@ -29,36 +29,24 @@
 			<div class="row">
 				<div class="form-group col-lg-6">
 					<label>Ngôn ngữ</label>
-					<select
-						class="form-control"
-						name="languageid"
-						[(ngModel)]="product.languageId"
-					>
-						<ng-container *ngFor="let language of languages">
-							<option
-								value="{{ language.id }}"
-								[selected]="
-									language.isDefault ? 'selected' : ''
-								"
-							>
+					<mat-form-field>
+						<mat-select name="languageid" [formControl]="languageControl" [(ngModel)]="product.languageId">
+							<mat-option *ngFor="let language of languages" [value]="language.id">
 								{{ language.name }}
-							</option>
-						</ng-container>
-					</select>
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Danh mục *</label>
-					<select
-						class="form-control"
-						[(ngModel)]="product.categoryId"
-						(change)="updateBaseUrl(product.categoryId)"
-					>
-						<ng-container *ngFor="let category of categories">
-							<option value="{{ category.id }}">
+					<mat-form-field>
+						<mat-select name="categories" [formControl]="categoryControl" [(ngModel)]="product.categoryId"
+							(ngModelChange)="updateBaseUrl(product.categoryId)">
+							<mat-option *ngFor="let category of categories" [value]="category.id">
 								{{ category.title }}
-							</option>
-						</ng-container>
-					</select>
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Tên sản phẩm *</label>
@@ -121,10 +109,8 @@
 				</div>
 				<div class="form-group col-lg-12">
 					<label>Mô tả *</label>
-					<app-ckeditor
-						[data]="product.description"
-						(change)="onChangeEmitterDescription($event)"
-					></app-ckeditor>
+					<app-ckeditor [data]="product.description" (change)="onChangeEmitterDescription($event)">
+					</app-ckeditor>
 				</div>
 				<div class="form-group col-lg-12">
 					<label>Mô tả chi tiết *</label>
@@ -150,13 +136,13 @@
 						<mat-datepicker #productDatePicker></mat-datepicker>
 					</mat-form-field>
 				</div>
-				<div class="form-group col-lg-2">
+				<div class="form-group col-lg-2 as-e">
 					<label class="checkbox-custom">
 						<input type="checkbox" />
 						Hiển thị
 					</label>
 				</div>
-				<div class="form-group col-lg-2">
+				<div class="form-group col-lg-2 as-e">
 					<label class="checkbox-custom">
 						<input type="checkbox" />
 						Nổi bật

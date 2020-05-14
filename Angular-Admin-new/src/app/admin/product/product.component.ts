@@ -7,6 +7,9 @@ import { UtilService } from 'src/app/_core/services/util.service';
 import { FilterSearchModel } from 'src/app/_core/models/filter.model';
 import { ProductModel } from 'src/app/_core/models/product.model';
 import { ToastrService } from 'ngx-toastr';
+import { TemplateModel } from 'src/app/_core/models/template.model';
+import { TemplatesConfig } from 'src/app/_core/templates-config';
+import { FormControl } from '@angular/forms';
 import { CategoryModel } from 'src/app/_core/models/category.model';
 
 @Component({
@@ -18,13 +21,15 @@ export class ProductComponent implements OnInit {
 	languages: LanguageModel[] = [];
 	search: FilterSearchModel = new FilterSearchModel();
 	products: ProductModel[] = [];
+	templates: Array<TemplateModel> = TemplatesConfig;
+	languageControl = new FormControl();
 	categories: Array<CategoryModel>;
 
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
 		private toastrSvc: ToastrService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.getCategories();

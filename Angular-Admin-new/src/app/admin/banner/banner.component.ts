@@ -30,7 +30,7 @@ export class BannerComponent implements OnInit {
 		en: LanguageFlag.en,
 	};
 	templates: Array<TemplateModel> = TemplatesConfig;
-	templatesControl = new FormControl();
+	languageControl = new FormControl();
 	constructor(
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService

@@ -2,7 +2,7 @@
 	<div class="block-control ai-c">
 		<div class="block-filters mr-at d-f ai-c fw-w">
 			<mat-form-field>
-				<mat-select name="language" [formControl]="templatesControl" (ngModelChange)="fetchBanner($event)"
+				<mat-select name="language" [formControl]="languageControl" (ngModelChange)="fetchBanner($event)"
 					[ngModel]=1>
 					<mat-option *ngFor="let language of languages" [value]="language.id">
 						{{ language.name }}
