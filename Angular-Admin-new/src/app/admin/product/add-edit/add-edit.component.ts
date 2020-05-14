@@ -90,7 +90,7 @@ export class AddEditComponent implements OnInit {
 		this.originUrl = this.utilSvc.getOriginUrl();
 	}
 
-	updateBaseUrl() {
+	updateBaseUrl(id?) {
 		const categoryId = Number(this.product.categoryId);
 		const item = this.categories.find((item) => {
 			if (categoryId == item.id) {

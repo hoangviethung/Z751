@@ -10,8 +10,9 @@ import { FilterSearchModel } from 'src/app/_core/models/filter.model';
 import { UtilService } from 'src/app/_core/services/util.service';
 import { CookieService } from 'src/app/_core/services/cookie.service';
 import { TemplateModel } from 'src/app/_core/models/template.model';
-import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
+import { TemplatesConfig } from 'src/app/_core/templates-config';
+
 @Component({
 	selector: 'app-article',
 	templateUrl: './article.component.html',
@@ -27,6 +28,8 @@ export class ArticleComponent implements OnInit {
 	search: FilterSearchModel = new FilterSearchModel();
 	FeatureNumber: number = -12;
 	permissions: any = {};
+	templates: Array<TemplateModel> = TemplatesConfig;
+	templatesControl = new FormControl();
 
 	constructor(
 		private crudSvc: CrudService,
@@ -43,7 +46,10 @@ export class ArticleComponent implements OnInit {
 	}
 
 	getPermissions() {
-		const FeaturesObj = JSON.parse(this.cookieSvc.get('user-feature'));
+		const FeatureObj = JSON.parse(this.cookieSvc.get('user')).permissions;
+		console.log(FeatureObj);
+
+		this.permissions = FeatureObj.features[this.FeatureNumber];
 	}
 
 	getArticles() {
@@ -66,6 +72,18 @@ export class ArticleComponent implements OnInit {
 			.get(APIConfig.Category.Gets, params)
 			.subscribe((response) => {
 				this.categories = response.data.items;
+			});
+	}
+
+	fetchArticle(e) {
+		const params = new InputRequestOption();
+		params.params = {
+			languageId: e,
+		};
+		this.crudSvc
+			.get(APIConfig.Article.Gets, params)
+			.subscribe((response) => {
+				this.articles = response.data.items;
 			});
 	}
 
