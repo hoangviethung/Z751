@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, ViewChild } from '@angular/core';
-import { FolderModel } from '../model/foldermodel';
 import { ContextMenuComponent } from 'ngx-contextmenu';
-import { FolderService } from '../service/folder';
+import { FolderModel } from 'src/app/model/foldermodel';
+import { FolderService } from 'src/app/service/folder.service';
 
 @Component({
 	selector: 'app-folders',
@@ -16,9 +16,10 @@ export class FoldersComponent implements OnInit {
 	@Output() showDialogToggle = new EventEmitter<Boolean>();
 	@Output() isReloadFolders = new EventEmitter<Boolean>();
 	@ViewChild(ContextMenuComponent, { static: false }) public basicMenu: ContextMenuComponent;
-
-	constructor(private folderS: FolderService) {
-	}
+	files = [];
+	constructor(
+		private folderSvc: FolderService
+	) { }
 
 	ngOnInit() {
 	}
@@ -40,7 +41,7 @@ export class FoldersComponent implements OnInit {
 
 	createSubFolder($event) {
 		// Change data parent of dialog
-		this.folderS.setEvent({
+		this.folderSvc.setEvent({
 			path: $event.item.path,
 			isCreate: true,
 			isRename: false,
@@ -54,7 +55,7 @@ export class FoldersComponent implements OnInit {
 
 	renameFolder($event) {
 		// Change data parent of dialog
-		this.folderS.setEvent({
+		this.folderSvc.setEvent({
 			path: $event.item.path,
 			isCreate: false,
 			isRename: true,
@@ -66,7 +67,7 @@ export class FoldersComponent implements OnInit {
 	}
 
 	deleteFolder($event) {
-		this.folderS.delete($event.item.path).subscribe((response: any) => {
+		this.folderSvc.delete($event.item.path).subscribe((response: any) => {
 			if (response.code == 200) {
 				// Reload folders
 				this.isReloadFolders.emit(true)

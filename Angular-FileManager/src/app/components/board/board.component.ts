@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, SimpleChanges, Renderer2, ViewChild, HostListener } from '@angular/core';
-import { FileService } from '../service/file';
-import { FileModel } from '../model/filemodel';
+import { Component, OnInit, Input, SimpleChanges, Renderer2, ViewChild } from '@angular/core';
+import { FileService } from '../../service/file.service';
+import { FileModel } from '../../model/filemodel';
 import { ContextMenuComponent } from 'ngx-contextmenu';
 
 @Component({
@@ -17,22 +17,22 @@ export class BoardComponent implements OnInit {
 	fileHover: FileModel;
 	files = [];
 
-	constructor(private fileS: FileService, private renderer: Renderer2) {
-	}
+	constructor(
+		private fileSvc: FileService,
+		private renderer: Renderer2
+	) { }
 
 	ngOnInit() {
 	}
 
 	ngOnChanges(changes: SimpleChanges) {
 		this.getFiles()
-		// // changes.prop contains the old and the new value...
-		// console.log(changes.prop)
 	}
 
 	getFiles() {
-		this.fileS.gets(this.currentFolder.path).subscribe((element: any) => {
+		this.fileSvc.getFiles(this.currentFolder.path).subscribe((element: any) => {
 			// Make random Id
-			this.files = this.fileS.randomId(element.data, "c")
+			this.files = this.fileSvc.randomId(element.data, "c")
 		})
 	}
 
@@ -45,5 +45,4 @@ export class BoardComponent implements OnInit {
 	mouseLeave() {
 		this.fileHover = null
 	}
-
 }

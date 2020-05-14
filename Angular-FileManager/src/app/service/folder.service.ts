@@ -23,7 +23,9 @@ export class FolderService implements IFolderService {
 		return this.eventChange.next(event);
 	}
 
-	constructor(private http: HttpClient) {
+	constructor(
+		private http: HttpClient
+	) {
 		this.eventChange.subscribe((value) => {
 			this.event = value
 		});
@@ -63,7 +65,6 @@ export class FolderService implements IFolderService {
 				element.items = this.randomId(element.items, element.id + "-", level + 1)
 			}
 		})
-
 		return folders;
 	}
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FolderService } from '../service/folder';
-import { FolderEventModel } from '../model/folderEventModel';
-import { HttpParams } from '@angular/common/http';
+import { FolderEventModel } from '../../model/folderEventModel';
+import { FolderService } from '../../service/folder.service';
 
 @Component({
 	selector: 'app-toolbar',
@@ -12,29 +11,30 @@ import { HttpParams } from '@angular/common/http';
 export class ToolbarComponent implements OnInit {
 	@Input() isShowDialog;
 	@Input() isUploadActive;
-	// @Input() activeFiles;
 	@Output() showDialogToggle = new EventEmitter<Boolean>();
 	@Output() activeUploadToggle = new EventEmitter<Boolean>();
-	@Output() isReloadFolders = new EventEmitter<Boolean>();
+	@Output() isReloadfolderSvc = new EventEmitter<Boolean>();
 	event: FolderEventModel;
 
-	constructor(private folderS: FolderService) {
-		this.event = folderS.event;
+	constructor(
+		private folderSvc: FolderService
+	) {
+		this.event = folderSvc.event;
 	}
 
 	ngOnInit() {
 	}
 
 	get isSidebarVisible(): FolderEventModel {
-		this.event = this.folderS.event
-		return this.folderS.event;
+		this.event = this.folderSvc.event
+		return this.folderSvc.event;
 	}
 
 	createFolder(value: boolean) {
 		this.isShowDialog = value;
 		this.showDialogToggle.emit(this.isShowDialog)
 
-		this.folderS.setEvent({
+		this.folderSvc.setEvent({
 			path: "",
 			isCreate: true,
 			isRename: false,
@@ -54,11 +54,11 @@ export class ToolbarComponent implements OnInit {
 		if (name != "") {
 			console.log(this.event);
 			if (this.event.isCreate) {
-				this.folderS.create(this.event.path + "/" + name).subscribe((response: any) => {
+				this.folderSvc.create(this.event.path + "/" + name).subscribe((response: any) => {
 					if (response.code == 200) {
 						this.isShowDialog = false
 						this.showDialogToggle.emit(this.isShowDialog)
-						this.isReloadFolders.emit(true)
+						this.isReloadfolderSvc.emit(true)
 					}
 				});
 			}
@@ -66,18 +66,14 @@ export class ToolbarComponent implements OnInit {
 				var nPath = this.event.path;
 				if (nPath != "") nPath = parent + "/" + name
 
-				this.folderS.update(this.event.path, nPath).subscribe((response: any) => {
+				this.folderSvc.update(this.event.path, nPath).subscribe((response: any) => {
 					if (response.code == 200) {
 						this.isShowDialog = false
 						this.showDialogToggle.emit(this.isShowDialog)
-						this.isReloadFolders.emit(true)
+						this.isReloadfolderSvc.emit(true)
 					}
 				});
 			}
 		}
-	}
-
-	upload() {
-
 	}
 }
