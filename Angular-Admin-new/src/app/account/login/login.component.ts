@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
 
 	ngOnInit(): void {}
 
-	login() {
+	login(event?) {
 		this.authenticateSvc
 			.login(this.loginInfo)
 			.subscribe((response: ResponseModel) => {

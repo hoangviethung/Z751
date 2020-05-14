@@ -31,7 +31,7 @@ export class CategoryComponent implements OnInit {
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
 		private toastrSvc: ToastrService
-	) { }
+	) {}
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();
@@ -61,11 +61,13 @@ export class CategoryComponent implements OnInit {
 		params.params = {
 			id: id,
 		};
+		console.log(1);
+		
 		this.crudSvc
 			.delete(APIConfig.Category.Delete, params)
 			.subscribe((response) => {
-				this.getCategories();
 				if (response.code == 200) {
+					this.getCategories();
 					this.toastrSvc.success(response.message);
 				} else {
 					this.toastrSvc.error(response.message);

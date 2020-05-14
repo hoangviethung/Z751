@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService, InputRequestOption } from 'src/app/_core/services/http.service';
+import {
+	HttpService,
+	InputRequestOption,
+} from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
 import { map } from 'rxjs/operators';
 import { MenuModel } from 'src/app/_core/models/menu.model';
@@ -10,15 +13,14 @@ import { ToastrService } from 'ngx-toastr';
 
 export enum Menu {
 	main = 0,
-	footer = 1
+	footer = 1,
 }
 
 @Component({
 	selector: 'app-menu',
 	templateUrl: './menu.component.html',
-	styleUrls: ['./menu.component.scss']
+	styleUrls: ['./menu.component.scss'],
 })
-
 export class MenuComponent implements OnInit {
 	menus: Array<MenuModel>;
 	menu: MenuModel;
@@ -29,77 +31,79 @@ export class MenuComponent implements OnInit {
 	constructor(
 		private httpSvc: HttpService,
 		private activatedRoute: ActivatedRoute,
-		private toastrSvc: ToastrService,
-	) { }
+		private toastrSvc: ToastrService
+	) {}
 
 	ngOnInit(): void {
-		this.activatedRoute.params.subscribe(params => {
-			const typeMenu = Menu[params.menuTitle]
-			this.getMenus(typeMenu)
-		})
-		this.languages = JSON.parse(localStorage.getItem('languages'))
+		this.activatedRoute.params.subscribe((params) => {
+			const typeMenu = Menu[params.menuTitle];
+			this.getMenus(typeMenu);
+		});
+		this.languages = JSON.parse(localStorage.getItem('languages'));
 	}
 
 	getMenus(typeMenu, languageId?) {
-		const params = new InputRequestOption;
+		const params = new InputRequestOption();
 		if (languageId) {
 			params.params = {
 				type: typeMenu,
-				languageId: languageId
-			}
+				languageId: languageId,
+			};
 		} else {
 			params.params = {
 				type: typeMenu,
-				languageId: '1'
-			}
+				languageId: '1',
+			};
 		}
-		this.httpSvc.get(APIConfig.Menu.Gets, params)
+		this.httpSvc
+			.get(APIConfig.Menu.Gets, params)
 			.pipe(map((response) => response.data))
 			.subscribe((menus) => {
-				this.menus = menus
-			})
+				this.menus = menus;
+			});
 	}
 
 	deleteMenu(id) {
-		const params = new InputRequestOption()
-		params.body = id
-		this.httpSvc.post(APIConfig.Menu.Delete, params)
+		const params = new InputRequestOption();
+		params.params = { id: id };
+		this.httpSvc
+			.post(APIConfig.Menu.Delete, params)
 			.subscribe((response) => {
 				if (response.code === 200) {
-					this.activatedRoute.params.subscribe(params => {
-						const type = Menu[params.menuTitle]
-						this.getMenus(type)
-					})
+					this.activatedRoute.params.subscribe((params) => {
+						const type = Menu[params.menuTitle];
+						this.getMenus(type);
+					});
 					this.toastrSvc.success(response.message);
 				} else {
 					this.toastrSvc.error(response.message);
 				}
-			})
+			});
 	}
 
 	onOpenPopup(status, itemEdit?, isEdit?) {
 		this.isShowPopup = status;
 		if (itemEdit) {
 			this.menu = itemEdit;
-			this.isEdit = isEdit
+			this.isEdit = isEdit;
 		} else {
 			this.menu = new MenuModel();
-			this.isEdit = false
+			this.isEdit = false;
 		}
 	}
 
 	onClosePopup(status: boolean) {
 		this.isShowPopup = status;
-		this.activatedRoute.params.subscribe(params => {
-			const type = Menu[params.menuTitle]
-			this.getMenus(type)
-		})
+		this.activatedRoute.params.subscribe((params) => {
+			const type = Menu[params.menuTitle];
+			this.getMenus(type);
+		});
 	}
 
 	fetchMenu(e) {
-		this.activatedRoute.params.subscribe(params => {
-			const type = Menu[params.menuTitle]
-			this.getMenus(type, e.target.value)
-		})
+		this.activatedRoute.params.subscribe((params) => {
+			const type = Menu[params.menuTitle];
+			this.getMenus(type, e.target.value);
+		});
 	}
 }

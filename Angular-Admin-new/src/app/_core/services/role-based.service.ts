@@ -23,12 +23,6 @@ export class RoleBasedService {
 		return JSON.parse(this.cookieSvc.get('user')).roles;
 	}
 
-	getUserFeatures() {
-		return this.crudSvc
-			.get(APIConfig.Role.GetFeatures)
-			.pipe(map((response) => response.data));
-	}
-
 	getUserFeaturesCanDo(features) {
 		this.featuresObject = {};
 		const FeaturesNumberArray = features.map((item, index) => item.feature);

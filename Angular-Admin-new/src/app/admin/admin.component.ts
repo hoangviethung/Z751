@@ -18,42 +18,33 @@ export class AdminComponent implements OnInit {
 		private authenticateSvc: AuthenticateService,
 		private cookieSvc: CookieService,
 		private router: Router,
-		private roleBasedSvc: RoleBasedService,
-		private crudSvc: CrudService
+		private roleBasedSvc: RoleBasedService
 	) {}
 
 	ngOnInit(): void {
-		this.getUserFeatures();
+		this.getAccountInformation();
 	}
 
 	toggleInfoDetail() {
 		this.isDetailInfoShow = !this.isDetailInfoShow;
 	}
 
-	logout() {
-		this.authenticateSvc.logout().subscribe((response) => {});
-		this.cookieSvc.delete('user');
-		this.router.navigateByUrl('/account/login');
+	getAccountInformation() {
+		console.log(JSON.parse(this.cookieSvc.get('user')).permissions);
+		console.log(
+			this.roleBasedSvc.getUserFeaturesCanDo(
+				JSON.parse(this.cookieSvc.get('user')).permissions
+			)
+		);
 	}
 
-	getUserFeatures() {
-		const userRole = this.roleBasedSvc.getUserRole();
-		userRole.forEach((role) => {
-			const opts = new InputRequestOption();
-			opts.params = {
-				name: role,
-			};
-			this.crudSvc
-				.get(APIConfig.Role.GetPermissions, opts)
-				.subscribe((response) => {
-					const featuresObjects = this.roleBasedSvc.getUserFeaturesCanDo(
-						response.data.features
-					);
-					this.cookieSvc.set(
-						'user-features',
-						JSON.stringify(featuresObjects)
-					);
-				});
+	logout() {
+		this.authenticateSvc.logout().subscribe((response) => {
+			if (response.code == 200) {
+				this.cookieSvc.delete('user');
+				this.cookieSvc.delete('user-features');
+				this.router.navigateByUrl('/account/login');
+			}
 		});
 	}
 }

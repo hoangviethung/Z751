@@ -32,7 +32,7 @@ export class AddEditComponent implements OnInit {
 		private toastrSvc: ToastrService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router
-	) { }
+	) {}
 
 	ngOnInit(): void {
 		this.getArticle();
@@ -84,7 +84,7 @@ export class AddEditComponent implements OnInit {
 		this.originUrl = this.utilSvc.getOriginUrl();
 	}
 
-	updateBaseUrl() {
+	updateBaseUrl(id?) {
 		const categoryId = Number(this.article.categoryId);
 		const item = this.categories.find((item) => {
 			if (categoryId == item.id) {
