@@ -1,0 +1,72 @@
+{
+	"Code": 200,
+	"Data": {
+		"Title": "Electromechanical industry",
+		"Description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla",
+		"Products": [
+			{
+				"Id": "p-5",
+				"Image": "/assets/images/products/5.jpg",
+				"Title": "Tank Truck",
+				"CategoryUrl": "electromechanical-industry",
+				"Url": "tank-truck"
+			},
+			{
+				"Id": "p-6",
+				"Image": "/assets/images/products/6.jpg",
+				"Title": "Dump Truck",
+				"CategoryUrl": "electromechanical-industry",
+				"Url": "dump-truck"
+			},
+			{
+				"Id": "p-7",
+				"Image": "/assets/images/products/7.jpg",
+				"Title": "Garbage Truck",
+				"CategoryUrl": "electromechanical-industry",
+				"Url": "garbage-truck"
+			},
+			{
+				"Id": "p-8",
+				"Image": "/assets/images/products/8.jpg",
+				"Title": "Tractor Truck",
+				"CategoryUrl": "electromechanical-industry",
+				"Url": "tractor-truck"
+			},
+			{
+				"Id": "p-9",
+				"Image": "/assets/images/products/9.jpg",
+				"Title": "Water Filter Truck",
+				"CategoryUrl": "electromechanical-industry",
+				"Url": "water-filter-truck"
+			},
+			{
+				"Id": "p-1",
+				"Image": "/assets/images/products/1.jpg",
+				"Title": "Specialized Vehicles",
+				"CategoryUrl": "electromechanical-industry",
+				"Url": "specialized-vehicles"
+			},
+			{
+				"Id": "p-2",
+				"Image": "/assets/images/products/2.jpg",
+				"Title": "TV Station Car",
+				"CategoryUrl": "electromechanical-industry",
+				"Url": "tv-station-car"
+			},
+			{
+				"Id": "p-3",
+				"Image": "/assets/images/products/3.jpg",
+				"Title": "Romooc",
+				"CategoryUrl": "electromechanical-industry",
+				"Url": "romooc"
+			},
+			{
+				"Id": "p-4",
+				"Image": "/assets/images/products/4.jpg",
+				"Title": "Watering Cart",
+				"CategoryUrl": "electromechanical-industry",
+				"Url": "watering-cart"
+			}
+		]
+	}
+}

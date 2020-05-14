@@ -1,0 +1,109 @@
+{
+	"ROUTES": {
+		"index": "",
+		"about": "about-us",
+		"products": "products",
+		"activities": "activities",
+		"departments": "departments",
+		"videos": "video",
+		"images": "images",
+		"capacities": "capacities",
+		"news": "news",
+		"contact": "contact-us",
+		"404": "page-not-found"
+	},
+	"menu": {
+		"index": "Home",
+		"about": "About Us",
+		"products": "Products",
+		"activities": "Activities",
+		"departments": "Departments",
+		"videos": "Videos",
+		"images": "Images",
+		"capacities": "Capacities",
+		"news": "News",
+		"contact": "Contact Us",
+		"404": "Page Not Found"
+	},
+	"ResourceKeys": {
+		"PageTitle": "751 ONE MEMBER Co.LTD",
+		"PageTitleShort": "751 ONE MEMBER Co.LTD",
+		"ViewDetail": "Detail",
+		"ViewMore": "View More",
+		"Headquarter": "Headquarter",
+		"AddressHeadquarter": "No.9, Street No. 1, National Defense Industrial Park,Long Binh Province, TP. Bien Hoa.",
+		"OppositeOffice": "Opposite Office",
+		"AddressOppositeOffice": "No.18 Phan Van Tri, Province 10, Go Vap District, Ho Chi Minh City",
+		"SubscribeUs": "Subscribe Us",
+		"WebsiteRelative": "Website relative",
+		"Visits": "Visits",
+		"Day": "Day",
+		"Month": "Month",
+		"ProductCategory": "Product Categories",
+		"ProductLine": "Product Lines",
+		"ContactNow": "Contact now",
+		"ProductInformation": "Product Information",
+		"CountUnit": "times",
+		"ReadNews": "Read News",
+		"Products": "Products",
+		"DesignDevelope": "Designs & Developes",
+		"MaintenanceRepair": "Maintenance & Repair",
+		"WorkTime": " Work Time"
+	},
+	"404": {
+		"title": "Oops! Nothing was found.",
+		"content": " The page you are looking for might have been removed had its name changed or is temporarily unavailable. ",
+		"return": "Return to homepage"
+	},
+	"index": {
+		"about-us": {
+			"title": "About Us",
+			"sub-title": "DEPARTMENT OF DEFENSE",
+			"content": "Company 751 / General Department of Technology / Ministry of Defense, a heroic unit of the people's armed forces, was established in 1975 on the basis of taking over the army factory of puppet regime, TP. Ho Chi Minh is the enterprise directly serving the national defense and security and is the largest technical guarantee base of the Army in the south."
+		},
+		"symbols": {
+			"s-1": {
+				"title": "UNITE",
+				"content": "Is the power to overcome all difficulties and challenges."
+			},
+			"s-2": {
+				"title": "CREATIVE",
+				"content": "It is the driving force in technological innovation, which is the foundation for sustainable development."
+			},
+			"s-3": {
+				"title": "QUALITY",
+				"content": "Is the top goal to give to customers."
+			},
+			"s-4": {
+				"title": "PERFOMANCE",
+				"content": "Is the purpose to bring you and the Company."
+			}
+		},
+		"product-categories": {
+			"title": "PRODUCTION AND BUSINESS FIELDS"
+		},
+		"news": {
+			"title": "News 751"
+		}
+	},
+	"about": {
+		"letter": {
+			"title": "Open Letter",
+			"content": "<p>Company 751 / General Department of Technology / Ministry of Defense, a heroic unit of the people's armed forces, was established in 1975 on the basis of taking over the army factory of puppet regime, Saigon is a direct enterprise. serving the national defense and security and being the biggest technical guarantee base of the Army in the south.</p><p>The company is currently investing in many modern and advanced technology equipment; premises system over 600,000 m2, workshops over 150,000 m2; A contingent of well-trained managers in and out of the Army, a team of experienced engineers and workers ready to meet the requirements of our customers in business, cooperation and joint ventures. Links with all partners at home and abroad.</p>"
+		},
+		"history": {
+			"title": "History of Formation and Development"
+		},
+		"vision-mission": {
+			"title": "Vision & Mission"
+		},
+		"leadership": {
+			"title": "The Leaderships",
+			"sub-title": "Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur lorem."
+		},
+		"reward": {
+			"title": "Rewards & Achivements",
+			"sub-title": "Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur lorem."
+		}
+	}
+}

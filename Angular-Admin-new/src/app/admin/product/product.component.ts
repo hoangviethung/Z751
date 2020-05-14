@@ -10,6 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
+import { CategoryModel } from 'src/app/_core/models/category.model';
+
 @Component({
 	selector: 'app-product',
 	templateUrl: './product.component.html',
@@ -21,6 +23,8 @@ export class ProductComponent implements OnInit {
 	products: ProductModel[] = [];
 	templates: Array<TemplateModel> = TemplatesConfig;
 	languageControl = new FormControl();
+	categories: Array<CategoryModel>;
+
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
@@ -28,15 +32,18 @@ export class ProductComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-		this.languages = this.utilSvc.getLanguages();
+		this.getCategories();
 		this.getProducts();
+		this.languages = this.utilSvc.getLanguages();
 	}
 
 	filterProduct() {
 		const options = new InputRequestOption();
+
 		options.params = {
 			languageId: this.search.languageId,
 			text: this.search.keywords || '',
+			categoryId: this.search.categoryId,
 		};
 		this.crudSvc
 			.get(APIConfig.Product.Gets, options)
@@ -59,8 +66,19 @@ export class ProductComponent implements OnInit {
 		this.crudSvc
 			.get(APIConfig.Product.Gets, options)
 			.subscribe((response) => {
-				console.log(response.data.items);
 				this.products = response.data.items;
+			});
+	}
+
+	getCategories() {
+		const params = new InputRequestOption();
+		params.params = {
+			languageId: '1',
+		};
+		this.crudSvc
+			.get(APIConfig.Category.Gets, params)
+			.subscribe((response) => {
+				this.categories = response.data.items;
 			});
 	}
 

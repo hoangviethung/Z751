@@ -47,8 +47,6 @@ export class ProductGroupsComponent implements OnInit {
 			.pipe(map((response) => response.data))
 			.subscribe((prodcutGroups) => {
 				this.productGroups = prodcutGroups
-				console.log('Danh sách các nhóm sản phẩm:');
-				console.log(this.productGroups);
 			})
 	}
 

@@ -53,7 +53,6 @@ export class CategoryComponent implements OnInit {
 			.get(APIConfig.Category.Gets, options)
 			.subscribe((categories) => {
 				this.categories = categories.data.items;
-				console.log(this.categories);
 			});
 	}
 

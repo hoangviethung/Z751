@@ -11,6 +11,7 @@ import {
 import { InputRequestOption } from 'src/app/_core/services/http.service';
 import { PermissionCollection } from 'src/app/_core/enums/general.enum';
 import { ToastrService } from 'ngx-toastr';
+import { RoleBasedService } from 'src/app/_core/services/role-based.service';
 
 @Component({
 	selector: 'app-add-edit',
@@ -29,8 +30,9 @@ export class AddEditComponent implements OnInit {
 		private crudSvc: CrudService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router,
-		private toastrSvc: ToastrService
-	) { }
+		private toastrSvc: ToastrService,
+		private roleBasedSvc: RoleBasedService
+	) {}
 
 	ngOnInit(): void {
 		this.getListFeatures();
@@ -53,83 +55,12 @@ export class AddEditComponent implements OnInit {
 						.subscribe((account) => {
 							this.name = account.name;
 							this.description = account.description;
-							const FeaturesNumberArray = account.features.map(
-								(item, index) => item.feature
+							Object.assign(
+								this.featuresObject,
+								this.roleBasedSvc.getUserFeaturesCanDo(
+									account.features
+								)
 							);
-							const FeaturesNumberArray1 = FeaturesNumberArray.filter(
-								(item, index) =>
-									FeaturesNumberArray.indexOf(item) == index
-							);
-							let obj = {};
-							FeaturesNumberArray1.map((item) => {
-								let permissionArray = [];
-								account.features.forEach((feature) => {
-									if (feature.feature == item) {
-										permissionArray.push(
-											feature.permission
-										);
-									}
-								});
-								obj[item] = permissionArray;
-							});
-							for (const key of Object.keys(obj)) {
-								let newObj = {};
-								if (
-									obj[key].includes(
-										this.PermissionCollection.View
-									)
-								) {
-									newObj['View'] = true;
-								} else {
-									newObj['View'] = false;
-								}
-								if (
-									obj[key].includes(
-										this.PermissionCollection.Add
-									)
-								) {
-									newObj['Add'] = true;
-								} else {
-									newObj['Add'] = false;
-								}
-								if (
-									obj[key].includes(
-										this.PermissionCollection.Edit
-									)
-								) {
-									newObj['Edit'] = true;
-								} else {
-									newObj['Edit'] = false;
-								}
-								if (
-									obj[key].includes(
-										this.PermissionCollection.Delete
-									)
-								) {
-									newObj['Delete'] = true;
-								} else {
-									newObj['Delete'] = false;
-								}
-								if (
-									obj[key].includes(
-										this.PermissionCollection.View
-									) &&
-									obj[key].includes(
-										this.PermissionCollection.Add
-									) &&
-									obj[key].includes(
-										this.PermissionCollection.Edit
-									) &&
-									obj[key].includes(
-										this.PermissionCollection.Delete
-									)
-								) {
-									newObj['All'] = true;
-								} else {
-									newObj['All'] = false;
-								}
-								this.featuresObject[key] = newObj;
-							}
 						});
 				} else {
 					this.isEdit = false;
@@ -138,23 +69,20 @@ export class AddEditComponent implements OnInit {
 	}
 
 	getListFeatures() {
-		this.crudSvc
-			.get(APIConfig.Role.GetFeatures)
-			.pipe(map((response) => response.data))
-			.subscribe((features) => {
-				this.features = features;
-				this.features.forEach((featureItem) => {
-					featureItem.features.forEach((feature) => {
-						this.featuresObject[feature.value] = {
-							View: false,
-							Add: false,
-							Edit: false,
-							Delete: false,
-							All: false,
-						};
-					});
+		this.roleBasedSvc.getUserFeatures().subscribe((features) => {
+			this.features = features;
+			this.features.forEach((featureItem) => {
+				featureItem.features.forEach((feature) => {
+					this.featuresObject[feature.value] = {
+						View: false,
+						Add: false,
+						Edit: false,
+						Delete: false,
+						All: false,
+					};
 				});
 			});
+		});
 	}
 
 	addRole() {

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryModel } from 'src/app/_core/models/category.model';
 import { LanguageModel } from 'src/app/_core/models/language';
-import { InputRequestOption, HttpService } from 'src/app/_core/services/http.service';
+import {
+	InputRequestOption,
+	HttpService,
+} from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { UtilService } from 'src/app/_core/services/util.service';
@@ -20,10 +23,10 @@ import { ProductGroupModel } from 'src/app/_core/models/product-groups';
 })
 export class AddEditComponent implements OnInit {
 	templates: Array<TemplateModel> = TemplatesConfig;
+	productGroupsControl: FormControl = new FormControl();
 	templatesControl = new FormControl();
 	languageControl = new FormControl();
 	categoryControl = new FormControl();
-	productGroupControl = new FormControl();
 	category: CategoryModel = new CategoryModel();
 	languages: Array<LanguageModel>;
 	categories: Array<CategoryModel> = [];
@@ -40,7 +43,7 @@ export class AddEditComponent implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		private toastrSvc: ToastrService,
 		private router: Router
-	) { }
+	) {}
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();
@@ -60,8 +63,7 @@ export class AddEditComponent implements OnInit {
 			});
 	}
 
-	getProductGroupsChecked() {
-	}
+	getProductGroupsChecked() {}
 
 	getCategories(languageId: string = '1') {
 		const params = new InputRequestOption();
@@ -93,29 +95,60 @@ export class AddEditComponent implements OnInit {
 		this.activatedRoute.params.subscribe((params) => {
 			if (params.CategoryId) {
 				this.isEdit = true;
-				const options = new InputRequestOption();
-				options.params = {
+				const opts1 = new InputRequestOption();
+				opts1.params = {
 					id: params.CategoryId,
 				};
 				this.crudSvc
-					.get(APIConfig.Category.Get, options)
+					.get(APIConfig.Category.Get, opts1)
 					.subscribe((response) => {
 						this.category = response.data;
-						console.log(this.category);
 						this.setBaseUrl();
 						this.getCategories(this.category.languageId.toString());
 						this.showProductGroups(this.category.template);
+						const opts2 = new InputRequestOption();
+						opts2.params = {
+							categoryId: params.CategoryId,
+						};
+						this.crudSvc
+							.get(APIConfig.ProductGroup.UsedGet, opts2)
+							.subscribe((response) => {
+								const productGroupsSelected = [];
+								for (
+									let i = 0;
+									i < this.productGroups.length;
+									i++
+								) {
+									for (
+										let j = 0;
+										j < response.data.length;
+										j++
+									) {
+										if (
+											response.data[j].id ==
+											this.productGroups[i].id
+										) {
+											productGroupsSelected.push(
+												this.productGroups[i]
+											);
+										}
+									}
+								}
+								this.productGroupsControl.setValue(
+									productGroupsSelected
+								);
+							});
 					});
-				const categoryId = new InputRequestOption()
+				const categoryId = new InputRequestOption();
 				categoryId.params = {
-					categoryId: params.CategoryId
-				}
-				this.httpSvc.get(APIConfig.ProductGroup.GetItemsChecked, categoryId)
+					categoryId: params.CategoryId,
+				};
+				this.httpSvc
+					.get(APIConfig.ProductGroup.GetItemsChecked, categoryId)
 					.pipe(map((response) => response.data))
 					.subscribe((itemsChecked) => {
-						this.categoryProductGroupsChecked = itemsChecked
-						console.log(this.categoryProductGroupsChecked);
-					})
+						this.categoryProductGroupsChecked = itemsChecked;
+					});
 			} else {
 				this.isEdit = false;
 				this.setBaseUrl();
@@ -183,26 +216,25 @@ export class AddEditComponent implements OnInit {
 			.subscribe((response) => {
 				if (response.code == 200) {
 					this.toastrSvc.success(response.message);
-					this.router.navigate(['/admin/category']);
-				} else {
-					this.toastrSvc.error(response.message);
-				}
-			});
 
-		const categoryProducGroupsOpts = new InputRequestOption();
-		categoryProducGroupsOpts.body = {
-			categoryId: this.category.id,
-			productGroupIds: this.categoryProductGroups,
-		};
-		this.crudSvc
-			.update(
-				APIConfig.ProductGroup.CategoryUpdate,
-				categoryProducGroupsOpts
-			)
-			.subscribe((response) => {
-				if (response.code == 200) {
-					this.toastrSvc.success(response.message);
-					this.router.navigate(['/admin/category']);
+					const categoryProducGroupsOpts = new InputRequestOption();
+					categoryProducGroupsOpts.body = {
+						categoryId: this.category.id,
+						productGroupIds: this.categoryProductGroups,
+					};
+					this.crudSvc
+						.update(
+							APIConfig.ProductGroup.CategoryUpdate,
+							categoryProducGroupsOpts
+						)
+						.subscribe((response) => {
+							if (response.code == 200) {
+								this.toastrSvc.success(response.message);
+								this.router.navigate(['/admin/category']);
+							} else {
+								this.toastrSvc.error(response.message);
+							}
+						});
 				} else {
 					this.toastrSvc.error(response.message);
 				}
@@ -214,7 +246,7 @@ export class AddEditComponent implements OnInit {
 	}
 
 	updateCategoryProductsGroups() {
-		this.categoryProductGroups = this.productGroupControl.value.map(
+		this.categoryProductGroups = this.productGroupsControl.value.map(
 			(item) => item.id
 		);
 	}

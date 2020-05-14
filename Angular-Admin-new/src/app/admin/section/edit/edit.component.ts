@@ -51,7 +51,6 @@ export class EditComponent implements OnInit {
 
 	deleteSectionImage(index) {
 		this.images.splice(index, 1)
-		console.log(this.images)
 	}
 
 	closePopup(status) {

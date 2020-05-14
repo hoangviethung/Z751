@@ -95,7 +95,6 @@ export class AddEditComponent implements OnInit {
 	updateMenu() {
 		const params = new InputRequestOption();
 		params.body = this.menu;
-		console.log(this.menu);
 		this.httpSvc.post(APIConfig.Menu.Update, params)
 			.subscribe((response) => {
 				if (response.code === 200) {

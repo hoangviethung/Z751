@@ -1,0 +1,72 @@
+{
+	"Code": 200,
+	"Data": {
+		"Title": "Nghiên cứu và phát triển",
+		"Description": "Đồ gỗ chuyên dùng là ô tô có kết cấu và trang bị để thực hiện một chức năng công dụng đặc biệt, bao gồm: Ô tô quét đường; ô tô hút chất thải; ô tô trộn vữa; ô tô trộn bê tông; ôtô bơm bê tông; ô tô cần cẩu; ô tô thang ...",
+		"Products": [
+			{
+				"Id": "p-7",
+				"Image": "/assets/images/products/7.jpg",
+				"Title": "Xe ép rác",
+				"CategoryUrl": "nghien-cuu-va-phat-trien",
+				"Url": "xe-ep-rac"
+			},
+			{
+				"Id": "p-8",
+				"Image": "/assets/images/products/8.jpg",
+				"CategoryUrl": "nghien-cuu-va-phat-trien",
+				"Title": "Xe đầu kéo",
+				"Url": "xe-dau-keo"
+			},
+			{
+				"Id": "p-9",
+				"Image": "/assets/images/products/9.jpg",
+				"CategoryUrl": "nghien-cuu-va-phat-trien",
+				"Title": "Xe lọc nước",
+				"Url": "xe-loc-nuoc"
+			},
+			{
+				"Id": "p-1",
+				"Image": "/assets/images/products/1.jpg",
+				"CategoryUrl": "nghien-cuu-va-phat-trien",
+				"Title": "Xe chuyên dụng",
+				"Url": "xe-chuyen-dung"
+			},
+			{
+				"Id": "p-2",
+				"Image": "/assets/images/products/2.jpg",
+				"CategoryUrl": "nghien-cuu-va-phat-trien",
+				"Title": "Xe truyền hình",
+				"Url": "xe-truyen-hinh"
+			},
+			{
+				"Id": "p-3",
+				"Image": "/assets/images/products/3.jpg",
+				"CategoryUrl": "nghien-cuu-va-phat-trien",
+				"Title": "Rơ móc",
+				"Url": "ro-moc"
+			},
+			{
+				"Id": "p-4",
+				"Image": "/assets/images/products/4.jpg",
+				"CategoryUrl": "nghien-cuu-va-phat-trien",
+				"Title": "Xe tưới đường",
+				"Url": "xe-tuoi-duong"
+			},
+			{
+				"Id": "p-5",
+				"Image": "/assets/images/products/5.jpg",
+				"CategoryUrl": "nghien-cuu-va-phat-trien",
+				"Title": "Xe bồn",
+				"Url": "xe-bon"
+			},
+			{
+				"Id": "p-6",
+				"Image": "/assets/images/products/6.jpg",
+				"CategoryUrl": "nghien-cuu-va-phat-trien",
+				"Title": "Xe ben",
+				"Url": "xe-ben"
+			}
+		]
+	}
+}

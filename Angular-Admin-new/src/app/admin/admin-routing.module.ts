@@ -3,6 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
 import { RouteGuardService } from '../route-guard.service';
 
+export class UserPermission {
+	constructor() {}
+
+	getRolePermissions;
+}
+
 const routes: Routes = [
 	{
 		path: '',
@@ -139,4 +145,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

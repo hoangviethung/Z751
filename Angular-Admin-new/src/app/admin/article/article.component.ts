@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { CrudService } from 'src/app/_core/services/crud.service';
 import { FilterSearchModel } from 'src/app/_core/models/filter.model';
 import { UtilService } from 'src/app/_core/services/util.service';
+import { CookieService } from 'src/app/_core/services/cookie.service';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
@@ -24,17 +25,25 @@ export class ArticleComponent implements OnInit {
 	isShowPopup: boolean = false;
 	isEdit: boolean;
 	search: FilterSearchModel = new FilterSearchModel();
-	templates: Array<TemplateModel> = TemplatesConfig;
-	templatesControl = new FormControl();
+	FeatureNumber: number = -12;
+	permissions: any = {};
+
 	constructor(
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService,
-		private utilSvc: UtilService
-	) { }
+		private utilSvc: UtilService,
+		private cookieSvc: CookieService
+	) {}
 
 	ngOnInit(): void {
+		this.getCategories();
 		this.getArticles();
 		this.languages = this.utilSvc.getLanguages();
+		this.getPermissions();
+	}
+
+	getPermissions() {
+		const FeaturesObj = JSON.parse(this.cookieSvc.get('user-feature'));
 	}
 
 	getArticles() {
@@ -48,16 +57,15 @@ export class ArticleComponent implements OnInit {
 				this.articles = articles.data.items;
 			});
 	}
-
-	fetchArticle(e) {
+	getCategories() {
 		const params = new InputRequestOption();
 		params.params = {
-			languageId: e,
+			languageId: '1',
 		};
 		this.crudSvc
-			.get(APIConfig.Article.Gets, params)
+			.get(APIConfig.Category.Gets, params)
 			.subscribe((response) => {
-				this.articles = response.data.items;
+				this.categories = response.data.items;
 			});
 	}
 
@@ -66,6 +74,7 @@ export class ArticleComponent implements OnInit {
 		options.params = {
 			languageId: this.search.languageId,
 			text: this.search.keywords || '',
+			categoryId: this.search.categoryId,
 		};
 		this.crudSvc
 			.get(APIConfig.Article.Gets, options)

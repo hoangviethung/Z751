@@ -48,7 +48,6 @@ export class AddEditComponent implements OnInit {
 				if (response.code === 200) {
 					this.close.emit(false)
 					this.toastrSvc.success(response.message);
-					console.log(this.user);
 				} else {
 					this.toastrSvc.error(response.message);
 				}

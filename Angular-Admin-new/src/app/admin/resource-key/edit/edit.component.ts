@@ -19,7 +19,6 @@ export class EditComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-		console.log(this.resource);
 	}
 
 	closePopup(status) {
@@ -34,7 +33,6 @@ export class EditComponent implements OnInit {
 			languageKey: '2'
 		}
 		params.body = enResource
-		console.log(this.resource.value.vi);
 		this.httpSvc.post(APIConfig.Resource.Update, params)
 			.subscribe((response) => {
 				if (response.code === 200) {

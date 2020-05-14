@@ -58,6 +58,7 @@ export const APIConfig = {
 		Delete: '/api/Menu/delete',
 	},
 	ProductGroup: {
+		UsedGet: '/api/ProductGroup/used/get',
 		Gets: '/api/ProductGroup/gets',
 		GetItemsChecked: '/api/ProductGroup/used/get',
 		Add: '/api/ProductGroup/add',

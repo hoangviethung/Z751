@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthenticateService } from './_core/services/authenticate.service';
 import { LanguageModel } from './_core/models/language';
 import { HttpService } from './_core/services/http.service';
 import { APIConfig } from './_core/API-config';
