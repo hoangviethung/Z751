@@ -25,7 +25,6 @@ export class FileService {
 	addFile(params) {
 		this.http.post<Object>("http://27.71.234.45:8080/api/File/add", params)
 			.subscribe((response: any) => {
-				console.log(response);
 				if (response.code == 200) {
 					this.toastrSvc.success(response.message);
 				} else {

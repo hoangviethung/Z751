@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
 
 	ngOnInit() {
 		this.getFolders();
-		// this.getFiles(this.currentFolder.name)
+		this.getFiles(this.currentFolder.name)
 	}
 
 	getFolders() {
