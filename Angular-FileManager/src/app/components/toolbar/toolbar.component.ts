@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FolderService } from '../../service/folder.service';
 import { FolderEventModel } from 'src/app/model/folder-event.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
 	selector: 'app-toolbar',
@@ -17,7 +18,8 @@ export class ToolbarComponent implements OnInit {
 	event: FolderEventModel
 
 	constructor(
-		private folderSvc: FolderService
+		private folderSvc: FolderService,
+		private toastrSvc: ToastrService
 	) {
 		this.event = folderSvc.event;
 	}
@@ -52,27 +54,33 @@ export class ToolbarComponent implements OnInit {
 
 		// Make sure name is not empty
 		if (name != "") {
-			console.log(this.event);
 			if (this.event.isCreate) {
-				this.folderSvc.create(this.event.path + "/" + name).subscribe((response: any) => {
-					if (response.code == 200) {
-						this.isShowDialog = false
-						this.showDialogToggle.emit(this.isShowDialog)
-						this.isReloadfolderSvc.emit(true)
-					}
-				});
+				this.folderSvc.create(this.event.path + "/" + name)
+					.subscribe((response: any) => {
+						if (response.code == 200) {
+							this.isShowDialog = false
+							this.showDialogToggle.emit(this.isShowDialog)
+							this.isReloadfolderSvc.emit(true)
+							this.toastrSvc.success(response.message);
+						} else {
+							this.toastrSvc.error(response.message);
+						}
+					});
 			}
 			else if (this.event.isRename) {
 				var nPath = this.event.path;
 				if (nPath != "") nPath = parent + "/" + name
-
-				this.folderSvc.update(this.event.path, nPath).subscribe((response: any) => {
-					if (response.code == 200) {
-						this.isShowDialog = false
-						this.showDialogToggle.emit(this.isShowDialog)
-						this.isReloadfolderSvc.emit(true)
-					}
-				});
+				this.folderSvc.update(this.event.path, nPath)
+					.subscribe((response: any) => {
+						if (response.code == 200) {
+							this.isShowDialog = false
+							this.showDialogToggle.emit(this.isShowDialog)
+							this.isReloadfolderSvc.emit(true)
+							this.toastrSvc.success(response.message);
+						} else {
+							this.toastrSvc.error(response.message);
+						}
+					});
 			}
 		}
 	}

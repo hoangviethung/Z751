@@ -101,7 +101,7 @@
 		data-theme="a" data-url="/blank" style="position: relative; padding-top: 52px; min-height: 648px;">
 		<!--------------------------- Tool Bar ------------------------->
 		<app-toolbar [isShowDialog]="isShowDialog" (showDialogToggle)="showDialogToggle($event)"
-			(isReloadFolders)="getFolders()" (activeUploadToggle)="isUploadActive = true"></app-toolbar>
+			(isReloadfolderSvc)="getFolders()" (activeUploadToggle)="isUploadActive = true"></app-toolbar>
 		<div class="ui-panel-wrapper">
 			<div class="ckf-page-regions ui-content" role="main">
 				<!--------------------- Upload Wrapper ---------------------------->
@@ -122,7 +122,7 @@
 											class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-icon-ckf-plus ui-btn-icon-left">
 											Add Files
 											<input type="file" tabindex="-1" data-icon="ckf-plus" data-ckf-button="add"
-												name="fileupload" (change)="addFile()">
+												name="fileupload" multiple (change)="addFile()">
 										</div>
 										<div
 											class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-icon-ckf-cancel ui-btn-icon-left">

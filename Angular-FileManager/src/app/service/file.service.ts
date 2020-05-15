@@ -12,6 +12,7 @@ export interface IFileService {
 })
 
 export class FileService {
+	files = [];
 	constructor(
 		private http: HttpClient,
 		private toastrSvc: ToastrService

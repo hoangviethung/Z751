@@ -21,6 +21,7 @@ export class SubFolderComponent implements OnInit {
 	onLeftClick($event, item) {
 		$event.target.classList.add("ui-btn-active")
 		this.valueUpdate.emit(item)
+		console.log(item);
 	}
 
 	onArrowClick($event, item: FolderModel) {

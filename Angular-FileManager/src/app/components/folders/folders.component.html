@@ -21,36 +21,35 @@
 			</ul>
 		</div>
 		<context-menu>
-			<div class="ui-popup-container">
+			<ng-template contextMenuItem (execute)="createSubFolder($event)">
+				<span tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-folder-add" data-ckf-name="CreateFolder">
+					Tạo thư mục con
+				</span>
+			</ng-template>
+			<ng-template contextMenuItem (execute)="renameFolder($event)">
+				<span tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-folder-rename"
+					data-ckf-name="RenameFolder">Đổi tên</span>
+			</ng-template>
+			<ng-template contextMenuItem (execute)="deleteFolder($event)">
+				<span tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-folder-delete"
+					data-ckf-name="DeleteFolder">
+					Xóa
+				</span>
+			</ng-template>
+			<!-- <div class="ui-popup-container">
 				<div class="ckf-contextmenu ui-popup ui-body-a ui-overlay-shadow ui-corner-all" data-theme="a">
 					<ul class="ui-listview">
-						<li class="ui-first-child">
-							<ng-template contextMenuItem (execute)="createSubFolder($event)">
-								<span tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-folder-add"
-									data-ckf-name="CreateFolder">
-									Tạo thư mục con
-								</span>
-							</ng-template>
-						</li>
 						<li>
-							<ng-template contextMenuItem (execute)="renameFolder($event)">
-								<span tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-folder-rename"
-									data-ckf-name="RenameFolder">Đổi tên</span>
-							</ng-template>
+
 						</li>
 						<li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit">
 						</li>
 						<li class="ui-last-child">
-							<ng-template contextMenuItem (execute)="deleteFolder($event)">
-								<span tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-folder-delete"
-									data-ckf-name="DeleteFolder">
-									Xóa
-								</span>
-							</ng-template>
+
 						</li>
 					</ul>
 				</div>
-			</div>
+			</div> -->
 		</context-menu>
 	</div>
 </div>

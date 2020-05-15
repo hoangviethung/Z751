@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef, SimpleChanges } from '@angular/core';
 import { FolderService } from './service/folder.service';
 import { FileService } from './service/file.service';
 import { FileModel } from './model/file.model';
+import { UploadService } from './service/upload.service';
 
 @Component({
 	selector: 'app-root',
@@ -21,7 +22,7 @@ export class AppComponent implements OnInit {
 	constructor(
 		private folderSvc: FolderService,
 		private fileSvc: FileService,
-		private elRef: ElementRef
+		private uploadSvc: UploadService
 	) {
 	}
 
@@ -37,10 +38,12 @@ export class AppComponent implements OnInit {
 			this.folders = this.folderSvc.randomId(element.data.items, "f", 1);
 			this.currentFolder = this.folders[0];
 			this.isLoadingBoard = true
+			// this.getFiles(this.currentFolder.name)
 		})
 	}
 
 	getFiles(idFolder) {
+		this.fileSvc.getFiles(idFolder)
 	}
 
 	changeCurrentFolder($event) {
@@ -55,17 +58,9 @@ export class AppComponent implements OnInit {
 		//console.log(changes.prop)
 	}
 
-	addFile() {
-		const $inputUploadFile = (<HTMLInputElement>document.getElementsByName("fileupload")[0]);
-		const value = $inputUploadFile.value
-		const name = $inputUploadFile.name
-		const type = $inputUploadFile.type
-		const params = this.fileUpload = {
-			path: value,
-			name: name,
-			type: type,
-			imageFolder: this.currentFolder.name,
-		}
+	async addFile() {
+		const nameFolder = this.currentFolder.name;
+		const params = await this.uploadSvc.upload(nameFolder)
 		this.fileSvc.addFile(params)
 	}
 }
