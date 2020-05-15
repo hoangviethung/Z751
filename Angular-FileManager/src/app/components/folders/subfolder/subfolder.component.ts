@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { FolderModel } from 'src/app/model/foldermodel';
+import { FolderModel } from 'src/app/model/folder.model';
 
 @Component({
 	selector: 'app-sub-folder',

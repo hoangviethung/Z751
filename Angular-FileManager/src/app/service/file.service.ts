@@ -1,14 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FileModel } from '../model/filemodel';
+import { FileModel } from '../model/file.model';
+import { ToastrService } from 'ngx-toastr';
+
 export interface IFileService {
 	gets(path: string);
 }
 
-@Injectable()
+@Injectable({
+	providedIn: 'root'
+})
+
 export class FileService {
 	constructor(
-		private http: HttpClient
+		private http: HttpClient,
+		private toastrSvc: ToastrService
 	) { }
 
 	getFiles(path: string = "") {
@@ -17,7 +23,15 @@ export class FileService {
 	}
 
 	addFile(params) {
-		return this.http.post<Object>("http://27.71.234.45:8080/api/File/add", params)
+		this.http.post<Object>("http://27.71.234.45:8080/api/File/add", params)
+			.subscribe((response: any) => {
+				console.log(response);
+				if (response.code == 200) {
+					this.toastrSvc.success(response.message);
+				} else {
+					this.toastrSvc.error(response.message);
+				}
+			})
 	}
 
 	randomId(files: FileModel[], parentId: string): FileModel[] {

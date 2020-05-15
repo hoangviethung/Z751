@@ -15,6 +15,7 @@ import { SubFolderComponent } from './components/folders/subfolder/subfolder.com
 import { ClickDirective } from './components/board/click.directive';
 import { FolderService } from './service/folder.service';
 import { FileService } from './service/file.service';
+import { ToastrService, ToastrModule, ToastNoAnimationModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -32,6 +33,8 @@ import { FileService } from './service/file.service';
 		HttpClientModule,
 		ContextMenuModule,
 		FormsModule,
+		ToastrModule.forRoot(),
+		ToastNoAnimationModule.forRoot(),
 	],
 	providers: [
 		FolderService,
@@ -44,7 +47,10 @@ import { FileService } from './service/file.service';
 		OverlayContainer,
 		OverlayPositionBuilder,
 		OverlayKeyboardDispatcher,
-		Directionality],
-	bootstrap: [AppComponent]
+		Directionality
+	],
+	bootstrap: [
+		AppComponent
+	]
 })
 export class AppModule { }

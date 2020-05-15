@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, ViewChild } from '@angular/core';
 import { ContextMenuComponent } from 'ngx-contextmenu';
-import { FolderModel } from 'src/app/model/foldermodel';
 import { FolderService } from 'src/app/service/folder.service';
+import { FolderModel } from 'src/app/model/folder.model';
 
 @Component({
 	selector: 'app-folders',
@@ -47,7 +47,6 @@ export class FoldersComponent implements OnInit {
 			isRename: false,
 			isMove: false
 		})
-
 		// Show dialog
 		this.isShowDialog = true
 		this.showDialogToggle.emit(this.isShowDialog)

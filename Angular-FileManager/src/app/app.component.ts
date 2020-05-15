@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, SimpleChanges } from '@angular/core';
 import { FolderService } from './service/folder.service';
-import { FileModel } from './model/filemodel';
 import { FileService } from './service/file.service';
+import { FileModel } from './model/file.model';
 
 @Component({
 	selector: 'app-root',
@@ -68,5 +68,6 @@ export class AppComponent implements OnInit {
 			imageFolder: this.currentFolder.name,
 		}
 		this.fileSvc.addFile(params)
+		console.log(params);
 	}
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FolderEventModel } from '../../model/folderEventModel';
 import { FolderService } from '../../service/folder.service';
+import { FolderEventModel } from 'src/app/model/folder-event.model';
 
 @Component({
 	selector: 'app-toolbar',
@@ -14,7 +14,7 @@ export class ToolbarComponent implements OnInit {
 	@Output() showDialogToggle = new EventEmitter<Boolean>();
 	@Output() activeUploadToggle = new EventEmitter<Boolean>();
 	@Output() isReloadfolderSvc = new EventEmitter<Boolean>();
-	event: FolderEventModel;
+	event: FolderEventModel
 
 	constructor(
 		private folderSvc: FolderService

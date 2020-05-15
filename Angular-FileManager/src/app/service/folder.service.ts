@@ -1,17 +1,21 @@
 import {
 	HttpClient,
 } from "@angular/common/http";
-import { FolderModel } from '../model/foldermodel';
+import { FolderModel } from '../model/folder.model';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
-import { FolderEventModel } from '../model/folderEventModel';
+import { FolderEventModel } from '../model/folder-event.model';
 
 export interface IFolderService {
 	gets(path: string);
 	create(name: string);
 }
 
-@Injectable()
+
+@Injectable({
+	providedIn: 'root'
+})
+
 export class FolderService implements IFolderService {
 	// Parent folder is used for create sub-folder
 	event: FolderEventModel;
@@ -53,7 +57,6 @@ export class FolderService implements IFolderService {
 	delete(path: string) {
 		path = path.replace("http://27.71.234.45:8080/upload/", "");
 		return this.http.post<Object>("http://27.71.234.45:8080/api/Folder/delete?folder=" + path, {
-
 		})
 	}
 

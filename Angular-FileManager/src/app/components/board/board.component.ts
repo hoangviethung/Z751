@@ -1,15 +1,19 @@
-import { Component, OnInit, Input, SimpleChanges, Renderer2, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, ViewChild, Output, EventEmitter } from '@angular/core';
 import { FileService } from '../../service/file.service';
-import { FileModel } from '../../model/filemodel';
 import { ContextMenuComponent } from 'ngx-contextmenu';
+import { FolderService } from 'src/app/service/folder.service';
+import { FileModel } from 'src/app/model/file.model';
 
 @Component({
 	selector: 'app-board',
 	templateUrl: './board.component.html',
 	styleUrls: ['./board.component.css'],
 })
+
 export class BoardComponent implements OnInit {
+	@Input() isShowDialog;
 	@Input() currentFolder;
+	@Output() showDialogToggle = new EventEmitter<Boolean>();
 	@ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
 	isSingleClick: Boolean = true;
 	isMultiSelect: Boolean = false;
@@ -18,7 +22,7 @@ export class BoardComponent implements OnInit {
 	files = [];
 	constructor(
 		private fileSvc: FileService,
-		private renderer: Renderer2
+		private folderSvc: FolderService
 	) { }
 
 	ngOnInit() {
@@ -41,7 +45,20 @@ export class BoardComponent implements OnInit {
 		}, 1000);
 	}
 
-	mouseLeave() {
+	mouseLeave(item) {
 		this.fileHover = null
+	}
+
+	createSubFolder($event) {
+		// Change data parent of dialog
+		this.folderSvc.setEvent({
+			path: $event.item.path,
+			isCreate: true,
+			isRename: false,
+			isMove: false
+		})
+		// Show dialog
+		this.isShowDialog = true
+		this.showDialogToggle.emit(this.isShowDialog)
 	}
 }
