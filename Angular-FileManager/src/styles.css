@@ -20,7 +20,11 @@ body {
     background-color: #00000080;
 }
 
-s .ckf-folders-tree-body [aria-hidden=true] {
+[aria-hidden=fasle] {
+    display: none;
+}
+
+.ckf-folders-tree-body [aria-hidden=true] {
     display: none;
 }
 

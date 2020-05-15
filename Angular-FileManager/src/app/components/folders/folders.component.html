@@ -10,10 +10,9 @@
 						(click)="onLeftClick($event, item)" [contextMenu]="basicMenu" [contextMenuSubject]="item"
 						[class]="item == currentFolder ? 'ckf-folders-tree-label ui-btn ui-btn-active' : 'ckf-folders-tree-label ui-btn'">
 						<span id="{{item.id}}">{{item.name}}</span></a>
-					<a [className]="item.items.length == 0 ? 'ckf-folders-tree-expander ui-btn ui-btn-icon-notext ckf-folders-tree-no-children'
-            : (item.isExpanded ? 'ckf-folders-tree-expander ui-btn ui-btn-icon-notext ui-icon-custom ui-icon-ckf-arrow-d'
-              : 'ckf-folders-tree-expander ui-btn ui-btn-icon-notext ui-icon-custom ui-icon-ckf-arrow-r')"
-						(click)="onArrowClick($event, item)"></a>
+					<a [className]="item.items.length == 0 ? 'ckf-folders-tree-expander ui-btn ui-btn-icon-notext ckf-folders-tree-no-children' : (item.isExpanded ? 'ckf-folders-tree-expander ui-btn ui-btn-icon-notext ui-icon-custom ui-icon-ckf-arrow-d' : 'ckf-folders-tree-expander ui-btn ui-btn-icon-notext ui-icon-custom ui-icon-ckf-arrow-r')"
+						(click)="onArrowClick($event, item)">
+					</a>
 					<!-- Sub folders of current folder -->
 					<app-sub-folder [parent]="item" [currentFolder]="currentFolder" [basicMenu]="basicMenu"
 						(valueUpdate)="changeCurrentFolder($event)"></app-sub-folder>
