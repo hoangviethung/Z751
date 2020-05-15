@@ -216,25 +216,26 @@ export class AddEditComponent implements OnInit {
 			.subscribe((response) => {
 				if (response.code == 200) {
 					this.toastrSvc.success(response.message);
-
-					const categoryProducGroupsOpts = new InputRequestOption();
-					categoryProducGroupsOpts.body = {
-						categoryId: this.category.id,
-						productGroupIds: this.categoryProductGroups,
-					};
-					this.crudSvc
-						.update(
-							APIConfig.ProductGroup.CategoryUpdate,
-							categoryProducGroupsOpts
-						)
-						.subscribe((response) => {
-							if (response.code == 200) {
-								this.toastrSvc.success(response.message);
-								this.router.navigate(['/admin/category']);
-							} else {
-								this.toastrSvc.error(response.message);
-							}
-						});
+					if (this.isShowProductGroup) {
+						const categoryProducGroupsOpts = new InputRequestOption();
+						categoryProducGroupsOpts.body = {
+							categoryId: this.category.id,
+							productGroupIds: this.categoryProductGroups,
+						};
+						this.crudSvc
+							.update(
+								APIConfig.ProductGroup.CategoryUpdate,
+								categoryProducGroupsOpts
+							)
+							.subscribe((response) => {
+								if (response.code == 200) {
+									this.toastrSvc.success(response.message);
+									this.router.navigate(['/admin/category']);
+								} else {
+									this.toastrSvc.error(response.message);
+								}
+							});
+					}
 				} else {
 					this.toastrSvc.error(response.message);
 				}

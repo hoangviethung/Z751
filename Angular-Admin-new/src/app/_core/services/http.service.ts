@@ -4,7 +4,6 @@ import { CookieService } from './cookie.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { APPConfig } from '../APP-config';
-import { AuthenticateService } from './authenticate.service';
 import { Router } from '@angular/router';
 
 export class RequestOption {

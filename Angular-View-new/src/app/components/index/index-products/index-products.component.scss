@@ -1,0 +1,36 @@
+.row {
+	margin-bottom: -20px;
+}
+
+.col-product {
+	margin-bottom: 20px;
+}
+
+
+@media (max-width: 1199.98px) {
+	.description {
+		h3 {
+			font-size: 15px;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.product-item {
+		.description {
+			h3 {
+				font-size: 14px;
+			}
+		}
+	}
+}
+
+@media (max-width: 576px) {
+	.row {
+		margin-bottom: -10px;
+	}
+
+	.col-product {
+		margin-bottom: 10px;
+	}
+}

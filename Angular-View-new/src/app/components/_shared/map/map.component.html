@@ -1,0 +1,4 @@
+<!-- map.component.html -->
+<agm-map [latitude]="location.latitude" [longitude]="location.longitude" [zoom]="location.zoom" [styles]="customStyle">
+	<agm-marker *ngFor="let marker of location.markers" [latitude]="marker.lat" [longitude]="marker.lng"></agm-marker>
+</agm-map>

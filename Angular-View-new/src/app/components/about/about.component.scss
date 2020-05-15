@@ -1,0 +1,108 @@
+// about us
+:host ::ng-deep {
+	.about-us {
+		.main-title {
+			margin-bottom: 20px;
+		}
+		.content {
+			p {
+				font-size: 18px;
+				margin-bottom: 30px;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+
+				@media (max-width: 1199.98px) {
+					font-size: 16px;
+					margin-bottom: 20px;
+				}
+
+				@media (max-width: 767.98px) {
+					font-size: 14px;
+					margin-bottom: 10px;
+				}
+			}
+
+			@media (max-width: 1024.98px) {
+				margin-bottom: 15px;
+			}
+		}
+
+		figure {
+			overflow: hidden;
+		}
+	}
+
+	// mission-vision
+	.mission-vision {
+		background-image: url(/assets/images/about/bg-mission-vision.png);
+		background-size: cover;
+		background-position: center;
+		background-attachment: fixed;
+
+		.list-item {
+			justify-content: space-between;
+
+			.item {
+				figure {
+					img {
+						display: block;
+						margin: 0 auto;
+						height: 73px;
+					}
+
+					figcaption {
+						margin-top: 35px;
+
+						h5 {
+							font-size: 18px;
+							font-weight: 700;
+							text-transform: uppercase;
+							color: #fe0000;
+							text-align: center;
+							margin-bottom: 15px;
+						}
+
+						p {
+							font-size: 14px;
+							color: #ffffff;
+							width: 80%;
+							margin: 0 auto;
+							text-align: center;
+						}
+
+						@media (max-width: 1199.98px) {
+							margin-top: 25px;
+						}
+
+						@media (max-width: 767.98px) {
+							margin-top: 15px;
+						}
+					}
+				}
+
+				@media (max-width: 767.98px) {
+					+ .item {
+						margin-top: 45px;
+					}
+				}
+			}
+		}
+	}
+
+	// system
+	.system {
+		position: relative;
+		background-image: url(/assets/images/about/bg-system.png);
+		background-attachment: fixed;
+		// height: 440px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		figure {
+			padding: 0 30px;
+		}
+	}
+}

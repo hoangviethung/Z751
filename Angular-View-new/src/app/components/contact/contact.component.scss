@@ -1,0 +1,41 @@
+.contact {
+	margin-top: 25px;
+
+	.list-address {
+		padding-left: 30px;
+
+		.item-address {
+			padding-bottom: 30px;
+			margin-bottom: 30px;
+			border-bottom: 1px dotted #707070;
+
+			ul {
+				li {
+					font-size: 18px;
+					color: #2b2b2b;
+
+					@media (max-width: 1199.98px) {
+						font-size: 16px;
+					}
+
+					@media (max-width: 767.98px) {
+						font-size: 14px;
+					}
+				}
+			}
+
+			&:last-child {
+				margin-bottom: 0;
+				padding-bottom: 0;
+				border-bottom: 0;
+			}
+		}
+
+		@media (max-width: 1024.98px) {
+			padding-left: 0;
+		}
+	}
+}
+
+
+@import "../_shared/breadcrumb/breadcrumb.component.scss";

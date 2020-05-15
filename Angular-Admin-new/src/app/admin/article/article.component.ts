@@ -46,10 +46,10 @@ export class ArticleComponent implements OnInit {
 	}
 
 	getPermissions() {
-		const FeatureObj = JSON.parse(this.cookieSvc.get('user')).permissions;
-		console.log(FeatureObj);
-
-		this.permissions = FeatureObj.features[this.FeatureNumber];
+		const FeatureObj = JSON.parse(
+			this.cookieSvc.get('user')
+		).roles.includes('Admin');
+		// this.permissions = FeatureObj.features[this.FeatureNumber];
 	}
 
 	getArticles() {

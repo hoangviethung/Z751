@@ -1,0 +1,168 @@
+<div class="breadcrumb-wrapper">
+	<div class="container">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs">
+				<a>{{ breadcrumb }}</a>
+			</li>
+		</ol>
+	</div>
+</div>
+<section class="product-detail" *ngIf="product">
+	<div class="container">
+		<!-- THÔNG TIN CHUNG SẢN PHẨM -->
+		<div class="row product-summary">
+			<div class="col-lg-7">
+				<div class="row slider-imgProduct" appSetHeightSlider>
+					<!-- HÌNH LỚN -->
+					<div class="preview-img-wrapper col-md-9">
+						<div
+							class="swiper-container"
+							[swiper]="previewSliderConfig"
+							#previewSlider
+						>
+							<div class="swiper-wrapper">
+								<div
+									class="swiper-slide"
+									*ngFor="let image of product.Images"
+								>
+									<div class="img ov-h">
+										<img src="{{ image.Image }}" alt="" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+					</div>
+					<!-- CÁC HÌNH NHỎ -->
+					<div class="gallery-thumbs-wrapper col-md-3">
+						<div
+							class="swiper-container"
+							[swiper]="thumbsSliderConfig"
+							(swiperClick)="changeBigSlider($event)"
+							#thumbsSlider
+						>
+							<div class="swiper-wrapper">
+								<div
+									class="swiper-slide"
+									*ngFor="let image of product.Images"
+								>
+									<div class="img ov-h">
+										<img src="{{ image.Image }}" alt="" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="social-media">
+					<ul class="d-if lst-n pl-0">
+						<li>
+							<a
+								href="https://facebook.com"
+								rel="noreferrer"
+								class="ico-facebook"
+								target="_blank"
+							>
+								<img
+									src="assets/images/icons/facebook-2.svg"
+									alt=""
+								/>
+							</a>
+						</li>
+						<li>
+							<a
+								href="https://twitter.com"
+								rel="noreferrer"
+								class="ico-twitter"
+								target="_blank"
+							>
+								<img
+									src="assets/images/icons/twitter-2.svg"
+									alt=""
+								/>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-lg-5">
+				<div class="product-info">
+					<div class="block-title">
+						<h1 class="tt-u main-title mb-0">
+							{{ product.Title }}
+						</h1>
+						<p class="mb-0">
+							{{ product.SubTitle }}
+						</p>
+						<hr class="tag-line" />
+					</div>
+					<!-- <div class="view-like mt-10">
+						<ul class="d-f lst-n pl-0">
+							<li class="view">1234</li>
+							<li class="like">222</li>
+						</ul>
+					</div> -->
+					<div class="desc" [innerHTML]="product.Description"></div>
+				</div>
+				<div class="button-contact">
+					<div class="btn-wrapper d-f jc-fe">
+						<a
+							[routerLink]="['/news']"
+							class="btn-red btn-viewmore tt-u h-47"
+						>
+							{{ "ResourceKeys.ContactNow" }}</a
+						>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- THÔNG TIN CHI TIẾT SẢN PHẨM -->
+		<div class="row">
+			<div class="col-lg-9 infoDetail-comments">
+				<div class="tab-container">
+					<ul class="list-tab d-f lst-n pl-0">
+						<li class="item w-100">
+							{{ "ResourceKeys.ProductInformation" }}
+						</li>
+						<!-- <li
+							class="item w-100 text-center"
+							(click)="changeTab(2)"
+						>
+							Bình luận
+						</li> -->
+					</ul>
+					<div class="tab-content">
+						<div class="content" tab-id="item-1">
+							<div
+								class="desc"
+								[innerHTML]="product.Content"
+							></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3 aside-category">
+				<div class="title-aside tt-u cl-white">
+					{{ "ResourceKeys.ProductCategory" }}
+				</div>
+				<ul class="list-item lst-n pl-0">
+					<li class="item" *ngFor="let category of productCategory">
+						<a
+							class="nav-link"
+							[routerLink]="[
+								'/products',
+								category.Url
+							]"
+							>{{ category.Title }}</a
+						>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<app-capacity-others
+	[routeParamUrl]="productCategoryUrl"
+	[language]="currentLanguage"
+></app-capacity-others>

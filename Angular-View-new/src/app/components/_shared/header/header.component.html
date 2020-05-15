@@ -1,0 +1,149 @@
+<header>
+	<div class="container">
+		<div class="row no-gutters aic">
+			<div class="logo">
+				<a [routerLink]="'/index'">
+					<img alt="" src="./assets/images/logo.png" />
+				</a>
+			</div>
+			<div class="overlay mobile"></div>
+			<div class="navbar col">
+				<div class="header-top d-f ai-c">
+					<div class="header-email ml-at">
+						<p>
+							SĐT:
+							<a href="tel:02838958466">028 3895 8466</a>
+						</p>
+						<p>
+							Email:
+							<a href="mailto:info@congty751.com.vn"
+								>info@congty751.com.vn</a
+							>
+						</p>
+					</div>
+				</div>
+				<div class="header-bottom d-f jc-fe">
+					<div class="header-name desktop">
+						<h1>
+							<!-- {{ "ResourceKeys.PageTitle" }} -->
+							Lorem ipsum dolor, sit amet consectetur adipisicing
+							elit. Assumenda hic vero iste ut quasi at illo,
+							quibusdam fuga asperiores id. Culpa a ex cum rerum?
+							Nisi itaque aliquam voluptatum totam!
+						</h1>
+					</div>
+					<div class="header-bottom-wrapper d-f ai-c">
+						<div class="main-nav ml-at">
+							<ul class="lst-n pl-0 d-f" *ngIf="menus">
+								<ng-container *ngFor="let menu of menus">
+									<li
+										class="nav-item"
+										*ngIf="menu.parentId == -99"
+									>
+										<a
+											routerLink="{{ menu.link }}"
+											class="nav-link fw-700 tt-u d-if"
+											appCloseMenu
+										>
+											{{ menu.title }}
+										</a>
+
+										<div class="nav-sub lst-n pl-0">
+											<div class="nav-item">
+												<ng-container
+													*ngFor="
+														let childMenu of menus
+													"
+												>
+													<a
+														*ngIf="
+															childMenu.parentId ==
+															menu.id
+														"
+														class="nav-link"
+														routerLink="{{
+															childMenu.link
+														}}"
+														appCloseMenu
+													>
+														{{ childMenu.title }}
+													</a>
+												</ng-container>
+											</div>
+											<div class="nav-sub-close mobile">
+												<img
+													src="assets/images/icons/arrow-left.svg"
+												/>
+											</div>
+										</div>
+									</li>
+								</ng-container>
+							</ul>
+						</div>
+						<div class="language">
+							<ng-container *ngFor="let language of languages">
+								<div
+									class="flag desktop"
+									*ngIf="currentLanguage == language.key"
+								>
+									<img src="{{ language.image }}" alt="" />
+								</div>
+							</ng-container>
+							<!-- <select name="langulage" id="language" class="bd-0" (change)="switchLanguage($event)">
+								<ng-container *ngFor="let language of languages">
+									<option value="{{ language.key }}" [selected]="
+											currentLanguage == language.isDefault
+										">{{ language.name }}</option>
+								</ng-container>
+							</select> -->
+						</div>
+						<div class="search">
+							<label class="d-f ai-c" (click)="toggleSearchBox()">
+								<img
+									src="assets/images/icons/magnify.svg"
+									alt=""
+								/>
+							</label>
+							<div
+								class="form-search"
+								[ngClass]="{ active: isSearchBoxShow }"
+							>
+								<input
+									type="search"
+									name="search"
+									id="search"
+									class="bd-main form-control col"
+								/>
+								<button class="btn btn-search fcc">
+									<img
+										src="assets/images/icons/magnify.svg"
+										alt=""
+									/>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="mobile navbar-close">
+					<span></span><span></span>
+				</div>
+			</div>
+			<div class="header-name ml-at mobile">
+				<h1>
+					<!-- {{ "ResourceKeys.PageTitle" }} -->
+					Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+					Assumenda hic vero iste ut quasi at illo, quibusdam fuga
+					asperiores id. Culpa a ex cum rerum? Nisi itaque aliquam
+					voluptatum totam!
+				</h1>
+			</div>
+			<div class="mobile ml-at as-c">
+				<div class="hamburger" appToggleMenu>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>

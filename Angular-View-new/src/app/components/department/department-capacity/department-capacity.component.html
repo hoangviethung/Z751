@@ -1,0 +1,54 @@
+<section class="capacities-list pd-70" *ngIf="capacities">
+	<div class="container">
+		<div class="block-title">
+			<div class="d-f jc-c">
+				<h2 class="tt-u main-title">
+					{{ "menu.capacities" }}
+				</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div
+				class="col-lg-4 col-sm-6 d-f product-col"
+				*ngFor="let capacity of capacities"
+			>
+				<div class="item-product">
+					<a
+						[routerLink]="[
+							'/capacities',
+							capacity.CategoryUrl,
+							capacity.Url
+						]"
+					>
+						<figure>
+							<div class="img ov-h">
+								<img
+									src="{{ capacity.Image }}"
+									alt="{{ capacity.Title }}"
+									class="ofcv"
+								/>
+							</div>
+							<figcaption class="description row no-gutters">
+								<div class="item-info col-md">
+									<h3>{{ capacity.Title }}</h3>
+									<div
+										class="item-title"
+										[innerHTML]="capacity.Description"
+									></div>
+								</div>
+								<div class="item-button col-md-auto">
+									<span class="text-right"
+										>{{
+											"ResourceKeys.ViewDetail"
+												
+										}}
+									</span>
+								</div>
+							</figcaption>
+						</figure>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,11 @@
+<div class="index-banner">
+	<div class="swiper-container" [swiper]="bannerConfig" #indexBanner>
+		<div class="swiper-wrapper">
+			<div class="swiper-slide" *ngFor="let banner of banners">
+				<a routerLink="{{ banner.link }}">
+					<img src="{{ banner.resourcePath }}" alt="" />
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

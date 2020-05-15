@@ -1,0 +1,31 @@
+<div class="breadcrumb-wrapper">
+	<div class="container">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs">
+				<a>{{ breadcrumb }}</a>
+			</li>
+		</ol>
+	</div>
+</div>
+
+<section class="product-list" *ngIf="products.length > 0">
+	<div class="container">
+		<div class="block-title">
+			<div class="d-f jc-c">
+				<h2 class="tt-u main-title tag-line">{{ title }}</h2>
+			</div>
+			<div class="block-desc-title">
+				{{ description }}
+			</div>
+		</div>
+		<div class="row">
+			<div
+				class="col-lg-4 col-sm-6 d-f product-col"
+				*ngFor="let product of products"
+			>
+				<app-product-simple [product]="product"></app-product-simple>
+			</div>
+		</div>
+		<app-pagination></app-pagination>
+	</div>
+</section>

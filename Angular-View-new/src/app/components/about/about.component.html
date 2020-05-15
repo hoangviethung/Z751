@@ -1,0 +1,55 @@
+<app-breadcrumb></app-breadcrumb>
+<div>
+	<!-- about us -->
+	<section class="about-us pd-70">
+		<div class="container">
+			<div class="block-title center">
+				<h2 class="tt-u main-title">
+					{{ "about.letter.title" }}
+				</h2>
+			</div>
+			<div class="content" [innerHTML]="'about.letter.content'"></div>
+		</div>
+	</section>
+
+	<!-- history -->
+	<app-history [language]="currentLanguage"></app-history>
+
+	<!-- vision-mision -->
+	<section class="mission-vision pd-70">
+		<div class="container">
+			<div class="block-title center">
+				<div class="main-title fw-700 tt-u cl-white">
+					{{ "about.vision-mission.title" }}
+				</div>
+			</div>
+			<div class="list-item row">
+				<div
+					class="item col-md-4"
+					*ngFor="let item of missionVisionItems"
+				>
+					<figure>
+						<img src="{{ item.Image }}" alt="" />
+						<figcaption>
+							<h5>{{ item.Title }}</h5>
+							<p>{{ item.Description }}</p>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- staff -->
+	<app-staff [language]="currentLanguage"></app-staff>
+
+	<!-- system -->
+	<section class="system pd-70">
+		<figure>
+			<img src="./assets/images/about/system.png" alt="" />
+		</figure>
+	</section>
+
+	<!-- reward -->
+	<app-reward [language]="currentLanguage"></app-reward>
+</div>

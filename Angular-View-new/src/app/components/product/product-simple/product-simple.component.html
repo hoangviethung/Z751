@@ -1,0 +1,19 @@
+<div class="item-product">
+	<a [routerLink]="[product.Url]">
+		<figure>
+			<div class="img ov-h">
+				<img
+					src="{{ product.Image }}"
+					alt="{{ product.Title }}"
+					class="ofcv"
+				/>
+			</div>
+			<figcaption class="description d-f">
+				<h3>{{ product.Title }}</h3>
+				<span class="view-detail text-right">{{
+					"ResourceKeys.ViewDetail"
+				}}</span>
+			</figcaption>
+		</figure>
+	</a>
+</div>

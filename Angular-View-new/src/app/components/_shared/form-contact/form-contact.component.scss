@@ -1,0 +1,23 @@
+.block-form {
+	padding-right: 30px;
+
+	input[type="text"] {
+		height: 45px;
+	}
+	select {
+		height: 45px;
+	}
+
+	textarea {
+		height: 200px;
+	}
+
+	.form-control {
+		border: 1px solid #707070;
+		border-radius: 8px;
+	}
+	@media (max-width: 1024.98px) {
+		padding-right: 0;
+		max-width: 650px;
+	}
+}

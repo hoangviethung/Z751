@@ -61,8 +61,6 @@ export class CategoryComponent implements OnInit {
 		params.params = {
 			id: id,
 		};
-		console.log(1);
-		
 		this.crudSvc
 			.delete(APIConfig.Category.Delete, params)
 			.subscribe((response) => {

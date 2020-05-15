@@ -1,0 +1,55 @@
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { HttpService } from "src/core/services/http.service";
+import { PageInfoService } from "src/core/services/page-info.service";
+import { LanguageService } from "src/core/services/language.service";
+
+@Component({
+	selector: "app-product",
+	templateUrl: "./product.component.html",
+	styleUrls: ["./product.component.scss"],
+})
+export class ProductComponent implements OnInit {
+	products = [];
+	title: string;
+	currentLanguage: string;
+	description: string;
+	Breadcrumb = {
+		en: ["Home", "Products"],
+		vi: ["Trang chủ", "Sản phẩm"],
+	};
+	breadcrumbs;
+
+	constructor(
+		private activatedRoute: ActivatedRoute,
+		private httpSvc: HttpService,
+		private pageInfoSvc: PageInfoService,
+		private languageSvc: LanguageService
+	) {}
+
+	ngOnInit() {
+		
+		this.getProducts();
+	}
+
+	getProducts() {
+		this.activatedRoute.params.subscribe((routeParams) => {
+			let Breadcrumb = {
+				en: ["Home", "Products"],
+				vi: ["Trang chủ", "Sản phẩm"],
+			};
+			this.httpSvc
+				.get(
+					`assets/api/${this.currentLanguage}/product/${routeParams.productCategory}.json`
+				)
+				.subscribe((result) => {
+					this.pageInfoSvc.setTitle(result.data.Title);
+					this.title = result.data.Title;
+					this.description = result.data.Description;
+					this.products = result.data.Products;
+					Breadcrumb[this.currentLanguage].push(result.data.Title);
+					this.breadcrumbs = Breadcrumb[this.currentLanguage];
+				});
+		});
+	}
+}

@@ -1,0 +1,72 @@
+@import "../../../assets/scss/abstracts/variables.scss";
+
+#notfound {
+	display: flex;
+	justify-content: center;
+}
+
+.notfound {
+	max-width: 767px;
+	width: 100%;
+	line-height: 1.4;
+	text-align: center;
+	padding: 15px;
+	h1 {
+		font-size: 186px;
+		font-weight: 500;
+		margin: 0px;
+		color: map-get($mau, main);
+		text-transform: uppercase;
+	}
+	h2 {
+		font-size: 33px;
+		font-weight: 200;
+		text-transform: uppercase;
+		margin-top: 0px;
+		margin-bottom: 25px;
+		letter-spacing: 3px;
+	}
+	p {
+		font-size: 16px;
+		font-weight: 200;
+		margin-top: 0px;
+		margin-bottom: 25px;
+	}
+	a {
+		color: map-get($mau, main);
+		font-weight: 200;
+		text-decoration: none;
+		border-bottom: 1px dashed map-get($mau, main);
+		border-radius: 2px;
+	}
+}
+
+.notfound-social a {
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	height: 40px;
+	line-height: 40px;
+	width: 40px;
+	font-size: 14px;
+	color: map-get($mau, main);
+	border: 1px solid #efefef;
+	border-radius: 50%;
+	margin: 3px;
+	-webkit-transition: 0.2s all;
+	transition: 0.2s all;
+	&:hover {
+		border-color: map-get($mau, main);
+	}
+}
+@media (max-width: 575.98px) {
+	.notfound {
+		h1 {
+			font-size: 142px;
+		}
+
+		h2 {
+			font-size: 22px;
+		}
+	}
+}

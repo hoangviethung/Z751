@@ -1,0 +1,42 @@
+<section class="pd-70" ngClass="{{ background }}">
+	<div class="container">
+		<div class="block-title">
+			<h2 class="main-title tt-u tag-line">
+				{{ "index.news.title" }}
+			</h2>
+		</div>
+		<div class="news-list clearfix">
+			<ng-container *ngFor="let item of newsItems; let i = index">
+				<div
+					class="news-item"
+					[ngClass]="{ 'news-big': i == 0 }"
+					*ngIf="i < 5"
+					appIndexNewsItem
+				>
+					<a
+						[routerLink]="['/news', item.CategoryUrl, item.Url]"
+						class="d-f fw-w"
+					>
+						<div class="img ov-h">
+							<img src="{{ item.Image }}" alt="" />
+						</div>
+						<div class="description">
+							<h3>{{ item.Title }}</h3>
+							<time class="d-b">{{ item.Time }}</time>
+							<p *ngIf="i == 0">{{ item.Description }}</p>
+							<span class="viewmore" *ngIf="i == 0">{{
+								"ResourceKeys.ViewDetail"
+							}}</span>
+						</div>
+					</a>
+				</div>
+			</ng-container>
+		</div>
+		<!-- <div class="btn-wrapper d-f jc-fe">
+			<a [routerLink]="['/news']" class="btn-red btn-viewmore"
+				>{{ "ResourceKeys.ViewMore"}}
+				<img src="/assets/images/icons/icon_viewmore.svg" alt=""
+			/></a>
+		</div> -->
+	</div>
+</section>

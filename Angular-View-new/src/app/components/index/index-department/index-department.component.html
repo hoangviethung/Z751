@@ -1,0 +1,46 @@
+<div class="index-department pd-70">
+	<div class="container">
+		<div class="block-title">
+			<h2 class="main-title tt-u tag-line">
+				{{ "menu.departments" }}
+			</h2>
+		</div>
+		<div class="index-slider-departments">
+			<div
+				class="swiper-container"
+				[swiper]="sliderIndexDepartmentConfig"
+				(init)="setSizeSlideItem($event)"
+				(swiperResize)="setSizeSlideItem($event)"
+				*ngIf="departments"
+			>
+				<div class="swiper-wrapper">
+					<div class="swiper-slide" *ngFor="let item of departments">
+						<div class="product-item" #departmentSlide>
+							<a [routerLink]="['/departments', item.Url]">
+								<div class="img ov-h">
+									<img
+										src="{{ item.Image }}"
+										alt="{{ item.Title }}"
+									/>
+								</div>
+								<div class="description fcc">
+									<h3
+										class="tt-u ta-c"
+										[innerHTML]="item.Title"
+									></h3>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="swiper-button-prev">
+				<img src="/assets/images/icons/swiper_prev.svg" alt="" />
+			</div>
+			<div class="swiper-button-next">
+				<img src="/assets/images/icons/swiper_next.svg" alt="" />
+			</div>
+		</div>
+	</div>
+</div>
