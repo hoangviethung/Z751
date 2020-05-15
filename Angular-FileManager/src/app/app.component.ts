@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
 
 	ngOnInit() {
 		this.getFolders();
-		this.getFiles(this.currentFolder.name)
 	}
 
 	getFolders() {
@@ -68,6 +67,5 @@ export class AppComponent implements OnInit {
 			imageFolder: this.currentFolder.name,
 		}
 		this.fileSvc.addFile(params)
-		console.log(params);
 	}
 }
