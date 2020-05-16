@@ -5,11 +5,11 @@ export const Section = [
 	},
 	{
 		order: 1,
-		title: 'Giới thiệu - Lịch sử hình thành và phát triển '
+		title: 'Giới thiệu - Tầm nhìn và sứ mệnh'
 	},
 	{
 		order: 2,
-		title: 'Giới thiệu - Tầm nhìn và sứ mệnh'
+		title: 'Giới thiệu - Lịch sử hình thành và phát triển'
 	},
 	{
 		order: 3,

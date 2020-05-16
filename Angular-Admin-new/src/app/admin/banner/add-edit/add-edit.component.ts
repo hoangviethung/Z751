@@ -24,7 +24,7 @@ export class AddEditComponent implements OnInit {
 	languages: Array<LanguageModel>;
 	categories: Array<CategoryModel>;
 	templates: Array<TemplateModel> = TemplatesConfig;
-	templatesControl = new FormControl();
+	languageControl = new FormControl();
 	constructor(
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService

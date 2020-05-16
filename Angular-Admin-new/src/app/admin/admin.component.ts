@@ -19,7 +19,7 @@ export class AdminComponent implements OnInit {
 		private cookieSvc: CookieService,
 		private router: Router,
 		private roleBasedSvc: RoleBasedService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.getAccountInformation();
@@ -29,14 +29,7 @@ export class AdminComponent implements OnInit {
 		this.isDetailInfoShow = !this.isDetailInfoShow;
 	}
 
-	getAccountInformation() {
-		console.log(JSON.parse(this.cookieSvc.get('user')).permissions);
-		console.log(
-			this.roleBasedSvc.getUserFeaturesCanDo(
-				JSON.parse(this.cookieSvc.get('user')).permissions
-			)
-		);
-	}
+	getAccountInformation() { }
 
 	logout() {
 		this.authenticateSvc.logout().subscribe((response) => {

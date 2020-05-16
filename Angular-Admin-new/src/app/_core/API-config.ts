@@ -18,6 +18,12 @@ export const APIConfig = {
 		Update: '/api/Banner/update',
 		Delete: '/api/Banner/delete',
 	},
+	Branch: {
+		Gets: '/api/Branch/gets',
+		Add: '/api/Branch/add',
+		Update: '/api/Branch/edit',
+		Delete: '/api/Branch/delete',
+	},
 	Article: {
 		Gets: '/api/Article/gets',
 		Get: '/api/Article/get',
@@ -56,6 +62,10 @@ export const APIConfig = {
 		Add: '/api/Menu/add',
 		Update: '/api/Menu/update',
 		Delete: '/api/Menu/delete',
+	},
+	Contact: {
+		Gets: '/api/Contact/gets',
+		Delete: '/api/Contact/delete',
 	},
 	ProductGroup: {
 		UsedGet: '/api/ProductGroup/used/get',

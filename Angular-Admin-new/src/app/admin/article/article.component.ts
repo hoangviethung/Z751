@@ -36,7 +36,7 @@ export class ArticleComponent implements OnInit {
 		private toastrSvc: ToastrService,
 		private utilSvc: UtilService,
 		private cookieSvc: CookieService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.getCategories();
@@ -47,8 +47,6 @@ export class ArticleComponent implements OnInit {
 
 	getPermissions() {
 		const FeatureObj = JSON.parse(this.cookieSvc.get('user')).permissions;
-		console.log(FeatureObj);
-
 		this.permissions = FeatureObj.features[this.FeatureNumber];
 	}
 
