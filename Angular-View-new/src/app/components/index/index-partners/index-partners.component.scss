@@ -8,6 +8,7 @@
 	align-items: center;
 	padding: 20px;
 	height: initial;
+
 	img {
 		max-width: 100%;
 	}
@@ -24,11 +25,16 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
+	&:after {
+		content: none;
+	}
 }
 
 .swiper-button-prev {
 	left: 0;
 }
+
 .swiper-button-next {
 	right: 0;
 }

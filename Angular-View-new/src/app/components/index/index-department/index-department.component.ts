@@ -2,7 +2,8 @@ import { Component, OnInit, Input, ViewChild, Inject } from "@angular/core";
 import { SwiperConfigInterface, SwiperDirective } from "ngx-swiper-wrapper";
 import { DOCUMENT } from "@angular/common";
 import { Category } from "src/core/models/Category.model";
-import { HttpService } from "src/core/services/http.service";
+import { HttpService, InputRequestOption } from "src/core/services/http.service";
+import { API } from 'src/core/configs/api';
 
 @Component({
 	selector: "app-index-department",
@@ -41,17 +42,12 @@ export class IndexDepartmentComponent implements OnInit {
 	constructor(
 		private httpSvc: HttpService,
 		@Inject(DOCUMENT) private documentDom: Document
-	) {}
+	) { }
 
 	ngOnInit() {
 		this.getDepartments();
 	}
 
-	getDepartments() {
-		this.httpSvc.get(`/api/Category/used/get`).subscribe((result) => {
-			this.departments = result.data;
-		});
-	}
 	setSizeSlideItem(e) {
 		const RATIO = 374 / 278;
 		const swiperDOM = <HTMLElement>e.$wrapperEl[0];
@@ -90,5 +86,17 @@ export class IndexDepartmentComponent implements OnInit {
 				});
 			}
 		}
+	}
+
+	getDepartments() {
+		const option = new InputRequestOption();
+		option.params = {
+			templates: '4'
+		}
+		this.httpSvc.get(API.Category.Get_by_Templates, option).subscribe((result) => {
+			this.departments = result.data;
+			this.departments.shift();
+			console.log(this.departments);
+		});
 	}
 }

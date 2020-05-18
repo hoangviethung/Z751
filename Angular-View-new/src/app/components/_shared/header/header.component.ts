@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
 	currentLanguage: string;
 	menus: any;
 
-	constructor(private httpSvc: HttpService) {}
+	constructor(private httpSvc: HttpService) { }
 
 	ngOnInit() {
 		this.getLanguages();
@@ -105,6 +105,7 @@ export class HeaderComponent implements OnInit {
 			this.capacityCategories = result.data;
 		});
 	}
+
 	getMenus() {
 		const opts = new InputRequestOption();
 		opts.params = {
@@ -125,7 +126,6 @@ export class HeaderComponent implements OnInit {
 				})
 			)
 			.subscribe((response) => {
-				// console.log(response);
 				this.menus = response;
 			});
 	}

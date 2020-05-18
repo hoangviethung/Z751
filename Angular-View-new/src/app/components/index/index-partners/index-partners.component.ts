@@ -35,7 +35,7 @@ export class IndexPartnersComponent implements OnInit {
 		},
 	};
 
-	constructor() {}
+	constructor() { }
 
-	ngOnInit() {}
+	ngOnInit() { }
 }

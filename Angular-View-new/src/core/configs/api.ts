@@ -4,6 +4,7 @@ export const API = {
 	},
 	Category: {
 		Get: "/api/Category/used/get",
+		Get_by_Templates: "/api/Category/used/gets",
 	},
 	Language: {
 		gets: "/api/Language/gets",

@@ -45,7 +45,6 @@ export class IndexAboutUsComponent implements OnInit {
 			}))
 			.subscribe((content) => {
 				this.content_template_7 = content
-				console.log(this.content_template_7);
 			})
 	}
 }
