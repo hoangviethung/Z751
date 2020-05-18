@@ -30,7 +30,7 @@ export class EditComponent implements OnInit {
 		const enResource = {
 			key: this.resource.name,
 			value: this.resource.value.en,
-			languageKey: '2'
+			languageKey: 'en'
 		}
 		params.body = enResource
 		this.httpSvc.post(APIConfig.Resource.Update, params)
@@ -46,7 +46,7 @@ export class EditComponent implements OnInit {
 		const viResource = {
 			key: this.resource.name,
 			value: this.resource.value.vi,
-			languageKey: '1'
+			languageKey: 'vi'
 		}
 		params.body = viResource
 		this.httpSvc.post(APIConfig.Resource.Update, params)

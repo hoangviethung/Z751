@@ -8,15 +8,13 @@
 	</div>
 </div>
 
-<section class="product-list" *ngIf="products.length > 0">
+<section class="product-list">
 	<div class="container">
 		<div class="block-title">
 			<div class="d-f jc-c">
-				<h2 class="tt-u main-title tag-line">{{ title }}</h2>
+				<h2 class="tt-u main-title tag-line">{{ pageTitle }}</h2>
 			</div>
-			<div class="block-desc-title">
-				{{ description }}
-			</div>
+			<div class="block-desc-title" [innerHTML]="pageDescription"></div>
 		</div>
 		<div class="row">
 			<div

@@ -1,16 +1,15 @@
 import { Image } from "./Image.model";
 
 export class ProductModel {
-	Title: string;
-	SubTitle: string;
-	Description: string;
-	Content: string;
-	Time: string;
-	Image: string;
-	Images: Array<Image>;
-	Url: string;
-	CategoryUrl: string;
-	Id: string;
-	View: number;
-	Like: number;
+	content: string;
+	description: string;
+	image: string;
+	images: Array<Image>;
+	metaDescription: string;
+	metaImage: string;
+	metaKeywords: string;
+	metaTitle: string;
+	order: string;
+	title: string;
+	url: string;
 }

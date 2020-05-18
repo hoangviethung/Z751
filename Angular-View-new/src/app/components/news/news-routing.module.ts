@@ -5,7 +5,7 @@ import { NewsDetailComponent } from "./news-detail/news-detail.component";
 
 const routes: Routes = [
 	{
-		path: ":newsCategory",
+		path: "",
 		pathMatch: "full",
 		component: NewsComponent,
 	},

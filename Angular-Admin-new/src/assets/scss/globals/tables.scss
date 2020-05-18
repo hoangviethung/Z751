@@ -19,6 +19,13 @@
 			text-align: center;
 		}
 	}
+	td {
+		img {
+			max-width: 280px;
+			display: block;
+			margin: 0 auto;
+		}
+	}
 
 	.column-number {
 		width: 40px;
@@ -29,7 +36,7 @@
 	}
 
 	.column-title {
-		width: 280px;
+		width: 400px;
 	}
 
 	.column-image {

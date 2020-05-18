@@ -7,7 +7,7 @@ import {
 	HttpErrorResponse,
 } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 
 export class RequestOption {
@@ -80,6 +80,10 @@ export class HttpService {
 		option: RequestOption
 	) {
 		const fullUrl = environment.remoteBaseUrl + url;
-		return this.http.request(method, fullUrl, option);
+		return this.http.request(method, fullUrl, option).pipe(
+			map((response) => {
+				return response;
+			})
+		);
 	}
 }

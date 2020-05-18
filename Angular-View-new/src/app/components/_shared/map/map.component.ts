@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-
+import { BranchModel } from "src/core/models/Branch.model";
 @Component({
 	selector: "app-map",
 	templateUrl: "./map.component.html",
@@ -89,7 +89,7 @@ export class MapComponent implements OnInit {
 			],
 		},
 	];
-
+	listAddress: Array<BranchModel>
 	ngOnInit() {
 		this.location = {
 			latitude: 10.835047,

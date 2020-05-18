@@ -4,41 +4,38 @@
 	<section class="about-us pd-70">
 		<div class="container">
 			<div class="block-title center">
-				<h2 class="tt-u main-title">
-					{{ "about.letter.title" }}
+				<h2 class="tt-u main-title" *ngIf="aboutLetter">
+					{{ aboutLetter.title }}
 				</h2>
 			</div>
-			<div class="content" [innerHTML]="'about.letter.content'"></div>
+			<div class="content" *ngIf="aboutLetter" [innerHTML]="aboutLetter.content"></div>
 		</div>
 	</section>
-
-	<!-- history -->
-	<app-history [language]="currentLanguage"></app-history>
 
 	<!-- vision-mision -->
 	<section class="mission-vision pd-70">
 		<div class="container">
 			<div class="block-title center">
-				<div class="main-title fw-700 tt-u cl-white">
-					{{ "about.vision-mission.title" }}
+				<div class="main-title fw-700 tt-u cl-white" *ngIf="missionVision">
+					{{ missionVision.title }}
 				</div>
 			</div>
 			<div class="list-item row">
-				<div
-					class="item col-md-4"
-					*ngFor="let item of missionVisionItems"
-				>
+				<div class="item col-md-4" *ngFor="let missionVisionImage of missionVisionImages">
 					<figure>
-						<img src="{{ item.Image }}" alt="" />
+						<img src="{{ missionVisionImage.image }}" alt="" />
 						<figcaption>
-							<h5>{{ item.Title }}</h5>
-							<p>{{ item.Description }}</p>
+							<h5>{{ missionVisionImage.name }}</h5>
+							<p>{{ missionVisionImage.alt }}</p>
 						</figcaption>
 					</figure>
 				</div>
 			</div>
 		</div>
 	</section>
+
+	<!-- history -->
+	<app-history [language]="currentLanguage"></app-history>
 
 	<!-- staff -->
 	<app-staff [language]="currentLanguage"></app-staff>

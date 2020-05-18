@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { environment } from 'src/environments/environment';
+import { CategoryModel } from '../models/category.model';
 
 @Injectable({
 	providedIn: 'root',
@@ -48,5 +49,40 @@ export class UtilService {
 
 	getLanguages() {
 		return JSON.parse(localStorage.getItem('languages'));
+	}
+
+	getBeautifulListCategory(categories: Array<CategoryModel>) {
+		let noMainCategories: Array<CategoryModel> = [].concat(categories);
+		const mainCategories: Array<CategoryModel> = categories.filter(
+			(category) => {
+				if (!category.parent) {
+					noMainCategories.splice(
+						noMainCategories.indexOf(category),
+						1
+					);
+					return category;
+				}
+			}
+		);
+		const subCategories = (categories: Array<CategoryModel>) => {
+			let noMainCategoriesAfterFilter: Array<CategoryModel> = [].concat(
+				noMainCategories
+			);
+			categories.forEach((item) => {
+				const children = noMainCategoriesAfterFilter.filter(
+					(category) => {
+						if (category.parentId == item.id) {
+							return category;
+						}
+					}
+				);
+				if (children.length > 0) {
+					item.children = children;
+					item.children = subCategories(item.children);
+				}
+			});
+			return categories;
+		};
+		return subCategories(mainCategories);
 	}
 }

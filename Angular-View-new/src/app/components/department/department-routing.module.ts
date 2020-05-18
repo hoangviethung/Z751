@@ -4,7 +4,8 @@ import { DepartmentComponent } from "./department.component";
 
 const routes: Routes = [
 	{
-		path: ":departmentCategory",
+		path: "",
+		pathMatch: "full",
 		component: DepartmentComponent,
 	},
 ];

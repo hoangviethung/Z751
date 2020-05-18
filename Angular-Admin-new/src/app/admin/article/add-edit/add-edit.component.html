@@ -26,8 +26,15 @@
 				<div class="form-group col-lg-6">
 					<label>Ngôn ngữ *</label>
 					<mat-form-field>
-						<mat-select name="language" [formControl]="LanguageControl" [(ngModel)]="article.languageId">
-							<mat-option *ngFor="let language of languages" [value]="language.id">
+						<mat-select
+							name="language"
+							[formControl]="LanguageControl"
+							[(ngModel)]="article.languageId"
+						>
+							<mat-option
+								*ngFor="let language of languages"
+								[value]="language.id"
+							>
 								{{ language.name }}
 							</mat-option>
 						</mat-select>
@@ -36,18 +43,37 @@
 				<div class="form-group col-lg-6">
 					<label>Danh mục *</label>
 					<mat-form-field>
-						<mat-select name="category" [formControl]="CategoryControl" [ngModel]="article.categoryId"
-							[(ngModel)]="article.categoryId" (ngModelChange)="updateBaseUrl(article.categoryId)">
-							<mat-option *ngFor="let category of categories" [value]="category.id">
-								{{ category.title }}
-							</mat-option>
+						<mat-select
+							name="category"
+							[formControl]="CategoryControl"
+							[ngModel]="article.categoryId"
+							[(ngModel)]="article.categoryId"
+							(ngModelChange)="updateBaseUrl(article.categoryId)"
+						>
+							<ng-container *ngFor="let category of categories">
+								{{ category }}
+								<ng-container
+									*ngTemplateOutlet="
+										categoriesTemplate;
+										context: {
+											item: category
+										}
+									"
+								>
+								</ng-container>
+							</ng-container>
 						</mat-select>
 					</mat-form-field>
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Tiêu đề *</label>
-					<input class="form-control" type="text" placeholder="Nhập tiêu đề" [(ngModel)]="article.title"
-						(keyup)="setAliasTitleToUrl()" />
+					<input
+						class="form-control"
+						type="text"
+						placeholder="Nhập tiêu đề"
+						[(ngModel)]="article.title"
+						(keyup)="setAliasTitleToUrl()"
+					/>
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Đường dẫn *</label>
@@ -57,31 +83,53 @@
 								{{ originUrl }}
 							</span>
 						</div>
-						<input class="form-control" type="text" [(ngModel)]="article.seName" />
+						<input
+							class="form-control"
+							type="text"
+							[(ngModel)]="article.seName"
+						/>
 					</div>
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Đường dẫn mới *</label>
-					<input class="form-control" type="text" placeholder="Nhập đường dẫn mới"
-						[(ngModel)]="article.externalUrl" />
+					<input
+						class="form-control"
+						type="text"
+						placeholder="Nhập đường dẫn mới"
+						[(ngModel)]="article.externalUrl"
+					/>
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Ảnh đại diện *</label>
-					<input class="form-control" type="text" placeholder="Nhập đường dẫn ảnh đại diện"
-						[(ngModel)]="article.image" />
+					<input
+						class="form-control"
+						type="text"
+						placeholder="Nhập đường dẫn ảnh đại diện"
+						[(ngModel)]="article.image"
+					/>
 				</div>
 				<div class="form-group col-lg-12">
 					<label>Mô tả *</label>
-					<app-ckeditor [data]="article.description" (change)="onChangeEmitter($event)"></app-ckeditor>
+					<app-ckeditor
+						[data]="article.description"
+						(change)="onChangeEmitter($event)"
+					></app-ckeditor>
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Ngày đăng</label>
-					<input class="form-control" type="date" [(ngModel)]="article.order" />
+					<input
+						class="form-control"
+						type="date"
+						[(ngModel)]="article.order"
+					/>
 				</div>
 				<div class="w-100"></div>
 				<div class="form-group col-lg-2">
 					<label class="checkbox-custom">
-						<input type="checkbox" [(ngModel)]="article.isPublished" />
+						<input
+							type="checkbox"
+							[(ngModel)]="article.isPublished"
+						/>
 						Hiển thị
 					</label>
 				</div>
@@ -97,22 +145,38 @@
 			<div class="row">
 				<div class="form-group col-lg-6">
 					<label>Meta Title *</label>
-					<input class="form-control" type="text" [(ngModel)]="article.metaTitle" />
+					<input
+						class="form-control"
+						type="text"
+						[(ngModel)]="article.metaTitle"
+					/>
 				</div>
 				<div class="w-100"></div>
 				<div class="form-group col-lg-6">
 					<label>Meta Image *</label>
-					<input class="form-control" type="text" [(ngModel)]="article.metaImage" />
+					<input
+						class="form-control"
+						type="text"
+						[(ngModel)]="article.metaImage"
+					/>
 				</div>
 				<div class="w-100"></div>
 				<div class="form-group col-lg-6">
 					<label>Meta Description</label>
-					<input class="form-control" type="text" [(ngModel)]="article.metaDescription" />
+					<input
+						class="form-control"
+						type="text"
+						[(ngModel)]="article.metaDescription"
+					/>
 				</div>
 				<div class="w-100"></div>
 				<div class="form-group col-lg-6">
 					<label>Meta Keywords </label>
-					<input class="form-control" type="text" [(ngModel)]="article.metaKeywords" />
+					<input
+						class="form-control"
+						type="text"
+						[(ngModel)]="article.metaKeywords"
+					/>
 				</div>
 			</div>
 		</div>
@@ -121,3 +185,23 @@
 		</div>
 	</div>
 </div>
+
+<ng-template #categoriesTemplate let-item="category">
+	{{ item.title }}
+	<mat-option [value]="item.id">
+		{{ item.title }}
+	</mat-option>
+	<!-- <ng-container *ngIf="category.children">
+		<ng-container *ngFor="let childCategory of category.children">
+			<ng-container
+				*ngTemplateOutlet="
+					categoriesTemplate;
+					context: {
+						category: childCategory
+					}
+				"
+			>
+			</ng-container>
+		</ng-container>
+	</ng-container> -->
+</ng-template>

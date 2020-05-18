@@ -1,0 +1,17 @@
+<div class="prev_next" *ngIf="pager && pager['currentPage']">
+	<a class="prev-page" (click)="choosepage(pager['currentPage'] - 1)"
+		><img src="./assets/images/products/Path_645.svg" alt=""
+	/></a>
+	<ul>
+		<li
+			*ngFor="let page of pager['pages']"
+			(click)="choosepage(page)"
+			[ngClass]="{ active: pager['currentPage'] === page }"
+		>
+			<a>{{ page }}</a>
+		</li>
+	</ul>
+	<a class="next-page" (click)="choosepage(pager['currentPage'] + 1)"
+		><img src="./assets/images/products/Path_644.svg" alt=""
+	/></a>
+</div>

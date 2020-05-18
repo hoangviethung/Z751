@@ -16,24 +16,15 @@
 			</div>
 			<div class="col-lg-5 col-md-6">
 				<div class="list-address">
-					<div class="item-address">
+					<div class="item-address" *ngFor="let item of listAddress">
 						<ul class="lst-n pl-0">
-							<li class="cl-main-2 mb-20">TP. HỒ CHÍ MINH</li>
+							<li class="cl-main-2 mb-20">{{item.officeName}}</li>
 							<li class="mb-10">
-								18 Phan Văn Trị, P.10, Quận Gò Vấp, TP.HCM
+								{{item.address}}
 							</li>
-							<li class="mb-10">Website : congty751.com.vn</li>
-							<li class="mb-10">Tel: 028 3895 8466</li>
-							<li class="mb-10">Email: info@congty751.com.vn</li>
-						</ul>
-					</div>
-					<div class="item-address">
-						<ul class="lst-n pl-0">
-							<li class="cl-main-2 mb-20">ĐỒNG NAI</li>
-							<li>
-								Số 9, Đường số 1, Khu Công nghiệp Quốc phòng,
-								P.Long Bình, TP. Biên Hòa, Tỉnh Đồng Nai
-							</li>
+							<!-- <li class="mb-10">{{item.website}}</li> -->
+							<li class="mb-10">{{item.phone}}</li>
+							<li class="mb-10">{{item.email}}</li>
 						</ul>
 					</div>
 				</div>

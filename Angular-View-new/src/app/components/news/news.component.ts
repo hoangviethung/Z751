@@ -1,8 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { PageInfoService } from "src/core/services/page-info.service";
-import { HttpService } from "src/core/services/http.service";
+import {
+	HttpService,
+	InputRequestOption,
+} from "src/core/services/http.service";
 import { LanguageService } from "src/core/services/language.service";
 import { ActivatedRoute } from "@angular/router";
+import { API } from "src/core/configs/api";
+import { Article } from "Angular-View/src/app/models/core/Article.model";
+import { DOCUMENT } from "@angular/common";
 
 @Component({
 	selector: "app-news",
@@ -10,7 +16,7 @@ import { ActivatedRoute } from "@angular/router";
 	styleUrls: ["./news.component.scss"],
 })
 export class NewsComponent implements OnInit {
-	newsList = [];
+	newsList: Array<Article> = [];
 	currentLanguage: string;
 	pageTitle: string;
 	Breadcrumb = {
@@ -23,32 +29,32 @@ export class NewsComponent implements OnInit {
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,
 		private languageSvc: LanguageService,
-		private activatedRoute: ActivatedRoute
+		private activatedRoute: ActivatedRoute,
+		@Inject(DOCUMENT) document: Document
 	) {
-		
-		this.pageInfoSvc.setTitle('Tin tức');
+		this.pageInfoSvc.setTitle("Tin tức");
 	}
 
 	ngOnInit() {
 		this.getNewsList();
 	}
+
 	getNewsList() {
-		this.activatedRoute.params.subscribe((params) => {
-			let Breadcrumb = {
-				en: ["Home", "News"],
-				vi: ["Trang chủ", "Tin tức"],
-			};
-			this.httpSvc
-				.get(
-					`assets/api/${this.currentLanguage}/news/${params.newsCategory}.json`
-				)
-				.subscribe((result) => {
-					this.newsList = result.data.News;
-					this.pageTitle = result.data.Title;
-					this.pageInfoSvc.setTitle(result.data.Title);
-					Breadcrumb[this.currentLanguage].push(result.data.Title);
-					this.breadcrumbs = Breadcrumb[this.currentLanguage];
-				});
+		let Breadcrumb = {
+			en: ["Home", "News"],
+			vi: ["Trang chủ", "Tin tức"],
+		};
+
+		const opts = new InputRequestOption();
+		opts.params = {
+			url: document.location.pathname,
+		};
+		this.httpSvc.get(API.Common.GetRoute, opts).subscribe((response) => {
+			this.pageTitle = response.data.name;
+			this.pageInfoSvc.setTitle(this.pageTitle);
+		});
+		this.httpSvc.get(API.Article.Gets, opts).subscribe((response) => {
+			this.newsList = response.data;
 		});
 	}
 }

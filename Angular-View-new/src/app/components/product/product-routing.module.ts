@@ -5,7 +5,8 @@ import { ProductDetailComponent } from "./product-detail/product-detail.componen
 
 const routes: Routes = [
 	{
-		path: ":productCategory",
+		path: "",
+		pathMatch: "full",
 		component: ProductComponent,
 	},
 	{

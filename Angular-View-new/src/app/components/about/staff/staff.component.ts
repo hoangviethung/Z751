@@ -29,7 +29,8 @@ export class StaffComponent implements OnInit {
 			},
 		},
 	};
-	staffs: Array<ArticleModel>;
+	staff: ArticleModel;
+	staffImages = [];
 
 	@Input("language") currentLanguage;
 
@@ -40,8 +41,15 @@ export class StaffComponent implements OnInit {
 	}
 
 	getListStaff() {
-		this.httpSvc.get(API.Section.Get).subscribe((result) => {
-			this.staffs = result.data;
-		});
+		const opts = new InputRequestOption();
+		opts.params = {
+			template: "3",
+		};
+		this.httpSvc.get(API.Section.Get, opts)
+			.subscribe((result) => {
+				this.staff = result.data;
+				this.staffImages = result.data.images;
+				console.log(this.staffImages);
+			});
 	}
 }

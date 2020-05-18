@@ -28,6 +28,8 @@
 		"@angular/router": "~8.2.14",
 		"@nguniversal/express-engine": "^8.2.6",
 		"@nguniversal/module-map-ngfactory-loader": "v8.2.6",
+		"@ngx-translate/core": "^12.1.2",
+		"@ngx-translate/http-loader": "^4.0.0",
 		"domino": "^2.1.5",
 		"express": "^4.15.2",
 		"fs": "0.0.1-security",

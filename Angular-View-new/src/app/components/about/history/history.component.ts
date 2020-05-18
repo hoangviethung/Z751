@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { SwiperConfigInterface } from "ngx-swiper-wrapper";
-import { HttpService } from "src/core/services/http.service";
+import {
+	HttpService,
+	InputRequestOption,
+} from "src/core/services/http.service";
 import { ArticleModel } from "src/core/models/Article.model";
-
+import { API } from "src/core/configs/api";
 @Component({
 	selector: "app-history",
 	templateUrl: "./history.component.html",
@@ -31,7 +34,9 @@ export class HistoryComponent implements OnInit {
 			},
 		},
 	};
-	years: Array<ArticleModel>;
+
+	yearImages = [];
+	year: ArticleModel
 
 	@Input("language") currentLanguage;
 
@@ -42,10 +47,14 @@ export class HistoryComponent implements OnInit {
 	}
 
 	getListTimeLine() {
-		this.httpSvc
-			.get(`assets/api/${this.currentLanguage}/about/timeline.json`)
-			.subscribe((result) => {
-				this.years = result.data;
-			});
+		const opts = new InputRequestOption();
+		opts.params = {
+			template: "2",
+		};
+		this.httpSvc.get(API.Section.Get, opts)
+		.subscribe((response) => {
+			this.yearImages = response.data.images;
+			console.log(this.yearImages);
+		});
 	}
 }

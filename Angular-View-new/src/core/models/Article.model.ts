@@ -1,10 +1,19 @@
 export class ArticleModel {
-	Title: string;
-	Description: string;
-	Content: string;
-	Time: string;
-	Image: string;
-	Url: string;
-	CategoryUrl: string;
-	Id: string;
+	categoryId: number;
+	content: string;
+	description: string;
+	externalUrl: string;
+	id: number;
+	image: string;
+	isHot: boolean;
+	isPublished: boolean;
+	languageId: number;
+	metaDescription: string;
+	metaImage: string;
+	metaKeywords: string;
+	metaTitle: string;
+	order: string;
+	seName: string;
+	title: string;
+	url: string;
 }

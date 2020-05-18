@@ -1,28 +1,24 @@
 <section class="staff pd-70">
 	<div class="container">
 		<div class="block-title center">
-			<div class="main-title fw-700 tt-u">
-				{{ "about.leadership.title" }}
+			<div class="main-title fw-700 tt-u" *ngIf="staff">
+				{{staff.title}}
 			</div>
 		</div>
-		<div class="block-desc-title">
-			{{ "about.leadership.sub-title" }}
+		<div class="block-desc-title" *ngIf="staff">
+			{{staff.content}}
 		</div>
 		<div class="slider-staff">
 			<div class="swiper-container" [swiper]="sliderStaff">
 				<div class="swiper-wrapper">
-					<div *ngFor="let item of staffs" class="swiper-slide">
+					<div *ngFor="let staffImage of staffImages" class="swiper-slide">
 						<figure>
 							<div class="box-img">
-								<img
-									class="ofcv"
-									src="{{ item.Image }}"
-									alt=""
-								/>
+								<img class="ofcv" src="{{ staffImage.path }}" alt={{staffImage.alt}} />
 							</div>
 							<figcaption>
-								<p class="lcl lcl-1">{{ item.Description }}</p>
-								<h3 class="lcl lcl-1">{{ item.Title }}</h3>
+								<p class="lcl lcl-1">{{ staffImage.Description }}</p>
+								<h3 class="lcl lcl-1">{{ staffImage.Title }}</h3>
 							</figcaption>
 						</figure>
 					</div>

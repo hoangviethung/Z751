@@ -97,7 +97,7 @@ export class CapacityDetailComponent implements OnInit {
 				)
 				.subscribe((result) => {
 					this.product = result.data;
-					this.pageSvc.setTitle(this.product.Title);
+					this.pageSvc.setTitle(this.product.title);
 					Breadcrumb[this.currentLanguage].push(result.data.Title);
 					this.breadcrumbs = Breadcrumb[this.currentLanguage];
 				});

@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { SwiperConfigInterface } from "ngx-swiper-wrapper";
-import { HttpService } from "src/core/services/http.service";
+import {
+	HttpService,
+	InputRequestOption,
+} from "src/core/services/http.service";
 import { ArticleModel } from "src/core/models/Article.model";
-
+import { API } from "src/core/configs/api";
 @Component({
 	selector: "app-reward",
 	templateUrl: "./reward.component.html",
@@ -33,8 +36,9 @@ export class RewardComponent implements OnInit {
 			},
 		},
 	};
-	rewards: Array<ArticleModel>;
 
+	reward: ArticleModel;
+	rewardImages = [];
 	@Input("language") currentLanguage;
 
 	constructor(private httpSvc: HttpService) {}
@@ -44,10 +48,15 @@ export class RewardComponent implements OnInit {
 	}
 
 	getListReward() {
-		this.httpSvc
-			.get(`assets/api/${this.currentLanguage}/about/rewards.json`)
+		// GIẢI THƯƠNG VÀ THÀNH TỰU
+		const opts = new InputRequestOption();
+		opts.params = {
+			template: "5",
+		};
+		this.httpSvc.get(API.Section.Get, opts)
 			.subscribe((result) => {
-				this.rewards = result.data;
+				this.reward = result.data;
+				this.rewardImages = result.data.images;
 			});
 	}
 }

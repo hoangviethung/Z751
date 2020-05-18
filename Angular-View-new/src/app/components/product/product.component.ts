@@ -1,8 +1,14 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter, Inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { HttpService } from "src/core/services/http.service";
+import {
+	HttpService,
+	InputRequestOption,
+} from "src/core/services/http.service";
 import { PageInfoService } from "src/core/services/page-info.service";
 import { LanguageService } from "src/core/services/language.service";
+import { DOCUMENT } from "@angular/common";
+import { API } from "src/core/configs/api";
+import { ProductModel } from "src/core/models/Product.model";
 
 @Component({
 	selector: "app-product",
@@ -10,10 +16,10 @@ import { LanguageService } from "src/core/services/language.service";
 	styleUrls: ["./product.component.scss"],
 })
 export class ProductComponent implements OnInit {
-	products = [];
-	title: string;
+	products: Array<ProductModel> = [];
+	pageTitle: string;
+	pageDescription: string;
 	currentLanguage: string;
-	description: string;
 	Breadcrumb = {
 		en: ["Home", "Products"],
 		vi: ["Trang chủ", "Sản phẩm"],
@@ -21,35 +27,27 @@ export class ProductComponent implements OnInit {
 	breadcrumbs;
 
 	constructor(
-		private activatedRoute: ActivatedRoute,
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,
-		private languageSvc: LanguageService
+		@Inject(DOCUMENT) document: Document
 	) {}
 
 	ngOnInit() {
-		
 		this.getProducts();
 	}
 
 	getProducts() {
-		this.activatedRoute.params.subscribe((routeParams) => {
-			let Breadcrumb = {
-				en: ["Home", "Products"],
-				vi: ["Trang chủ", "Sản phẩm"],
-			};
-			this.httpSvc
-				.get(
-					`assets/api/${this.currentLanguage}/product/${routeParams.productCategory}.json`
-				)
-				.subscribe((result) => {
-					this.pageInfoSvc.setTitle(result.data.Title);
-					this.title = result.data.Title;
-					this.description = result.data.Description;
-					this.products = result.data.Products;
-					Breadcrumb[this.currentLanguage].push(result.data.Title);
-					this.breadcrumbs = Breadcrumb[this.currentLanguage];
-				});
+		const opts = new InputRequestOption();
+		opts.params = {
+			url: document.location.pathname,
+		};
+		this.httpSvc.get(API.Category.Get, opts).subscribe((response) => {
+			this.pageTitle = response.data.title;
+			this.pageDescription = response.data.description;
+			this.pageInfoSvc.setTitle(this.pageTitle);
+		});
+		this.httpSvc.get(API.Product.Gets, opts).subscribe((response) => {
+			this.products = response.data;
 		});
 	}
 }
