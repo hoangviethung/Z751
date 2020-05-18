@@ -72,21 +72,15 @@ export class AppComponent implements OnInit {
 		}
 	}
 	ngOnInit() {
-		this.getResourceKey();
+		// this.getResourceKey();
 	}
 
 	getResourceKey() {
-		this.http
-			.get<Observable<Array<any>>>(
-				"http://27.71.234.45:8080/assets/vi.json"
-			)
-			.subscribe((response) => {
-				response.map((item, index) => {
-					console.log(item);
-				});
-			});
-		this.http
-			.get("http://27.71.234.45:8080/assets/en.json")
-			.subscribe((response) => {});
+		// this.httpSvc
+		// 	.get<Observable<any>>("http://27.71.234.45:8080/assets/vi.json")
+		// 	.subscribe((response) => {});
+		// this.http
+		// 	.get("http://27.71.234.45:8080/assets/en.json")
+		// 	.subscribe((response) => {});
 	}
 }

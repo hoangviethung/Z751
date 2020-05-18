@@ -50,13 +50,12 @@
 							[(ngModel)]="article.categoryId"
 							(ngModelChange)="updateBaseUrl(article.categoryId)"
 						>
-							<ng-container *ngFor="let category of categories">
-								{{ category }}
+							<ng-container *ngFor="let item of categories">
 								<ng-container
 									*ngTemplateOutlet="
 										categoriesTemplate;
 										context: {
-											item: category
+											item: item
 										}
 									"
 								>
@@ -186,22 +185,22 @@
 	</div>
 </div>
 
-<ng-template #categoriesTemplate let-item="category">
+<ng-template #categoriesTemplate let-item="item">
 	{{ item.title }}
 	<mat-option [value]="item.id">
 		{{ item.title }}
 	</mat-option>
-	<!-- <ng-container *ngIf="category.children">
-		<ng-container *ngFor="let childCategory of category.children">
+	<ng-container *ngIf="item.children">
+		<ng-container *ngFor="let childCategory of item.children">
 			<ng-container
 				*ngTemplateOutlet="
 					categoriesTemplate;
 					context: {
-						category: childCategory
+						item: childCategory
 					}
 				"
 			>
 			</ng-container>
 		</ng-container>
-	</ng-container> -->
+	</ng-container>
 </ng-template>

@@ -14,6 +14,7 @@ import { FormContactComponent } from "./form-contact/form-contact.component";
 import { BreadcrumbService } from "./breadcrumb/breadcrumb.service";
 import { SwiperModule } from "ngx-swiper-wrapper";
 import { IndexNewsComponent } from "../index/index-news/index-news.component";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
 	declarations: [
@@ -22,7 +23,13 @@ import { IndexNewsComponent } from "../index/index-news/index-news.component";
 		FormContactComponent,
 		IndexNewsComponent,
 	],
-	imports: [CommonModule, RouterModule, HttpClientModule, SwiperModule],
+	imports: [
+		CommonModule,
+		RouterModule,
+		HttpClientModule,
+		SwiperModule,
+		TranslateModule,
+	],
 	exports: [
 		CommonModule,
 		RouterModule,
@@ -32,6 +39,7 @@ import { IndexNewsComponent } from "../index/index-news/index-news.component";
 		FormContactComponent,
 		IndexNewsComponent,
 		SwiperModule,
+		TranslateModule,
 	],
 	providers: [BreadcrumbService],
 })

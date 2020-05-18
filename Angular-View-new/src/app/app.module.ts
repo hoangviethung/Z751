@@ -21,11 +21,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	slidesPerView: "auto",
 };
 export function createTranslateLoader(http: HttpClient) {
-	return new TranslateHttpLoader(
-		http,
-		"http://27.71.234.45:8080/assets/",
-		".json"
-	);
+	return new TranslateHttpLoader(http, "./assets/", ".json");
 }
 
 @NgModule({

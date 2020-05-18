@@ -7,8 +7,8 @@ import {
 import { LanguageService } from "src/core/services/language.service";
 import { ActivatedRoute } from "@angular/router";
 import { API } from "src/core/configs/api";
-import { Article } from "Angular-View/src/app/models/core/Article.model";
 import { DOCUMENT } from "@angular/common";
+import { ArticleModel } from "src/core/models/Article.model";
 
 @Component({
 	selector: "app-news",
@@ -16,7 +16,7 @@ import { DOCUMENT } from "@angular/common";
 	styleUrls: ["./news.component.scss"],
 })
 export class NewsComponent implements OnInit {
-	newsList: Array<Article> = [];
+	newsList: Array<ArticleModel> = [];
 	currentLanguage: string;
 	pageTitle: string;
 	Breadcrumb = {
