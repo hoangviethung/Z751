@@ -21,6 +21,7 @@ header {
 
 	.header-name {
 		margin-bottom: 20px;
+
 		h1 {
 			font-size: 24px;
 			line-height: 1;
@@ -36,12 +37,14 @@ header {
 			max-width: 200px;
 			margin-bottom: 0;
 		}
+
 		@media (min-width: 1025px) {
 			position: absolute;
 			left: 0;
 			bottom: 100%;
 			margin-bottom: 25px;
 		}
+
 		@media (min-width: 1200px) {
 			h1 {
 				font-size: 30px;
@@ -59,7 +62,7 @@ header {
 		margin-left: 50px;
 
 		a {
-			+ a {
+			+a {
 				margin-left: 15px;
 			}
 		}
@@ -109,17 +112,18 @@ header {
 	}
 
 	.main-nav {
-		> ul {
+		>ul {
 			.nav-item {
-				+ .nav-item {
+				+.nav-item {
 					border-top: 1px solid rgba(map-get($mau, main), 0.5);
 				}
 			}
-			> .nav-item {
+
+			>.nav-item {
 				padding: 5px 7px;
 				position: relative;
 
-				> .nav-link {
+				>.nav-link {
 					padding: 7px 0;
 					font-size: 13px;
 					color: white;
@@ -128,7 +132,7 @@ header {
 				}
 
 				&.has-sub {
-					> .nav-link {
+					>.nav-link {
 						position: relative;
 						padding-right: 15px;
 
@@ -145,7 +149,7 @@ header {
 				}
 
 				&.active {
-					> .nav-link {
+					>.nav-link {
 						border-bottom: 2px solid white;
 					}
 				}
@@ -154,7 +158,7 @@ header {
 					&:hover {
 						cursor: pointer;
 
-						> .nav-sub {
+						>.nav-sub {
 							opacity: 1;
 							visibility: visible;
 							transform: translateY(0);
@@ -165,7 +169,7 @@ header {
 				@media (min-width: 1200px) {
 					padding: 7px 10px;
 
-					> .nav-link {
+					>.nav-link {
 						padding: 10px 0;
 						font-size: 15px;
 					}
@@ -184,23 +188,22 @@ header {
 			transform: translateY(10px);
 			transition: all 0.3s ease-out;
 
-			> .nav-item {
-				> .nav-link {
+			>.nav-item {
+				>.nav-link {
 					padding: 7px 15px;
 					display: block;
 					min-width: 200px;
 					color: map-get($mau, main);
 					font-size: 14px;
 					white-space: nowrap;
+					transition: .2s all ease;
 
 					@media (min-width: 1200px) {
 						font-size: 15px;
 					}
-				}
 
-				@media (min-width: 1025px) {
-					&:hover {
-						> .nav-link {
+					@media (min-width: 1025px) {
+						&:hover {
 							background-color: map-get($mau, main);
 							color: white;
 						}
@@ -252,8 +255,10 @@ header {
 	.language {
 		padding: 0 5px;
 		display: flex;
+
 		.flag {
 			position: relative;
+
 			&:before {
 				width: 100%;
 				height: 100%;
@@ -271,6 +276,7 @@ header {
 				border: 2px solid rgba(255, 255, 255, 0.6);
 				z-index: 2;
 			}
+
 			img {
 				position: relative;
 				z-index: 1;
@@ -404,11 +410,11 @@ header {
 				max-height: 100%;
 				padding-top: 40px;
 
-				> ul {
+				>ul {
 					display: block;
 					border-top: 1px solid map-get($mau, main);
 
-					> .nav-item {
+					>.nav-item {
 						padding: 5px 10px;
 						position: static;
 
@@ -419,7 +425,7 @@ header {
 						}
 
 						&.has-sub {
-							> .nav-link {
+							>.nav-link {
 								position: relative;
 
 								&:after {
@@ -454,8 +460,8 @@ header {
 						transition: all 0.3s ease-out;
 					}
 
-					> .nav-item {
-						> .nav-link {
+					>.nav-item {
+						>.nav-link {
 							min-width: 100%;
 							padding: 10px;
 						}
