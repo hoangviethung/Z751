@@ -36,7 +36,7 @@ export class HttpService {
 		// private _authService: AuthService,
 		private http: HttpClient,
 		private router: Router
-	) {}
+	) { }
 
 	private get TOKEN(): string {
 		const token = "";
@@ -48,7 +48,7 @@ export class HttpService {
 		return this.executeJsonResponse("GET", url, option);
 	}
 
-	post(url: string, opts?: InputRequestOption) {
+	post(url: string, opts?: InputRequestOption): Observable<any> {
 		const option = this.getDefaultRequestJsonOption(opts);
 		return this.executeJsonResponse("POST", url, option);
 	}

@@ -192,18 +192,17 @@ header {
 					color: map-get($mau, main);
 					font-size: 14px;
 					white-space: nowrap;
+					@media (min-width: 1025px) {
+						&:hover {
+							> .nav-link {
+								background-color: map-get($mau, main);
+								color: white;
+							}
+						}
+					}
 
 					@media (min-width: 1200px) {
 						font-size: 15px;
-					}
-				}
-
-				@media (min-width: 1025px) {
-					&:hover {
-						> .nav-link {
-							background-color: map-get($mau, main);
-							color: white;
-						}
 					}
 				}
 			}

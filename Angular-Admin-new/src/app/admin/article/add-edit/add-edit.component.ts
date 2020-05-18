@@ -48,13 +48,12 @@ export class AddEditComponent implements OnInit {
 			.get(APIConfig.Category.Gets, params)
 			.pipe(
 				map((response) => {
-					return this.utilSvc.getBeautifulListCategory(
-						response.data.items
-					);
+					return response.data.items
 				})
 			)
 			.subscribe((categories) => {
 				this.categories = categories;
+				console.log(categories);
 				this.updateBaseUrl();
 			});
 	}

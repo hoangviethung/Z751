@@ -51,15 +51,9 @@
 							(ngModelChange)="updateBaseUrl(article.categoryId)"
 						>
 							<ng-container *ngFor="let item of categories">
-								<ng-container
-									*ngTemplateOutlet="
-										categoriesTemplate;
-										context: {
-											item: item
-										}
-									"
-								>
-								</ng-container>
+								<mat-option [value]="item.id">
+									{{ item.title }}
+								</mat-option>
 							</ng-container>
 						</mat-select>
 					</mat-form-field>

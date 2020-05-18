@@ -9,6 +9,7 @@ import { environment } from "src/environments/environment";
 import { map } from "rxjs/operators";
 import { API } from "src/core/configs/api";
 import { LanguageModel } from "src/core/models/Language.model";
+import { Observable } from "rxjs";
 
 @Component({
 	selector: "app-header",
@@ -56,11 +57,14 @@ export class HeaderComponent implements OnInit {
 
 	getLanguages() {
 		this.httpSvc
-			.get(environment.remoteBaseUrl + API.Language.get)
+			.get(API.Language.get)
 			.pipe(
-				map((response) => {
-					console.log({ key: response });
-					return { key: response };
+				map((response: string) => {
+					return JSON.parse(
+						JSON.stringify({
+							key: response,
+						})
+					);
 				})
 			)
 			.subscribe((res) => {
@@ -121,8 +125,7 @@ export class HeaderComponent implements OnInit {
 				})
 			)
 			.subscribe((response) => {
-				console.log(response);
-
+				// console.log(response);
 				this.menus = response;
 			});
 	}

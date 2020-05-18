@@ -1,86 +1,38 @@
 <div class="block-form mx-at">
-	<form action="#">
-		<div class="row">
-			<div class="form-group col-lg-6 mb-20">
-				<label class="cl-gray d-b mb-10 fw-700" for="#"
-					>Họ và tên <span class="cl-main">*</span></label
-				>
-				<input
-					class="form-control w-100 bd-input bdr-input tt-c"
-					type="text"
-					required
-					formControlName="Fullname"
-				/>
-			</div>
-			<div class="form-group col-lg-6 mb-20">
-				<label class="cl-gray d-b mb-10 fw-700" for="#"
-					>Địa chỉ <span class="cl-main">*</span></label
-				>
-				<input
-					class="form-control w-100 bd-input bdr-input tt-c"
-					type="text"
-					required
-					formControlName="Address"
-				/>
-			</div>
-			<div class="form-group col-lg-6 mb-20">
-				<label class="cl-gray d-b mb-10 fw-700" for="#"
-					>Số điện thoại <span class="cl-main">*</span></label
-				>
-				<input
-					class="form-control w-100 bd-input bdr-input tt-c"
-					type="text"
-					required
-					formControlName="Phone"
-				/>
-			</div>
-			<div class="form-group col-lg-6 mb-20">
-				<label class="cl-gray d-b mb-10 fw-700" for="#"
-					>Email <span class="cl-main">*</span></label
-				>
-				<input
-					class="form-control w-100 bd-input bdr-input"
-					type="text"
-					required
-					formControlName="Email"
-				/>
-			</div>
-			<div class="form-group col-lg-12 mb-20" *ngIf="departments">
-				<label class="cl-gray d-b mb-10 fw-700">
-					Đơn vị thành viên
-				</label>
-				<select
-					name="departments"
-					id=""
-					required
-					formControlName="departments"
-					disabled
-					class="form-control w-100 bd-input bdr-input"
-				>
-					<option disabled>- - Chọn đơn vị thành viên - -</option>
-					<option
-						value="{{ department.Url }}"
-						*ngFor="let department of departments"
-						[selected]="department.Url == categoryUrl"
-						>{{ department.Title }}</option
-					>
-				</select>
-			</div>
-			<div class="form-group col-lg-12 mb-20">
-				<label class="cl-gray d-b mb-10 fw-700" for="#"
-					>Nội dung tin nhắn <span class="cl-main">*</span></label
-				>
-				<textarea
-					class="form-control w-100 bd-input bdr-input"
-					required
-					formControlName="Content"
-				></textarea>
-			</div>
-			<div class="form-group col-lg-12 text-right">
-				<button class="tt-u btn-form cl-white bd-0 ml-at">
-					gửi
-				</button>
-			</div>
+	<div class="row">
+		<div class="form-group col-lg-6 mb-20">
+			<label class="cl-gray d-b mb-10 fw-700" for="#">Họ và tên <span class="cl-main">*</span></label>
+			<input class="form-control w-100 bd-input bdr-input tt-c" type="text" [(ngModel)]="FormContact.name" />
 		</div>
-	</form>
+		<div class="form-group col-lg-6 mb-20">
+			<label class="cl-gray d-b mb-10 fw-700" for="#">Địa chỉ <span class="cl-main">*</span></label>
+			<input class="form-control w-100 bd-input bdr-input tt-c" type="text" [(ngModel)]="FormContact.address" />
+		</div>
+		<div class="form-group col-lg-6 mb-20">
+			<label class="cl-gray d-b mb-10 fw-700" for="#">Số điện thoại <span class="cl-main">*</span></label>
+			<input class="form-control w-100 bd-input bdr-input tt-c" type="text" [(ngModel)]="FormContact.phone" />
+		</div>
+		<div class="form-group col-lg-6 mb-20">
+			<label class="cl-gray d-b mb-10 fw-700" for="#">Email <span class="cl-main">*</span></label>
+			<input class="form-control w-100 bd-input bdr-input" type="text" [(ngModel)]="FormContact.email" />
+		</div>
+		<div class="form-group col-lg-12 mb-20" *ngIf="departments">
+			<label class="cl-gray d-b mb-10 fw-700">
+				Đơn vị thành viên
+			</label>
+			<select name="departments" id="" disabled class="form-control w-100 bd-input bdr-input"
+				[(ngModel)]="FormContact.departments">
+				<option disabled>- - Chọn đơn vị thành viên - -</option>
+				<option value="{{ department.Url }}" *ngFor="let department of departments"
+					[selected]="department.Url == categoryUrl">{{ department.Title }}</option>
+			</select>
+		</div>
+		<div class="form-group col-lg-12 mb-20">
+			<label class="cl-gray d-b mb-10 fw-700" for="#">Nội dung tin nhắn <span class="cl-main">*</span></label>
+			<textarea class="form-control w-100 bd-input bdr-input" [(ngModel)]="FormContact.content"></textarea>
+		</div>
+		<div class="form-group col-lg-12 text-right">
+			<button class="tt-u btn-form cl-white bd-0 ml-at" (click)="submitForm(FormContact)">gửi</button>
+		</div>
+	</div>
 </div>

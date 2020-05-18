@@ -35,13 +35,11 @@ export class DepartmentComponent implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		private httpSvc: HttpService,
 		private breadcrumbSvc: BreadcrumbService
-	) {
-		
-	}
+	) {}
 
 	ngOnInit() {
-		this.getProducts();
-		this.getDepartmentList();
+		// this.getProducts();
+		// this.getDepartmentList();
 	}
 
 	getProducts() {

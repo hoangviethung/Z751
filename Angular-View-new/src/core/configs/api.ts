@@ -26,4 +26,8 @@ export const API = {
 	ProductGroup: {
 		Gets: "/api/ProductGroup/used/get",
 	},
+	Contact: {
+		Gets: "/api/Contact/gets",
+		Submit: "/api/Contact/submit",
+	}
 };

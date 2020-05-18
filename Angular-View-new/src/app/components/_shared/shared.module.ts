@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
-
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 // import { CloseMenuDirective } from "../directives/close-menu.directive";
 // import { ToggleMenuDirective } from "../directives/toggle-menu.directive";
 // import { IndexNewsItemDirective } from "../directives/index-news-item.directive";
@@ -29,6 +29,7 @@ import { TranslateModule } from "@ngx-translate/core";
 		HttpClientModule,
 		SwiperModule,
 		TranslateModule,
+		FormsModule,
 	],
 	exports: [
 		CommonModule,
@@ -40,6 +41,7 @@ import { TranslateModule } from "@ngx-translate/core";
 		IndexNewsComponent,
 		SwiperModule,
 		TranslateModule,
+		FormsModule,
 	],
 	providers: [BreadcrumbService],
 })

@@ -32,6 +32,6 @@
 		</div>
 	</div>
 	<div class="google-map mt-40">
-		<app-map></app-map>
+		<app-map *ngIf="listAddress" [listAddress]="listAddress"></app-map>
 	</div>
 </section>
