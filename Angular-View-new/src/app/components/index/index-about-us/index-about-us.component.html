@@ -3,47 +3,27 @@
 		<div class="container">
 			<div class="block-title">
 				<h2 class="tt-u main-title tag-line">
-					<!-- {{ "index.about-us.title"}} -->
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-					Doloremque beatae quae nisi magni. Voluptatem, itaque?
-					Dolorum facere, itaque, rerum tenetur quas natus similique
-					perferendis nulla nemo deleniti laudantium doloribus
-					nesciunt.
+					{{ "index.about-us.title"}}
 				</h2>
 			</div>
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="img">
-						<img src="/assets/images/index/i_1.jpg" alt="" />
+						<img *ngIf="content_template_6" src="{{content_template_6.image}}" alt="" />
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="title">
-						<h2 class="tt-u cl-main">
-							<!-- {{ "index.about-us.sub-title"}} -->
-							Lorem ipsum dolor sit amet consectetur, adipisicing
-							elit. Doloremque beatae quae nisi magni. Voluptatem,
-							itaque? Dolorum facere, itaque, rerum tenetur quas
-							natus similique perferendis nulla nemo deleniti
-							laudantium doloribus nesciunt.
+						<h2 class="tt-u cl-main" *ngIf="content_template_6">
+							{{content_template_6.title}}
 						</h2>
 						<h3 class="tt-u fw-400">
-							<!-- {{ "ResourceKeys.PageTitle"}} -->
-							Lorem ipsum dolor sit amet consectetur, adipisicing
-							elit. Doloremque beatae quae nisi magni. Voluptatem,
-							itaque? Dolorum facere, itaque, rerum tenetur quas
-							natus similique perferendis nulla nemo deleniti
-							laudantium doloribus nesciunt.
+							CÔNG TY TNHH MỘT THÀNH VIÊN 751
 						</h3>
 					</div>
 					<div class="content">
-						<p>
-							<!-- {{ "index.about-us.content"}} -->
-							Lorem ipsum dolor sit amet consectetur, adipisicing
-							elit. Doloremque beatae quae nisi magni. Voluptatem,
-							itaque? Dolorum facere, itaque, rerum tenetur quas
-							natus similique perferendis nulla nemo deleniti
-							laudantium doloribus nesciunt.
+						<p class="lcl lcl-5" *ngIf="content_template_6">
+							{{content_template_6.content}}
 						</p>
 					</div>
 				</div>
@@ -53,122 +33,17 @@
 	<div class="container-symbol pd-70 bg-gray">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-6 col-item">
+				<div class="col-lg-3 col-6 col-item" *ngFor="let item of content_template_7">
 					<div class="item">
 						<div class="img ta-c">
-							<img
-								src="/assets/images/icons/i_icon_1.svg"
-								alt=""
-							/>
+							<img src="{{item.path}}" alt="{{item.alt}}" />
 						</div>
 						<div class="description ta-c">
 							<h3 class="tt-u">
-								<!-- {{ "index.symbols.s-1.title"}} -->
-								Lorem ipsum dolor sit amet consectetur,
-								adipisicing elit. Doloremque beatae quae nisi
-								magni. Voluptatem, itaque? Dolorum facere,
-								itaque, rerum tenetur quas natus similique
-								perferendis nulla nemo deleniti laudantium
-								doloribus nesciunt.
+								{{item.name}}
 							</h3>
 							<p>
-								<!-- {{ "index.symbols.s-1.content"}} -->
-								Lorem ipsum dolor sit amet consectetur,
-								adipisicing elit. Doloremque beatae quae nisi
-								magni. Voluptatem, itaque? Dolorum facere,
-								itaque, rerum tenetur quas natus similique
-								perferendis nulla nemo deleniti laudantium
-								doloribus nesciunt.
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-6 col-item">
-					<div class="item">
-						<div class="img ta-c">
-							<img
-								src="/assets/images/icons/i_icon_2.svg"
-								alt=""
-							/>
-						</div>
-						<div class="description ta-c">
-							<h3 class="tt-u">
-								<!-- {{ "index.symbols.s-2.title"}} -->
-								Lorem ipsum dolor sit amet consectetur,
-								adipisicing elit. Doloremque beatae quae nisi
-								magni. Voluptatem, itaque? Dolorum facere,
-								itaque, rerum tenetur quas natus similique
-								perferendis nulla nemo deleniti laudantium
-								doloribus nesciunt.
-							</h3>
-							<p>
-								<!-- {{ "index.symbols.s-2.content"}} -->
-								Lorem ipsum dolor sit amet consectetur,
-								adipisicing elit. Doloremque beatae quae nisi
-								magni. Voluptatem, itaque? Dolorum facere,
-								itaque, rerum tenetur quas natus similique
-								perferendis nulla nemo deleniti laudantium
-								doloribus nesciunt.
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-6 col-item">
-					<div class="item">
-						<div class="img ta-c">
-							<img
-								src="/assets/images/icons/i_icon_3.svg"
-								alt=""
-							/>
-						</div>
-						<div class="description ta-c">
-							<h3 class="tt-u">
-								<!-- {{ "index.symbols.s-3.title"}} -->
-								Lorem ipsum dolor sit amet consectetur,
-								adipisicing elit. Doloremque beatae quae nisi
-								magni. Voluptatem, itaque? Dolorum facere,
-								itaque, rerum tenetur quas natus similique
-								perferendis nulla nemo deleniti laudantium
-								doloribus nesciunt.
-							</h3>
-							<p>
-								<!-- {{ "index.symbols.s-3.content"}} -->
-								Lorem ipsum dolor sit amet consectetur,
-								adipisicing elit. Doloremque beatae quae nisi
-								magni. Voluptatem, itaque? Dolorum facere,
-								itaque, rerum tenetur quas natus similique
-								perferendis nulla nemo deleniti laudantium
-								doloribus nesciunt.
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-6 col-item">
-					<div class="item">
-						<div class="img ta-c">
-							<img
-								src="/assets/images/icons/i_icon_4.svg"
-								alt=""
-							/>
-						</div>
-						<div class="description ta-c">
-							<h3 class="tt-u">
-								<!-- {{ "index.symbols.s-4.title"}} -->
-								Lorem ipsum dolor sit amet consectetur,
-								adipisicing elit. Doloremque beatae quae nisi
-								magni. Voluptatem, itaque? Dolorum facere,
-								itaque, rerum tenetur quas natus similique
-								perferendis nulla nemo deleniti laudantium
-								doloribus nesciunt.
-							</h3>
-							<p>
-								<!-- {{ "index.symbols.s-4.content"}} -->
-								Lorem ipsum dolor sit amet consectetur,
-								adipisicing elit. Doloremque beatae quae nisi
-								magni. Voluptatem, itaque? Dolorum facere,
-								itaque, rerum tenetur quas natus similique
-								perferendis nulla nemo deleniti laudantium
-								doloribus nesciunt.
+								{{item.alt}}
 							</p>
 						</div>
 					</div>

@@ -80,7 +80,7 @@ main {
 		justify-content: center;
 	}
 
-	+ .block-desc-title {
+	+.block-desc-title {
 		margin-top: -55px;
 
 		@media (max-width: 1199.98px) {
@@ -135,6 +135,15 @@ main {
 	&-3 {
 		-webkit-line-clamp: 3;
 	}
+
+	&-4 {
+		-webkit-line-clamp: 4;
+	}
+
+	&-5 {
+		-webkit-line-clamp: 5;
+	}
+
 }
 
 .google-map {
@@ -340,6 +349,7 @@ agm-map {
 		opacity: 0;
 		transform: translateY(100%);
 	}
+
 	@media (min-width: 1025px) {
 		&:hover {
 			.description {

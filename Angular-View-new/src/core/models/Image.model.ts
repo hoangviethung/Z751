@@ -1,5 +1,8 @@
 export class Image {
-	Title: string;
-	Url: string;
-	Image: string;
+	title: string;
+	mame: string;
+	url: string;
+	path: string;
+	name: string;
+	alt: string;
 }
