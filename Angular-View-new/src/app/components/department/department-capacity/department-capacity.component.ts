@@ -14,7 +14,7 @@ export class DepartmentCapacityComponent implements OnInit {
 	constructor(private httpSvc: HttpService) {}
 
 	ngOnInit() {
-		this.getCapacities();
+		// this.getCapacities();
 	}
 
 	getCapacities() {

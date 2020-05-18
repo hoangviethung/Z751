@@ -29,5 +29,5 @@ export const API = {
 	Contact: {
 		Gets: "/api/Contact/gets",
 		Submit: "/api/Contact/submit",
-	}
+	},
 };
