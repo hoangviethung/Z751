@@ -1,0 +1,67 @@
+<div class="ckf-main-region" data-ckf-priority="50" style="min-height: 648px;">
+  <ul data-role="listview" tabindex="30" role="list"
+    class="ckf-files-view ckf-files-view-borders ui-body-inherit ui-listview ckf-files-thumbs ckf-files-thumbs-xs"
+    aria-label="Files pane" style="min-height: 638px;">
+    <li *ngFor="let item of files" [attr.id]="item.id"
+      class="fileHover != null ? 'ckf-file-item ui-li-has-thumb ckf-file-show-thumb' : 'ckf-file-item ui-li-has-thumb'"
+      style="width: 150px; height: 150px;" data-icon="false" role="presentation">
+      <a href="javascript:void(0)" [class]="activeFiles.indexOf(item) != -1 ? 'lckf-files-inner ui-btn ut-btn-active' : 'lckf-files-inner ui-btn'" 
+        tabindex="-1" draggable="true" role="listitem" [attr.aria-label]="item.name" clickDirective [file]="item"
+        [attr.aria-describedby]="'ckf-file-desc-' + item.id" [attr.data-ckf-drag-preview]="'ckf-drag-prev-' + item.id"
+        [attr.data-ckf-view]="item.id" [contextMenu]="basicMenu" [contextMenuSubject]="item">
+        <img id="ckf-drag-prev-{{item.id}}" class="ui-li-thumb" alt="" src="{{item.path}}" draggable="true"
+          [attr.data-ckf-drag-preview]="'ckf-drag-prev-' + item.id" (mouseenter)="mouseEnter(item) "
+          (mouseleave)="mouseLeave(item)">
+        <div class="ckf-file-desc ui-bar-a" draggable="true">
+          <h2 title="{{item.name}}" dir="auto">{{item.name}}</h2>
+          <p draggable="true" id="ckf-file-desc-{{item.id}}" [attr.data-ckf-drag-preview]="'ckf-drag-prev-' + item.id">
+            {{item.createdDate | date: 'dd/MM/yyyy HH:mm'}}<br>{{item.length}} KB
+          </p>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>
+<context-menu>
+  <div class="ckf-contextmenu ui-popup ui-body-a ui-overlay-shadow ui-corner-all" data-theme="a">
+    <ul class="ui-listview">
+      <ng-template contextMenuItem (execute)="createSubFolder($event)">
+        <li class="ui-first-child"><a tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-view"
+            data-ckf-name="View">View</a>
+        </li>
+      </ng-template>
+      <ng-template contextMenuItem (execute)="createSubFolder($event)">
+        <li>
+          <a tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-file-download"
+            data-ckf-name="Download">Download</a>
+        </li>
+      </ng-template>
+      <ng-template contextMenuItem (execute)="createSubFolder($event)">
+        <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit"></li>
+        <li><a tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-file-edit" data-ckf-name="EditImage">Edit</a>
+        </li>
+      </ng-template>
+      <ng-template contextMenuItem (execute)="createSubFolder($event)">
+        <li><a tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-file-rename"
+            data-ckf-name="RenameFile">Rename</a>
+        </li>
+      </ng-template>
+      <ng-template contextMenuItem (execute)="createSubFolder($event)">
+        <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-inherit"></li>
+        <li class="ui-last-child"><a tabindex="-1" class="ui-btn ui-btn-icon-left ui-icon-ckf-file-delete"
+            data-ckf-name="DeleteFiles">Delete</a></li>
+      </ng-template>
+    </ul>
+  </div>
+</context-menu>
+
+<style *ngIf="!isSingleClick">.ckf-file-preview-root :focus,.ckf-file-preview-root:focus.ckf-file-preview {box-shadow: none;}.ckf-file-preview-root * {box-sizing: border-box;}.ckf-file-preview-root {position: fixed;top: 0;left: 0;bottom: 0;right: 0;font-family: Arial, Helvetica, Tahoma, Verdana, sans-serif;background: rgba(0,0,0,0.8);z-index: 9010;}.ckf-file-preview {position: absolute;top: 0;left: 0;bottom: 2em;right: 0;margin: auto;}.ckf-file-preview-button-next,.ckf-file-preview-button-prev {display: block;position: absolute;top: 50%;height: 10em;width: 10em;border-radius: 50%;margin: 5em 3px 0;margin-top: -5em;border: 0;-webkit-box-shadow: none;box-shadow: none;text-indent: -99999px;}@media screen and (min-width: 768px) {.ckf-file-preview-button-next,.ckf-file-preview-button-prev {background: #000000;}}.ckf-file-preview-button-next:before,.ckf-file-preview-button-prev:before {position: absolute;top: 50%;height: 24px;width: 24px;color: #ffffff;background-repeat: no-repeat;background-position: center;-webkit-transform: translateY(-50%);-ms-transform: translateY(-50%);transform: translateY(-50%);}.ckf-file-preview-button-next:active,.ckf-file-preview-button-next:focus,.ckf-file-preview-button-prev:active,.ckf-file-preview-button-prev:focus {outline: none;}@media screen and (min-width: 768px) {.ckf-file-preview-button-next:active,.ckf-file-preview-button-next:focus,.ckf-file-preview-button-prev:active,.ckf-file-preview-button-prev:focus {background: #0a90eb;}}.ckf-file-preview-button-prev {margin-left: -6em;}.ckf-file-preview-button-prev:before {content: '';right: 17%;background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2224%22%20viewBox%3D%220%200%2014%2024%22%3E%0A%20%20%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M83.785%2C41.885%20L83.785%2C41.885%20C83.296228%2C41.396228%2082.503772%2C41.396228%2082.015%2C41.885%20L71%2C52.9%20L82.015%2C63.915%20C82.503772%2C64.403772%2083.296228%2C64.403772%2083.785%2C63.915%20L83.785%2C63.915%20C84.273772%2C63.426228%2084.273772%2C62.633772%2083.785%2C62.145%20L74.54%2C52.9%20L83.785%2C43.655%20C84.273772%2C43.166228%2084.273772%2C42.373772%2083.785%2C41.885%20Z%22%20transform%3D%22translate(-71%20-41)%22%2F%3E%0A%3C%2Fsvg%3E%0A");}.ckf-file-preview-button-next {margin-right: -6em;}.ckf-file-preview-button-next:before {content: '';left: 17%;background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2224%22%20viewBox%3D%220%200%2015%2024%22%3E%0A%20%20%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M23.06%2C44.18%20L31.88%2C53%20L23.06%2C61.82%20C22.4745782%2C62.4054218%2022.4745782%2C63.3545782%2023.06%2C63.94%20L23.06%2C63.94%20C23.6454218%2C64.5254218%2024.5945782%2C64.5254218%2025.18%2C63.94%20L36.12%2C53%20L25.18%2C42.06%20C24.5945782%2C41.4745782%2023.6454218%2C41.4745782%2023.06%2C42.06%20L23.06%2C42.06%20C22.4745782%2C42.6454218%2022.4745782%2C43.5945782%2023.06%2C44.18%20Z%22%20transform%3D%22translate(-22%20-41)%22%2F%3E%0A%3C%2Fsvg%3E%0A");}.ckf-file-preview img {max-height: calc(86%) !important;}@media screen and (min-height: 600px) {.ckf-file-preview img {max-height: calc(88%);}}@media screen and (min-height: 800px) {.ckf-file-preview img {max-height: calc(92%);}}.ckf-file-preview-info {position: absolute;left: 0;bottom: 2em;right: 0;margin: auto;padding: 0.5em 1em;color: #fff;max-height: 2em;line-height: 1em;font-size: 1em;}@media screen and (min-height: 800px) {.ckf-file-preview-info {padding-bottom: 2.2em;}}.ckf-file-preview-info > div {text-align: center;}.ckf-file-preview-info > div:first-of-type {margin-bottom: 0.5em;}.ckf-file-preview-info > div:nth-of-type(2) {opacity: 0.6;}.ckf-rtl .ckf-file-preview-button-prev {margin-left: 0;margin-right: -6em;}.ckf-rtl .ckf-file-preview-button-prev:before {right: auto;left: 17%;background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2215%22%20height%3D%2224%22%20viewBox%3D%220%200%2015%2024%22%3E%0A%20%20%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M23.06%2C44.18%20L31.88%2C53%20L23.06%2C61.82%20C22.4745782%2C62.4054218%2022.4745782%2C63.3545782%2023.06%2C63.94%20L23.06%2C63.94%20C23.6454218%2C64.5254218%2024.5945782%2C64.5254218%2025.18%2C63.94%20L36.12%2C53%20L25.18%2C42.06%20C24.5945782%2C41.4745782%2023.6454218%2C41.4745782%2023.06%2C42.06%20L23.06%2C42.06%20C22.4745782%2C42.6454218%2022.4745782%2C43.5945782%2023.06%2C44.18%20Z%22%20transform%3D%22translate(-22%20-41)%22%2F%3E%0A%3C%2Fsvg%3E%0A");}.ckf-rtl .ckf-file-preview-button-next {margin-right: 0;margin-left: -6em;}.ckf-rtl .ckf-file-preview-button-next:before {left: auto;right: 17%;background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2214%22%20height%3D%2224%22%20viewBox%3D%220%200%2014%2024%22%3E%0A%20%20%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M83.785%2C41.885%20L83.785%2C41.885%20C83.296228%2C41.396228%2082.503772%2C41.396228%2082.015%2C41.885%20L71%2C52.9%20L82.015%2C63.915%20C82.503772%2C64.403772%2083.296228%2C64.403772%2083.785%2C63.915%20L83.785%2C63.915%20C84.273772%2C63.426228%2084.273772%2C62.633772%2083.785%2C62.145%20L74.54%2C52.9%20L83.785%2C43.655%20C84.273772%2C43.166228%2084.273772%2C42.373772%2083.785%2C41.885%20Z%22%20transform%3D%22translate(-71%20-41)%22%2F%3E%0A%3C%2Fsvg%3E%0A");}</style>
+<div class="ckf-file-preview-root" tabindex="0" role="application" dir="ltr" *ngIf="!isSingleClick" (click)="isSingleClick=true">
+  <div class="ckf-file-preview-info">
+    <div class="ckf-file-preview-info-name">{{activeFile.name}}</div>
+  </div>
+  <div class="ckf-file-preview">
+    <img alt="1.jpg&quot;" src="{{activeFile.path}}" id="ckf-image-preview"
+      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; margin: auto; max-width: calc(100% - 6em); max-height: calc(100% - 2em);">
+  </div>
+</div>
