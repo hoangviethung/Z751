@@ -7,18 +7,17 @@
 		</ol>
 	</div>
 </div>
-<section class="product-list" *ngIf="capacities">
+<section class="product-list" *ngIf="products">
 	<div class="container">
 		<div class="block-title">
 			<div class="d-f jc-c">
-				<h2 class="tt-u main-title tag-line">{{ title }}</h2>
+				<h2 class="tt-u main-title tag-line">{{ pageTitle }}</h2>
 			</div>
+			<div class="block-desc-title" [innerHTML]="pageDescription"></div>
 		</div>
 		<div class="row">
-			<div class="col-lg-4 col-sm-6 d-f product-col" *ngFor="let capacity of capacities">
-				<app-capacity-simple
-					[capacity]="capacity"
-				></app-capacity-simple>
+			<div class="col-lg-4 col-sm-6 d-f product-col" *ngFor="let product of products">
+				<app-capacity-simple [product]="product"></app-capacity-simple>
 			</div>
 		</div>
 		<app-pagination></app-pagination>

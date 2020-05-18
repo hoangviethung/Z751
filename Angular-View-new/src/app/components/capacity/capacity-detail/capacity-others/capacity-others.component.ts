@@ -1,6 +1,13 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { SwiperConfigInterface } from "ngx-swiper-wrapper";
+import {
+	Component,
+	OnInit,
+	Input,
+	ViewChild,
+	AfterViewInit,
+} from "@angular/core";
+import { SwiperConfigInterface, SwiperDirective } from "ngx-swiper-wrapper";
 import { HttpService } from "src/core/services/http.service";
+import { ProductModel } from "src/core/models/Product.model";
 
 @Component({
 	selector: "app-capacity-others",
@@ -8,17 +15,20 @@ import { HttpService } from "src/core/services/http.service";
 	styleUrls: ["./capacity-others.component.scss"],
 })
 export class CapacityOthersComponent implements OnInit {
-	productOthers = [];
+
+	@Input("language") currentLanguage: string;
+	@Input("routeParamUrl") routeParamUrl: string;
+
+	productOthers: Array<ProductModel>;
 	sliderProductOthers: SwiperConfigInterface = {
+		initialSlide: 0,
 		slidesPerView: 3,
+		direction: "horizontal",
 		loop: true,
 		speed: 1200,
-		spaceBetween: 38,
+		spaceBetween: 30,
 		observer: true,
 		observeParents: true,
-		autoplay: {
-			delay: 2000,
-		},
 		navigation: {
 			nextEl: ".slider-product-others .swiper-button-next",
 			prevEl: ".slider-product-others .swiper-button-prev",
@@ -33,21 +43,22 @@ export class CapacityOthersComponent implements OnInit {
 			},
 		},
 	};
+	@ViewChild(SwiperDirective, {
+		static: false,
+	})
+	swiperView: SwiperDirective;
 
-	@Input("language") currentLanguage: string;
-	@Input("routeParamUrl") routeParamUrl: string;
 
-	constructor(private httpSvc: HttpService) {}
+	constructor(private httpSvc: HttpService) { }
 
 	ngOnInit() {
 		this.getProductOthers();
 	}
+	ngAfterViewInit() { }
 
 	getProductOthers() {
 		this.httpSvc
-			.get(
-				`assets/api/${this.currentLanguage}/capacity/${this.routeParamUrl}.json`
-			)
+			.get(`assets/api/${this.currentLanguage}/product/${this.routeParamUrl}.json`)
 			.subscribe((result) => {
 				this.productOthers = result.data.Products;
 			});

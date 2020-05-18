@@ -1,4 +1,4 @@
-<section class="product-others pd-70">
+<section class="product-others">
 	<div class="container">
 		<div class="block-title center">
 			<div class="main-title fw-700 tt-u txt-d-under">
@@ -8,13 +8,35 @@
 		<div class="slider-product-others">
 			<div class="swiper-container pb-10" [swiper]="sliderProductOthers">
 				<div class="swiper-wrapper">
-					<div
-						class="swiper-slide"
-						*ngFor="let product of productOthers"
-					>
-						<app-capacity-simple
-							[capacity]="product"
-						></app-capacity-simple>
+					<div class="swiper-slide" *ngFor="let product of productOthers">
+						<a [routerLink]="[
+								'/products/',
+								routeParamUrl,
+								product.url
+							]">
+							<figure>
+								<div class="img">
+									<img class="ofcv" src="{{ product.image }}" alt="" />
+								</div>
+								<figcaption>
+									<h3 class="lcl lcl-1 fw-700">
+										{{ product.title }}
+									</h3>
+									<div class="d-f jc-fe mt-10">
+										<!-- <div class="view-like">
+											<ul class="d-f lst-n pl-0">
+												<li class="view">1234</li>
+												<li class="like">222</li>
+											</ul>
+										</div> -->
+										<span class="view-detail text-right">{{
+											"ResourceKeys.ViewDetail"
+
+										}}</span>
+									</div>
+								</figcaption>
+							</figure>
+						</a>
 					</div>
 				</div>
 			</div>

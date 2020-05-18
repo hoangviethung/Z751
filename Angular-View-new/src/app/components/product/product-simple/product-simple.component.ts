@@ -9,7 +9,7 @@ import { ProductModel } from "src/core/models/Product.model";
 export class ProductSimpleComponent implements OnInit {
 	@Input() product: ProductModel;
 
-	constructor() {}
+	constructor() { }
 
-	ngOnInit() {}
+	ngOnInit() { }
 }

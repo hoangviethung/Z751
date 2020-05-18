@@ -30,7 +30,7 @@ export class ProductComponent implements OnInit {
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,
 		@Inject(DOCUMENT) document: Document
-	) {}
+	) { }
 
 	ngOnInit() {
 		this.getProducts();

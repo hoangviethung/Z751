@@ -1,32 +1,14 @@
 <div class="item-product">
-	<a
-		[routerLink]="[
-			'/capacities',
-			capacity.CategoryUrl,
-			capacity.Url
-		]"
-	>
+	<a [routerLink]="[product.url]">
 		<figure>
 			<div class="img ov-h">
-				<img
-					src="{{ capacity.Image }}"
-					alt="{{ capacity.Title }}"
-					class="ofcv"
-				/>
+				<img src="{{ product.image }}" alt="{{ product.title }}" class="ofcv" />
 			</div>
-			<figcaption class="description row no-gutters">
-				<div class="item-info col-md">
-					<h3>{{ capacity.Title }}</h3>
-					<div
-						class="item-title"
-						[innerHTML]="capacity.Description"
-					></div>
-				</div>
-				<div class="item-button col-md-auto">
-					<span class="text-right"
-						>{{ "ResourceKeys.ViewDetail" }}
-					</span>
-				</div>
+			<figcaption class="description d-f">
+				<h3>{{ product.title }}</h3>
+				<span class="view-detail text-right">{{
+					"ResourceKeys.ViewDetail"
+				}}</span>
 			</figcaption>
 		</figure>
 	</a>

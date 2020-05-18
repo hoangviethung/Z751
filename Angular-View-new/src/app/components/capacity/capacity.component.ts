@@ -5,6 +5,8 @@ import { PageInfoService } from "src/core/services/page-info.service";
 import { LanguageService } from "src/core/services/language.service";
 import { ProductModel } from "src/core/models/Product.model";
 import { API } from "src/core/configs/api";
+import { response } from 'express';
+import { map } from 'rxjs/operators';
 
 @Component({
 	selector: "app-capacity",
@@ -13,7 +15,9 @@ import { API } from "src/core/configs/api";
 })
 export class CapacityComponent implements OnInit {
 	currentLanguage: string;
-	capacities: Array<ProductModel> = [];
+	products: Array<ProductModel> = [];
+	pageTitle: string;
+	pageDescription: string;
 	title: string;
 	Breadcrumb = {
 		en: ["Home", "Capacities"],
@@ -26,26 +30,24 @@ export class CapacityComponent implements OnInit {
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,
 		private languageSvc: LanguageService
-	) {}
+	) { }
 
 	ngOnInit() {
 		this.getCapacities();
 	}
 
 	getCapacities() {
-		this.activatedRoute.params.subscribe((routeParams) => {
-			let Breadcrumb = {
-				en: ["Home", "Capacities"],
-				vi: ["Trang chủ", "Năng lực"],
-			};
-			const opts = new InputRequestOption();
-			opts.params = {
-				url: "%2Fnang-luc",
-			};
-			this.httpSvc.get(API.ProductGroup.Gets, opts)
-				.subscribe((result) => {
-					console.log(result);
-				});
+		const opts = new InputRequestOption();
+		opts.params = {
+			url: document.location.pathname,
+		};
+		this.httpSvc.get(API.Category.Get, opts).subscribe((response) => {
+			this.pageTitle = response.data.title;
+			this.pageDescription = response.data.description;
+			this.pageInfoSvc.setTitle(this.pageTitle);
+		});
+		this.httpSvc.get(API.Product.Gets, opts).subscribe((response) => {
+			this.products = response.data;
 		});
 	}
 }

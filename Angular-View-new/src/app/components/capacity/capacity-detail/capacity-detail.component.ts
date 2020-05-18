@@ -5,6 +5,7 @@ import { HttpService } from "src/core/services/http.service";
 import { PageInfoService } from "src/core/services/page-info.service";
 import { SwiperConfigInterface, SwiperDirective } from "ngx-swiper-wrapper";
 import { ProductModel } from "src/core/models/Product.model";
+import { Category } from 'src/core/models/Category.model';
 
 @Component({
 	selector: "app-capacity-detail",
@@ -12,14 +13,15 @@ import { ProductModel } from "src/core/models/Product.model";
 	styleUrls: ["./capacity-detail.component.scss"],
 })
 export class CapacityDetailComponent implements OnInit {
+	tabId = 1;
 	productUrl: string;
 	productCategoryUrl: string;
 	productCategory: string;
 	currentLanguage: string;
 	product: ProductModel;
 	Breadcrumb = {
-		en: ["Home", "Capacities"],
-		vi: ["Trang chủ", "Năng lực"],
+		en: ["Home", "Products"],
+		vi: ["Trang chủ", "Sản phẩm"],
 	};
 	breadcrumbs;
 
@@ -41,7 +43,13 @@ export class CapacityDetailComponent implements OnInit {
 			prevEl: ".preview-img-wrapper .swiper-button-prev",
 		},
 		breakpoints: {
-			575: {
+			768: {
+				slidesPerView: 5,
+				spaceBetween: 10,
+				direction: "horizontal",
+			},
+			576: {
+				slidesPerView: 3,
 				spaceBetween: 10,
 				direction: "horizontal",
 			},
@@ -61,31 +69,43 @@ export class CapacityDetailComponent implements OnInit {
 			prevEl: ".preview-img-wrapper .swiper-button-prev",
 		},
 	};
-
+	isShowPopup: boolean = false;
+	categoryOfProduct: Array<Category>;
 	constructor(
 		private activatedRoute: ActivatedRoute,
 		private languageSvc: LanguageService,
 		private httpSvc: HttpService,
 		private pageSvc: PageInfoService
-	) {
-		
-	}
+	) { }
 
 	ngOnInit() {
 		this.fetchProductCategory();
 		this.getProductDetail();
 	}
 
+	showPopup(condition: any) {
+		if (condition != null) {
+			this.isShowPopup = condition;
+		} else {
+			this.isShowPopup = !this.isShowPopup;
+		}
+	}
+
 	getProductDetail() {
 		this.activatedRoute.params.subscribe(async (param) => {
-			this.productCategoryUrl = param.capacityCategory;
+			this.productCategoryUrl = param.productCategory;
+			this.categoryOfProduct = [].concat({
+				Title: this.productCategoryUrl,
+			});
+			console.log(this.categoryOfProduct);
+
 			let Breadcrumb = {
-				en: ["Home", "Capacities"],
-				vi: ["Trang chủ", "Năng lực"],
+				en: ["Home", "Products"],
+				vi: ["Trang chủ", "Sản phẩm"],
 			};
 			await this.httpSvc
 				.get(
-					`assets/api/${this.currentLanguage}/capacity/${this.productCategoryUrl}.json`
+					`assets/api/${this.currentLanguage}/product/${this.productCategoryUrl}.json`
 				)
 				.subscribe((result) => {
 					Breadcrumb[this.currentLanguage].push(result.data.Title);
@@ -93,7 +113,7 @@ export class CapacityDetailComponent implements OnInit {
 				});
 			await this.httpSvc
 				.get(
-					`assets/api/${this.currentLanguage}/capacity/capacity-detail.json`
+					`assets/api/${this.currentLanguage}/product/product-detail.json`
 				)
 				.subscribe((result) => {
 					this.product = result.data;
@@ -105,10 +125,14 @@ export class CapacityDetailComponent implements OnInit {
 	}
 
 	fetchProductCategory() {
-		const url = `assets/api/${this.currentLanguage}/capacity/categories-capacity.json`;
+		const url = `assets/api/${this.currentLanguage}/product/categories-product.json`;
 		this.httpSvc.get(url).subscribe((result) => {
 			this.productCategory = result.data;
 		});
+	}
+
+	changeTab(id: number) {
+		this.tabId = id;
 	}
 
 	changeBigSlider(e) {

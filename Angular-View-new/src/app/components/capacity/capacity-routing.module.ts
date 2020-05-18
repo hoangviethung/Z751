@@ -5,7 +5,8 @@ import { CapacityDetailComponent } from "./capacity-detail/capacity-detail.compo
 
 const routes: Routes = [
 	{
-		path: ":capacityCategory",
+		path: "",
+		pathMatch: 'full',
 		component: CapacityComponent,
 	},
 	{
@@ -18,4 +19,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class CapacityRoutingModule {}
+export class CapacityRoutingModule { }

@@ -7,9 +7,9 @@ import { ProductModel } from "src/core/models/Product.model";
 	styleUrls: ["./capacity-simple.component.scss"],
 })
 export class CapacitySimpleComponent implements OnInit {
-	@Input("capacity") capacity: ProductModel;
+	@Input("product") product: ProductModel;
 
-	constructor() {}
+	constructor() { }
 
-	ngOnInit() {}
+	ngOnInit() { }
 }

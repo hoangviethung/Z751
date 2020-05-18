@@ -15,16 +15,9 @@
 				<div class="row slider-imgProduct" appSetHeightSlider>
 					<!-- HÌNH LỚN -->
 					<div class="preview-img-wrapper col-md-9">
-						<div
-							class="swiper-container"
-							[swiper]="previewSliderConfig"
-							#previewSlider
-						>
+						<div class="swiper-container" [swiper]="previewSliderConfig" #previewSlider>
 							<div class="swiper-wrapper">
-								<div
-									class="swiper-slide"
-									*ngFor="let image of product.Images"
-								>
+								<div class="swiper-slide" *ngFor="let image of product.images">
 									<div class="img ov-h">
 										<img src="{{ image.Image }}" alt="" />
 									</div>
@@ -36,17 +29,10 @@
 					</div>
 					<!-- CÁC HÌNH NHỎ -->
 					<div class="gallery-thumbs-wrapper col-md-3">
-						<div
-							class="swiper-container"
-							[swiper]="thumbsSliderConfig"
-							(swiperClick)="changeBigSlider($event)"
-							#thumbsSlider
-						>
+						<div class="swiper-container" [swiper]="thumbsSliderConfig"
+							(swiperClick)="changeBigSlider($event)" #thumbsSlider>
 							<div class="swiper-wrapper">
-								<div
-									class="swiper-slide"
-									*ngFor="let image of product.Images"
-								>
+								<div class="swiper-slide" *ngFor="let image of product.images">
 									<div class="img ov-h">
 										<img src="{{ image.Image }}" alt="" />
 									</div>
@@ -58,29 +44,13 @@
 				<div class="social-media">
 					<ul class="d-if lst-n pl-0">
 						<li>
-							<a
-								href="https://facebook.com"
-								rel="noreferrer"
-								class="ico-facebook"
-								target="_blank"
-							>
-								<img
-									src="assets/images/icons/facebook-2.svg"
-									alt=""
-								/>
+							<a href="https://facebook.com" rel="noreferrer" class="ico-facebook" target="_blank">
+								<img src="assets/images/icons/facebook-2.svg" alt="" />
 							</a>
 						</li>
 						<li>
-							<a
-								href="https://twitter.com"
-								rel="noreferrer"
-								class="ico-twitter"
-								target="_blank"
-							>
-								<img
-									src="assets/images/icons/twitter-2.svg"
-									alt=""
-								/>
+							<a href="https://twitter.com" rel="noreferrer" class="ico-twitter" target="_blank">
+								<img src="assets/images/icons/twitter-2.svg" alt="" />
 							</a>
 						</li>
 					</ul>
@@ -90,29 +60,25 @@
 				<div class="product-info">
 					<div class="block-title">
 						<h1 class="tt-u main-title mb-0">
-							{{ product.Title }}
+							{{ product.title }}
 						</h1>
 						<p class="mb-0">
-							{{ product.SubTitle }}
+							{{ product.title }}
 						</p>
 						<hr class="tag-line" />
 					</div>
-					<!-- <div class="view-like mt-10">
+					<div class="view-like mt-10">
 						<ul class="d-f lst-n pl-0">
 							<li class="view">1234</li>
 							<li class="like">222</li>
 						</ul>
-					</div> -->
-					<div class="desc" [innerHTML]="product.Description"></div>
+					</div>
+					<div class="desc" [innerHTML]="product.description"></div>
 				</div>
 				<div class="button-contact">
 					<div class="btn-wrapper d-f jc-fe">
-						<a
-							[routerLink]="['/news']"
-							class="btn-red btn-viewmore tt-u h-47"
-						>
-							{{ "ResourceKeys.ContactNow" }}</a
-						>
+						<a class="btn-red btn-viewmore tt-u h-47" (click)="showPopup(null)">
+							{{ "ResourceKeys.ContactNow" }}</a>
 					</div>
 				</div>
 			</div>
@@ -122,22 +88,16 @@
 			<div class="col-lg-9 infoDetail-comments">
 				<div class="tab-container">
 					<ul class="list-tab d-f lst-n pl-0">
-						<li class="item w-100">
+						<li class="item w-100" (click)="changeTab(1)">
 							{{ "ResourceKeys.ProductInformation" }}
 						</li>
-						<!-- <li
-							class="item w-100 text-center"
-							(click)="changeTab(2)"
-						>
+						<li class="item w-100 text-center" (click)="changeTab(2)">
 							Bình luận
-						</li> -->
+						</li>
 					</ul>
 					<div class="tab-content">
-						<div class="content" tab-id="item-1">
-							<div
-								class="desc"
-								[innerHTML]="product.Content"
-							></div>
+						<div class="content" tab-id="item-1" *ngIf="tabId == 1">
+							<div class="desc" [innerHTML]="product.content"></div>
 						</div>
 					</div>
 				</div>
@@ -148,21 +108,55 @@
 				</div>
 				<ul class="list-item lst-n pl-0">
 					<li class="item" *ngFor="let category of productCategory">
-						<a
-							class="nav-link"
-							[routerLink]="[
+						<a class="nav-link" [routerLink]="[
 								'/products',
 								category.Url
-							]"
-							>{{ category.Title }}</a
-						>
+							]">{{ category.Title }}</a>
+					</li>
+					<li class="item tt-u">
+						<a [routerLink]="'/products'">
+							cơ khí chính xác
+						</a>
+					</li>
+					<li class="item tt-u">
+						<a [routerLink]="'/products'">
+							cao su kĩ thuật
+						</a>
+					</li>
+					<li class="item tt-u">
+						<a [routerLink]="'/products'">
+							đồ gỗ gia dụng xuất nhập khẩu
+						</a>
+					</li>
+					<li class="item tt-u">
+						<a [routerLink]="'/products'">
+							chế tạo sửa chữa thiết bị
+						</a>
+					</li>
+					<li class="item tt-u">
+						<a [routerLink]="'/products'">
+							dịch vụ
+						</a>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</div>
+
+	<div class="product-form" [ngClass]="{ active: isShowPopup }">
+		<div class="product-form-wrapper" *ngIf="categoryOfProduct">
+			<div class="product-form-content">
+				<h2 class="main-title text-center tt-u">
+					{{ "menu.contact" }}
+				</h2>
+				<div class="close-popup" (click)="showPopup(false)">
+					<span></span><span></span>
+				</div>
+				<app-form-contact [departments]="categoryOfProduct" [categoryUrl]="productCategoryUrl">
+				</app-form-contact>
+			</div>
+		</div>
+	</div>
 </section>
-<app-capacity-others
-	[routeParamUrl]="productCategoryUrl"
-	[language]="currentLanguage"
-></app-capacity-others>
+
+<app-capacity-others [routeParamUrl]="productCategoryUrl" [language]="currentLanguage"></app-capacity-others>
