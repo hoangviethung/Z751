@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { InputRequestOption, HttpService } from 'src/app/_core/services/http.service';
+import {
+	InputRequestOption,
+	HttpService,
+} from 'src/app/_core/services/http.service';
 import { LanguageModel } from 'src/app/_core/models/language';
 import { APIConfig } from 'src/app/_core/API-config';
 import { CategoryModel } from 'src/app/_core/models/category.model';
@@ -29,6 +32,7 @@ export class AddEditComponent implements OnInit {
 	templates: Array<TemplateModel> = TemplatesConfig;
 	languageControl = new FormControl();
 	categoryControl = new FormControl();
+	productGroupCapacities: ProductGroupModel = new ProductGroupModel();
 	constructor(
 		private crudSvc: CrudService,
 		private httpSvc: HttpService,
@@ -74,6 +78,7 @@ export class AddEditComponent implements OnInit {
 						this.product = response.data;
 						this.setBaseUrl();
 						this.getCategories(this.product.languageId.toString());
+						this.getProductGroupsCapacities();
 						this.createdDate = new FormControl(
 							new Date(this.product.order).toISOString()
 						);
@@ -82,8 +87,21 @@ export class AddEditComponent implements OnInit {
 				this.isEdit = false;
 				this.setBaseUrl();
 				this.getCategories();
+				this.getProductGroupsCapacities();
 			}
 		});
+	}
+
+	getProductGroupsCapacities() {
+		const opts = new InputRequestOption();
+		opts.params = {
+			languageId: '1',
+		};
+		this.httpSvc
+			.get(APIConfig.ProductGroup.Gets, opts)
+			.subscribe((response) => {
+				this.productGroupCapacities = response.data;
+			});
 	}
 
 	setBaseUrl() {
@@ -125,7 +143,7 @@ export class AddEditComponent implements OnInit {
 
 	onDateChangeEmitter(e) {
 		console.log(e);
-		this.product.order = e
+		this.product.order = e;
 	}
 
 	onChangeEmitterDescription(content) {

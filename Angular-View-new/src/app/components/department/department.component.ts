@@ -1,11 +1,16 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { LanguageService } from "src/core/services/language.service";
 import { PageInfoService } from "src/core/services/page-info.service";
-import { HttpService } from "src/core/services/http.service";
+import {
+	HttpService,
+	InputRequestOption,
+} from "src/core/services/http.service";
 import { ProductModel } from "src/core/models/Product.model";
 import { BreadcrumbService } from "../_shared/breadcrumb/breadcrumb.service";
 import { Category } from "src/core/models/Category.model";
+import { DOCUMENT } from "@angular/common";
+import { API } from "src/core/configs/api";
 
 @Component({
 	selector: "app-department",
@@ -26,55 +31,41 @@ export class DepartmentComponent implements OnInit {
 		vi: ["Trang chủ", "Đơn vị thành viên"],
 	};
 	breadcrumbs;
-	departments: Array<Category>;
+	departments: Array<ProductModel>;
 	categoryUrl: string;
+	productGroups: any;
 
-	constructor(
-		private languageSvc: LanguageService,
-		private pageSvc: PageInfoService,
-		private activatedRoute: ActivatedRoute,
-		private httpSvc: HttpService,
-		private breadcrumbSvc: BreadcrumbService
-	) {}
+	constructor(private httpSvc: HttpService) {}
 
 	ngOnInit() {
-		// this.getProducts();
-		// this.getDepartmentList();
+		const pathname = document.location.pathname;
+		const opts = new InputRequestOption();
+		opts.params = {
+			url: pathname,
+		};
+		this.getInformationOfDepartment(opts);
+		this.getDepartment_ProductCapacities(opts);
+		this.getProductGroups(opts);
 	}
 
-	getProducts() {
-		this.activatedRoute.params.subscribe((params) => {
-			let Breadcrumb = {
-				en: ["Home", "Departments"],
-				vi: ["Trang chủ", "Đơn vị thành viên"],
-			};
-			this.breadcrumbSvc.setBreadcrumb(this.Breadcrumb);
-			this.categoryUrl = params.departmentCategory;
-			this.httpSvc
-				.get(
-					`assets/api/${this.currentLanguage}/department/${params.departmentCategory}.json`
-				)
-				.subscribe((result) => {
-					this.pageSvc.setTitle(result.data.Title);
-					this.title = result.data.Title;
-					this.image = result.data.Image;
-					this.description = result.data.Description;
-					this.address = result.data.Information.Address;
-					this.workTime = result.data.Information.WorkTime;
-					this.designProducts = result.data.Products.DesignProducts;
-					this.prepairProducts = result.data.Products.PrepairProducts;
-					Breadcrumb[this.currentLanguage].push(result.data.Title);
-					this.breadcrumbs = Breadcrumb[this.currentLanguage];
-				});
+	getDepartment_ProductCapacities(opts: InputRequestOption) {
+		this.httpSvc.get(API.Product.Gets, opts).subscribe((response) => {
+			this.departments = response.data;
 		});
 	}
-	getDepartmentList() {
-		this.httpSvc
-			.get(
-				`assets/api/${this.currentLanguage}/department/categories-department.json`
-			)
-			.subscribe((result) => {
-				this.departments = result.data;
-			});
+
+	getInformationOfDepartment(opts: InputRequestOption) {
+		this.httpSvc.get(API.Category.Get, opts).subscribe((response) => {
+			this.title = response.data.title;
+			this.description = response.data.description;
+			this.image = response.data.image;
+		});
+	}
+
+	getProductGroups(opts: InputRequestOption) {
+		this.httpSvc.get(API.ProductGroup.Gets, opts).subscribe((response) => {
+			this.productGroups = response.data;
+			console.log(this.productGroups);
+		});
 	}
 }

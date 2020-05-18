@@ -18,7 +18,8 @@
 			<div class="row">
 				<div class="col-12">
 					<h2 class="main-title tag-line tt-u">
-						{{ "menu.about" }}
+						<!-- {{ "menu.about" }} -->
+						Giới thiệu
 					</h2>
 				</div>
 				<div class="col-lg-6">
@@ -38,36 +39,33 @@
 	<div class="container">
 		<div class="block-title center">
 			<h2 class="main-title tt-u mb-0">
-				{{ "ResourceKeys.Products" }}
+				<!-- {{ "ResourceKeys.Products" }} -->
+				Sản phẩm
 			</h2>
 		</div>
-		<div class="content">
-			<h2 class="main-title tt-u tag-line">
-				{{ "ResourceKeys.DesignDevelope" }}
-			</h2>
-			<div class="row" *ngIf="designProducts">
-				<div class="col-12">
-					<app-department-products
-						[products]="designProducts"
-					></app-department-products>
+		<ng-container *ngFor="let productGroup of productGroups">
+			<div class="content" *ngIf="!productGroup.isPotential">
+				<h2 class="main-title tt-u tag-line">
+					{{ productGroup.name }}
+				</h2>
+				<div class="row" *ngIf="productGroup.products">
+					<div class="col-12">
+						<app-department-products
+							[products]="productGroup.products"
+						></app-department-products>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="content">
-			<h2 class="main-title tt-u tag-line">
-				{{ "ResourceKeys.MaintenanceRepair" }}
-			</h2>
-			<div class="row" *ngIf="prepairProducts">
-				<div class="col-12">
-					<app-department-products
-						[products]="prepairProducts"
-					></app-department-products>
-				</div>
-			</div>
-		</div>
+		</ng-container>
 	</div>
 </section>
-<app-department-capacity [language]="currentLanguage"></app-department-capacity>
+
+<ng-container *ngFor="let productGroup of productGroups">
+	<app-department-capacity
+		*ngIf="productGroup.isPotential"
+		[capacityProducts]="productGroup.products"
+	></app-department-capacity>
+</ng-container>
 <app-index-news [language]="currentLanguage"></app-index-news>
 
 <section class="form-contact pd-70">

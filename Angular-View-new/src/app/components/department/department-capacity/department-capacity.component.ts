@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { HttpService } from "src/core/services/http.service";
+import {
+	HttpService,
+	InputRequestOption,
+} from "src/core/services/http.service";
 import { ProductModel } from "src/core/models/Product.model";
+import { API } from "src/core/configs/api";
 
 @Component({
 	selector: "app-department-capacity",
@@ -8,22 +12,36 @@ import { ProductModel } from "src/core/models/Product.model";
 	styleUrls: ["./department-capacity.component.scss"],
 })
 export class DepartmentCapacityComponent implements OnInit {
-	capacities: Array<ProductModel> = [];
 	@Input("language") currentLanguage: string;
+	title: string;
+	description: string;
+	image: string;
+	@Input("capacityProducts") capacityProducts: Array<ProductModel>;
 
 	constructor(private httpSvc: HttpService) {}
 
 	ngOnInit() {
-		this.getCapacities();
+		const pathname = document.location.pathname;
+		const opts = new InputRequestOption();
+		opts.params = {
+			url: pathname,
+		};
+		this.getInformationOfDepartment(opts);
+		// this.getDepartment_ProductCapacities(opts);
+		// this.getDepartmentList();
 	}
 
-	getCapacities() {
-		const url =
-			this.currentLanguage == "en"
-				? `assets/api/${this.currentLanguage}/capacity/equipment-and-software-supporting-research-and-design.json`
-				: `assets/api/${this.currentLanguage}/capacity/nhom-thiet-bi-gia-cong-ap-luc-va-ket-cau-thep.json`;
-		this.httpSvc.get(url).subscribe((result) => {
-			this.capacities = result.data.Products;
+	// getDepartment_ProductCapacities(opts: InputRequestOption) {
+	// 	this.httpSvc.get(API.Product.Gets, opts).subscribe((response) => {
+	// 		this.departments = response.data;
+	// 	});
+	// }
+
+	getInformationOfDepartment(opts: InputRequestOption) {
+		this.httpSvc.get(API.Category.Get, opts).subscribe((response) => {
+			this.title = response.data.title;
+			this.description = response.data.description;
+			this.image = response.data.image;
 		});
 	}
 }
