@@ -1,1 +1,47 @@
-<p>branch works!</p>
+<div class="block-content" *ngIf="!isShowPopup">
+	<div class="block-control">
+		<div class="form-group mr-at">
+			<label>Lọc theo ngôn ngữ</label>
+			<mat-form-field>
+				<mat-select name="language" [formControl]="languageControl" (ngModelChange)="fetchBranch($event)"
+					[ngModel]=1>
+					<mat-option *ngFor="let language of languages" [value]="language.id">
+						{{ language.name }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+		<a class="btn btn-success btn-add as-c hidden" (click)="onOpenPopup(true)">Thêm mới</a>
+	</div>
+	<div class="block-table">
+		<table class="table">
+			<tr class="table-info">
+				<th>#</th>
+				<th>Tên chi nhánh</th>
+				<th>Địa chỉ</th>
+				<th>Thứ tự</th>
+				<th>Tác vụ</th>
+			</tr>
+			<tr *ngFor="let branch of branchs; let i = index">
+				<th class="column-number ta-c">{{i+1}}</th>
+				<td class="column-officeName">{{branch.officeName}}</td>
+				<td class="column-address">{{branch.address}}</td>
+				<td class="column-order ta-c">{{branch.order}}</td>
+				<td class="column-button ta-c">
+					<div class="table-buttons">
+						<span class="btn btn-outline-success btn-edit" (click)="onOpenPopup(true, branch, true)">
+							<span class="lnr lnr-pencil"></span>
+						</span>
+						<span class="btn btn-outline-danger btn-remove hidden" (click)="dateleBranch(branch.id)">
+							<span class="lnr lnr-trash"></span>
+						</span>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+
+<div class="popup-wrapper" *ngIf="isShowPopup">
+	<app-add-edit [branch]="branch" [isEdit]="isEdit" (close)="onClosePopup($event)"></app-add-edit>
+</div>

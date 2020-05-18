@@ -1,0 +1,70 @@
+<!--  -->
+<div data-role="header" role="banner" class="ui-header ui-bar-inherit ui-header-fixed slidedown ckf-toolbar"
+	data-ckf-toolbar="Main">
+	<div tabindex="10" class="ckf-toolbar-items" role="toolbar">
+		<button data-ckf-name="ShowFolders" title="" tabindex="-1"
+			class="ckf-toolbar-item ckf-toolbar-button ckf-toolbar-item-focusable ckf-folders-toggle ui-btn ui-icon-ckf-menu ui-btn-icon-left ui-corner-all"
+			aria-hidden="true" style="display: none;">
+		</button>
+		<button data-ckf-name="Upload" title="Upload" tabindex="-1" (click)="activeUploadToggle.emit(true)"
+			class="ckf-toolbar-item ckf-toolbar-button ckf-toolbar-item-focusable ui-btn ui-icon-ckf-upload ui-btn-icon-left ui-corner-all">
+			Uploads
+		</button>
+		<button data-ckf-name="CreateFolder" title="New Subfolder" tabindex="-1" (click)="createFolder(true)"
+			class="ckf-toolbar-item ckf-toolbar-button ckf-toolbar-item-focusable ui-btn ui-icon-ckf-folder-add ui-btn-icon-left ui-corner-all">
+			New Folder
+		</button>
+		<button data-ckf-name="Maximize" title="Maximize" tabindex="-1"
+			class="ckf-toolbar-item ckf-toolbar-button ckf-toolbar-item-focusable ui-btn ui-icon-ckf-maximize ui-btn-icon-left ui-corner-all">
+			Maximize
+		</button>
+		<button data-ckf-name="ShowMore" title="Show more" tabindex="-1" data-show-more="true"
+			class="ckf-toolbar-item ckf-toolbar-button ckf-toolbar-item-focusable ui-btn ui-icon-ckf-more-vertical ui-btn-icon-notext ui-corner-all"
+			aria-hidden="true" data-ckf-always-visible="true" style="display: none;">Show more
+		</button>
+		<button data-ckf-name="Settings" title="Settings" tabindex="-1"
+			class="ckf-toolbar-item ckf-toolbar-button ckf-toolbar-item-focusable ui-btn ui-icon-ckf-settings ui-btn-icon-notext ui-corner-all ckf-toolbar-secondary"
+			data-ckf-always-visible="true">Settings
+		</button>
+		<div class="ckf-files-filter ckf-toolbar-secondary ckf-toolbar-item" data-ckf-always-visible="true">
+			<input type="text" class="ckf-toolbar-item-focusable" tabindex="10" placeholder="Filter" value=""
+				data-prevent-focus-zoom="true">
+		</div>
+	</div>
+</div>
+
+<div class="ui-popup-screen ui-overlay-a in" id="ckf1997-screen" *ngIf="isShowDialog"></div>
+<div class="ui-popup-container ui-dialog-popup ui-popup-active" id="ckf1997-popup"
+	style="max-width: 1152px; top: 204px; left: 451px;" *ngIf="isShowDialog">
+	<div role="dialog" id="ckf1844" class="ckf-dialog ui-popup ui-body-a ui-overlay-shadow ui-corner-all" data-theme="a"
+		aria-labelledby="ckf-dialog-label-1850" aria-describedby="ckf-dialog-contents-ckf1844">
+		<div data-role="header" class="ui-title ui-header ui-bar-inherit" id="ckf-dialog-label-1850" aria-live="polite"
+			role="banner">
+			<h1 class="ui-title" role="heading" aria-level="1">New Name</h1>
+		</div>
+		<div id="ckf-dialog-contents-ckf1844" class="ckf-dialog-contents  ui-content"
+			style="min-width: 18em; min-height: 4em; max-height: 700px;">
+			<div>
+				<form action="#">
+					<label>Type the new folder name:
+						<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset">
+							<input name="newFolderName" value="" [attr.data-parent]="isSidebarVisible" tabindex="1"
+								aria-required="true" dir="auto">
+						</div>
+					</label>
+				</form>
+				<p class="error-message"></p>
+			</div>
+		</div>
+		<div class="ui-content ckf-dialog-buttons" id="ckf-dialog-buttons-ckf1997">
+			<div>
+				<button tabindex="1" data-inline="true" data-ckf-button="cancel" (click)="createFolder(false)"
+					class=" ui-btn ui-btn-inline ui-shadow ui-corner-all">Cancel
+				</button>
+				<button tabindex="1" data-inline="true" data-ckf-button="ok" (click)="confirmDialog()"
+					class=" ui-btn ui-btn-inline ui-shadow ui-corner-all">OK
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

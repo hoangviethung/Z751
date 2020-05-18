@@ -1,0 +1,75 @@
+<div class="block-content">
+	<!-- Sửa banner -->
+	<div class="block-control" *ngIf="isEdit == true">
+		<a class="btn btn-danger btn-cancel" (click)="closePopup(false)">Hủy bỏ</a>
+		<a class="btn btn-success btn-add" (click)="updateBranch()">Cập nhật</a>
+	</div>
+	<!-- Thêm banner -->
+	<div class="block-control" *ngIf="isEdit == false">
+		<a class="btn btn-danger btn-cancel" (click)="closePopup(false)">Hủy bỏ</a>
+		<a class="btn btn-success btn-add" (click)="addBranch()">Thêm</a>
+	</div>
+	<form>
+		<div class="block-form form-row row">
+			<div class="col-lg-4">
+				<div class="row">
+					<div class="form-group col-12">
+						<label for="">Ngôn ngữ</label>
+						<mat-form-field>
+							<mat-select name="language" [formControl]="languagesControl"
+								[(ngModel)]="branch.languageId">
+								<mat-option *ngFor="let language of languages" [value]="language.id">
+									{{ language.name }}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</div>
+					<div class="form-group col-12">
+						<label>Chi nhánh</label>
+						<div class="input-group shadow-sm">
+							<input class="form-control" name="officeName" [(ngModel)]="branch.officeName" type="text"
+								placeholder="Tên chi nháh" />
+						</div>
+					</div>
+					<div class="form-group col-12">
+						<label>Địa chỉ</label>
+						<div class="input-group shadow-sm">
+							<input class="form-control" name="address" [(ngModel)]="branch.address" type="text"
+								placeholder="Nhập tên tài khoản" />
+						</div>
+					</div>
+					<div class="form-group col-12">
+						<label>Địa chỉ MAP</label>
+						<div class="input-group shadow-sm">
+							<input class="form-control" name="addressMap" [(ngModel)]="branch.addressMap" type="text" />
+						</div>
+					</div>
+					<div class="form-group col-12">
+						<label>lat</label>
+						<div class="input-group shadow-sm">
+							<input class="form-control" name="lat" [(ngModel)]="branch.lat" type="number" />
+						</div>
+					</div>
+					<div class="form-group col-12">
+						<label>lng</label>
+						<div class="input-group shadow-sm">
+							<input class="form-control" name="lng" [(ngModel)]="branch.lng" type="number" />
+						</div>
+					</div>
+					<div class="form-group col-12">
+						<label>Thứ tự</label>
+						<div class="input-group shadow-sm">
+							<input class="form-control" name="lng" [(ngModel)]="branch.order" type="number" />
+						</div>
+					</div>
+					<div class="form-group col-12">
+						<label class="checkbox-custom">
+							<input type="checkbox" name="isActive" [(ngModel)]="branch.isMainBranch" />
+							Đặt làm chi nhánh chính
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

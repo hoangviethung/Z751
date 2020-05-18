@@ -26,8 +26,8 @@
 			<tr *ngFor="let menu of menus; let i = index">
 				<th class="column-number ta-c">{{i+1}}</th>
 				<td class="column-title">{{menu.title}}</td>
-				<td class="column-category">{{menu.parentId}}</td>
-				<td class="column-url">{{menu.link}}</td>
+				<td class="column-parentId ta-c">{{menu.parentName}}</td>
+				<td class="column-link">{{menu.link}}</td>
 				<td class="column-order ta-c">{{menu.order}}</td>
 				<td class="column-button ta-c">
 					<div class="table-buttons">

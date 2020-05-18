@@ -4,7 +4,7 @@ import { AdminComponent } from './admin.component';
 import { RouteGuardService } from '../route-guard.service';
 
 export class UserPermission {
-	constructor() {}
+	constructor() { }
 
 	getRolePermissions;
 }
@@ -137,6 +137,15 @@ const routes: Routes = [
 				data: { title: 'Nhóm sản phẩm' },
 				canActivate: [RouteGuardService],
 			},
+			{
+				path: 'file-manager',
+				loadChildren: () =>
+					import('./file-manager/file-manager.module').then(
+						(m) => m.FileManagerModule
+					),
+				data: { title: 'Quản lí thư mục' },
+				canActivate: [RouteGuardService],
+			},
 		],
 	},
 ];
@@ -145,4 +154,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class AdminRoutingModule {}
+export class AdminRoutingModule { }

@@ -1,0 +1,173 @@
+<body
+	class="ckf-feature-css-transition ui-alt-icon ui-mobile-viewport ui-overlay-a ckf-toolbar-visible ckf-ui-mode-desktop"
+	data-theme="a" role="application">
+	<!-- -------------------- Folder Menu ------------------------ -->
+	<app-folders [folders]="folders" [currentFolder]="currentFolder" (valueUpdate)="changeCurrentFolder($event)"
+		[isShowDialog]="isShowDialog" (showDialogToggle)="showDialogToggle($event)" (isReloadFolders)="getFolders()">
+	</app-folders>
+	<div class="ckf-panel-scrollable ckf-panel-right ui-panel ui-panel-position-right ui-panel-display-overlay ui-body-a ui-panel-fixed ui-panel-animate ui-panel-closed"
+		data-ckf-panel="settings" data-position="right" data-theme="a" data-display="overlay" aria-hidden="true">
+		<div class="ui-panel-inner">
+			<div role="banner" data-role="header" class="ckf-toolbar-items ui-header ui-bar-inherit"><button
+					data-ckf-role="closePanel" data-icon="ckf-cancel" data-iconpos="notext" title="Close"
+					class="ui-btn-left ui-btn ui-icon-ckf-cancel ui-btn-icon-notext ui-shadow ui-corner-all">Close</button>
+			</div>
+			<div class="ckf-panel-contents" style="height: 647px; overflow: auto;">
+				<div>
+					<div data-role="controlgroup"
+						class="ckf-settings-group ui-controlgroup ui-controlgroup-vertical ui-corner-all">
+						<div class="ui-controlgroup-controls ">
+							<fieldset tabindex="-1">
+								<legend>Settings</legend>
+								<div class="items">
+									<div class="ckf-settings-checkbox">
+										<div class="ui-checkbox"><label for="ckf-107"
+												class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-on ui-first-child">File
+												Name</label><input id="ckf-107" type="checkbox" name="displayName"
+												data-iconpos="left" checked="checked"></div>
+									</div>
+									<div class="ckf-settings-checkbox">
+										<div class="ui-checkbox"><label for="ckf-110"
+												class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-on">Date</label><input
+												id="ckf-110" type="checkbox" name="displayDate" data-iconpos="left"
+												checked="checked" data-cacheval="false"></div>
+									</div>
+									<div class="ckf-settings-checkbox">
+										<div class="ui-checkbox"><label for="ckf-113"
+												class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-on">File
+												Size</label><input id="ckf-113" type="checkbox" name="displaySize"
+												data-iconpos="left" checked="checked"></div>
+									</div>
+									<div><label>View</label>
+										<div class="ui-radio"><label for="viewTypelist"
+												class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-off">List</label><input
+												name="viewType" id="viewTypelist" value="list" data-iconpos="left"
+												type="radio"></div>
+										<div class="ui-radio"><label for="viewTypethumbnails"
+												class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on">Thumbnails</label><input
+												name="viewType" id="viewTypethumbnails" value="thumbnails"
+												checked="checked" data-iconpos="left" type="radio"></div>
+										<div class="ui-radio"><label for="viewTypecompact"
+												class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-off">Compact</label><input
+												name="viewType" id="viewTypecompact" value="compact" data-iconpos="left"
+												type="radio"></div>
+									</div>
+									<div><label>Sort by</label>
+										<div class="ui-select">
+											<div id="select-31-button"
+												class="ui-btn ui-icon-carat-d ui-btn-icon-right ui-corner-all ui-shadow">
+												<span>File Name</span><select type="text" name="sortBy" value="name">
+													<option value="name" selected="selected">File Name</option>
+													<option value="size">File Size</option>
+													<option value="date">Date</option>
+												</select></div>
+										</div>
+									</div>
+									<div><label>Order</label>
+										<div class="ui-radio"><label for="sortByOrderasc"
+												class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-on">Ascending</label><input
+												name="sortByOrder" id="sortByOrderasc" value="asc" checked="checked"
+												data-iconpos="left" type="radio"></div>
+										<div class="ui-radio"><label for="sortByOrderdesc"
+												class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-radio-off ui-last-child">Descending</label><input
+												name="sortByOrder" id="sortByOrderdesc" value="desc" data-iconpos="left"
+												type="radio"></div>
+									</div>
+									<div>
+										<label for="thumbSize" id="thumbSize-label">Thumbnail Size</label>
+										<div class="ui-slider"><input type="number" data-type="range" name="thumbSize"
+												id="thumbSize" min="150" max="500" step="2" value="150"
+												class="ui-shadow-inset ui-body-inherit ui-corner-all ui-slider-input">
+											<div role="application"
+												class="ui-slider-track ui-shadow-inset ui-bar-inherit ui-corner-all"
+												aria-disabled="false"><a href="#"
+													class="ui-slider-handle ui-btn ui-shadow" role="slider"
+													aria-valuemin="150" aria-valuemax="500" aria-valuenow="150"
+													aria-valuetext="150" title="150" aria-labelledby="thumbSize-label"
+													tabindex="0" style="left: 0%;"></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="ui-panel-dismiss"></div>
+	<div data-role="page" data-ckf-page="Main" class="ckf-page ckf-files-page ui-page ui-page-theme-a ui-page-active"
+		data-theme="a" data-url="/blank" style="position: relative; padding-top: 52px; min-height: 648px;">
+		<!--------------------------- Tool Bar ------------------------->
+		<app-toolbar [isShowDialog]="isShowDialog" (showDialogToggle)="showDialogToggle($event)"
+			(isReloadfolderSvc)="getFolders()" (activeUploadToggle)="isUploadActive = true"></app-toolbar>
+		<div class="ui-panel-wrapper">
+			<div class="ckf-page-regions ui-content" role="main">
+				<!--------------------- Upload Wrapper ---------------------------->
+				<div id="ckf-87" data-ckf-priority="20">
+					<div *ngIf="isUploadActive">
+						<div data-role="navbar" class="ckf-upload-dropzone ui-body-a ui-navbar" tabindex="20"
+							role="navigation">
+							<div class="ui-content">
+								<div class="ckf-upload-dropzone-grid">
+									<div class="ckf-upload-dropzone-grid-a">
+										<p id="ckf-label-548" class="ckf-upload-status">Select files to upload</p>
+										<p class="ckf-upload-progress-text" style="display: none;"><span
+												class="ckf-upload-progress-text-files"></span> <span
+												class="ckf-upload-progress-text-bytes"></span></p>
+									</div>
+									<div class="ckf-upload-dropzone-grid-b">
+										<div
+											class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-icon-ckf-plus ui-btn-icon-left">
+											Add Files
+											<input type="file" tabindex="-1" data-icon="ckf-plus" data-ckf-button="add"
+												name="fileupload" multiple (change)="addFile()">
+										</div>
+										<div
+											class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-icon-ckf-cancel ui-btn-icon-left">
+											Close
+											<input type="button" tabindex="-1" data-icon="ckf-cancel"
+												data-ckf-button="cancel" value="Close" (click)="isUploadActive = false">
+										</div>
+										<div
+											class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-icon-ckf-details ui-btn-icon-left ui-state-disabled mobile-button-disabled">
+											Details<input type="button" tabindex="-1" data-icon="ckf-details"
+												data-ckf-button="details" value="Details" disabled=""
+												aria-disabled="true">
+										</div>
+									</div>
+								</div>
+								<div id="ckf-upload-progress">
+									<div class="ckf-progress">
+										<div class="ckf-progress-message ckf-hidden"></div>
+										<div class="ckf-progress-wrap ckf-progress-indeterminate" role="progressbar"
+											aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+											<div class="ckf-progress-bar" style="width:0%;"></div>
+										</div>
+									</div>
+								</div>
+								<div class="ckf-upload-input-wrap">
+									<div class="ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset">
+										<input class="ckf-upload-input" type="file" multiple="multiple">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-------------------------- Board ---------------------------->
+				<app-board *ngIf="currentFolder" [currentFolder]="currentFolder"></app-board>
+			</div>
+		</div>
+	</div>
+	<div class="ui-loader ui-corner-all ui-body-a ui-loader-verbose" *ngIf="isLoadingBoard">
+		<span class="ui-icon-loading"></span>
+		<h1 role="alert">Please wait.</h1>
+	</div>
+	<div style="display: none;" id="ckf891-placeholder">
+		<!-- placeholder for ckf891 -->
+	</div>
+</body>
+
+<router-outlet></router-outlet>

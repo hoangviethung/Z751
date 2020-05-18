@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
+import { element } from 'protractor';
 export enum Menu {
 	main = 0,
 	footer = 1,
@@ -36,7 +37,7 @@ export class MenuComponent implements OnInit {
 		private httpSvc: HttpService,
 		private activatedRoute: ActivatedRoute,
 		private toastrSvc: ToastrService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.activatedRoute.params.subscribe((params) => {
@@ -64,6 +65,16 @@ export class MenuComponent implements OnInit {
 			.pipe(map((response) => response.data))
 			.subscribe((menus) => {
 				this.menus = menus;
+				this.menus.forEach(element => {
+					let name = this.menus.find((item) => {
+						if (item.id == element.parentId) {
+							return item
+						}
+					})
+					if (name) {
+						element.parentName = name.title
+					}
+				})
 			});
 	}
 
