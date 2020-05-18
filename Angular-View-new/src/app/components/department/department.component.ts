@@ -31,66 +31,41 @@ export class DepartmentComponent implements OnInit {
 		vi: ["Trang chủ", "Đơn vị thành viên"],
 	};
 	breadcrumbs;
-	departments: Array<Category>;
+	departments: Array<ProductModel>;
 	categoryUrl: string;
+	productGroups: any;
 
-	constructor(
-		private languageSvc: LanguageService,
-		private pageSvc: PageInfoService,
-		private activatedRoute: ActivatedRoute,
-		private httpSvc: HttpService,
-		@Inject(DOCUMENT) document: Document
-	) {}
+	constructor(private httpSvc: HttpService) {}
 
 	ngOnInit() {
-		this.getProducts();
-		// this.getDepartmentList();
-	}
-
-	getProducts() {
 		const pathname = document.location.pathname;
 		const opts = new InputRequestOption();
 		opts.params = {
 			url: pathname,
 		};
+		this.getInformationOfDepartment(opts);
+		this.getDepartment_ProductCapacities(opts);
+		this.getProductGroups(opts);
+	}
+
+	getDepartment_ProductCapacities(opts: InputRequestOption) {
+		this.httpSvc.get(API.Product.Gets, opts).subscribe((response) => {
+			this.departments = response.data;
+		});
+	}
+
+	getInformationOfDepartment(opts: InputRequestOption) {
 		this.httpSvc.get(API.Category.Get, opts).subscribe((response) => {
 			this.title = response.data.title;
 			this.description = response.data.description;
 			this.image = response.data.image;
 		});
-
-		// this.activatedRoute.params.subscribe((params) => {
-		// 	// let Breadcrumb = {
-		// 	// 	en: ["Home", "Departments"],
-		// 	// 	vi: ["Trang chủ", "Đơn vị thành viên"],
-		// 	// };
-		// 	// this.breadcrumbSvc.setBreadcrumb(this.Breadcrumb);
-		// 	this.categoryUrl = params.departmentCategory;
-		// 	this.httpSvc
-		// 		.get(
-		// 			`assets/api/${this.currentLanguage}/department/${params.departmentCategory}.json`
-		// 		)
-		// 		.subscribe((result) => {
-		// 			this.pageSvc.setTitle(result.data.Title);
-		// 			this.title = result.data.Title;
-		// 			this.image = result.data.Image;
-		// 			this.description = result.data.Description;
-		// 			this.address = result.data.Information.Address;
-		// 			this.workTime = result.data.Information.WorkTime;
-		// 			this.designProducts = result.data.Products.DesignProducts;
-		// 			this.prepairProducts = result.data.Products.PrepairProducts;
-		// 			Breadcrumb[this.currentLanguage].push(result.data.Title);
-		// 			this.breadcrumbs = Breadcrumb[this.currentLanguage];
-		// 		});
-		// });
 	}
-	getDepartmentList() {
-		// this.httpSvc
-		// 	.get(
-		// 		`assets/api/${this.currentLanguage}/department/categories-department.json`
-		// 	)
-		// 	.subscribe((result) => {
-		// 		this.departments = result.data;
-		// 	});
+
+	getProductGroups(opts: InputRequestOption) {
+		this.httpSvc.get(API.ProductGroup.Gets, opts).subscribe((response) => {
+			this.productGroups = response.data;
+			console.log(this.productGroups);
+		});
 	}
 }

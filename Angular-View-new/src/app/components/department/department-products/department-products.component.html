@@ -8,17 +8,17 @@
 		<div class="swiper-wrapper">
 			<div *ngFor="let product of products" class="swiper-slide">
 				<div class="product-item" #departmentSlide>
-					<a [routerLink]="['/products', product.CategoryUrl,product.Url]">
+					<a routerLink="product.url">
 						<div class="img ov-h">
 							<img
-								src="{{ product.Image }}"
-								alt="{{ product.Title }}"
+								src="{{ product.image }}"
+								alt="{{ product.title }}"
 							/>
 						</div>
 						<div class="description fcc">
 							<h3
 								class="tt-u ta-c"
-								[innerHTML]="product.Title"
+								[innerHTML]="product.description"
 							></h3>
 						</div>
 					</a>

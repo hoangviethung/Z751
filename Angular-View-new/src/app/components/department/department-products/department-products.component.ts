@@ -29,7 +29,7 @@ export class DepartmentProductsComponent implements OnInit {
 		},
 		breakpoints: {
 			1025: {
-				slidesPerView: 2,
+				slidesPerView: 3,
 			},
 			768: {
 				spaceBetween: 15,
