@@ -11,12 +11,12 @@
 				<div class="swiper-wrapper">
 					<div class="swiper-slide" *ngFor="let item of departments">
 						<div class="product-item" #departmentSlide>
-							<a [routerLink]="['/departments', item.Url]">
+							<a [routerLink]="item.previewUrl">
 								<div class="img ov-h">
-									<img src="{{ item.Image }}" alt="{{ item.Title }}" />
+									<img src="{{ item.image }}" alt="{{ item.title }}" />
 								</div>
 								<div class="description fcc">
-									<h3 class="tt-u ta-c" [innerHTML]="item.Title"></h3>
+									<h3 class="tt-u ta-c" [innerHTML]="item.title"></h3>
 								</div>
 							</a>
 						</div>

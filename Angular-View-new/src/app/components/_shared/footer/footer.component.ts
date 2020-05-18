@@ -15,6 +15,7 @@ export class FooterComponent implements OnInit {
 	) { }
 	branchs: Array<BranchModel>
 	headquater: BranchModel
+	AddressOppositeOffice: BranchModel
 	ngOnInit() {
 		this.getBranchs()
 	}
@@ -31,6 +32,8 @@ export class FooterComponent implements OnInit {
 				this.branchs.forEach((item, index) => {
 					if (item.order == 1) {
 						this.headquater = item
+					} else {
+						this.AddressOppositeOffice = item
 					}
 				})
 			})

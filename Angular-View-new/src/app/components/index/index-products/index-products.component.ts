@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from "@angular/core";
 import { HttpService, InputRequestOption } from "src/core/services/http.service";
 import { ProductModel } from "src/core/models/Product.model";
 import { API } from 'src/core/configs/api';
+import { Category } from 'src/core/models/Category.model';
 
 @Component({
 	selector: "app-index-products",
@@ -9,7 +10,7 @@ import { API } from 'src/core/configs/api';
 	styleUrls: ["./index-products.component.scss"],
 })
 export class IndexProductsComponent implements OnInit {
-	productCategories: Array<ProductModel>;
+	productCategories: Array<Category>;
 	@Input("language") currentLanguage: string;
 
 	constructor(private httpSvc: HttpService) { }

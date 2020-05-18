@@ -8,7 +8,7 @@
 		<div class="row">
 			<div class="col-lg-4 col-sm-6 col-product" *ngFor="let item of productCategories">
 				<div class="product-item" appIndexProductItem>
-					<a [routerLink]="['/products', item.url, item.url]">
+					<a [routerLink]="item.previewUrl">
 						<div class="img ov-h">
 							<img src="{{ item.image }}" alt="{{ item.title }}" />
 						</div>
