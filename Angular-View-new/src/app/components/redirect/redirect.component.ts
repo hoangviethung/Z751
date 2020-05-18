@@ -25,8 +25,6 @@ export class RedirectComponent implements OnInit {
 				this.status == 200 &&
 				JSON.parse(xhttp.responseText).data != null
 			) {
-				console.log(1);
-
 				switch (JSON.parse(xhttp.responseText).data.template) {
 					case 1:
 						temp = "";
@@ -48,8 +46,6 @@ export class RedirectComponent implements OnInit {
 						return;
 					case 7:
 						temp = "contact";
-						return;
-					default:
 						return;
 				}
 			}

@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 // import { CloseMenuDirective } from "../directives/close-menu.directive";
 // import { ToggleMenuDirective } from "../directives/toggle-menu.directive";
 // import { IndexNewsItemDirective } from "../directives/index-news-item.directive";
@@ -14,6 +14,7 @@ import { FormContactComponent } from "./form-contact/form-contact.component";
 import { BreadcrumbService } from "./breadcrumb/breadcrumb.service";
 import { SwiperModule } from "ngx-swiper-wrapper";
 import { IndexNewsComponent } from "../index/index-news/index-news.component";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
 	declarations: [
@@ -22,11 +23,13 @@ import { IndexNewsComponent } from "../index/index-news/index-news.component";
 		FormContactComponent,
 		IndexNewsComponent,
 	],
-	imports: [CommonModule,
+	imports: [
+		CommonModule,
 		RouterModule,
 		HttpClientModule,
 		SwiperModule,
-		FormsModule
+		TranslateModule,
+		FormsModule,
 	],
 	exports: [
 		CommonModule,
@@ -37,8 +40,9 @@ import { IndexNewsComponent } from "../index/index-news/index-news.component";
 		FormContactComponent,
 		IndexNewsComponent,
 		SwiperModule,
+		TranslateModule,
 		FormsModule,
 	],
 	providers: [BreadcrumbService],
 })
-export class SharedModule { }
+export class SharedModule {}

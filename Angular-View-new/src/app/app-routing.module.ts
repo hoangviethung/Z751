@@ -71,7 +71,7 @@ const routes: Routes = [
 		},
 	},
 	{
-		path: "404",
+		path: "error",
 		loadChildren: () =>
 			import("./components/page-not-found/page-not-found.module").then(
 				(m) => m.PageNotFoundModule

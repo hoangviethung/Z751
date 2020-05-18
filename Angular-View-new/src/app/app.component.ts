@@ -7,7 +7,7 @@ import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { ResourceModel } from "src/core/models/Resource.model";
 import { ResponseModel } from "src/core/models/Response.model";
 import { Observable } from "rxjs";
-import { map } from 'rxjs/operators';
+import { map } from "rxjs/operators";
 
 @Component({
 	selector: "app-root",
@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
 		private r: Router,
 		@Inject(DOCUMENT) document: Document,
 		private cookieSvc: CookieService,
-		private httpSvc: HttpService,
 		private http: HttpClient
 	) {
 		var xhttp = new XMLHttpRequest();
@@ -61,8 +60,6 @@ export class AppComponent implements OnInit {
 					case 7:
 						temp = "contact";
 						return;
-					default:
-						return;
 				}
 			}
 		};
@@ -73,7 +70,7 @@ export class AppComponent implements OnInit {
 		}
 	}
 	ngOnInit() {
-		this.getResourceKey();
+		// this.getResourceKey();
 	}
 
 	getResourceKey() {
@@ -88,6 +85,6 @@ export class AppComponent implements OnInit {
 			});
 		this.http
 			.get("http://27.71.234.45:8080/assets/en.json")
-			.subscribe((response) => { });
+			.subscribe((response) => {});
 	}
 }

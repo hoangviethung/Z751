@@ -8,7 +8,7 @@ import { LanguageService } from "src/core/services/language.service";
 import { ActivatedRoute } from "@angular/router";
 import { API } from "src/core/configs/api";
 import { DOCUMENT } from "@angular/common";
-import { ArticleModel } from 'src/core/models/Article.model';
+import { ArticleModel } from "src/core/models/Article.model";
 
 @Component({
 	selector: "app-news",

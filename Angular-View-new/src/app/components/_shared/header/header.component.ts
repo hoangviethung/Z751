@@ -9,6 +9,7 @@ import { environment } from "src/environments/environment";
 import { map } from "rxjs/operators";
 import { API } from "src/core/configs/api";
 import { LanguageModel } from "src/core/models/Language.model";
+import { Observable } from "rxjs";
 
 @Component({
 	selector: "app-header",
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit {
 	currentLanguage: string;
 	menus: any;
 
-	constructor(private httpSvc: HttpService) { }
+	constructor(private httpSvc: HttpService) {}
 
 	ngOnInit() {
 		this.getLanguages();
@@ -56,15 +57,18 @@ export class HeaderComponent implements OnInit {
 
 	getLanguages() {
 		this.httpSvc
-			.get(environment.remoteBaseUrl + API.Language.get)
+			.get(API.Language.get)
 			.pipe(
-				map((response) => {
-					// console.log({ key: response });
-					return { key: response };
+				map((response: string) => {
+					return JSON.parse(
+						JSON.stringify({
+							key: response,
+						})
+					);
 				})
 			)
 			.subscribe((res) => {
-				// console.log(res);
+				console.log(res);
 			});
 		this.httpSvc.get(API.Language.gets).subscribe((response) => {
 			this.languages = response.data;
