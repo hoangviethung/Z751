@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
 	currentLanguage: string;
 	menus: any;
 
-	constructor(private httpSvc: HttpService) {}
+	constructor(private httpSvc: HttpService) { }
 
 	ngOnInit() {
 		this.getLanguages();
@@ -59,12 +59,12 @@ export class HeaderComponent implements OnInit {
 			.get(environment.remoteBaseUrl + API.Language.get)
 			.pipe(
 				map((response) => {
-					console.log({ key: response });
+					// console.log({ key: response });
 					return { key: response };
 				})
 			)
 			.subscribe((res) => {
-				console.log(res);
+				// console.log(res);
 			});
 		this.httpSvc.get(API.Language.gets).subscribe((response) => {
 			this.languages = response.data;
@@ -121,8 +121,7 @@ export class HeaderComponent implements OnInit {
 				})
 			)
 			.subscribe((response) => {
-				console.log(response);
-
+				// console.log(response);
 				this.menus = response;
 			});
 	}

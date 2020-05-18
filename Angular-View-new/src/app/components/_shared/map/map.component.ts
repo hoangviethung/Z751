@@ -1,14 +1,36 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { BranchModel } from "src/core/models/Branch.model";
+import { HttpService, InputRequestOption } from 'src/core/services/http.service';
+import { API } from 'src/core/configs/api';
+import { map } from 'rxjs/operators';
+import { response } from 'express';
+
+interface Marker {
+	lat: number;
+	lng: number;
+}
+
+interface Location {
+	latitude: number;
+	longitude: number;
+	zoom: number;
+	markers: Array<Marker>;
+}
+
 @Component({
 	selector: "app-map",
 	templateUrl: "./map.component.html",
 	styleUrls: ["./map.component.scss"],
 })
+
 export class MapComponent implements OnInit {
-	constructor() {}
+	@Input('listAddress') listAddress: Array<BranchModel>;
+	constructor(
+		private httpSvc: HttpService
+	) { }
 
 	location: Location;
+
 	customStyle = [
 		{
 			featureType: "administrative",
@@ -89,34 +111,14 @@ export class MapComponent implements OnInit {
 			],
 		},
 	];
-	listAddress: Array<BranchModel>
+
 	ngOnInit() {
 		this.location = {
-			latitude: 10.835047,
-			longitude: 106.667749,
+			latitude: this.listAddress[0].lat,
+			longitude: this.listAddress[0].lng,
 			zoom: 10,
-			markers: [
-				{
-					lat: 10.835047,
-					lng: 106.667749,
-				},
-				{
-					lat: 10.929392,
-					lng: 106.880614,
-				},
-			],
+			markers: this.listAddress
 		};
+		console.log(this.location);
 	}
-}
-
-interface Marker {
-	lat: number;
-	lng: number;
-}
-
-interface Location {
-	latitude: number;
-	longitude: number;
-	zoom: number;
-	markers: Array<Marker>;
 }

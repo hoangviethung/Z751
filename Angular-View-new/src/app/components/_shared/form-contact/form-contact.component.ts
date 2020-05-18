@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Category } from "src/core/models/Category.model";
+import { FormContactModel } from 'src/core/models/FonmContact.model';
+import { HttpService, InputRequestOption } from 'src/core/services/http.service';
+import { API } from 'src/core/configs/api';
 
 @Component({
 	selector: "app-form-contact",
@@ -9,9 +12,26 @@ import { Category } from "src/core/models/Category.model";
 export class FormContactComponent implements OnInit {
 	@Input("departments") departments: Array<Category>;
 	@Input("categoryUrl") categoryUrl: string;
-	constructor() {}
+	FormContact: FormContactModel = new FormContactModel();
 
-	ngOnInit() {
-		console.log(this.departments);
+	constructor(
+		private httpSvc: HttpService
+	) { }
+
+	ngOnInit() { }
+
+	submitForm() {
+		const option = new InputRequestOption();
+		option.body = this.FormContact
+		this.httpSvc.post(API.Contact.Submit, option)
+			.subscribe((response) => {
+				if (response.code === 200) {
+					console.log('Gửi email thành công !!!');
+					console.log(response.message);
+				} else {
+					console.log('Đã xảy ra lỗi !!!');
+					console.log(response.message);
+				}
+			})
 	}
 }

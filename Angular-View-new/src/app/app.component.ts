@@ -7,6 +7,7 @@ import { HttpClient, HttpParams, HttpHeaders } from "@angular/common/http";
 import { ResourceModel } from "src/core/models/Resource.model";
 import { ResponseModel } from "src/core/models/Response.model";
 import { Observable } from "rxjs";
+import { map } from 'rxjs/operators';
 
 @Component({
 	selector: "app-root",
@@ -81,12 +82,12 @@ export class AppComponent implements OnInit {
 				"http://27.71.234.45:8080/assets/vi.json"
 			)
 			.subscribe((response) => {
-				response.map((item, index) => {
-					console.log(item);
-				});
+				// response.map((item, index) => {
+				// 	console.log(item);
+				// });
 			});
 		this.http
 			.get("http://27.71.234.45:8080/assets/en.json")
-			.subscribe((response) => {});
+			.subscribe((response) => { });
 	}
 }
