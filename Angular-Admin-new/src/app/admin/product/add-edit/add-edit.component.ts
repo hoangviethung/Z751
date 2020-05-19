@@ -68,6 +68,9 @@ export class AddEditComponent implements OnInit {
 						item.parentName += ' >> '
 					}
 				})
+				if (this.isEdit == false) {
+					this.product.categoryId = this.categories[0].id
+				}
 			});
 	}
 
