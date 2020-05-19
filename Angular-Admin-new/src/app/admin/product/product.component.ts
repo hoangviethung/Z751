@@ -26,6 +26,7 @@ export class ProductComponent implements OnInit {
 	languageControl = new FormControl();
 	categoryControl = new FormControl();
 	categories: Array<CategoryModel>;
+	categoryHaveProduct: Array<CategoryModel>;
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
@@ -92,6 +93,11 @@ export class ProductComponent implements OnInit {
 						item.parentName = ''
 					} else {
 						item.parentName += ' >> '
+					}
+				})
+				this.categories = this.categories.filter((item) => {
+					if (item.template != 1 && item.template != 2 && item.template != 6 && item.template != 7) {
+						return item
 					}
 				})
 			});
