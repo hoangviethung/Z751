@@ -34,7 +34,7 @@ export class StaffComponent implements OnInit {
 
 	@Input("language") currentLanguage;
 
-	constructor(private httpSvc: HttpService) {}
+	constructor(private httpSvc: HttpService) { }
 
 	ngOnInit() {
 		this.getListStaff();

@@ -17,14 +17,15 @@ import { CategoryModel } from 'src/app/_core/models/category.model';
 	templateUrl: './product.component.html',
 	styleUrls: ['./product.component.scss'],
 })
+
 export class ProductComponent implements OnInit {
 	languages: LanguageModel[] = [];
 	search: FilterSearchModel = new FilterSearchModel();
 	products: ProductModel[] = [];
 	templates: Array<TemplateModel> = TemplatesConfig;
 	languageControl = new FormControl();
+	categoryControl = new FormControl();
 	categories: Array<CategoryModel>;
-
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
@@ -37,9 +38,16 @@ export class ProductComponent implements OnInit {
 		this.languages = this.utilSvc.getLanguages();
 	}
 
+	getDataLanguage(e) {
+		this.search.languageId = e
+	}
+
+	getDataCategory(e) {
+		this.search.categoryId = e
+	}
+
 	filterProduct() {
 		const options = new InputRequestOption();
-
 		options.params = {
 			languageId: this.search.languageId,
 			text: this.search.keywords || '',
@@ -79,6 +87,13 @@ export class ProductComponent implements OnInit {
 			.get(APIConfig.Category.Gets, params)
 			.subscribe((response) => {
 				this.categories = response.data.items;
+				this.categories.forEach((item) => {
+					if (item.parentName == null) {
+						item.parentName = ''
+					} else {
+						item.parentName += ' >> '
+					}
+				})
 			});
 	}
 

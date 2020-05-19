@@ -40,7 +40,7 @@ export class AddEditComponent implements OnInit {
 		private toastrSvc: ToastrService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();
@@ -61,6 +61,13 @@ export class AddEditComponent implements OnInit {
 			)
 			.subscribe((categories) => {
 				this.categories = categories;
+				this.categories.forEach((item) => {
+					if (item.parentName == null) {
+						item.parentName = ''
+					} else {
+						item.parentName += ' >> '
+					}
+				})
 			});
 	}
 
@@ -76,6 +83,7 @@ export class AddEditComponent implements OnInit {
 					.get(APIConfig.Product.Get, options)
 					.subscribe((response) => {
 						this.product = response.data;
+						console.log(this.product);
 						this.setBaseUrl();
 						this.getCategories(this.product.languageId.toString());
 						this.getProductGroupsCapacities();
@@ -125,6 +133,7 @@ export class AddEditComponent implements OnInit {
 		this.product.languageId = Number(this.product.languageId);
 		const params = new InputRequestOption();
 		params.body = this.product;
+		console.log(params);
 		this.crudSvc
 			.add(APIConfig.Product[method], params)
 			.subscribe((response) => {

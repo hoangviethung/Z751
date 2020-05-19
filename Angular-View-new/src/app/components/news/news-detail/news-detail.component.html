@@ -11,14 +11,12 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-9 col-xl-8" *ngIf="article">
-				<h1>{{ article.Title }}</h1>
-				<time>{{ article.Time }}</time>
-				<div class="content" [innerHTML]="article.Content"></div>
+				<h1>{{ article.title }}</h1>
+				<time>{{ article.order }}</time>
+				<div class="content" [innerHTML]="article.content"></div>
 			</div>
 			<div class="col-lg-3">
-				<app-news-detail-others
-					[language]="currentLanguage"
-				></app-news-detail-others>
+				<app-news-detail-others [language]="currentLanguage"></app-news-detail-others>
 			</div>
 		</div>
 	</div>

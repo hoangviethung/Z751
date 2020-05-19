@@ -16,23 +16,23 @@
 			<label class="cl-gray d-b mb-10 fw-700" for="#">Email <span class="cl-main">*</span></label>
 			<input class="form-control w-100 bd-input bdr-input" type="text" [(ngModel)]="FormContact.email" />
 		</div>
-		<div class="form-group col-lg-12 mb-20" *ngIf="departments">
+		<!-- <div class="form-group col-lg-12 mb-20" *ngIf="departments">
 			<label class="cl-gray d-b mb-10 fw-700">
 				Đơn vị thành viên
 			</label>
 			<select name="departments" id="" disabled class="form-control w-100 bd-input bdr-input"
 				[(ngModel)]="FormContact.departments">
 				<option disabled>- - Chọn đơn vị thành viên - -</option>
-				<option value="{{ department.Url }}" *ngFor="let department of departments"
+				<option value="{{ department. }}" *ngFor="let department of departments"
 					[selected]="department.Url == categoryUrl">{{ department.Title }}</option>
 			</select>
-		</div>
+		</div> -->
 		<div class="form-group col-lg-12 mb-20">
 			<label class="cl-gray d-b mb-10 fw-700" for="#">Nội dung tin nhắn <span class="cl-main">*</span></label>
 			<textarea class="form-control w-100 bd-input bdr-input" [(ngModel)]="FormContact.content"></textarea>
 		</div>
 		<div class="form-group col-lg-12 text-right">
-			<button class="tt-u btn-form cl-white bd-0 ml-at" (click)="submitForm(FormContact)">gửi</button>
+			<button class="tt-u btn-form cl-white bd-0 ml-at" (click)="submitForm()">gửi</button>
 		</div>
 	</div>
 </div>

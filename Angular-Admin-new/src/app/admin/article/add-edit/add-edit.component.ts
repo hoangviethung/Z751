@@ -32,7 +32,7 @@ export class AddEditComponent implements OnInit {
 		private toastrSvc: ToastrService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.getArticle();
@@ -53,8 +53,10 @@ export class AddEditComponent implements OnInit {
 			)
 			.subscribe((categories) => {
 				this.categories = categories;
-				console.log(categories);
 				this.updateBaseUrl();
+				if (this.isEdit == false) {
+					this.article.categoryId = this.categories[0].id
+				}
 			});
 	}
 

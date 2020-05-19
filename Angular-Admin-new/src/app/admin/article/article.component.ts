@@ -36,7 +36,7 @@ export class ArticleComponent implements OnInit {
 		private toastrSvc: ToastrService,
 		private utilSvc: UtilService,
 		private cookieSvc: CookieService
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.getCategories();
@@ -63,6 +63,7 @@ export class ArticleComponent implements OnInit {
 				this.articles = articles.data.items;
 			});
 	}
+
 	getCategories() {
 		const params = new InputRequestOption();
 		params.params = {

@@ -29,7 +29,7 @@ export class AboutComponent implements OnInit {
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,
 		private breadcrumbSvc: BreadcrumbService
-	) {}
+	) { }
 
 	ngOnInit() {
 		this.pageInfoSvc.setTitle("About us");
@@ -57,6 +57,7 @@ export class AboutComponent implements OnInit {
 		this.httpSvc.get(API.Section.Get, opts).subscribe((result) => {
 			this.missionVision = result.data
 			this.missionVisionImages = result.data.images;
+			console.log(this.missionVision);
 		});
 	}
 }

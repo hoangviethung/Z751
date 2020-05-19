@@ -60,8 +60,14 @@ export class AddEditComponent implements OnInit {
 		this.httpSvc.post(APIConfig.User.Update, params)
 			.subscribe((response) => {
 				if (response.code === 200) {
-					this.close.emit(false)
+					const option = new InputRequestOption();
+					option.params = {
+						userName: this.user.userName
+					}
+					this.httpSvc.post(APIConfig.User.Active, option)
+						.subscribe(() => { })
 					this.toastrSvc.success(response.message);
+					this.close.emit(false)
 				} else {
 					this.toastrSvc.error(response.message);
 				}

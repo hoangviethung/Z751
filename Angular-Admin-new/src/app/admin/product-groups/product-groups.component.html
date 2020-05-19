@@ -2,7 +2,8 @@
 	<div class="block-control ai-c">
 		<div class="mr-at">
 			<mat-form-field>
-				<mat-select name="language" [formControl]="languageControl" (ngModelChange)="fetchProductGroup($event)">
+				<mat-select name="language" [formControl]="languageControl" (ngModelChange)="fetchProductGroup($event)"
+					[ngModel]="1">
 					<mat-option *ngFor="let language of languages" [value]="language.id">
 						{{ language.name }}
 					</mat-option>

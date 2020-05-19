@@ -43,7 +43,7 @@ export class AddEditComponent implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		private toastrSvc: ToastrService,
 		private router: Router
-	) {}
+	) { }
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();
@@ -63,7 +63,7 @@ export class AddEditComponent implements OnInit {
 			});
 	}
 
-	getProductGroupsChecked() {}
+	getProductGroupsChecked() { }
 
 	getCategories(languageId: string = '1') {
 		const params = new InputRequestOption();
@@ -114,23 +114,17 @@ export class AddEditComponent implements OnInit {
 							.get(APIConfig.ProductGroup.UsedGet, opts2)
 							.subscribe((response) => {
 								const productGroupsSelected = [];
-								for (
-									let i = 0;
-									i < this.productGroups.length;
-									i++
-								) {
-									for (
-										let j = 0;
-										j < response.data.length;
-										j++
-									) {
-										if (
-											response.data[j].id ==
-											this.productGroups[i].id
-										) {
-											productGroupsSelected.push(
-												this.productGroups[i]
-											);
+								for (let i = 0; i < this.productGroups.length; i++) {
+									if (response.data != null) {
+										for (let j = 0; j < response.data.length; j++) {
+											if (
+												response.data[j].id ==
+												this.productGroups[i].id
+											) {
+												productGroupsSelected.push(
+													this.productGroups[i]
+												);
+											}
 										}
 									}
 								}
