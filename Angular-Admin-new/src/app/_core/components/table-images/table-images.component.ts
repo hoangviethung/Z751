@@ -8,27 +8,21 @@ import { ImageModel } from '../../models/image.model';
 })
 export class TableImagesComponent implements OnInit {
 	@Input('images') images: Array<ImageModel> = [];
-	@Output('change') change: EventEmitter<
+	@Output('imagesChange') imagesChange: EventEmitter<
 		Array<ImageModel>
 	> = new EventEmitter<Array<ImageModel>>();
 	constructor() {}
 
 	ngOnInit(): void {}
 
-	addSectionImage(event?) {
+	addSectionImage(event) {
 		const image = new ImageModel();
-		image.propertyName = '';
-		image.path = '';
-		image.order = 0;
-		image.name = '';
-		image.content = '';
-		image.alt = '';
 		this.images.push(image);
-		this.change.emit(this.images);
+		this.imagesChange.emit(this.images);
 	}
 
 	deleteSectionImage(index) {
 		this.images.splice(index, 1);
-		this.change.emit(this.images);
+		this.imagesChange.emit(this.images);
 	}
 }

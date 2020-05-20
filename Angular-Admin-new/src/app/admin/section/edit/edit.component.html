@@ -44,7 +44,10 @@
 							></textarea>
 						</div>
 					</div>
-					<app-table-images [images]="section.images" (change)="updateImages($event)"></app-table-images>
+					<app-table-images
+						[images]="section.images"
+						(imagesChange)="updateImages($event)"
+					></app-table-images>
 				</div>
 				<div class="content" tab-id="item-2">
 					<p>2</p>

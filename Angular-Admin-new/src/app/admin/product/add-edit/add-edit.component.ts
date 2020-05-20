@@ -173,7 +173,7 @@ export class AddEditComponent implements OnInit {
 	onChangeEmitterContent(content) {
 		this.product.content = content.editor.getData();
 	}
-	updateImages(images) {
-		this.product.images = images;
+	updateImages(e) {
+		this.product.images = e;
 	}
 }

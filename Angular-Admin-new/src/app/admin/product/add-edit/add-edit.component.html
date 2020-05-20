@@ -189,7 +189,10 @@
 			</div>
 		</div>
 		<div class="content" tab-id="item-3">
-			<app-table-images [images]="product.images" (change)="updateImages($event)"></app-table-images>
+			<app-table-images
+				[images]="product.images"
+				(imagesChange)="updateImages($event)"
+			></app-table-images>
 		</div>
 	</div>
 </div>
