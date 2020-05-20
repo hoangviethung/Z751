@@ -1,6 +1,6 @@
 export class ResourceModel {
-	value: string;
-	name: string;
-	description: string;
+	value: string = null;
+	name: string = null;
+	description: string = null;
 	type: number;
 }

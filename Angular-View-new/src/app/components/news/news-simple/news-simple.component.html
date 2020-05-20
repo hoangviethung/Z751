@@ -8,7 +8,10 @@
 				<div class="box-content">
 					<h3 class="lcl lcl-2 fw-700">{{ news.title }}</h3>
 					<time>{{ news.order | date: "dd-MM-yyyy" }}</time>
-					<p class="lcl lcl-3" [innerHTML]="news.description"></p>
+					<div
+						class="lcl lcl-3 description"
+						[innerHTML]="news.description"
+					></div>
 					<span>{{ "ResourceKeys.ReadNews" }}</span>
 				</div>
 			</figcaption>

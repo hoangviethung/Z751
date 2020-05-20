@@ -1,10 +1,10 @@
 export class BannerModel {
 	id: number;
-	name: string;
-	description: string;
-	link: string;
-	altImage: string;
-	resourcePath: string;
+	name: string = null;
+	description: string = null;
+	link: string = null;
+	altImage: string = null;
+	resourcePath: string = null;
 	order: number;
 	isPublished: boolean;
 	isVideo: boolean;

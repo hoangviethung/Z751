@@ -2,6 +2,9 @@ import { Component, OnInit, Inject } from "@angular/core";
 import { Router, RouterEvent, NavigationEnd } from "@angular/router";
 import { DOCUMENT } from "@angular/common";
 import { filter } from "rxjs/operators";
+import { RedirectSerivce } from "src/core/services/redirect.service";
+import { HttpService } from "src/core/services/http.service";
+import { HttpClient } from '@angular/common/http';
 
 @Component({
 	selector: "app-redirect",
@@ -9,53 +12,37 @@ import { filter } from "rxjs/operators";
 	styleUrls: ["./redirect.component.scss"],
 })
 export class RedirectComponent implements OnInit {
-	constructor(private r: Router, @Inject(DOCUMENT) document: Document) {
+	constructor(
+		private r: Router,
+		@Inject(DOCUMENT) document: Document,
+		private rService: RedirectSerivce,
+		private http: HttpClient,
+		private httpSvc: HttpService
+	) {
 		// Khi click chuyển trang
-		var xhttp = new XMLHttpRequest();
-		var temp = document.location.pathname;
-
-		xhttp.open(
-			"GET",
-			"http://27.71.234.45:8080/api/Common/getroute?url=" + temp,
-			false
-		);
-		xhttp.onreadystatechange = function () {
-			if (
-				this.readyState == 4 &&
-				this.status == 200 &&
-				JSON.parse(xhttp.responseText).data != null
-			) {
-				switch (JSON.parse(xhttp.responseText).data.template) {
-					case 1:
-						temp = "";
-						return;
-					case 2:
-						temp = "about";
-						return;
-					case 3:
-						temp = "products";
-						return;
-					case 4:
-						temp = "departments";
-						return;
-					case 5:
-						temp = "capacities";
-						return;
-					case 6:
-						temp = "news";
-						return;
-					case 7:
-						temp = "contact";
-						return;
+		// this.r.navigateByUrl(this.rService.getRoute(document.location.pathname), { skipLocationChange: true });
+		console.log("click");
+		var isNavigate = false;
+		var path = encodeURIComponent(document.location.pathname);
+		console.log(path);
+		this.getRoute(path).subscribe((response : any) => {
+			if (response.data != null) {
+				path = this.rService.swithRoute(response.data.template);
+				if (path != "/") {
+					isNavigate = true;
+					this.r.navigateByUrl(path, { skipLocationChange: true });
 				}
 			}
-		};
-		xhttp.send();
-
-		if (temp != "/") {
-			this.r.navigateByUrl(temp, { skipLocationChange: true });
+		});
+		
+		if (!isNavigate) {
+			this.r.navigateByUrl("index", { skipLocationChange: true });
 		}
 	}
 
 	ngOnInit() {}
+
+	getRoute(path) {
+		return this.httpSvc.get("/api/Common/getroute?url=" + path);
+	}
 }

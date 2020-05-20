@@ -1,19 +1,19 @@
 export class UserModel {
-	userName: string
-	email: string
-	firstName: string
-	lastName: string
-	address: string
-	phoneNumber: string
-	gender: boolean
-	dayOfBirth: string
-	image: string
-	isSuperAdmin: boolean
-	accessToken: string
-	roles: any
-	permissions: string
-	fullName: string
-	imageUrl: string
-	isActive: boolean
-	isDisabled: boolean
+	userName: string = null;
+	email: string = null;
+	firstName: string = null;
+	lastName: string = null;
+	address: string = null;
+	phoneNumber: string = null;
+	gender: boolean;
+	dayOfBirth: string = null;
+	image: string = null;
+	isSuperAdmin: boolean;
+	accessToken: string = null;
+	roles: any;
+	permissions: string = null;
+	fullName: string = null;
+	imageUrl: string = null;
+	isActive: boolean;
+	isDisabled: boolean;
 }
