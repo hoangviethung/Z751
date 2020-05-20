@@ -16,6 +16,8 @@ import { FormControl } from '@angular/forms';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { ProductGroupModel } from 'src/app/_core/models/product-groups';
+import * as moment from 'moment';
+
 @Component({
 	selector: 'app-add-edit',
 	templateUrl: './add-edit.component.html',
@@ -40,7 +42,7 @@ export class AddEditComponent implements OnInit {
 		private toastrSvc: ToastrService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router
-	) { }
+	) {}
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();
@@ -63,18 +65,23 @@ export class AddEditComponent implements OnInit {
 				this.categories = categories;
 				this.categories.forEach((item) => {
 					if (item.parentName == null) {
-						item.parentName = ''
+						item.parentName = '';
 					} else {
-						item.parentName += ' >> '
+						item.parentName += ' >> ';
 					}
-				})
+				});
 				this.categories = this.categories.filter((item) => {
-					if (item.template != 1 && item.template != 2 && item.template != 6 && item.template != 7) {
-						return item
+					if (
+						item.template != 1 &&
+						item.template != 2 &&
+						item.template != 6 &&
+						item.template != 7
+					) {
+						return item;
 					}
-				})
+				});
 				if (this.isEdit == false) {
-					this.product.categoryId = this.categories[0].id
+					this.product.categoryId = this.categories[0].id;
 				}
 			});
 	}
@@ -91,13 +98,10 @@ export class AddEditComponent implements OnInit {
 					.get(APIConfig.Product.Get, options)
 					.subscribe((response) => {
 						this.product = response.data;
-						console.log(this.product);
 						this.setBaseUrl();
 						this.getCategories(this.product.languageId.toString());
 						this.getProductGroupsCapacities();
-						this.createdDate = new FormControl(
-							new Date(this.product.order).toISOString()
-						);
+						console.log(this.product.order);
 					});
 			} else {
 				this.isEdit = false;
@@ -139,9 +143,9 @@ export class AddEditComponent implements OnInit {
 
 	updateProduct(method: string) {
 		this.product.languageId = Number(this.product.languageId);
+		this.product.order = moment(this.product.order).format();
 		const params = new InputRequestOption();
 		params.body = this.product;
-		console.log(params);
 		this.crudSvc
 			.add(APIConfig.Product[method], params)
 			.subscribe((response) => {
@@ -159,8 +163,7 @@ export class AddEditComponent implements OnInit {
 	}
 
 	onDateChangeEmitter(e) {
-		console.log(e);
-		this.product.order = e;
+		this.product.order = moment(e).format();
 	}
 
 	onChangeEmitterDescription(content) {
@@ -169,5 +172,8 @@ export class AddEditComponent implements OnInit {
 
 	onChangeEmitterContent(content) {
 		this.product.content = content.editor.getData();
+	}
+	updateImages(images) {
+		this.product.images = images;
 	}
 }

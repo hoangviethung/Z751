@@ -60,4 +60,8 @@ export class EditComponent implements OnInit {
 	closePopup(status) {
 		this.close.emit(status);
 	}
+
+	updateImages(images) {
+		this.images = images;
+	}
 }

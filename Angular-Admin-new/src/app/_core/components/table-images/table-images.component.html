@@ -1,0 +1,70 @@
+<div class="block-table">
+	<div class="form-group">
+		<label>Danh sách hình ảnh</label>
+		<table class="table table-add-row">
+			<tr class="table-info">
+				<th class="column-number ta-c">#</th>
+				<th class="column-title">Tên</th>
+				<th class="column-title">Đường dẫn hình</th>
+				<th>Alt</th>
+				<th class="column-button ta-c">Thứ tự</th>
+				<th class="column-button ta-c">
+					<span
+						class="btn btn-success btn-add"
+						(click)="addSectionImage($event)"
+					>
+						Thêm
+					</span>
+				</th>
+			</tr>
+			<tr *ngFor="let image of images; let i = index" class="section-row">
+				<th class="column-number ta-c">
+					{{ i + 1 }}
+				</th>
+				<td class="column-title ta-c">
+					<input
+						class="form-control"
+						type="text"
+						[(ngModel)]="image.name"
+						data-field="name"
+					/>
+				</td>
+				<td class="column-title ta-c">
+					<input
+						class="form-control"
+						type="text"
+						[(ngModel)]="image.path"
+						data-field="path"
+					/>
+				</td>
+				<td class="column-title ta-c">
+					<input
+						class="form-control"
+						type="text"
+						[(ngModel)]="image.alt"
+						data-field="alt"
+					/>
+				</td>
+				<td class="column-title ta-c">
+					<input
+						class="form-control"
+						type="number"
+						min="0"
+						[(ngModel)]="image.order"
+						data-field="order"
+					/>
+				</td>
+				<td class="column-button ta-c">
+					<div class="table-buttons">
+						<span
+							class="btn btn-outline-danger btn-remove"
+							(click)="deleteSectionImage(i)"
+						>
+							<span class="lnr lnr-trash"> </span>
+						</span>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>

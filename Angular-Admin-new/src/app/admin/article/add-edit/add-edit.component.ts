@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
+
 @Component({
 	selector: 'app-add-edit',
 	templateUrl: './add-edit.component.html',
@@ -26,13 +27,14 @@ export class AddEditComponent implements OnInit {
 	templates: Array<TemplateModel> = TemplatesConfig;
 	LanguageControl = new FormControl();
 	CategoryControl = new FormControl();
+
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
 		private toastrSvc: ToastrService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router
-	) { }
+	) {}
 
 	ngOnInit(): void {
 		this.getArticle();
@@ -48,14 +50,14 @@ export class AddEditComponent implements OnInit {
 			.get(APIConfig.Category.Gets, params)
 			.pipe(
 				map((response) => {
-					return response.data.items
+					return response.data.items;
 				})
 			)
 			.subscribe((categories) => {
 				this.categories = categories;
 				this.updateBaseUrl();
 				if (this.isEdit == false) {
-					this.article.categoryId = this.categories[0].id
+					this.article.categoryId = this.categories[0].id;
 				}
 			});
 	}

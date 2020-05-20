@@ -12,16 +12,16 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-// import { MatMomentDateModule } from "@angular/material-moment-adapter";
-// import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { TableImagesComponent } from './components/table-images/table-images.component';
+
 @NgModule({
 	declarations: [
 		AsideMenuDirective,
 		BreadcrumbComponent,
 		CKEditorComponent,
 		TabDirective,
+		TableImagesComponent,
 	],
 	imports: [
 		CommonModule,
@@ -32,25 +32,22 @@ import { MatInputModule } from '@angular/material/input';
 		ReactiveFormsModule,
 		MatDatepickerModule,
 		MatNativeDateModule,
-		// MatFormFieldModule,
 		MatInputModule,
 	],
 	exports: [
 		CommonModule,
 		FormsModule,
+		CKEditorComponent,
+		TableImagesComponent,
 		HttpClientModule,
 		RouterModule,
+		ReactiveFormsModule,
 		BreadcrumbComponent,
 		AsideMenuDirective,
-		CKEditorComponent,
 		TabDirective,
-		ReactiveFormsModule,
 		MatSelectModule,
 		MatDatepickerModule,
 		MatNativeDateModule,
-		// MatMomentDateModule,
-		// MatButtonModule,
-		// MatFormFieldModule,
 		MatInputModule,
 	],
 	providers: [RoutingService],
