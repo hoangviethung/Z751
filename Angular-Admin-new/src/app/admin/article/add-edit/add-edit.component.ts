@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
 	selector: 'app-add-edit',
@@ -143,5 +144,8 @@ export class AddEditComponent implements OnInit {
 
 	onChangeEmitter(content) {
 		this.article.description = content.editor.getData();
+	}
+	onDateChangeEmitter(e) {
+		this.article.order = moment(e).format();
 	}
 }

@@ -112,11 +112,19 @@
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Ngày đăng</label>
-					<input
-						class="form-control"
-						type="date"
-						[(ngModel)]="article.order"
-					/>
+					<mat-form-field>
+						<input
+							matInput
+							(ngModelChange)="onDateChangeEmitter($event)"
+							[matDatepicker]="datepicker"
+							[(ngModel)]="article.order"
+						/>
+						<mat-datepicker-toggle
+							matSuffix
+							[for]="datepicker"
+						></mat-datepicker-toggle>
+						<mat-datepicker #datepicker></mat-datepicker>
+					</mat-form-field>
 				</div>
 				<div class="w-100"></div>
 				<div class="form-group col-lg-2">
