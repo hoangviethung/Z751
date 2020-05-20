@@ -44,19 +44,17 @@
 					<label>Danh mục *</label>
 					<mat-form-field>
 						<mat-select
-							name="category"
+							name="categories"
 							[formControl]="CategoryControl"
 							[(ngModel)]="article.categoryId"
 							(ngModelChange)="updateBaseUrl(article.categoryId)"
 						>
-							<ng-container *ngFor="let item of categories">
-								<ng-template
-									*ngTemplateOutlet="
-										categoriesTemplate;
-										context: item
-									"
-								></ng-template>
-							</ng-container>
+							<mat-option
+								*ngFor="let category of categories"
+								[value]="category.id"
+							>
+								{{ category.parentName + category.title }}
+							</mat-option>
 						</mat-select>
 					</mat-form-field>
 				</div>
@@ -188,10 +186,3 @@
 		</div> -->
 	</div>
 </div>
-
-<ng-template #categoriesTemplate let-category="item">
-	{{ category }}
-	<!-- <mat-option [value]="category.id">
-		{{ category.title }}
-	</mat-option> -->
-</ng-template>

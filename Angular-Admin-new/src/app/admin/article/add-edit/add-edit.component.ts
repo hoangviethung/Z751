@@ -56,10 +56,18 @@ export class AddEditComponent implements OnInit {
 			)
 			.subscribe((categories) => {
 				this.categories = categories;
-				this.updateBaseUrl();
 				if (this.isEdit == false) {
 					this.article.categoryId = this.categories[0].id;
 				}
+				this.categories = categories;
+				this.categories.forEach((item) => {
+					if (item.parentName == null) {
+						item.parentName = '';
+					} else {
+						item.parentName += ' >> ';
+					}
+				});
+				this.updateBaseUrl();
 			});
 	}
 
@@ -80,8 +88,8 @@ export class AddEditComponent implements OnInit {
 					});
 			} else {
 				this.isEdit = false;
-				this.setBaseUrl();
 				this.getCategories();
+				this.setBaseUrl();
 			}
 		});
 	}
