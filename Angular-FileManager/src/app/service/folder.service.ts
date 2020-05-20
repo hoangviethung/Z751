@@ -50,7 +50,7 @@ export class FolderService implements IFolderService {
 		path = path.replace("http://27.71.234.45:8080/upload/", "");
 		newPath = newPath.replace("http://27.71.234.45:8080/upload/", "");
 		return this.http.post<Object>("http://27.71.234.45:8080/api/Folder/edit", {
-			path: name, newPath: newPath
+			path: path, newPath: newPath
 		})
 	}
 

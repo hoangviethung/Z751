@@ -1,5 +1,4 @@
-<body
-	class="ckf-feature-css-transition ui-alt-icon ui-mobile-viewport ui-overlay-a ckf-toolbar-visible ckf-ui-mode-desktop"
+<body class="ckf-feature-css-transition ui-alt-icon ui-mobile-viewport ckf-toolbar-visible ckf-ui-mode-desktop"
 	data-theme="a" role="application">
 	<!-- -------------------- Folder Menu ------------------------ -->
 	<app-folders [folders]="folders" [currentFolder]="currentFolder" (valueUpdate)="changeCurrentFolder($event)"
@@ -98,10 +97,11 @@
 	</div>
 	<div class="ui-panel-dismiss"></div>
 	<div data-role="page" data-ckf-page="Main" class="ckf-page ckf-files-page ui-page ui-page-theme-a ui-page-active"
-		data-theme="a" data-url="/blank" style="position: relative; padding-top: 52px; min-height: 648px;">
+		data-theme="a" data-url="/blank"
+		style="position: relative; padding-top: 52px; max-height: 648px; overflow-y: auto;">
 		<!--------------------------- Tool Bar ------------------------->
 		<app-toolbar [isShowDialog]="isShowDialog" (showDialogToggle)="showDialogToggle($event)"
-			(isReloadfolderSvc)="getFolders()" (activeUploadToggle)="isUploadActive = true"></app-toolbar>
+			(isReloadfolderSvc)="getFolders()" (activeUploadToggle)="openModelUpload()"></app-toolbar>
 		<div class="ui-panel-wrapper">
 			<div class="ckf-page-regions ui-content" role="main">
 				<!--------------------- Upload Wrapper ---------------------------->
@@ -122,7 +122,8 @@
 											class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-icon-ckf-plus ui-btn-icon-left">
 											Add Files
 											<input type="file" tabindex="-1" data-icon="ckf-plus" data-ckf-button="add"
-												name="fileupload" multiple (change)="addFile()">
+												#asdasdasdasd id="ck-upload-custom" name="fileupload" multiple
+												(change)="addFile()">
 										</div>
 										<div
 											class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-icon-ckf-cancel ui-btn-icon-left">

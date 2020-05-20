@@ -27,7 +27,6 @@ export class FoldersComponent implements OnInit {
 	onLeftClick($event, item) {
 		$event.target.classList.add("ui-btn-active")
 		this.valueUpdate.emit(item)
-		console.log(this.currentFolder);
 	}
 
 	changeCurrentFolder($event) {

@@ -1,8 +1,13 @@
-import { Directive, HostListener, Input } from '@angular/core';
+import { Directive, HostListener, Input, Injectable, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
+
+@Injectable()
 
 @Directive({
 	selector: '[clickDirective]'
 })
+
 export class ClickDirective {
 	@Input() file;
 	timer: any = 0;
@@ -10,7 +15,10 @@ export class ClickDirective {
 
 	times = 0;
 
-	constructor() { }
+	constructor(
+		@Inject(DOCUMENT) document: Document,
+		private toastrSvc: ToastrService
+	) { }
 
 	@HostListener('click') onClicked() {
 		this.isSingleClick = true;
@@ -22,9 +30,11 @@ export class ClickDirective {
 	}
 
 	@HostListener('dblclick') onDoubleClicked() {
-		// clearTimeout(this.timer);
-		// this.prevent = true;
-		console.log('onDoubleClicked ran!');
+		const urlImage = this.file.path
+		this.toastrSvc.success(`Đã coppy !!!`);
+		urlImage.select();
+		urlImage.focus();
+		urlImage.setSelectionRange(0, 99999);
+		document.execCommand("copy");
 	}
-
 }

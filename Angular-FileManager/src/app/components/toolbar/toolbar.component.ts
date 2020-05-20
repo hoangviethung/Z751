@@ -16,7 +16,6 @@ export class ToolbarComponent implements OnInit {
 	@Output() activeUploadToggle = new EventEmitter<Boolean>();
 	@Output() isReloadfolderSvc = new EventEmitter<Boolean>();
 	event: FolderEventModel
-
 	constructor(
 		private folderSvc: FolderService,
 		private toastrSvc: ToastrService
@@ -61,24 +60,25 @@ export class ToolbarComponent implements OnInit {
 							this.isShowDialog = false
 							this.showDialogToggle.emit(this.isShowDialog)
 							this.isReloadfolderSvc.emit(true)
-							this.toastrSvc.success(response.message);
+							this.toastrSvc.success(`Tạo mới Folder thành công !!!`);
 						} else {
-							this.toastrSvc.error(response.message);
+							this.toastrSvc.error(`Đã có lỗi xảy ra !!!`);
 						}
 					});
 			}
 			else if (this.event.isRename) {
-				var nPath = this.event.path;
-				if (nPath != "") nPath = parent + "/" + name
-				this.folderSvc.update(this.event.path, nPath)
+				let nPath = this.event.path;
+				let path = this.event.path;
+				if (nPath != "") nPath = parent.name + "/" + name
+				this.folderSvc.update(path, nPath)
 					.subscribe((response: any) => {
 						if (response.code == 200) {
+							this.toastrSvc.success(`Chỉnh sửa tên thành công !!!`);
 							this.isShowDialog = false
-							this.showDialogToggle.emit(this.isShowDialog)
 							this.isReloadfolderSvc.emit(true)
-							this.toastrSvc.success(response.message);
+							this.showDialogToggle.emit(this.isShowDialog)
 						} else {
-							this.toastrSvc.error(response.message);
+							this.toastrSvc.error(`Đã có lỗi xảy ra !!!`);
 						}
 					});
 			}

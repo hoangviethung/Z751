@@ -24,7 +24,7 @@ export class UploadService {
 		let data = await this.toBase64($inputUploadFile.files[0]).catch(e => Error(e));
 		const typeFile = $inputUploadFile.files[0].type
 		data = (<string>data).replace(`data:${typeFile};base64,`, '')
-		const name = $inputUploadFile.value.replace(/^.*[\\\/]/, '');
+		const name = $inputUploadFile.value.replace(/^.*[\\\/]/, '').split('.').slice(0, -1).join('.');
 		const type = $inputUploadFile.value.replace(/^.*[\\\/]/, '').split('.').pop();
 		const length = $inputUploadFile.files[0].size;
 		const params = this.fileUpload = {
