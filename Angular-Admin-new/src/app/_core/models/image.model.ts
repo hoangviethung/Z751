@@ -1,9 +1,9 @@
 export class ImageModel {
 	id: number;
 	order: number;
-	name: string = '';
-	alt: string = '';
-	path: string = '';
-	content: string = '';
-	propertyName: string = '';
+	name: string = null;
+	alt: string = null;
+	path: string = null;
+	content: string = null;
+	propertyName: string = null;
 }

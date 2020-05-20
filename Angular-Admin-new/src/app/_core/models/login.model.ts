@@ -1,6 +1,6 @@
 export class LoginModel {
-	public userName: string;
-	public password: string;
+	public userName: string = null;
+	public password: string = null;
 	public isRememberMe: boolean;
 
 	constructor(init?: Partial<LoginModel>) {

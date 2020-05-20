@@ -6,7 +6,7 @@ import { CapacityComponent } from "./capacity.component";
 import { CapacityDetailComponent } from "./capacity-detail/capacity-detail.component";
 import { CapacitySimpleComponent } from "./capacity-simple/capacity-simple.component";
 import { SharedModule } from "../_shared/shared.module";
-import { CapacityOthersComponent } from './capacity-detail/capacity-others/capacity-others.component';
+import { CapacityOthersComponent } from "./capacity-detail/capacity-others/capacity-others.component";
 
 @NgModule({
 	declarations: [
@@ -15,6 +15,6 @@ import { CapacityOthersComponent } from './capacity-detail/capacity-others/capac
 		CapacitySimpleComponent,
 		CapacityOthersComponent,
 	],
-	imports: [CommonModule, CapacityRoutingModule, SharedModule],
+	imports: [CapacityRoutingModule, SharedModule],
 })
 export class CapacityModule {}

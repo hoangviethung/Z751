@@ -33,6 +33,7 @@ export class ProductComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
+		console.log(1);
 		this.getProducts();
 	}
 

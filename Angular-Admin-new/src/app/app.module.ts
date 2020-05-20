@@ -25,4 +25,4 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 	providers: [RouteGuardService],
 	bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -103,9 +103,18 @@
 				</div>
 				<div class="form-group col-lg-12">
 					<label>Mô tả *</label>
+					<textarea
+						class="form-control"
+						type="text"
+						placeholder="Mô tả"
+						[(ngModel)]="article.description"
+					></textarea>
+				</div>
+				<div class="form-group col-lg-12">
+					<label>Nội dung</label>
 					<app-ckeditor
-						[data]="article.description"
-						(change)="onChangeEmitter($event)"
+						[data]="article.content"
+						(change)="onContentChangeEmitter($event)"
 					></app-ckeditor>
 				</div>
 				<div class="form-group col-lg-6">

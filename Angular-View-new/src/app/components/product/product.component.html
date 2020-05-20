@@ -17,7 +17,10 @@
 			<div class="block-desc-title" [innerHTML]="pageDescription"></div>
 		</div>
 		<div class="row">
-			<div class="col-lg-4 col-sm-6 d-f product-col" *ngFor="let product of products">
+			<div
+				class="col-lg-4 col-sm-6 d-f product-col"
+				*ngFor="let product of products"
+			>
 				<app-product-simple [product]="product"></app-product-simple>
 			</div>
 		</div>

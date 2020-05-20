@@ -46,6 +46,8 @@ export class AddEditComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();
+		console.log(this.product);
+
 		this.getProduct();
 	}
 
@@ -101,7 +103,6 @@ export class AddEditComponent implements OnInit {
 						this.setBaseUrl();
 						this.getCategories(this.product.languageId.toString());
 						this.getProductGroupsCapacities();
-						console.log(this.product.order);
 					});
 			} else {
 				this.isEdit = false;
@@ -145,6 +146,18 @@ export class AddEditComponent implements OnInit {
 		this.product.languageId = Number(this.product.languageId);
 		this.product.order = moment(this.product.order).format();
 		const params = new InputRequestOption();
+
+		for (const key of Object.keys(this.product)) {
+			if (
+				this.product[key] == null &&
+				this.product[key] == '' &&
+				!(this.product[key] instanceof Array) &&
+				!(typeof this.product[key] == 'boolean')
+			) {
+				this.product[key] = null;
+			}
+		}
+		console.log(this.product);
 		params.body = this.product;
 		this.crudSvc
 			.add(APIConfig.Product[method], params)

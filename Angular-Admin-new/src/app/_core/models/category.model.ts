@@ -1,23 +1,23 @@
 export class CategoryModel {
-	createDate: string;
-	description: string;
-	externalUrl: string;
+	createDate: string = null;
+	description: string = null;
+	externalUrl: string = null;
 	id: number;
-	image: string;
+	image: string = null;
 	isSystem: boolean;
 	languageId: number = 1;
-	metaDescription: string;
-	metaImage: string;
-	metaKeywords: string;
-	metaTitle: string;
+	metaDescription: string = null;
+	metaImage: string = null;
+	metaKeywords: string = null;
+	metaTitle: string = null;
 	order: number;
 	parent: CategoryModel;
 	parentId: number;
-	parentName: string;
-	previewUrl: string;
-	seName: string;
+	parentName: string = null;
+	previewUrl: string = null;
+	seName: string = null;
 	template: number = 1;
-	title: string;
-	updateDate: string;
+	title: string = null;
+	updateDate: string = null;
 	children?: Array<CategoryModel> = [];
 }

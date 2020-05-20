@@ -15,6 +15,7 @@ import { HttpClientModule, HttpClient } from "@angular/common/http";
 
 import { HeaderComponent } from "./components/_shared/header/header.component";
 import { FooterComponent } from "./components/_shared/footer/footer.component";
+import { SharedModule } from "./components/_shared/shared.module";
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	direction: "horizontal",
@@ -31,6 +32,7 @@ export function createTranslateLoader(http: HttpClient) {
 		AppRoutingModule,
 		HttpClientModule,
 		SwiperModule,
+		SharedModule,
 		TranslateModule.forRoot({
 			loader: {
 				provide: TranslateLoader,

@@ -1,12 +1,12 @@
 export class MenuModel {
 	id: number
-	title: string;
+	title: string = null;
 	order: number;
-	link: string;
-	image: string;
-	linkTarget: string;
+	link: string = null;
+	image: string = null;
+	linkTarget: string = null;
 	parentId: number;
-	parentName: string;
+	parentName: string = null;
 	type: number;
 	languageId: number;
 }

@@ -33,6 +33,16 @@ const routes: Routes = [
 		},
 	},
 	{
+		path: "product-detail",
+		loadChildren: () =>
+			import("./components/product-detail/product-detail.module").then(
+				(m) => m.ProductDetailModule
+			),
+		data: {
+			preload: false,
+		},
+	},
+	{
 		path: "departments",
 		loadChildren: () =>
 			import("./components/department/department.module").then(
@@ -96,4 +106,4 @@ const routes: Routes = [
 	imports: [RouterModule.forRoot(routes)],
 	exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

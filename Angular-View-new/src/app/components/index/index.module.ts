@@ -23,6 +23,5 @@ import { IndexDepartmentComponent } from "./index-department/index-department.co
 		IndexDepartmentComponent,
 	],
 	imports: [IndexRoutingModule, SharedModule],
-	providers: [],
 })
 export class IndexModule {}

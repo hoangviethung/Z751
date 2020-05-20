@@ -16,6 +16,5 @@ import { SharedModule } from "../_shared/shared.module";
 		NewsDetailOthersComponent,
 	],
 	imports: [SharedModule, NewsRoutingModule],
-	providers: [],
 })
 export class NewsModule {}

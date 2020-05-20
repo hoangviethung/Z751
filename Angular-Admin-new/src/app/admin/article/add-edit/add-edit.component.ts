@@ -150,9 +150,13 @@ export class AddEditComponent implements OnInit {
 			});
 	}
 
-	onChangeEmitter(content) {
+	onDescriptionChangeEmitter(content) {
 		this.article.description = content.editor.getData();
 	}
+	onContentChangeEmitter(content) {
+		this.article.content = content.editor.getData();
+	}
+
 	onDateChangeEmitter(e) {
 		this.article.order = moment(e).format();
 	}
