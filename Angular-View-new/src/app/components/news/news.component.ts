@@ -9,6 +9,7 @@ import { ActivatedRoute } from "@angular/router";
 import { API } from "src/core/configs/api";
 import { DOCUMENT } from "@angular/common";
 import { ArticleModel } from "src/core/models/Article.model";
+import { PaginationModel } from "src/core/models/Pagination.model";
 
 @Component({
 	selector: "app-news",
@@ -24,6 +25,8 @@ export class NewsComponent implements OnInit {
 		vi: ["Trang chủ", "Tin tức"],
 	};
 	breadcrumbs;
+	pagination: PaginationModel = new PaginationModel(5, 1);
+	totalItems: number;
 
 	constructor(
 		private httpSvc: HttpService,
@@ -36,25 +39,36 @@ export class NewsComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.getNewsList();
-	}
-
-	getNewsList() {
-		let Breadcrumb = {
-			en: ["Home", "News"],
-			vi: ["Trang chủ", "Tin tức"],
-		};
-
 		const opts = new InputRequestOption();
 		opts.params = {
 			url: document.location.pathname,
+			page: this.pagination.page.toString(),
+			itemPerPage: this.pagination.itemPerPage.toString(),
 		};
-		this.httpSvc.get(API.Common.GetRoute, opts).subscribe((response) => {
-			this.pageTitle = response.data.name;
+		this.getPageInfo(opts);
+		this.getNewsList(opts);
+	}
+
+	getPageInfo(opts) {
+		this.httpSvc.get(API.Category.Get, opts).subscribe((response) => {
+			this.pageTitle = response.data.title;
 			this.pageInfoSvc.setTitle(this.pageTitle);
 		});
+	}
+
+	getNewsList(opts) {
 		this.httpSvc.get(API.Article.Gets, opts).subscribe((response) => {
-			this.newsList = response.data;
+			this.newsList = response.data.items;
 		});
+	}
+
+	refreshList(pageNumber) {
+		const opts = new InputRequestOption();
+		opts.params = {
+			url: document.location.pathname,
+			page: pageNumber,
+			itemPerPage: this.pagination.itemPerPage.toString(),
+		};
+		this.getNewsList(opts);
 	}
 }

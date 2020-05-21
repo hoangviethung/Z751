@@ -96,7 +96,7 @@ export class IndexDepartmentComponent implements OnInit {
 		this.httpSvc.get(API.Category.Get_by_Templates, option).subscribe((result) => {
 			this.departments = result.data;
 			this.departments.shift();
-			console.log(this.departments);
+			// console.log(this.departments);
 		});
 	}
 }

@@ -119,6 +119,6 @@ export class MapComponent implements OnInit {
 			zoom: 10,
 			markers: this.listAddress
 		};
-		console.log(this.location);
+		// console.log(this.location);
 	}
 }

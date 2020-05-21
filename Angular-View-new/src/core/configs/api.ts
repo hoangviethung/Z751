@@ -20,6 +20,7 @@ export const API = {
 	},
 	Product: {
 		Gets: "/api/Product/used/gets",
+		Get: "/api/Product/used/get",
 	},
 	Branch: {
 		Gets: "/api/Branch/used/gets",

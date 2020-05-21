@@ -1,17 +1,53 @@
-<div class="prev_next" *ngIf="pager && pager['currentPage']">
-	<a class="prev-page" (click)="choosepage(pager['currentPage'] - 1)"
-		><img src="../../../assets/images/products/Path_645.svg" alt=""
-	/></a>
-	<ul>
+<ng-container *ngIf="pager.totalPages > 1">
+	<ul class="pagination" *ngIf="pager && pager['page']">
+		<li class="pagination-prev" (click)="choosepage(pager['page'] - 1)">
+			<a>
+				<img alt="" src="./assets/images/icons/pagination-left.svg" />
+			</a>
+		</li>
 		<li
 			*ngFor="let page of pager['pages']"
 			(click)="choosepage(page)"
-			[ngClass]="{ active: pager['currentPage'] === page }"
+			[ngClass]="{ active: pager['page'] === page }"
 		>
 			<a>{{ page }}</a>
 		</li>
+		<li class="pagination-next" (click)="choosepage(pager['page'] + 1)">
+			<a>
+				<img alt="" src="./assets/images/icons/pagination-right.svg" />
+			</a>
+		</li>
 	</ul>
-	<a class="next-page" (click)="choosepage(pager['currentPage'] + 1)"
-		><img src="../../../assets/images/products/Path_644.svg" alt=""
-	/></a>
-</div>
+</ng-container>
+
+<!-- 
+<ul class="pagination">
+	<li class="pagination-prev">
+		<a href="#">
+			<img alt="" src="./assets/images/icons/pagination-left.svg" />
+		</a>
+	</li>
+	<li>
+		<a href="#">1</a>
+	</li>
+	<li class="active">
+		<a href="#">2</a>
+	</li>
+	<li>
+		<a href="#">3</a>
+	</li>
+	<li>
+		<a href="#">4</a>
+	</li>
+	<li class="pagination-dot">
+		<a href="#">...</a>
+	</li>
+	<li>
+		<a href="#">98</a>
+	</li>
+	<li class="pagination-next">
+		<a href="#">
+			<img alt="" src="./assets/images/icons/pagination-right.svg" />
+		</a>
+	</li>
+</ul> -->

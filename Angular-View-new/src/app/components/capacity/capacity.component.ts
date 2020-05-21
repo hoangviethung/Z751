@@ -1,12 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { HttpService, InputRequestOption } from "src/core/services/http.service";
+import {
+	HttpService,
+	InputRequestOption,
+} from "src/core/services/http.service";
 import { PageInfoService } from "src/core/services/page-info.service";
-import { LanguageService } from "src/core/services/language.service";
 import { ProductModel } from "src/core/models/Product.model";
 import { API } from "src/core/configs/api";
-import { response } from 'express';
-import { map } from 'rxjs/operators';
 
 @Component({
 	selector: "app-capacity",
@@ -26,28 +25,30 @@ export class CapacityComponent implements OnInit {
 	breadcrumbs;
 
 	constructor(
-		private activatedRoute: ActivatedRoute,
 		private httpSvc: HttpService,
-		private pageInfoSvc: PageInfoService,
-		private languageSvc: LanguageService
-	) { }
+		private pageInfoSvc: PageInfoService
+	) {}
 
 	ngOnInit() {
-		this.getCapacities();
-	}
-
-	getCapacities() {
 		const opts = new InputRequestOption();
 		opts.params = {
 			url: document.location.pathname,
 		};
+		this.getPageInfo(opts);
+		this.getCapacities(opts);
+	}
+
+	getPageInfo(opts) {
 		this.httpSvc.get(API.Category.Get, opts).subscribe((response) => {
 			this.pageTitle = response.data.title;
 			this.pageDescription = response.data.description;
 			this.pageInfoSvc.setTitle(this.pageTitle);
 		});
+	}
+
+	getCapacities(opts) {
 		this.httpSvc.get(API.Product.Gets, opts).subscribe((response) => {
-			this.products = response.data;
+			this.products = response.data.items;
 		});
 	}
 }

@@ -54,7 +54,7 @@ export class HistoryComponent implements OnInit {
 		this.httpSvc.get(API.Section.Get, opts)
 		.subscribe((response) => {
 			this.yearImages = response.data.images;
-			console.log(this.yearImages);
+			// console.log(this.yearImages);
 		});
 	}
 }

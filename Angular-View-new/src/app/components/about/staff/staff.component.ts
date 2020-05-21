@@ -49,7 +49,7 @@ export class StaffComponent implements OnInit {
 			.subscribe((result) => {
 				this.staff = result.data;
 				this.staffImages = result.data.images;
-				console.log(this.staffImages);
+				// console.log(this.staffImages);
 			});
 	}
 }

@@ -65,7 +65,7 @@ export class DepartmentComponent implements OnInit {
 	getProductGroups(opts: InputRequestOption) {
 		this.httpSvc.get(API.ProductGroup.Gets, opts).subscribe((response) => {
 			this.productGroups = response.data;
-			console.log(this.productGroups);
+			// console.log(this.productGroups);
 		});
 	}
 }

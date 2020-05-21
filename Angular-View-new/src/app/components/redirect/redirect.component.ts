@@ -1,10 +1,9 @@
 import { Component, OnInit, Inject } from "@angular/core";
-import { Router, RouterEvent, NavigationEnd } from "@angular/router";
+import { Router } from "@angular/router";
 import { DOCUMENT } from "@angular/common";
-import { filter } from "rxjs/operators";
 import { RedirectSerivce } from "src/core/services/redirect.service";
 import { HttpService } from "src/core/services/http.service";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
 
 @Component({
 	selector: "app-redirect",
@@ -12,6 +11,8 @@ import { HttpClient } from '@angular/common/http';
 	styleUrls: ["./redirect.component.scss"],
 })
 export class RedirectComponent implements OnInit {
+	isLoading = true;
+
 	constructor(
 		private r: Router,
 		@Inject(DOCUMENT) document: Document,
@@ -20,30 +21,31 @@ export class RedirectComponent implements OnInit {
 		private httpSvc: HttpService
 	) {
 		// Khi click chuyển trang
-		console.log("On Redirect")
-		var path = this.rService.getRoute(document.location.pathname);
-		console.log(path)
-		if (path != "/") {
-			this.r.navigateByUrl(path, { skipLocationChange: true });
-		}
-		// this.r.navigateByUrl("index", { skipLocationChange: true });
-		// console.log("click");
-		// var isNavigate = false;
-		// var path = encodeURIComponent(document.location.pathname);
-		// console.log(path);
-		// this.getRoute(path).subscribe((response : any) => {
-		// 	if (response.data != null) {
-		// 		path = this.rService.swithRoute(response.data.template);
-		// 		if (path != "/") {
-		// 			isNavigate = true;
-		// 			this.r.navigateByUrl(path, { skipLocationChange: true });
-		// 		}
-		// 	}
-		// });
+		console.log("On Redirect");
+		var path = document.location.pathname;
+		this.rService.getRouteNew(http, path).subscribe((response: any) => {
+			if (response.data != null && response.code == 200) {
+				path = this.rService.swithRoute(
+					response.data.template,
+					response.data.entityType
+				);
+			} else if (path == "/") {
+				path = "index";
+			} else {
+				path = "error";
+			}
+			this.isLoading = false;
+		});
 
-		// if (!isNavigate) {
-		// 	this.r.navigateByUrl("index", { skipLocationChange: true });
-		// }
+		var interval = setInterval(() => {
+			if (!this.isLoading) {
+				clearInterval(interval);
+				if (path != "/" && path != document.location.pathname) {
+					this.rService.isRenderingSSR = false
+					this.r.navigateByUrl(path, { skipLocationChange: true });
+				}
+			}
+		}, 1000);
 	}
 
 	ngOnInit() {}
