@@ -1,0 +1,20 @@
+.product-detail {
+	.infoDetail-comments {
+		.tab-container {
+			.tab-content {
+				padding: 25px 50px;
+				background: rgba(243, 243, 243, 0.5);
+			}
+			.list-tab {
+				.item {
+					padding: 10px 50px;
+					cursor: pointer;
+					background: #fff;
+					border: 1px solid #f3f3f3;
+					color: #fe0000;
+					text-transform: uppercase;
+				}
+			}
+		}
+	}
+}

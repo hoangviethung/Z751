@@ -21,7 +21,7 @@ export class AboutComponent implements OnInit {
 		vi: ["Trang chủ", "Về công ty Z751"],
 	};
 	missionVisionImages = [];
-	missionVision: ArticleModel
+	missionVision: ArticleModel;
 	currentLanguage: string;
 	aboutLetter: SectionModel;
 
@@ -29,7 +29,7 @@ export class AboutComponent implements OnInit {
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,
 		private breadcrumbSvc: BreadcrumbService
-	) { }
+	) {}
 
 	ngOnInit() {
 		this.pageInfoSvc.setTitle("About us");
@@ -55,9 +55,9 @@ export class AboutComponent implements OnInit {
 			template: "1",
 		};
 		this.httpSvc.get(API.Section.Get, opts).subscribe((result) => {
-			this.missionVision = result.data
+			this.missionVision = result.data;
 			this.missionVisionImages = result.data.images;
-			console.log(this.missionVision);
+			// console.log(this.missionVision);
 		});
 	}
 }

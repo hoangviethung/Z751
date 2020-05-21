@@ -15,7 +15,5 @@ const routes: Routes = [
 	exports: [RouterModule],
 })
 export class DepartmentRoutingModule {
-	constructor() {
-		console.log(1);
-	}
+	constructor() {}
 }

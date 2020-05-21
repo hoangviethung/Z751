@@ -9,9 +9,7 @@ import { ProductModel } from "src/core/models/Product.model";
 export class ProductSimpleComponent implements OnInit {
 	@Input() product: ProductModel;
 
-	constructor() {
-		console.log(this.product);
-	}
+	constructor() {}
 
 	ngOnInit() {}
 }

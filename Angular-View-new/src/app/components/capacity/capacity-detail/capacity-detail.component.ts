@@ -97,7 +97,7 @@ export class CapacityDetailComponent implements OnInit {
 			this.categoryOfProduct = [].concat({
 				Title: this.productCategoryUrl,
 			});
-			console.log(this.categoryOfProduct);
+			// console.log(this.categoryOfProduct);
 
 			let Breadcrumb = {
 				en: ["Home", "Products"],

@@ -16,6 +16,7 @@ import { RedirectSerivce } from 'src/core/services/redirect.service';
 	styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
+	isLoading = true;
 	title = "z751-View-new";
 	constructor(
 		private r: Router,
@@ -26,26 +27,12 @@ export class AppComponent implements OnInit {
 	) {
 		this.cookieSvc.get("currentLanguage");
 		console.log("On Load")
-		var path = this.rService.getRoute(document.location.pathname);
-		console.log(path)
-		if (path != "/") {
-			this.r.navigateByUrl(path, { skipLocationChange: true });
-		}
-
-		// this.r.navigateByUrl("index", { skipLocationChange: true });
-		// var path = encodeURIComponent(document.location.pathname);
-		// if (path != "/") {
-		// 	this.http.get("http://27.71.234.45:8080/api/Common/getroute?url=" + path).subscribe((response : any) => {
-		// 		if (response.data != null) {
-		// 			path = this.rService.swithRoute(response.data.template, response.data.entityType);
-		// 			console.log(path);
-
-		// 			if (path != "/") {
-		// 				this.r.navigateByUrl(path, { skipLocationChange: true });
-		// 			}
-		// 		}
-		// 	});
-		// }
+		var interval = setInterval(() => {
+			if (!this.rService.isRenderingSSR) {
+				clearInterval(interval)
+				console.log("SSR Rendering has been done!")
+			}
+		}, 300);
 	}
 	ngOnInit() {
 		// this.getResourceKey();

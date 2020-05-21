@@ -3,8 +3,6 @@ import { NgModule } from "@angular/core";
 import { ProductRoutingModule } from "./product-routing.module";
 import { ProductComponent } from "./product.component";
 import { ProductSimpleComponent } from "./product-simple/product-simple.component";
-import { ProductDetailComponent } from "./product-detail/product-detail.component";
-import { ProductOthersComponent } from "./product-detail/product-others/product-others.component";
 import { SwiperConfigInterface, SWIPER_CONFIG } from "ngx-swiper-wrapper";
 import { SharedModule } from "../_shared/shared.module";
 
@@ -22,8 +20,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	declarations: [
 		ProductComponent,
 		ProductSimpleComponent,
-		ProductDetailComponent,
-		ProductOthersComponent,
 	],
 	imports: [SharedModule, ProductRoutingModule],
 	providers: [

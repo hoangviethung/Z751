@@ -1,7 +1,14 @@
-import { Component, OnInit } from "@angular/core";
-import { HttpService } from "src/core/services/http.service";
+import {
+	Component,
+	OnInit,
+	Input,
+	Inject,
+	Output,
+	EventEmitter,
+} from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { PaginationService } from "src/core/services/pagination.service";
+import { DOCUMENT } from "@angular/common";
 
 @Component({
 	selector: "app-pagination",
@@ -9,16 +16,18 @@ import { PaginationService } from "src/core/services/pagination.service";
 	styleUrls: ["./pagination.component.scss"],
 })
 export class PaginationComponent implements OnInit {
-	PAGE_SIZE = 12;
 	pager;
-	totalPage = 100;
 	code;
+	@Input("itemPerPage") itemPerPage: number;
+	@Input("totalItems") totalItems: number;
+	@Output("changePage") changePage: EventEmitter<number> = new EventEmitter<
+		number
+	>();
 
 	constructor(
 		private pagerService: PaginationService,
 		private route: ActivatedRoute,
-		private router: Router,
-		private httpService: HttpService
+		private router: Router
 	) {}
 
 	ngOnInit() {
@@ -26,23 +35,16 @@ export class PaginationComponent implements OnInit {
 	}
 
 	handlingQueryParams() {
-		this.route.queryParams.subscribe((params) => {
-			this.code = params.code || "";
-			this.initData(params.page);
-		});
+		this.initData("1");
 	}
 
 	initData(page) {
-		this.httpService
-			.get(`/api/Product/used/total?categoryIds=${this.code}`)
-			.subscribe((result) => {
-				this.totalPage = result.data;
-				this.choosepage(page || 1, true);
-			});
+		this.choosepage(page || 1, true);
 	}
 
 	choosepage(page, isFirst?) {
-		// debugger;
+		console.log("change Paged");
+
 		page = Number(page);
 		if (
 			page < 1 ||
@@ -52,20 +54,27 @@ export class PaginationComponent implements OnInit {
 		) {
 			return;
 		}
-		let totalPage = this.totalPage;
+
+		let totalItems = this.totalItems;
+
 		page =
-			totalPage / this.PAGE_SIZE < page
-				? Math.ceil(totalPage / this.PAGE_SIZE)
+			totalItems / this.itemPerPage < page
+				? Math.ceil(totalItems / this.itemPerPage)
 				: page;
+
 		this.pager = this.pagerService.getPager(
-			totalPage,
+			totalItems,
 			page,
-			this.PAGE_SIZE
+			this.itemPerPage
 		);
+
 		if (!isFirst) {
-			this.router.navigate(["/Product"], {
-				queryParams: { code: this.code, page: this.pager.currentPage },
+			this.router.navigate(["/products"], {
+				queryParams: { page: this.pager.page },
+				skipLocationChange: true,
 			});
 		}
+
+		this.changePage.emit(this.pager.page);
 	}
 }
