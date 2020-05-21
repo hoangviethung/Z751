@@ -24,74 +24,32 @@ export class AppComponent implements OnInit {
 		private http: HttpClient,
 		private rService: RedirectSerivce,
 	) {
-		// var xhttp = new XMLHttpRequest();
-		// var temp = document.location.pathname;
-		// this.cookieSvc.get("currentLanguage");
-
-		// xhttp.open(
-		// 	"GET",
-		// 	"http://27.71.234.45:8080/api/Common/getroute?url=" + temp,
-		// 	false
-		// );
-
-		// xhttp.onreadystatechange = function () {
-		// 	if (
-		// 		this.readyState == 4 &&
-		// 		this.status == 200 &&
-		// 		JSON.parse(xhttp.responseText).data != null
-		// 	) {
-		// 		switch (JSON.parse(xhttp.responseText).data.template) {
-		// 			case 1:
-		// 				temp = "";
-		// 				return;
-		// 			case 2:
-		// 				temp = "about";
-		// 				return;
-		// 			case 3:
-		// 				temp = "products";
-		// 				return;
-		// 			case 4:
-		// 				temp = "departments";
-		// 				return;
-		// 			case 5:
-		// 				temp = "capacities";
-		// 				return;
-		// 			case 6:
-		// 				temp = "news";
-		// 				return;
-		// 			case 7:
-		// 				temp = "contact";
-		// 				return;
-		// 		}
-		// 	}
-		// };
-		// xhttp.send();
-
-		// if (temp != "/") {
-		// 	this.r.navigateByUrl(temp, { skipLocationChange: true });
-		// }
-		console.log("onload");
-		var path = encodeURIComponent(document.location.pathname);
+		this.cookieSvc.get("currentLanguage");
+		console.log("On Load")
+		var path = this.rService.getRoute(document.location.pathname);
+		console.log(path)
 		if (path != "/") {
-			this.getRoute(path).subscribe((response : any) => {
-				if (response.data != null) {
-					path = this.rService.swithRoute(response.data.template, response.data.entityType);
-					console.log(path);
-					
-					if (path != "/") {
-						this.r.navigateByUrl(path, { skipLocationChange: true });
-					}
-				}
-			});
+			this.r.navigateByUrl(path, { skipLocationChange: true });
 		}
+
+		// this.r.navigateByUrl("index", { skipLocationChange: true });
+		// var path = encodeURIComponent(document.location.pathname);
+		// if (path != "/") {
+		// 	this.http.get("http://27.71.234.45:8080/api/Common/getroute?url=" + path).subscribe((response : any) => {
+		// 		if (response.data != null) {
+		// 			path = this.rService.swithRoute(response.data.template, response.data.entityType);
+		// 			console.log(path);
+
+		// 			if (path != "/") {
+		// 				this.r.navigateByUrl(path, { skipLocationChange: true });
+		// 			}
+		// 		}
+		// 	});
+		// }
 	}
 	ngOnInit() {
 		// this.getResourceKey();
 	}
-
-	getRoute(path) {
-		return this.http.get("http://27.71.234.45:8080/api/Common/getroute?url=" + path);
-	}	
 
 	getResourceKey() {
 		this.http

@@ -4,30 +4,32 @@ import { Injectable } from "@angular/core";
 	providedIn: "root",
 })
 export class RedirectSerivce {
-	getRoute(url: string) {
+	getRoute(path: string) {
 		var xhttp = new XMLHttpRequest();
-		if (url != "/") {
-			xhttp.open(
-				"GET",
-				"http://27.71.234.45:8080/api/Common/getroute?url=" + url
-			);
-			xhttp.onreadystatechange = function () {
-				if (
-					this.readyState == 4 &&
-					this.status == 200 &&
-					JSON.parse(xhttp.responseText).data != null
-				) {
-					console.log("Xhttp Done");
-				}
-			};
-			xhttp.send();
+		xhttp.open(
+			"GET",
+			"http://27.71.234.45:8080/api/Common/getroute?url=" + encodeURIComponent(path),
+			false
+		);
 
-			if (xhttp.readyState == 4) {
-				return url;
+		xhttp.onreadystatechange = () => {
+			if (
+				xhttp.readyState == 4 &&
+				xhttp.status == 200 &&
+				JSON.parse(xhttp.responseText).data != null
+			) {
+				var data = JSON.parse(xhttp.responseText).data
+				console.log("inResponse " + data.url);
+				path = this.swithRoute(data.template, data.entityType)
 			}
-		}
+			else {
+				path = "index"
+			}
+		};
+		xhttp.send();
 
-		return "index";
+		console.log("inService " + path);
+		return path;
 	}
 
 	swithRoute(template: number, entityType?: number): string {

@@ -30,11 +30,8 @@ export class ClickDirective {
 	}
 
 	@HostListener('dblclick') onDoubleClicked() {
-		const urlImage = this.file.path
+		const urlImage = this.file.path;
+		console.log(urlImage);
 		this.toastrSvc.success(`Đã coppy !!!`);
-		urlImage.select();
-		urlImage.focus();
-		urlImage.setSelectionRange(0, 99999);
-		document.execCommand("copy");
 	}
 }

@@ -34,7 +34,7 @@ export class PaginationComponent implements OnInit {
 
 	initData(page) {
 		this.httpService
-			.get(`api/Product/used/total?categoryIds=${this.code}`)
+			.get(`/api/Product/used/total?categoryIds=${this.code}`)
 			.subscribe((result) => {
 				this.totalPage = result.data;
 				this.choosepage(page || 1, true);

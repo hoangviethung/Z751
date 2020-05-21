@@ -20,24 +20,30 @@ export class RedirectComponent implements OnInit {
 		private httpSvc: HttpService
 	) {
 		// Khi click chuyển trang
-		// this.r.navigateByUrl(this.rService.getRoute(document.location.pathname), { skipLocationChange: true });
-		console.log("click");
-		var isNavigate = false;
-		var path = encodeURIComponent(document.location.pathname);
-		console.log(path);
-		this.getRoute(path).subscribe((response : any) => {
-			if (response.data != null) {
-				path = this.rService.swithRoute(response.data.template);
-				if (path != "/") {
-					isNavigate = true;
-					this.r.navigateByUrl(path, { skipLocationChange: true });
-				}
-			}
-		});
-		
-		if (!isNavigate) {
-			this.r.navigateByUrl("index", { skipLocationChange: true });
+		console.log("On Redirect")
+		var path = this.rService.getRoute(document.location.pathname);
+		console.log(path)
+		if (path != "/") {
+			this.r.navigateByUrl(path, { skipLocationChange: true });
 		}
+		// this.r.navigateByUrl("index", { skipLocationChange: true });
+		// console.log("click");
+		// var isNavigate = false;
+		// var path = encodeURIComponent(document.location.pathname);
+		// console.log(path);
+		// this.getRoute(path).subscribe((response : any) => {
+		// 	if (response.data != null) {
+		// 		path = this.rService.swithRoute(response.data.template);
+		// 		if (path != "/") {
+		// 			isNavigate = true;
+		// 			this.r.navigateByUrl(path, { skipLocationChange: true });
+		// 		}
+		// 	}
+		// });
+
+		// if (!isNavigate) {
+		// 	this.r.navigateByUrl("index", { skipLocationChange: true });
+		// }
 	}
 
 	ngOnInit() {}
