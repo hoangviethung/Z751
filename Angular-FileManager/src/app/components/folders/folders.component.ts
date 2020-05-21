@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, ViewChild } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	Input,
+	Output,
+	EventEmitter,
+	SimpleChanges,
+	ViewChild,
+} from '@angular/core';
 import { ContextMenuComponent } from 'ngx-contextmenu';
 import { FolderService } from 'src/app/service/folder.service';
 import { FolderModel } from 'src/app/model/folder.model';
@@ -6,7 +14,7 @@ import { FolderModel } from 'src/app/model/folder.model';
 @Component({
 	selector: 'app-folders',
 	templateUrl: './folders.component.html',
-	styleUrls: ['./folders.component.css']
+	styleUrls: ['./folders.component.css'],
 })
 export class FoldersComponent implements OnInit {
 	@Input() folders;
@@ -17,20 +25,17 @@ export class FoldersComponent implements OnInit {
 	@Output() isReloadFolders = new EventEmitter<Boolean>();
 	@ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
 	files = [];
-	constructor(
-		private folderSvc: FolderService
-	) { }
+	constructor(private folderSvc: FolderService) {}
 
-	ngOnInit() {
-	}
+	ngOnInit() {}
 
 	onLeftClick($event, item) {
-		$event.target.classList.add("ui-btn-active")
-		this.valueUpdate.emit(item)
+		$event.target.classList.add('ui-btn-active');
+		this.valueUpdate.emit(item);
 	}
 
 	changeCurrentFolder($event) {
-		this.valueUpdate.emit($event)
+		this.valueUpdate.emit($event);
 	}
 
 	onArrowClick($event, item: FolderModel) {
@@ -43,11 +48,11 @@ export class FoldersComponent implements OnInit {
 			path: $event.item.path,
 			isCreate: true,
 			isRename: false,
-			isMove: false
-		})
+			isMove: false,
+		});
 		// Show dialog
-		this.isShowDialog = true
-		this.showDialogToggle.emit(this.isShowDialog)
+		this.isShowDialog = true;
+		this.showDialogToggle.emit(this.isShowDialog);
 	}
 
 	renameFolder($event) {
@@ -56,19 +61,19 @@ export class FoldersComponent implements OnInit {
 			path: $event.item.path,
 			isCreate: false,
 			isRename: true,
-			isMove: false
-		})
+			isMove: false,
+		});
 		// Show dialog
-		this.isShowDialog = true
-		this.showDialogToggle.emit(this.isShowDialog)
+		this.isShowDialog = true;
+		this.showDialogToggle.emit(this.isShowDialog);
 	}
 
 	deleteFolder($event) {
 		this.folderSvc.delete($event.item.path).subscribe((response: any) => {
 			if (response.code == 200) {
 				// Reload folders
-				this.isReloadFolders.emit(true)
+				this.isReloadFolders.emit(true);
 			}
-		})
+		});
 	}
 }

@@ -1,24 +1,29 @@
-import { Directive, HostListener, Input, Injectable, Inject } from '@angular/core';
+import {
+	Directive,
+	HostListener,
+	Input,
+	Injectable,
+	Inject,
+	ElementRef,
+} from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
-
 @Directive({
-	selector: '[clickDirective]'
+	selector: '[clickDirective]',
 })
-
 export class ClickDirective {
 	@Input() file;
 	timer: any = 0;
 	isSingleClick = false;
-
 	times = 0;
 
 	constructor(
 		@Inject(DOCUMENT) document: Document,
-		private toastrSvc: ToastrService
-	) { }
+		private toastrSvc: ToastrService,
+		private elementRef: ElementRef
+	) {}
 
 	@HostListener('click') onClicked() {
 		this.isSingleClick = true;
@@ -26,12 +31,17 @@ export class ClickDirective {
 			if (this.isSingleClick) {
 				// doTheStuffHere();
 			}
-		}, 250)
+		}, 250);
 	}
 
+	// COPPY PATH URL IMAGE
 	@HostListener('dblclick') onDoubleClicked() {
-		const urlImage = this.file.path;
-		console.log(urlImage);
+		const item: HTMLElement = this.elementRef.nativeElement;
+		const url = item.querySelector('.path-image-item') as HTMLInputElement;
+		url.select();
+		url.focus();
+		url.setSelectionRange(0, 99999);
+		document.execCommand('copy');
 		this.toastrSvc.success(`Đã coppy !!!`);
 	}
 }

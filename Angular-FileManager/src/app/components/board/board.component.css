@@ -1,3 +1,32 @@
+.path-image-item {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.ui-btn.ui-btn-icon-left:after {
+    background-size: cover;
+}
+
+.ui-btn.ui-btn-icon-left.ui-icon-ckf-folder-download:after {
+    background-image: url("../../../assets/icons/download.png");
+}
+
+.ui-btn.ui-btn-icon-left.ui-icon-ckf-folder-copy_link:after {
+    background-image: url("../../../assets/icons/copy_link.png");
+}
+
+.ui-btn.ui-btn-icon-left.ui-icon-ckf-folder-rename:after {
+    background-image: url("../../../assets/icons/rename.png");
+}
+
+.ui-btn.ui-btn-icon-left.ui-icon-ckf-folder-delete:after {
+    background-image: url("../../../assets/icons/delete.png");
+}
+
+
 .ckf-file-preview-root :focus,
 .ckf-file-preview-root:focus.ckf-file-preview {
     box-shadow: none;
