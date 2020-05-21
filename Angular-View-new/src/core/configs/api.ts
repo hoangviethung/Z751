@@ -17,6 +17,7 @@ export const API = {
 	Article: {
 		HotGets: "/api/Article/used/hot-gets",
 		Gets: "/api/Article/used/gets",
+		Get: "/api/Article/used/get",
 	},
 	Product: {
 		Gets: "/api/Product/used/gets",

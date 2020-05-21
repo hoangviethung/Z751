@@ -1,0 +1,53 @@
+@import "../_shared/breadcrumb/breadcrumb.component.scss";
+
+:host ::ng-deep {
+	.news-detail {
+		h1 {
+			font-size: 24px;
+			@media (max-width: 1199.98px) {
+				font-size: 21px;
+			}
+			@media (max-width: 767.98px) {
+				font-size: 18px;
+			}
+		}
+		time {
+			color: #707070;
+			font-size: 16px;
+			display: block;
+			font-weight: 700;
+			margin-bottom: 10px;
+			@media (max-width: 1199.98px) {
+				font-size: 14px;
+			}
+			@media (max-width: 767.98px) {
+				font-size: 12px;
+			}
+		}
+		.content {
+			font-size: 18px;
+			text-align: justify;
+			p {
+				+ p {
+					margin-top: 10px;
+				}
+				+ img {
+					display: inline-block;
+					margin-top: 10px;
+				}
+			}
+			@media (max-width: 1199.98px) {
+				font-size: 16px;
+			}
+			@media (max-width: 767.98px) {
+				font-size: 14px;
+			}
+		}
+	}
+	.col-lg-3 {
+		margin-left: auto;
+		@media (max-width: 1024.98px) {
+			margin-top: 35px;
+		}
+	}
+}

@@ -6,6 +6,7 @@ import {
 import { PageInfoService } from "src/core/services/page-info.service";
 import { ProductModel } from "src/core/models/Product.model";
 import { API } from "src/core/configs/api";
+import { PaginationModel } from "src/core/models/Pagination.model";
 
 @Component({
 	selector: "app-capacity",
@@ -13,16 +14,13 @@ import { API } from "src/core/configs/api";
 	styleUrls: ["./capacity.component.scss"],
 })
 export class CapacityComponent implements OnInit {
+	pagination: PaginationModel = new PaginationModel(9, 1);
+	totalItems: number;
 	currentLanguage: string;
 	products: Array<ProductModel> = [];
 	pageTitle: string;
 	pageDescription: string;
 	title: string;
-	Breadcrumb = {
-		en: ["Home", "Capacities"],
-		vi: ["Trang chủ", "Năng lực"],
-	};
-	breadcrumbs;
 
 	constructor(
 		private httpSvc: HttpService,
@@ -33,6 +31,8 @@ export class CapacityComponent implements OnInit {
 		const opts = new InputRequestOption();
 		opts.params = {
 			url: document.location.pathname,
+			itemPerPage: "" + this.pagination.itemPerPage,
+			page: "" + this.pagination.page,
 		};
 		this.getPageInfo(opts);
 		this.getCapacities(opts);
@@ -50,5 +50,15 @@ export class CapacityComponent implements OnInit {
 		this.httpSvc.get(API.Product.Gets, opts).subscribe((response) => {
 			this.products = response.data.items;
 		});
+	}
+
+	refreshList(pageNumber) {
+		const opts = new InputRequestOption();
+		opts.params = {
+			url: document.location.pathname,
+			itemPerPage: "" + this.pagination.itemPerPage,
+			page: "" + pageNumber,
+		};
+		this.getCapacities(opts);
 	}
 }

@@ -71,6 +71,16 @@ const routes: Routes = [
 		},
 	},
 	{
+		path: "news-detail",
+		loadChildren: () =>
+			import("./components/news-detail/news-detail.module").then(
+				(m) => m.NewsDetailModule
+			),
+		data: {
+			preload: false,
+		},
+	},
+	{
 		path: "contact",
 		loadChildren: () =>
 			import("./components/contact/contact.module").then(

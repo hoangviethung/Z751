@@ -33,7 +33,7 @@ export class ProductDetailComponent implements OnInit {
 	previewSlider: SwiperDirective;
 
 	thumbsSliderConfig: SwiperConfigInterface = {
-		direction: "vertical",
+		direction: "horizontal",
 		spaceBetween: 20,
 		slidesPerView: 3,
 		loop: true,
@@ -45,15 +45,14 @@ export class ProductDetailComponent implements OnInit {
 			prevEl: ".preview-img-wrapper .swiper-button-prev",
 		},
 		breakpoints: {
-			768: {
+			576: {
 				slidesPerView: 5,
 				spaceBetween: 10,
-				direction: "horizontal",
 			},
-			576: {
+			768: {
 				slidesPerView: 3,
 				spaceBetween: 10,
-				direction: "horizontal",
+				direction: "vertical",
 			},
 		},
 	};
@@ -71,14 +70,13 @@ export class ProductDetailComponent implements OnInit {
 			prevEl: ".preview-img-wrapper .swiper-button-prev",
 		},
 	};
+
 	isShowPopup: boolean = false;
 	categoryOfProduct: Array<Category>;
-
 
 	constructor(private httpSvc: HttpService) {}
 
 	ngOnInit() {
-		// this.fetchProductCategory();
 		this.getProductDetail();
 	}
 
@@ -98,49 +96,8 @@ export class ProductDetailComponent implements OnInit {
 		};
 		this.httpSvc.get(API.Product.Get, opts).subscribe((response) => {
 			this.product = response.data;
-			console.log(this.product);
 		});
-
-		// this.activatedRoute.params.subscribe(async (param) => {
-		// 	this.productCategoryUrl = param.productCategory;
-		// 	this.categoryOfProduct = [].concat({
-		// 		Title: this.productCategoryUrl,
-		// 	});
-		// 	console.log(this.categoryOfProduct);
-
-		// 	let Breadcrumb = {
-		// 		en: ["Home", "Products"],
-		// 		vi: ["Trang chủ", "Sản phẩm"],
-		// 	};
-		// 	await this.httpSvc
-		// 		.get(
-		// 			`assets/api/${this.currentLanguage}/product/${this.productCategoryUrl}.json`
-		// 		)
-		// 		.subscribe((result) => {
-		// 			Breadcrumb[this.currentLanguage].push(result.data.Title);
-		// 			this.breadcrumbs = Breadcrumb[this.currentLanguage];
-		// 		});
-		// 	await this.httpSvc
-		// 		.get(
-		// 			`assets/api/${this.currentLanguage}/product/product-detail.json`
-		// 		)
-		// 		.subscribe((result) => {
-		// 			this.product = result.data;
-		// 			this.pageSvc.setTitle(this.product.title);
-		// 			Breadcrumb[this.currentLanguage].push(result.data.Title);
-		// 			this.breadcrumbs = Breadcrumb[this.currentLanguage];
-		// 		});
-		// });
-		// 		});
-		// });
 	}
-
-	// fetchProductCategory() {
-	// 	const url = `assets/api/${this.currentLanguage}/product/categories-product.json`;
-	// 	this.httpSvc.get(url).subscribe((result) => {
-	// 		this.productCategory = result.data;
-	// 	});
-	// }
 
 	changeTab(id: number) {
 		this.tabId = id;

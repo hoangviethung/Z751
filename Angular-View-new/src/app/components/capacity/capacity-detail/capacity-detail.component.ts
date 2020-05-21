@@ -31,7 +31,7 @@ export class CapacityDetailComponent implements OnInit {
 	previewSlider: SwiperDirective;
 
 	thumbsSliderConfig: SwiperConfigInterface = {
-		direction: "vertical",
+		direction: "horizontal",
 		spaceBetween: 20,
 		slidesPerView: 3,
 		loop: true,
@@ -43,15 +43,14 @@ export class CapacityDetailComponent implements OnInit {
 			prevEl: ".preview-img-wrapper .swiper-button-prev",
 		},
 		breakpoints: {
-			768: {
+			576: {
 				slidesPerView: 5,
 				spaceBetween: 10,
-				direction: "horizontal",
 			},
-			576: {
+			768: {
 				slidesPerView: 3,
 				spaceBetween: 10,
-				direction: "horizontal",
+				direction: "vertical",
 			},
 		},
 	};
@@ -69,6 +68,8 @@ export class CapacityDetailComponent implements OnInit {
 			prevEl: ".preview-img-wrapper .swiper-button-prev",
 		},
 	};
+
+
 	isShowPopup: boolean = false;
 	categoryOfProduct: Array<Category>;
 	constructor(

@@ -15,12 +15,12 @@ import { PaginationModel } from "src/core/models/Pagination.model";
 })
 export class ProductComponent implements OnInit {
 	pagination: PaginationModel = new PaginationModel(9, 1);
+	totalItems: number;
 	products: Array<ProductModel> = [];
 	pageTitle: string;
 	pageDescription: string;
 	currentLanguage: string;
 	breadcrumbs;
-	totalItems: number;
 
 	constructor(
 		private httpSvc: HttpService,

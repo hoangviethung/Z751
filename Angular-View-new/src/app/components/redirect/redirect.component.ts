@@ -50,6 +50,7 @@ export class RedirectComponent implements OnInit {
 
 	ngOnInit() {}
 
+	
 	getRoute(path) {
 		return this.httpSvc.get("/api/Common/getroute?url=" + path);
 	}

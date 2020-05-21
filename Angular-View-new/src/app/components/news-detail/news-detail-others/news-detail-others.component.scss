@@ -1,0 +1,35 @@
+.title-news-others {
+	background: #0028C3;
+	line-height: 40px;
+	color: #FFFFFF;
+	font-size: 14px;
+	text-align: center;
+	text-transform: uppercase;
+
+	@media (max-width: 1024.98px) {
+		margin-bottom: 20px;
+	}
+}
+
+.list-news-others {
+	.item-news-others {
+		margin-bottom: 15px;
+		display: block;
+
+		figure {
+			figcaption {
+				color: #2B2B2B;
+				background: rgba(#F3F3F3, .5);
+				padding: 10px 20px;
+
+				h3 {
+					font-size: 16px;
+				}
+
+				time {
+					font-size: 14px;
+				}
+			}
+		}
+	}
+}

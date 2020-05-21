@@ -1,5 +1,5 @@
-import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
@@ -22,7 +22,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	slidesPerView: "auto",
 };
 export function createTranslateLoader(http: HttpClient) {
-	return new TranslateHttpLoader(http, "./assets/", ".json");
+	return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
 
 @NgModule({
