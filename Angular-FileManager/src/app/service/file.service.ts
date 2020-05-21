@@ -6,28 +6,38 @@ export interface IFileService {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
-
 export class FileService {
 	files = [];
-	constructor(
-		private http: HttpClient,
-	) { }
+	constructor(private http: HttpClient) {}
 
-	getFiles(path: string = "") {
-		path = path.replace("http://27.71.234.45:8080/upload/", "");
-		return this.http.get("http://27.71.234.45:8080/api/File/gets?folder=" + path);
+	getFiles(path: string = '') {
+		path = path.replace('http://27.71.234.45:8080/upload/', '');
+		return this.http.get(
+			'http://27.71.234.45:8080/api/File/gets?folder=' + path
+		);
 	}
 
 	addFile(params) {
-		return this.http.post<Object>("http://27.71.234.45:8080/api/File/add", params)
+		return this.http.post<Object>(
+			'http://27.71.234.45:8080/api/File/add',
+			params
+		);
+	}
+
+	deleteFile(params) {
+		params = encodeURIComponent(params);
+		return this.http.post<Object>(
+			`http://27.71.234.45:8080/api/File/delete?path=${params}`,
+			params
+		);
 	}
 
 	randomId(files: FileModel[], parentId: string): FileModel[] {
 		files.forEach((element, i) => {
-			element.id = parentId + i
-		})
+			element.id = parentId + i;
+		});
 		return files;
 	}
 }
