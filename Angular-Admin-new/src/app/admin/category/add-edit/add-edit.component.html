@@ -39,7 +39,7 @@
 						<mat-select name="parentid" [formControl]="categoryControl" [(ngModel)]="category.parentId"
 							(ngModelChange)="updateBaseUrl()">
 							<mat-option *ngFor="let category of categories" [value]="category.id">
-								{{ category.title }}
+								{{category.parentName}} {{ category.title }}
 							</mat-option>
 						</mat-select>
 					</mat-form-field>

@@ -92,6 +92,13 @@ export class AddEditComponent implements OnInit {
 			)
 			.subscribe((categories) => {
 				this.categories = categories;
+				this.categories.forEach((item) => {
+					if (item.parentName == null) {
+						item.parentName = '';
+					} else {
+						item.parentName += ' >> ';
+					}
+				});
 			});
 	}
 
@@ -112,7 +119,7 @@ export class AddEditComponent implements OnInit {
 						this.showProductGroups(this.category.template);
 						const opts2 = new InputRequestOption();
 						opts2.params = {
-							categoryId: params.CategoryId,
+							url: this.category.seName,
 						};
 						this.crudSvc
 							.get(APIConfig.ProductGroup.UsedGet, opts2)
@@ -129,6 +136,7 @@ export class AddEditComponent implements OnInit {
 											j < response.data.length;
 											j++
 										) {
+											console.log(this.productGroups[i]);
 											if (
 												response.data[j].id ==
 												this.productGroups[i].id
@@ -144,16 +152,21 @@ export class AddEditComponent implements OnInit {
 									productGroupsSelected
 								);
 							});
-					});
-				const categoryId = new InputRequestOption();
-				categoryId.params = {
-					categoryId: params.CategoryId,
-				};
-				this.httpSvc
-					.get(APIConfig.ProductGroup.GetItemsChecked, categoryId)
-					.pipe(map((response) => response.data))
-					.subscribe((itemsChecked) => {
-						this.categoryProductGroupsChecked = itemsChecked;
+
+						// NEW
+						const categoryId = new InputRequestOption();
+						categoryId.params = {
+							url: this.category.seName,
+						};
+						this.httpSvc
+							.get(
+								APIConfig.ProductGroup.GetItemsChecked,
+								categoryId
+							)
+							.pipe(map((response) => response.data))
+							.subscribe((itemsChecked) => {
+								this.categoryProductGroupsChecked = itemsChecked;
+							});
 					});
 			} else {
 				this.isEdit = false;
@@ -221,7 +234,6 @@ export class AddEditComponent implements OnInit {
 			.update(APIConfig.Category.Update, params)
 			.subscribe((response) => {
 				if (response.code == 200) {
-					this.toastrSvc.success(response.message);
 					if (this.isShowProductGroup) {
 						const categoryProducGroupsOpts = new InputRequestOption();
 						categoryProducGroupsOpts.body = {
@@ -235,6 +247,7 @@ export class AddEditComponent implements OnInit {
 							)
 							.subscribe((response) => {
 								if (response.code == 200) {
+									this.toastrSvc.success(response.message);
 									this.router.navigate(['/admin/category']);
 								} else {
 									this.toastrSvc.error(response.message);
