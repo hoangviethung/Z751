@@ -1,17 +1,14 @@
 import { Component, OnInit, Inject } from "@angular/core";
-import {
-	HttpService,
-	InputRequestOption,
-} from "../../../../core/services/http.service";
-import { Category } from "../../../../core/models/Category.model";
-import { HttpParams, HttpClient } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { map } from "rxjs/operators";
 import { API } from "src/core/configs/api";
 import { LanguageModel } from "src/core/models/Language.model";
-import { Observable } from "rxjs";
-import { DOCUMENT } from '@angular/common';
-import { response } from 'express';
+import { DOCUMENT } from "@angular/common";
+import {
+	HttpService,
+	InputRequestOption,
+} from "../../../../core/services/http.service";
 
 @Component({
 	selector: "app-header",
@@ -28,7 +25,7 @@ export class HeaderComponent implements OnInit {
 		private httpSvc: HttpService,
 		private httpClientSvc: HttpClient,
 		@Inject(DOCUMENT) private document: Document
-	) { }
+	) {}
 
 	ngOnInit() {
 		this.getLanguages();
@@ -41,39 +38,44 @@ export class HeaderComponent implements OnInit {
 	}
 
 	switchLanguage(e: Event) {
-		const opts = new InputRequestOption()
+		const opts = new InputRequestOption();
 		const lang = (<HTMLInputElement>e.target).value;
 		opts.params = {
-			key: lang
-		}
-		this.httpSvc.post(API.Language.switch, opts)
-			.subscribe(() => {
-				document.location.reload()
-			})
+			key: lang,
+		};
+		this.httpSvc.post(API.Language.switch, opts).subscribe(() => {
+			document.location.reload();
+		});
 	}
 
 	getLanguages() {
-		this.httpSvc.get(API.Language.gets)
-			.pipe(map((response) => {
-				return response.data
-			}))
+		this.httpSvc
+			.get(API.Language.gets)
+			.pipe(
+				map((response) => {
+					return response.data;
+				})
+			)
 			.subscribe((languages) => {
-				this.languages = languages
-				this.languages.forEach((item => {
-					if (item.key == 'vi') {
-						item.image = './assets/images/vi.png'
+				this.languages = languages;
+				this.languages.forEach((item) => {
+					if (item.key == "vi") {
+						item.image = "./assets/images/vi.png";
 					} else {
-						item.image = './assets/images/en.png'
+						item.image = "./assets/images/en.png";
 					}
-				}))
-			})
+				});
+			});
 	}
 
 	getcurrentLanguage() {
-		this.httpClientSvc.get(environment.remoteBaseUrl + API.Language.get, { responseType: 'text' })
-			.subscribe((key) => {
-				this.currentLanguage = key
+		this.httpClientSvc
+			.get(environment.remoteBaseUrl + API.Language.get, {
+				responseType: "text",
 			})
+			.subscribe((key) => {
+				this.currentLanguage = key;
+			});
 	}
 
 	getMenus() {

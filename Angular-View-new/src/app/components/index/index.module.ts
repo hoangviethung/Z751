@@ -1,5 +1,4 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
 
 // Import Routing Module
 import { IndexRoutingModule } from "./index-routing.module";

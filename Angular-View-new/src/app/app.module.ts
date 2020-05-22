@@ -16,27 +16,32 @@ import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { HeaderComponent } from "./components/_shared/header/header.component";
 import { FooterComponent } from "./components/_shared/footer/footer.component";
 import { SharedModule } from "./components/_shared/shared.module";
+import { environment } from "src/environments/environment";
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	direction: "horizontal",
 	slidesPerView: "auto",
 };
-export function createTranslateLoader(http: HttpClient) {
-	return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
-}
 
 @NgModule({
 	declarations: [AppComponent, HeaderComponent, FooterComponent],
 	imports: [
-		BrowserModule.withServerTransition({ appId: "serverApp" }),
+		BrowserModule.withServerTransition({ appId: "z751" }),
 		AppRoutingModule,
 		HttpClientModule,
 		SwiperModule,
 		SharedModule,
 		TranslateModule.forRoot({
+			defaultLanguage: "vi",
 			loader: {
 				provide: TranslateLoader,
-				useFactory: createTranslateLoader,
+				useFactory: (http: HttpClient) => {
+					return new TranslateHttpLoader(
+						http,
+						`${environment.locales}/assets/i18n/`,
+						".json"
+					);
+				},
 				deps: [HttpClient],
 			},
 		}),

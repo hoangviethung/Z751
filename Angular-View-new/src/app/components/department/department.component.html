@@ -18,7 +18,7 @@
 			<div class="row">
 				<div class="col-12">
 					<h2 class="main-title tag-line tt-u">
-						<!-- {{ "menu.about" }} -->
+						<!-- {{ "menu.about" | translate }} -->
 						Giới thiệu
 					</h2>
 				</div>
@@ -39,7 +39,7 @@
 	<div class="container">
 		<div class="block-title center">
 			<h2 class="main-title tt-u mb-0">
-				<!-- {{ "ResourceKeys.Products" }} -->
+				<!-- {{ "ResourceKeys.Products" | translate }} -->
 				Sản phẩm
 			</h2>
 		</div>
@@ -66,7 +66,7 @@
 		[capacityProducts]="productGroup.products"
 	></app-department-capacity>
 </ng-container>
-<app-index-news [language]="currentLanguage"></app-index-news>
+<app-index-news></app-index-news>
 
 <section class="form-contact pd-70">
 	<div class="container">
@@ -85,7 +85,7 @@
 					<h3>{{ title }}</h3>
 					<div class="text" [innerHTML]="address"></div>
 					<hr />
-					<h3>{{ "ResourceKeys.WorkTime" }}</h3>
+					<h3>{{ "ResourceKeys.WorkTime" | translate }}</h3>
 					<div class="text" [innerHTML]="workTime"></div>
 				</div>
 			</div>

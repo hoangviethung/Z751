@@ -1,15 +1,9 @@
-import { Component, OnInit, Inject } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { LanguageService } from "src/core/services/language.service";
-import { PageInfoService } from "src/core/services/page-info.service";
+import { Component, OnInit } from "@angular/core";
 import {
 	HttpService,
 	InputRequestOption,
 } from "src/core/services/http.service";
 import { ProductModel } from "src/core/models/Product.model";
-import { BreadcrumbService } from "../_shared/breadcrumb/breadcrumb.service";
-import { Category } from "src/core/models/Category.model";
-import { DOCUMENT } from "@angular/common";
 import { API } from "src/core/configs/api";
 
 @Component({
@@ -18,7 +12,6 @@ import { API } from "src/core/configs/api";
 	styleUrls: ["./department.component.scss"],
 })
 export class DepartmentComponent implements OnInit {
-	currentLanguage: string;
 	title: string;
 	description: string;
 	image: string;
@@ -65,7 +58,7 @@ export class DepartmentComponent implements OnInit {
 	getProductGroups(opts: InputRequestOption) {
 		this.httpSvc.get(API.ProductGroup.Gets, opts).subscribe((response) => {
 			this.productGroups = response.data;
-			// console.log(this.productGroups);
+			console.log(this.productGroups);
 		});
 	}
 }

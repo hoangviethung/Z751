@@ -7,12 +7,12 @@
 			<figcaption class="col">
 				<div class="box-content">
 					<h3 class="lcl lcl-2 fw-700">{{ news.title }}</h3>
-					<time>{{ news.order | date: "dd-MM-yyyy" }}</time>
+					<time>{{ news.order | date: "dd-MM-yyyy" | translate }}</time>
 					<div
 						class="lcl lcl-3 description"
 						[innerHTML]="news.description"
 					></div>
-					<span>{{ "ResourceKeys.ReadNews" }}</span>
+					<span>{{ "ResourceKeys.ReadNews" | translate }}</span>
 				</div>
 			</figcaption>
 		</figure>
