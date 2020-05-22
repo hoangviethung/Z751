@@ -1,7 +1,6 @@
 export const API = {
 	Common: {
 		GetRoute: "/api/Common/getroute",
-		Breadcrumb: "/api/Common/getbreadcrumb",
 	},
 	Category: {
 		Get: "/api/Category/used/get",

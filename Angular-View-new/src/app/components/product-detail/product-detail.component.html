@@ -111,7 +111,7 @@
 							class="btn-red btn-viewmore tt-u h-47"
 							(click)="showPopup(null)"
 						>
-							{{ "ResourceKeys.ContactNow" | translate }}</a
+							{{ "ResourceKeys.ContactNow" }}</a
 						>
 					</div>
 				</div>
@@ -123,7 +123,7 @@
 				<div class="tab-container">
 					<ul class="list-tab d-f lst-n pl-0">
 						<li class="item w-100" (click)="changeTab(1)">
-							{{ "ResourceKeys.ProductInformation" | translate }}
+							{{ "ResourceKeys.ProductInformation" }}
 						</li>
 						<!-- <li
 							class="item w-100 text-center"
@@ -144,7 +144,7 @@
 			</div>
 			<div class="col-lg-3 aside-category">
 				<div class="title-aside tt-u cl-white">
-					{{ "ResourceKeys.ProductCategory" | translate }}
+					{{ "ResourceKeys.ProductCategory" }}
 				</div>
 				<ul class="list-item lst-n pl-0">
 					<li class="item" *ngFor="let category of productCategory">
@@ -188,7 +188,7 @@
 		<div class="product-form-wrapper" *ngIf="categoryOfProduct">
 			<div class="product-form-content">
 				<h2 class="main-title text-center tt-u">
-					{{ "menu.contact" | translate }}
+					{{ "menu.contact" }}
 				</h2>
 				<div class="close-popup" (click)="showPopup(false)">
 					<span></span><span></span>

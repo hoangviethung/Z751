@@ -1,41 +1,17 @@
 import { Injectable } from "@angular/core";
-import { Title, Meta } from "@angular/platform-browser";
-
-export class MetaModel {
-	title: string;
-	description: string;
-	keywords: string;
-	image: string;
-}
+import { Title } from "@angular/platform-browser";
 
 @Injectable({
 	providedIn: "root",
 })
 export class PageInfoService {
-	constructor(private titleService: Title, private tagSvc: Meta) {}
+	constructor(private titleService: Title) {}
 
 	public setTitle(newTitle: string) {
 		this.titleService.setTitle(newTitle);
 	}
 
-	public addMeta(metaObj: MetaModel) {
-		return this.tagSvc.addTags([
-			{
-				name: "title",
-				content: metaObj.title,
-			},
-			{
-				name: "description",
-				content: metaObj.description,
-			},
-			{
-				name: "keywords",
-				content: metaObj.keywords,
-			},
-			{
-				name: "image",
-				content: metaObj.image,
-			},
-		]);
+	public getTitle() {
+		return this.titleService.getTitle();
 	}
 }

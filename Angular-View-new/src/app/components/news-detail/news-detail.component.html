@@ -3,7 +3,7 @@
 		<div class="row">
 			<div class="col-lg-9 col-xl-8" *ngIf="article">
 				<h1>{{ article.title }}</h1>
-				<time>{{ article.order | date: "dd/MM/yyyy" | translate }}</time>
+				<time>{{ article.order | date: "dd/MM/yyyy" }}</time>
 				<div class="content" [innerHTML]="article.content"></div>
 			</div>
 			<div class="col-lg-3">

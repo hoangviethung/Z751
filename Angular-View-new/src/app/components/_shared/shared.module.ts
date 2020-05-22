@@ -6,6 +6,7 @@ import { FormsModule } from "@angular/forms";
 import { BreadcrumbComponent } from "./breadcrumb/breadcrumb.component";
 import { PaginationComponent } from "./pagination/pagination.component";
 import { FormContactComponent } from "./form-contact/form-contact.component";
+import { BreadcrumbService } from "./breadcrumb/breadcrumb.service";
 import { SwiperModule } from "ngx-swiper-wrapper";
 import { IndexNewsComponent } from "../index/index-news/index-news.component";
 import { TranslateModule } from "@ngx-translate/core";
@@ -43,6 +44,7 @@ import { UtilitiesService } from "src/core/services/utilities.service";
 		FormsModule,
 	],
 	providers: [
+		BreadcrumbService,
 		CookieService,
 		HttpService,
 		LanguageService,
