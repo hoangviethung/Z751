@@ -43,7 +43,7 @@ export class AddEditComponent implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		private toastrSvc: ToastrService,
 		private router: Router
-	) { }
+	) {}
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();
@@ -63,9 +63,9 @@ export class AddEditComponent implements OnInit {
 			});
 	}
 
-	getProductGroupsChecked() { }
+	getProductGroupsChecked() {}
 
-	getCategories(languageId: string = '1') {
+	getCategories(languageId) {
 		const params = new InputRequestOption();
 		params.params = {
 			languageId: languageId,
@@ -78,7 +78,11 @@ export class AddEditComponent implements OnInit {
 					let newCategory = response.data.items;
 					baseCategory.previewUrl = '';
 					baseCategory.id = 0;
-					baseCategory.title = 'Danh mục gốc';
+					if (languageId == '1') {
+						baseCategory.title = 'Danh mục gốc';
+					} else {
+						baseCategory.title = 'Root directory';
+					}
 					newCategory.unshift(baseCategory);
 					if (this.category.parentId == null) {
 						this.category.parentId = 0;
@@ -114,9 +118,17 @@ export class AddEditComponent implements OnInit {
 							.get(APIConfig.ProductGroup.UsedGet, opts2)
 							.subscribe((response) => {
 								const productGroupsSelected = [];
-								for (let i = 0; i < this.productGroups.length; i++) {
+								for (
+									let i = 0;
+									i < this.productGroups.length;
+									i++
+								) {
 									if (response.data != null) {
-										for (let j = 0; j < response.data.length; j++) {
+										for (
+											let j = 0;
+											j < response.data.length;
+											j++
+										) {
 											if (
 												response.data[j].id ==
 												this.productGroups[i].id
@@ -146,7 +158,7 @@ export class AddEditComponent implements OnInit {
 			} else {
 				this.isEdit = false;
 				this.setBaseUrl();
-				this.getCategories();
+				this.getCategories('1');
 				this.showProductGroups(1);
 			}
 		});
@@ -223,7 +235,6 @@ export class AddEditComponent implements OnInit {
 							)
 							.subscribe((response) => {
 								if (response.code == 200) {
-									this.toastrSvc.success(response.message);
 									this.router.navigate(['/admin/category']);
 								} else {
 									this.toastrSvc.error(response.message);
@@ -244,5 +255,9 @@ export class AddEditComponent implements OnInit {
 		this.categoryProductGroups = this.productGroupsControl.value.map(
 			(item) => item.id
 		);
+	}
+
+	onChangeLanguage(e) {
+		this.getCategories(e);
 	}
 }

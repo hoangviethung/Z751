@@ -20,17 +20,18 @@ export class FileService {
 	}
 
 	addFile(params) {
+		params.imageFolder = params.imageFolder.replace('http://27.71.234.45:8080/upload/', '');
 		return this.http.post<Object>(
 			'http://27.71.234.45:8080/api/File/add',
 			params
 		);
 	}
 
-	deleteFile(params) {
-		params = encodeURIComponent(params);
+	deleteFile(path) {
+		path = path.replace('http://27.71.234.45:8080/', '');
 		return this.http.post<Object>(
-			`http://27.71.234.45:8080/api/File/delete?path=${params}`,
-			params
+			`http://27.71.234.45:8080/api/File/delete?path=${path}`,
+			{ }
 		);
 	}
 

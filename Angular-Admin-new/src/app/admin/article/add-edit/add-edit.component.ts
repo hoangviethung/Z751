@@ -114,6 +114,10 @@ export class AddEditComponent implements OnInit {
 		this.article.seName = this.utilSvc.alias(this.article.title);
 	}
 
+	onChangeLanguage(e) {
+		this.getCategories(e);
+	}
+
 	addArticle() {
 		this.article.languageId = Number(this.article.languageId);
 		this.article.categoryId = Number(this.article.categoryId);
@@ -153,6 +157,7 @@ export class AddEditComponent implements OnInit {
 	onDescriptionChangeEmitter(content) {
 		this.article.description = content.editor.getData();
 	}
+
 	onContentChangeEmitter(content) {
 		this.article.content = content.editor.getData();
 	}

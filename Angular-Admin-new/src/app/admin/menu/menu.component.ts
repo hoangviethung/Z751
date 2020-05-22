@@ -37,7 +37,7 @@ export class MenuComponent implements OnInit {
 		private httpSvc: HttpService,
 		private activatedRoute: ActivatedRoute,
 		private toastrSvc: ToastrService
-	) { }
+	) {}
 
 	ngOnInit(): void {
 		this.activatedRoute.params.subscribe((params) => {
@@ -65,16 +65,16 @@ export class MenuComponent implements OnInit {
 			.pipe(map((response) => response.data))
 			.subscribe((menus) => {
 				this.menus = menus;
-				this.menus.forEach(element => {
+				this.menus.forEach((element) => {
 					let name = this.menus.find((item) => {
 						if (item.id == element.parentId) {
-							return item
+							return item;
 						}
-					})
+					});
 					if (name) {
-						element.parentName = name.title
+						element.parentName = name.title;
 					}
-				})
+				});
 			});
 	}
 

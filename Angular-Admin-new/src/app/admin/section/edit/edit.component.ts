@@ -61,6 +61,10 @@ export class EditComponent implements OnInit {
 		this.close.emit(status);
 	}
 
+	onContentChangeEmitter(content) {
+		this.section.content = content.editor.getData();
+	}
+
 	updateImages(images) {
 		this.images = images;
 	}

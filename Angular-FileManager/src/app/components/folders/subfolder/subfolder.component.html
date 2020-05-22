@@ -3,7 +3,7 @@
 		<li role="presentation" class="ckf-folders-tree ui-li-has-alt">
 			<a role="treeitem" tabindex="-1" data-ckf-drop="true" [attr.aria-labelledby]="item.id" aria-busy="false"
 				[attr.aria-expanded]="item.isExpanded" [attr.aria-level]="item.level"
-				[class]="item == currentFolder ? 'ckf-folders-tree-label ui-btn ui-btn-active' : 'ckf-folders-tree-label ui-btn'"
+				[class]="activeClass(item.path)"
 				[contextMenu]="basicMenu" [contextMenuSubject]="item" (click)="onLeftClick($event, item)">
 				<span id="{{item.id}}">{{item.name}}</span>
 			</a>

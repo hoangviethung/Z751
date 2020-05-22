@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductGroupModel } from 'src/app/_core/models/product-groups';
-import { HttpService, InputRequestOption } from 'src/app/_core/services/http.service';
+import {
+	HttpService,
+	InputRequestOption,
+} from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
 import { map } from 'rxjs/operators';
 import { LanguageModel } from 'src/app/_core/models/language';
@@ -11,53 +14,54 @@ import { FormControl } from '@angular/forms';
 @Component({
 	selector: 'app-product-groups',
 	templateUrl: './product-groups.component.html',
-	styleUrls: ['./product-groups.component.scss']
+	styleUrls: ['./product-groups.component.scss'],
 })
 export class ProductGroupsComponent implements OnInit {
 	isShowPopup: boolean = false;
 	isEdit: boolean;
-	languages: Array<LanguageModel>
-	productGroups: Array<ProductGroupModel>
-	productGroup: ProductGroupModel
+	languages: Array<LanguageModel>;
+	productGroups: Array<ProductGroupModel>;
+	productGroup: ProductGroupModel;
 	templates: Array<TemplateModel> = TemplatesConfig;
 	languageControl = new FormControl();
 	constructor(
 		private httpSvc: HttpService,
 		private toastrSvc: ToastrService
-	) { }
+	) {}
 
 	ngOnInit(): void {
 		this.getProductGroups();
-		this.languages = JSON.parse(localStorage.getItem('languages'))
+		this.languages = JSON.parse(localStorage.getItem('languages'));
 	}
 
 	getProductGroups(languageId?) {
 		const params = new InputRequestOption();
 		if (languageId) {
 			params.params = {
-				languageId: languageId
-			}
+				languageId: languageId,
+			};
 		} else {
 			params.params = {
-				languageId: '1'
-			}
+				languageId: '1',
+			};
 		}
 
-		this.httpSvc.get(APIConfig.ProductGroup.Gets, params)
+		this.httpSvc
+			.get(APIConfig.ProductGroup.Gets, params)
 			.pipe(map((response) => response.data))
 			.subscribe((prodcutGroups) => {
-				this.productGroups = prodcutGroups
-			})
+				this.productGroups = prodcutGroups;
+			});
 	}
 
 	onOpenPopup(status, itemEdit?, isEdit?) {
 		this.isShowPopup = status;
 		if (itemEdit) {
 			this.productGroup = itemEdit;
-			this.isEdit = isEdit
+			this.isEdit = isEdit;
 		} else {
 			this.productGroup = new ProductGroupModel();
-			this.isEdit = false
+			this.isEdit = false;
 		}
 	}
 
@@ -67,11 +71,12 @@ export class ProductGroupsComponent implements OnInit {
 	}
 
 	deleteProductGroup(id) {
-		const params = new InputRequestOption()
+		const params = new InputRequestOption();
 		params.params = {
 			id: id,
-		}
-		this.httpSvc.post(APIConfig.ProductGroup.Delete, params)
+		};
+		this.httpSvc
+			.post(APIConfig.ProductGroup.Delete, params)
 			.subscribe((response) => {
 				if (response.code == 200) {
 					this.toastrSvc.success(response.message);
@@ -79,10 +84,10 @@ export class ProductGroupsComponent implements OnInit {
 				} else {
 					this.toastrSvc.error(response.message);
 				}
-			})
+			});
 	}
 
 	fetchProductGroup(e) {
-		this.getProductGroups(e)
+		this.getProductGroups(e);
 	}
 }

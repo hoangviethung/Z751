@@ -40,20 +40,20 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 	ngAfterViewInit() {}
 
-	getFolders() {
-		this.isLoadingBoard = false;
+	getFolders(currentFolder?) {
 		this.folderSvc.gets().subscribe((element: any) => {
-			var i = 0;
 			// Make random Id
-			this.folders = this.folderSvc.randomId(element.data.items, 'f', 1);
-			this.currentFolder = this.folders[i];
+			this.folders = this.folderSvc.randomId(
+				element.data.items,
+				'f',
+				1,
+				this.currentFolder
+			);
+			console.log(this.folders.filter(o => o.path == currentFolder.path)[0])
+			this.currentFolder = this.folders[0]
+			// this.currentFolder = currentFolder ? this.folders.filter(o => o.path == currentFolder.path)[0] : this.folders[0];
 			this.isLoadingBoard = true;
-			this.getFiles(this.currentFolder.name);
 		});
-	}
-
-	getFiles(idFolder) {
-		this.fileSvc.getFiles(idFolder);
 	}
 
 	changeCurrentFolder($event) {
@@ -72,17 +72,20 @@ export class AppComponent implements OnInit, AfterViewInit {
 		console.log(this.isUploadActive);
 	}
 
-	async addFile() {
-		const nameFolder = this.currentFolder.name;
-		const params = await this.uploadSvc.upload(nameFolder);
-		this.fileSvc.addFile(params).subscribe((response: any) => {
-			if (response.code == 200) {
-				this.toastrSvc.success(`Upload File thành công !!!`);
-				this.getFolders();
-			} else {
-				this.toastrSvc.error(`Đã có lỗi xảy ra !!!`);
-			}
-		});
+	async addFile(e) {
+		const filesAmount = e.target.files.length;
+		for (let i = 0; i < filesAmount; i++) {
+			const params = await this.uploadSvc.upload(e.target.files[i], this.currentFolder);
+			this.fileSvc.addFile(params).subscribe((response: any) => {
+				if (response.code == 200) {
+					this.toastrSvc.success(`Upload File thành công !!!`);
+				} else {
+					this.toastrSvc.error(`Đã có lỗi xảy ra !!!`);
+				}
+			});
+		}
+
+		this.getFolders(this.currentFolder);
 	}
 
 	openModelUpload() {

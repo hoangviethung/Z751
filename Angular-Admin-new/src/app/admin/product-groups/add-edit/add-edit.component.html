@@ -15,8 +15,8 @@
 	</div>
 	<div class="block-form">
 		<div class="row">
-			<div class="form-group col-lg-6">
-				<label>Ngôn ngữ</label>
+			<div class="form-group col-12">
+				<label for="">Ngôn ngữ *</label>
 				<mat-form-field>
 					<mat-select name="language" [formControl]="languageControl" [(ngModel)]="productGroup.languageId">
 						<mat-option *ngFor="let language of languages" [value]="language.id">
@@ -27,20 +27,13 @@
 			</div>
 			<div class="w-100"></div>
 			<div class="form-group col-lg-6">
-				<label>Tên nhóm</label>
+				<label>Tên nhóm *</label>
 				<input class="form-control" type="text" name="name" [(ngModel)]="productGroup.name" />
-			</div>
-			<div class="w-100"></div>
-			<div class="form-group col-auto">
-				<label class="checkbox-custom">
-					<input class="check-box" type="checkbox" name="isCapacity" [(ngModel)]="productGroup.isPotential" />
-					Năng lực
-				</label>
 			</div>
 			<div class="w-100"></div>
 			<div class="form-group col-lg-6">
 				<div class="form-group">
-					<label for="">Chọn sản phẩm</label>
+					<label for="">Chọn sản phẩm *</label>
 					<mat-form-field>
 						<mat-select [formControl]="productsControl" [(ngModel)]="productGroup.productIds" multiple
 							(ngModelChange)="checkData()">
@@ -50,6 +43,13 @@
 						</mat-select>
 					</mat-form-field>
 				</div>
+			</div>
+			<div class="w-100"></div>
+			<div class="form-group col-auto">
+				<label class="checkbox-custom">
+					<input class="check-box" type="checkbox" name="isCapacity" [(ngModel)]="productGroup.isPotential" />
+					Năng lực
+				</label>
 			</div>
 		</div>
 	</div>

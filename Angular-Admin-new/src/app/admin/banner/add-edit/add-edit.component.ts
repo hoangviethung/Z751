@@ -28,7 +28,7 @@ export class AddEditComponent implements OnInit {
 	constructor(
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService
-	) { }
+	) {}
 
 	ngOnInit(): void {
 		this.languages = JSON.parse(localStorage.getItem('languages'));
