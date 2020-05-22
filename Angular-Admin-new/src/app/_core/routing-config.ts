@@ -54,6 +54,11 @@ export const AdminRoutingConfig = [
 				route: '/admin/menu/footer',
 				iconClasses: 'lnr lnr-layers',
 			},
+			{
+				label: 'Website Relative',
+				route: '/admin/menu/website_relative',
+				iconClasses: 'lnr lnr-layers',
+			},
 		],
 	},
 	{
@@ -102,5 +107,5 @@ export const AdminRoutingConfig = [
 		label: 'Quản lý thư mục',
 		route: '/admin/file-manager',
 		iconClasses: 'lnr lnr-cloud-check',
-	}
+	},
 ];

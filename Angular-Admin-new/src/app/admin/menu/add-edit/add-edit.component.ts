@@ -15,6 +15,7 @@ import { FormControl } from '@angular/forms';
 export enum Menu {
 	main = 0,
 	footer = 1,
+	website_relative = 2,
 }
 
 @Component({
@@ -85,15 +86,21 @@ export class AddEditComponent implements OnInit {
 	}
 
 	addMenu() {
-		const params = new InputRequestOption();
-		params.body = this.menu;
-		this.httpSvc.post(APIConfig.Menu.Add, params).subscribe((response) => {
-			if (response.code == 200) {
-				this.close.emit(false);
-				this.toastrSvc.success(response.message);
-			} else {
-				this.toastrSvc.error(response.message);
-			}
+		this.activatedRoute.params.subscribe((paramsTypeMenu) => {
+			const typeMenu = Menu[paramsTypeMenu.menuTitle];
+			this.menu.typeId = Number(typeMenu);
+			const params = new InputRequestOption();
+			params.body = this.menu;
+			this.httpSvc
+				.post(APIConfig.Menu.Add, params)
+				.subscribe((response) => {
+					if (response.code == 200) {
+						this.close.emit(false);
+						this.toastrSvc.success(response.message);
+					} else {
+						this.toastrSvc.error(response.message);
+					}
+				});
 		});
 	}
 

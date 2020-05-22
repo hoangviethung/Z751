@@ -49,10 +49,12 @@ export class AppComponent implements OnInit, AfterViewInit {
 				1,
 				this.currentFolder
 			);
-			console.log(this.folders.filter(o => o.path == currentFolder.path)[0])
-			this.currentFolder = this.folders[0]
-			// this.currentFolder = currentFolder ? this.folders.filter(o => o.path == currentFolder.path)[0] : this.folders[0];
+
 			this.isLoadingBoard = true;
+			// Active current folder to load board
+			this.currentFolder =
+					this.currentFolder ? this.folderSvc.getActiveFolder(
+							this.folders, this.currentFolder) : this.folders[0]
 		});
 	}
 
@@ -74,18 +76,29 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 	async addFile(e) {
 		const filesAmount = e.target.files.length;
-		for (let i = 0; i < filesAmount; i++) {
-			const params = await this.uploadSvc.upload(e.target.files[i], this.currentFolder);
-			this.fileSvc.addFile(params).subscribe((response: any) => {
-				if (response.code == 200) {
-					this.toastrSvc.success(`Upload File thành công !!!`);
-				} else {
-					this.toastrSvc.error(`Đã có lỗi xảy ra !!!`);
-				}
-			});
-		}
+		if (filesAmount.count != 0) {
+			var count = 0;
+			for (let i = 0; i < filesAmount; i++) {
+				const params = await this.uploadSvc.upload(e.target.files[i], this.currentFolder);
+				this.fileSvc.addFile(params).subscribe((response: any) => {
+					if (response.code == 200) {
+						this.toastrSvc.success(`Upload File thành công !!!`);
+					} else {
+						this.toastrSvc.error(`Đã có lỗi xảy ra !!!`);
+					}
+					count++
+				});
+			}
 
-		this.getFolders(this.currentFolder);
+			// wait for finish uploading!
+			var interval = setInterval(async () => {
+				if (count == filesAmount) {
+					console.log("Upload Done")
+					clearInterval(interval)
+					this.getFolders(this.currentFolder);
+				}
+			}, 1000)
+		}
 	}
 
 	openModelUpload() {

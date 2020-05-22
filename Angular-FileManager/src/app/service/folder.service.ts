@@ -77,4 +77,18 @@ export class FolderService implements IFolderService {
 		})
 		return folders;
 	}
+
+	getActiveFolder(folders: FolderModel[], currentFolder: FolderModel) {
+		folders.forEach((element) => {
+			if (element.path == currentFolder.path) {
+				currentFolder = element;
+			}
+
+			if (element.items != null) {
+				currentFolder = this.getActiveFolder(element.items, currentFolder);
+			}
+		})
+
+		return currentFolder;
+	}
 }

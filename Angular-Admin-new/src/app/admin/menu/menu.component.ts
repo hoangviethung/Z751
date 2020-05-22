@@ -17,6 +17,7 @@ import { element } from 'protractor';
 export enum Menu {
 	main = 0,
 	footer = 1,
+	website_relative = 2,
 }
 
 @Component({

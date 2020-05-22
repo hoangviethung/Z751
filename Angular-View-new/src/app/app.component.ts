@@ -8,7 +8,9 @@ import { ResourceModel } from "src/core/models/Resource.model";
 import { ResponseModel } from "src/core/models/Response.model";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { RedirectSerivce } from 'src/core/services/redirect.service';
+import { RedirectSerivce } from "src/core/services/redirect.service";
+import { API } from "src/core/configs/api";
+import { response } from "express";
 
 @Component({
 	selector: "app-root",
@@ -17,17 +19,19 @@ import { RedirectSerivce } from 'src/core/services/redirect.service';
 })
 export class AppComponent implements OnInit {
 	title = "z751-View-new";
+	phone: string;
 	constructor(
 		private r: Router,
 		@Inject(DOCUMENT) document: Document,
 		private cookieSvc: CookieService,
 		private http: HttpClient,
 		private rService: RedirectSerivce,
+		private httpSvc: HttpService
 	) {
 		this.cookieSvc.get("currentLanguage");
-		console.log("On Load")
+		console.log("On Load");
 		var path = this.rService.getRoute(document.location.pathname);
-		console.log(path)
+		console.log(path);
 		if (path != "/") {
 			this.r.navigateByUrl(path, { skipLocationChange: true });
 		}
@@ -49,6 +53,7 @@ export class AppComponent implements OnInit {
 	}
 	ngOnInit() {
 		// this.getResourceKey();
+		this.getNumberPhone();
 	}
 
 	getResourceKey() {
@@ -64,5 +69,16 @@ export class AppComponent implements OnInit {
 		this.http
 			.get("http://27.71.234.45:8080/assets/en.json")
 			.subscribe((response) => {});
+	}
+
+	getNumberPhone() {
+		this.httpSvc.get(API.Branch.Gets).subscribe((response) => {
+			response.data.items.forEach((element) => {
+				if (element.order == 1) {
+					this.phone = element.phone;
+					console.log(this.phone);
+				}
+			});
+		});
 	}
 }
