@@ -15,11 +15,11 @@ import { LanguageService } from "src/core/services/language.service";
 import { PageInfoService } from "src/core/services/page-info.service";
 import { UtilitiesService } from "src/core/services/utilities.service";
 import { ProductSimpleComponent } from "../product/product-simple/product-simple.component";
-import { CloseMenuDirective } from "src/app/directives/close-menu.directive";
-import { IndexNewsItemDirective } from "src/app/directives/index-news-item.directive";
-import { IndexProductItemDirective } from "src/app/directives/index-product-item.directive";
-import { ToggleMenuDirective } from "src/app/directives/toggle-menu.directive";
-import { ToggleSubMenuDirective } from "src/app/directives/toggle-sub-menu.directive";
+import { CloseMenuDirective } from "../../../core/directives/close-menu.directive";
+import { IndexNewsItemDirective } from "../../../core/directives/index-news-item.directive";
+import { IndexProductItemDirective } from "../../../core/directives/index-product-item.directive";
+import { ToggleMenuDirective } from "../../../core/directives/toggle-menu.directive";
+import { ToggleSubMenuDirective } from "../../../core/directives/toggle-sub-menu.directive";
 
 @NgModule({
 	declarations: [

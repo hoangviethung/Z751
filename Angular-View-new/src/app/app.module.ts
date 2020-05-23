@@ -14,6 +14,7 @@ import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { HeaderComponent } from "./components/_shared/header/header.component";
 import { FooterComponent } from "./components/_shared/footer/footer.component";
 import { FormsModule } from "@angular/forms";
+import { SharedModule } from './components/_shared/shared.module';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	direction: "horizontal",
@@ -30,6 +31,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 		BrowserModule.withServerTransition({ appId: "z751" }),
 		HttpClientModule,
 		FormsModule,
+		SharedModule,
 		TranslateModule.forRoot({
 			defaultLanguage: "vi",
 			loader: {
