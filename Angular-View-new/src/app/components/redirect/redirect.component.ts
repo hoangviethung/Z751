@@ -30,6 +30,8 @@ export class RedirectComponent implements OnInit {
 				);
 			} else if (path == "/") {
 				path = "index";
+			} else if ((path = "search")) {
+				path = "search";
 			} else {
 				path = "error";
 			}

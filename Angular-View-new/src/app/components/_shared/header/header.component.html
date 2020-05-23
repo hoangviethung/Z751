@@ -118,8 +118,13 @@
 									name="search"
 									id="search"
 									class="bd-main form-control col"
+									[(ngModel)]="keywords"
+									(keyup.enter)="search()"
 								/>
-								<button class="btn btn-search fcc">
+								<button
+									class="btn btn-search fcc"
+									(click)="search()"
+								>
 									<img
 										src="assets/images/icons/magnify.svg"
 										alt=""

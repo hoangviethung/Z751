@@ -11,38 +11,24 @@
 		<div class="row">
 			<div class="form-group col-lg-12">
 				<label>Username</label>
-				<input
-					placeholder="Username"
-					type="text"
-					class="form-control"
-					[(ngModel)]="loginInfo.userName"
-				/>
+				<input placeholder="Username" type="text" class="form-control" [(ngModel)]="loginInfo.userName"
+					(keyup.enter)="login($event)" />
 				<!-- <span class="field-validation-error">{{ msgPwd }}</span> -->
 			</div>
 			<div class="form-group col-lg-12">
 				<label>Password</label>
-				<input
-					placeholder="Password"
-					type="password"
-					class="form-control"
-					[(ngModel)]="loginInfo.password"
-				/>
+				<input placeholder="Password" type="password" class="form-control" [(ngModel)]="loginInfo.password"
+					(keyup.enter)="login($event)" />
 				<!-- <span class="field-validation-error">{{ msgPwd }}</span> -->
 			</div>
 			<div class="form-group col-lg-12">
 				<label class="checkbox-custom">
-					<input
-						type="checkbox"
-						[(ngModel)]="loginInfo.isRememberMe"
-					/>
+					<input type="checkbox" [(ngModel)]="loginInfo.isRememberMe" />
 					Duy trì đăng nhập
 				</label>
 			</div>
 			<div class="form-group col-lg-12">
-				<button
-					class="btn btn-primary btn-submit"
-					(click)="login($event)"
-				>
+				<button class="btn btn-primary btn-submit" (click)="login($event)">
 					Đăng nhập
 				</button>
 			</div>

@@ -8,9 +8,7 @@
 </div>
 <section class="aside-menu" asideMenu>
 	<ng-container *ngFor="let item of menus">
-		<ng-container
-			*ngTemplateOutlet="sidebarInner; context: { item: item }"
-		></ng-container>
+		<ng-container *ngTemplateOutlet="sidebarInner; context: { item: item }"></ng-container>
 	</ng-container>
 </section>
 
@@ -29,9 +27,7 @@
 		</div>
 		<div class="menu-child" *ngIf="item.children" routerLinkActive="show">
 			<ng-container *ngFor="let item of item.children">
-				<ng-container
-					*ngTemplateOutlet="sidebarInner; context: { item: item }"
-				>
+				<ng-container *ngTemplateOutlet="sidebarInner; context: { item: item }">
 				</ng-container>
 			</ng-container>
 		</div>

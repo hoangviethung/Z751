@@ -13,6 +13,7 @@ import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
+import { ArticleService } from '../article.service';
 
 @Component({
 	selector: 'app-add-edit',
@@ -34,7 +35,8 @@ export class AddEditComponent implements OnInit {
 		private utilSvc: UtilService,
 		private toastrSvc: ToastrService,
 		private activatedRoute: ActivatedRoute,
-		private router: Router
+		private router: Router,
+		private articleSvc: ArticleService
 	) {}
 
 	ngOnInit(): void {
@@ -114,6 +116,11 @@ export class AddEditComponent implements OnInit {
 		this.article.seName = this.utilSvc.alias(this.article.title);
 	}
 
+	onChangeLanguage(e) {
+		this.getCategories(e);
+		this.articleSvc.setLanguage(e);
+	}
+
 	addArticle() {
 		this.article.languageId = Number(this.article.languageId);
 		this.article.categoryId = Number(this.article.categoryId);
@@ -153,6 +160,7 @@ export class AddEditComponent implements OnInit {
 	onDescriptionChangeEmitter(content) {
 		this.article.description = content.editor.getData();
 	}
+
 	onContentChangeEmitter(content) {
 		this.article.content = content.editor.getData();
 	}

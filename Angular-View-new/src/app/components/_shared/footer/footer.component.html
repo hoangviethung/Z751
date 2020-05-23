@@ -43,13 +43,19 @@
 							<select
 								name="website-relative"
 								id="website-relative"
+								(change)="
+									openWebsiteRelative($event.target.value)
+								"
 							>
 								<option disabled>
 									- - Chọn website liên kết - -
 								</option>
-								<option value="#">Website 1</option>
-								<option value="#">Website 2</option>
-								<option value="#">Website 3</option>
+								<option
+									*ngFor="let item of WebsiteRelatives"
+									value="{{ item.link }}"
+								>
+									{{ item.title }}
+								</option>
 							</select>
 						</div>
 					</form>

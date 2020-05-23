@@ -18,7 +18,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 };
 
 @NgModule({
-	declarations: [ProductComponent, ProductSimpleComponent],
+	declarations: [ProductComponent],
 	imports: [SharedModule, ProductRoutingModule, TranslateModule.forChild()],
 	providers: [
 		{

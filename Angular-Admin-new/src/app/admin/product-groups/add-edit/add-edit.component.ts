@@ -23,7 +23,7 @@ export class AddEditComponent implements OnInit {
 	@Input('isEdit') isEdit: boolean;
 	@Output('close') close: EventEmitter<boolean> = new EventEmitter<boolean>();
 	products: Array<ProductModel>;
-	languages: Array<LanguageModel>
+	languages: Array<LanguageModel>;
 	productsControl = new FormControl();
 	languageControl = new FormControl();
 	templates: Array<TemplateModel> = TemplatesConfig;
@@ -87,7 +87,7 @@ export class AddEditComponent implements OnInit {
 	}
 
 	checkData() {
-		console.log('Danh sách các sản phẩm đã chọn:');
-		console.log(this.productsControl.value);
+		// console.log('Danh sách các sản phẩm đã chọn:');
+		// console.log(this.productsControl.value);
 	}
 }

@@ -1,0 +1,27 @@
+<section class="product-list">
+	<div class="container">
+		<div class="block-title">
+			<div class="d-f">
+				<p>
+					Đang hiển thị kết quả cho:
+					<b>{{ keywords }}</b>
+				</p>
+			</div>
+		</div>
+		<div class="row" *ngIf="products">
+			<div
+				class="col-lg-4 col-sm-6 d-f product-col"
+				*ngFor="let product of products"
+			>
+				<app-product-simple [product]="product"></app-product-simple>
+			</div>
+		</div>
+		<app-pagination
+			*ngIf="totalItems"
+			[totalItems]="totalItems"
+			[itemPerPage]="pagination.itemPerPage"
+			(changePage)="refreshList($event)"
+		>
+		</app-pagination>
+	</div>
+</section>

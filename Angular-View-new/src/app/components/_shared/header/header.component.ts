@@ -9,7 +9,7 @@ import { map } from "rxjs/operators";
 import { API } from "src/core/configs/api";
 import { LanguageModel } from "src/core/models/Language.model";
 import { DOCUMENT } from "@angular/common";
-import { TranslateService } from "@ngx-translate/core";
+import { Router } from "@angular/router";
 
 @Component({
 	selector: "app-header",
@@ -21,14 +21,15 @@ export class HeaderComponent implements OnInit {
 	languages: Array<LanguageModel>;
 	currentLanguage: string;
 	menus: any;
+	keywords: string;
 
 	constructor(
 		private httpSvc: HttpService,
 		private http: HttpClient,
 		private httpClientSvc: HttpClient,
-		@Inject(DOCUMENT) private document: Document
-	) {
-	}
+		@Inject(DOCUMENT) private document: Document,
+		private router: Router
+	) {}
 
 	ngOnInit() {
 		this.getLanguages();
@@ -109,5 +110,14 @@ export class HeaderComponent implements OnInit {
 						this.menus = response;
 					});
 			});
+	}
+
+	search() {
+		this.router.navigate(["/search"], {
+			queryParams: {
+				keywords: this.keywords,
+			},
+		});
+		this.isSearchBoxShow = false;
 	}
 }

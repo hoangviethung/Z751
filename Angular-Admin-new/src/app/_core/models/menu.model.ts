@@ -1,5 +1,5 @@
 export class MenuModel {
-	id: number
+	id: number;
 	title: string = null;
 	order: number;
 	link: string = null;
@@ -7,6 +7,7 @@ export class MenuModel {
 	linkTarget: string = null;
 	parentId: number;
 	parentName: string = null;
-	type: number;
-	languageId: number;
+	type: number = 0;
+	typeId: number;
+	languageId: number = 1;
 }

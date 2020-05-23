@@ -12,6 +12,7 @@ import { CookieService } from 'src/app/_core/services/cookie.service';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { FormControl } from '@angular/forms';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
+import { ArticleService } from './article.service';
 
 @Component({
 	selector: 'app-article',
@@ -30,19 +31,21 @@ export class ArticleComponent implements OnInit {
 	permissions: any = {};
 	templates: Array<TemplateModel> = TemplatesConfig;
 	templatesControl = new FormControl();
-
+	languageCurrent;
 	constructor(
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService,
 		private utilSvc: UtilService,
-		private cookieSvc: CookieService
-	) { }
+		private cookieSvc: CookieService,
+		private ArticleSvc: ArticleService
+	) {}
 
 	ngOnInit(): void {
 		this.getCategories();
 		this.getArticles();
 		this.languages = this.utilSvc.getLanguages();
 		this.getPermissions();
+		this.languageCurrent = this.ArticleSvc.getLaunguage();
 	}
 
 	getPermissions() {
@@ -55,7 +58,7 @@ export class ArticleComponent implements OnInit {
 	getArticles() {
 		const params = new InputRequestOption();
 		params.params = {
-			languageId: '1',
+			languageId: this.languageCurrent,
 		};
 		this.crudSvc
 			.get(APIConfig.Article.Gets, params)

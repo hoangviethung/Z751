@@ -46,8 +46,6 @@ export class AddEditComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();
-		console.log(this.product);
-
 		this.getProduct();
 	}
 
@@ -100,6 +98,9 @@ export class AddEditComponent implements OnInit {
 					.get(APIConfig.Product.Get, options)
 					.subscribe((response) => {
 						this.product = response.data;
+						console.log('====================================');
+						console.log(this.product);
+						console.log('====================================');
 						this.setBaseUrl();
 						this.getCategories(this.product.languageId.toString());
 						this.getProductGroupsCapacities();
@@ -157,16 +158,32 @@ export class AddEditComponent implements OnInit {
 				this.product[key] = null;
 			}
 		}
-		console.log(this.product);
 		params.body = this.product;
 		this.crudSvc
 			.add(APIConfig.Product[method], params)
 			.subscribe((response) => {
 				if (response.code == 200) {
-					this.toastrSvc.success(response.message);
+					console.log(method);
+					if (method == 'Update') {
+						this.toastrSvc.success(
+							'Chỉnh sửa sản phẩm thành công !!!'
+						);
+					} else {
+						this.toastrSvc.success(
+							'Thêm mới sản phẩm thành công sadsadsadsad !!!'
+						);
+					}
 					this.router.navigate(['/admin/products']);
 				} else {
-					this.toastrSvc.error(response.message);
+					if (method == 'Update') {
+						this.toastrSvc.error(
+							'Đã có lỗi xẩy ra khi chỉnh sửa !!!'
+						);
+					} else {
+						this.toastrSvc.error(
+							'Đã có lỗi xẩy ra khi thêm mới !!!'
+						);
+					}
 				}
 			});
 	}
@@ -186,7 +203,12 @@ export class AddEditComponent implements OnInit {
 	onChangeEmitterContent(content) {
 		this.product.content = content.editor.getData();
 	}
+
 	updateImages(e) {
 		this.product.images = e;
+	}
+
+	onChangeLanguage(e) {
+		this.getCategories(e);
 	}
 }

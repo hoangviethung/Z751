@@ -21,7 +21,9 @@ import { ToastrService } from 'ngx-toastr';
 export class BoardComponent implements OnInit {
 	@Input() isShowDialog;
 	@Input() currentFolder;
+	@Input() isLoadingBoard;
 	@Output() showDialogToggle = new EventEmitter<Boolean>();
+	@Output() reloadToggle = new EventEmitter<Boolean>();
 	@ViewChild(ContextMenuComponent) public basicMenu: ContextMenuComponent;
 	isSingleClick: Boolean = true;
 	isMultiSelect: Boolean = false;
@@ -34,10 +36,18 @@ export class BoardComponent implements OnInit {
 		private toastrSvc: ToastrService
 	) {}
 
-	ngOnInit() {}
+	ngOnInit() {
+		console.log(this.isLoadingBoard)
+	}
 
 	ngOnChanges(changes: SimpleChanges) {
-		this.getFiles();
+		 console.log(changes)
+		// console.log(this.isLoadingBoard)
+		// if (this.isLoadingBoard) {
+			this.getFiles()
+		// 	this.isLoadingBoard = false
+		// 	this.reloadToggle.emit(this.isLoadingBoard)
+		// }
 	}
 
 	getFiles() {
@@ -82,10 +92,7 @@ export class BoardComponent implements OnInit {
 	}
 
 	deleteFile($event) {
-		console.log($event);
-		const path = $event.item.path;
-		const url = new URL(path);
-		this.fileSvc.deleteFile(url.pathname.substr(1)).subscribe(() => {
+		this.fileSvc.deleteFile($event.item.path).subscribe(() => {
 			this.getFiles();
 			this.toastrSvc.success('Xóa file thành công !!!');
 		});

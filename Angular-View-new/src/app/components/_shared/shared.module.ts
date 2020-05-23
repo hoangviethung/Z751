@@ -14,6 +14,7 @@ import { HttpService } from "src/core/services/http.service";
 import { LanguageService } from "src/core/services/language.service";
 import { PageInfoService } from "src/core/services/page-info.service";
 import { UtilitiesService } from "src/core/services/utilities.service";
+import { ProductSimpleComponent } from "../product/product-simple/product-simple.component";
 
 @NgModule({
 	declarations: [
@@ -21,6 +22,7 @@ import { UtilitiesService } from "src/core/services/utilities.service";
 		PaginationComponent,
 		FormContactComponent,
 		IndexNewsComponent,
+		ProductSimpleComponent,
 	],
 	imports: [
 		CommonModule,
@@ -41,6 +43,7 @@ import { UtilitiesService } from "src/core/services/utilities.service";
 		PaginationComponent,
 		FormContactComponent,
 		IndexNewsComponent,
+		ProductSimpleComponent,
 	],
 	providers: [
 		BreadcrumbService,

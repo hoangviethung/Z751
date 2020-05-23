@@ -60,14 +60,35 @@ export class FolderService implements IFolderService {
 		})
 	}
 
-	randomId(folders: FolderModel[], parentId: string, level: number): FolderModel[] {
+	randomId(folders: FolderModel[], parentId: string, level: number, currentFolder: FolderModel): FolderModel[] {
 		folders.forEach((element, i) => {
 			element.level = level
 			element.id = parentId + i
 			if (element.items != null) {
-				element.items = this.randomId(element.items, element.id + "-", level + 1)
+				element.items = this.randomId(element.items, element.id + "-", level + 1, currentFolder)
+				// Expanded current folder if it contains active folder
+				if (currentFolder) {
+					var activeFolder = element.items.filter(o => o.path == currentFolder.path)
+					if (activeFolder.length > 0) {
+						element.isExpanded = true
+					}
+				}
 			}
 		})
 		return folders;
+	}
+
+	getActiveFolder(folders: FolderModel[], currentFolder: FolderModel) {
+		folders.forEach((element) => {
+			if (element.path == currentFolder.path) {
+				currentFolder = element;
+			}
+
+			if (element.items != null) {
+				currentFolder = this.getActiveFolder(element.items, currentFolder);
+			}
+		})
+
+		return currentFolder;
 	}
 }

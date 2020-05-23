@@ -40,20 +40,22 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 	ngAfterViewInit() {}
 
-	getFolders() {
-		this.isLoadingBoard = false;
+	getFolders(currentFolder?) {
 		this.folderSvc.gets().subscribe((element: any) => {
-			var i = 0;
 			// Make random Id
-			this.folders = this.folderSvc.randomId(element.data.items, 'f', 1);
-			this.currentFolder = this.folders[i];
-			this.isLoadingBoard = true;
-			this.getFiles(this.currentFolder.name);
-		});
-	}
+			this.folders = this.folderSvc.randomId(
+				element.data.items,
+				'f',
+				1,
+				this.currentFolder
+			);
 
-	getFiles(idFolder) {
-		this.fileSvc.getFiles(idFolder);
+			this.isLoadingBoard = true;
+			// Active current folder to load board
+			this.currentFolder =
+					this.currentFolder ? this.folderSvc.getActiveFolder(
+							this.folders, this.currentFolder) : this.folders[0]
+		});
 	}
 
 	changeCurrentFolder($event) {
@@ -72,17 +74,31 @@ export class AppComponent implements OnInit, AfterViewInit {
 		console.log(this.isUploadActive);
 	}
 
-	async addFile() {
-		const nameFolder = this.currentFolder.name;
-		const params = await this.uploadSvc.upload(nameFolder);
-		this.fileSvc.addFile(params).subscribe((response: any) => {
-			if (response.code == 200) {
-				this.toastrSvc.success(`Upload File thành công !!!`);
-				this.getFolders();
-			} else {
-				this.toastrSvc.error(`Đã có lỗi xảy ra !!!`);
+	async addFile(e) {
+		const filesAmount = e.target.files.length;
+		if (filesAmount.count != 0) {
+			var count = 0;
+			for (let i = 0; i < filesAmount; i++) {
+				const params = await this.uploadSvc.upload(e.target.files[i], this.currentFolder);
+				this.fileSvc.addFile(params).subscribe((response: any) => {
+					if (response.code == 200) {
+						this.toastrSvc.success(`Upload File thành công !!!`);
+					} else {
+						this.toastrSvc.error(`Đã có lỗi xảy ra !!!`);
+					}
+					count++
+				});
 			}
-		});
+
+			// wait for finish uploading!
+			var interval = setInterval(async () => {
+				if (count == filesAmount) {
+					console.log("Upload Done")
+					clearInterval(interval)
+					this.getFolders(this.currentFolder);
+				}
+			}, 1000)
+		}
 	}
 
 	openModelUpload() {

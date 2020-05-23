@@ -18,22 +18,21 @@ export class UploadService {
 		reader.onerror = error => reject(error);
 	});
 
-	async upload(currentFolder?) {
-		const $inputUploadFile = (<HTMLInputElement>document.getElementsByName("fileupload")[0]);
-		const path = $inputUploadFile.value;
-		let data = await this.toBase64($inputUploadFile.files[0]).catch(e => Error(e));
-		const typeFile = $inputUploadFile.files[0].type
+	async upload(inputUploadFile: File, currentFolder?) {
+		const path = inputUploadFile.name;
+		let data = await this.toBase64(inputUploadFile).catch(e => Error(e));
+		const typeFile = inputUploadFile.type
 		data = (<string>data).replace(`data:${typeFile};base64,`, '')
-		const name = $inputUploadFile.value.replace(/^.*[\\\/]/, '').split('.').slice(0, -1).join('.');
-		const type = $inputUploadFile.value.replace(/^.*[\\\/]/, '').split('.').pop();
-		const length = $inputUploadFile.files[0].size;
+		const name = inputUploadFile.name.replace(/^.*[\\\/]/, '').split('.').slice(0, -1).join('.');
+		const type = inputUploadFile.name.replace(/^.*[\\\/]/, '').split('.').pop();
+		const length = inputUploadFile.size;
 		const params = this.fileUpload = {
 			data: data,
 			path: path,
 			name: name,
 			type: type,
 			length: length,
-			imageFolder: currentFolder,
+			imageFolder: currentFolder.path,
 		};
 		return params
 	}

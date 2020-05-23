@@ -4,7 +4,7 @@ import { AdminComponent } from './admin.component';
 import { RouteGuardService } from '../route-guard.service';
 
 export class UserPermission {
-	constructor() { }
+	constructor() {}
 
 	getRolePermissions;
 }
@@ -154,4 +154,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, SimpleChanges } from '@angular/core';
 import { FolderModel } from 'src/app/model/folder.model';
 
 @Component({
@@ -26,5 +26,9 @@ export class SubFolderComponent implements OnInit {
 
 	onArrowClick($event, item: FolderModel) {
 		item.isExpanded = item.isExpanded ? false : true;
+	}
+
+	activeClass(path: string) {
+		return path == this.currentFolder.path ? 'ckf-folders-tree-label ui-btn ui-btn-active' : 'ckf-folders-tree-label ui-btn'
 	}
 }
