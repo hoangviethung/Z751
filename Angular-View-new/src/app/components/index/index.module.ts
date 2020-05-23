@@ -1,5 +1,4 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
 
 // Import Routing Module
 import { IndexRoutingModule } from "./index-routing.module";
@@ -12,6 +11,7 @@ import { IndexAboutUsComponent } from "./index-about-us/index-about-us.component
 import { SharedModule } from "../_shared/shared.module";
 import { IndexPartnersComponent } from "./index-partners/index-partners.component";
 import { IndexDepartmentComponent } from "./index-department/index-department.component";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
 	declarations: [
@@ -22,6 +22,6 @@ import { IndexDepartmentComponent } from "./index-department/index-department.co
 		IndexPartnersComponent,
 		IndexDepartmentComponent,
 	],
-	imports: [IndexRoutingModule, SharedModule],
+	imports: [IndexRoutingModule, SharedModule, TranslateModule.forChild()],
 })
 export class IndexModule {}

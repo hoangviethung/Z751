@@ -15,14 +15,13 @@ export class RedirectComponent implements OnInit {
 
 	constructor(
 		private r: Router,
-		@Inject(DOCUMENT) document: Document,
+		@Inject(DOCUMENT) private document: Document,
 		private rService: RedirectSerivce,
 		private http: HttpClient,
 		private httpSvc: HttpService
 	) {
 		// Khi click chuyển trang
-		console.log("On Redirect");
-		var path = document.location.pathname;
+		var path = this.document.location.pathname;
 		this.rService.getRouteNew(http, path).subscribe((response: any) => {
 			if (response.data != null && response.code == 200) {
 				path = this.rService.swithRoute(
@@ -40,8 +39,8 @@ export class RedirectComponent implements OnInit {
 		var interval = setInterval(() => {
 			if (!this.isLoading) {
 				clearInterval(interval);
-				if (path != "/" && path != document.location.pathname) {
-					this.rService.isRenderingSSR = false
+				if (path != "/" && path != this.document.location.pathname) {
+					this.rService.isRenderingSSR = false;
 					this.r.navigateByUrl(path, { skipLocationChange: true });
 				}
 			}
@@ -50,7 +49,6 @@ export class RedirectComponent implements OnInit {
 
 	ngOnInit() {}
 
-	
 	getRoute(path) {
 		return this.httpSvc.get("/api/Common/getroute?url=" + path);
 	}

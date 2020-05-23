@@ -10,6 +10,7 @@ import {
 	SwiperConfigInterface,
 } from "ngx-swiper-wrapper";
 import { DepartmentCapacityComponent } from "./department-capacity/department-capacity.component";
+import { TranslateModule } from "@ngx-translate/core";
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	direction: "horizontal",
@@ -22,7 +23,11 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 		DepartmentProductsComponent,
 		DepartmentCapacityComponent,
 	],
-	imports: [SharedModule, DepartmentRoutingModule],
+	imports: [
+		SharedModule,
+		DepartmentRoutingModule,
+		TranslateModule.forChild(),
+	],
 	providers: [
 		SwiperDirective,
 		{

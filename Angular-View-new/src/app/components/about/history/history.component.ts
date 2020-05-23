@@ -13,7 +13,7 @@ import { API } from "src/core/configs/api";
 })
 export class HistoryComponent implements OnInit {
 	sliderHistoryConfig: SwiperConfigInterface = {
-		slidesPerView: 4,
+		slidesPerView: 2,
 		loop: true,
 		speed: 1200,
 		spaceBetween: 80,
@@ -24,19 +24,19 @@ export class HistoryComponent implements OnInit {
 			prevEl: ".timeline .swiper-button-prev",
 		},
 		breakpoints: {
-			1025: {
-				slidesPerView: 3,
-				spaceBetween: 60,
-			},
 			768: {
-				slidesPerView: 2,
+				slidesPerView: 3,
 				spaceBetween: 30,
+			},
+			1025: {
+				slidesPerView: 4,
+				spaceBetween: 60,
 			},
 		},
 	};
 
 	yearImages = [];
-	year: ArticleModel
+	year: ArticleModel;
 
 	@Input("language") currentLanguage;
 
@@ -51,10 +51,8 @@ export class HistoryComponent implements OnInit {
 		opts.params = {
 			template: "2",
 		};
-		this.httpSvc.get(API.Section.Get, opts)
-		.subscribe((response) => {
+		this.httpSvc.get(API.Section.Get, opts).subscribe((response) => {
 			this.yearImages = response.data.images;
-			// console.log(this.yearImages);
 		});
 	}
 }

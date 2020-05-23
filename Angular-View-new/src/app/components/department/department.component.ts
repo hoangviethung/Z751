@@ -1,16 +1,15 @@
 import { Component, OnInit, Inject } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { LanguageService } from "src/core/services/language.service";
-import { PageInfoService } from "src/core/services/page-info.service";
 import {
 	HttpService,
 	InputRequestOption,
 } from "src/core/services/http.service";
 import { ProductModel } from "src/core/models/Product.model";
-import { BreadcrumbService } from "../_shared/breadcrumb/breadcrumb.service";
-import { Category } from "src/core/models/Category.model";
 import { DOCUMENT } from "@angular/common";
 import { API } from "src/core/configs/api";
+import {
+	PageInfoService,
+	MetaModel,
+} from "src/core/services/page-info.service";
 
 @Component({
 	selector: "app-department",
@@ -18,7 +17,6 @@ import { API } from "src/core/configs/api";
 	styleUrls: ["./department.component.scss"],
 })
 export class DepartmentComponent implements OnInit {
-	currentLanguage: string;
 	title: string;
 	description: string;
 	image: string;
@@ -26,19 +24,19 @@ export class DepartmentComponent implements OnInit {
 	prepairProducts: Array<ProductModel>;
 	address: string;
 	workTime: string;
-	Breadcrumb = {
-		en: ["Home", "Departments"],
-		vi: ["Trang chủ", "Đơn vị thành viên"],
-	};
 	breadcrumbs;
 	departments: Array<ProductModel>;
 	categoryUrl: string;
 	productGroups: any;
 
-	constructor(private httpSvc: HttpService) {}
+	constructor(
+		private httpSvc: HttpService,
+		@Inject(DOCUMENT) private document: Document,
+		private pageInfoSvc: PageInfoService
+	) {}
 
 	ngOnInit() {
-		const pathname = document.location.pathname;
+		const pathname = this.document.location.pathname;
 		const opts = new InputRequestOption();
 		opts.params = {
 			url: pathname,
@@ -46,6 +44,24 @@ export class DepartmentComponent implements OnInit {
 		this.getInformationOfDepartment(opts);
 		this.getDepartment_ProductCapacities(opts);
 		this.getProductGroups(opts);
+		this.setPageInformation(opts);
+	}
+
+	setPageInformation(opts) {
+		this.httpSvc.get(API.Category.Get, opts).subscribe((response) => {
+			const metaObject: MetaModel = {
+				title: response.data.metaTitle,
+				keywords: response.data.metaKeywords,
+				description: response.data.metaDescription,
+				image: response.data.metaImage,
+			};
+			this.pageInfoSvc.setTitle(response.data.title);
+			this.pageInfoSvc.setMeta(metaObject);
+		});
+
+		this.httpSvc.get(API.Common.Breadcrumb, opts).subscribe((response) => {
+			this.breadcrumbs = response.data;
+		});
 	}
 
 	getDepartment_ProductCapacities(opts: InputRequestOption) {
@@ -65,7 +81,6 @@ export class DepartmentComponent implements OnInit {
 	getProductGroups(opts: InputRequestOption) {
 		this.httpSvc.get(API.ProductGroup.Gets, opts).subscribe((response) => {
 			this.productGroups = response.data;
-			// console.log(this.productGroups);
 		});
 	}
 }

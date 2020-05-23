@@ -1,14 +1,16 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-import { PageInfoService } from "src/core/services/page-info.service";
+import { Component, OnInit, Inject } from "@angular/core";
+import {
+	PageInfoService,
+	MetaModel,
+} from "src/core/services/page-info.service";
 import {
 	HttpService,
 	InputRequestOption,
 } from "src/core/services/http.service";
-import { LanguageService } from "src/core/services/language.service";
 import { ArticleModel } from "src/core/models/Article.model";
-import { BreadcrumbService } from "../_shared/breadcrumb/breadcrumb.service";
 import { API } from "src/core/configs/api";
 import { SectionModel } from "src/core/models/Section.model";
+import { DOCUMENT } from "@angular/common";
 
 @Component({
 	selector: "app-about",
@@ -16,10 +18,7 @@ import { SectionModel } from "src/core/models/Section.model";
 	styleUrls: ["./about.component.scss"],
 })
 export class AboutComponent implements OnInit {
-	Breadcrumb = {
-		en: ["Home", "About Z751"],
-		vi: ["Trang chủ", "Về công ty Z751"],
-	};
+	breadcrumbs = [];
 	missionVisionImages = [];
 	missionVision: ArticleModel;
 	currentLanguage: string;
@@ -28,14 +27,37 @@ export class AboutComponent implements OnInit {
 	constructor(
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,
-		private breadcrumbSvc: BreadcrumbService
-	) {}
+		@Inject(DOCUMENT) private document: Document
+	) {
+		this.setPageInformation();
+	}
 
 	ngOnInit() {
-		this.pageInfoSvc.setTitle("About us");
-		this.breadcrumbSvc.setBreadcrumb(this.Breadcrumb);
 		this.getAboutLetter();
 		this.getMissionVisionItems();
+	}
+
+	setPageInformation() {
+		const pathname = this.document.location.pathname;
+		const opts = new InputRequestOption();
+		opts.params = {
+			url: pathname,
+		};
+
+		this.httpSvc.get(API.Category.Get, opts).subscribe((response) => {
+			const metaObject: MetaModel = {
+				title: response.data.metaTitle,
+				keywords: response.data.metaKeywords,
+				description: response.data.metaDescription,
+				image: response.data.metaImage,
+			};
+			this.pageInfoSvc.setTitle(response.data.title);
+			this.pageInfoSvc.setMeta(metaObject);
+		});
+
+		this.httpSvc.get(API.Common.Breadcrumb, opts).subscribe((response) => {
+			this.breadcrumbs = response.data;
+		});
 	}
 
 	getAboutLetter() {
@@ -57,7 +79,6 @@ export class AboutComponent implements OnInit {
 		this.httpSvc.get(API.Section.Get, opts).subscribe((result) => {
 			this.missionVision = result.data;
 			this.missionVisionImages = result.data.images;
-			// console.log(this.missionVision);
 		});
 	}
 }

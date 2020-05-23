@@ -1,7 +1,5 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { BreadcrumbService } from "./breadcrumb.service";
-import { Router, NavigationEnd } from "@angular/router";
-import { filter } from "rxjs/operators";
+import { Component, Input } from "@angular/core";
+import { Router } from "@angular/router";
 
 export interface Breadcrumb {
 	Url: string;
@@ -13,26 +11,12 @@ export interface Breadcrumb {
 	templateUrl: "./breadcrumb.component.html",
 	styleUrls: ["./breadcrumb.component.scss"],
 })
-export class BreadcrumbComponent implements OnInit {
-	Breadcrumb;
-	breadcrumbs;
-	currentLanguage;
+export class BreadcrumbComponent {
+	@Input("breadcrumbs") breadcrumbs = [];
 
-	constructor(
-		private breadcrumbSvc: BreadcrumbService,
-		private router: Router
-	) {}
+	constructor(private router: Router) {}
 
-	ngOnInit() {
-		this.getBreadcrumb();
-		this.router.events
-			.pipe(filter((e) => e instanceof NavigationEnd))
-			.subscribe((e) => {
-				this.getBreadcrumb();
-			});
-	}
-
-	getBreadcrumb() {
-		this.breadcrumbs = this.breadcrumbSvc.fetchBreadcrumb();
+	navigate(url) {
+		this.router.navigate([url]);
 	}
 }

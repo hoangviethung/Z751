@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, Inject } from "@angular/core";
 import { SwiperConfigInterface, SwiperDirective } from "ngx-swiper-wrapper";
 import {
 	HttpService,
@@ -8,6 +8,11 @@ import { ProductModel } from "src/core/models/Product.model";
 import { Category } from "src/core/models/Category.model";
 import { API } from "src/core/configs/api";
 import { PaginationModel } from "src/core/models/Pagination.model";
+import {
+	PageInfoService,
+	MetaModel,
+} from "src/core/services/page-info.service";
+import { DOCUMENT } from "@angular/common";
 
 @Component({
 	selector: "app-product-detail",
@@ -21,10 +26,6 @@ export class ProductDetailComponent implements OnInit {
 	productCategory: string;
 	currentLanguage: string;
 	product: ProductModel;
-	Breadcrumb = {
-		en: ["Home", "Products"],
-		vi: ["Trang chủ", "Sản phẩm"],
-	};
 	breadcrumbs;
 
 	@ViewChild(SwiperDirective, { static: false })
@@ -74,10 +75,26 @@ export class ProductDetailComponent implements OnInit {
 	isShowPopup: boolean = false;
 	categoryOfProduct: Array<Category>;
 
-	constructor(private httpSvc: HttpService) {}
+	constructor(
+		private httpSvc: HttpService,
+		private pageInfoSvc: PageInfoService,
+		@Inject(DOCUMENT) private document: Document
+	) {}
 
 	ngOnInit() {
+		const pathname = this.document.location.pathname;
+		const opts = new InputRequestOption();
+		opts.params = {
+			url: pathname,
+		};
 		this.getProductDetail();
+		this.setPageInformation(opts);
+	}
+
+	setPageInformation(opts) {
+		this.httpSvc.get(API.Common.Breadcrumb, opts).subscribe((response) => {
+			this.breadcrumbs = response.data;
+		});
 	}
 
 	showPopup(condition: any) {
@@ -89,13 +106,21 @@ export class ProductDetailComponent implements OnInit {
 	}
 
 	getProductDetail() {
-		const productUrl = document.location.pathname;
+		const productUrl = this.document.location.pathname;
 		const opts = new InputRequestOption();
 		opts.params = {
 			url: productUrl,
 		};
 		this.httpSvc.get(API.Product.Get, opts).subscribe((response) => {
 			this.product = response.data;
+			const metaObject: MetaModel = {
+				title: response.data.metaTitle,
+				keywords: response.data.metaKeywords,
+				description: response.data.metaDescription,
+				image: response.data.metaImage,
+			};
+			this.pageInfoSvc.setTitle(response.data.title);
+			this.pageInfoSvc.setMeta(metaObject);
 		});
 	}
 

@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
 
 import { RedirectRoutingModule } from "./redirect-routing.module";
 import { RedirectComponent } from "./redirect.component";
+import { SharedModule } from "../_shared/shared.module";
 
 @NgModule({
 	declarations: [RedirectComponent],
-	imports: [CommonModule, RedirectRoutingModule],
+	imports: [RedirectRoutingModule, SharedModule],
 })
 export class RedirectModule {}

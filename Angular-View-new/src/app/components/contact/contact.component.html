@@ -1,12 +1,4 @@
-<div class="breadcrumb-wrapper">
-	<div class="container">
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item" *ngFor="let breadcrumb of breadcrumbs">
-				<a>{{ breadcrumb }}</a>
-			</li>
-		</ol>
-	</div>
-</div>
+<app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
 <section class="contact">
 	<div class="container">
 		<h1 class="tt-u main-title tag-line mb-50">liên hệ với chúng tôi</h1>
@@ -18,13 +10,15 @@
 				<div class="list-address">
 					<div class="item-address" *ngFor="let item of listAddress">
 						<ul class="lst-n pl-0">
-							<li class="cl-main-2 mb-20">{{item.officeName}}</li>
+							<li class="cl-main-2 mb-20">
+								{{ item.officeName }}
+							</li>
 							<li class="mb-10">
-								{{item.address}}
+								{{ item.address }}
 							</li>
 							<!-- <li class="mb-10">{{item.website}}</li> -->
-							<li class="mb-10">{{item.phone}}</li>
-							<li class="mb-10">{{item.email}}</li>
+							<li class="mb-10">{{ item.phone }}</li>
+							<li class="mb-10">{{ item.email }}</li>
 						</ul>
 					</div>
 				</div>

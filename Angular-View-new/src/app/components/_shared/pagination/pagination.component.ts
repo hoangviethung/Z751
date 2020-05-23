@@ -43,8 +43,6 @@ export class PaginationComponent implements OnInit {
 	}
 
 	choosepage(page, isFirst?) {
-		console.log("change Paged");
-
 		page = Number(page);
 		if (
 			page < 1 ||

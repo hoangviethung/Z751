@@ -7,13 +7,9 @@ import { PageInfoService } from "../../../core/services/page-info.service";
 	styleUrls: ["./index.component.scss"],
 })
 export class IndexComponent implements OnInit {
-	currentLanguage: string;
-
 	constructor(private pageInfoSvc: PageInfoService) {
 		this.pageInfoSvc.setTitle("Trang chủ");
 	}
 
-	ngOnInit() {
-		// console.log(this.currentLanguage);
-	}
+	ngOnInit() {}
 }

@@ -5,6 +5,7 @@ import { ProductComponent } from "./product.component";
 import { ProductSimpleComponent } from "./product-simple/product-simple.component";
 import { SwiperConfigInterface, SWIPER_CONFIG } from "ngx-swiper-wrapper";
 import { SharedModule } from "../_shared/shared.module";
+import { TranslateModule } from "@ngx-translate/core";
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	observer: true,
@@ -17,11 +18,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 };
 
 @NgModule({
-	declarations: [
-		ProductComponent,
-		ProductSimpleComponent,
-	],
-	imports: [SharedModule, ProductRoutingModule],
+	declarations: [ProductComponent, ProductSimpleComponent],
+	imports: [SharedModule, ProductRoutingModule, TranslateModule.forChild()],
 	providers: [
 		{
 			provide: SWIPER_CONFIG,

@@ -8,9 +8,6 @@ const routes: Routes = [
 			import("./components/index/index.module").then(
 				(m) => m.IndexModule
 			),
-		data: {
-			preload: false,
-		},
 	},
 	{
 		path: "about",
@@ -18,9 +15,6 @@ const routes: Routes = [
 			import("./components/about/about.module").then(
 				(m) => m.AboutModule
 			),
-		data: {
-			preload: false,
-		},
 	},
 	{
 		path: "products",
@@ -28,9 +22,6 @@ const routes: Routes = [
 			import("./components/product/product.module").then(
 				(m) => m.ProductModule
 			),
-		data: {
-			preload: false,
-		},
 	},
 	{
 		path: "product-detail",
@@ -38,9 +29,6 @@ const routes: Routes = [
 			import("./components/product-detail/product-detail.module").then(
 				(m) => m.ProductDetailModule
 			),
-		data: {
-			preload: false,
-		},
 	},
 	{
 		path: "departments",
@@ -48,9 +36,6 @@ const routes: Routes = [
 			import("./components/department/department.module").then(
 				(m) => m.DepartmentModule
 			),
-		data: {
-			preload: false,
-		},
 	},
 	{
 		path: "capacities",
@@ -58,17 +43,18 @@ const routes: Routes = [
 			import("./components/capacity/capacity.module").then(
 				(m) => m.CapacityModule
 			),
-		data: {
-			preload: false,
-		},
+	},
+	{
+		path: "capacity-detail",
+		loadChildren: () =>
+			import("./components/product-detail/product-detail.module").then(
+				(m) => m.ProductDetailModule
+			),
 	},
 	{
 		path: "news",
 		loadChildren: () =>
 			import("./components/news/news.module").then((m) => m.NewsModule),
-		data: {
-			preload: false,
-		},
 	},
 	{
 		path: "news-detail",
@@ -76,9 +62,6 @@ const routes: Routes = [
 			import("./components/news-detail/news-detail.module").then(
 				(m) => m.NewsDetailModule
 			),
-		data: {
-			preload: false,
-		},
 	},
 	{
 		path: "contact",
@@ -86,9 +69,6 @@ const routes: Routes = [
 			import("./components/contact/contact.module").then(
 				(m) => m.ContactModule
 			),
-		data: {
-			preload: false,
-		},
 	},
 	{
 		path: "error",
@@ -96,9 +76,6 @@ const routes: Routes = [
 			import("./components/page-not-found/page-not-found.module").then(
 				(m) => m.PageNotFoundModule
 			),
-		data: {
-			preload: false,
-		},
 	},
 	{
 		path: "**",
@@ -106,9 +83,6 @@ const routes: Routes = [
 			import("./components/redirect/redirect.module").then(
 				(m) => m.RedirectModule
 			),
-		data: {
-			preload: false,
-		},
 	},
 ];
 

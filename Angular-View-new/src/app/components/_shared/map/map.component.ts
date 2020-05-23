@@ -1,9 +1,12 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { BranchModel } from "src/core/models/Branch.model";
-import { HttpService, InputRequestOption } from 'src/core/services/http.service';
-import { API } from 'src/core/configs/api';
-import { map } from 'rxjs/operators';
-import { response } from 'express';
+import {
+	HttpService,
+	InputRequestOption,
+} from "src/core/services/http.service";
+import { API } from "src/core/configs/api";
+import { map } from "rxjs/operators";
+import { response } from "express";
 
 interface Marker {
 	lat: number;
@@ -22,12 +25,9 @@ interface Location {
 	templateUrl: "./map.component.html",
 	styleUrls: ["./map.component.scss"],
 })
-
 export class MapComponent implements OnInit {
-	@Input('listAddress') listAddress: Array<BranchModel>;
-	constructor(
-		private httpSvc: HttpService
-	) { }
+	@Input("listAddress") listAddress: Array<BranchModel>;
+	constructor(private httpSvc: HttpService) {}
 
 	location: Location;
 
@@ -117,8 +117,7 @@ export class MapComponent implements OnInit {
 			latitude: this.listAddress[0].lat,
 			longitude: this.listAddress[0].lng,
 			zoom: 10,
-			markers: this.listAddress
+			markers: this.listAddress,
 		};
-		// console.log(this.location);
 	}
 }

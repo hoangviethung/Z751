@@ -3,19 +3,23 @@
 		<div class="container">
 			<div class="block-title">
 				<h2 class="tt-u main-title tag-line">
-					{{ "index.about-us.title"}}
+					{{ "index.about-us.title" | translate }}
 				</h2>
 			</div>
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="img">
-						<img *ngIf="content_template_6" src="{{content_template_6.image}}" alt="" />
+						<img
+							*ngIf="content_template_6"
+							src="{{ content_template_6.image }}"
+							alt=""
+						/>
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="title">
 						<h2 class="tt-u cl-main" *ngIf="content_template_6">
-							{{content_template_6.title}}
+							{{ content_template_6.title }}
 						</h2>
 						<h3 class="tt-u fw-400">
 							CÔNG TY TNHH MỘT THÀNH VIÊN 751
@@ -23,7 +27,7 @@
 					</div>
 					<div class="content">
 						<p class="lcl lcl-5" *ngIf="content_template_6">
-							{{content_template_6.content}}
+							{{ content_template_6.content }}
 						</p>
 					</div>
 				</div>
@@ -33,17 +37,20 @@
 	<div class="container-symbol pd-70 bg-gray">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-6 col-item" *ngFor="let item of content_template_7">
+				<div
+					class="col-lg-3 col-6 col-item"
+					*ngFor="let item of content_template_7"
+				>
 					<div class="item">
 						<div class="img ta-c">
-							<img src="{{item.path}}" alt="{{item.alt}}" />
+							<img src="{{ item.path }}" alt="{{ item.alt }}" />
 						</div>
 						<div class="description ta-c">
 							<h3 class="tt-u">
-								{{item.name}}
+								{{ item.name }}
 							</h3>
 							<p>
-								{{item.alt}}
+								{{ item.alt }}
 							</p>
 						</div>
 					</div>

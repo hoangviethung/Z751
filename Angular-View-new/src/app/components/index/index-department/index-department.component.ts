@@ -12,7 +12,7 @@ import { API } from 'src/core/configs/api';
 })
 export class IndexDepartmentComponent implements OnInit {
 	sliderIndexDepartmentConfig: SwiperConfigInterface = {
-		slidesPerView: 3,
+		slidesPerView: 1,
 		spaceBetween: 30,
 		observeParents: true,
 		observer: true,
@@ -23,11 +23,11 @@ export class IndexDepartmentComponent implements OnInit {
 		},
 		breakpoints: {
 			768: {
-				slidesPerView: 2,
+				slidesPerView: 3,
 				spaceBetween: 15,
 			},
 			575: {
-				slidesPerView: 1,
+				slidesPerView: 2,
 			},
 		},
 		navigation: {
@@ -96,7 +96,6 @@ export class IndexDepartmentComponent implements OnInit {
 		this.httpSvc.get(API.Category.Get_by_Templates, option).subscribe((result) => {
 			this.departments = result.data;
 			this.departments.shift();
-			// console.log(this.departments);
 		});
 	}
 }

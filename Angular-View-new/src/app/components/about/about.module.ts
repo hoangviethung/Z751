@@ -1,9 +1,7 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
 
 // Swiper
 import {
-	SwiperModule,
 	SWIPER_CONFIG,
 	SwiperConfigInterface,
 	SwiperDirective,
@@ -15,6 +13,7 @@ import { HistoryComponent } from "./history/history.component";
 import { StaffComponent } from "./staff/staff.component";
 import { RewardComponent } from "./reward/reward.component";
 import { SharedModule } from "../_shared/shared.module";
+import { CommonModule } from "@angular/common";
 
 // Swiper default config
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -29,7 +28,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 		StaffComponent,
 		RewardComponent,
 	],
-	imports: [SharedModule, AboutRoutingModule],
+	imports: [CommonModule, SharedModule, AboutRoutingModule],
 	providers: [
 		SwiperDirective,
 		{

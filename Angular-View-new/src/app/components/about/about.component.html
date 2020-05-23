@@ -1,4 +1,4 @@
-<app-breadcrumb></app-breadcrumb>
+<app-breadcrumb [breadcrumbs]="breadcrumbs"></app-breadcrumb>
 <div>
 	<!-- about us -->
 	<section class="about-us pd-70">
@@ -8,7 +8,11 @@
 					{{ aboutLetter.title }}
 				</h2>
 			</div>
-			<div class="content" *ngIf="aboutLetter" [innerHTML]="aboutLetter.content"></div>
+			<div
+				class="content"
+				*ngIf="aboutLetter"
+				[innerHTML]="aboutLetter.content"
+			></div>
 		</div>
 	</section>
 
@@ -16,12 +20,18 @@
 	<section class="mission-vision pd-70">
 		<div class="container">
 			<div class="block-title center">
-				<div class="main-title fw-700 tt-u cl-white" *ngIf="missionVision">
+				<div
+					class="main-title fw-700 tt-u cl-white"
+					*ngIf="missionVision"
+				>
 					{{ missionVision.title }}
 				</div>
 			</div>
 			<div class="list-item row">
-				<div class="item col-md-4" *ngFor="let missionVisionImage of missionVisionImages">
+				<div
+					class="item col-md-4"
+					*ngFor="let missionVisionImage of missionVisionImages"
+				>
 					<figure>
 						<img src="{{ missionVisionImage.image }}" alt="" />
 						<figcaption>

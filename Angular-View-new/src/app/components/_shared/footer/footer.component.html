@@ -1,7 +1,7 @@
 <footer>
 	<div class="container">
 		<div class="title-footer tt-u fw-700 cl-white">
-			{{ "ResourceKeys.PageTitleShort" }}
+			{{ "ResourceKeys.PageTitleShort" | translate }}
 		</div>
 		<div class="row">
 			<div class="col-lg-3 col-sm-6">
@@ -10,9 +10,9 @@
 						<img src="/assets/images/icons/headquater.svg" alt="" />
 					</div>
 					<div class="content">
-						<h4>{{ "ResourceKeys.Headquarter" }}</h4>
+						<h4>{{ "ResourceKeys.Headquarter" | translate }}</h4>
 						<p *ngIf="headquater">
-							{{headquater.address}}
+							{{ headquater.address }}
 						</p>
 					</div>
 				</div>
@@ -24,7 +24,7 @@
 						<img src="/assets/images/icons/office.svg" alt="" />
 					</div>
 					<div class="content">
-						<h4>{{ "ResourceKeys.OppositeOffice" }}</h4>
+						<h4>{{ "ResourceKeys.OppositeOffice" | translate }}</h4>
 						<p *ngIf="AddressOppositeOffice">
 							{{ AddressOppositeOffice.address }}
 						</p>
@@ -35,12 +35,15 @@
 			<div class="col-lg-4 col-md-8">
 				<div class="subscribe">
 					<h4>
-						{{ "ResourceKeys.WebsiteRelative" }}
+						{{ "ResourceKeys.WebsiteRelative" | translate }}
 					</h4>
 					<form action="#">
 						<div class="form-group">
 							<!-- <input type="text" placeholder="Email..." /> -->
-							<select name="website-relative" id="website-relative">
+							<select
+								name="website-relative"
+								id="website-relative"
+							>
 								<option disabled>
 									- - Chọn website liên kết - -
 								</option>
@@ -84,17 +87,17 @@
 			</div>
 			<div class="col-lg-2 col-md-4">
 				<div class="connect-count">
-					<h4>{{ "ResourceKeys.Visits" }}</h4>
+					<h4>{{ "ResourceKeys.Visits" | translate }}</h4>
 					<ul>
 						<li>
-							{{ "ResourceKeys.Day" }}:
+							{{ "ResourceKeys.Day" | translate }}:
 							<span>1000</span>
-							{{ "ResourceKeys.CountUnit" }}
+							{{ "ResourceKeys.CountUnit" | translate }}
 						</li>
 						<li>
-							{{ "ResourceKeys.Month" }}:
+							{{ "ResourceKeys.Month" | translate }}:
 							<span>1000</span>
-							{{ "ResourceKeys.CountUnit" }}
+							{{ "ResourceKeys.CountUnit" | translate }}
 						</li>
 					</ul>
 				</div>

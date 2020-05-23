@@ -8,7 +8,7 @@ import { SwiperConfigInterface } from "ngx-swiper-wrapper";
 })
 export class IndexPartnersComponent implements OnInit {
 	sliderPartnersConfig: SwiperConfigInterface = {
-		slidesPerView: 5,
+		slidesPerView: 2,
 		loop: true,
 		loopAdditionalSlides: 2,
 		speed: 1200,
@@ -24,13 +24,13 @@ export class IndexPartnersComponent implements OnInit {
 		},
 		breakpoints: {
 			576: {
-				slidesPerView: 2,
-			},
-			768: {
 				slidesPerView: 3,
 			},
-			1200: {
+			768: {
 				slidesPerView: 4,
+			},
+			1200: {
+				slidesPerView: 5,
 			},
 		},
 	};

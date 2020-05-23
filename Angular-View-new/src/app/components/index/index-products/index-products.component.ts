@@ -27,7 +27,6 @@ export class IndexProductsComponent implements OnInit {
 		this.httpSvc.get(API.Category.Get_by_Templates, option).subscribe((result) => {
 			this.productCategories = result.data;
 			this.productCategories.shift();
-			// console.log(this.productCategories);
 		});
 	}
 }

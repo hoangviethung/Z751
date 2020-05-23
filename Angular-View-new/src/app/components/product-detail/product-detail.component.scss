@@ -109,6 +109,9 @@
 						width: 20px;
 						height: 20px;
 						background-size: cover;
+						&:before, &:after {
+							content: none;
+						}
 					}
 
 					.swiper-button-prev {
@@ -410,4 +413,3 @@
 		}
 	}
 }
-

@@ -1,5 +1,8 @@
 import { Component, OnInit, Inject } from "@angular/core";
-import { PageInfoService } from "src/core/services/page-info.service";
+import {
+	PageInfoService,
+	MetaModel,
+} from "src/core/services/page-info.service";
 import {
 	HttpService,
 	InputRequestOption,
@@ -18,12 +21,7 @@ import { PaginationModel } from "src/core/models/Pagination.model";
 })
 export class NewsComponent implements OnInit {
 	newsList: Array<ArticleModel> = [];
-	currentLanguage: string;
 	pageTitle: string;
-	Breadcrumb = {
-		en: ["Home", "News"],
-		vi: ["Trang chủ", "Tin tức"],
-	};
 	breadcrumbs;
 	pagination: PaginationModel = new PaginationModel(5, 1);
 	totalItems: number;
@@ -31,9 +29,7 @@ export class NewsComponent implements OnInit {
 	constructor(
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,
-		private languageSvc: LanguageService,
-		private activatedRoute: ActivatedRoute,
-		@Inject(DOCUMENT) document: Document
+		@Inject(DOCUMENT) private document: Document
 	) {
 		this.pageInfoSvc.setTitle("Tin tức");
 	}
@@ -41,12 +37,30 @@ export class NewsComponent implements OnInit {
 	ngOnInit() {
 		const opts = new InputRequestOption();
 		opts.params = {
-			url: document.location.pathname,
+			url: this.document.location.pathname,
 			page: this.pagination.page.toString(),
 			itemPerPage: this.pagination.itemPerPage.toString(),
 		};
 		this.getPageInfo(opts);
 		this.getNewsList(opts);
+		this.setPageInformation(opts);
+	}
+
+	setPageInformation(opts) {
+		this.httpSvc.get(API.Category.Get, opts).subscribe((response) => {
+			const metaObject: MetaModel = {
+				title: response.data.metaTitle,
+				keywords: response.data.metaKeywords,
+				description: response.data.metaDescription,
+				image: response.data.metaImage,
+			};
+			this.pageInfoSvc.setTitle(response.data.title);
+			this.pageInfoSvc.setMeta(metaObject);
+		});
+
+		this.httpSvc.get(API.Common.Breadcrumb, opts).subscribe((response) => {
+			this.breadcrumbs = response.data;
+		});
 	}
 
 	getPageInfo(opts) {
@@ -65,7 +79,7 @@ export class NewsComponent implements OnInit {
 	refreshList(pageNumber) {
 		const opts = new InputRequestOption();
 		opts.params = {
-			url: document.location.pathname,
+			url: this.document.location.pathname,
 			page: pageNumber,
 			itemPerPage: this.pagination.itemPerPage.toString(),
 		};

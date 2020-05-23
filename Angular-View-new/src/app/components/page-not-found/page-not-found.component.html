@@ -3,12 +3,12 @@
 		<div class="notfound-error">
 			<h1>404</h1>
 		</div>
-		<h2>
-			404
-		</h2>
 		<p>
-			{{ "404.content" }}
-			<a [routerLink]="['/index']">Back</a>
+			{{ "404.content" | translate }}
+			<!-- <a [routerLink]="['/index']">Back to index</a> -->
+			<!-- Trang bạn đang tìm kiếm có thể đạ bị xóa hoặc đã bị thay đổi nên tạm
+			thời không khả dụng -->
+			<a [routerLink]="['/']">{{ "404.return" | translate }}</a>
 		</p>
 		<div class="notfound-social">
 			<a

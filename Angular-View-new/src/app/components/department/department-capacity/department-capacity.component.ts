@@ -1,10 +1,11 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Inject } from "@angular/core";
 import {
 	HttpService,
 	InputRequestOption,
 } from "src/core/services/http.service";
 import { ProductModel } from "src/core/models/Product.model";
 import { API } from "src/core/configs/api";
+import { DOCUMENT } from "@angular/common";
 
 @Component({
 	selector: "app-department-capacity",
@@ -18,10 +19,13 @@ export class DepartmentCapacityComponent implements OnInit {
 	image: string;
 	@Input("capacityProducts") capacityProducts: Array<ProductModel>;
 
-	constructor(private httpSvc: HttpService) {}
+	constructor(
+		private httpSvc: HttpService,
+		@Inject(DOCUMENT) private document: Document
+	) {}
 
 	ngOnInit() {
-		const pathname = document.location.pathname;
+		const pathname = this.document.location.pathname;
 		const opts = new InputRequestOption();
 		opts.params = {
 			url: pathname,

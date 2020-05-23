@@ -26,11 +26,7 @@ export class FormContactComponent implements OnInit {
 		this.httpSvc.post(API.Contact.Submit, option)
 			.subscribe((response) => {
 				if (response.code === 200) {
-					// console.log('Gửi email thành công !!!');
-					// console.log(response.message);
 				} else {
-					// console.log('Đã xảy ra lỗi !!!');
-					// console.log(response.message);
 				}
 			})
 	}

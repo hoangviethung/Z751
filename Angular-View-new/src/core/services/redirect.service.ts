@@ -7,40 +7,6 @@ import { HttpClient } from "@angular/common/http";
 export class RedirectSerivce {
 	isRenderingSSR = true;
 
-	getRoute(path: string) {
-		var xhttp = new XMLHttpRequest();
-		xhttp.open(
-			"GET",
-			"http://27.71.234.45:8080/api/Common/getroute?url=" +
-				encodeURIComponent(path)
-			// , false
-		);
-
-		xhttp.onreadystatechange = () => {
-			if (
-				xhttp.readyState == 4 &&
-				xhttp.status == 200 &&
-				JSON.parse(xhttp.responseText).data != null
-			) {
-				var data = JSON.parse(xhttp.responseText).data;
-				path = this.swithRoute(data.template, data.entityType);
-			} else {
-				path = "index";
-			}
-		};
-		xhttp.send();
-
-		var interval = setInterval(() => {
-			console.log(xhttp.readyState);
-			if (xhttp.readyState == 4) {
-				clearInterval(interval);
-			}
-		}, 5000);
-
-		console.log("inService " + path);
-		return path;
-	}
-
 	getRouteNew(httpS: HttpClient, path: string) {
 		return httpS.get(
 			"http://27.71.234.45:8080/api/Common/getroute?url=" +
