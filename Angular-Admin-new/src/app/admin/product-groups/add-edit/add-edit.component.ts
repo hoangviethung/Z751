@@ -33,7 +33,7 @@ export class AddEditComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.getProducts();
+		this.getProducts(1);
 		this.languages = JSON.parse(localStorage.getItem('languages'));
 	}
 
@@ -41,10 +41,10 @@ export class AddEditComponent implements OnInit {
 		this.close.emit(status);
 	}
 
-	getProducts() {
+	getProducts(event) {
 		const params = new InputRequestOption();
 		params.params = {
-			languageId: '1',
+			languageId: event,
 		};
 		this.httpSvc
 			.get(APIConfig.Product.Gets, params)
@@ -89,5 +89,9 @@ export class AddEditComponent implements OnInit {
 	checkData() {
 		// console.log('Danh sách các sản phẩm đã chọn:');
 		// console.log(this.productsControl.value);
+	}
+
+	onChangeLanguage(e) {
+		this.getProducts(e);
 	}
 }

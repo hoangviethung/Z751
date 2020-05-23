@@ -15,10 +15,11 @@
 	</div>
 	<div class="block-form">
 		<div class="row">
-			<div class="form-group col-12">
+			<div class="form-group col-6">
 				<label for="">Ngôn ngữ *</label>
 				<mat-form-field>
-					<mat-select name="language" [formControl]="languageControl" [(ngModel)]="productGroup.languageId">
+					<mat-select name="language" [formControl]="languageControl" [(ngModel)]="productGroup.languageId"
+						(ngModelChange)="onChangeLanguage($event)">
 						<mat-option *ngFor="let language of languages" [value]="language.id">
 							{{ language.name }}
 						</mat-option>

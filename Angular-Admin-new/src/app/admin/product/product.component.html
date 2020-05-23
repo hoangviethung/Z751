@@ -14,7 +14,8 @@
 			<mat-form-field>
 				<mat-select name="category" [formControl]="categoryControl" [ngModel]="0"
 					(ngModelChange)="getDataCategory($event)">
-					<mat-option [value]="0">Lọc theo danh mục</mat-option>
+					<mat-option [value]="0" *ngIf="isTitleEnglist == false">Chọn danh mục mục</mat-option>
+					<mat-option [value]="0" *ngIf="isTitleEnglist">Choose Category</mat-option>
 					<mat-option *ngFor="let category of categories" [value]="category.id">
 						{{ category.parentName + category.title }}
 					</mat-option>
