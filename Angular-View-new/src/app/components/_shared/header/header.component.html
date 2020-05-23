@@ -16,9 +16,7 @@
 						</p>
 						<p>
 							Email:
-							<a href="mailto:info@congty751.com.vn"
-								>info@congty751.com.vn</a
-							>
+							<a href="mailto:info@congty751.com.vn">info@congty751.com.vn</a>
 						</p>
 					</div>
 				</div>
@@ -32,43 +30,27 @@
 						<div class="main-nav ml-at">
 							<ul class="lst-n pl-0 d-f" *ngIf="menus">
 								<ng-container *ngFor="let menu of menus">
-									<li
-										class="nav-item"
-										*ngIf="menu.parentId == -99"
-									>
-										<a
-											routerLink="{{ menu.link }}"
-											class="nav-link fw-700 tt-u d-if"
-											appCloseMenu
-										>
+									<li class="nav-item" *ngIf="menu.parentId == -99">
+										<a routerLink="{{ menu.link }}" class="nav-link fw-700 tt-u d-if" appCloseMenu>
 											{{ menu.title }}
 										</a>
 										<div class="nav-sub lst-n pl-0">
 											<div class="nav-item">
-												<ng-container
-													*ngFor="
+												<ng-container *ngFor="
 														let childMenu of menus
-													"
-												>
-													<a
-														*ngIf="
+													">
+													<a *ngIf="
 															childMenu.parentId ==
 															menu.id
-														"
-														class="nav-link"
-														routerLink="{{
+														" class="nav-link" routerLink="{{
 															childMenu.link
-														}}"
-														appCloseMenu
-													>
+														}}" appCloseMenu>
 														{{ childMenu.title }}
 													</a>
 												</ng-container>
 											</div>
 											<div class="nav-sub-close mobile">
-												<img
-													src="assets/images/icons/arrow-left.svg"
-												/>
+												<img src="assets/images/icons/arrow-left.svg" />
 											</div>
 										</div>
 									</li>
@@ -77,26 +59,13 @@
 						</div>
 						<div class="language">
 							<ng-container *ngFor="let language of languages">
-								<div
-									class="flag desktop"
-									*ngIf="currentLanguage == language.key"
-								>
+								<div class="flag desktop" *ngIf="currentLanguage == language.key">
 									<img src="{{ language.image }}" alt="" />
 								</div>
 							</ng-container>
-							<select
-								name="langulage"
-								id="language"
-								class="bd-0"
-								(change)="switchLanguage($event)"
-							>
-								<ng-container
-									*ngFor="let language of languages"
-								>
-									<option
-										value="{{ language.key }}"
-										[selected]="language.isDefault"
-									>
+							<select name="langulage" id="language" class="bd-0" (change)="switchLanguage($event)">
+								<ng-container *ngFor="let language of languages">
+									<option value="{{ language.key }}" [selected]="language.isDefault">
 										{{ language.name }}
 									</option>
 								</ng-container>
@@ -104,26 +73,12 @@
 						</div>
 						<div class="search">
 							<label class="d-f ai-c" (click)="toggleSearchBox()">
-								<img
-									src="assets/images/icons/magnify.svg"
-									alt=""
-								/>
+								<img src="assets/images/icons/magnify.svg" alt="" />
 							</label>
-							<div
-								class="form-search"
-								[ngClass]="{ active: isSearchBoxShow }"
-							>
-								<input
-									type="search"
-									name="search"
-									id="search"
-									class="bd-main form-control col"
-								/>
+							<div class="form-search" [ngClass]="{ active: isSearchBoxShow }">
+								<input type="search" name="search" id="search" class="bd-main form-control col" />
 								<button class="btn btn-search fcc">
-									<img
-										src="assets/images/icons/magnify.svg"
-										alt=""
-									/>
+									<img src="assets/images/icons/magnify.svg" alt="" />
 								</button>
 							</div>
 						</div>
