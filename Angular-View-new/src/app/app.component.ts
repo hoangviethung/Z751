@@ -10,7 +10,6 @@ import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { RedirectSerivce } from "src/core/services/redirect.service";
 import { API } from "src/core/configs/api";
-import { response } from "express";
 
 @Component({
 	selector: "app-root",
@@ -73,10 +72,10 @@ export class AppComponent implements OnInit {
 
 	getNumberPhone() {
 		this.httpSvc.get(API.Branch.Gets).subscribe((response) => {
-			response.data.items.forEach((element) => {
+			const items = response.data.items;
+			items.forEach((element) => {
 				if (element.order == 1) {
 					this.phone = element.phone;
-					console.log(this.phone);
 				}
 			});
 		});
