@@ -74,10 +74,23 @@
 					<div class="form-group">
 						<label>Chọn mẫu template</label>
 						<mat-form-field>
+							<!-- TIẾNG ANH -->
 							<mat-select [formControl]="templatesControl" name="template" [(ngModel)]="category.template"
 								(ngModelChange)="
 									showProductGroups(category.template)
-								">
+								" *ngIf="isTemplateEnglist">
+								<mat-option *ngFor="
+										let template of templates;
+										let i = index
+									" [value]="template.id">
+									{{ template.titleEnglish }}
+								</mat-option>
+							</mat-select>
+							<!-- TIẾNG VIỆT -->
+							<mat-select [formControl]="templatesControl" name="template" [(ngModel)]="category.template"
+								(ngModelChange)="
+									showProductGroups(category.template)
+								" *ngIf="isTemplateEnglist==false">
 								<mat-option *ngFor="
 										let template of templates;
 										let i = index

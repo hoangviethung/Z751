@@ -1,8 +1,6 @@
-import { Component, Inject, OnInit } from "@angular/core";
-import { CookieService } from "src/core/services/cookie.service";
+import { Component, OnInit } from "@angular/core";
 import { RedirectSerivce } from "src/core/services/redirect.service";
 import { HttpService } from "src/core/services/http.service";
-import { HttpClient } from "@angular/common/http";
 import { API } from "src/core/configs/api";
 
 @Component({
@@ -12,7 +10,7 @@ import { API } from "src/core/configs/api";
 })
 export class AppComponent implements OnInit {
 	isLoading = true;
-	title = "z751-View-new";
+	title = "z751";
 	phone: string;
 	constructor(
 		private rService: RedirectSerivce,

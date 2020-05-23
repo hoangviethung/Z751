@@ -21,6 +21,8 @@
 			[totalItems]="totalItems"
 			[itemPerPage]="pagination.itemPerPage"
 			(changePage)="refreshList($event)"
+			[url]="'/search'"
+			[keywords]="keywords"
 		>
 		</app-pagination>
 	</div>

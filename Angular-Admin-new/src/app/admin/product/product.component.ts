@@ -17,7 +17,6 @@ import { CategoryModel } from 'src/app/_core/models/category.model';
 	templateUrl: './product.component.html',
 	styleUrls: ['./product.component.scss'],
 })
-
 export class ProductComponent implements OnInit {
 	languages: LanguageModel[] = [];
 	search: FilterSearchModel = new FilterSearchModel();
@@ -27,24 +26,31 @@ export class ProductComponent implements OnInit {
 	categoryControl = new FormControl();
 	categories: Array<CategoryModel>;
 	categoryHaveProduct: Array<CategoryModel>;
+	isTitleEnglist: boolean;
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
 		private toastrSvc: ToastrService
-	) { }
+	) {}
 
 	ngOnInit(): void {
-		this.getCategories();
+		this.getCategories(1);
 		this.getProducts();
 		this.languages = this.utilSvc.getLanguages();
 	}
 
 	getDataLanguage(e) {
-		this.search.languageId = e
+		this.search.languageId = e;
+		this.getCategories(e);
+		if (e == 1) {
+			this.isTitleEnglist = false;
+		} else {
+			this.isTitleEnglist = true;
+		}
 	}
 
 	getDataCategory(e) {
-		this.search.categoryId = e
+		this.search.categoryId = e;
 	}
 
 	filterProduct() {
@@ -79,10 +85,10 @@ export class ProductComponent implements OnInit {
 			});
 	}
 
-	getCategories() {
+	getCategories(event) {
 		const params = new InputRequestOption();
 		params.params = {
-			languageId: '1',
+			languageId: event,
 		};
 		this.crudSvc
 			.get(APIConfig.Category.Gets, params)
@@ -90,16 +96,21 @@ export class ProductComponent implements OnInit {
 				this.categories = response.data.items;
 				this.categories.forEach((item) => {
 					if (item.parentName == null) {
-						item.parentName = ''
+						item.parentName = '';
 					} else {
-						item.parentName += ' >> '
+						item.parentName += ' >> ';
 					}
-				})
+				});
 				this.categories = this.categories.filter((item) => {
-					if (item.template != 1 && item.template != 2 && item.template != 6 && item.template != 7) {
-						return item
+					if (
+						item.template != 1 &&
+						item.template != 2 &&
+						item.template != 6 &&
+						item.template != 7
+					) {
+						return item;
 					}
-				})
+				});
 			});
 	}
 

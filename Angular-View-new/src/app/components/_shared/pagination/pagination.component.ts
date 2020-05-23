@@ -20,6 +20,8 @@ export class PaginationComponent implements OnInit {
 	code;
 	@Input("itemPerPage") itemPerPage: number;
 	@Input("totalItems") totalItems: number;
+	@Input("url") url: string;
+	@Input("keywords") keywords: string = null;
 	@Output("changePage") changePage: EventEmitter<number> = new EventEmitter<
 		number
 	>();
@@ -67,10 +69,20 @@ export class PaginationComponent implements OnInit {
 		);
 
 		if (!isFirst) {
-			this.router.navigate(["/products"], {
-				queryParams: { page: this.pager.page },
-				skipLocationChange: true,
-			});
+			if (this.url == "/search") {
+				this.router.navigate([this.url], {
+					queryParams: {
+						page: this.pager.page,
+						keywords: this.keywords,
+					},
+					skipLocationChange: true,
+				});
+			} else {
+				this.router.navigate([this.url], {
+					queryParams: { page: this.pager.page },
+					skipLocationChange: true,
+				});
+			}
 		}
 
 		this.changePage.emit(this.pager.page);

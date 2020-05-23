@@ -31,6 +31,7 @@ export class AddEditComponent implements OnInit {
 	languages: Array<LanguageModel>;
 	categories: Array<CategoryModel> = [];
 	isEdit: boolean;
+	isTemplateEnglist: boolean;
 	originUrl: string;
 	isShowProductGroup: boolean;
 	productGroups: Array<ProductGroupModel>;
@@ -62,8 +63,6 @@ export class AddEditComponent implements OnInit {
 				this.productGroups = response.data;
 			});
 	}
-
-	getProductGroupsChecked() {}
 
 	getCategories(languageId) {
 		const params = new InputRequestOption();
@@ -272,5 +271,11 @@ export class AddEditComponent implements OnInit {
 
 	onChangeLanguage(e) {
 		this.getCategories(e);
+		this.getProductGroups();
+		if (e == 2) {
+			this.isTemplateEnglist = true;
+		} else {
+			this.isTemplateEnglist = false;
+		}
 	}
 }

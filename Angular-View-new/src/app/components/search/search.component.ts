@@ -30,14 +30,16 @@ export class SearchComponent implements OnInit {
 
 	ngOnInit() {
 		this.activatedRoute.queryParams.subscribe((params) => {
-			this.keywords = params.keywords.trim();
-			const opts = new InputRequestOption();
-			opts.params = {
-				text: this.keywords,
-				itemPerPage: this.pagination.itemPerPage.toString(),
-				page: this.pagination.page.toString(),
-			};
-			this.getProducts(opts);
+			if (params.keywords) {
+				this.keywords = params.keywords.trim();
+				const opts = new InputRequestOption();
+				opts.params = {
+					text: this.keywords,
+					itemPerPage: this.pagination.itemPerPage.toString(),
+					page: this.pagination.page.toString(),
+				};
+				this.getProducts(opts);
+			}
 		});
 	}
 
@@ -52,12 +54,19 @@ export class SearchComponent implements OnInit {
 	}
 
 	refreshList(pageNumber) {
-		const opts = new InputRequestOption();
-		opts.params = {
-			url: this.document.location.pathname,
-			itemPerPage: "" + this.pagination.itemPerPage,
-			page: pageNumber,
-		};
-		this.getProducts(opts);
+		this.activatedRoute.queryParams.subscribe((params) => {
+			console.log(params);
+			
+			if (params.keywords) {
+				this.keywords = params.keywords.trim();
+				const opts = new InputRequestOption();
+				opts.params = {
+					text: this.keywords,
+					itemPerPage: this.pagination.itemPerPage.toString(),
+					page: pageNumber.toString(),
+				};
+				this.getProducts(opts);
+			}
+		});
 	}
 }
