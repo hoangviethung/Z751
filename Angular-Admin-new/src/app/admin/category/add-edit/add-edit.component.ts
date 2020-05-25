@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { CategoryModel } from 'src/app/_core/models/category.model';
 import { LanguageModel } from 'src/app/_core/models/language';
 import {
@@ -15,7 +15,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl } from '@angular/forms';
 import { ProductGroupModel } from 'src/app/_core/models/product-groups';
-
+import { AdminComponent } from '../../admin.component';
+import { DOCUMENT } from '@angular/common';
 @Component({
 	selector: 'app-add-edit',
 	templateUrl: './add-edit.component.html',
@@ -32,18 +33,21 @@ export class AddEditComponent implements OnInit {
 	categories: Array<CategoryModel> = [];
 	isEdit: boolean;
 	isTemplateEnglist: boolean;
+	isShowPopupUpload: boolean;
 	originUrl: string;
-	isShowProductGroup: boolean;
+	isShowProductGroup: boolean = false;
 	productGroups: Array<ProductGroupModel>;
 	categoryProductGroups: Array<number> = [];
 	categoryProductGroupsChecked: Array<ProductGroupModel>;
+	isShowUpload: boolean = false;
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
 		private httpSvc: HttpService,
 		private activatedRoute: ActivatedRoute,
 		private toastrSvc: ToastrService,
-		private router: Router
+		private router: Router,
+		@Inject(DOCUMENT) private document: Document
 	) {}
 
 	ngOnInit(): void {
@@ -246,13 +250,15 @@ export class AddEditComponent implements OnInit {
 							)
 							.subscribe((response) => {
 								if (response.code == 200) {
-									this.toastrSvc.success(response.message);
+									this.toastrSvc.success(
+										'Thay đổi nhóm sản phẩm thành công'
+									);
 									this.router.navigate(['/admin/category']);
-								} else {
-									this.toastrSvc.error(response.message);
 								}
 							});
 					}
+					this.toastrSvc.success(response.message);
+					this.router.navigate(['/admin/category']);
 				} else {
 					this.toastrSvc.error(response.message);
 				}
@@ -276,6 +282,18 @@ export class AddEditComponent implements OnInit {
 			this.isTemplateEnglist = true;
 		} else {
 			this.isTemplateEnglist = false;
+		}
+	}
+
+	isShowPopupUploadfile(isShow: boolean) {
+		if (isShow == true) {
+			this.isShowUpload = true;
+			document.querySelector('.block-content').classList.add('disabled');
+		} else {
+			this.isShowUpload = false;
+			document
+				.querySelector('.block-content')
+				.classList.remove('disabled');
 		}
 	}
 }

@@ -34,6 +34,7 @@ export class AddEditComponent implements OnInit {
 	languageControl = new FormControl();
 	menuControl = new FormControl();
 	typeMenuControl = new FormControl();
+	isShowUpload: boolean = false;
 	constructor(
 		private httpSvc: HttpService,
 		private toastrSvc: ToastrService,
@@ -117,5 +118,17 @@ export class AddEditComponent implements OnInit {
 					this.toastrSvc.error(response.message);
 				}
 			});
+	}
+
+	isShowPopupUploadfile(isShow: boolean) {
+		if (isShow == true) {
+			this.isShowUpload = true;
+			document.querySelector('.block-content').classList.add('disabled');
+		} else {
+			this.isShowUpload = false;
+			document
+				.querySelector('.block-content')
+				.classList.remove('disabled');
+		}
 	}
 }

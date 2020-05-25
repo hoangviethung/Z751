@@ -25,6 +25,7 @@ export class AddEditComponent implements OnInit {
 	categories: Array<CategoryModel>;
 	templates: Array<TemplateModel> = TemplatesConfig;
 	languageControl = new FormControl();
+	isShowUpload: boolean = false;
 	constructor(
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService
@@ -66,5 +67,16 @@ export class AddEditComponent implements OnInit {
 
 	closePopup(status) {
 		this.close.emit(status);
+	}
+	isShowPopupUploadfile(isShow: boolean) {
+		if (isShow == true) {
+			this.isShowUpload = true;
+			document.querySelector('.block-content').classList.add('disabled');
+		} else {
+			this.isShowUpload = false;
+			document
+				.querySelector('.block-content')
+				.classList.remove('disabled');
+		}
 	}
 }
