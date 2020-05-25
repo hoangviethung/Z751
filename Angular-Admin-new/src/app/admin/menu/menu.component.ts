@@ -13,7 +13,6 @@ import { ToastrService } from 'ngx-toastr';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
-import { element } from 'protractor';
 export enum Menu {
 	main = 0,
 	footer = 1,

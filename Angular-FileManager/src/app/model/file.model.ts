@@ -8,4 +8,5 @@ export class FileModel {
 	// DATA không bắt buộc
 	length?: number;
 	id?: string;
+	pathName?: string;
 }

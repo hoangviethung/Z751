@@ -36,15 +36,13 @@ export class BoardComponent implements OnInit {
 		private toastrSvc: ToastrService
 	) {}
 
-	ngOnInit() {
-		console.log(this.isLoadingBoard)
-	}
+	ngOnInit() {}
 
 	ngOnChanges(changes: SimpleChanges) {
-		 console.log(changes)
+		console.log(changes);
 		// console.log(this.isLoadingBoard)
 		// if (this.isLoadingBoard) {
-			this.getFiles()
+		this.getFiles();
 		// 	this.isLoadingBoard = false
 		// 	this.reloadToggle.emit(this.isLoadingBoard)
 		// }

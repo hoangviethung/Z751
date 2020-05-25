@@ -33,7 +33,8 @@
 			<td>{{ category.previewUrl }}</td>
 			<td class="ta-c">
 				<div class="table-buttons">
-					<a class="btn btn-outline-success btn-edit" [routerLink]="['/admin/category/edit', category.id]">
+					<a class="btn btn-outline-success btn-edit" [routerLink]="['/admin/category/edit', category.id]"
+						[queryParams]="{previewUrl:category.previewUrl}">
 						<span class="lnr lnr-pencil"></span>
 					</a>
 					<span class="btn btn-outline-danger btn-remove" (click)="deleteCategory(category.id)">

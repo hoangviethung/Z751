@@ -90,24 +90,30 @@ export class AddEditComponent implements OnInit {
 		this.activatedRoute.params.subscribe((paramsTypeMenu) => {
 			const typeMenu = Menu[paramsTypeMenu.menuTitle];
 			this.menu.typeId = Number(typeMenu);
-			const params = new InputRequestOption();
-			params.body = this.menu;
-			this.httpSvc
-				.post(APIConfig.Menu.Add, params)
-				.subscribe((response) => {
-					if (response.code == 200) {
-						this.close.emit(false);
-						this.toastrSvc.success(response.message);
-					} else {
-						this.toastrSvc.error(response.message);
-					}
-				});
 		});
+
+		const params = new InputRequestOption();
+		params.body = this.menu;
+		const add = this.httpSvc
+			.post(APIConfig.Menu.Add, params)
+			.subscribe((response) => {
+				if (response.code == 200) {
+					add.unsubscribe();
+					this.close.emit(false);
+					this.toastrSvc.success(response.message);
+				} else {
+					this.toastrSvc.error(response.message);
+				}
+			});
 	}
 
 	updateMenu() {
 		const params = new InputRequestOption();
 		params.body = this.menu;
+		this.activatedRoute.params.subscribe((params) => {
+			const typeMenu = Menu[params.menuTitle];
+			this.menu.typeId = Number(typeMenu);
+		});
 		this.httpSvc
 			.post(APIConfig.Menu.Update, params)
 			.subscribe((response) => {
