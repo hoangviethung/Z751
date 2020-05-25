@@ -17,6 +17,7 @@ export class EditComponent implements OnInit {
 	@Input('section') section: SectionModel = new SectionModel();
 	@Output('close') close: EventEmitter<boolean> = new EventEmitter<boolean>();
 	images: Array<ImageModel>;
+	isShowUpload: boolean = false;
 	constructor(
 		private httpSvc: HttpService,
 		private toastrSvc: ToastrService
@@ -67,5 +68,17 @@ export class EditComponent implements OnInit {
 
 	updateImages(images) {
 		this.images = images;
+	}
+
+	isShowPopupUploadfile(isShow: boolean) {
+		if (isShow == true) {
+			this.isShowUpload = true;
+			document.querySelector('.block-content').classList.add('disabled');
+		} else {
+			this.isShowUpload = false;
+			document
+				.querySelector('.block-content')
+				.classList.remove('disabled');
+		}
 	}
 }

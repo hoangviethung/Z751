@@ -32,6 +32,7 @@ export const APIConfig = {
 		Delete: '/api/Article/delete',
 	},
 	Category: {
+		UsedGet: '/api/Category/used/get',
 		Gets: '/api/Category/gets',
 		Get: '/api/Category/get',
 		Add: '/api/Category/add',

@@ -35,6 +35,7 @@ export class AddEditComponent implements OnInit {
 	languageControl = new FormControl();
 	categoryControl = new FormControl();
 	productGroupCapacities: ProductGroupModel = new ProductGroupModel();
+	isShowUpload: boolean = false;
 	constructor(
 		private crudSvc: CrudService,
 		private httpSvc: HttpService,
@@ -207,5 +208,17 @@ export class AddEditComponent implements OnInit {
 
 	onChangeLanguage(e) {
 		this.getCategories(e);
+	}
+
+	isShowPopupUploadfile(isShow: boolean) {
+		if (isShow == true) {
+			this.isShowUpload = true;
+			document.querySelector('.block-content').classList.add('disabled');
+		} else {
+			this.isShowUpload = false;
+			document
+				.querySelector('.block-content')
+				.classList.remove('disabled');
+		}
 	}
 }

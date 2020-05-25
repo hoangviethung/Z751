@@ -105,6 +105,11 @@
 						[(ngModel)]="product.image"
 						placeholder="Nhập đường dẫn ảnh đại diện"
 					/>
+					<a
+						class="btn btn-info btn-choose-image mt-10px"
+						(click)="isShowPopupUploadfile(true)"
+						>Chọn ảnh</a
+					>
 				</div>
 				<div class="form-group col-lg-12">
 					<label>Mô tả *</label>
@@ -194,6 +199,18 @@
 				[images]="product.images"
 				(imagesChange)="updateImages($event)"
 			></app-table-images>
+		</div>
+	</div>
+	<div class="popup-upload" *ngIf="isShowUpload">
+		<iframe
+			id="uploadfile"
+			width="100%"
+			height="100%"
+			src="http://27.71.234.45:5000/"
+			frameborder="0"
+		></iframe>
+		<div class="close-popup" (click)="isShowPopupUploadfile(false)">
+			<img src="./assets/images/icons/close.png" alt="" />
 		</div>
 	</div>
 </div>

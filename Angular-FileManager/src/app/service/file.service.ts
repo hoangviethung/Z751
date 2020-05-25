@@ -20,7 +20,10 @@ export class FileService {
 	}
 
 	addFile(params) {
-		params.imageFolder = params.imageFolder.replace('http://27.71.234.45:8080/upload/', '');
+		params.imageFolder = params.imageFolder.replace(
+			'http://27.71.234.45:8080/upload/',
+			''
+		);
 		return this.http.post<Object>(
 			'http://27.71.234.45:8080/api/File/add',
 			params
@@ -31,13 +34,15 @@ export class FileService {
 		path = path.replace('http://27.71.234.45:8080/', '');
 		return this.http.post<Object>(
 			`http://27.71.234.45:8080/api/File/delete?path=${path}`,
-			{ }
+			{}
 		);
 	}
 
 	randomId(files: FileModel[], parentId: string): FileModel[] {
 		files.forEach((element, i) => {
 			element.id = parentId + i;
+			const url = new URL(element.path);
+			element.pathName = url.pathname;
 		});
 		return files;
 	}

@@ -34,6 +34,7 @@ export class AddEditComponent implements OnInit {
 	languageControl = new FormControl();
 	menuControl = new FormControl();
 	typeMenuControl = new FormControl();
+	isShowUpload: boolean = false;
 	constructor(
 		private httpSvc: HttpService,
 		private toastrSvc: ToastrService,
@@ -91,24 +92,30 @@ export class AddEditComponent implements OnInit {
 		this.activatedRoute.params.subscribe((paramsTypeMenu) => {
 			const typeMenu = Menu[paramsTypeMenu.menuTitle];
 			this.menu.typeId = Number(typeMenu);
-			const params = new InputRequestOption();
-			params.body = this.menu;
-			this.httpSvc
-				.post(APIConfig.Menu.Add, params)
-				.subscribe((response) => {
-					if (response.code == 200) {
-						this.close.emit(false);
-						this.toastrSvc.success(response.message);
-					} else {
-						this.toastrSvc.error(response.message);
-					}
-				});
 		});
+
+		const params = new InputRequestOption();
+		params.body = this.menu;
+		const add = this.httpSvc
+			.post(APIConfig.Menu.Add, params)
+			.subscribe((response) => {
+				if (response.code == 200) {
+					add.unsubscribe();
+					this.close.emit(false);
+					this.toastrSvc.success(response.message);
+				} else {
+					this.toastrSvc.error(response.message);
+				}
+			});
 	}
 
 	updateMenu() {
 		const params = new InputRequestOption();
 		params.body = this.menu;
+		this.activatedRoute.params.subscribe((params) => {
+			const typeMenu = Menu[params.menuTitle];
+			this.menu.typeId = Number(typeMenu);
+		});
 		this.httpSvc
 			.post(APIConfig.Menu.Update, params)
 			.subscribe((response) => {
@@ -119,5 +126,17 @@ export class AddEditComponent implements OnInit {
 					this.toastrSvc.error(response.message);
 				}
 			});
+	}
+
+	isShowPopupUploadfile(isShow: boolean) {
+		if (isShow == true) {
+			this.isShowUpload = true;
+			document.querySelector('.block-content').classList.add('disabled');
+		} else {
+			this.isShowUpload = false;
+			document
+				.querySelector('.block-content')
+				.classList.remove('disabled');
+		}
 	}
 }

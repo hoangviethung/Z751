@@ -7,13 +7,8 @@ import { AddEditComponent } from './add-edit/add-edit.component';
 import { ChangepaswordComponent } from './changepasword/changepasword.component';
 import { SharedModule } from 'src/app/_core/shared.module';
 
-
 @NgModule({
 	declarations: [UserComponent, AddEditComponent, ChangepaswordComponent],
-	imports: [
-		CommonModule,
-		UserRoutingModule,
-		SharedModule
-	]
+	imports: [CommonModule, UserRoutingModule, SharedModule],
 })
-export class UserModule { }
+export class UserModule {}

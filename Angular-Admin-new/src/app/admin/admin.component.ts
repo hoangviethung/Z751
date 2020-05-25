@@ -14,22 +14,19 @@ import { InputRequestOption } from '../_core/services/http.service';
 })
 export class AdminComponent implements OnInit {
 	isDetailInfoShow: boolean = false;
+	isShowUpload: boolean;
 	constructor(
 		private authenticateSvc: AuthenticateService,
 		private cookieSvc: CookieService,
 		private router: Router,
 		private roleBasedSvc: RoleBasedService
-	) { }
+	) {}
 
-	ngOnInit(): void {
-		this.getAccountInformation();
-	}
+	ngOnInit(): void {}
 
 	toggleInfoDetail() {
 		this.isDetailInfoShow = !this.isDetailInfoShow;
 	}
-
-	getAccountInformation() { }
 
 	logout() {
 		this.authenticateSvc.logout().subscribe((response) => {
