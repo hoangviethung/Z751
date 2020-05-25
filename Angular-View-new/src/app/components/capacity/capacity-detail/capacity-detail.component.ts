@@ -1,11 +1,10 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { LanguageService } from "src/core/services/language.service";
 import { HttpService } from "src/core/services/http.service";
 import { PageInfoService } from "src/core/services/page-info.service";
 import { SwiperConfigInterface, SwiperDirective } from "ngx-swiper-wrapper";
 import { ProductModel } from "src/core/models/Product.model";
-import { Category } from 'src/core/models/Category.model';
+import { Category } from "src/core/models/Category.model";
 
 @Component({
 	selector: "app-capacity-detail",
@@ -69,15 +68,13 @@ export class CapacityDetailComponent implements OnInit {
 		},
 	};
 
-
 	isShowPopup: boolean = false;
 	categoryOfProduct: Array<Category>;
 	constructor(
 		private activatedRoute: ActivatedRoute,
-		private languageSvc: LanguageService,
 		private httpSvc: HttpService,
 		private pageSvc: PageInfoService
-	) { }
+	) {}
 
 	ngOnInit() {
 		this.fetchProductCategory();

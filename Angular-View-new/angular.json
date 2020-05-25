@@ -42,8 +42,8 @@
 							"aot": true,
 							"extractLicenses": true,
 							"vendorChunk": false,
-							"optimization": false,
-							"buildOptimizer": false,
+							"optimization": true,
+							"buildOptimizer": true,
 							"budgets": [
 								{
 									"type": "initial",
@@ -126,7 +126,7 @@
 									"with": "src/environments/environment.prod.ts"
 								}
 							],
-							"sourceMap": false,
+							"sourceMap": true,
 							"optimization": {
 								"scripts": false,
 								"styles": true

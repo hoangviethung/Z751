@@ -19,7 +19,7 @@ export class AsideMenuDirective implements OnInit, AfterViewInit {
 		this.asideMenu = <HTMLElement>this.elementRef.nativeElement;
 	}
 
-	ngOnInit() { }
+	ngOnInit() {}
 
 	ngAfterViewInit() {
 		const pathname = this.document.location.pathname;

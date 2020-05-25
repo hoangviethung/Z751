@@ -1,17 +1,24 @@
 <div class="block-content" *ngIf="!isShowPopup">
-	<div class="block-control">
-		<div class="form-group mr-at">
-			<label>Lọc theo ngôn ngữ</label>
+	<div class="block-control ai-c">
+		<div class="form-group mr-at mb-0">
 			<mat-form-field>
-				<mat-select name="language" [formControl]="languageControl" (ngModelChange)="fetchMenu($event)"
-					[ngModel]=1>
-					<mat-option *ngFor="let language of languages" [value]="language.id">
+				<mat-select
+					name="language"
+					[formControl]="languageControl"
+					[ngModel]="1"
+				>
+					<mat-option
+						*ngFor="let language of languages"
+						[value]="language.id"
+					>
 						{{ language.name }}
 					</mat-option>
 				</mat-select>
 			</mat-form-field>
 		</div>
-		<a class="btn btn-success btn-add" (click)="onOpenPopup(true)">Thêm mới</a>
+		<a class="btn btn-success btn-add" (click)="onOpenPopup(true)"
+			>Thêm mới</a
+		>
 	</div>
 	<div class="block-table">
 		<table class="table">
@@ -24,17 +31,23 @@
 				<th>Tác vụ</th>
 			</tr>
 			<tr *ngFor="let menu of menus; let i = index">
-				<th class="column-number ta-c">{{i+1}}</th>
-				<td class="column-title">{{menu.title}}</td>
-				<td class="column-parentId ta-c">{{menu.parentName}}</td>
-				<td class="column-link">{{menu.link}}</td>
-				<td class="column-order ta-c">{{menu.order}}</td>
+				<th class="column-number ta-c">{{ i + 1 }}</th>
+				<td class="column-title">{{ menu.title }}</td>
+				<td class="column-parentId ta-c">{{ menu.parentName }}</td>
+				<td class="column-link">{{ menu.link }}</td>
+				<td class="column-order ta-c">{{ menu.order }}</td>
 				<td class="column-button ta-c">
 					<div class="table-buttons">
-						<span class="btn btn-outline-success btn-edit" (click)="onOpenPopup(true, menu, true)">
+						<span
+							class="btn btn-outline-success btn-edit"
+							(click)="onOpenPopup(true, menu, true)"
+						>
 							<span class="lnr lnr-pencil"></span>
 						</span>
-						<span class="btn btn-outline-danger btn-remove" (click)="deleteMenu(menu.id)">
+						<span
+							class="btn btn-outline-danger btn-remove"
+							(click)="deleteMenu(menu.id)"
+						>
 							<span class="lnr lnr-trash"></span>
 						</span>
 					</div>
@@ -45,5 +58,9 @@
 </div>
 
 <div class="popup-wrapper" *ngIf="isShowPopup">
-	<app-add-edit [menu]="menu" [isEdit]="isEdit" (close)="onClosePopup($event)"></app-add-edit>
+	<app-add-edit
+		[menu]="menu"
+		[isEdit]="isEdit"
+		(close)="onClosePopup($event)"
+	></app-add-edit>
 </div>

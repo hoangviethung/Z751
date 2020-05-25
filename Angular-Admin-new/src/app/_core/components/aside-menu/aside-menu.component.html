@@ -8,28 +8,50 @@
 </div>
 <section class="aside-menu" asideMenu>
 	<ng-container *ngFor="let item of menus">
-		<ng-container *ngTemplateOutlet="sidebarInner; context: { item: item }"></ng-container>
+		<ng-container
+			*ngTemplateOutlet="sidebarInner; context: { item: item }"
+		></ng-container>
 	</ng-container>
 </section>
 
 <ng-template #sidebarInner let-item="item">
 	<div class="menu-item" menuItem>
-		<div class="menu-title">
-			<a routerLink="{{ item.route }}" routerLinkActive="active">
-				<div class="menu-icon">
-					<span [class]="item.iconClasses"></span>
-				</div>
-				<span>{{ item.label }}</span>
-				<div class="menu-toggle" *ngIf="item.children">
-					<span class="lnr lnr-chevron-down"></span>
-				</div>
-			</a>
-		</div>
-		<div class="menu-child" *ngIf="item.children" routerLinkActive="show">
-			<ng-container *ngFor="let item of item.children">
-				<ng-container *ngTemplateOutlet="sidebarInner; context: { item: item }">
+		<ng-container *ngIf="item.children">
+			<div class="menu-title">
+				<a routerLinkActive="active" style="pointer-events: none;">
+					<div class="menu-icon">
+						<span [class]="item.iconClasses"></span>
+					</div>
+					<span>{{ item.label }}</span>
+					<div class="menu-toggle" *ngIf="item.children">
+						<span class="lnr lnr-chevron-down"></span>
+					</div>
+				</a>
+			</div>
+			<div class="menu-child" routerLinkActive="show">
+				<ng-container *ngFor="let item of item.children">
+					<ng-container
+						*ngTemplateOutlet="
+							sidebarInner;
+							context: { item: item }
+						"
+					>
+					</ng-container>
 				</ng-container>
-			</ng-container>
-		</div>
+			</div>
+		</ng-container>
+		<ng-container *ngIf="!item.children">
+			<div class="menu-title">
+				<a routerLink="{{ item.route }}" routerLinkActive="active">
+					<div class="menu-icon">
+						<span [class]="item.iconClasses"></span>
+					</div>
+					<span>{{ item.label }}</span>
+					<div class="menu-toggle" *ngIf="item.children">
+						<span class="lnr lnr-chevron-down"></span>
+					</div>
+				</a>
+			</div>
+		</ng-container>
 	</div>
 </ng-template>

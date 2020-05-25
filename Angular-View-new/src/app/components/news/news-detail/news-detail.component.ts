@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { HttpService } from "src/core/services/http.service";
-import { LanguageService } from "src/core/services/language.service";
 import { ArticleModel } from "src/core/models/Article.model";
 import { PageInfoService } from "src/core/services/page-info.service";
 
@@ -23,11 +22,8 @@ export class NewsDetailComponent implements OnInit {
 	constructor(
 		private activatedRoute: ActivatedRoute,
 		private httpSvc: HttpService,
-		private languageSvc: LanguageService,
 		private pageInfoSvc: PageInfoService
-	) {
-		
-	}
+	) {}
 
 	ngOnInit() {
 		this.activatedRoute.params.subscribe(async (param) => {

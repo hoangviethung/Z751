@@ -28,7 +28,6 @@ export class PaginationComponent implements OnInit {
 
 	constructor(
 		private pagerService: PaginationService,
-		private route: ActivatedRoute,
 		private router: Router
 	) {}
 

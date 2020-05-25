@@ -13,7 +13,7 @@ import { API } from "src/core/configs/api";
 })
 export class RewardComponent implements OnInit {
 	sliderRewardConfig: SwiperConfigInterface = {
-		slidesPerView: 3,
+		slidesPerView: 1,
 		loop: true,
 		speed: 1200,
 		spaceBetween: 55,
@@ -29,6 +29,7 @@ export class RewardComponent implements OnInit {
 		breakpoints: {
 			1025: {
 				spaceBetween: 30,
+				slidesPerView: 3
 			},
 			768: {
 				spaceBetween: 15,

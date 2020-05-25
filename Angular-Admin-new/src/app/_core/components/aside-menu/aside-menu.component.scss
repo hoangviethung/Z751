@@ -111,7 +111,9 @@
 		padding: 10px;
 		color: white;
 		border-radius: 5px;
-
+		&.active {
+			background-color: rgba(white, 0.2);
+		}
 	}
 	&:hover,
 	&.active {
@@ -122,6 +124,7 @@
 }
 
 .menu-item {
+	padding: 2px 0;
 	&.active {
 		> .menu-child {
 			display: block;

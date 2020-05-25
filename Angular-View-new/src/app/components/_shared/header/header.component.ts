@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject, PLATFORM_ID } from "@angular/core";
 import {
 	HttpService,
 	InputRequestOption,
@@ -6,10 +6,11 @@ import {
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { map } from "rxjs/operators";
-import { API } from "src/core/configs/api";
 import { LanguageModel } from "src/core/models/Language.model";
-import { DOCUMENT } from "@angular/common";
+import { DOCUMENT, isPlatformBrowser } from "@angular/common";
 import { Router } from "@angular/router";
+import { LanguageService } from "src/core/services/language.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
 	selector: "app-header",
@@ -25,90 +26,119 @@ export class HeaderComponent implements OnInit {
 
 	constructor(
 		private httpSvc: HttpService,
-		private http: HttpClient,
-		private httpClientSvc: HttpClient,
-		@Inject(DOCUMENT) private document: Document,
-		private router: Router
+		private router: Router,
+		private langSvc: LanguageService,
+		private translateSvc: TranslateService,
+		@Inject(PLATFORM_ID) private platform,
+		@Inject(DOCUMENT) private document: Document
 	) {}
 
 	ngOnInit() {
 		this.getLanguages();
 		this.getMenus();
-		this.getcurrentLanguage();
+	}
+
+	switchLanguage(e: Event) {
+		const lang = (<HTMLInputElement>e.target).value;
+		this.languages.forEach((item: LanguageModel) => {
+			if (item.key == lang) {
+				item.isDefault = true;
+			} else {
+				item.isDefault = false;
+			}
+			if (isPlatformBrowser(this.platform)) {
+				localStorage.setItem(
+					"languages",
+					JSON.stringify(this.languages)
+				);
+				this.langSvc.setLanguages(this.languages);
+				this.languages.find((item) => {
+					if (item.isDefault) {
+						this.langSvc.setCurrentLanguage(item.key);
+					}
+				});
+			} else {
+				this.langSvc.setLanguages(this.languages);
+				this.languages.find((item) => {
+					if (item.isDefault) {
+						this.langSvc.setCurrentLanguage(item.key);
+					}
+				});
+			}
+			this.document.location.href = "/";
+		});
 	}
 
 	toggleSearchBox() {
 		this.isSearchBoxShow = !this.isSearchBoxShow;
 	}
 
-	switchLanguage(e: Event) {
-		const opts = new InputRequestOption();
-		const lang = (<HTMLInputElement>e.target).value;
-		opts.params = {
-			key: lang,
-		};
-		this.httpSvc.post(API.Language.switch, opts).subscribe((res) => {
-			this.document.location.reload();
-		});
-	}
-
 	getLanguages() {
-		this.httpSvc
-			.get(API.Language.gets)
-			.pipe(
-				map((response) => {
-					return response.data;
-				})
-			)
-			.subscribe((languages) => {
-				this.languages = languages;
-				this.languages.forEach((item) => {
+		if (isPlatformBrowser(this.platform)) {
+			if (localStorage.getItem("languages")) {
+				this.languages = JSON.parse(localStorage.getItem("languages"));
+			} else {
+				this.langSvc.getLanguages().subscribe((response) => {
+					this.languages = response.data.map(
+						(item: LanguageModel) => {
+							if (item.key == "vi") {
+								item.image = "./assets/images/vi.png";
+							}
+							if (item.key == "en") {
+								item.image = "./assets/images/en.png";
+							}
+							if (item.isDefault) {
+								this.langSvc.setCurrentLanguage(item.key);
+							}
+							return item;
+						}
+					);
+
+					localStorage.setItem(
+						"languages",
+						JSON.stringify(this.languages)
+					);
+				});
+			}
+		} else {
+			this.langSvc.getLanguages().subscribe((response) => {
+				this.languages = response.data.map((item: LanguageModel) => {
 					if (item.key == "vi") {
 						item.image = "./assets/images/vi.png";
-					} else {
+					}
+					if (item.key == "en") {
 						item.image = "./assets/images/en.png";
 					}
+					if (item.isDefault) {
+						this.langSvc.setCurrentLanguage(item.key);
+					}
+					return item;
 				});
 			});
-	}
-
-	getcurrentLanguage() {
-		this.httpClientSvc
-			.get(environment.remoteBaseUrl + API.Language.get, {
-				responseType: "text",
-			})
-			.subscribe((key) => {
-				this.currentLanguage = key;
-			});
+		}
 	}
 
 	getMenus() {
-		this.http
-			.get(`${environment.remoteBaseUrl}/api/Language/get`, {
-				responseType: "text",
-			})
-			.subscribe((lang) => {
-				const opts = new InputRequestOption();
-				opts.params = {
-					type: lang == "vi" ? "0" : "1",
-				};
-				this.httpSvc
-					.get("/api/Menu/used/get", opts)
-					.pipe(
-						map((response) => {
-							const newMenus = response.data.map((item) => {
-								let newItem = item;
-								if (newItem.parentId == null) {
-									newItem.parentId = -99;
-								}
-								return newItem;
-							});
-							return newMenus;
-						})
-					)
-					.subscribe((response) => {
-						this.menus = response;
+		const opts = new InputRequestOption();
+		opts.params = {
+			type: this.langSvc.currentLanguage,
+		};
+		this.httpSvc
+			.get("/api/Menu/used/get", opts)
+			.pipe(
+				map((response) => {
+					const newMenus = response.data.map((item) => {
+						let newItem = item;
+						if (newItem.parentId == null) {
+							newItem.parentId = -99;
+						}
+						return newItem;
 					});
+					return newMenus;
+				})
+			)
+			.subscribe((response) => {
+				this.menus = response;
 			});
 	}
 

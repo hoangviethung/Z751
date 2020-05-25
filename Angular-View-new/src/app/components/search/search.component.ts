@@ -55,8 +55,6 @@ export class SearchComponent implements OnInit {
 
 	refreshList(pageNumber) {
 		this.activatedRoute.queryParams.subscribe((params) => {
-			console.log(params);
-			
 			if (params.keywords) {
 				this.keywords = params.keywords.trim();
 				const opts = new InputRequestOption();

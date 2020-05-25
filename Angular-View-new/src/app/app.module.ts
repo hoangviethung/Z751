@@ -14,7 +14,9 @@ import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { HeaderComponent } from "./components/_shared/header/header.component";
 import { FooterComponent } from "./components/_shared/footer/footer.component";
 import { FormsModule } from "@angular/forms";
-import { SharedModule } from './components/_shared/shared.module';
+import { SharedModule } from "./components/_shared/shared.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { environment } from "src/environments/environment";
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 	direction: "horizontal",
@@ -22,7 +24,11 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 };
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
-	return new TranslateHttpLoader(httpClient, "/assets/i18n/", ".json");
+	return new TranslateHttpLoader(
+		httpClient,
+		`${environment.locales}/assets/i18n/`,
+		".json"
+	);
 }
 
 @NgModule({
@@ -30,10 +36,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 	imports: [
 		BrowserModule.withServerTransition({ appId: "z751" }),
 		HttpClientModule,
+		BrowserAnimationsModule,
 		FormsModule,
 		SharedModule,
 		TranslateModule.forRoot({
-			defaultLanguage: "vi",
 			loader: {
 				provide: TranslateLoader,
 				useFactory: HttpLoaderFactory,

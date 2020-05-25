@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { HttpService } from "src/core/services/http.service";
 
 const routes: Routes = [
 	{
@@ -8,6 +9,9 @@ const routes: Routes = [
 			import("./components/index/index.module").then(
 				(m) => m.IndexModule
 			),
+		data: {
+			animation: "*",
+		},
 	},
 	{
 		path: "about",
@@ -15,6 +19,9 @@ const routes: Routes = [
 			import("./components/about/about.module").then(
 				(m) => m.AboutModule
 			),
+		data: {
+			animation: "*",
+		},
 	},
 	{
 		path: "products",
@@ -22,6 +29,9 @@ const routes: Routes = [
 			import("./components/product/product.module").then(
 				(m) => m.ProductModule
 			),
+		data: {
+			animation: "*",
+		},
 	},
 	{
 		path: "product-detail",
@@ -29,6 +39,9 @@ const routes: Routes = [
 			import("./components/product-detail/product-detail.module").then(
 				(m) => m.ProductDetailModule
 			),
+		data: {
+			animation: "*",
+		},
 	},
 	{
 		path: "departments",
@@ -36,6 +49,9 @@ const routes: Routes = [
 			import("./components/department/department.module").then(
 				(m) => m.DepartmentModule
 			),
+		data: {
+			animation: "*",
+		},
 	},
 	{
 		path: "capacities",
@@ -43,6 +59,9 @@ const routes: Routes = [
 			import("./components/capacity/capacity.module").then(
 				(m) => m.CapacityModule
 			),
+		data: {
+			animation: "*",
+		},
 	},
 	{
 		path: "capacity-detail",
@@ -50,11 +69,17 @@ const routes: Routes = [
 			import("./components/product-detail/product-detail.module").then(
 				(m) => m.ProductDetailModule
 			),
+		data: {
+			animation: "*",
+		},
 	},
 	{
 		path: "news",
 		loadChildren: () =>
 			import("./components/news/news.module").then((m) => m.NewsModule),
+		data: {
+			animation: "*",
+		},
 	},
 	{
 		path: "news-detail",
@@ -62,6 +87,9 @@ const routes: Routes = [
 			import("./components/news-detail/news-detail.module").then(
 				(m) => m.NewsDetailModule
 			),
+		data: {
+			animation: "*",
+		},
 	},
 	{
 		path: "contact",
@@ -69,6 +97,9 @@ const routes: Routes = [
 			import("./components/contact/contact.module").then(
 				(m) => m.ContactModule
 			),
+		data: {
+			animation: "*",
+		},
 	},
 	{
 		path: "error",
@@ -76,6 +107,9 @@ const routes: Routes = [
 			import("./components/page-not-found/page-not-found.module").then(
 				(m) => m.PageNotFoundModule
 			),
+		data: {
+			animation: "*",
+		},
 	},
 	{
 		path: "search",
@@ -83,6 +117,9 @@ const routes: Routes = [
 			import("./components/search/search.module").then(
 				(m) => m.SearchModule
 			),
+		data: {
+			animation: "*",
+		},
 	},
 	{
 		path: "**",
@@ -90,6 +127,9 @@ const routes: Routes = [
 			import("./components/redirect/redirect.module").then(
 				(m) => m.RedirectModule
 			),
+		data: {
+			animation: "*",
+		},
 	},
 ];
 

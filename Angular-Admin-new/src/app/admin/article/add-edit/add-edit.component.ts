@@ -124,11 +124,22 @@ export class AddEditComponent implements OnInit {
 	addArticle() {
 		this.article.languageId = Number(this.article.languageId);
 		this.article.categoryId = Number(this.article.categoryId);
+
 		if (!this.article.order) {
 			this.article.order = new Date().toString();
 		}
+
+		for (const key of Object.keys(this.article)) {
+			if (this.article[key] != null) {
+				if (String(this.article[key]).length <= 0) {
+					this.article[key] = null;
+				}
+			}
+		}
+
 		const params = new InputRequestOption();
 		params.body = this.article;
+
 		this.crudSvc
 			.add(APIConfig.Article.Add, params)
 			.subscribe((response) => {

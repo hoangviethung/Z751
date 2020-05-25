@@ -25,10 +25,10 @@ export class StaffComponent implements OnInit {
 		},
 		breakpoints: {
 			1025: {
-				slidesPerView: 3,
+				slidesPerView: 4,
 			},
 			768: {
-				slidesPerView: 4,
+				slidesPerView: 3,
 			},
 		},
 	};

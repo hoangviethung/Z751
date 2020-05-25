@@ -34,6 +34,8 @@ export class MenuComponent implements OnInit {
 	categories: Array<CategoryModel>;
 	templates: Array<TemplateModel> = TemplatesConfig;
 	languageControl = new FormControl();
+	typeMenu: string;
+
 	constructor(
 		private httpSvc: HttpService,
 		private activatedRoute: ActivatedRoute,
@@ -42,39 +44,29 @@ export class MenuComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.activatedRoute.params.subscribe((params) => {
-			const typeMenu = Menu[params.menuTitle];
-			this.getMenus(typeMenu);
+			this.typeMenu = Menu[params.menuTitle];
+			this.getMenus();
 		});
 		this.languages = JSON.parse(localStorage.getItem('languages'));
 	}
 
-	getMenus(typeMenu, languageId?) {
+	getMenus(languageId = '0') {
 		const params = new InputRequestOption();
-		if (languageId) {
-			params.params = {
-				type: typeMenu,
-				languageId: languageId,
-			};
-		} else {
-			params.params = {
-				type: typeMenu,
-				languageId: '1',
-			};
-		}
+		params.params = {
+			type: this.typeMenu,
+			languageId: languageId,
+		};
 		this.httpSvc
 			.get(APIConfig.Menu.Gets, params)
 			.pipe(map((response) => response.data))
 			.subscribe((menus) => {
 				this.menus = menus;
 				this.menus.forEach((element) => {
-					let name = this.menus.find((item) => {
+					this.menus.forEach((item) => {
 						if (item.id == element.parentId) {
-							return item;
+							element.parentName = item.title;
 						}
 					});
-					if (name) {
-						element.parentName = name.title;
-					}
 				});
 			});
 	}
@@ -119,7 +111,7 @@ export class MenuComponent implements OnInit {
 	fetchMenu(e) {
 		this.activatedRoute.params.subscribe((params) => {
 			const type = Menu[params.menuTitle];
-			this.getMenus(type, e);
+			this.getMenus(e);
 		});
 	}
 }
