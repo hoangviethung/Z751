@@ -4,7 +4,7 @@
 	top: 50%;
 	transform: translate(-50%, -50%);
 	width: 95%;
-	height: 50%;
+	height: 85%;
 	z-index: 100;
 
 	.close-popup {
@@ -41,6 +41,24 @@
 	object-position: center;
 	font-family: "object-fit: contain, object-position: center";
 	background-size: contain;
+}
+
+.input-group {
+	display: flex;
+	align-items: center;
+
+	&.input-type-file {
+		.btn-choose-image {
+			font-size: 20px;
+			-ms-flex: 0 0 100%;
+			-webkit-box-flex: 0;
+			flex: 0 0 30%;
+			max-width: 30%;
+			height: 40px;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+	}
 }
 
 .desktop {
