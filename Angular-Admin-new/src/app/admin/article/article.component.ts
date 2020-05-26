@@ -13,6 +13,7 @@ import { TemplateModel } from 'src/app/_core/models/template.model';
 import { FormControl } from '@angular/forms';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { ArticleService } from './article.service';
+import { PaginationModel } from 'src/app/_core/models/pagination';
 
 @Component({
 	selector: 'app-article',
@@ -21,100 +22,97 @@ import { ArticleService } from './article.service';
 })
 export class ArticleComponent implements OnInit {
 	articles: Array<ArticleModel>;
-	article: ArticleModel;
 	languages: Array<LanguageModel>;
 	categories: Array<CategoryModel>;
-	isShowPopup: boolean = false;
-	isEdit: boolean;
 	search: FilterSearchModel = new FilterSearchModel();
-	FeatureNumber: number = -12;
-	permissions: any = {};
+	pagination: PaginationModel = new PaginationModel(10, 1);
+	categoryControl = new FormControl();
 	templates: Array<TemplateModel> = TemplatesConfig;
 	templatesControl = new FormControl();
 	languageCurrent;
+	isTitleEnglist: boolean;
+	totalItems: number;
+
 	constructor(
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService,
 		private utilSvc: UtilService,
-		private cookieSvc: CookieService,
 		private ArticleSvc: ArticleService
 	) {}
 
 	ngOnInit(): void {
-		this.getCategories();
-		this.getArticles();
+		const opts = new InputRequestOption();
+		opts.params = {
+			languageId: this.search.languageId,
+			categoryId: this.search.categoryId,
+			page: this.pagination.page.toString(),
+			itemPerPage: this.pagination.itemPerPage.toString(),
+		};
 		this.languages = this.utilSvc.getLanguages();
-		this.getPermissions();
 		this.languageCurrent = this.ArticleSvc.getLaunguage();
+		this.getCategories(1);
+		this.fetchArticle(opts);
 	}
 
-	getPermissions() {
-		const FeatureObj = JSON.parse(
-			this.cookieSvc.get('user')
-		).roles.includes('Admin');
-		// this.permissions = FeatureObj.features[this.FeatureNumber];
+	getDataCategory(e) {
+		this.search.categoryId = e;
 	}
 
-	getArticles() {
-		const params = new InputRequestOption();
-		params.params = {
-			languageId: this.languageCurrent,
+	getCategories(event) {
+		const opts = new InputRequestOption();
+		opts.params = {
+			languageId: event,
 		};
 		this.crudSvc
-			.get(APIConfig.Article.Gets, params)
-			.subscribe((articles) => {
-				this.articles = articles.data.items;
-			});
-	}
-
-	getCategories() {
-		const params = new InputRequestOption();
-		params.params = {
-			languageId: '1',
-		};
-		this.crudSvc
-			.get(APIConfig.Category.Gets, params)
+			.get(APIConfig.Category.Gets, opts)
 			.subscribe((response) => {
 				this.categories = response.data.items;
+				this.categories.forEach((item) => {
+					if (item.parentName == null) {
+						item.parentName = '';
+					} else {
+						item.parentName += ' >> ';
+					}
+				});
 			});
 	}
 
-	fetchArticle(e) {
-		const params = new InputRequestOption();
-		params.params = {
-			languageId: e,
-		};
-		this.crudSvc
-			.get(APIConfig.Article.Gets, params)
-			.subscribe((response) => {
-				this.articles = response.data.items;
-			});
+	fetchArticle(opts?) {
+		this.crudSvc.get(APIConfig.Article.Gets, opts).subscribe((response) => {
+			this.articles = response.data.items;
+			this.totalItems = response.data.total;
+		});
 	}
 
 	filterArticle() {
-		const options = new InputRequestOption();
-		options.params = {
+		const opts = new InputRequestOption();
+		opts.params = {
 			languageId: this.search.languageId,
-			text: this.search.keywords || '',
 			categoryId: this.search.categoryId,
+			page: this.pagination.page.toString(),
+			itemPerPage: this.pagination.itemPerPage.toString(),
+			text: this.search.keywords || '',
 		};
-		this.crudSvc
-			.get(APIConfig.Article.Gets, options)
-			.subscribe((response) => {
-				this.articles = response.data.items;
-			});
+		this.fetchArticle(opts);
 	}
 
 	deleteArticle(id) {
-		const params = new InputRequestOption();
-		params.params = {
+		const opts = new InputRequestOption();
+		opts.params = {
 			id: id,
 		};
 		this.crudSvc
-			.delete(APIConfig.Article.Delete, params)
+			.delete(APIConfig.Article.Delete, opts)
 			.subscribe((response) => {
 				if (response.code == 200) {
-					this.getArticles();
+					const optsFetch = new InputRequestOption();
+					optsFetch.params = {
+						languageId: this.search.languageId,
+						categoryId: this.search.categoryId,
+						page: this.pagination.page.toString(),
+						itemPerPage: this.pagination.itemPerPage.toString(),
+					};
+					this.fetchArticle(optsFetch);
 					this.toastrSvc.success(response.message);
 				} else {
 					this.toastrSvc.error(response.message);

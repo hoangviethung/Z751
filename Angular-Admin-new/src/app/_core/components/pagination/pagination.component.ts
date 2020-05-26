@@ -1,46 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpService } from '../../services/http.service';
 
 @Component({
 	selector: 'app-pagination',
 	templateUrl: './pagination.component.html',
-	styleUrls: ['./pagination.component.less'],
+	styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent implements OnInit {
-	PAGE_SIZE = 12;
 	pager;
-	totalPage = 100;
 	code;
+	@Input('itemPerPage') itemPerPage: number;
+	@Input('totalItems') totalItems: number;
+	@Input('url') url: string;
+	@Input('keywords') keywords: string = null;
+	@Output('changePage') changePage: EventEmitter<number> = new EventEmitter<
+		number
+	>();
 
-	constructor(
-		private route: ActivatedRoute,
-		private router: Router,
-		private httpSvc: HttpService
-	) {}
+	constructor(private router: Router) {}
 
 	ngOnInit() {
 		this.handlingQueryParams();
 	}
 
 	handlingQueryParams() {
-		this.route.queryParams.subscribe((params) => {
-			this.code = params.code || '';
-			this.initData(params.page);
-		});
+		this.initData('1');
 	}
 
 	initData(page) {
-		this.httpSvc
-			.get(`api/Product/used/total?categoryIds=${this.code}`)
-			.subscribe((result) => {
-				this.totalPage = result.data;
-				this.choosepage(page || 1, true);
-			});
+		this.choosepage(page || 1, true);
 	}
 
-	choosepage(page, isFirst) {
-		// debugger;
+	choosepage(page, isFirst?) {
 		page = Number(page);
 		if (
 			page < 1 ||
@@ -50,28 +41,41 @@ export class PaginationComponent implements OnInit {
 		) {
 			return;
 		}
-		let totalPage = this.totalPage;
+
+		let totalItems = this.totalItems;
+
 		page =
-			totalPage / this.PAGE_SIZE < page
-				? Math.ceil(totalPage / this.PAGE_SIZE)
+			totalItems / this.itemPerPage < page
+				? Math.ceil(totalItems / this.itemPerPage)
 				: page;
-		this.pager = this.getPager(totalPage, page, this.PAGE_SIZE);
+
+		this.pager = this.getPager(totalItems, page, this.itemPerPage);
+
 		if (!isFirst) {
-			this.router.navigate(['/Product'], {
-				queryParams: { code: this.code, page: this.pager.currentPage },
-			});
+			if (this.url == '/search') {
+				this.router.navigate([this.url], {
+					queryParams: {
+						page: this.pager.page,
+						keywords: this.keywords,
+					},
+					skipLocationChange: true,
+				});
+			} else {
+				this.router.navigate([this.url], {
+					queryParams: { page: this.pager.page },
+					skipLocationChange: true,
+				});
+			}
 		}
+
+		this.changePage.emit(this.pager.page);
 	}
 
 	// Pagination functionc
 
-	getPager(
-		totalItems: number,
-		currentPage: number = 1,
-		pageSize: number = 10
-	) {
+	getPager(total: number, page: number = 1, itemPerPage: number = 10) {
 		// calculate total pages
-		let totalPages = Math.ceil(totalItems / pageSize);
+		let totalPages = Math.ceil(total / itemPerPage);
 
 		let startPage: number, endPage: number;
 		if (totalPages <= 5) {
@@ -80,30 +84,30 @@ export class PaginationComponent implements OnInit {
 			endPage = totalPages;
 		} else {
 			// more than 5 total pages so calculate start and end pages
-			if (currentPage <= 3) {
+			if (page <= 3) {
 				startPage = 1;
 				endPage = 5;
-			} else if (currentPage + 2 >= totalPages) {
+			} else if (page + 2 >= totalPages) {
 				startPage = totalPages - 4;
 				endPage = totalPages;
 			} else {
-				startPage = currentPage - 2;
-				endPage = currentPage + 2;
+				startPage = page - 2;
+				endPage = page + 2;
 			}
 		}
 
 		// calculate start and end item indexes
-		let startIndex = (currentPage - 1) * pageSize;
-		let endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
+		let startIndex = (page - 1) * itemPerPage;
+		let endIndex = Math.min(startIndex + itemPerPage - 1, total - 1);
 
 		// create an array of pages to ng-repeat in the pager control
 		let pages = this.range(startPage, endPage + 1);
 
 		// return object with all pager properties required by the view
 		return {
-			totalItems: totalItems,
-			currentPage: currentPage,
-			pageSize: pageSize,
+			total: total,
+			page: page,
+			itemPerPage: itemPerPage,
 			totalPages: totalPages,
 			startPage: startPage,
 			endPage: endPage,

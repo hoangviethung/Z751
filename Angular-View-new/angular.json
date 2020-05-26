@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "z751-View-new": {
+    "z751": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "z751-View-new:build"
+            "browserTarget": "z751:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "z751-View-new:build:production"
+              "browserTarget": "z751:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "z751-View-new:build"
+            "browserTarget": "z751:build"
           }
         },
         "test": {
@@ -117,11 +117,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "z751-View-new:serve"
+            "devServerTarget": "z751:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "z751-View-new:serve:production"
+              "devServerTarget": "z751:serve:production"
             }
           }
         },
@@ -151,5 +151,5 @@
       }
     }
   },
-  "defaultProject": "z751-View-new"
+  "defaultProject": "z751"
 }

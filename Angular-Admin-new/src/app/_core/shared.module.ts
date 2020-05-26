@@ -14,12 +14,14 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { TableImagesComponent } from './components/table-images/table-images.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
 	declarations: [
 		AsideMenuDirective,
 		BreadcrumbComponent,
 		CKEditorComponent,
+		PaginationComponent,
 		TabDirective,
 		TableImagesComponent,
 	],
@@ -39,6 +41,7 @@ import { TableImagesComponent } from './components/table-images/table-images.com
 		FormsModule,
 		CKEditorComponent,
 		TableImagesComponent,
+		PaginationComponent,
 		HttpClientModule,
 		RouterModule,
 		ReactiveFormsModule,

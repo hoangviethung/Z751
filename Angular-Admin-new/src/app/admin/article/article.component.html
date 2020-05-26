@@ -1,57 +1,107 @@
-<ng-container *ngIf="!isShowPopup">
-	<div class="block-control ai-c">
-		<div class="block-filters mr-at d-f ai-c fw-w">
-			<div class="form-group mb-0">
-				<mat-form-field>
-					<mat-select name="language" [formControl]="templatesControl" (ngModelChange)="fetchArticle($event)"
-						[ngModel]="1">
-						<mat-option *ngFor="let language of languages" [value]="language.id">
-							{{ language.name }}
-						</mat-option>
-					</mat-select>
-				</mat-form-field>
-			</div>
-			<div class="form-group mb-0">
-				<input class="form-control" placeholder="Tìm kiếm..." type="text" name="article-keywords"
-					id="article-keywords" [(ngModel)]="search.keywords" />
-			</div>
-			<div class="form-group mb-0 form-button">
-				<button (click)="filterArticle()" class="btn btn-success">
-					Lọc bài viết
-				</button>
-			</div>
+<div class="block-control ai-c">
+	<div class="block-filters mr-at d-f ai-c fw-w">
+		<div class="form-group mb-0">
+			<mat-form-field>
+				<mat-select
+					name="language"
+					[formControl]="templatesControl"
+					(ngModelChange)="fetchArticle($event)"
+					[ngModel]="1"
+				>
+					<mat-option
+						*ngFor="let language of languages"
+						[value]="language.id"
+					>
+						{{ language.name }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
 		</div>
-		<div class="block-buttons">
-			<a class="btn btn-success btn-add ml-at" [routerLink]="['/admin/article/add']">
-				Thêm mới
-			</a>
+		<div class="form-group mb-0">
+			<mat-form-field>
+				<mat-select
+					name="category"
+					[formControl]="categoryControl"
+					[ngModel]="0"
+					(ngModelChange)="getDataCategory($event)"
+				>
+					<mat-option [value]="0" *ngIf="isTitleEnglist == false"
+						>Chọn danh mục mục</mat-option
+					>
+					<mat-option [value]="0" *ngIf="isTitleEnglist"
+						>Choose Category</mat-option
+					>
+					<mat-option
+						*ngFor="let category of categories"
+						[value]="category.id"
+					>
+						{{ category.parentName + category.title }}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</div>
+		<div class="form-group mb-0">
+			<input
+				class="form-control"
+				placeholder="Tìm kiếm..."
+				type="text"
+				name="article-keywords"
+				id="article-keywords"
+				[(ngModel)]="search.keywords"
+			/>
+		</div>
+		<div class="form-group mb-0 form-button">
+			<button (click)="filterArticle()" class="btn btn-success">
+				Lọc bài viết
+			</button>
 		</div>
 	</div>
-	<div class="block-table">
-		<table class="table">
-			<tr class="table-info">
-				<th>#</th>
-				<th>Tiêu đề</th>
-				<th>Danh mục</th>
-				<th>Tác vụ</th>
-			</tr>
-			<tr *ngFor="let article of articles; let i = index">
-				<td class="column-number ta-c">{{ i + 1 }}</td>
-				<td class="column-title">
-					{{ article.title }}
-				</td>
-				<td class="column-category ta-c">{{ article.categoryName }}</td>
-				<td class="column-button ta-c">
-					<div class="table-buttons">
-						<a class="btn btn-outline-success btn-edit" [routerLink]="['/admin/article/edit', article.id]">
-							<span class="lnr lnr-pencil"></span>
-						</a>
-						<span class="btn btn-outline-danger btn-remove" (click)="deleteArticle(article.id)">
-							<span class="lnr lnr-trash"></span>
-						</span>
-					</div>
-				</td>
-			</tr>
-		</table>
+	<div class="block-buttons">
+		<a
+			class="btn btn-success btn-add ml-at"
+			[routerLink]="['/admin/article/add']"
+		>
+			Thêm mới
+		</a>
 	</div>
-</ng-container>
+</div>
+<div class="block-table">
+	<table class="table">
+		<tr class="table-info">
+			<th>#</th>
+			<th>Tiêu đề</th>
+			<th>Danh mục</th>
+			<th>Tác vụ</th>
+		</tr>
+		<tr *ngFor="let article of articles; let i = index">
+			<td class="column-number ta-c">{{ i + 1 }}</td>
+			<td class="column-title">
+				{{ article.title }}
+			</td>
+			<td class="column-category ta-c">{{ article.categoryName }}</td>
+			<td class="column-button ta-c">
+				<div class="table-buttons">
+					<a
+						class="btn btn-outline-success btn-edit"
+						[routerLink]="['/admin/article/edit', article.id]"
+					>
+						<span class="lnr lnr-pencil"></span>
+					</a>
+					<span
+						class="btn btn-outline-danger btn-remove"
+						(click)="deleteArticle(article.id)"
+					>
+						<span class="lnr lnr-trash"></span>
+					</span>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<!-- <app-pagination
+		*ngIf="totalItems"
+		[totalItems]="totalItems"
+		[itemPerPage]="pagination.itemPerPage"
+		(changePage)="fetchArticle()"
+		[url]="'/news'"
+	></app-pagination> -->
+</div>

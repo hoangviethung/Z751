@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 	providedIn: 'root',
 })
 export class ArticleService {
-	languageId = '0';
+	languageId = '1';
 	constructor() {}
 
 	getLaunguage() {
