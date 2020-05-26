@@ -22,21 +22,23 @@ export class RedirectComponent implements OnInit {
 	) {
 		// Khi click chuyển trang
 		var path = this.document.location.pathname;
-		this.rService.getRouteNew(http, path).subscribe((response: any) => {
-			if (response.data != null && response.code == 200) {
-				path = this.rService.swithRoute(
-					response.data.template,
-					response.data.entityType
-				);
-			} else if (path == "/") {
-				path = "index";
-			} else if ((path = "search")) {
-				path = "search";
-			} else {
-				path = "error";
-			}
-			this.isLoading = false;
-		});
+		this.rService
+			.getRouteNew(this.http, path)
+			.subscribe((response: any) => {
+				if (response.data != null && response.code == 200) {
+					path = this.rService.swithRoute(
+						response.data.template,
+						response.data.entityType
+					);
+				} else if (path == "/") {
+					path = "index";
+				} else if ((path = "search")) {
+					path = "search";
+				} else {
+					path = "error";
+				}
+				this.isLoading = false;
+			});
 
 		var interval = setInterval(() => {
 			if (!this.isLoading) {

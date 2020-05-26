@@ -2,37 +2,53 @@ import { Component, OnInit } from "@angular/core";
 import { RedirectSerivce } from "src/core/services/redirect.service";
 import { HttpService } from "src/core/services/http.service";
 import { API } from "src/core/configs/api";
-import { RouterOutlet } from "@angular/router";
+import {
+	RouterOutlet,
+	Router,
+	RouterEvent,
+	NavigationStart,
+	NavigationEnd,
+	NavigationCancel,
+	NavigationError,
+} from "@angular/router";
 import { LanguageService } from "src/core/services/language.service";
 import { LanguageModel } from "src/core/models/Language.model";
-import { slideInAnimation } from "./animation";
+import { loading } from "./animation";
 
 @Component({
 	selector: "app-root",
 	templateUrl: "./app.component.html",
 	styleUrls: ["./app.component.scss"],
-	animations: [slideInAnimation],
+	animations: [loading],
 })
 export class AppComponent implements OnInit {
 	isLoading = true;
 	title = "z751";
 	phone: string;
+	loading = true;
+	fakeLoading;
 
 	constructor(
 		private rService: RedirectSerivce,
 		private httpSvc: HttpService,
-		private langSvc: LanguageService
+		private langSvc: LanguageService,
+		private router: Router
 	) {
-		var interval = setInterval(() => {
-			if (!this.rService.isRenderingSSR) {
-				clearInterval(interval);
-			}
-		}, 300);
+		// var interval = setInterval(() => {
+		// 	if (!this.rService.isRenderingSSR) {
+		// 		clearInterval(interval);
+		// 		this.loading = false;
+		// 	}
+		// }, 100);
 	}
 
 	ngOnInit() {
 		this.getNumberPhone();
 		this.getLanguages();
+
+		this.router.events.subscribe((e: RouterEvent) => {
+			this.navigationInterceptor(e);
+		});
 	}
 
 	getNumberPhone() {
@@ -46,14 +62,6 @@ export class AppComponent implements OnInit {
 		});
 	}
 
-	prepareRoute(outlet: RouterOutlet) {
-		return (
-			outlet &&
-			outlet.activatedRouteData &&
-			outlet.activatedRouteData["animation"]
-		);
-	}
-
 	getLanguages() {
 		this.langSvc.getLanguages().subscribe((response) => {
 			const languages = response.data.map((item: LanguageModel) => {
@@ -64,5 +72,33 @@ export class AppComponent implements OnInit {
 			});
 			this.langSvc.setLanguages(languages);
 		});
+	}
+
+	prepareRoute(outlet: RouterOutlet) {
+		return (
+			outlet &&
+			outlet.activatedRouteData &&
+			outlet.activatedRouteData["animation"]
+		);
+	}
+
+	// Shows and hides the loading spinner during RouterEvent changes
+	navigationInterceptor(event: RouterEvent): void {
+		if (event instanceof NavigationStart) {
+			this.loading = true;
+		}
+		setTimeout(() => {
+			if (event instanceof NavigationEnd) {
+				this.loading = false;
+			}
+
+			// Set loading state to false in both of the below events to hide the spinner in case a request fails
+			if (event instanceof NavigationCancel) {
+				this.loading = false;
+			}
+			if (event instanceof NavigationError) {
+				this.loading = false;
+			}
+		}, 2000);
 	}
 }

@@ -51,6 +51,7 @@ export class ProductComponent implements OnInit {
 				description: response.data.metaDescription,
 				image: response.data.metaImage,
 			};
+			this.pageDescription = response.data.description;
 			this.pageTitle = response.data.title;
 			this.pageInfoSvc.setTitle(response.data.title);
 			this.pageInfoSvc.setMeta(metaObject);

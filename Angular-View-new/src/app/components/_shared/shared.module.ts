@@ -18,6 +18,7 @@ import { IndexNewsItemDirective } from "../../../core/directives/index-news-item
 import { IndexProductItemDirective } from "../../../core/directives/index-product-item.directive";
 import { ToggleMenuDirective } from "../../../core/directives/toggle-menu.directive";
 import { ToggleSubMenuDirective } from "../../../core/directives/toggle-sub-menu.directive";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
 
 @NgModule({
 	declarations: [
@@ -39,6 +40,7 @@ import { ToggleSubMenuDirective } from "../../../core/directives/toggle-sub-menu
 		HttpClientModule,
 		FormsModule,
 		SwiperModule,
+		MatProgressBarModule,
 	],
 	exports: [
 		CommonModule,
@@ -60,6 +62,7 @@ import { ToggleSubMenuDirective } from "../../../core/directives/toggle-sub-menu
 		IndexProductItemDirective,
 		ToggleMenuDirective,
 		ToggleSubMenuDirective,
+		MatProgressBarModule,
 	],
 	providers: [
 		HttpService,
