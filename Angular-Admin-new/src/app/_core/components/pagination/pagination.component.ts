@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PaginationModel } from '../../models/pagination';
 
 @Component({
 	selector: 'app-pagination',
@@ -8,9 +9,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PaginationComponent implements OnInit {
 	pager;
-	code;
+	pagination: PaginationModel = new PaginationModel(10, 1);
 	@Input('itemPerPage') itemPerPage: number;
 	@Input('totalItems') totalItems: number;
+	@Input('page') page: number;
 	@Input('url') url: string;
 	@Input('keywords') keywords: string = null;
 	@Output('changePage') changePage: EventEmitter<number> = new EventEmitter<
@@ -20,19 +22,12 @@ export class PaginationComponent implements OnInit {
 	constructor(private router: Router) {}
 
 	ngOnInit() {
-		this.handlingQueryParams();
-	}
-
-	handlingQueryParams() {
-		this.initData('1');
-	}
-
-	initData(page) {
-		this.choosepage(page || 1, true);
+		this.choosepage(this.page, true);
 	}
 
 	choosepage(page, isFirst?) {
 		page = Number(page);
+
 		if (
 			page < 1 ||
 			(this.pager &&
@@ -52,27 +47,14 @@ export class PaginationComponent implements OnInit {
 		this.pager = this.getPager(totalItems, page, this.itemPerPage);
 
 		if (!isFirst) {
-			if (this.url == '/search') {
-				this.router.navigate([this.url], {
-					queryParams: {
-						page: this.pager.page,
-						keywords: this.keywords,
-					},
-					skipLocationChange: true,
-				});
-			} else {
-				this.router.navigate([this.url], {
-					queryParams: { page: this.pager.page },
-					skipLocationChange: true,
-				});
-			}
+			this.router.navigate([this.url], {
+				queryParams: { page: this.pager.page },
+			});
 		}
-
 		this.changePage.emit(this.pager.page);
 	}
 
-	// Pagination functionc
-
+	// Pagination function
 	getPager(total: number, page: number = 1, itemPerPage: number = 10) {
 		// calculate total pages
 		let totalPages = Math.ceil(total / itemPerPage);
