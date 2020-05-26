@@ -2,9 +2,16 @@
 	<div class="block-filters mr-at d-f ai-c fw-w">
 		<div class="form-group mb-0">
 			<mat-form-field>
-				<mat-select name="language" [formControl]="languageControl" (ngModelChange)="getCategories($event)"
-					[ngModel]=1>
-					<mat-option *ngFor="let language of languages" [value]="language.id">
+				<mat-select
+					name="language"
+					[formControl]="languageControl"
+					[ngModel]="1"
+					(valueChange)="changeValue($event)"
+				>
+					<mat-option
+						*ngFor="let language of languages"
+						[value]="language.id"
+					>
 						{{ language.name }}
 					</mat-option>
 				</mat-select>
@@ -12,7 +19,10 @@
 		</div>
 	</div>
 	<div class="block-buttons">
-		<a class="btn btn-success btn-add" [routerLink]="['/admin/category/add']">
+		<a
+			class="btn btn-success btn-add"
+			[routerLink]="['/admin/category/add']"
+		>
 			Thêm mới
 		</a>
 	</div>
@@ -27,21 +37,35 @@
 			<th class="column-button ta-c">Tác vụ</th>
 		</tr>
 		<tr *ngFor="let category of categories; let i = index">
-			<th class="ta-c">{{ i }}</th>
+			<th class="ta-c">{{ i + 1 }}</th>
 			<td>{{ category.title }}</td>
 			<td>{{ category.parentName }}</td>
 			<td>{{ category.previewUrl }}</td>
 			<td class="ta-c">
 				<div class="table-buttons">
-					<a class="btn btn-outline-success btn-edit" [routerLink]="['/admin/category/edit', category.id]"
-						[queryParams]="{previewUrl:category.previewUrl}">
+					<a
+						class="btn btn-outline-success btn-edit"
+						[routerLink]="['/admin/category/edit', category.id]"
+						[queryParams]="{ previewUrl: category.previewUrl }"
+					>
 						<span class="lnr lnr-pencil"></span>
 					</a>
-					<span class="btn btn-outline-danger btn-remove" (click)="deleteCategory(category.id)">
+					<span
+						class="btn btn-outline-danger btn-remove"
+						(click)="deleteCategory(category.id)"
+					>
 						<span class="lnr lnr-trash"></span>
 					</span>
 				</div>
 			</td>
 		</tr>
 	</table>
+	<app-pagination
+		*ngIf="totalItems"
+		[totalItems]="totalItems"
+		[itemPerPage]="pagination.itemPerPage"
+		[page]="page"
+		(changePage)="paginateCategory($event)"
+		[url]="'/admin/category'"
+	></app-pagination>
 </div>

@@ -7,11 +7,14 @@
 				<th class="column-button ta-c">Tác vụ</th>
 			</tr>
 			<tr *ngFor="let section of sections; let i = index">
-				<th class="ta-c">{{ i }}</th>
+				<th class="ta-c">{{ i + 1 }}</th>
 				<td>{{ section.orderTitle }}</td>
 				<td class="ta-c">
 					<div class="table-buttons">
-						<span class="btn btn-outline-success btn-edit" (click)="onOpenPopup(true, section)">
+						<span
+							class="btn btn-outline-success btn-edit"
+							(click)="onOpenPopup(true, section)"
+						>
 							<span class="lnr lnr-pencil"></span>
 						</span>
 					</div>
@@ -22,6 +25,5 @@
 </div>
 
 <div class="popup-wrapper" *ngIf="isShowPopup">
-	<app-edit [section]="section" (close)="onClosePopup($event)">
-	</app-edit>
+	<app-edit [section]="section" (close)="onClosePopup($event)"> </app-edit>
 </div>

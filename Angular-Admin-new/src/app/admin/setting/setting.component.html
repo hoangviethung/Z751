@@ -12,14 +12,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr *ngFor="let setting of settings, let i = index">
-					<td>{{i+1}}</td>
-					<td>{{setting.name}}</td>
-					<td>{{setting.value}}</td>
-					<td>{{setting.description}}</td>
-					<td class="ta-c">{{setting.type}}</td>
+				<tr *ngFor="let setting of settings; let i = index">
+					<td>{{ i + 1 }}</td>
+					<td>{{ setting.name }}</td>
+					<td>{{ setting.value }}</td>
+					<td>{{ setting.description }}</td>
+					<td class="ta-c">{{ setting.type }}</td>
 					<td class="ta-c">
-						<a class="btn btn-outline-success" (click)="onOpenPopup(true, setting)">
+						<a
+							class="btn btn-outline-success"
+							(click)="onOpenPopup(true, setting)"
+						>
 							<span class="lnr lnr-pencil"></span>
 						</a>
 					</td>
@@ -30,6 +33,5 @@
 </div>
 
 <div class="popup-wrapper" *ngIf="isShowPopup">
-	<app-edit [setting]="setting" (close)="onClosePopup($event)">
-	</app-edit>
+	<app-edit [setting]="setting" (close)="onClosePopup($event)"> </app-edit>
 </div>

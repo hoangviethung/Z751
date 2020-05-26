@@ -11,7 +11,6 @@ import { UtilService } from 'src/app/_core/services/util.service';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { FormControl } from '@angular/forms';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
-import { ArticleService } from './article.service';
 import { PaginationModel } from 'src/app/_core/models/pagination';
 import { ActivatedRoute } from '@angular/router';
 
@@ -38,13 +37,11 @@ export class ArticleComponent implements OnInit {
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService,
 		private utilSvc: UtilService,
-		private ArticleSvc: ArticleService,
 		private activatedRoute: ActivatedRoute
 	) {}
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();
-		this.languageCurrent = this.ArticleSvc.getLaunguage();
 		this.activatedRoute.queryParams.subscribe((queryParams) => {
 			if (queryParams.page) {
 				this.page = queryParams.page;
@@ -102,19 +99,28 @@ export class ArticleComponent implements OnInit {
 			itemPerPage: this.pagination.itemPerPage.toString(),
 			text: this.search.keywords || '',
 		};
-		this.fetchArticle(opts);
 	}
 
 	filterArticle() {
 		const opts = new InputRequestOption();
 		opts.params = {
-			languageId: this.search.languageId,
+			languageId: this.templatesControl.value,
 			categoryId: this.categoryControl.value,
 			page: this.pagination.page.toString(),
 			itemPerPage: this.pagination.itemPerPage.toString(),
 			text: this.search.keywords || '',
 		};
 		this.fetchArticle(opts);
+	}
+	
+	getDataLanguage(e) {
+		this.search.languageId = e;
+		this.getCategories(e);
+		if (e == 1) {
+			this.isTitleEnglist = false;
+		} else {
+			this.isTitleEnglist = true;
+		}
 	}
 
 	deleteArticle(id) {

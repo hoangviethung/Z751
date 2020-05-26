@@ -4,8 +4,9 @@
 			<mat-form-field>
 				<mat-select
 					name="language"
-					[formControl]="templatesControl"
 					[ngModel]="1"
+					[formControl]="templatesControl"
+					(valueChange)="getDataLanguage($event)"
 				>
 					<mat-option
 						*ngFor="let language of languages"
@@ -23,8 +24,8 @@
 					[formControl]="categoryControl"
 					[ngModel]="0"
 				>
-					<mat-option [value]="0" *ngIf="isTitleEnglist == false"
-						>Chọn danh mục mục</mat-option
+					<mat-option [value]="0" *ngIf="!isTitleEnglist"
+						>Chọn danh mục</mat-option
 					>
 					<mat-option [value]="0" *ngIf="isTitleEnglist"
 						>Choose Category</mat-option
