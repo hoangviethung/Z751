@@ -24,9 +24,13 @@
 				<div class="form-group col-12">
 					<label id="ResourcePathName">Đường dẫn của ảnh *</label>
 					<div class="input-group shadow-sm">
-						<input class="form-control" name="resourcepath" [(ngModel)]="banner.resourcePath" type="text" />
-						<a class="btn btn-info btn-choose-image mt-10px" (click)="isShowPopupUploadfile(true)">Chọn
-							ảnh</a>
+						<div class="input-group input-type-file">
+							<input class="form-control" name="resourcepath" [(ngModel)]="banner.resourcePath"
+								type="text" />
+							<a class="btn btn-info btn-choose-image" (click)="isShowPopupUploadfile(true)">
+								<span class="lnr lnr-camera"></span>
+							</a>
+						</div>
 					</div>
 					<span class="field-validation-valid"></span>
 				</div>

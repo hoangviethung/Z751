@@ -49,7 +49,7 @@ export class MenuComponent implements OnInit {
 		this.languages = JSON.parse(localStorage.getItem('languages'));
 	}
 
-	getMenus(languageId = '0') {
+	getMenus(languageId = '1') {
 		const params = new InputRequestOption();
 		params.params = {
 			type: this.typeMenu,

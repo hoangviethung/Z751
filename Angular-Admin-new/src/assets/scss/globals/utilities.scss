@@ -43,6 +43,24 @@
 	background-size: contain;
 }
 
+.input-group {
+	display: flex;
+	align-items: center;
+
+	&.input-type-file {
+		.btn-choose-image {
+			font-size: 20px;
+			-ms-flex: 0 0 100%;
+			-webkit-box-flex: 0;
+			flex: 0 0 30%;
+			max-width: 30%;
+			height: 40px;
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+	}
+}
+
 .desktop {
 	@media (max-width: 1024px) {
 		display: none !important;
