@@ -37,6 +37,7 @@ export class HistoryComponent implements OnInit {
 
 	yearImages = [];
 	year: ArticleModel;
+	title: string;
 
 	@Input("language") currentLanguage;
 
@@ -52,6 +53,7 @@ export class HistoryComponent implements OnInit {
 			template: "2",
 		};
 		this.httpSvc.get(API.Section.Get, opts).subscribe((response) => {
+			this.year = response.data;
 			this.yearImages = response.data.images;
 		});
 	}

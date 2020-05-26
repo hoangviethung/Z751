@@ -22,6 +22,6 @@ import { TranslateModule } from "@ngx-translate/core";
 		IndexPartnersComponent,
 		IndexDepartmentComponent,
 	],
-	imports: [IndexRoutingModule, SharedModule, TranslateModule.forChild()],
+	imports: [SharedModule, IndexRoutingModule, TranslateModule.forChild()],
 })
 export class IndexModule {}

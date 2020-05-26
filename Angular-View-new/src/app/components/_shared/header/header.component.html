@@ -79,7 +79,7 @@
 							<ng-container *ngFor="let language of languages">
 								<div
 									class="flag desktop"
-									*ngIf="currentLanguage == language.key"
+									*ngIf="language.isDefault"
 								>
 									<img src="{{ language.image }}" alt="" />
 								</div>

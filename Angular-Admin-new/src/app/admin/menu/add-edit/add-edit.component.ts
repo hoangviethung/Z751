@@ -39,7 +39,9 @@ export class AddEditComponent implements OnInit {
 		private httpSvc: HttpService,
 		private toastrSvc: ToastrService,
 		private activatedRoute: ActivatedRoute
-	) {}
+	) {
+		console.log(this.menu);
+	}
 
 	ngOnInit(): void {
 		this.activatedRoute.params.subscribe((params) => {

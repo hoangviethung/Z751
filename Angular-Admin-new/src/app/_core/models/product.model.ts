@@ -8,12 +8,12 @@ export class ProductModel {
 	createDate: string = null;
 	description: string = null;
 	externalUrl: string = null;
-	id: number;
+	id: number = null;
 	image: string = null;
 	images: Array<ImageModel> = [];
 	isHot: boolean = false;
 	isPublished: boolean = true;
-	language: number;
+	language: number = null;
 	languageId: number = 1;
 	metaDescription: string = null;
 	metaImage: string = null;
