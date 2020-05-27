@@ -11,18 +11,24 @@
 				<th>Tác vụ</th>
 			</tr>
 			<tr *ngFor="let contact of contacts; let i = index">
-				<th class="column-number ta-c">{{i+1}}</th>
-				<td class="column-officeName">{{contact.name}}</td>
-				<td class="column-address">{{contact.phone}}</td>
-				<td class="column-order ta-c">{{contact.email}}</td>
-				<td class="column-order ta-c">{{contact.address}}</td>
-				<td class="column-order ta-c">{{contact.createdDate}}</td>
+				<th class="column-number ta-c">{{ i + 1 }}</th>
+				<td class="column-officeName">{{ contact.name }}</td>
+				<td class="column-address">{{ contact.phone }}</td>
+				<td class="column-order ta-c">{{ contact.email }}</td>
+				<td class="column-order ta-c">{{ contact.address }}</td>
+				<td class="column-order ta-c">{{ contact.createdDate }}</td>
 				<td class="column-button ta-c">
 					<div class="table-buttons">
-						<span class="btn btn-outline-info btn-edit" (click)="onOpenPopup(true, contact)">
+						<span
+							class="btn btn-outline-info btn-edit"
+							(click)="onOpenPopup(true, contact)"
+						>
 							<span class="lnr lnr-eye"></span>
 						</span>
-						<span class="btn btn-outline-danger btn-remove" (click)="dateleContact(contact.id)">
+						<span
+							class="btn btn-outline-danger btn-remove"
+							(click)="dateleContact(contact.id)"
+						>
 							<span class="lnr lnr-trash"></span>
 						</span>
 					</div>

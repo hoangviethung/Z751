@@ -13,6 +13,8 @@ import { CrudService } from 'src/app/_core/services/crud.service';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+
 @Component({
 	selector: 'app-banner',
 	templateUrl: './banner.component.html',
@@ -24,7 +26,7 @@ export class BannerComponent implements OnInit {
 	isShowPopup: boolean = false;
 	isEdit: boolean;
 	languages: Array<LanguageModel>;
-	languageDefault: boolean
+	languageDefault: boolean;
 	flag = {
 		vi: LanguageFlag.vi,
 		en: LanguageFlag.en,
@@ -33,8 +35,16 @@ export class BannerComponent implements OnInit {
 	languageControl = new FormControl();
 	constructor(
 		private crudSvc: CrudService,
-		private toastrSvc: ToastrService
-	) { }
+		private toastrSvc: ToastrService,
+		private activatedRoute: ActivatedRoute,
+		private router: Router
+	) {
+		this.router.navigate([], {
+			relativeTo: this.activatedRoute,
+			queryParams: queryParams,
+			queryParamsHandling: 'merge', // remove to replace all query params by provided
+		});
+	}
 
 	ngOnInit(): void {
 		this.getBanners();

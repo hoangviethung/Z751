@@ -4,9 +4,9 @@
 			<mat-form-field>
 				<mat-select
 					name="language"
-					[formControl]="templatesControl"
-					(ngModelChange)="fetchArticle($event)"
 					[ngModel]="1"
+					[formControl]="templatesControl"
+					(valueChange)="getDataLanguage($event)"
 				>
 					<mat-option
 						*ngFor="let language of languages"
@@ -23,10 +23,9 @@
 					name="category"
 					[formControl]="categoryControl"
 					[ngModel]="0"
-					(ngModelChange)="getDataCategory($event)"
 				>
-					<mat-option [value]="0" *ngIf="isTitleEnglist == false"
-						>Chọn danh mục mục</mat-option
+					<mat-option [value]="0" *ngIf="!isTitleEnglist"
+						>Chọn danh mục</mat-option
 					>
 					<mat-option [value]="0" *ngIf="isTitleEnglist"
 						>Choose Category</mat-option
@@ -97,11 +96,12 @@
 			</td>
 		</tr>
 	</table>
-	<!-- <app-pagination
+	<app-pagination
 		*ngIf="totalItems"
 		[totalItems]="totalItems"
 		[itemPerPage]="pagination.itemPerPage"
-		(changePage)="fetchArticle()"
-		[url]="'/news'"
-	></app-pagination> -->
+		[page]="page"
+		(changePage)="paginateArticle($event)"
+		[url]="'/admin/article'"
+	></app-pagination>
 </div>

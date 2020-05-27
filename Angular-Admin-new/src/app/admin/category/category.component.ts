@@ -13,6 +13,8 @@ import { CrudService } from 'src/app/_core/services/crud.service';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
+import { PaginationModel } from 'src/app/_core/models/pagination';
+import { ActivatedRoute } from '@angular/router';
 @Component({
 	selector: 'app-category',
 	templateUrl: './category.component.html',
@@ -27,32 +29,41 @@ export class CategoryComponent implements OnInit {
 	search: FilterSearchModel = new FilterSearchModel();
 	templates: Array<TemplateModel> = TemplatesConfig;
 	languageControl = new FormControl();
+	pagination: PaginationModel = new PaginationModel(10, 1);
+	totalItems: number;
+	page: number;
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
-		private toastrSvc: ToastrService
+		private toastrSvc: ToastrService,
+		private activatedRoute: ActivatedRoute
 	) {}
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();
-		this.getCategories();
+		this.activatedRoute.queryParams.subscribe((queryParams) => {
+			if (queryParams.page) {
+				this.page = queryParams.page;
+			} else {
+				this.page = 1;
+			}
+			const opts = new InputRequestOption();
+			opts.params = {
+				languageId: this.search.languageId,
+				itemPerPage: this.pagination.itemPerPage.toString(),
+				page: queryParams.page || this.pagination.page.toString(),
+				text: this.search.keywords || '',
+			};
+			this.fetchCategories(opts);
+		});
 	}
 
-	getCategories(e?) {
-		const options = new InputRequestOption();
-		if (e) {
-			options.params = {
-				languageId: e,
-			};
-		} else {
-			options.params = {
-				languageId: '1',
-			};
-		}
+	fetchCategories(opts) {
 		this.crudSvc
-			.get(APIConfig.Category.Gets, options)
-			.subscribe((categories) => {
-				this.categories = categories.data.items;
+			.get(APIConfig.Category.Gets, opts)
+			.subscribe((response) => {
+				this.categories = response.data.items;
+				this.totalItems = response.data.total;
 			});
 	}
 
@@ -65,11 +76,39 @@ export class CategoryComponent implements OnInit {
 			.delete(APIConfig.Category.Delete, params)
 			.subscribe((response) => {
 				if (response.code == 200) {
-					this.getCategories();
+					const opts = new InputRequestOption();
+					opts.params = {
+						languageId: this.search.languageId,
+						itemPerPage: this.pagination.itemPerPage.toString(),
+						page: this.pagination.page.toString(),
+						text: this.search.keywords || '',
+					};
+					this.fetchCategories(opts);
 					this.toastrSvc.success(response.message);
 				} else {
 					this.toastrSvc.error(response.message);
 				}
 			});
+	}
+
+	paginateCategory(page) {
+		const opts = new InputRequestOption();
+		opts.params = {
+			languageId: this.search.languageId,
+			page: page,
+			itemPerPage: this.pagination.itemPerPage.toString(),
+			text: this.search.keywords || '',
+		};
+	}
+
+	changeValue(e) {
+		const opts = new InputRequestOption();
+		opts.params = {
+			languageId: this.search.languageId,
+			page: this.pagination.page.toString(),
+			itemPerPage: this.pagination.itemPerPage.toString(),
+			text: this.search.keywords || '',
+		};
+		this.fetchCategories(opts);
 	}
 }

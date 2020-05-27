@@ -1,6 +1,8 @@
 <div class="block-content" *ngIf="!isShowPopupAddEdit && !isShowPopupChangPass">
 	<div class="block-control ai-c">
-		<a class="btn btn-success btn-add " (click)="onOpenPopupAddEdit(true)">Thêm mới</a>
+		<a class="btn btn-success btn-add" (click)="onOpenPopupAddEdit(true)"
+			>Thêm mới</a
+		>
 	</div>
 	<div class="block-table">
 		<table class="table table-bordered table-striped">
@@ -16,27 +18,41 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="row-user" *ngFor="let user of users, let i = index">
-					<td class="ta-c">{{i + 1}}</td>
-					<td class="ta-c">{{user.userName}}</td>
-					<td class="ta-c">{{user.email}}</td>
-					<td class="ta-c">{{user.roles}}</td>
-					<td class="ta-c">{{user.dayOfBirth}}</td>
+				<tr class="row-user" *ngFor="let user of users; let i = index">
+					<td class="ta-c">{{ i + 1 }}</td>
+					<td class="ta-c">{{ user.userName }}</td>
+					<td class="ta-c">{{ user.email }}</td>
+					<td class="ta-c">{{ user.roles }}</td>
+					<td class="ta-c">{{ user.dayOfBirth }}</td>
 					<td class="ta-c">
 						<label class="checkbox-custom jc-c">
-							<input class="check-box" type="checkbox" name="isActive" disabled
-								checked="{{ user.isActive ? 'checked' : '' }}" />
+							<input
+								class="check-box"
+								type="checkbox"
+								name="isActive"
+								disabled
+								checked="{{ user.isActive ? 'checked' : '' }}"
+							/>
 						</label>
 					</td>
 					<td class="ta-c">
 						<div class="table-buttons">
-							<a class="btn btn-outline-success" (click)="onOpenPopupAddEdit(true, user, true)">
+							<a
+								class="btn btn-outline-success"
+								(click)="onOpenPopupAddEdit(true, user, true)"
+							>
 								<span class="lnr lnr-pencil"></span>
 							</a>
-							<a class="btn btn-outline-info" (click)="onOpenPopupChangePass(true, user)">
+							<a
+								class="btn btn-outline-info"
+								(click)="onOpenPopupChangePass(true, user)"
+							>
 								<span class="lnr lnr-text-size"></span>
 							</a>
-							<span class="btn btn-outline-danger btn-remove" (click)="deleteUser(user.userName)">
+							<span
+								class="btn btn-outline-danger btn-remove"
+								(click)="deleteUser(user.userName)"
+							>
 								<span class="lnr lnr-trash"></span>
 							</span>
 						</div>
@@ -47,12 +63,17 @@
 	</div>
 </div>
 
-
-
 <div class="popup-wrapper" *ngIf="isShowPopupAddEdit">
-	<app-add-edit [user]="user" [isEdit]="isEdit" (close)="onClosePopup($event)"></app-add-edit>
+	<app-add-edit
+		[user]="user"
+		[isEdit]="isEdit"
+		(close)="onClosePopup($event)"
+	></app-add-edit>
 </div>
 
 <div class="popup-wrapper" *ngIf="isShowPopupChangPass">
-	<app-changepasword [user]="user" (close)="onClosePopup($event)"></app-changepasword>
+	<app-changepasword
+		[user]="user"
+		(close)="onClosePopup($event)"
+	></app-changepasword>
 </div>

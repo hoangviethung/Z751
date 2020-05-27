@@ -59,7 +59,7 @@ export class HttpService {
 		return this.http.request(method, fullUrl, option).pipe(
 			map((response: any) => {
 				if (response.code != 200) {
-					console.log(response.code, response.message);
+					// console.log(response.code, response.message);
 				}
 				if (response.code == 403) {
 					this.cookieSvc.deleteAll();

@@ -11,13 +11,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr *ngFor="let resource of resources, let i = index">
-					<td>{{i+1}}</td>
-					<td>{{resource.name}}</td>
-					<td>{{resource.value.vi}}</td>
-					<td>{{resource.value.en}}</td>
+				<tr *ngFor="let resource of resources; let i = index">
+					<td>{{ i + 1 }}</td>
+					<td>{{ resource.name }}</td>
+					<td>{{ resource.value.vi }}</td>
+					<td>{{ resource.value.en }}</td>
 					<td class="ta-c">
-						<a class="btn btn-outline-success" (click)="onOpenPopup(true, resource)">
+						<a
+							class="btn btn-outline-success"
+							(click)="onOpenPopup(true, resource)"
+						>
 							<span class="lnr lnr-pencil"></span>
 						</a>
 					</td>
@@ -28,6 +31,5 @@
 </div>
 
 <div class="popup-wrapper" *ngIf="isShowPopup">
-	<app-edit [resource]="resource" (close)="onClosePopup($event)">
-	</app-edit>
+	<app-edit [resource]="resource" (close)="onClosePopup($event)"> </app-edit>
 </div>

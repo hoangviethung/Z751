@@ -8,12 +8,11 @@ import { ToastrService } from 'ngx-toastr';
 import { CrudService } from 'src/app/_core/services/crud.service';
 import { FilterSearchModel } from 'src/app/_core/models/filter.model';
 import { UtilService } from 'src/app/_core/services/util.service';
-import { CookieService } from 'src/app/_core/services/cookie.service';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { FormControl } from '@angular/forms';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
-import { ArticleService } from './article.service';
 import { PaginationModel } from 'src/app/_core/models/pagination';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-article',
@@ -32,26 +31,33 @@ export class ArticleComponent implements OnInit {
 	languageCurrent;
 	isTitleEnglist: boolean;
 	totalItems: number;
+	page: number;
 
 	constructor(
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService,
 		private utilSvc: UtilService,
-		private ArticleSvc: ArticleService
+		private activatedRoute: ActivatedRoute
 	) {}
 
 	ngOnInit(): void {
-		const opts = new InputRequestOption();
-		opts.params = {
-			languageId: this.search.languageId,
-			categoryId: this.search.categoryId,
-			page: this.pagination.page.toString(),
-			itemPerPage: this.pagination.itemPerPage.toString(),
-		};
 		this.languages = this.utilSvc.getLanguages();
-		this.languageCurrent = this.ArticleSvc.getLaunguage();
-		this.getCategories(1);
-		this.fetchArticle(opts);
+		this.activatedRoute.queryParams.subscribe((queryParams) => {
+			if (queryParams.page) {
+				this.page = queryParams.page;
+			} else {
+				this.page = 1;
+			}
+			const opts = new InputRequestOption();
+			opts.params = {
+				languageId: this.search.languageId,
+				categoryId: this.search.categoryId,
+				page: queryParams.page || this.pagination.page.toString(),
+				itemPerPage: this.pagination.itemPerPage.toString(),
+			};
+			this.fetchArticle(opts);
+			this.getCategories(1);
+		});
 	}
 
 	getDataCategory(e) {
@@ -84,16 +90,37 @@ export class ArticleComponent implements OnInit {
 		});
 	}
 
-	filterArticle() {
+	paginateArticle(page) {
 		const opts = new InputRequestOption();
 		opts.params = {
 			languageId: this.search.languageId,
-			categoryId: this.search.categoryId,
+			categoryId: this.categoryControl.value,
+			page: page,
+			itemPerPage: this.pagination.itemPerPage.toString(),
+			text: this.search.keywords || '',
+		};
+	}
+
+	filterArticle() {
+		const opts = new InputRequestOption();
+		opts.params = {
+			languageId: this.templatesControl.value,
+			categoryId: this.categoryControl.value,
 			page: this.pagination.page.toString(),
 			itemPerPage: this.pagination.itemPerPage.toString(),
 			text: this.search.keywords || '',
 		};
 		this.fetchArticle(opts);
+	}
+	
+	getDataLanguage(e) {
+		this.search.languageId = e;
+		this.getCategories(e);
+		if (e == 1) {
+			this.isTitleEnglist = false;
+		} else {
+			this.isTitleEnglist = true;
+		}
 	}
 
 	deleteArticle(id) {
@@ -105,14 +132,14 @@ export class ArticleComponent implements OnInit {
 			.delete(APIConfig.Article.Delete, opts)
 			.subscribe((response) => {
 				if (response.code == 200) {
-					const optsFetch = new InputRequestOption();
-					optsFetch.params = {
+					const opts = new InputRequestOption();
+					opts.params = {
 						languageId: this.search.languageId,
 						categoryId: this.search.categoryId,
 						page: this.pagination.page.toString(),
 						itemPerPage: this.pagination.itemPerPage.toString(),
 					};
-					this.fetchArticle(optsFetch);
+					this.fetchArticle(opts);
 					this.toastrSvc.success(response.message);
 				} else {
 					this.toastrSvc.error(response.message);
