@@ -10,7 +10,7 @@
 		<div class="row">
 			<div class="col-lg-4 col-sm-6 d-f product-col" *ngFor="let capacityProduct of capacityProducts">
 				<div class="item-product">
-					<a [routerLink]="['capacity.url']">
+					<a [routerLink]="[capacityProduct.url]">
 						<figure>
 							<div class="img ov-h">
 								<img src="{{ capacityProduct.image }}" alt="{{ capacityProduct.title }}" class="ofcv" />

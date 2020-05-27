@@ -6,8 +6,18 @@ import { HttpClient } from "@angular/common/http";
 })
 export class RedirectSerivce {
 	isRenderingSSR = true;
-	routes: string[] = [ "index", "about", "products", "departments", "capacities", // 0 - 4
-		"news", "contact", "error", "product-detail", "news-detail" // 5 - 9
+	routes: string[] = [
+		"index",
+		"about",
+		"products",
+		"departments",
+		"capacities", // 0 - 4
+		"news",
+		"contact",
+		"error",
+		"product-detail",
+		"news-detail", // 5 - 9
+		"search",
 	];
 
 	getRouteNew(httpS: HttpClient, path: string) {

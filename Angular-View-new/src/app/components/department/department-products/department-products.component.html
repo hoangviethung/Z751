@@ -4,7 +4,7 @@
 		<div class="swiper-wrapper">
 			<div *ngFor="let product of products" class="swiper-slide">
 				<div class="product-item" #departmentSlide>
-					<a routerLink="product.url">
+					<a routerLink="{{product.url}}">
 						<div class="img ov-h">
 							<img src="{{ product.image }}" alt="{{ product.title }}" />
 						</div>
