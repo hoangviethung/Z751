@@ -10,6 +10,8 @@ import {
 	PageInfoService,
 	MetaModel,
 } from "src/core/services/page-info.service";
+import * as e from "express";
+import { ProductGroupModel } from "src/core/models/ProductGroup.model";
 
 @Component({
 	selector: "app-department",
@@ -28,7 +30,8 @@ export class DepartmentComponent implements OnInit {
 	breadcrumbs;
 	departments: Array<ProductModel>;
 	categoryUrl: string;
-	productGroups: any;
+	productGroups: Array<ProductGroupModel>;
+	isShowListProduct: boolean;
 	constructor(
 		private httpSvc: HttpService,
 		@Inject(DOCUMENT) private document: Document,
@@ -83,6 +86,14 @@ export class DepartmentComponent implements OnInit {
 	getProductGroups(opts: InputRequestOption) {
 		this.httpSvc.get(API.ProductGroup.Gets, opts).subscribe((response) => {
 			this.productGroups = response.data;
+			const products = this.productGroups.filter(
+				(item) => item.isPotential == false
+			);
+			if (products.length == 0) {
+				this.isShowListProduct = false;
+			} else {
+				this.isShowListProduct = true;
+			}
 		});
 	}
 }

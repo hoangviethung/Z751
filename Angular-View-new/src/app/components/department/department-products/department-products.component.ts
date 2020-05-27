@@ -15,6 +15,7 @@ import { SwiperConfigInterface, SwiperDirective } from "ngx-swiper-wrapper";
 	styleUrls: ["./department-products.component.scss"],
 })
 export class DepartmentProductsComponent implements OnInit {
+	ngOnInit() {}
 	sliderProductsConfig: SwiperConfigInterface = {
 		slidesPerView: 3,
 		slidesPerColumn: 2,
@@ -81,6 +82,4 @@ export class DepartmentProductsComponent implements OnInit {
 			});
 		}
 	}
-
-	ngOnInit() {}
 }

@@ -26,12 +26,11 @@
 		</div>
 	</div>
 </section>
-<section class="dpm-products">
+<section class="dpm-products" *ngIf="isShowListProduct">
 	<div class="container">
 		<div class="block-title center">
 			<h2 class="main-title tt-u mb-0">
-				<!-- {{ "ResourceKeys.Products" | translate}} -->
-				Sản phẩm
+				{{ "ResourceKeys.Products" | translate}}
 			</h2>
 		</div>
 		<ng-container *ngFor="let productGroup of productGroups">
