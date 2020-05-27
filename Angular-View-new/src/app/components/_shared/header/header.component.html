@@ -31,18 +31,18 @@
 							<ul class="lst-n pl-0 d-f" *ngIf="menus">
 								<ng-container *ngFor="let menu of menus">
 									<li class="nav-item" *ngIf="menu.parentId == -99">
-										<a routerLink="{{ menu.link }}" class="nav-link fw-700 tt-u d-if" appCloseMenu>
+										<a *ngIf="menu.link==''" class="nav-link fw-700 tt-u d-if" appCloseMenu>
+											{{ menu.title }}
+										</a>
+										<a *ngIf="menu.link!==''" routerLink="{{ menu.link }}"
+											class="nav-link fw-700 tt-u d-if" appCloseMenu>
 											{{ menu.title }}
 										</a>
 										<div class="nav-sub lst-n pl-0">
 											<div class="nav-item">
-												<ng-container *ngFor="
-														let childMenu of menus
-													">
-													<a *ngIf="
-															childMenu.parentId ==
-															menu.id
-														" class="nav-link" routerLink="{{
+												<ng-container *ngFor="let childMenu of menus">
+													<a *ngIf="childMenu.parentId == menu.id" class="nav-link"
+														routerLink="{{
 															childMenu.link
 														}}" appCloseMenu>
 														{{ childMenu.title }}
