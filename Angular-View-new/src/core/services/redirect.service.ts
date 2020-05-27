@@ -6,6 +6,9 @@ import { HttpClient } from "@angular/common/http";
 })
 export class RedirectSerivce {
 	isRenderingSSR = true;
+	routes: string[] = [ "index", "about", "products", "departments", "capacities", // 0 - 4
+		"news", "contact", "error", "product-detail", "news-detail" // 5 - 9
+	];
 
 	getRouteNew(httpS: HttpClient, path: string) {
 		return httpS.get(
@@ -18,27 +21,27 @@ export class RedirectSerivce {
 		switch (template) {
 			case 0:
 				if (entityType == 18) {
-					return "product-detail";
+					return this.routes[8];
 				}
 				if (entityType == 2) {
-					return "news-detail";
+					return this.routes[9];
 				}
 			case 1:
-				return "index";
+				return this.routes[0];
 			case 2:
-				return "about";
+				return this.routes[1];
 			case 3:
-				return "products";
+				return this.routes[2];
 			case 4:
-				return "departments";
+				return this.routes[3];
 			case 5:
-				return "capacities";
+				return this.routes[4];
 			case 6:
-				return "news";
+				return this.routes[5];
 			case 7:
-				return "contact";
+				return this.routes[6];
 			default:
-				return "error";
+				return this.routes[7];
 		}
 	}
 }

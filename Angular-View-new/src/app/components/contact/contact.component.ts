@@ -10,6 +10,7 @@ import {
 import { API } from "src/core/configs/api";
 import { BranchModel } from "src/core/models/Branch.model";
 import { DOCUMENT } from "@angular/common";
+import { response } from "express";
 @Component({
 	selector: "app-contact",
 	templateUrl: "./contact.component.html",
@@ -31,6 +32,7 @@ export class ContactComponent implements OnInit {
 			url: this.document.location.pathname,
 		};
 		this.setPageInformation(opts);
+		this.getBranch();
 	}
 
 	setPageInformation(opts) {
@@ -47,6 +49,12 @@ export class ContactComponent implements OnInit {
 
 		this.httpSvc.get(API.Common.Breadcrumb, opts).subscribe((response) => {
 			this.breadcrumbs = response.data;
+		});
+	}
+
+	getBranch() {
+		this.httpSvc.get(API.Branch.Gets).subscribe((response) => {
+			this.listAddress = response.data.items;
 		});
 	}
 }

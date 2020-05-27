@@ -1,5 +1,11 @@
+<style>
+	.w4g-loading {
+		height: 700px;
+	}
+</style>
+
 <app-header></app-header>
-<main class="w4g-wrapper">
+<main [class]="loading ? 'w4g-wrapper w4g-loading' : 'w4g-wrapper'">
 	<div id="hotline">
 		<a href="tel:{{ phone }}" class="fcc">
 			<img src="/assets/images/phone.png" alt="" />
@@ -18,6 +24,6 @@
 				[color]="'#dc2424'"
 			></mat-progress-bar>
 		</div> -->
-<div class="loading-overlay" *ngIf="loading">
+<!-- <div class="loading-overlay" *ngIf="loading">
 	<mat-progress-bar mode="indeterminate"></mat-progress-bar>
-</div>
+</div> -->

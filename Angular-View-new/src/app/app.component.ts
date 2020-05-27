@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
 	phone: string;
 	loading = true;
 	fakeLoading;
-
 	constructor(
 		private rService: RedirectSerivce,
 		private httpSvc: HttpService,
@@ -87,18 +86,19 @@ export class AppComponent implements OnInit {
 		if (event instanceof NavigationStart) {
 			this.loading = true;
 		}
-		setTimeout(() => {
-			if (event instanceof NavigationEnd) {
-				this.loading = false;
-			}
 
-			// Set loading state to false in both of the below events to hide the spinner in case a request fails
-			if (event instanceof NavigationCancel) {
+		if (
+			event.url &&
+			this.rService.routes.indexOf(event.url.substr(1)) != -1
+		) {
+			if (
+				event instanceof NavigationEnd ||
+				// Set loading state to false in both of the below events to hide the spinner in case a request fails
+				event instanceof NavigationCancel ||
+				event instanceof NavigationError
+			) {
 				this.loading = false;
 			}
-			if (event instanceof NavigationError) {
-				this.loading = false;
-			}
-		}, 2000);
+		}
 	}
 }

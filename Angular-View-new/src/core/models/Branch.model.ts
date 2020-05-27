@@ -12,4 +12,5 @@ export class BranchModel {
 	officeName: string
 	order: number
 	phone: string
+	website: string
 }
