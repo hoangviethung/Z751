@@ -71,7 +71,11 @@ export class AddEditComponent implements OnInit {
 					const baseMenu: MenuModel = new MenuModel();
 					let newMenus = response.data;
 					baseMenu.id = 0;
-					baseMenu.title = 'Menu gốc';
+					if (languageId == 1) {
+						baseMenu.title = 'Menu gốc';
+					} else {
+						baseMenu.title = 'Root Menu';
+					}
 					newMenus.unshift(baseMenu);
 					if (this.menu.parentId == null) {
 						this.menu.parentId = 0;
@@ -138,5 +142,12 @@ export class AddEditComponent implements OnInit {
 				.querySelector('.block-content')
 				.classList.remove('disabled');
 		}
+	}
+
+	onChangeLanguge(e) {
+		this.activatedRoute.params.subscribe((params) => {
+			const typeMenu = Menu[params.menuTitle];
+			this.getMenus(typeMenu, e);
+		});
 	}
 }

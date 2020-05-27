@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject, Input } from "@angular/core";
 import {
 	HttpService,
 	InputRequestOption,
@@ -18,6 +18,7 @@ import {
 })
 export class DepartmentComponent implements OnInit {
 	title: string;
+	@Input("pageTitle") pageTitle: string;
 	description: string;
 	image: string;
 	designProducts: Array<ProductModel>;
@@ -28,7 +29,6 @@ export class DepartmentComponent implements OnInit {
 	departments: Array<ProductModel>;
 	categoryUrl: string;
 	productGroups: any;
-
 	constructor(
 		private httpSvc: HttpService,
 		@Inject(DOCUMENT) private document: Document,
@@ -36,6 +36,7 @@ export class DepartmentComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
+		this.pageTitle = this.title;
 		const pathname = this.document.location.pathname;
 		const opts = new InputRequestOption();
 		opts.params = {
@@ -57,6 +58,7 @@ export class DepartmentComponent implements OnInit {
 			};
 			this.pageInfoSvc.setTitle(response.data.title);
 			this.pageInfoSvc.setMeta(metaObject);
+			this.pageTitle = this.title;
 		});
 
 		this.httpSvc.get(API.Common.Breadcrumb, opts).subscribe((response) => {

@@ -11,15 +11,15 @@ export class IndexNewsComponent implements OnInit {
 	newsItems: Array<ArticleModel>;
 	@Input("language") currentLanguage: string;
 	@Input("background") background: string;
-	constructor(private httpSvc: HttpService) { }
+	@Input("pageTitle") pageTitle: string;
+	constructor(private httpSvc: HttpService) {}
 
 	ngOnInit() {
 		this.getNews();
 	}
 	getNews() {
-		this.httpSvc.get("/api/Article/used/hot-gets")
-			.subscribe((result) => {
-				this.newsItems = result.data;
-			});
+		this.httpSvc.get("/api/Article/used/hot-gets").subscribe((result) => {
+			this.newsItems = result.data;
+		});
 	}
 }
