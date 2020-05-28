@@ -6,7 +6,8 @@
 				<div class="product-item" #departmentSlide>
 					<a routerLink="{{product.url}}">
 						<div class="img ov-h">
-							<img src="{{ product.image }}" alt="{{ product.title }}" />
+							<img *ngIf="products" [defaultImage]="defaultImage" [lazyLoad]="product.image"
+								alt="{{ product.title }}">
 						</div>
 						<div class="description fcc">
 							<h3 class="tt-u ta-c" [innerHTML]="product.description"></h3>

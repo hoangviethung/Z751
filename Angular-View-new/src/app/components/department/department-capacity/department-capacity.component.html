@@ -13,7 +13,8 @@
 					<a [routerLink]="[capacityProduct.url]">
 						<figure>
 							<div class="img ov-h">
-								<img src="{{ capacityProduct.image }}" alt="{{ capacityProduct.title }}" class="ofcv" />
+								<img class="ofcv" *ngIf="capacityProducts" [defaultImage]="defaultImage"
+									[lazyLoad]="capacityProduct.image" alt="{{ capacityProduct.title }}">
 							</div>
 							<figcaption class="description row no-gutters">
 								<div class="item-info col-md">

@@ -20,6 +20,10 @@ export class StaffComponent implements OnInit {
 		spaceBetween: 15,
 		observer: true,
 		observeParents: true,
+		// Disable preloading of all images
+		preloadImages: false,
+		// Enable lazy loading
+		lazy: true,
 		autoplay: {
 			delay: 2000,
 		},

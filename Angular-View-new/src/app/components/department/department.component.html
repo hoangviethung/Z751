@@ -10,8 +10,7 @@
 			<div class="row">
 				<div class="col-12">
 					<h2 class="main-title tt-u">
-						<!-- {{ "menu.about" | translate}} -->
-						Giới thiệu
+						{{ "menu.about" | translate}}
 					</h2>
 				</div>
 				<div class="col-lg-6">
@@ -19,7 +18,7 @@
 				</div>
 				<div class="col-lg-6">
 					<div class="img">
-						<img src="{{ image }}" alt="" />
+						<img *ngIf="image" [defaultImage]="defaultImage" [lazyLoad]="image" alt="GIOI-THIEU">
 					</div>
 				</div>
 			</div>

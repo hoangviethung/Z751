@@ -11,7 +11,8 @@
 					<div *ngFor="let yearImage of yearImages" class="swiper-slide">
 						<h3>{{ yearImage.name }}</h3>
 						<div class="icon">
-							<img src="./assets/images/icons/timeline.png" alt="" />
+							<img class="swiper-lazy" data-src="./assets/images/icons/timeline.png" alt="LỊCH SỬ" />
+							<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
 						</div>
 						<p>{{ yearImage.alt }}</p>
 					</div>

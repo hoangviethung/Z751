@@ -41,7 +41,8 @@ export class DepartmentProductsComponent implements OnInit {
 	};
 	@ViewChild(SwiperDirective, { static: false }) swiperView: SwiperDirective;
 	@Input("products") products: Array<ProductModel>;
-
+	defaultImage =
+		"https://i1.wp.com/www.uminahairandbeauty.com.au/wp-content/uploads/2018/08/background-wallpaper-noisy-gray-light-and-white-color-small-random-spots-texture.jpg?fit=256%2C256&ssl=1";
 	constructor() {}
 
 	setSizeSlideitem(e) {
