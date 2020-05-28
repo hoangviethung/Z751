@@ -14,6 +14,7 @@ import {
 import { LanguageService } from "src/core/services/language.service";
 import { LanguageModel } from "src/core/models/Language.model";
 import { loading } from "./animation";
+import * as e from "express";
 
 @Component({
 	selector: "app-root",
@@ -86,10 +87,10 @@ export class AppComponent implements OnInit {
 		if (event instanceof NavigationStart) {
 			this.loading = true;
 		}
-
 		if (
 			event.url &&
-			this.rService.routes.indexOf(event.url.substr(1)) != -1
+			(this.rService.routes.indexOf(event.url.substr(1)) != -1 ||
+				event.url.includes("/search"))
 		) {
 			if (
 				event instanceof NavigationEnd ||

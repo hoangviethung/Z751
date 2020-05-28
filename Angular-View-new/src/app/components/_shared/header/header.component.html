@@ -3,7 +3,7 @@
 		<div class="row no-gutters aic">
 			<div class="logo">
 				<a [routerLink]="'/index'">
-					<img alt="" src="./assets/images/logo.png" />
+					<img [defaultImage]="defaultImage" [lazyLoad]="'./assets/images/logo.png'">
 				</a>
 			</div>
 			<div class="overlay mobile"></div>
@@ -50,7 +50,8 @@
 												</ng-container>
 											</div>
 											<div class="nav-sub-close mobile">
-												<img src="assets/images/icons/arrow-left.svg" />
+												<img [defaultImage]="defaultImage"
+													[lazyLoad]="'assets/images/icons/arrow-left.svg'">
 											</div>
 										</div>
 									</li>

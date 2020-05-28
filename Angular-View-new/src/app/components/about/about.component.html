@@ -8,11 +8,7 @@
 					{{ aboutLetter.title }}
 				</h2>
 			</div>
-			<div
-				class="content"
-				*ngIf="aboutLetter"
-				[innerHTML]="aboutLetter.content"
-			></div>
+			<div class="content" *ngIf="aboutLetter" [innerHTML]="aboutLetter.content"></div>
 		</div>
 	</section>
 
@@ -20,20 +16,15 @@
 	<section class="mission-vision pd-70">
 		<div class="container">
 			<div class="block-title center">
-				<div
-					class="main-title fw-700 tt-u cl-white"
-					*ngIf="missionVision"
-				>
+				<div class="main-title fw-700 tt-u cl-white" *ngIf="missionVision">
 					{{ missionVision.title }}
 				</div>
 			</div>
 			<div class="list-item row">
-				<div
-					class="item col-md-4"
-					*ngFor="let missionVisionImage of missionVisionImages"
-				>
+				<div class="item col-md-4" *ngFor="let missionVisionImage of missionVisionImages">
 					<figure>
-						<img src="{{ missionVisionImage.path }}" alt="" />
+						<img *ngIf="missionVisionImages" [defaultImage]="defaultImage"
+							[lazyLoad]="missionVisionImage.path">
 						<figcaption>
 							<h5>{{ missionVisionImage.name }}</h5>
 							<p>{{ missionVisionImage.alt }}</p>
@@ -53,7 +44,7 @@
 	<!-- system -->
 	<section class="system pd-70">
 		<figure>
-			<img src="./assets/images/about/system.png" alt="" />
+			<img [defaultImage]="defaultImage" [lazyLoad]="'./assets/images/about/system.png'">
 		</figure>
 	</section>
 

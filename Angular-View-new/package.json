@@ -39,6 +39,7 @@
     "express": "^4.15.2",
     "fs": "0.0.1-security",
     "hammerjs": "^2.0.8",
+    "ng-lazyload-image": "^7.1.0",
     "ngx-cookie-service": "^3.0.4",
     "ngx-swiper-wrapper": "^9.0.1",
     "rxjs": "~6.4.0",

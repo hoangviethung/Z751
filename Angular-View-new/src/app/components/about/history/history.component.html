@@ -8,16 +8,10 @@
 		<div class="timeline">
 			<div class="swiper-container" [swiper]="sliderHistoryConfig">
 				<div class="swiper-wrapper">
-					<div
-						*ngFor="let yearImage of yearImages"
-						class="swiper-slide"
-					>
+					<div *ngFor="let yearImage of yearImages" class="swiper-slide">
 						<h3>{{ yearImage.name }}</h3>
 						<div class="icon">
-							<img
-								src="./assets/images/icons/timeline.png"
-								alt=""
-							/>
+							<img src="./assets/images/icons/timeline.png" alt="" />
 						</div>
 						<p>{{ yearImage.alt }}</p>
 					</div>

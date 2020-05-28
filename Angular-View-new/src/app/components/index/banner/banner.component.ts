@@ -28,7 +28,7 @@ export class BannerComponent implements OnInit {
 
 	@Input("language") currentLanguage;
 
-	constructor(private httpSvc: HttpService) { }
+	constructor(private httpSvc: HttpService) {}
 
 	ngOnInit() {
 		this.getBanners();

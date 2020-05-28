@@ -13,7 +13,8 @@
 						<div class="product-item" #departmentSlide>
 							<a [routerLink]="item.previewUrl">
 								<div class="img ov-h">
-									<img src="{{ item.image }}" alt="{{ item.title }}" />
+									<img class="swiper-lazy" data-src="{{ item.image }}" alt="{{ item.title }}" />
+									<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
 								</div>
 								<div class="description fcc">
 									<h3 class="tt-u ta-c" [innerHTML]="item.title"></h3>
@@ -24,10 +25,10 @@
 				</div>
 			</div>
 			<div class="swiper-button-prev">
-				<img src="/assets/images/icons/swiper_prev.svg" alt="" />
+				<img [defaultImage]="defaultImage" [lazyLoad]="'/assets/images/icons/swiper_prev.svg'">
 			</div>
 			<div class="swiper-button-next">
-				<img src="/assets/images/icons/swiper_next.svg" alt="" />
+				<img [defaultImage]="defaultImage" [lazyLoad]="'/assets/images/icons/swiper_next.svg'">
 			</div>
 		</div>
 	</div>

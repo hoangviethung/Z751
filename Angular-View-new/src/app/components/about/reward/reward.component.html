@@ -11,17 +11,10 @@
 		<div class="slider-reward">
 			<div class="swiper-container" [swiper]="sliderRewardConfig">
 				<div class="swiper-wrapper">
-					<div
-						*ngFor="let rewardImage of rewardImages"
-						class="swiper-slide"
-					>
+					<div *ngFor="let rewardImage of rewardImages" class="swiper-slide">
 						<figure>
 							<div class="box-img">
-								<img
-									class="ofcv"
-									src="{{ rewardImage.path }}"
-									alt="{{ rewardImage.alt }}"
-								/>
+								<img class="ofcv" src="{{ rewardImage.path }}" alt="{{ rewardImage.alt }}" />
 							</div>
 							<figcaption>
 								<h3 class="lcl lcl-2">

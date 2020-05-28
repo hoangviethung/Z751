@@ -29,7 +29,7 @@ export class RewardComponent implements OnInit {
 		breakpoints: {
 			1025: {
 				spaceBetween: 30,
-				slidesPerView: 3
+				slidesPerView: 3,
 			},
 			768: {
 				spaceBetween: 15,
@@ -54,10 +54,9 @@ export class RewardComponent implements OnInit {
 		opts.params = {
 			template: "5",
 		};
-		this.httpSvc.get(API.Section.Get, opts)
-			.subscribe((result) => {
-				this.reward = result.data;
-				this.rewardImages = result.data.images;
-			});
+		this.httpSvc.get(API.Section.Get, opts).subscribe((result) => {
+			this.reward = result.data;
+			this.rewardImages = result.data.images;
+		});
 	}
 }

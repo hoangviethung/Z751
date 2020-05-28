@@ -10,7 +10,8 @@
 				<div class="news-item" [ngClass]="{ 'news-big': i == 0 }" *ngIf="i < 5" appIndexNewsItem>
 					<a [routerLink]="[item.url]" class="d-f fw-w">
 						<div class="img ov-h">
-							<img src="{{ item.image }}" alt="" />
+							<img *ngIf="newsItems" [defaultImage]="defaultImage" [lazyLoad]="item.image"
+								alt="{{ item.title }}">
 						</div>
 						<div class="description">
 							<h3>{{ item.title }}</h3>
@@ -29,7 +30,7 @@
 		<div class="btn-wrapper d-f jc-fe">
 			<a [routerLink]="['/news']" class="btn-red btn-viewmore">
 				{{ "ResourceKeys.ViewMore" | translate }}
-				<img src="/assets/images/icons/icon_viewmore.svg" alt="" />
+				<img [defaultImage]="defaultImage" [lazyLoad]="'/assets/images/icons/icon_viewmore.svg'">
 			</a>
 		</div>
 	</div>
