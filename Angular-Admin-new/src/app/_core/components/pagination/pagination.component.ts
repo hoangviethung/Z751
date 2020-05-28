@@ -1,4 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	Input,
+	OnChanges,
+	Output,
+	EventEmitter,
+} from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { PaginationModel } from '../../models/pagination';
 
@@ -7,31 +14,32 @@ import { PaginationModel } from '../../models/pagination';
 	templateUrl: './pagination.component.html',
 	styleUrls: ['./pagination.component.scss'],
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent implements OnInit, OnChanges {
 	pager;
-	page: number;
 	itemPerPage: number;
 	@Input('pagination') pagination: PaginationModel = new PaginationModel(
 		10,
 		1
 	);
 	@Input('totalItems') totalItems: number = 0;
+	@Output('change') change = new EventEmitter<any>();
 
 	constructor(
 		private router: Router,
 		private activateRoute: ActivatedRoute
 	) {}
-
+	ngOnChanges() {}
 	ngOnInit() {
 		this.itemPerPage = this.pagination.itemPerPage;
-		this.page = this.pagination.page;
-		this.choosepage(this.page, true);
+		this.pagination.page = this.pagination.page;
+		this.choosepage(this.pagination.page, true);
 		this.router.events.subscribe((event) => {
 			if (event instanceof NavigationEnd) {
-				this.choosepage(this.page, true);
+				this.choosepage(this.pagination.page, true);
 			}
 		});
 	}
+
 	choosepage(page, isFirst?) {
 		page = Number(page);
 		if (
@@ -51,7 +59,7 @@ export class PaginationComponent implements OnInit {
 				: page;
 
 		this.pager = this.getPager(totalItems, page, this.itemPerPage);
-		this.page = page;
+		this.pagination.page = page;
 		if (!isFirst) {
 			this.router.navigate([], {
 				relativeTo: this.activateRoute,

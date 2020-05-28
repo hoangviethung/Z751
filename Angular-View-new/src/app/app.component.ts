@@ -26,19 +26,18 @@ export class AppComponent implements OnInit {
 	title = "z751";
 	phone: string;
 	loading = true;
-	fakeLoading;
 	constructor(
 		private rService: RedirectSerivce,
 		private httpSvc: HttpService,
 		private langSvc: LanguageService,
 		private router: Router
 	) {
-		// var interval = setInterval(() => {
-		// 	if (!this.rService.isRenderingSSR) {
-		// 		clearInterval(interval);
-		// 		this.loading = false;
-		// 	}
-		// }, 100);
+		var interval = setInterval(() => {
+			if (!this.rService.isRenderingSSR) {
+				clearInterval(interval);
+				this.loading = false;
+			}
+		}, 100);
 	}
 
 	ngOnInit() {

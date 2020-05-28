@@ -11,6 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
+import { FilterSearchModel } from 'src/app/_core/models/filter.model';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
 	selector: 'app-product-groups',
 	templateUrl: './product-groups.component.html',
@@ -23,10 +25,12 @@ export class ProductGroupsComponent implements OnInit {
 	productGroups: Array<ProductGroupModel>;
 	productGroup: ProductGroupModel;
 	templates: Array<TemplateModel> = TemplatesConfig;
-	languageControl = new FormControl();
+	search: FilterSearchModel = new FilterSearchModel();
 	constructor(
 		private httpSvc: HttpService,
-		private toastrSvc: ToastrService
+		private toastrSvc: ToastrService,
+		private router: Router,
+		private activatedRoute: ActivatedRoute
 	) {}
 
 	ngOnInit(): void {
@@ -34,24 +38,28 @@ export class ProductGroupsComponent implements OnInit {
 		this.languages = JSON.parse(localStorage.getItem('languages'));
 	}
 
-	getProductGroups(languageId?) {
-		const params = new InputRequestOption();
-		if (languageId) {
-			params.params = {
-				languageId: languageId,
+	getProductGroups() {
+		this.activatedRoute.queryParams.subscribe((queryParams) => {
+			const defaultParams = {
+				languageId: this.search.languageId,
 			};
-		} else {
-			params.params = {
-				languageId: '1',
-			};
-		}
-
-		this.httpSvc
-			.get(APIConfig.ProductGroup.Gets, params)
-			.pipe(map((response) => response.data))
-			.subscribe((prodcutGroups) => {
-				this.productGroups = prodcutGroups;
-			});
+			for (const key in queryParams) {
+				if (queryParams.hasOwnProperty(key)) {
+					defaultParams[key] = queryParams[key];
+				}
+				if (key == 'languageId') {
+					this.search[key] = queryParams[key];
+				}
+			}
+			const opts = new InputRequestOption();
+			opts.params = defaultParams;
+			this.httpSvc
+				.get(APIConfig.ProductGroup.Gets, opts)
+				.pipe(map((response) => response.data))
+				.subscribe((prodcutGroups) => {
+					this.productGroups = prodcutGroups;
+				});
+		});
 	}
 
 	onOpenPopup(status, itemEdit?, isEdit?) {
@@ -86,8 +94,18 @@ export class ProductGroupsComponent implements OnInit {
 				}
 			});
 	}
-
-	fetchProductGroup(e) {
-		this.getProductGroups(e);
+	changeLanguage(e) {
+		let filterParams = {
+			languageId: e,
+		};
+		this.router
+			.navigate([], {
+				relativeTo: this.activatedRoute,
+				queryParams: filterParams,
+				queryParamsHandling: 'merge',
+			})
+			.then(() => {
+				this.getProductGroups();
+			});
 	}
 }

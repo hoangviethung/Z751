@@ -58,8 +58,6 @@ export class CategoryComponent implements OnInit {
 			}
 			const opts = new InputRequestOption();
 			opts.params = defaultParams;
-			console.log(defaultParams);
-
 			this.crudSvc
 				.get(APIConfig.Category.Gets, opts)
 				.subscribe((response) => {
@@ -105,16 +103,14 @@ export class CategoryComponent implements OnInit {
 			page: null,
 		};
 		this.pagination.page = 1;
-		setTimeout(() => {
-			this.router
-				.navigate([], {
-					relativeTo: this.activatedRoute,
-					queryParams: filterParams,
-					queryParamsHandling: 'merge',
-				})
-				.then(() => {
-					this.fetchCategories();
-				});
-		}, 50);
+		this.router
+			.navigate([], {
+				relativeTo: this.activatedRoute,
+				queryParams: filterParams,
+				queryParamsHandling: 'merge',
+			})
+			.then(() => {
+				this.fetchCategories();
+			});
 	}
 }

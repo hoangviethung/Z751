@@ -4,13 +4,12 @@
 			<mat-form-field>
 				<mat-select
 					name="language"
-					[formControl]="languageControl"
-					(ngModelChange)="fetchProductGroup($event)"
-					[ngModel]="1"
+					(valueChange)="changeLanguage($event)"
+					[ngModel]="search.languageId.toString()"
 				>
 					<mat-option
 						*ngFor="let language of languages"
-						[value]="language.id"
+						[value]="language.id.toString()"
 					>
 						{{ language.name }}
 					</mat-option>
