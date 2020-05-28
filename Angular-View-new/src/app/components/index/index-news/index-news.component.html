@@ -2,21 +2,13 @@
 	<div class="container">
 		<div class="block-title">
 			<h2 class="main-title tt-u tag-line">
-				{{ "index.news.title" | translate }}
+				{{ "index.news.title"  | translate }} {{pageTitle}}
 			</h2>
 		</div>
 		<div class="news-list clearfix">
 			<ng-container *ngFor="let item of newsItems; let i = index">
-				<div
-					class="news-item"
-					[ngClass]="{ 'news-big': i == 0 }"
-					*ngIf="i < 5"
-					appIndexNewsItem
-				>
-					<a
-						[routerLink]="['/news', item.categoryId, item.url]"
-						class="d-f fw-w"
-					>
+				<div class="news-item" [ngClass]="{ 'news-big': i == 0 }" *ngIf="i < 5" appIndexNewsItem>
+					<a [routerLink]="[item.url]" class="d-f fw-w">
 						<div class="img ov-h">
 							<img src="{{ item.image }}" alt="" />
 						</div>

@@ -28,7 +28,6 @@ export class HeaderComponent implements OnInit {
 		private httpSvc: HttpService,
 		private router: Router,
 		private langSvc: LanguageService,
-		private translateSvc: TranslateService,
 		@Inject(PLATFORM_ID) private platform,
 		@Inject(DOCUMENT) private document: Document
 	) {}
@@ -139,6 +138,7 @@ export class HeaderComponent implements OnInit {
 			)
 			.subscribe((response) => {
 				this.menus = response;
+				console.log(this.menus);
 			});
 	}
 

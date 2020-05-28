@@ -20,7 +20,8 @@
 					<div class="form-group col-12">
 						<label>Ngôn ngữ *</label>
 						<mat-form-field>
-							<mat-select name="language" [formControl]="languageControl" [(ngModel)]="menu.languageId">
+							<mat-select name="language" [formControl]="languageControl" [(ngModel)]="menu.languageId"
+								(ngModelChange)="onChangeLanguge($event)">
 								<mat-option *ngFor="let language of languages" [value]="language.id">
 									{{ language.name }}
 								</mat-option>
