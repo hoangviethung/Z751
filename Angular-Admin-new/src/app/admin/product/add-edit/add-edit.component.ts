@@ -133,7 +133,7 @@ export class AddEditComponent implements OnInit {
 
 		for (const key of Object.keys(this.product)) {
 			if (this.product[key] != null) {
-				if (String(this.product[key]).length <= 0) {
+				if (String(this.product[key]).length <= 0 && key != 'images') {
 					// this.product[key] = null;
 					delete this.product[key];
 				}
