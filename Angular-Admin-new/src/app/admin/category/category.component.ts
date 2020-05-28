@@ -58,6 +58,8 @@ export class CategoryComponent implements OnInit {
 			}
 			const opts = new InputRequestOption();
 			opts.params = defaultParams;
+			console.log(defaultParams);
+
 			this.crudSvc
 				.get(APIConfig.Category.Gets, opts)
 				.subscribe((response) => {
@@ -76,8 +78,21 @@ export class CategoryComponent implements OnInit {
 			.delete(APIConfig.Category.Delete, params)
 			.subscribe((response) => {
 				if (response.code == 200) {
-					this.router.navigate([]);
-					this.toastrSvc.success(response.message);
+					this.pagination.page = 1;
+					let filterParams = {
+						languageId: this.search.languageId,
+						page: this.pagination.page,
+					};
+					this.router
+						.navigate([], {
+							relativeTo: this.activatedRoute,
+							queryParams: filterParams,
+							queryParamsHandling: 'merge',
+						})
+						.then(() => {
+							this.fetchCategories();
+							this.toastrSvc.success(response.message);
+						});
 				} else {
 					this.toastrSvc.error(response.message);
 				}
@@ -85,19 +100,21 @@ export class CategoryComponent implements OnInit {
 	}
 
 	changeLanguage(e) {
-		this.search.languageId = e;
-		this.pagination.page = 1;
 		let filterParams = {
-			languageId: this.search.languageId,
-			text: this.search.keywords,
+			languageId: e,
 			page: null,
 		};
 		this.pagination.page = 1;
-		this.router.navigate([], {
-			relativeTo: this.activatedRoute,
-			queryParams: filterParams,
-			queryParamsHandling: 'merge',
-		});
-		this.fetchCategories();
+		setTimeout(() => {
+			this.router
+				.navigate([], {
+					relativeTo: this.activatedRoute,
+					queryParams: filterParams,
+					queryParamsHandling: 'merge',
+				})
+				.then(() => {
+					this.fetchCategories();
+				});
+		}, 50);
 	}
 }

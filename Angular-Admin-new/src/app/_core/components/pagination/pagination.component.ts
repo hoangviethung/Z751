@@ -1,11 +1,4 @@
-import {
-	Component,
-	OnInit,
-	Input,
-	Output,
-	EventEmitter,
-	OnChanges,
-} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { PaginationModel } from '../../models/pagination';
 
@@ -38,7 +31,6 @@ export class PaginationComponent implements OnInit {
 				this.choosepage(this.page, true);
 			}
 		});
-		console.log(this.pagination);
 	}
 	choosepage(page, isFirst?) {
 		page = Number(page);

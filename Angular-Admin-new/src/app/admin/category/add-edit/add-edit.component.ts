@@ -94,7 +94,6 @@ export class AddEditComponent implements OnInit {
 			.subscribe((categories) => {
 				this.categories = categories;
 				this.updateBaseUrl(this.category.parentId);
-				console.log(123);
 			});
 	}
 
@@ -147,8 +146,6 @@ export class AddEditComponent implements OnInit {
 				this.previewUrlTemp += '/';
 			}
 		}
-
-		console.log(this.previewUrlTemp);
 	}
 
 	setAliasTitleToUrl() {
@@ -214,7 +211,11 @@ export class AddEditComponent implements OnInit {
 							});
 					}
 					this.toastrSvc.success(response.message);
-					this.router.navigate(['/admin/category']);
+					this.router.navigate(['/admin/category'], {
+						queryParams: {
+							languageId: this.category.languageId,
+						},
+					});
 				} else {
 					this.toastrSvc.error(response.message);
 				}

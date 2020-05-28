@@ -123,13 +123,13 @@ export class ArticleComponent implements OnInit {
 	}
 
 	filterArticle() {
+		this.pagination.page = 1;
 		let filterParams = {
 			languageId: this.search.languageId,
 			categoryId: this.search.categoryId,
 			text: this.search.keywords,
-			page: null,
+			page: this.pagination.page,
 		};
-		this.pagination.page = 1;
 		this.router.navigate([], {
 			relativeTo: this.activatedRoute,
 			queryParams: filterParams,
