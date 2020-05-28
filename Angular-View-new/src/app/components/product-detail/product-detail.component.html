@@ -151,4 +151,4 @@
 	</div>
 </section>
 
-<app-product-others [routeParamUrl]="productCategoryUrl" [language]="currentLanguage"></app-product-others>
+<app-product-others [routeParamUrl]="productCategoryUrl" [language]="currentLanguage" *ngIf="product"></app-product-others>

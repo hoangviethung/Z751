@@ -12,8 +12,7 @@
 				<app-capacity-simple [product]="product"></app-capacity-simple>
 			</div>
 		</div>
-		<app-pagination *ngIf="totalItems" [totalItems]="totalItems" [itemPerPage]="pagination.itemPerPage"
-			(changePage)="refreshList($event)">
+		<app-pagination *ngIf="totalItems" [totalItems]="totalItems" [pagination]="pagination">
 		</app-pagination>
 	</div>
 </section>

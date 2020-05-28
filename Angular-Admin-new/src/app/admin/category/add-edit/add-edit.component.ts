@@ -77,6 +77,14 @@ export class AddEditComponent implements OnInit {
 				map((response) => {
 					const baseCategory: CategoryModel = new CategoryModel();
 					let newCategory = response.data.items;
+					newCategory.forEach((item) => {
+						if (item.parentName == null) {
+							item.parentName = '';
+						} else {
+							item.parentName += ' >> ';
+						}
+					});
+
 					baseCategory.previewUrl = '';
 					baseCategory.id = 0;
 					if (languageId == '1') {
