@@ -1,5 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+	Component,
+	OnInit,
+	Input,
+	OnChanges,
+	Output,
+	EventEmitter,
+} from '@angular/core';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { PaginationModel } from '../../models/pagination';
 
 @Component({
@@ -7,27 +14,34 @@ import { PaginationModel } from '../../models/pagination';
 	templateUrl: './pagination.component.html',
 	styleUrls: ['./pagination.component.scss'],
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent implements OnInit, OnChanges {
 	pager;
-	pagination: PaginationModel = new PaginationModel(10, 1);
-	@Input('itemPerPage') itemPerPage: number;
-	@Input('totalItems') totalItems: number;
-	@Input('page') page: number;
-	@Input('url') url: string;
-	@Input('keywords') keywords: string = null;
-	@Output('changePage') changePage: EventEmitter<number> = new EventEmitter<
-		number
-	>();
+	itemPerPage: number;
+	@Input('pagination') pagination: PaginationModel = new PaginationModel(
+		10,
+		1
+	);
+	@Input('totalItems') totalItems: number = 0;
+	@Output('change') change = new EventEmitter<any>();
 
-	constructor(private router: Router) {}
-
+	constructor(
+		private router: Router,
+		private activateRoute: ActivatedRoute
+	) {}
+	ngOnChanges() {}
 	ngOnInit() {
-		this.choosepage(this.page, true);
+		this.itemPerPage = this.pagination.itemPerPage;
+		this.pagination.page = this.pagination.page;
+		this.choosepage(this.pagination.page, true);
+		this.router.events.subscribe((event) => {
+			if (event instanceof NavigationEnd) {
+				this.choosepage(this.pagination.page, true);
+			}
+		});
 	}
 
 	choosepage(page, isFirst?) {
 		page = Number(page);
-
 		if (
 			page < 1 ||
 			(this.pager &&
@@ -45,13 +59,14 @@ export class PaginationComponent implements OnInit {
 				: page;
 
 		this.pager = this.getPager(totalItems, page, this.itemPerPage);
-
+		this.pagination.page = page;
 		if (!isFirst) {
-			this.router.navigate([this.url], {
+			this.router.navigate([], {
+				relativeTo: this.activateRoute,
 				queryParams: { page: this.pager.page },
+				queryParamsHandling: 'merge',
 			});
 		}
-		this.changePage.emit(this.pager.page);
 	}
 
 	// Pagination function

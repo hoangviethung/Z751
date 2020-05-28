@@ -4,13 +4,12 @@
 			<mat-form-field>
 				<mat-select
 					name="language"
-					[ngModel]="1"
-					[formControl]="templatesControl"
-					(valueChange)="getDataLanguage($event)"
+					[ngModel]="search.languageId"
+					(valueChange)="changeLanguage($event)"
 				>
 					<mat-option
 						*ngFor="let language of languages"
-						[value]="language.id"
+						[value]="language.id.toString()"
 					>
 						{{ language.name }}
 					</mat-option>
@@ -21,18 +20,18 @@
 			<mat-form-field>
 				<mat-select
 					name="category"
-					[formControl]="categoryControl"
-					[ngModel]="0"
+					[ngModel]="search.categoryId"
+					(valueChange)="changeCategory($event)"
 				>
-					<mat-option [value]="0" *ngIf="!isTitleEnglist"
-						>Chọn danh mục</mat-option
-					>
-					<mat-option [value]="0" *ngIf="isTitleEnglist"
-						>Choose Category</mat-option
-					>
+					<mat-option [value]="'0'" *ngIf="!isTitleEnglist">
+						Chọn danh mục
+					</mat-option>
+					<mat-option [value]="'0'" *ngIf="isTitleEnglist">
+						Choose Category
+					</mat-option>
 					<mat-option
 						*ngFor="let category of categories"
-						[value]="category.id"
+						[value]="category.id.toString()"
 					>
 						{{ category.parentName + category.title }}
 					</mat-option>
@@ -44,9 +43,10 @@
 				class="form-control"
 				placeholder="Tìm kiếm..."
 				type="text"
-				name="article-keywords"
-				id="article-keywords"
+				name="keywords"
+				id="keywords"
 				[(ngModel)]="search.keywords"
+				(keyup)="keywordChange($event)"
 			/>
 		</div>
 		<div class="form-group mb-0 form-button">
@@ -99,9 +99,7 @@
 	<app-pagination
 		*ngIf="totalItems"
 		[totalItems]="totalItems"
-		[itemPerPage]="pagination.itemPerPage"
-		[page]="page"
-		(changePage)="paginateArticle($event)"
-		[url]="'/admin/article'"
-	></app-pagination>
+		[pagination]="pagination"
+	>
+	</app-pagination>
 </div>

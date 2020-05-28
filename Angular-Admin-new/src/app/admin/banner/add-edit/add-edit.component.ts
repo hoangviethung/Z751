@@ -1,9 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BannerModel } from 'src/app/_core/models/banner.model';
-import {
-	HttpService,
-	InputRequestOption,
-} from 'src/app/_core/services/http.service';
+import { InputRequestOption } from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
 import { LanguageModel } from 'src/app/_core/models/language';
 import { CategoryModel } from 'src/app/_core/models/category.model';
@@ -12,6 +9,7 @@ import { CrudService } from 'src/app/_core/services/crud.service';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
+
 @Component({
 	selector: 'app-add-edit',
 	templateUrl: './add-edit.component.html',
@@ -68,6 +66,7 @@ export class AddEditComponent implements OnInit {
 	closePopup(status) {
 		this.close.emit(status);
 	}
+	
 	isShowPopupUploadfile(isShow: boolean) {
 		if (isShow == true) {
 			this.isShowUpload = true;

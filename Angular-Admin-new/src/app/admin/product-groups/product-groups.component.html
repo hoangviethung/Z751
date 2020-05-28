@@ -1,16 +1,15 @@
-<div class="block-content" *ngIf="!isShowPopup">
+<ng-container *ngIf="!isShowPopup">
 	<div class="block-control ai-c">
 		<div class="mr-at">
 			<mat-form-field>
 				<mat-select
 					name="language"
-					[formControl]="languageControl"
-					(ngModelChange)="fetchProductGroup($event)"
-					[ngModel]="1"
+					(valueChange)="changeLanguage($event)"
+					[ngModel]="search.languageId.toString()"
 				>
 					<mat-option
 						*ngFor="let language of languages"
-						[value]="language.id"
+						[value]="language.id.toString()"
 					>
 						{{ language.name }}
 					</mat-option>
@@ -62,9 +61,8 @@
 					</div>
 				</td>
 			</tr>
-		</table>
-	</div>
-</div>
+		</table></div
+></ng-container>
 
 <div class="popup-wrapper" *ngIf="isShowPopup">
 	<app-add-edit

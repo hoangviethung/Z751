@@ -44,8 +44,11 @@ export class RedirectComponent implements OnInit {
 			if (!this.isLoading) {
 				clearInterval(interval);
 				if (path != "/" && path != this.document.location.pathname) {
-					this.rService.isRenderingSSR = false;
-					this.r.navigateByUrl(path, { skipLocationChange: true });
+					this.r
+						.navigateByUrl(path, { skipLocationChange: true })
+						.then(() => {
+							this.rService.isRenderingSSR = false;
+						});
 				}
 			}
 		}, 1000);

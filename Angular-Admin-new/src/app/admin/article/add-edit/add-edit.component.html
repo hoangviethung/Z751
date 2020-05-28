@@ -17,87 +17,136 @@
 <div class="tab-container block-form" appTab>
 	<ul class="tab-items">
 		<li class="item active" toggle-for="item-1">Nội dung</li>
-		<li class="item" toggle-for="item-2">SEOs</li>
+		<li class="item" toggle-for="item-2">SEO</li>
 		<!-- <li class="item" toggle-for="item-3">Hình ảnh</li> -->
 	</ul>
 	<div class="tab-contents">
 		<div class="content show" tab-id="item-1">
 			<div class="row">
-				<div class="form-group col-lg-6">
+				<div class="form-group col-lg-12">
 					<label>Ngôn ngữ *</label>
 					<mat-form-field>
-						<mat-select name="language" [formControl]="LanguageControl" [(ngModel)]="article.languageId"
-							(ngModelChange)="onChangeLanguage($event)">
-							<mat-option *ngFor="let language of languages" [value]="language.id">
+						<mat-select
+							name="language"
+							[(ngModel)]="article.languageId"
+							(valueChange)="onChangeLanguage($event)"
+						>
+							<mat-option
+								*ngFor="let language of languages"
+								[value]="language.id"
+							>
 								{{ language.name }}
 							</mat-option>
 						</mat-select>
 					</mat-form-field>
 				</div>
-				<div class="form-group col-lg-6">
+				<div class="form-group col-lg-12">
 					<label>Danh mục *</label>
 					<mat-form-field>
-						<mat-select name="categories" [formControl]="CategoryControl" [(ngModel)]="article.categoryId"
-							(ngModelChange)="updateBaseUrl(article.categoryId)">
-							<mat-option *ngFor="let category of categories" [value]="category.id">
+						<mat-select
+							name="categories"
+							[(ngModel)]="article.categoryId"
+							(valueChange)="updateBaseUrl($event)"
+						>
+							<mat-option
+								*ngFor="let category of categories"
+								[value]="category.id"
+							>
 								{{ category.parentName + category.title }}
 							</mat-option>
 						</mat-select>
 					</mat-form-field>
 				</div>
-				<div class="form-group col-lg-6">
+				<div class="form-group col-lg-12">
 					<label>Tiêu đề *</label>
-					<input class="form-control" type="text" placeholder="Nhập tiêu đề" [(ngModel)]="article.title"
-						(keyup)="setAliasTitleToUrl()" />
+					<input
+						class="form-control"
+						type="text"
+						placeholder="Nhập tiêu đề"
+						[(ngModel)]="article.title"
+						(keyup)="setAliasTitleToUrl()"
+					/>
 				</div>
-				<div class="form-group col-lg-6">
+				<div class="form-group col-lg-12">
 					<label>Đường dẫn *</label>
 					<div class="input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text">
-								{{ originUrl }}
+								{{ previewUrlTemp }}
 							</span>
 						</div>
-						<input class="form-control" type="text" [(ngModel)]="article.seName" />
+						<input
+							class="form-control"
+							type="text"
+							[(ngModel)]="article.seName"
+						/>
 					</div>
 				</div>
-				<div class="form-group col-lg-6">
+				<div class="form-group col-lg-12">
 					<label>Đường dẫn mới</label>
-					<input class="form-control" type="text" placeholder="Nhập đường dẫn mới"
-						[(ngModel)]="article.externalUrl" />
+					<input
+						class="form-control"
+						type="text"
+						placeholder="Nhập đường dẫn mới"
+						[(ngModel)]="article.externalUrl"
+					/>
 				</div>
-				<div class="form-group col-lg-6">
+				<div class="form-group col-lg-12">
 					<label>Link ảnh đại diện *</label>
 					<div class="input-group input-type-file">
-						<input class="form-control" type="text" placeholder="Nhập đường dẫn ảnh đại diện"
-							[(ngModel)]="article.image" />
-						<a class="btn btn-info btn-choose-image" (click)="isShowPopupUploadfile(true)">
+						<input
+							class="form-control"
+							type="text"
+							placeholder="Nhập đường dẫn ảnh đại diện"
+							[(ngModel)]="article.image"
+						/>
+						<a
+							class="btn btn-info btn-choose-image"
+							(click)="isShowPopupUploadfile(true)"
+						>
 							<span class="lnr lnr-camera"></span>
 						</a>
 					</div>
 				</div>
 				<div class="form-group col-lg-12">
 					<label>Mô tả *</label>
-					<textarea class="form-control" type="text" placeholder="Mô tả"
-						[(ngModel)]="article.description"></textarea>
+					<textarea
+						class="form-control"
+						type="text"
+						placeholder="Mô tả"
+						[(ngModel)]="article.description"
+					></textarea>
 				</div>
 				<div class="form-group col-lg-12">
 					<label>Nội dung *</label>
-					<app-ckeditor [data]="article.content" (change)="onContentChangeEmitter($event)"></app-ckeditor>
+					<app-ckeditor
+						[data]="article.content"
+						(change)="onContentChangeEmitter($event)"
+					></app-ckeditor>
 				</div>
 				<div class="form-group col-lg-6">
 					<label>Ngày đăng *</label>
 					<mat-form-field>
-						<input matInput (ngModelChange)="onDateChangeEmitter($event)" [matDatepicker]="datepicker"
-							[(ngModel)]="article.order" />
-						<mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+						<input
+							matInput
+							(ngModelChange)="onDateChangeEmitter($event)"
+							[matDatepicker]="datepicker"
+							[(ngModel)]="article.order"
+						/>
+						<mat-datepicker-toggle
+							matSuffix
+							[for]="datepicker"
+						></mat-datepicker-toggle>
 						<mat-datepicker #datepicker></mat-datepicker>
 					</mat-form-field>
 				</div>
 				<div class="w-100"></div>
 				<div class="form-group col-lg-2">
 					<label class="checkbox-custom">
-						<input type="checkbox" [(ngModel)]="article.isPublished" />
+						<input
+							type="checkbox"
+							[(ngModel)]="article.isPublished"
+						/>
 						Hiển thị
 					</label>
 				</div>
@@ -113,22 +162,38 @@
 			<div class="row">
 				<div class="form-group col-lg-6">
 					<label>Meta Title *</label>
-					<input class="form-control" type="text" [(ngModel)]="article.metaTitle" />
+					<input
+						class="form-control"
+						type="text"
+						[(ngModel)]="article.metaTitle"
+					/>
 				</div>
 				<div class="w-100"></div>
 				<div class="form-group col-lg-6">
 					<label>Meta Image *</label>
-					<input class="form-control" type="text" [(ngModel)]="article.metaImage" />
+					<input
+						class="form-control"
+						type="text"
+						[(ngModel)]="article.metaImage"
+					/>
 				</div>
 				<div class="w-100"></div>
 				<div class="form-group col-lg-6">
 					<label>Meta Description</label>
-					<input class="form-control" type="text" [(ngModel)]="article.metaDescription" />
+					<input
+						class="form-control"
+						type="text"
+						[(ngModel)]="article.metaDescription"
+					/>
 				</div>
 				<div class="w-100"></div>
 				<div class="form-group col-lg-6">
 					<label>Meta Keywords </label>
-					<input class="form-control" type="text" [(ngModel)]="article.metaKeywords" />
+					<input
+						class="form-control"
+						type="text"
+						[(ngModel)]="article.metaKeywords"
+					/>
 				</div>
 			</div>
 		</div>
@@ -136,9 +201,15 @@
 			<p>3</p>
 		</div> -->
 		<div class="popup-upload" *ngIf="isShowUpload">
-			<iframe id="uploadfile" width="100%" height="100%" src="http://27.71.234.45:5000/" frameborder="0"></iframe>
+			<iframe
+				id="uploadfile"
+				width="100%"
+				height="100%"
+				src="http://27.71.234.45:5000/"
+				frameborder="0"
+			></iframe>
 			<div class="close-popup" (click)="isShowPopupUploadfile(false)">
-				<img src="./assets/images/icons/close.png" alt="">
+				<img src="./assets/images/icons/close.png" alt="" />
 			</div>
 		</div>
 	</div>

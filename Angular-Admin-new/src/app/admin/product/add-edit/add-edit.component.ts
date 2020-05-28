@@ -32,10 +32,10 @@ export class AddEditComponent implements OnInit {
 	originUrl: string;
 	createdDate = new FormControl(new Date());
 	templates: Array<TemplateModel> = TemplatesConfig;
-	languageControl = new FormControl();
-	categoryControl = new FormControl();
 	productGroupCapacities: ProductGroupModel = new ProductGroupModel();
 	isShowUpload: boolean = false;
+	previewUrlTemp: string;
+
 	constructor(
 		private crudSvc: CrudService,
 		private httpSvc: HttpService,
@@ -47,16 +47,17 @@ export class AddEditComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();
+		this.originUrl = this.utilSvc.getOriginUrl();
 		this.getProduct();
 	}
 
 	getCategories(languageId: string = '1') {
-		const params = new InputRequestOption();
-		params.params = {
+		const opts = new InputRequestOption();
+		opts.params = {
 			languageId: languageId,
 		};
 		this.crudSvc
-			.get(APIConfig.Category.Gets, params)
+			.get(APIConfig.Category.Gets, opts)
 			.pipe(
 				map((response) => {
 					return response.data.items;
@@ -64,26 +65,18 @@ export class AddEditComponent implements OnInit {
 			)
 			.subscribe((categories) => {
 				this.categories = categories;
-				this.categories.forEach((item) => {
-					if (item.parentName == null) {
-						item.parentName = '';
-					} else {
-						item.parentName += ' >> ';
-					}
-				});
 				this.categories = this.categories.filter((item) => {
-					if (
-						item.template != 1 &&
-						item.template != 2 &&
-						item.template != 6 &&
-						item.template != 7
-					) {
-						return item;
+					if (item.parentName != null) {
+						item.parentName += ' >> ';
+					} else {
+						item.parentName = '';
 					}
+					return item;
 				});
 				if (this.isEdit == false) {
 					this.product.categoryId = this.categories[0].id;
 				}
+				this.updateBaseUrl(this.product.categoryId);
 			});
 	}
 
@@ -99,16 +92,11 @@ export class AddEditComponent implements OnInit {
 					.get(APIConfig.Product.Get, options)
 					.subscribe((response) => {
 						this.product = response.data;
-						console.log('====================================');
-						console.log(this.product);
-						console.log('====================================');
-						this.setBaseUrl();
 						this.getCategories(this.product.languageId.toString());
 						this.getProductGroupsCapacities();
 					});
 			} else {
 				this.isEdit = false;
-				this.setBaseUrl();
 				this.getCategories();
 				this.getProductGroupsCapacities();
 			}
@@ -127,20 +115,16 @@ export class AddEditComponent implements OnInit {
 			});
 	}
 
-	setBaseUrl() {
-		this.originUrl = this.utilSvc.getOriginUrl();
-	}
-
-	updateBaseUrl(id?) {
-		const categoryId = Number(this.product.categoryId);
-		const item = this.categories.find((item) => {
-			if (categoryId == item.id) {
+	updateBaseUrl(e) {
+		const item = this.categories.find((item, index) => {
+			if (item.id == e) {
+				console.log(item);
 				return item;
 			}
 		});
-
-		if (item) {
-			this.originUrl = this.utilSvc.getOriginUrl(item.seName);
+		this.previewUrlTemp = item.previewUrl;
+		if (this.previewUrlTemp != '') {
+			this.previewUrlTemp += '/';
 		}
 	}
 
@@ -151,13 +135,16 @@ export class AddEditComponent implements OnInit {
 		for (const key of Object.keys(this.product)) {
 			if (this.product[key] != null) {
 				if (String(this.product[key]).length <= 0) {
-					this.product[key] = null;
+					// this.product[key] = null;
+					delete this.product[key];
 				}
+			} else {
+				delete this.product[key];
 			}
 		}
 		const params = new InputRequestOption();
 		params.body = this.product;
-		
+
 		this.crudSvc
 			.add(APIConfig.Product[method], params)
 			.subscribe((response) => {

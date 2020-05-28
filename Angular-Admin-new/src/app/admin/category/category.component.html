@@ -4,13 +4,12 @@
 			<mat-form-field>
 				<mat-select
 					name="language"
-					[formControl]="languageControl"
-					[ngModel]="1"
-					(valueChange)="changeValue($event)"
+					[ngModel]="search.languageId.toString()"
+					(valueChange)="changeLanguage($event)"
 				>
 					<mat-option
 						*ngFor="let language of languages"
-						[value]="language.id"
+						[value]="language.id.toString()"
 					>
 						{{ language.name }}
 					</mat-option>
@@ -46,7 +45,6 @@
 					<a
 						class="btn btn-outline-success btn-edit"
 						[routerLink]="['/admin/category/edit', category.id]"
-						[queryParams]="{ previewUrl: category.previewUrl }"
 					>
 						<span class="lnr lnr-pencil"></span>
 					</a>
@@ -62,10 +60,8 @@
 	</table>
 	<app-pagination
 		*ngIf="totalItems"
+		[pagination]="pagination"
 		[totalItems]="totalItems"
-		[itemPerPage]="pagination.itemPerPage"
-		[page]="page"
-		(changePage)="paginateCategory($event)"
-		[url]="'/admin/category'"
-	></app-pagination>
+	>
+	</app-pagination>
 </div>
