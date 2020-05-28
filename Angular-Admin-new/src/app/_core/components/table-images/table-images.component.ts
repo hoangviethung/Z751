@@ -11,6 +11,7 @@ export class TableImagesComponent implements OnInit {
 	@Output('imagesChange') imagesChange: EventEmitter<
 		Array<ImageModel>
 	> = new EventEmitter<Array<ImageModel>>();
+	isShowUpload: boolean = false;
 	constructor() {}
 
 	ngOnInit(): void {}
@@ -24,5 +25,17 @@ export class TableImagesComponent implements OnInit {
 	deleteSectionImage(index) {
 		this.images.splice(index, 1);
 		this.imagesChange.emit(this.images);
+	}
+
+	isShowPopupUploadfile(isShow: boolean) {
+		if (isShow == true) {
+			this.isShowUpload = true;
+			document.querySelector('.block-content').classList.add('disabled');
+		} else {
+			this.isShowUpload = false;
+			document
+				.querySelector('.block-content')
+				.classList.remove('disabled');
+		}
 	}
 }
