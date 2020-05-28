@@ -1,6 +1,6 @@
 <div class="block-content">
 	<div class="block-control">
-		<a class="btn btn-success btn-add" routerLink="add">Thêm mới</a>
+		<a *ngIf="canAction(featureName, permissions.Add)" class="btn btn-success btn-add" routerLink="add">Thêm mới</a>
 	</div>
 	<div class="block-table">
 		<table class="table">
@@ -18,13 +18,13 @@
 				<td>{{ role.description }}</td>
 				<td class="ta-c">
 					<div class="table-buttons" *ngIf="!role.isSystem">
-						<span
+						<span *ngIf="canAction(featureName, permissions.Edit)"
 							class="btn btn-outline-success btn-edit"
 							(click)="editRole(role.name)"
 						>
 							<span class="lnr lnr-pencil"></span>
 						</span>
-						<span
+						<span *ngIf="canAction(featureName, permissions.Delete)"
 							class="btn btn-outline-danger btn-remove"
 							(click)="deleteRole(role.name)"
 						>

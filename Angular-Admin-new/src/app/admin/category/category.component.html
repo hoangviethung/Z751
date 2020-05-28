@@ -18,7 +18,7 @@
 		</div>
 	</div>
 	<div class="block-buttons">
-		<a
+		<a *ngIf="canAction(featureName, permissions.Add)"
 			class="btn btn-success btn-add"
 			[routerLink]="['/admin/category/add']"
 		>
@@ -42,13 +42,13 @@
 			<td>{{ category.previewUrl }}</td>
 			<td class="ta-c">
 				<div class="table-buttons">
-					<a
+					<a *ngIf="canAction(featureName, permissions.Edit)"
 						class="btn btn-outline-success btn-edit"
 						[routerLink]="['/admin/category/edit', category.id]"
 					>
 						<span class="lnr lnr-pencil"></span>
 					</a>
-					<span
+					<span *ngIf="canAction(featureName, permissions.Delete)"
 						class="btn btn-outline-danger btn-remove"
 						(click)="deleteCategory(category.id)"
 					>

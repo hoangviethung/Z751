@@ -19,7 +19,7 @@
 					<td>{{ setting.description }}</td>
 					<td class="ta-c">{{ setting.type }}</td>
 					<td class="ta-c">
-						<a
+						<a *ngIf="canAction(featureName, permissions.Edit)"
 							class="btn btn-outline-success"
 							(click)="onOpenPopup(true, setting)"
 						>

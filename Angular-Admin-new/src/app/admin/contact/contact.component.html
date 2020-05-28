@@ -19,13 +19,13 @@
 				<td class="column-order ta-c">{{ contact.createdDate }}</td>
 				<td class="column-button ta-c">
 					<div class="table-buttons">
-						<span
+						<span *ngIf="canAction(featureName, permissions.Edit)"
 							class="btn btn-outline-info btn-edit"
 							(click)="onOpenPopup(true, contact)"
 						>
 							<span class="lnr lnr-eye"></span>
 						</span>
-						<span
+						<span *ngIf="canAction(featureName, permissions.Delete)"
 							class="btn btn-outline-danger btn-remove"
 							(click)="dateleContact(contact.id)"
 						>

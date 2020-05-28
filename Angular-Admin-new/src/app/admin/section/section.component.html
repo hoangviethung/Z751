@@ -31,7 +31,7 @@
 				<td>{{ section.orderTitle }}</td>
 				<td class="ta-c">
 					<div class="table-buttons">
-						<span
+						<span *ngIf="canAction(featureName, permissions.Edit)"
 							class="btn btn-outline-success btn-edit"
 							(click)="onOpenPopup(true, section)"
 						>
