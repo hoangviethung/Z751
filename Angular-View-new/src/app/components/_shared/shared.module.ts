@@ -20,6 +20,7 @@ import { ToggleMenuDirective } from "../../../core/directives/toggle-menu.direct
 import { ToggleSubMenuDirective } from "../../../core/directives/toggle-sub-menu.directive";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { LazyLoadImageModule } from "ng-lazyload-image";
+import { ProductDirective } from "../product/product-simple/product.directive";
 
 @NgModule({
 	declarations: [
@@ -33,6 +34,7 @@ import { LazyLoadImageModule } from "ng-lazyload-image";
 		IndexProductItemDirective,
 		ToggleMenuDirective,
 		ToggleSubMenuDirective,
+		ProductDirective,
 	],
 	imports: [
 		CommonModule,
@@ -66,6 +68,7 @@ import { LazyLoadImageModule } from "ng-lazyload-image";
 		ToggleSubMenuDirective,
 		MatProgressBarModule,
 		LazyLoadImageModule,
+		ProductDirective,
 	],
 	providers: [
 		HttpService,
