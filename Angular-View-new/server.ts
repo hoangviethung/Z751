@@ -26,8 +26,11 @@ const template = fs.readFileSync(join("dist/browser", "index.html")).toString();
 const window = domino.createWindow(template);
 (global as any).XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 (global as any).document = window.document;
+const compression = require("compression");
+
 // Express server
 const app = express();
+app.use(compression());
 
 const PORT = process.env.PORT || 40000;
 const DIST_FOLDER = join(process.cwd(), "dist/browser");

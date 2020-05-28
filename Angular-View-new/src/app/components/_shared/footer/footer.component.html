@@ -7,7 +7,10 @@
 			<div class="col-lg-3 col-sm-6">
 				<div class="address">
 					<div class="img">
-						<img [defaultImage]="defaultImage" [lazyLoad]="'/assets/images/icons/headquater.svg'">
+						<img
+							[defaultImage]="defaultImage"
+							[lazyLoad]="'/assets/images/icons/headquater.svg'"
+						/>
 					</div>
 					<div class="content">
 						<h4>{{ "ResourceKeys.Headquarter" | translate }}</h4>
@@ -21,7 +24,10 @@
 			<div class="col-lg-3 col-sm-6">
 				<div class="address">
 					<div class="img">
-						<img [defaultImage]="defaultImage" [lazyLoad]="'/assets/images/icons/office.svg'">
+						<img
+							[defaultImage]="defaultImage"
+							[lazyLoad]="'/assets/images/icons/office.svg'"
+						/>
 					</div>
 					<div class="content">
 						<h4>{{ "ResourceKeys.OppositeOffice" | translate }}</h4>
@@ -40,13 +46,20 @@
 					<form action="#">
 						<div class="form-group">
 							<!-- <input type="text" placeholder="Email..." /> -->
-							<select name="website-relative" id="website-relative" (change)="
+							<select
+								name="website-relative"
+								id="website-relative"
+								(change)="
 									openWebsiteRelative($event.target.value)
-								">
+								"
+							>
 								<option disabled>
 									- - Chọn website liên kết - -
 								</option>
-								<option *ngFor="let item of WebsiteRelatives" value="{{ item.link }}">
+								<option
+									*ngFor="let item of WebsiteRelatives"
+									value="{{ item.link }}"
+								>
 									{{ item.title }}
 								</option>
 							</select>
