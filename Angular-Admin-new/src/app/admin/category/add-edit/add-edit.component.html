@@ -22,84 +22,113 @@
 	<div class="tab-contents">
 		<div class="content show" tab-id="item-1">
 			<div class="row">
-				<div class="form-group col-lg-6">
+				<div class="form-group col-lg-12">
 					<label>Ngôn ngữ *</label>
 					<mat-form-field>
-						<mat-select name="language" [formControl]="languageControl" [(ngModel)]="category.languageId"
-							(ngModelChange)="onChangeLanguage($event)">
-							<mat-option *ngFor="let language of languages" [value]="language.id">
+						<mat-select
+							name="language"
+							[(ngModel)]="category.languageId"
+							(valueChange)="onChangeLanguage($event)"
+						>
+							<mat-option
+								*ngFor="let language of languages"
+								[value]="language.id"
+							>
 								{{ language.name }}
 							</mat-option>
 						</mat-select>
 					</mat-form-field>
 				</div>
-				<div class="form-group col-lg-6">
+				<div class="form-group col-lg-12">
 					<label>Danh mục cha (nếu có)</label>
 					<mat-form-field>
-						<mat-select name="parentid" [formControl]="categoryControl" [(ngModel)]="category.parentId"
-							(ngModelChange)="updateBaseUrl()">
-							<mat-option *ngFor="let category of categories" [value]="category.id">
-								{{category.parentName}} {{ category.title }}
+						<mat-select
+							name="parentid"
+							[(ngModel)]="category.parentId"
+							(valueChange)="updateBaseUrl($event)"
+						>
+							<mat-option
+								*ngFor="let category of categories"
+								[value]="category.id"
+							>
+								{{ category.parentName }} {{ category.title }}
 							</mat-option>
 						</mat-select>
 					</mat-form-field>
 				</div>
-				<div class="form-group col-lg-6">
+				<div class="form-group col-lg-12">
 					<label>Tiêu đề *</label>
-					<input class="form-control" type="text" placeholder="Nhập tiêu đề" name="title"
-						[(ngModel)]="category.title" (keyup)="setAliasTitleToUrl()" />
+					<input
+						class="form-control"
+						type="text"
+						placeholder="Nhập tiêu đề"
+						name="title"
+						[(ngModel)]="category.title"
+						(keyup)="setAliasTitleToUrl()"
+					/>
 				</div>
-				<div class="form-group col-lg-6">
+				<div class="form-group col-lg-12">
 					<label>Đường dẫn *</label>
 					<div class="input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text">
-								{{ originUrl }}
+								{{ previewUrlTemp }}
 							</span>
 						</div>
-						<input class="form-control" type="text" name="sename" [(ngModel)]="category.seName" />
+						<input
+							class="form-control"
+							type="text"
+							name="sename"
+							[(ngModel)]="category.seName"
+						/>
 					</div>
 				</div>
-				<div class="form-group col-lg-6">
+				<div class="form-group col-lg-12">
 					<label>Đường dẫn mới</label>
-					<input class="form-control" type="text" placeholder="Nhập đường dẫn mới" name="externalurl"
-						[(ngModel)]="category.externalUrl" />
+					<input
+						class="form-control"
+						type="text"
+						placeholder="Nhập đường dẫn mới"
+						name="externalurl"
+						[(ngModel)]="category.externalUrl"
+					/>
 				</div>
-				<div class="form-group col-lg-6">
+				<div class="form-group col-lg-12">
 					<label>Link ảnh đại diện *</label>
 					<div class="input-group input-type-file">
-						<input class="form-control" type="text" placeholder="Nhập đường dẫn ảnh đại diện" name="image"
-							[(ngModel)]="category.image" />
-						<a class="btn btn-info btn-choose-image" (click)="isShowPopupUploadfile(true)">
+						<input
+							class="form-control"
+							type="text"
+							placeholder="Nhập đường dẫn ảnh đại diện"
+							name="image"
+							[(ngModel)]="category.image"
+						/>
+						<a
+							class="btn btn-info btn-choose-image"
+							(click)="isShowPopupUploadfile(true)"
+						>
 							<span class="lnr lnr-camera"></span>
 						</a>
 					</div>
 				</div>
-				<div class="form-group col-lg-6">
+				<div class="form-group col-lg-12">
 					<div class="form-group">
 						<label>Chọn mẫu template</label>
 						<mat-form-field>
-							<!-- TIẾNG ANH -->
-							<mat-select [formControl]="templatesControl" name="template" [(ngModel)]="category.template"
-								(ngModelChange)="
+							<mat-select
+								name="template"
+								[(ngModel)]="category.template"
+								(valueChange)="
 									showProductGroups(category.template)
-								" *ngIf="isTemplateEnglist">
-								<mat-option *ngFor="
+								"
+							>
+								<mat-option
+									*ngFor="
 										let template of templates;
 										let i = index
-									" [value]="template.id">
-									{{ template.titleEnglish }}
-								</mat-option>
-							</mat-select>
-							<!-- TIẾNG VIỆT -->
-							<mat-select [formControl]="templatesControl" name="template" [(ngModel)]="category.template"
-								(ngModelChange)="
-									showProductGroups(category.template)
-								" *ngIf="isTemplateEnglist==false">
-								<mat-option *ngFor="
-										let template of templates;
-										let i = index
-									" [value]="template.id">
+									"
+									[value]="template.id"
+								>
 									{{ template.title }}
 								</mat-option>
 							</mat-select>
@@ -108,10 +137,17 @@
 					<div class="form-group" *ngIf="isShowProductGroup">
 						<label for="">Chọn nhóm sản phẩm</label>
 						<mat-form-field>
-							<mat-select [formControl]="productGroupsControl" multiple
-								(ngModelChange)="updateCategoryProductsGroups()">
-								<mat-option *ngFor="let productGroup of productGroups" [value]="productGroup">
-									{{ productGroup.name }}</mat-option>
+							<mat-select
+								multiple
+								[formControl]="productGroupsControl"
+								(valueChange)="updateCategoryProductsGroups()"
+							>
+								<mat-option
+									*ngFor="let productGroup of productGroups"
+									[value]="productGroup.id"
+								>
+									{{ productGroup.name }}</mat-option
+								>
 							</mat-select>
 						</mat-form-field>
 					</div>
@@ -123,7 +159,10 @@
 				</div> -->
 				<div class="form-group col-lg-12">
 					<label>Mô tả *</label>
-					<app-ckeditor [data]="category.description" (change)="onChangeEmitter($event)">
+					<app-ckeditor
+						[data]="category.description"
+						(change)="onChangeEmitter($event)"
+					>
 					</app-ckeditor>
 				</div>
 			</div>
@@ -132,23 +171,42 @@
 			<div class="row">
 				<div class="form-group col-lg-6">
 					<label>Meta Title *</label>
-					<input class="form-control" type="text" name="metatitle" [(ngModel)]="category.metaTitle" />
+					<input
+						class="form-control"
+						type="text"
+						name="metatitle"
+						[(ngModel)]="category.metaTitle"
+					/>
 				</div>
 				<div class="w-100"></div>
 				<div class="form-group col-lg-6">
 					<label>Meta Image *</label>
-					<input class="form-control" type="text" name="metaimage" [(ngModel)]="category.metaImage" />
+					<input
+						class="form-control"
+						type="text"
+						name="metaimage"
+						[(ngModel)]="category.metaImage"
+					/>
 				</div>
 				<div class="w-100"></div>
 				<div class="form-group col-lg-6">
 					<label>Meta Description</label>
-					<input class="form-control" type="text" name="metadescription"
-						[(ngModel)]="category.metaDescription" />
+					<input
+						class="form-control"
+						type="text"
+						name="metadescription"
+						[(ngModel)]="category.metaDescription"
+					/>
 				</div>
 				<div class="w-100"></div>
 				<div class="form-group col-lg-6">
 					<label>Meta Keywords </label>
-					<input class="form-control" type="text" name="metakeywords" [(ngModel)]="category.metaKeywords" />
+					<input
+						class="form-control"
+						type="text"
+						name="metakeywords"
+						[(ngModel)]="category.metaKeywords"
+					/>
 				</div>
 			</div>
 		</div>
@@ -157,10 +215,15 @@
 		</div> -->
 	</div>
 	<div class="popup-upload" *ngIf="isShowUpload">
-		<iframe id="uploadfile" width="100%" height="100%" src="http://27.71.234.45:5000/" frameborder="0"></iframe>
+		<iframe
+			id="uploadfile"
+			width="100%"
+			height="100%"
+			src="http://27.71.234.45:5000/"
+			frameborder="0"
+		></iframe>
 		<div class="close-popup" (click)="isShowPopupUploadfile(false)">
-			<img src="./assets/images/icons/close.png" alt="">
+			<img src="./assets/images/icons/close.png" alt="" />
 		</div>
 	</div>
-
 </div>

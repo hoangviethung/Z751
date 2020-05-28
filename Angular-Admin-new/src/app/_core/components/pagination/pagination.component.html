@@ -1,4 +1,4 @@
-<ng-container *ngIf="pager.totalPages > 1">
+<ng-container *ngIf="totalItems > itemPerPage">
 	<ul class="pagination" *ngIf="pager && pager['page']">
 		<li class="pagination-prev" (click)="choosepage(pager['page'] - 1)">
 			<a>

@@ -15,7 +15,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormControl } from '@angular/forms';
 import { ProductGroupModel } from 'src/app/_core/models/product-groups';
-import { AdminComponent } from '../../admin.component';
 import { DOCUMENT } from '@angular/common';
 @Component({
 	selector: 'app-add-edit',
@@ -26,8 +25,6 @@ export class AddEditComponent implements OnInit {
 	templates: Array<TemplateModel> = TemplatesConfig;
 	productGroupsControl: FormControl = new FormControl();
 	templatesControl = new FormControl();
-	languageControl = new FormControl();
-	categoryControl = new FormControl();
 	category: CategoryModel = new CategoryModel();
 	languages: Array<LanguageModel>;
 	categories: Array<CategoryModel> = [];
@@ -38,8 +35,9 @@ export class AddEditComponent implements OnInit {
 	isShowProductGroup: boolean = false;
 	productGroups: Array<ProductGroupModel>;
 	categoryProductGroups: Array<number> = [];
-	categoryProductGroupsChecked: Array<ProductGroupModel>;
 	isShowUpload: boolean = false;
+	previewUrlTemp: string;
+
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
@@ -95,13 +93,8 @@ export class AddEditComponent implements OnInit {
 			)
 			.subscribe((categories) => {
 				this.categories = categories;
-				this.categories.forEach((item) => {
-					if (item.parentName == null) {
-						item.parentName = '';
-					} else {
-						item.parentName += ' >> ';
-					}
-				});
+				this.updateBaseUrl(this.category.parentId);
+				console.log(123);
 			});
 	}
 
@@ -117,83 +110,45 @@ export class AddEditComponent implements OnInit {
 					.get(APIConfig.Category.Get, opts1)
 					.subscribe((response) => {
 						this.category = response.data;
-						this.setBaseUrl();
 						this.getCategories(this.category.languageId.toString());
 						this.showProductGroups(this.category.template);
 						const opts2 = new InputRequestOption();
 						opts2.params = {
-							url: this.category.seName,
+							categoryId: this.category.id.toString(),
 						};
-						this.crudSvc
-							.get(APIConfig.ProductGroup.UsedGet, opts2)
-							.subscribe((response) => {
-								const productGroupsSelected = [];
-								for (
-									let i = 0;
-									i < this.productGroups.length;
-									i++
-								) {
-									if (response.data != null) {
-										for (
-											let j = 0;
-											j < response.data.length;
-											j++
-										) {
-											console.log(this.productGroups[i]);
-											if (
-												response.data[j].id ==
-												this.productGroups[i].id
-											) {
-												productGroupsSelected.push(
-													this.productGroups[i]
-												);
-											}
-										}
-									}
-								}
-								this.productGroupsControl.setValue(
-									productGroupsSelected
-								);
-							});
 
-						// NEW
-						const categoryId = new InputRequestOption();
-						categoryId.params = {
-							url: this.category.seName,
-						};
-						this.httpSvc
-							.get(
-								APIConfig.ProductGroup.GetItemsChecked,
-								categoryId
-							)
-							.pipe(map((response) => response.data))
-							.subscribe((itemsChecked) => {
-								this.categoryProductGroupsChecked = itemsChecked;
+						this.crudSvc
+							.get(APIConfig.ProductGroup.Get, opts2)
+							.subscribe((response) => {
+								this.productGroupsControl.setValue(
+									response.data
+								);
 							});
 					});
 			} else {
 				this.isEdit = false;
-				this.setBaseUrl();
 				this.getCategories('1');
 				this.showProductGroups(1);
 			}
 		});
 	}
 
-	setBaseUrl() {
-		this.originUrl = this.utilSvc.getOriginUrl();
-	}
-
-	updateBaseUrl() {
-		const categoryId = Number(this.category.parentId);
-		const item = this.categories.find((item) => {
-			if (item.id == categoryId) {
+	updateBaseUrl(e) {
+		const item = this.categories.find((item, index) => {
+			if (item.id == e) {
 				return item;
 			}
 		});
-		if (item) {
-			this.originUrl = this.utilSvc.getOriginUrl(item.seName);
+		if (item.previewUrl == '') {
+			this.previewUrlTemp = '/';
+		} else {
+			this.previewUrlTemp = item.previewUrl;
+			if (this.previewUrlTemp != '') {
+				this.previewUrlTemp += '/';
+			}
 		}
+
+		console.log(this.previewUrlTemp);
 	}
 
 	setAliasTitleToUrl() {
@@ -208,6 +163,7 @@ export class AddEditComponent implements OnInit {
 		});
 		if (item.haveList == true) {
 			this.isShowProductGroup = true;
+			this.productGroupsControl.setValue([]);
 		} else {
 			this.isShowProductGroup = false;
 		}
@@ -241,7 +197,7 @@ export class AddEditComponent implements OnInit {
 						const categoryProducGroupsOpts = new InputRequestOption();
 						categoryProducGroupsOpts.body = {
 							categoryId: this.category.id,
-							productGroupIds: this.categoryProductGroups,
+							productGroupIds: this.productGroupsControl.value,
 						};
 						this.crudSvc
 							.update(
@@ -295,5 +251,17 @@ export class AddEditComponent implements OnInit {
 				.querySelector('.block-content')
 				.classList.remove('disabled');
 		}
+	}
+
+	getProductGroupSelected(id) {
+		const opts = new InputRequestOption();
+		opts.params = {
+			categoryId: id,
+		};
+		this.httpSvc
+			.get(APIConfig.ProductGroup.Get, opts)
+			.subscribe((response) => {
+				console.log(response);
+			});
 	}
 }

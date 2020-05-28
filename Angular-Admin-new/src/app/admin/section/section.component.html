@@ -1,4 +1,4 @@
-<div class="block-content" *ngIf="!isShowPopup">
+<ng-container *ngIf="!isShowPopup">
 	<div class="block-table">
 		<table class="table">
 			<tr class="table-info">
@@ -22,7 +22,7 @@
 			</tr>
 		</table>
 	</div>
-</div>
+</ng-container>
 
 <div class="popup-wrapper" *ngIf="isShowPopup">
 	<app-edit [section]="section" (close)="onClosePopup($event)"> </app-edit>

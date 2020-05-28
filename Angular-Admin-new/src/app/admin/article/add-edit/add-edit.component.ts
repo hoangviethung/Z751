@@ -11,7 +11,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
-import { FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { ArticleService } from '../article.service';
 
@@ -27,9 +26,8 @@ export class AddEditComponent implements OnInit {
 	isEdit: boolean;
 	originUrl: string;
 	templates: Array<TemplateModel> = TemplatesConfig;
-	LanguageControl = new FormControl();
-	CategoryControl = new FormControl();
 	isShowUpload: boolean = false;
+	previewUrlTemp: string;
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
@@ -69,7 +67,7 @@ export class AddEditComponent implements OnInit {
 						item.parentName += ' >> ';
 					}
 				});
-				this.updateBaseUrl();
+				this.updateBaseUrl(this.article.categoryId);
 			});
 	}
 
@@ -91,24 +89,21 @@ export class AddEditComponent implements OnInit {
 			} else {
 				this.isEdit = false;
 				this.getCategories();
-				this.setBaseUrl();
 			}
 		});
 	}
 
-	setBaseUrl() {
-		this.originUrl = this.utilSvc.getOriginUrl();
-	}
 
-	updateBaseUrl(id?) {
-		const categoryId = Number(this.article.categoryId);
-		const item = this.categories.find((item) => {
-			if (categoryId == item.id) {
+	updateBaseUrl(e) {
+		const item = this.categories.find((item, index) => {
+			if (item.id == e) {
+				console.log(item);
 				return item;
 			}
 		});
-		if (item) {
-			this.originUrl = this.utilSvc.getOriginUrl(item.seName);
+		this.previewUrlTemp = item.previewUrl;
+		if (this.previewUrlTemp != '') {
+			this.previewUrlTemp += '/';
 		}
 	}
 

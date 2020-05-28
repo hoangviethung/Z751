@@ -4,13 +4,12 @@
 			<mat-form-field>
 				<mat-select
 					name="language"
-					[formControl]="languageControl"
-					[ngModel]="1"
-					(ngModelChange)="getDataLanguage($event)"
+					[ngModel]="search.languageId"
+					(valueChange)="changeLanguage($event)"
 				>
 					<mat-option
 						*ngFor="let language of languages"
-						[value]="language.id"
+						[value]="language.id.toString()"
 					>
 						{{ language.name }}
 					</mat-option>
@@ -21,19 +20,18 @@
 			<mat-form-field>
 				<mat-select
 					name="category"
-					[formControl]="categoryControl"
-					[ngModel]="0"
-					(valueChange)="getDataCategory($event)"
+					[ngModel]="search.categoryId"
+					(valueChange)="changeCategory($event)"
 				>
-					<mat-option [value]="0" *ngIf="!isTitleEnglist"
-						>Chọn danh mục</mat-option
-					>
-					<mat-option [value]="0" *ngIf="isTitleEnglist"
-						>Choose Category</mat-option
-					>
+					<mat-option [value]="'0'" *ngIf="!isTitleEnglist">
+						Chọn danh mục
+					</mat-option>
+					<mat-option [value]="'0'" *ngIf="isTitleEnglist">
+						Choose Category
+					</mat-option>
 					<mat-option
 						*ngFor="let category of categories"
-						[value]="category.id"
+						[value]="category.id.toString()"
 					>
 						{{ category.parentName + category.title }}
 					</mat-option>
@@ -126,4 +124,10 @@
 			</td>
 		</tr>
 	</table>
+	<app-pagination
+		*ngIf="totalItems"
+		[totalItems]="totalItems"
+		[pagination]="pagination"
+	>
+	</app-pagination>
 </div>

@@ -7,10 +7,9 @@ import { UtilService } from 'src/app/_core/services/util.service';
 import { FilterSearchModel } from 'src/app/_core/models/filter.model';
 import { ProductModel } from 'src/app/_core/models/product.model';
 import { ToastrService } from 'ngx-toastr';
-import { TemplateModel } from 'src/app/_core/models/template.model';
-import { TemplatesConfig } from 'src/app/_core/templates-config';
-import { FormControl } from '@angular/forms';
 import { CategoryModel } from 'src/app/_core/models/category.model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PaginationModel } from 'src/app/_core/models/pagination';
 
 @Component({
 	selector: 'app-product',
@@ -18,80 +17,70 @@ import { CategoryModel } from 'src/app/_core/models/category.model';
 	styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
+	products: ProductModel[] = [];
 	languages: LanguageModel[] = [];
 	search: FilterSearchModel = new FilterSearchModel();
-	products: ProductModel[] = [];
-	templates: Array<TemplateModel> = TemplatesConfig;
-	languageControl = new FormControl();
-	categoryControl = new FormControl();
+	pagination: PaginationModel = new PaginationModel(10, 1);
 	categories: Array<CategoryModel>;
-	categoryHaveProduct: Array<CategoryModel>;
 	isTitleEnglist: boolean;
+	totalItems: number;
+	page: number;
+
 	constructor(
 		private crudSvc: CrudService,
+		private toastrSvc: ToastrService,
 		private utilSvc: UtilService,
-		private toastrSvc: ToastrService
+		private activatedRoute: ActivatedRoute,
+		private router: Router
 	) {}
 
 	ngOnInit(): void {
-		this.getCategories(1);
-		this.getProducts();
 		this.languages = this.utilSvc.getLanguages();
+		this.getAll();
 	}
 
-	getDataLanguage(e) {
-		this.search.languageId = e;
-		this.getCategories(e);
-		if (e == 1) {
-			this.isTitleEnglist = false;
-		} else {
-			this.isTitleEnglist = true;
-		}
-	}
-
-	getDataCategory(e) {
-		this.search.categoryId = e;
-	}
-
-	filterProduct() {
-		const options = new InputRequestOption();
-		options.params = {
-			languageId: this.search.languageId,
-			text: this.search.keywords || '',
-			categoryId: this.search.categoryId,
-		};
-		this.crudSvc
-			.get(APIConfig.Product.Gets, options)
-			.subscribe((response) => {
-				this.products = response.data.items;
-			});
-	}
-
-	getProducts(e?) {
-		const options = new InputRequestOption();
-		if (e) {
-			options.params = {
-				languageId: e.target.value,
+	getAll() {
+		this.activatedRoute.queryParams.subscribe((queryParams) => {
+			const defaultParams = {
+				languageId: this.search.languageId,
+				categoryId: this.search.categoryId,
+				page: this.pagination.page.toString(),
+				itemPerPage: this.pagination.itemPerPage.toString(),
 			};
-		} else {
-			options.params = {
-				languageId: '1',
-			};
-		}
-		this.crudSvc
-			.get(APIConfig.Product.Gets, options)
-			.subscribe((response) => {
-				this.products = response.data.items;
-			});
+			for (const key in queryParams) {
+				if (queryParams.hasOwnProperty(key)) {
+					defaultParams[key] = queryParams[key];
+				}
+				if (key == 'languageId' || key == 'categoryId') {
+					this.search[key] = queryParams[key];
+				}
+			}
+			if (queryParams.page) {
+				this.pagination.page = queryParams.page;
+			}
+
+			if (queryParams.languageId) {
+				if (queryParams.languageId == '1') {
+					this.isTitleEnglist = false;
+				} else {
+					this.isTitleEnglist = true;
+				}
+			}
+
+			const opts = new InputRequestOption();
+			opts.params = defaultParams;
+			this.getCategories(this.search.languageId);
+			this.fetchProducts(opts);
+		});
 	}
 
 	getCategories(event) {
-		const params = new InputRequestOption();
-		params.params = {
+		const opts = new InputRequestOption();
+		opts.params = {
 			languageId: event,
 		};
 		this.crudSvc
-			.get(APIConfig.Category.Gets, params)
+			.get(APIConfig.Category.Gets, opts)
 			.subscribe((response) => {
 				this.categories = response.data.items;
 				this.categories.forEach((item) => {
@@ -101,17 +90,51 @@ export class ProductComponent implements OnInit {
 						item.parentName += ' >> ';
 					}
 				});
-				this.categories = this.categories.filter((item) => {
-					if (
-						item.template != 1 &&
-						item.template != 2 &&
-						item.template != 6 &&
-						item.template != 7
-					) {
-						return item;
-					}
-				});
 			});
+	}
+
+	changeCategory(e) {
+		this.search.categoryId = e;
+	}
+
+	changeLanguage(e) {
+		this.search.categoryId = '0';
+		this.search.languageId = e;
+		if (e == 1) {
+			this.isTitleEnglist = false;
+		} else {
+			this.isTitleEnglist = true;
+		}
+		this.getCategories(e);
+	}
+
+	keywordChange(e) {
+		if (this.search.keywords == '') {
+			this.search.keywords = null;
+		}
+	}
+
+	filterProduct() {
+		let filterParams = {
+			languageId: this.search.languageId,
+			categoryId: this.search.categoryId,
+			text: this.search.keywords,
+			page: null,
+		};
+		this.pagination.page = 1;
+		this.router.navigate([], {
+			relativeTo: this.activatedRoute,
+			queryParams: filterParams,
+			queryParamsHandling: 'merge',
+		});
+		this.fetchProducts();
+	}
+
+	fetchProducts(opts?) {
+		this.crudSvc.get(APIConfig.Product.Gets, opts).subscribe((response) => {
+			this.products = response.data.items;
+			this.totalItems = response.data.total;
+		});
 	}
 
 	deleteProduct(id: string) {
@@ -123,7 +146,18 @@ export class ProductComponent implements OnInit {
 			.delete(APIConfig.Product.Delete, options)
 			.subscribe((response) => {
 				if (response.code == 200) {
-					this.getProducts();
+					this.pagination.page = 1;
+					this.router.navigate([], {
+						relativeTo: this.activatedRoute,
+						queryParams: {
+							languageId: null,
+							categoryId: null,
+							text: null,
+							page: null,
+						},
+						queryParamsHandling: 'merge',
+					});
+					this.fetchProducts();
 					this.toastrSvc.success(response.message);
 				} else {
 					this.toastrSvc.error(response.message);
