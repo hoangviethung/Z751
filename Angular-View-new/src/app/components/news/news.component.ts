@@ -11,6 +11,8 @@ import { API } from "src/core/configs/api";
 import { DOCUMENT } from "@angular/common";
 import { ArticleModel } from "src/core/models/Article.model";
 import { PaginationModel } from "src/core/models/Pagination.model";
+import { ActivatedRoute } from "@angular/router";
+import { UtilitiesService } from "src/core/services/utilities.service";
 
 @Component({
 	selector: "app-news",
@@ -27,21 +29,22 @@ export class NewsComponent implements OnInit {
 	constructor(
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,
-		@Inject(DOCUMENT) private document: Document
+		@Inject(DOCUMENT) private document: Document,
+		private utilSvc: UtilitiesService
 	) {}
 
 	ngOnInit() {
+		this.setPageInformation();
+		this.getNewsList();
+	}
+
+	setPageInformation() {
 		const opts = new InputRequestOption();
 		opts.params = {
 			url: this.document.location.pathname,
 			page: this.pagination.page.toString(),
 			itemPerPage: this.pagination.itemPerPage.toString(),
 		};
-		this.setPageInformation(opts);
-		this.getNewsList(opts);
-	}
-
-	setPageInformation(opts) {
 		this.httpSvc.get(API.Category.Get, opts).subscribe((response) => {
 			const metaObject: MetaModel = {
 				title: response.data.metaTitle,
@@ -58,7 +61,24 @@ export class NewsComponent implements OnInit {
 		});
 	}
 
-	getNewsList(opts) {
+	getNewsList() {
+		if (
+			this.utilSvc.getQueryParams("page", this.document.location.search)
+		) {
+			this.pagination.page = Number(
+				this.utilSvc.getQueryParams(
+					"page",
+					this.document.location.search
+				)
+			);
+		}
+		const defaultParams = {
+			url: this.document.location.pathname,
+			page: this.pagination.page.toString(),
+			itemPerPage: this.pagination.itemPerPage.toString(),
+		};
+		const opts = new InputRequestOption();
+		opts.params = defaultParams;
 		this.httpSvc.get(API.Article.Gets, opts).subscribe((response) => {
 			this.newsList = response.data.items;
 			this.totalItems = response.data.total;
@@ -66,12 +86,13 @@ export class NewsComponent implements OnInit {
 	}
 
 	refreshList(pageNumber) {
+		this.pagination.page = pageNumber;
 		const opts = new InputRequestOption();
 		opts.params = {
 			url: this.document.location.pathname,
 			page: pageNumber,
 			itemPerPage: this.pagination.itemPerPage.toString(),
 		};
-		this.getNewsList(opts);
+		this.getNewsList();
 	}
 }

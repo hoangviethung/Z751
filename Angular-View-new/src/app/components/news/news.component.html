@@ -11,8 +11,11 @@
 				<app-news-simple [news]="news"></app-news-simple>
 			</div>
 		</div>
-		<app-pagination *ngIf="totalItems" [totalItems]="totalItems" [itemPerPage]="pagination.itemPerPage"
-			(changePage)="refreshList($event)" [url]="'/news'">
+		<app-pagination
+			*ngIf="totalItems"
+			[totalItems]="totalItems"
+			[pagination]="pagination"
+		>
 		</app-pagination>
 	</div>
 </section>

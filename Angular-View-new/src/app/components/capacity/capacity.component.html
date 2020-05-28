@@ -18,8 +18,7 @@
 		<app-pagination
 			*ngIf="totalItems"
 			[totalItems]="totalItems"
-			[itemPerPage]="pagination.itemPerPage"
-			(changePage)="refreshList($event)"
+			[pagination]="pagination"
 		>
 		</app-pagination>
 	</div>

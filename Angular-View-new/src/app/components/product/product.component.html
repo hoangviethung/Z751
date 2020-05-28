@@ -19,9 +19,7 @@
 		<app-pagination
 			*ngIf="totalItems"
 			[totalItems]="totalItems"
-			[itemPerPage]="pagination.itemPerPage"
-			(changePage)="refreshList($event)"
-			[url]="'/products'"
+			[pagination]="pagination"
 		>
 		</app-pagination>
 	</div>

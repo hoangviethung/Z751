@@ -32,17 +32,15 @@ export class RedirectComponent implements OnInit {
 					);
 				} else if (path == "/") {
 					path = "index";
-				} else if ((path = "search")) {
+				} else if (path.indexOf("search") >= 0) {
 					path = "search";
 				} else {
 					path = "error";
 				}
-				this.isLoading = false;
-			});
-
-		var interval = setInterval(() => {
-			if (!this.isLoading) {
-				clearInterval(interval);
+				// this.isLoading = false;
+				// var interval = setInterval(() => {
+				// if (!this.isLoading) {
+				// clearInterval(interval);
 				if (path != "/" && path != this.document.location.pathname) {
 					this.r
 						.navigateByUrl(path, { skipLocationChange: true })
@@ -50,8 +48,9 @@ export class RedirectComponent implements OnInit {
 							this.rService.isRenderingSSR = false;
 						});
 				}
-			}
-		}, 1000);
+				// }
+				// }, 100);
+			});
 	}
 
 	ngOnInit() {}

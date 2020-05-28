@@ -138,7 +138,6 @@ export class HeaderComponent implements OnInit {
 			)
 			.subscribe((response) => {
 				this.menus = response;
-				console.log(this.menus);
 			});
 	}
 
