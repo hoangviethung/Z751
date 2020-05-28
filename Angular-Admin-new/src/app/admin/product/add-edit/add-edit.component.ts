@@ -118,7 +118,6 @@ export class AddEditComponent implements OnInit {
 	updateBaseUrl(e) {
 		const item = this.categories.find((item, index) => {
 			if (item.id == e) {
-				console.log(item);
 				return item;
 			}
 		});

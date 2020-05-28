@@ -18,7 +18,7 @@ import { DOCUMENT } from "@angular/common";
 	styleUrls: ["./capacity.component.scss"],
 })
 export class CapacityComponent implements OnInit {
-	pagination: PaginationModel = new PaginationModel(9, 1);
+	pagination: PaginationModel = new PaginationModel(10, 1);
 	totalItems: number;
 	currentLanguage: string;
 	products: Array<ProductModel> = [];
@@ -73,6 +73,7 @@ export class CapacityComponent implements OnInit {
 	getCapacities(opts) {
 		this.httpSvc.get(API.Product.Gets, opts).subscribe((response) => {
 			this.products = response.data.items;
+			this.totalItems = response.data.total;
 		});
 	}
 
