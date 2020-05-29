@@ -26,7 +26,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 export function HttpLoaderFactory(httpClient: HttpClient) {
 	return new TranslateHttpLoader(
 		httpClient,
-		`${environment.locales}/assets/i18n/`,
+		`${environment.remoteBaseUrl}/assets/`,
 		".json"
 	);
 }

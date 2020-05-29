@@ -5,6 +5,7 @@ import { Directive, ElementRef, OnInit, HostListener } from "@angular/core";
 })
 export class ProductDirective implements OnInit {
 	constructor(private elementRef: ElementRef) {}
+
 	ngOnInit() {
 		this.calculateSize();
 	}

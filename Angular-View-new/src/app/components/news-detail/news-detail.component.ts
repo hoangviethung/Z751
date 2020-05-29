@@ -19,6 +19,7 @@ import { DOCUMENT } from "@angular/common";
 export class NewsDetailComponent implements OnInit {
 	currentLanguage: string;
 	article: ArticleModel;
+	articleOthers: Array<ArticleModel>;
 	newsCategoryUrl: string;
 	breadcrumbs;
 
@@ -51,6 +52,7 @@ export class NewsDetailComponent implements OnInit {
 		};
 		this.httpSvc.get(API.Article.Get, opts).subscribe((response) => {
 			this.article = response.data;
+			this.articleOthers = this.article.relateds;
 			const metaObject: MetaModel = {
 				title: response.data.metaTitle,
 				keywords: response.data.metaKeywords,

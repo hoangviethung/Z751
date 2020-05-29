@@ -1,21 +1,23 @@
 <div class="title-news-others">tin liên quan</div>
 <div class="list-news-others">
 	<div class="row">
-		<div class="col-sm-6 col-lg-12" *ngFor="let news of newsOthers">
-			<a
-				[routerLink]="['/news', news.CategoryUrl, news.Url]"
-				class="item-news-others"
-			>
-				<figure>
-					<div class="img">
-						<img src="{{ news.Image }}" alt="" class="ofcv" />
-					</div>
-					<figcaption>
-						<h3 class="lcl lcl-2">{{ news.Title }}</h3>
-						<time>{{ news.Time }}</time>
-					</figcaption>
-				</figure>
-			</a>
+		<div
+			class="col-sm-6 col-lg-12"
+			*ngFor="let news of newsOthers; let i = index"
+		>
+			<ng-container *ngIf="i < 6">
+				<a [routerLink]="[news.url]" class="item-news-others">
+					<figure>
+						<div class="img">
+							<img src="{{ news.image }}" alt="" class="ofcv" />
+						</div>
+						<figcaption>
+							<h3 class="lcl lcl-2">{{ news.title }}</h3>
+							<time>{{ news.order | date: "dd-MM-yyyy" }}</time>
+						</figcaption>
+					</figure>
+				</a>
+			</ng-container>
 		</div>
 	</div>
 </div>

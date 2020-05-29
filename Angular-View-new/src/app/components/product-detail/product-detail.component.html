@@ -7,9 +7,16 @@
 				<div class="row slider-imgProduct" appSetHeightSlider>
 					<!-- HÌNH LỚN -->
 					<div class="preview-img-wrapper col-md-9">
-						<div class="swiper-container" [swiper]="previewSliderConfig" #previewSlider>
+						<div
+							class="swiper-container"
+							[swiper]="previewSliderConfig"
+							#previewSlider
+						>
 							<div class="swiper-wrapper">
-								<div class="swiper-slide" *ngFor="let image of product.images">
+								<div
+									class="swiper-slide"
+									*ngFor="let image of product.images"
+								>
 									<div class="img ov-h">
 										<img src="{{ image.path }}" alt="" />
 									</div>
@@ -21,10 +28,17 @@
 					</div>
 					<!-- CÁC HÌNH NHỎ -->
 					<div class="gallery-thumbs-wrapper col-md-3">
-						<div class="swiper-container" [swiper]="thumbsSliderConfig"
-							(swiperClick)="changeBigSlider($event)" #thumbsSlider>
+						<div
+							class="swiper-container"
+							[swiper]="thumbsSliderConfig"
+							(swiperClick)="changeBigSlider($event)"
+							#thumbsSlider
+						>
 							<div class="swiper-wrapper">
-								<div class="swiper-slide" *ngFor="let image of product.images">
+								<div
+									class="swiper-slide"
+									*ngFor="let image of product.images"
+								>
 									<div class="img ov-h">
 										<img src="{{ image.path }}" alt="" />
 									</div>
@@ -36,13 +50,29 @@
 				<div class="social-media">
 					<ul class="d-if lst-n pl-0">
 						<li>
-							<a href="https://facebook.com" rel="noreferrer" class="ico-facebook" target="_blank">
-								<img src="assets/images/icons/facebook-2.svg" alt="" />
+							<a
+								href="https://facebook.com"
+								rel="noreferrer"
+								class="ico-facebook"
+								target="_blank"
+							>
+								<img
+									src="assets/images/icons/facebook-2.svg"
+									alt=""
+								/>
 							</a>
 						</li>
 						<li>
-							<a href="https://twitter.com" rel="noreferrer" class="ico-twitter" target="_blank">
-								<img src="assets/images/icons/twitter-2.svg" alt="" />
+							<a
+								href="https://twitter.com"
+								rel="noreferrer"
+								class="ico-twitter"
+								target="_blank"
+							>
+								<img
+									src="assets/images/icons/twitter-2.svg"
+									alt=""
+								/>
 							</a>
 						</li>
 					</ul>
@@ -69,8 +99,12 @@
 				</div>
 				<div class="button-contact">
 					<div class="btn-wrapper d-f jc-fe">
-						<a class="btn-red btn-viewmore tt-u h-47" (click)="showPopup(null)">
-							{{ "ResourceKeys.ContactNow" | translate}}</a>
+						<a
+							class="btn-red btn-viewmore tt-u h-47"
+							(click)="showPopup(null)"
+						>
+							{{ "ResourceKeys.ContactNow" | translate }}</a
+						>
 					</div>
 				</div>
 			</div>
@@ -81,7 +115,7 @@
 				<div class="tab-container">
 					<ul class="list-tab d-f lst-n pl-0">
 						<li class="item w-100" (click)="changeTab(1)">
-							{{ "ResourceKeys.ProductInformation" | translate}}
+							{{ "ResourceKeys.ProductInformation" | translate }}
 						</li>
 						<!-- <li
 							class="item w-100 text-center"
@@ -92,18 +126,25 @@
 					</ul>
 					<div class="tab-content">
 						<div class="content" tab-id="item-1" *ngIf="tabId == 1">
-							<div class="desc" [innerHTML]="product.content"></div>
+							<div
+								class="desc"
+								[innerHTML]="product.content"
+							></div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-3 aside-category">
 				<div class="title-aside tt-u cl-white">
-					{{ "ResourceKeys.ProductCategory" | translate}}
+					{{ "ResourceKeys.ProductCategory" | translate }}
 				</div>
 				<ul class="list-item lst-n pl-0">
 					<li class="item" *ngFor="let category of productCategory">
-						<a class="nav-link" [routerLink]="['/products', category.Url]">{{ category.Title }}</a>
+						<a
+							class="nav-link"
+							[routerLink]="['/products', category.Url]"
+							>{{ category.Title }}</a
+						>
 					</li>
 					<li class="item tt-u">
 						<a [routerLink]="'/products'">
@@ -139,16 +180,19 @@
 		<div class="product-form-wrapper" *ngIf="categoryOfProduct">
 			<div class="product-form-content">
 				<h2 class="main-title text-center tt-u">
-					{{ "menu.contact" | translate}}
+					{{ "menu.contact" | translate }}
 				</h2>
 				<div class="close-popup" (click)="showPopup(false)">
 					<span></span><span></span>
 				</div>
-				<app-form-contact [departments]="categoryOfProduct" [categoryUrl]="productCategoryUrl">
+				<app-form-contact
+					[departments]="categoryOfProduct"
+					[categoryUrl]="productCategoryUrl"
+				>
 				</app-form-contact>
 			</div>
 		</div>
 	</div>
 </section>
 
-<app-product-others [routeParamUrl]="productCategoryUrl" [language]="currentLanguage" *ngIf="product"></app-product-others>
+<app-product-others [productOthers]="productOthers"></app-product-others>

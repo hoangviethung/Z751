@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { HttpService } from "src/core/services/http.service";
+import { ArticleModel } from "src/core/models/Article.model";
 
 @Component({
 	selector: "app-news-detail-others",
@@ -7,22 +7,9 @@ import { HttpService } from "src/core/services/http.service";
 	styleUrls: ["./news-detail-others.component.scss"],
 })
 export class NewsDetailOthersComponent implements OnInit {
-	newsOthers = [];
-	@Input("language") currentLanguage: string;
+	@Input("newsOthers") newsOthers: Array<ArticleModel>;
 
-	constructor(private httpSvc: HttpService) {}
+	constructor() {}
 
-	ngOnInit() {
-		this.getNewsList();
-	}
-
-	getNewsList() {
-		const url =
-			this.currentLanguage == "en"
-				? `assets/api/${this.currentLanguage}/news/internal-news.json`
-				: `assets/api/${this.currentLanguage}/news/tin-noi-bo.json`;
-		this.httpSvc.get(url).subscribe((result) => {
-			this.newsOthers = result.data.News;
-		});
-	}
+	ngOnInit() {}
 }
