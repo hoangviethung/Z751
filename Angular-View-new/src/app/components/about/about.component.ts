@@ -24,7 +24,7 @@ export class AboutComponent implements OnInit {
 	currentLanguage: string;
 	aboutLetter: SectionModel;
 	defaultImage =
-		"https://www.solidbackgrounds.com/images/1920x1080/1920x1080-gray-solid-color-background.jpg";
+		"./assets/images/preload.jpg";
 	constructor(
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,

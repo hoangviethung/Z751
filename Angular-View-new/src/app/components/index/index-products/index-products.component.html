@@ -2,16 +2,23 @@
 	<div class="container">
 		<div class="block-title">
 			<h2 class="main-title tt-u tag-line">
-				{{ "index.product-categories.title" | translate }}
+				{{ "Products" | translate }}
 			</h2>
 		</div>
 		<div class="row">
-			<div class="col-lg-4 col-sm-6 col-product" *ngFor="let item of productCategories">
+			<div
+				class="col-lg-4 col-sm-6 col-product"
+				*ngFor="let item of productCategories"
+			>
 				<div class="product-item" appIndexProductItem>
 					<a [routerLink]="item.previewUrl">
 						<div class="img ov-h">
-							<img *ngIf="productCategories" [defaultImage]="defaultImage" [lazyLoad]="item.image"
-								alt="{{ item.title }}">
+							<img
+								*ngIf="productCategories"
+								[defaultImage]="defaultImage"
+								[lazyLoad]="item.image"
+								alt="{{ item.title }}"
+							/>
 						</div>
 						<div class="description fcc">
 							<h3 class="tt-u ta-c" [innerHTML]="item.title"></h3>

@@ -11,7 +11,10 @@
 		<div class="slider-staff">
 			<div class="swiper-container" [swiper]="sliderStaff">
 				<div class="swiper-wrapper">
-					<div *ngFor="let staffImage of staffImages" class="swiper-slide">
+					<div
+						*ngFor="let staffImage of staffImages"
+						class="swiper-slide"
+					>
 						<figure>
 							<div class="box-img">
 								<img class="ofcv swiper-lazy" data-src="{{ staffImage.path }}"

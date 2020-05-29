@@ -103,7 +103,7 @@
 							class="btn-red btn-viewmore tt-u h-47"
 							(click)="showPopup(null)"
 						>
-							{{ "ResourceKeys.ContactNow" | translate }}</a
+							{{ "ContactNow" | translate }}</a
 						>
 					</div>
 				</div>
@@ -115,7 +115,7 @@
 				<div class="tab-container">
 					<ul class="list-tab d-f lst-n pl-0">
 						<li class="item w-100" (click)="changeTab(1)">
-							{{ "ResourceKeys.ProductInformation" | translate }}
+							{{ "ProductInformation" | translate }}
 						</li>
 						<!-- <li
 							class="item w-100 text-center"
@@ -136,39 +136,15 @@
 			</div>
 			<div class="col-lg-3 aside-category">
 				<div class="title-aside tt-u cl-white">
-					{{ "ResourceKeys.ProductCategory" | translate }}
+					{{ "ProductCategory" | translate }}
 				</div>
 				<ul class="list-item lst-n pl-0">
-					<li class="item" *ngFor="let category of productCategory">
+					<li class="item" *ngFor="let category of productCategories">
 						<a
 							class="nav-link"
-							[routerLink]="['/products', category.Url]"
-							>{{ category.Title }}</a
+							[routerLink]="[category.previewUrl]"
 						>
-					</li>
-					<li class="item tt-u">
-						<a [routerLink]="'/products'">
-							cơ khí chính xác
-						</a>
-					</li>
-					<li class="item tt-u">
-						<a [routerLink]="'/products'">
-							cao su kĩ thuật
-						</a>
-					</li>
-					<li class="item tt-u">
-						<a [routerLink]="'/products'">
-							đồ gỗ gia dụng xuất nhập khẩu
-						</a>
-					</li>
-					<li class="item tt-u">
-						<a [routerLink]="'/products'">
-							chế tạo sửa chữa thiết bị
-						</a>
-					</li>
-					<li class="item tt-u">
-						<a [routerLink]="'/products'">
-							dịch vụ
+							{{ category.title }}
 						</a>
 					</li>
 				</ul>
@@ -185,10 +161,7 @@
 				<div class="close-popup" (click)="showPopup(false)">
 					<span></span><span></span>
 				</div>
-				<app-form-contact
-					[departments]="categoryOfProduct"
-					[categoryUrl]="productCategoryUrl"
-				>
+				<app-form-contact [departments]="categoryOfProduct">
 				</app-form-contact>
 			</div>
 		</div>

@@ -21,12 +21,11 @@ import { DOCUMENT } from "@angular/common";
 export class ProductDetailComponent implements OnInit {
 	tabId = 1;
 	productUrl: string;
-	productCategoryUrl: string;
-	productCategory: string;
 	currentLanguage: string;
 	product: ProductModel;
 	productOthers: Array<ProductModel>;
 	breadcrumbs;
+	productCategories: Array<Category>;
 
 	@ViewChild(SwiperDirective, { static: false })
 	thumbsSlider: SwiperDirective;
@@ -89,12 +88,26 @@ export class ProductDetailComponent implements OnInit {
 		};
 		this.getProductDetail();
 		this.setPageInformation(opts);
+		this.getProductCategory();
 	}
 
 	setPageInformation(opts) {
 		this.httpSvc.get(API.Common.Breadcrumb, opts).subscribe((response) => {
 			this.breadcrumbs = response.data;
 		});
+	}
+
+	getProductCategory() {
+		const option = new InputRequestOption();
+		option.params = {
+			templates: "3",
+		};
+		this.httpSvc
+			.get(API.Category.Get_by_Templates, option)
+			.subscribe((response) => {
+				this.productCategories = response.data;
+				this.productCategories.shift();
+			});
 	}
 
 	showPopup(condition: any) {

@@ -17,7 +17,7 @@
 				</mat-select>
 			</mat-form-field>
 		</div>
-		<a class="btn btn-success btn-add" (click)="onOpenPopup(true)"
+		<a *ngIf="canAction(featureName, permissions.Add)" class="btn btn-success btn-add" (click)="onOpenPopup(true)"
 			>Thêm mới</a
 		>
 	</div>
@@ -39,13 +39,13 @@
 				<td class="column-order ta-c">{{ menu.order }}</td>
 				<td class="column-button ta-c">
 					<div class="table-buttons">
-						<span
+						<span *ngIf="canAction(featureName, permissions.Edit)"
 							class="btn btn-outline-success btn-edit"
 							(click)="onOpenPopup(true, menu, true)"
 						>
 							<span class="lnr lnr-pencil"></span>
 						</span>
-						<span
+						<span *ngIf="canAction(featureName, permissions.Delete)"
 							class="btn btn-outline-danger btn-remove"
 							(click)="deleteMenu(menu.id)"
 						>

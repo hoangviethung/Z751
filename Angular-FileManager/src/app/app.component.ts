@@ -42,6 +42,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 	getFolders(currentFolder?) {
 		this.folderSvc.gets().subscribe((element: any) => {
+			console.log(element);
 			// Make random Id
 			this.folders = this.folderSvc.randomId(
 				element.data.items,
@@ -52,9 +53,12 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 			this.isLoadingBoard = true;
 			// Active current folder to load board
-			this.currentFolder =
-					this.currentFolder ? this.folderSvc.getActiveFolder(
-							this.folders, this.currentFolder) : this.folders[0]
+			this.currentFolder = this.currentFolder
+				? this.folderSvc.getActiveFolder(
+						this.folders,
+						this.currentFolder
+				  )
+				: this.folders[0];
 		});
 	}
 
@@ -79,25 +83,28 @@ export class AppComponent implements OnInit, AfterViewInit {
 		if (filesAmount.count != 0) {
 			var count = 0;
 			for (let i = 0; i < filesAmount; i++) {
-				const params = await this.uploadSvc.upload(e.target.files[i], this.currentFolder);
+				const params = await this.uploadSvc.upload(
+					e.target.files[i],
+					this.currentFolder
+				);
 				this.fileSvc.addFile(params).subscribe((response: any) => {
 					if (response.code == 200) {
 						this.toastrSvc.success(`Upload File thành công !!!`);
 					} else {
 						this.toastrSvc.error(`Đã có lỗi xảy ra !!!`);
 					}
-					count++
+					count++;
 				});
 			}
 
 			// wait for finish uploading!
 			var interval = setInterval(async () => {
 				if (count == filesAmount) {
-					console.log("Upload Done")
-					clearInterval(interval)
+					console.log('Upload Done');
+					clearInterval(interval);
 					this.getFolders(this.currentFolder);
 				}
-			}, 1000)
+			}, 1000);
 		}
 	}
 

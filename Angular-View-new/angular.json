@@ -47,6 +47,7 @@
 							"vendorChunk": false,
 							"optimization": true,
 							"buildOptimizer": true,
+							"deleteOutputPath": false,
 							"budgets": [
 								{
 									"type": "initial",

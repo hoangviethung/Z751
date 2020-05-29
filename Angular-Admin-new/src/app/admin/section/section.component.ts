@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import { SectionModel } from 'src/app/_core/models/section.model';
 import {
 	HttpService,
@@ -8,12 +8,17 @@ import { APIConfig } from 'src/app/_core/API-config';
 import { Section } from 'src/app/_core/section';
 import { ImageModel } from 'src/app/_core/models/image.model';
 import { LanguageModel } from 'src/app/_core/models/language';
+import {AuthenticationComponent} from "../../_core/components/base/authentication.component";
+import {Permissions} from "../../_core/enums/role.enum";
 @Component({
 	selector: 'app-section',
 	templateUrl: './section.component.html',
 	styleUrls: ['./section.component.scss'],
 })
-export class SectionComponent implements OnInit {
+export class SectionComponent extends AuthenticationComponent implements OnInit {
+	public featureName: string = 'ManageIntroduction';
+	public permissions = Permissions;
+
 	sections: Array<SectionModel>;
 	section: SectionModel;
 	isShowPopup: boolean = false;
@@ -22,7 +27,10 @@ export class SectionComponent implements OnInit {
 	languages: Array<LanguageModel>;
 	languageCurrent: any;
 
-	constructor(private httpSvc: HttpService) {}
+	constructor(injector: Injector,
+				private httpSvc: HttpService) {
+		super(injector);
+	}
 
 	ngOnInit(): void {
 		this.languages = JSON.parse(localStorage.getItem('languages'));

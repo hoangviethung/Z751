@@ -15,11 +15,10 @@ import { Image } from "src/core/models/Image.model";
 	styleUrls: ["./index-about-us.component.scss"],
 })
 export class IndexAboutUsComponent implements OnInit {
-	constructor(private HttpSvc: HttpService) {}
-	content_template_6: SectionModel;
-	content_template_7: Array<Image>;
-	defaultImage =
-		"https://www.solidbackgrounds.com/images/1920x1080/1920x1080-gray-solid-color-background.jpg";
+	constructor(private httpSvc: HttpService) {}
+	indexAbout: SectionModel;
+	indexCoreValues: SectionModel;
+	defaultImage = "./assets/images/preload.jpg";
 	ngOnInit() {
 		this.getContentTemplate_6();
 		this.getContentTemplate_7();
@@ -30,15 +29,9 @@ export class IndexAboutUsComponent implements OnInit {
 		option.params = {
 			template: "6",
 		};
-		this.HttpSvc.get(API.Section.Get, option)
-			.pipe(
-				map((response) => {
-					return response.data;
-				})
-			)
-			.subscribe((content) => {
-				this.content_template_6 = content;
-			});
+		this.httpSvc.get(API.Section.Get, option).subscribe((response) => {
+			this.indexAbout = response.data;
+		});
 	}
 
 	getContentTemplate_7() {
@@ -46,14 +39,8 @@ export class IndexAboutUsComponent implements OnInit {
 		option.params = {
 			template: "7",
 		};
-		this.HttpSvc.get(API.Section.Get, option)
-			.pipe(
-				map((response) => {
-					return response.data.images;
-				})
-			)
-			.subscribe((content) => {
-				this.content_template_7 = content;
-			});
+		this.httpSvc.get(API.Section.Get, option).subscribe((content) => {
+			this.indexCoreValues = content.data;
+		});
 	}
 }

@@ -17,7 +17,7 @@
 			</mat-form-field>
 		</div>
 		<div class="block-buttons">
-			<a class="btn btn-success btn-add" (click)="onOpenPopup(true)"
+			<a *ngIf="canAction(featureName, permissions.Add)" class="btn btn-success btn-add" (click)="onOpenPopup(true)"
 				>Thêm mới</a
 			>
 		</div>
@@ -58,13 +58,13 @@
 				</td>
 				<td class="column-language ta-c">
 					<div class="table-buttons">
-						<span
+						<span *ngIf="canAction(featureName, permissions.Edit)"
 							class="btn btn-outline-success btn-edit"
 							(click)="onOpenPopup(true, banner, true)"
 						>
 							<span class="lnr lnr-pencil"></span>
 						</span>
-						<span
+						<span *ngIf="canAction(featureName, permissions.Delete)"
 							class="btn btn-outline-danger btn-remove"
 							(click)="deleteBanner(banner.id)"
 						>

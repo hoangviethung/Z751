@@ -11,7 +11,7 @@ export class UserModel {
 	isSuperAdmin: boolean;
 	accessToken: string = null;
 	roles: any;
-	permissions: string = null;
+	permissions: string | any[] = null;
 	fullName: string = null;
 	imageUrl: string = null;
 	isActive: boolean;

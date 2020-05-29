@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import { ProductGroupModel } from 'src/app/_core/models/product-groups';
 import {
 	HttpService,
@@ -13,12 +13,17 @@ import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
 import { FilterSearchModel } from 'src/app/_core/models/filter.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import {Permissions} from "../../_core/enums/role.enum";
+import {AuthenticationComponent} from "../../_core/components/base/authentication.component";
 @Component({
 	selector: 'app-product-groups',
 	templateUrl: './product-groups.component.html',
 	styleUrls: ['./product-groups.component.scss'],
 })
-export class ProductGroupsComponent implements OnInit {
+export class ProductGroupsComponent extends AuthenticationComponent implements OnInit {
+	public featureName: string = 'ManageProductGroup';
+	public permissions = Permissions;
+
 	isShowPopup: boolean = false;
 	isEdit: boolean;
 	languages: Array<LanguageModel>;
@@ -27,11 +32,13 @@ export class ProductGroupsComponent implements OnInit {
 	templates: Array<TemplateModel> = TemplatesConfig;
 	search: FilterSearchModel = new FilterSearchModel();
 	constructor(
+		injector: Injector,
 		private httpSvc: HttpService,
 		private toastrSvc: ToastrService,
-		private router: Router,
 		private activatedRoute: ActivatedRoute
-	) {}
+	) {
+		super(injector);
+	}
 
 	ngOnInit(): void {
 		this.getProductGroups();
