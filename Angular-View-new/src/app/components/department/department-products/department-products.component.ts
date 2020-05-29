@@ -19,6 +19,7 @@ export class DepartmentProductsComponent implements OnInit {
 	sliderProductsConfig: SwiperConfigInterface = {
 		slidesPerView: 3,
 		slidesPerColumn: 2,
+		slidesPerColumnFill: "row",
 		loop: false,
 		speed: 1200,
 		spaceBetween: 20,
