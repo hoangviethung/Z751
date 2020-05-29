@@ -20,6 +20,11 @@
 		box-shadow: 0 0.125rem 0.25rem rgba(map-get($mau, main), 0.15);
 		border: 1px solid map-get($mau, main);
 	}
+
+	&:disabled {
+		background: rgba(black, 0.1);
+		pointer-events: none;
+	}
 }
 
 .form-group {
@@ -132,7 +137,7 @@
 	}
 
 	.custom-control-input {
-		&:checked~.custom-control-indicator {
+		&:checked ~ .custom-control-indicator {
 			background-color: rgba($color: #3f6ad8, $alpha: 0.5);
 			background-image: none;
 			box-shadow: none !important;
@@ -143,7 +148,7 @@
 			}
 		}
 
-		&:focus~.custom-control-indicator {
+		&:focus ~ .custom-control-indicator {
 			box-shadow: none !important;
 		}
 	}

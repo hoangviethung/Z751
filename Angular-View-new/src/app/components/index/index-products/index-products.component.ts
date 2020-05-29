@@ -3,7 +3,6 @@ import {
 	HttpService,
 	InputRequestOption,
 } from "src/core/services/http.service";
-import { ProductModel } from "src/core/models/Product.model";
 import { API } from "src/core/configs/api";
 import { Category } from "src/core/models/Category.model";
 
@@ -14,8 +13,7 @@ import { Category } from "src/core/models/Category.model";
 })
 export class IndexProductsComponent implements OnInit {
 	productCategories: Array<Category>;
-	defaultImage =
-		"https://www.solidbackgrounds.com/images/1920x1080/1920x1080-gray-solid-color-background.jpg";
+	defaultImage = "./assets/images/preload.jpg";
 	@Input("language") currentLanguage: string;
 
 	constructor(private httpSvc: HttpService) {}
@@ -31,8 +29,8 @@ export class IndexProductsComponent implements OnInit {
 		};
 		this.httpSvc
 			.get(API.Category.Get_by_Templates, option)
-			.subscribe((result) => {
-				this.productCategories = result.data;
+			.subscribe((response) => {
+				this.productCategories = response.data;
 				this.productCategories.shift();
 			});
 	}

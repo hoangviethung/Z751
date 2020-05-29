@@ -17,25 +17,23 @@ import { SwiperConfigInterface, SwiperDirective } from "ngx-swiper-wrapper";
 export class DepartmentProductsComponent implements OnInit {
 	ngOnInit() {}
 	sliderProductsConfig: SwiperConfigInterface = {
-		slidesPerView: 3,
-		slidesPerColumn: 2,
-		loop: false,
 		speed: 1200,
-		spaceBetween: 20,
-		observer: true,
-		observeParents: true,
+		spaceBetween: 15,
+		slidesPerView: 1,
 		pagination: {
 			el: ".swiper-pagination",
 			clickable: true,
 		},
 		breakpoints: {
-			1025: {
-				slidesPerView: 3,
-			},
 			768: {
-				spaceBetween: 15,
+				spaceBetween: 20,
 				slidesPerView: 2,
-				slidesPerColumn: 1,
+				slidesPerColumn: 2,
+			},
+			1025: {
+				spaceBetween: 20,
+				slidesPerView: 3,
+				slidesPerColumn: 2,
 			},
 		},
 	};

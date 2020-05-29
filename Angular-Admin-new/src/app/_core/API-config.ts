@@ -47,7 +47,7 @@ export const APIConfig = {
 		viResource: '/assets/vi.json',
 		enResource: '/assets/en.json',
 		Generate: '/api/Resource/generate',
-		Add: '/api/Resource/gets',
+		Add: '/api/Resource/add',
 		Update: '/api/Resource/update',
 	},
 	Section: {

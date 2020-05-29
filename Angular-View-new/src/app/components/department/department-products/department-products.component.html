@@ -1,16 +1,27 @@
 <div class="slider-products">
-	<div class="swiper-container" [swiper]="sliderProductsConfig" (init)="setSizeSlideitem($event)"
-		(swiperResize)="setSizeSlideitem($event)">
+	<div
+		class="swiper-container"
+		[swiper]="sliderProductsConfig"
+		(init)="setSizeSlideitem($event)"
+		(swiperResize)="setSizeSlideitem($event)"
+	>
 		<div class="swiper-wrapper">
 			<div *ngFor="let product of products" class="swiper-slide">
-				<div class="product-item" #departmentSlide>
-					<a routerLink="{{product.url}}">
+				<div class="product-item">
+					<a routerLink="{{ product.url }}">
 						<div class="img ov-h">
-							<img *ngIf="products" [defaultImage]="defaultImage" [lazyLoad]="product.image"
-								alt="{{ product.title }}">
+							<img
+								*ngIf="products"
+								[defaultImage]="defaultImage"
+								[lazyLoad]="product.image"
+								alt="{{ product.title }}"
+							/>
 						</div>
 						<div class="description fcc">
-							<h3 class="tt-u ta-c" [innerHTML]="product.description"></h3>
+							<h3
+								class="tt-u ta-c"
+								[innerHTML]="product.description"
+							></h3>
 						</div>
 					</a>
 				</div>

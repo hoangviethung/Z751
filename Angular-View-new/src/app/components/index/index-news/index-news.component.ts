@@ -10,7 +10,7 @@ import { ArticleModel } from "src/core/models/Article.model";
 export class IndexNewsComponent implements OnInit {
 	newsItems: Array<ArticleModel>;
 	defaultImage =
-		"https://www.solidbackgrounds.com/images/1920x1080/1920x1080-gray-solid-color-background.jpg";
+		"./assets/images/preload.jpg";
 	@Input("language") currentLanguage: string;
 	@Input("background") background: string;
 	@Input("pageTitle") pageTitle: string;

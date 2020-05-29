@@ -10,7 +10,7 @@
 			<div class="row">
 				<div class="col-12">
 					<h2 class="main-title tt-u">
-						{{ "menu.about" | translate}}
+						{{ "DepartmentIntroduce" | translate }}
 					</h2>
 				</div>
 				<div class="col-lg-6">
@@ -18,7 +18,12 @@
 				</div>
 				<div class="col-lg-6">
 					<div class="img">
-						<img *ngIf="image" [defaultImage]="defaultImage" [lazyLoad]="image" alt="GIOI-THIEU">
+						<img
+							*ngIf="image"
+							[defaultImage]="defaultImage"
+							[lazyLoad]="image"
+							alt="GIOI-THIEU"
+						/>
 					</div>
 				</div>
 			</div>
@@ -29,7 +34,7 @@
 	<div class="container">
 		<div class="block-title center">
 			<h2 class="main-title tt-u mb-0">
-				{{ "ResourceKeys.Products" | translate}}
+				{{ "Products" | translate }}
 			</h2>
 		</div>
 		<ng-container *ngFor="let productGroup of productGroups">
@@ -39,7 +44,9 @@
 				</h2>
 				<div class="row" *ngIf="productGroup.products">
 					<div class="col-12">
-						<app-department-products [products]="productGroup.products"></app-department-products>
+						<app-department-products
+							[products]="productGroup.products"
+						></app-department-products>
 					</div>
 				</div>
 			</div>
@@ -48,7 +55,10 @@
 </section>
 
 <ng-container *ngFor="let productGroup of productGroups">
-	<app-department-capacity *ngIf="productGroup.isPotential" [capacityProducts]="productGroup.products">
+	<app-department-capacity
+		*ngIf="productGroup.isPotential"
+		[capacityProducts]="productGroup.products"
+	>
 	</app-department-capacity>
 </ng-container>
 <app-index-news [pageTitle]="pageTitle"></app-index-news>
@@ -60,14 +70,17 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-6">
-				<app-form-contact [departments]="departments" [categoryUrl]="categoryUrl"></app-form-contact>
+				<app-form-contact
+					[departments]="departments"
+					[categoryUrl]="categoryUrl"
+				></app-form-contact>
 			</div>
 			<div class="col-lg-6">
 				<div class="information">
 					<h3>{{ title }}</h3>
 					<div class="text" [innerHTML]="address"></div>
 					<hr />
-					<h3>{{ "ResourceKeys.WorkTime" | translate}}</h3>
+					<h3>{{ "WorkTime" | translate }}</h3>
 					<div class="text" [innerHTML]="workTime"></div>
 				</div>
 			</div>

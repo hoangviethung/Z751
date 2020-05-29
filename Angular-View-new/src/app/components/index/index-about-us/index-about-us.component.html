@@ -1,49 +1,46 @@
 <section class="index-about-us">
-	<div class="container-description pd-70">
+	<div class="container-description pd-70" *ngIf="indexAbout">
 		<div class="container">
 			<div class="block-title ta-c">
 				<h2 class="tt-u main-title">
-					{{ "index.about-us.title" | translate }}
+					{{ indexAbout.title }}
 				</h2>
 			</div>
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="img">
-						<img *ngIf="content_template_6" [defaultImage]="defaultImage"
-							[lazyLoad]="content_template_6.image" alt="{{content_template_6.title}}">
+						<img
+							[defaultImage]="defaultImage"
+							[lazyLoad]="indexAbout.image"
+							alt="{{ indexAbout.title }}"
+						/>
 					</div>
 				</div>
 				<div class="col-lg-6">
-					<div class="title">
-						<h2 class="tt-u cl-main" *ngIf="content_template_6">
-							{{ content_template_6.title }}
-						</h2>
-						<h3 class="tt-u fw-400">
-							CÔNG TY TNHH MỘT THÀNH VIÊN 751
-						</h3>
-					</div>
-					<div class="content">
-						<p class="lcl lcl-5" *ngIf="content_template_6">
-							{{ content_template_6.content }}
-						</p>
-					</div>
+					<div class="content" [innerHTML]="indexAbout.content"></div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="container-symbol pd-70 bg-gray">
-		<div class="container">
+		<div class="container" *ngIf="indexCoreValues">
 			<div class="block-title ta-c">
 				<h2 class="tt-u main-title">
-					{{ "index.about-us.core-value" | translate }}
+					{{ indexCoreValues.title }}
 				</h2>
 			</div>
 			<div class="row">
-				<div class="col-lg-3 col-6 col-item" *ngFor="let item of content_template_7">
+				<div
+					class="col-lg-3 col-6 col-item"
+					*ngFor="let item of indexCoreValues.images"
+				>
 					<div class="item">
 						<div class="img ta-c">
-							<img *ngIf="content_template_7" [defaultImage]="defaultImage" [lazyLoad]="item.path"
-								alt="{{ item.alt }}">
+							<img
+								[defaultImage]="defaultImage"
+								[lazyLoad]="item.path"
+								alt="{{ item.alt }}"
+							/>
 						</div>
 						<div class="description ta-c">
 							<h3 class="tt-u">

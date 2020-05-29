@@ -11,12 +11,20 @@
 		<div class="slider-staff">
 			<div class="swiper-container" [swiper]="sliderStaff">
 				<div class="swiper-wrapper">
-					<div *ngFor="let staffImage of staffImages" class="swiper-slide">
+					<div
+						*ngFor="let staffImage of staffImages"
+						class="swiper-slide"
+					>
 						<figure>
 							<div class="box-img">
-								<img class="ofcv swiper-lazy" data-src="{{ staffImage.path }}"
-									alt="{{ staffImage.alt }}" />
-								<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+								<img
+									class="ofcv swiper-lazy"
+									data-src="{{ staffImage.path }}"
+									alt="{{ staffImage.alt }}"
+								/>
+								<div
+									class="swiper-lazy-preloader swiper-lazy-preloader-white"
+								></div>
 							</div>
 							<figcaption>
 								<p class="lcl lcl-1">
