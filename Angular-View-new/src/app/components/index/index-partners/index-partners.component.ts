@@ -62,15 +62,15 @@ export class IndexPartnersComponent implements OnInit {
 		this.httpSvc.get(API.Section.Get, option).subscribe((result) => {
 			this.contentSection_8 = result.data;
 			this.listImages = result.data.images;
-			if (window.innerWidth <= 1200 && this.listImages.length > 5) {
-				this.showLoading = true;
-			} else if (window.innerWidth <= 768 && this.listImages.length > 4) {
-				this.showLoading = true;
-			} else if (window.innerWidth <= 576 && this.listImages.length > 3) {
-				this.showLoading = true;
-			} else if (window.innerWidth <= 575 && this.listImages.length > 2) {
-				this.showLoading = true;
-			}
+			// if (window.innerWidth <= 1200 && this.listImages.length > 5) {
+			// 	this.showLoading = true;
+			// } else if (window.innerWidth <= 768 && this.listImages.length > 4) {
+			// 	this.showLoading = true;
+			// } else if (window.innerWidth <= 576 && this.listImages.length > 3) {
+			// 	this.showLoading = true;
+			// } else if (window.innerWidth <= 575 && this.listImages.length > 2) {
+			// 	this.showLoading = true;
+			// }
 		});
 	}
 }

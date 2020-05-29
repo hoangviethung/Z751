@@ -71,7 +71,9 @@ export class ToolbarComponent implements OnInit {
 			} else if (this.event.isRename) {
 				let nPath = this.event.path;
 				let path = this.event.path;
-				if (nPath != '') nPath = parent.name + '/' + name;
+				if (nPath != '') {
+					nPath = path.substr(0, path.lastIndexOf("/")) + '/' + name;
+				}
 				this.folderSvc
 					.update(path, nPath)
 					.subscribe((response: any) => {
