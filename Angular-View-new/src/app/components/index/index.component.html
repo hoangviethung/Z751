@@ -1,6 +1,119 @@
-<app-banner></app-banner>
+ <!-- <app-banner></app-banner>
 <app-index-about-us></app-index-about-us>
 <app-index-products></app-index-products>
 <app-index-news [language]="'en'" [background]="'bg-gray'"></app-index-news>
 <app-index-department></app-index-department>
-<app-index-partners></app-index-partners>
+<app-index-partners></app-index-partners> -->
+
+<div class="index-banner">
+    <div class="swiper-container" [swiper]="bannerConfig" #indexBanner>
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <a href="#">
+                    <img src="/assets/images/test/gray.jpg" alt="" />
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="index-about-us">
+    <div class="container-description pd-70">
+        <div class="container">
+            <div class="block-title ta-c">
+                <h2 class="tt-u main-title">
+                    VỀ CHÚNG TÔI
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="img">
+                        <img src="/assets/images/test/gray.jpg" alt="" />
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                     <div class="img">
+                        <img src="/assets/images/test/gray.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-symbol pd-70 bg-gray">
+        <div class="container">
+            <div class="block-title ta-c">
+                <h2 class="tt-u main-title">
+                  GIÁ TRỊ CỐT LÕI
+                </h2>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-6 col-item" >
+                    <div class="item">
+                        <img src="/assets/images/test/gray.jpg" alt="" />
+                    </div>
+                </div>
+				 <div class="col-lg-3 col-6 col-item" >
+                    <div class="item">
+                        <img src="/assets/images/test/gray.jpg" alt="" />
+                    </div>
+                </div>
+				 <div class="col-lg-3 col-6 col-item" >
+                    <div class="item">
+                        <img src="/assets/images/test/gray.jpg" alt="" />
+                    </div>
+                </div>
+				 <div class="col-lg-3 col-6 col-item" >
+                    <div class="item">
+                        <img src="/assets/images/test/gray.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> 
+<div class="index-department pd-70">
+    <div class="container">
+        <div class="block-title">
+            <h2 class="main-title tt-u tag-line">
+                LĨNH VỰC SẢN XUẤT KINH DOANH
+            </h2>
+        </div>
+        <div class="index-slider-departments">
+            <div class="swiper-container" >
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" >
+                        <div class="product-item" >
+                             <img src="/assets/images/test/gray.jpg" alt="" />
+                        </div>
+						
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-prev">
+                <img src="/assets/images/icons/swiper_prev.svg" alt="" />
+            </div>
+            <div class="swiper-button-next">
+                <img src="/assets/images/icons/swiper_next.svg" alt="" />
+            </div>
+        </div>
+    </div>
+</div>
+<section class="pd-70">
+    <div class="container">
+        <div class="block-title">
+            <h2 class="main-title tt-u tag-line">
+               TIN TỨC
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 col-product" >
+               <img src="/assets/images/test/gray.jpg" alt="" />
+            </div>
+			<div class="col-lg-4 col-sm-6 col-product" >
+               <img src="/assets/images/test/gray.jpg" alt="" />
+            </div>
+			<div class="col-lg-4 col-sm-6 col-product" >
+               <img src="/assets/images/test/gray.jpg" alt="" />
+            </div>
+        </div>
+    </div>
+</section>

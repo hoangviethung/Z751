@@ -3,16 +3,18 @@
 	<!-- about us -->
 	<section class="about-us pd-70">
 		<div class="container">
-			<div class="block-title center">
+			<!-- <div class="block-title center">
 				<h2 class="tt-u main-title" *ngIf="aboutLetter">
 					{{ aboutLetter.title }}
 				</h2>
-			</div>
-			<div
+				
+			</div>-->
+			<img src="/assets/images/test/gray.jpg" alt="" /> 
+			<!-- <div
 				class="content"
 				*ngIf="aboutLetter"
 				[innerHTML]="aboutLetter.content"
-			></div>
+			></div> -->
 		</div>
 	</section>
 
@@ -20,14 +22,16 @@
 	<section class="mission-vision pd-70">
 		<div class="container">
 			<div class="block-title center">
-				<div
+				<!-- <div
 					class="main-title fw-700 tt-u cl-white"
 					*ngIf="missionVision"
 				>
 					{{ missionVision.title }}
-				</div>
+				</div> -->
+						<img src="/assets/images/test/gray.jpg" alt="" />
+
 			</div>
-			<div class="list-item row">
+			<!-- <div class="list-item row">
 				<div
 					class="item col-md-4"
 					*ngFor="let missionVisionImage of missionVisionImages"
@@ -40,12 +44,12 @@
 						</figcaption>
 					</figure>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</section>
 
 	<!-- history -->
-	<app-history [language]="currentLanguage"></app-history>
+	<!-- <app-history [language]="currentLanguage"></app-history> -->
 
 	<!-- staff -->
 	<app-staff [language]="currentLanguage"></app-staff>
@@ -53,7 +57,7 @@
 	<!-- system -->
 	<section class="system pd-70">
 		<figure>
-			<img src="./assets/images/about/system.png" alt="" />
+			<img src="/assets/images/test/gray.jpg" alt="" />
 		</figure>
 	</section>
 
