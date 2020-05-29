@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { LanguageModel } from 'src/app/_core/models/language';
 import { ToastrService } from 'ngx-toastr';
@@ -8,12 +8,17 @@ import { TemplateModel } from 'src/app/_core/models/template.model';
 import { HttpService, InputRequestOption } from 'src/app/_core/services/http.service';
 import { BranchModel } from 'src/app/_core/models/branch.model';
 import { APIConfig } from 'src/app/_core/API-config';
+import {Permissions} from "../../_core/enums/role.enum";
+import {AuthenticationComponent} from "../../_core/components/base/authentication.component";
 @Component({
 	selector: 'app-branch',
 	templateUrl: './branch.component.html',
 	styleUrls: ['./branch.component.scss']
 })
-export class BranchComponent implements OnInit {
+export class BranchComponent extends AuthenticationComponent implements OnInit {
+	public featureName: string = 'ManageBranch';
+	public permissions = Permissions;
+
 	branchs: Array<BranchModel>
 	branch: BranchModel
 	isShowPopup: boolean = false;
@@ -22,9 +27,12 @@ export class BranchComponent implements OnInit {
 	languageControl = new FormControl();
 	languages: Array<LanguageModel>;
 	constructor(
+		injector: Injector,
 		private httpSvc: HttpService,
 		private toastrSvc: ToastrService
-	) { }
+	) {
+		super(injector);
+	}
 
 	ngOnInit(): void {
 		this.getBranchs()

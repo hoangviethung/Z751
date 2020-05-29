@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import { CategoryModel } from 'src/app/_core/models/category.model';
 import { InputRequestOption } from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
@@ -9,13 +9,18 @@ import { ToastrService } from 'ngx-toastr';
 import { CrudService } from 'src/app/_core/services/crud.service';
 import { PaginationModel } from 'src/app/_core/models/pagination';
 import { ActivatedRoute, Router } from '@angular/router';
+import {AuthenticationComponent} from "../../_core/components/base/authentication.component";
+import {Permissions} from "../../_core/enums/role.enum";
 
 @Component({
 	selector: 'app-category',
 	templateUrl: './category.component.html',
 	styleUrls: ['./category.component.scss'],
 })
-export class CategoryComponent implements OnInit {
+export class CategoryComponent extends AuthenticationComponent implements OnInit {
+	public featureName: string = 'ManageCategory';
+	public permissions = Permissions;
+
 	category: CategoryModel;
 	categories: Array<CategoryModel>;
 	languages: Array<LanguageModel>;
@@ -26,12 +31,14 @@ export class CategoryComponent implements OnInit {
 	isTitleEnglist: boolean;
 
 	constructor(
+		injector: Injector,
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
 		private toastrSvc: ToastrService,
-		private activatedRoute: ActivatedRoute,
-		private router: Router
-	) {}
+		private activatedRoute: ActivatedRoute
+	) {
+		super(injector);
+	}
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();

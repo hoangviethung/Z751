@@ -1,27 +1,32 @@
 <ng-container *ngIf="!isShowPopup">
 	<div class="block-table">
-		<table class="table">
-			<tr class="table-info">
-				<th>#</th>
-				<th>Từ khóa</th>
-				<th>Giá trị (Tiếng việt)</th>
-				<th>Giá trị (Tiếng anh)</th>
-				<th class="ta-c">Thao tác</th>
-			</tr>
-			<tr *ngFor="let resource of resources; let i = index">
-				<td>{{ i + 1 }}</td>
-				<td>{{ resource.name }}</td>
-				<td>{{ resource.value.vi }}</td>
-				<td>{{ resource.value.en }}</td>
-				<td class="ta-c">
-					<a
-						class="btn btn-outline-success"
-						(click)="onOpenPopup(true, resource)"
-					>
-						<span class="lnr lnr-pencil"></span>
-					</a>
-				</td>
-			</tr>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Từ khóa</th>
+					<th>Giá trị (Tiếng việt)</th>
+					<th>Giá trị (Tiếng anh)</th>
+					<th class="ta-c">Thao tác</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let resource of resources; let i = index">
+					<td>{{ i + 1 }}</td>
+					<td>{{ resource.name }}</td>
+					<td>{{ resource.value.vi }}</td>
+					<td>{{ resource.value.en }}</td>
+					<td class="ta-c">
+						<a
+							*ngIf="canAction(featureName, permissions.Edit)"
+							class="btn btn-outline-success"
+							(click)="onOpenPopup(true, resource)"
+						>
+							<span class="lnr lnr-pencil"></span>
+						</a>
+					</td>
+				</tr>
+			</tbody>
 		</table>
 	</div>
 </ng-container>

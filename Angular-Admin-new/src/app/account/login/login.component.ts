@@ -34,6 +34,11 @@ export class LoginComponent implements OnInit {
 			.login(this.loginInfo)
 			.subscribe((response: ResponseModel) => {
 				if (response.code == 200) {
+
+					// Group Feature to shortly permission that is written on cookie.
+					// Note: Size limit of all cookies is 4048B
+					response.data.permissions = this.groupFeature(response.data.permissions);
+
 					this.cookieSvc.set('user', JSON.stringify(response.data));
 					this.toastrSvc.success(response.message);
 					this.router.navigateByUrl('/admin/dashboard');
@@ -43,5 +48,27 @@ export class LoginComponent implements OnInit {
 					this.toastrSvc.error(response.message);
 				}
 			});
+	}
+
+	groupFeature(features: any[])
+	{
+		const result = [];
+
+		if (Array.isArray(features))
+		{
+			features.forEach((feature) => {
+				let resultData = result.find((d) => d.name === feature.name);
+				if (!resultData)
+				{
+					resultData = feature;
+					resultData.permissions = [];
+					result.push(feature);
+				}
+				resultData.permissions.push(feature.permission);
+				delete feature.permission;
+			});
+		}
+
+		return result;
 	}
 }
