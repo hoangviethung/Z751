@@ -7,7 +7,6 @@ import {
 import { ProductModel } from "src/core/models/Product.model";
 import { Category } from "src/core/models/Category.model";
 import { API } from "src/core/configs/api";
-import { PaginationModel } from "src/core/models/Pagination.model";
 import {
 	PageInfoService,
 	MetaModel,
@@ -26,6 +25,7 @@ export class ProductDetailComponent implements OnInit {
 	productCategory: string;
 	currentLanguage: string;
 	product: ProductModel;
+	productOthers: Array<ProductModel>;
 	breadcrumbs;
 
 	@ViewChild(SwiperDirective, { static: false })
@@ -113,6 +113,7 @@ export class ProductDetailComponent implements OnInit {
 		};
 		this.httpSvc.get(API.Product.Get, opts).subscribe((response) => {
 			this.product = response.data;
+			this.productOthers = this.product.relateds;
 			const metaObject: MetaModel = {
 				title: response.data.metaTitle,
 				keywords: response.data.metaKeywords,

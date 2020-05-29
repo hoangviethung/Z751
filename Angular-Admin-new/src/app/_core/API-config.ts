@@ -44,7 +44,10 @@ export const APIConfig = {
 		Update: '/api/Setting/update',
 	},
 	Resource: {
-		Gets: '/api/Resource/gets',
+		viResource: '/assets/vi.json',
+		enResource: '/assets/en.json',
+		Generate: '/api/Resource/generate',
+		Add: '/api/Resource/gets',
 		Update: '/api/Resource/update',
 	},
 	Section: {

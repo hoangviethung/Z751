@@ -2,21 +2,24 @@
 	<div class="container">
 		<div class="block-title center">
 			<div class="main-title fw-700 tt-u txt-d-under">
-				{{ "ResourceKeys.ProductLine" | translate}}
+				{{ "ResourceKeys.ProductLine" | translate }}
 			</div>
 		</div>
 		<div class="slider-product-others">
 			<div class="swiper-container pb-10" [swiper]="sliderProductOthers">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide" *ngFor="let product of productOthers">
-						<a [routerLink]="[
-								'/products/',
-								routeParamUrl,
-								product.url
-							]">
+					<div
+						class="swiper-slide"
+						*ngFor="let product of productOthers"
+					>
+						<a [routerLink]="[product.url]">
 							<figure>
 								<div class="img">
-									<img class="ofcv" src="{{ product.image }}" alt="" />
+									<img
+										class="ofcv"
+										src="{{ product.image }}"
+										alt=""
+									/>
 								</div>
 								<figcaption>
 									<h3 class="lcl lcl-1 fw-700">
@@ -30,8 +33,8 @@
 											</ul>
 										</div> -->
 										<span class="view-detail text-right">{{
-											"ResourceKeys.ViewDetail" | translate
-
+											"ResourceKeys.ViewDetail"
+												| translate
 										}}</span>
 									</div>
 								</figcaption>

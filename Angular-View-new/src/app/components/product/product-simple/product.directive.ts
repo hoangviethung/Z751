@@ -5,11 +5,12 @@ import { Directive, ElementRef, OnInit, HostListener } from "@angular/core";
 })
 export class ProductDirective implements OnInit {
 	constructor(private elementRef: ElementRef) {}
+
 	ngOnInit() {
 		this.calculateSize();
 	}
 
-	@HostListener("window:resize", ["$event"])
+	@HostListener("window:resize")
 	onResize() {
 		this.calculateSize();
 	}
