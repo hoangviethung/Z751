@@ -18,25 +18,20 @@ export class IndexPartnersComponent implements OnInit {
 		"https://i1.wp.com/www.uminahairandbeauty.com.au/wp-content/uploads/2018/08/background-wallpaper-noisy-gray-light-and-white-color-small-random-spots-texture.jpg?fit=256%2C256&ssl=1";
 	contentSection_8: SectionModel;
 	listImages: Array<Image>;
+	showLoading: boolean = false;
 	sliderPartnersConfig: SwiperConfigInterface = {
 		slidesPerView: 2,
+		observer: true,
+		observeParents: true,
 		loop: true,
-		loopAdditionalSlides: 2,
-		speed: 1200,
 		autoplay: {
-			delay: 3000,
+			delay: 3500,
 			disableOnInteraction: false,
 		},
 		// Disable preloading of all images
 		preloadImages: false,
 		// Enable lazy loading
 		lazy: true,
-		observer: true,
-		observeParents: true,
-		navigation: {
-			nextEl: ".index-partner-slider .swiper-button-next",
-			prevEl: ".index-partner-slider .swiper-button-prev",
-		},
 		breakpoints: {
 			576: {
 				slidesPerView: 3,
@@ -48,8 +43,11 @@ export class IndexPartnersComponent implements OnInit {
 				slidesPerView: 5,
 			},
 		},
+		navigation: {
+			nextEl: ".index-partner-slider .swiper-button-next",
+			prevEl: ".index-partner-slider .swiper-button-prev",
+		},
 	};
-
 	constructor(private httpSvc: HttpService) {}
 
 	ngOnInit() {
@@ -64,6 +62,15 @@ export class IndexPartnersComponent implements OnInit {
 		this.httpSvc.get(API.Section.Get, option).subscribe((result) => {
 			this.contentSection_8 = result.data;
 			this.listImages = result.data.images;
+			if (window.innerWidth <= 1200 && this.listImages.length > 5) {
+				this.showLoading = true;
+			} else if (window.innerWidth <= 768 && this.listImages.length > 4) {
+				this.showLoading = true;
+			} else if (window.innerWidth <= 576 && this.listImages.length > 3) {
+				this.showLoading = true;
+			} else if (window.innerWidth <= 575 && this.listImages.length > 2) {
+				this.showLoading = true;
+			}
 		});
 	}
 }

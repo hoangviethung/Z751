@@ -24,6 +24,10 @@ export class IndexDepartmentComponent implements OnInit {
 			delay: 3500,
 			disableOnInteraction: false,
 		},
+		// Disable preloading of all images
+		preloadImages: false,
+		// Enable lazy loading
+		lazy: true,
 		breakpoints: {
 			768: {
 				slidesPerView: 3,
@@ -37,10 +41,6 @@ export class IndexDepartmentComponent implements OnInit {
 			nextEl: ".index-slider-departments .swiper-button-next",
 			prevEl: ".index-slider-departments .swiper-button-prev",
 		},
-		// Disable preloading of all images
-		preloadImages: false,
-		// Enable lazy loading
-		lazy: true,
 	};
 	departments: Array<Category>;
 	@Input("language") currentLanguage: string;

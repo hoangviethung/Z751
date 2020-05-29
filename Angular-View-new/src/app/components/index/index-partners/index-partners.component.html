@@ -9,7 +9,7 @@
 					<div class="swiper-slide" *ngFor="let itemPartner of listImages">
 						<a href="{{itemPartner.url}}" target="_blank">
 							<img class="swiper-lazy" data-src="{{itemPartner.path}}" alt="{{itemPartner.alt}}" />
-							<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+							<div *ngIf="showLoading" class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
 						</a>
 					</div>
 				</div>

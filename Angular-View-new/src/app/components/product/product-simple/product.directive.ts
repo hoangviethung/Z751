@@ -9,7 +9,7 @@ export class ProductDirective implements OnInit {
 		this.calculateSize();
 	}
 
-	@HostListener("window:resize", ["$event"])
+	@HostListener("window:resize")
 	onResize() {
 		this.calculateSize();
 	}
