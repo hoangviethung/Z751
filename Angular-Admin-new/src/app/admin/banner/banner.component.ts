@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import { APIConfig } from 'src/app/_core/API-config';
 import { InputRequestOption } from 'src/app/_core/services/http.service';
 import { map } from 'rxjs/operators';
@@ -12,13 +12,18 @@ import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
 import { FilterSearchModel } from 'src/app/_core/models/filter.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import {Permissions} from "../../_core/enums/role.enum";
+import {AuthenticationComponent} from "../../_core/components/base/authentication.component";
 
 @Component({
 	selector: 'app-banner',
 	templateUrl: './banner.component.html',
 	styleUrls: ['./banner.component.scss'],
 })
-export class BannerComponent implements OnInit {
+export class BannerComponent extends AuthenticationComponent implements OnInit {
+	public featureName: string = 'ManageBanner';
+	public permissions = Permissions;
+
 	banners: Array<BannerModel>;
 	banner: BannerModel;
 	isShowPopup: boolean = false;
@@ -32,11 +37,13 @@ export class BannerComponent implements OnInit {
 	templates: Array<TemplateModel> = TemplatesConfig;
 	search: FilterSearchModel = new FilterSearchModel();
 	constructor(
+		injector: Injector,
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService,
-		private router: Router,
 		private activatedRoute: ActivatedRoute
-	) {}
+	) {
+		super(injector);
+	}
 
 	ngOnInit(): void {
 		this.getBanners();

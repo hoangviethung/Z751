@@ -18,7 +18,7 @@
 				</mat-select>
 			</mat-form-field>
 		</div>
-		<a
+		<a *ngIf="canAction(featureName, permissions.Add)"
 			class="btn btn-success btn-add as-c hidden"
 			(click)="onOpenPopup(true)"
 			>Thêm mới</a
@@ -40,13 +40,13 @@
 				<td class="column-order ta-c">{{ branch.order }}</td>
 				<td class="column-button ta-c">
 					<div class="table-buttons">
-						<span
+						<span *ngIf="canAction(featureName, permissions.Edit)"
 							class="btn btn-outline-success btn-edit"
 							(click)="onOpenPopup(true, branch, true)"
 						>
 							<span class="lnr lnr-pencil"></span>
 						</span>
-						<span
+						<span *ngIf="canAction(featureName, permissions.Delete)"
 							class="btn btn-outline-danger btn-remove hidden"
 							(click)="dateleBranch(branch.id)"
 						>
