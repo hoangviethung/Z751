@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject, PLATFORM_ID } from "@angular/core";
 import { SwiperConfigInterface } from "ngx-swiper-wrapper";
 import {
 	HttpService,
@@ -7,6 +7,7 @@ import {
 import { API } from "src/core/configs/api";
 import { SectionModel } from "src/core/models/Section.model";
 import { Image } from "src/core/models/Image.model";
+import { isPlatformBrowser } from "@angular/common";
 
 @Component({
 	selector: "app-index-partners",
@@ -48,7 +49,10 @@ export class IndexPartnersComponent implements OnInit {
 			prevEl: ".index-partner-slider .swiper-button-prev",
 		},
 	};
-	constructor(private httpSvc: HttpService) {}
+	constructor(
+		private httpSvc: HttpService,
+		@Inject(PLATFORM_ID) private platformId: string
+	) {}
 
 	ngOnInit() {
 		this.getPartners();
@@ -62,15 +66,27 @@ export class IndexPartnersComponent implements OnInit {
 		this.httpSvc.get(API.Section.Get, option).subscribe((result) => {
 			this.contentSection_8 = result.data;
 			this.listImages = result.data.images;
-			// if (window.innerWidth <= 1200 && this.listImages.length > 5) {
-			// 	this.showLoading = true;
-			// } else if (window.innerWidth <= 768 && this.listImages.length > 4) {
-			// 	this.showLoading = true;
-			// } else if (window.innerWidth <= 576 && this.listImages.length > 3) {
-			// 	this.showLoading = true;
-			// } else if (window.innerWidth <= 575 && this.listImages.length > 2) {
-			// 	this.showLoading = true;
-			// }
+			if (isPlatformBrowser(this.platformId)) {
+				//this is only executed on the browser
+				if (window.innerWidth <= 1200 && this.listImages.length > 5) {
+					this.showLoading = true;
+				} else if (
+					window.innerWidth <= 768 &&
+					this.listImages.length > 4
+				) {
+					this.showLoading = true;
+				} else if (
+					window.innerWidth <= 576 &&
+					this.listImages.length > 3
+				) {
+					this.showLoading = true;
+				} else if (
+					window.innerWidth <= 575 &&
+					this.listImages.length > 2
+				) {
+					this.showLoading = true;
+				}
+			}
 		});
 	}
 }

@@ -38,6 +38,8 @@
 
 		.swiper-button-prev,
 		.swiper-button-next {
+			position: absolute;
+			z-index: 2;
 			top: 35%;
 			width: 38px;
 			height: 38px;
