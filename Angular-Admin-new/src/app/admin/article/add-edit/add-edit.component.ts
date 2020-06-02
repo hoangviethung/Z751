@@ -28,6 +28,8 @@ export class AddEditComponent implements OnInit {
 	templates: Array<TemplateModel> = TemplatesConfig;
 	isShowUpload: boolean = false;
 	previewUrlTemp: string;
+	titleError = false;
+	urlError = false;
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
@@ -93,11 +95,9 @@ export class AddEditComponent implements OnInit {
 		});
 	}
 
-
 	updateBaseUrl(e) {
 		const item = this.categories.find((item, index) => {
 			if (item.id == e) {
-				console.log(item);
 				return item;
 			}
 		});
@@ -117,50 +117,77 @@ export class AddEditComponent implements OnInit {
 	}
 
 	addArticle() {
-		this.article.languageId = Number(this.article.languageId);
-		this.article.categoryId = Number(this.article.categoryId);
+		if (
+			this.article.title == '' ||
+			this.article.title == null ||
+			this.article.seName == '' ||
+			this.article.seName == null
+		) {
+			this.urlError = true;
+			this.titleError = true;
+		} else {
+			this.urlError = false;
+			this.titleError = false;
 
-		if (!this.article.order) {
-			this.article.order = new Date().toString();
-		}
+			this.article.languageId = Number(this.article.languageId);
+			this.article.categoryId = Number(this.article.categoryId);
 
-		for (const key of Object.keys(this.article)) {
-			if (this.article[key] != null) {
-				if (String(this.article[key]).length <= 0) {
-					this.article[key] = null;
+			if (!this.article.order) {
+				this.article.order = new Date().toString();
+			}
+
+			for (const key of Object.keys(this.article)) {
+				if (this.article[key] != null) {
+					if (String(this.article[key]).length <= 0) {
+						this.article[key] = null;
+					}
 				}
 			}
+
+			const params = new InputRequestOption();
+			params.body = this.article;
+
+			this.crudSvc
+				.add(APIConfig.Article.Add, params)
+				.subscribe((response) => {
+					if (response.code == 200) {
+						this.router.navigate(['/admin/article']);
+						this.toastrSvc.success(response.message);
+					} else {
+						this.toastrSvc.error(response.message);
+					}
+				});
 		}
-
-		const params = new InputRequestOption();
-		params.body = this.article;
-
-		this.crudSvc
-			.add(APIConfig.Article.Add, params)
-			.subscribe((response) => {
-				if (response.code == 200) {
-					this.router.navigate(['/admin/article']);
-					this.toastrSvc.success(response.message);
-				} else {
-					this.toastrSvc.error(response.message);
-				}
-			});
 	}
 
 	updateArticle() {
 		this.article.languageId = Number(this.article.languageId);
-		const params = new InputRequestOption();
-		params.body = this.article;
-		this.crudSvc
-			.update(APIConfig.Article.Update, params)
-			.subscribe((response) => {
-				if (response.code == 200) {
-					this.router.navigate(['/admin/article']);
-					this.toastrSvc.success(response.message);
-				} else {
-					this.toastrSvc.error(response.message);
-				}
-			});
+		if (
+			this.article.title == '' ||
+			this.article.title == null ||
+			this.article.seName == '' ||
+			this.article.seName == null
+		) {
+			this.urlError = true;
+			this.titleError = true;
+		} else {
+			this.urlError = false;
+			this.titleError = false;
+
+			this.article.languageId = Number(this.article.languageId);
+			const params = new InputRequestOption();
+			params.body = this.article;
+			this.crudSvc
+				.update(APIConfig.Article.Update, params)
+				.subscribe((response) => {
+					if (response.code == 200) {
+						this.router.navigate(['/admin/article']);
+						this.toastrSvc.success(response.message);
+					} else {
+						this.toastrSvc.error(response.message);
+					}
+				});
+		}
 	}
 
 	onDescriptionChangeEmitter(content) {

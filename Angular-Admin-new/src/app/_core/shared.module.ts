@@ -15,6 +15,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { TableImagesComponent } from './components/table-images/table-images.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { DialogService } from './components/dialog/dialog.service';
 
 @NgModule({
 	declarations: [
@@ -24,6 +26,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 		PaginationComponent,
 		TabDirective,
 		TableImagesComponent,
+		DialogComponent,
 	],
 	imports: [
 		CommonModule,
@@ -52,7 +55,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 		MatDatepickerModule,
 		MatNativeDateModule,
 		MatInputModule,
+		DialogComponent,
 	],
-	providers: [RoutingService],
+	providers: [RoutingService, DialogService],
 })
 export class SharedModule {}
