@@ -61,12 +61,14 @@
 						<div
 							*ngIf="
 								resourcepath.invalid &&
-								(resourcepath.dirty || resourcepath.touched)
+								(resourcepath.dirty ||
+									resourcepath.touched ||
+									resourcePathError)
 							"
-							class="alert alert-danger"
+							class="alert alert-danger w-100"
 						>
-							<div *ngIf="resourcepath.errors.required">
-								Name is required.
+							<div *ngIf="resourcepath.errors?.required">
+								Vui lòng nhập đường dẫn ảnh
 							</div>
 						</div>
 					</div>

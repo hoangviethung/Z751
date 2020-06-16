@@ -17,7 +17,6 @@ export class RedirectSerivce {
 		"error",
 		"product-detail",
 		"news-detail", // 5 - 9
-		"search",
 	];
 
 	getRouteNew(httpS: HttpClient, path: string) {

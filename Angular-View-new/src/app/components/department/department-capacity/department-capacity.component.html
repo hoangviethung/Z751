@@ -3,25 +3,42 @@
 		<div class="block-title">
 			<div class="d-f jc-c">
 				<h2 class="tt-u main-title">
-					{{ "menu.capacities" | translate}}
+					{{ "Potenial" | translate }}
 				</h2>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-4 col-sm-6 d-f product-col" *ngFor="let capacityProduct of capacityProducts">
+			<div
+				class="col-lg-4 col-sm-6 d-f product-col"
+				*ngFor="let capacityProduct of capacityProducts"
+			>
 				<div class="item-product">
 					<a [routerLink]="[capacityProduct.url]">
 						<figure>
 							<div class="img ov-h">
-								<img src="{{ capacityProduct.image }}" alt="{{ capacityProduct.title }}" class="ofcv" />
+								<img
+									class="ofcv"
+									*ngIf="capacityProducts"
+									[defaultImage]="defaultImage"
+									[lazyLoad]="capacityProduct.image"
+									alt="{{ capacityProduct.title }}"
+								/>
 							</div>
 							<figcaption class="description row no-gutters">
 								<div class="item-info col-md">
-									<h3>{{ capacityProduct.title }}</h3>
-									<div class="item-title" [innerHTML]="capacityProduct.description"></div>
+									<h3 class="lcl lcl-1">
+										{{ capacityProduct.title }}
+									</h3>
+									<div
+										class="item-title"
+										[innerHTML]="
+											capacityProduct.description
+										"
+									></div>
 								</div>
 								<div class="item-button col-md-auto">
-									<span class="text-right">{{ "ResourceKeys.ViewDetail" | translate }}
+									<span class="text-right"
+										>{{ "ViewDetail" | translate }}
 									</span>
 								</div>
 							</figcaption>

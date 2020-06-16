@@ -23,6 +23,10 @@ export class HistoryComponent implements OnInit {
 			nextEl: ".timeline .swiper-button-next",
 			prevEl: ".timeline .swiper-button-prev",
 		},
+		// Disable preloading of all images
+		preloadImages: false,
+		// Enable lazy loading
+		lazy: true,
 		breakpoints: {
 			768: {
 				slidesPerView: 3,
@@ -34,11 +38,9 @@ export class HistoryComponent implements OnInit {
 			},
 		},
 	};
-
 	yearImages = [];
 	year: ArticleModel;
 	title: string;
-
 	@Input("language") currentLanguage;
 
 	constructor(private httpSvc: HttpService) {}

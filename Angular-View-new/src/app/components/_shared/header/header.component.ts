@@ -3,14 +3,13 @@ import {
 	HttpService,
 	InputRequestOption,
 } from "../../../../core/services/http.service";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "src/environments/environment";
 import { map } from "rxjs/operators";
 import { LanguageModel } from "src/core/models/Language.model";
 import { DOCUMENT, isPlatformBrowser } from "@angular/common";
 import { Router } from "@angular/router";
 import { LanguageService } from "src/core/services/language.service";
-import { TranslateService } from "@ngx-translate/core";
+import { HeaderService } from './header.service';
+import { MenuModel } from 'src/core/models/Menu.model';
 
 @Component({
 	selector: "app-header",
@@ -21,13 +20,14 @@ export class HeaderComponent implements OnInit {
 	isSearchBoxShow = false;
 	languages: Array<LanguageModel>;
 	currentLanguage: string;
-	menus: any;
+	menus: Array<MenuModel> = [];
 	keywords: string;
-
+	defaultImage = "https://i1.wp.com/www.uminahairandbeauty.com.au/wp-content/uploads/2018/08/background-wallpaper-noisy-gray-light-and-white-color-small-random-spots-texture.jpg?fit=256%2C256&ssl=1";
 	constructor(
 		private httpSvc: HttpService,
 		private router: Router,
 		private langSvc: LanguageService,
+		private headerSvc: HeaderService,
 		@Inject(PLATFORM_ID) private platform,
 		@Inject(DOCUMENT) private document: Document
 	) {}
@@ -124,21 +124,23 @@ export class HeaderComponent implements OnInit {
 		};
 		this.httpSvc
 			.get("/api/Menu/used/get", opts)
-			.pipe(
+			.pipe(	
 				map((response) => {
-					const newMenus = response.data.map((item) => {
+
+					let newMenus = response.data.map((item) => {
 						let newItem = item;
 						if (newItem.parentId == null) {
 							newItem.parentId = -99;
 						}
 						return newItem;
 					});
-					return newMenus;
+					let menuList = this.headerSvc.getMenu(newMenus)
+					
+					return menuList;
 				})
 			)
 			.subscribe((response) => {
 				this.menus = response;
-				console.log(this.menus);
 			});
 	}
 

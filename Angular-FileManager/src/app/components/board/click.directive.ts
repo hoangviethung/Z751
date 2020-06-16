@@ -37,10 +37,14 @@ export class ClickDirective {
 	// COPPY PATH URL IMAGE
 	@HostListener('dblclick') onDoubleClicked() {
 		const item: HTMLElement = this.elementRef.nativeElement;
-		const url = item.querySelector('.path-image-item') as HTMLInputElement;
-		url.select();
-		url.focus();
-		url.setSelectionRange(0, 99999);
+		const input = item.querySelector(
+			'.path-image-item'
+		) as HTMLInputElement;
+		const fileUrl = input.value.replace('/dist/browser/', './');
+		input.value = fileUrl;
+		input.select();
+		input.focus();
+		input.setSelectionRange(0, 99999);
 		document.execCommand('copy');
 		this.toastrSvc.success(`Đã coppy !!!`);
 	}

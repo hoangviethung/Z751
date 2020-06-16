@@ -12,7 +12,6 @@ import { SharedModule } from "../_shared/shared.module";
 import { IndexPartnersComponent } from "./index-partners/index-partners.component";
 import { IndexDepartmentComponent } from "./index-department/index-department.component";
 import { TranslateModule } from "@ngx-translate/core";
-
 @NgModule({
 	declarations: [
 		IndexComponent,

@@ -14,7 +14,7 @@ import { PaginationModel } from '../../models/pagination';
 	templateUrl: './pagination.component.html',
 	styleUrls: ['./pagination.component.scss'],
 })
-export class PaginationComponent implements OnInit, OnChanges {
+export class PaginationComponent implements OnInit {
 	pager;
 	itemPerPage: number;
 	@Input('pagination') pagination: PaginationModel = new PaginationModel(
@@ -28,7 +28,6 @@ export class PaginationComponent implements OnInit, OnChanges {
 		private router: Router,
 		private activateRoute: ActivatedRoute
 	) {}
-	ngOnChanges() {}
 	ngOnInit() {
 		this.itemPerPage = this.pagination.itemPerPage;
 		this.pagination.page = this.pagination.page;

@@ -12,4 +12,5 @@ export class ProductModel {
 	order: string;
 	title: string;
 	url: string;
+	relateds: Array<ProductModel>;
 }

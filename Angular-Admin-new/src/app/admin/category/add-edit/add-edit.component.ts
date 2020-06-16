@@ -37,7 +37,8 @@ export class AddEditComponent implements OnInit {
 	categoryProductGroups: Array<number> = [];
 	isShowUpload: boolean = false;
 	previewUrlTemp: string;
-
+	titleError: boolean = false;
+	urlError: boolean = false;
 	constructor(
 		private crudSvc: CrudService,
 		private utilSvc: UtilService,
@@ -77,6 +78,14 @@ export class AddEditComponent implements OnInit {
 				map((response) => {
 					const baseCategory: CategoryModel = new CategoryModel();
 					let newCategory = response.data.items;
+					newCategory.forEach((item) => {
+						if (item.parentName == null) {
+							item.parentName = '';
+						} else {
+							item.parentName += ' >> ';
+						}
+					});
+
 					baseCategory.previewUrl = '';
 					baseCategory.id = 0;
 					if (languageId == '1') {
@@ -167,59 +176,88 @@ export class AddEditComponent implements OnInit {
 	}
 
 	addCategory() {
-		this.category.languageId = Number(this.category.languageId);
-		const params = new InputRequestOption();
-		params.body = this.category;
-		this.crudSvc
-			.add(APIConfig.Category.Add, params)
-			.subscribe((response) => {
-				if (response.code == 200) {
-					this.toastrSvc.success(response.message);
-					this.router.navigate(['/admin/category']);
-				} else {
-					this.toastrSvc.error(response.message);
-				}
-			});
+		if (
+			this.category.title == '' ||
+			this.category.title == null ||
+			this.category.seName == '' ||
+			this.category.seName == null
+		) {
+			this.urlError = true;
+			this.titleError = true;
+		} else {
+			this.urlError = false;
+			this.titleError = false;
+
+			this.category.languageId = Number(this.category.languageId);
+			const params = new InputRequestOption();
+			params.body = this.category;
+			this.crudSvc
+				.add(APIConfig.Category.Add, params)
+				.subscribe((response) => {
+					if (response.code == 200) {
+						this.toastrSvc.success(response.message);
+						this.router.navigate(['/admin/category']);
+					} else {
+						this.toastrSvc.error(response.message);
+					}
+				});
+		}
 	}
 
 	updateCategory() {
-		this.category.languageId = Number(this.category.languageId);
-		const params = new InputRequestOption();
-		params.body = this.category;
-		this.crudSvc
-			.update(APIConfig.Category.Update, params)
-			.subscribe((response) => {
-				if (response.code == 200) {
-					if (this.isShowProductGroup) {
-						const categoryProducGroupsOpts = new InputRequestOption();
-						categoryProducGroupsOpts.body = {
-							categoryId: this.category.id,
-							productGroupIds: this.productGroupsControl.value,
-						};
-						this.crudSvc
-							.update(
-								APIConfig.ProductGroup.CategoryUpdate,
-								categoryProducGroupsOpts
-							)
-							.subscribe((response) => {
-								if (response.code == 200) {
-									this.toastrSvc.success(
-										'Thay đổi nhóm sản phẩm thành công'
-									);
-									this.router.navigate(['/admin/category']);
-								}
-							});
+		if (
+			this.category.title == '' ||
+			this.category.title == null ||
+			this.category.seName == '' ||
+			this.category.seName == null
+		) {
+			this.urlError = true;
+			this.titleError = true;
+		} else {
+			this.urlError = false;
+			this.titleError = false;
+
+			this.category.languageId = Number(this.category.languageId);
+			const params = new InputRequestOption();
+			params.body = this.category;
+			this.crudSvc
+				.update(APIConfig.Category.Update, params)
+				.subscribe((response) => {
+					if (response.code == 200) {
+						if (this.isShowProductGroup) {
+							const categoryProducGroupsOpts = new InputRequestOption();
+							categoryProducGroupsOpts.body = {
+								categoryId: this.category.id,
+								productGroupIds: this.productGroupsControl
+									.value,
+							};
+							this.crudSvc
+								.update(
+									APIConfig.ProductGroup.CategoryUpdate,
+									categoryProducGroupsOpts
+								)
+								.subscribe((response) => {
+									if (response.code == 200) {
+										this.toastrSvc.success(
+											'Thay đổi nhóm sản phẩm thành công'
+										);
+										this.router.navigate([
+											'/admin/category',
+										]);
+									}
+								});
+						}
+						this.toastrSvc.success(response.message);
+						this.router.navigate(['/admin/category'], {
+							queryParams: {
+								languageId: this.category.languageId,
+							},
+						});
+					} else {
+						this.toastrSvc.error(response.message);
 					}
-					this.toastrSvc.success(response.message);
-					this.router.navigate(['/admin/category'], {
-						queryParams: {
-							languageId: this.category.languageId,
-						},
-					});
-				} else {
-					this.toastrSvc.error(response.message);
-				}
-			});
+				});
+		}
 	}
 
 	onChangeEmitter(content) {

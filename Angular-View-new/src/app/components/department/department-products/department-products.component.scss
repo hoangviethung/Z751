@@ -8,6 +8,11 @@
 	padding-top: 20px;
 }
 
+.swiper-container {
+	height: 100%;
+	width: 100%;
+}
+
 :host ::ng-deep {
 	.swiper-pagination-bullet {
 		width: 12px;
@@ -17,5 +22,8 @@
 	}
 	.swiper-pagination-bullet-active {
 		background-color: map-get($mau, main);
+	}
+	.swiper-slide {
+		height: calc((100% - 30px) / 2);
 	}
 }

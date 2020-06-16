@@ -1,4 +1,4 @@
-import {Component, Injector, OnInit} from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import { APIConfig } from 'src/app/_core/API-config';
 import { InputRequestOption } from 'src/app/_core/services/http.service';
 import { map } from 'rxjs/operators';
@@ -9,12 +9,12 @@ import { LanguageFlag } from 'src/app/_core/enums/general.enum';
 import { CrudService } from 'src/app/_core/services/crud.service';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
-import { FormControl } from '@angular/forms';
 import { FilterSearchModel } from 'src/app/_core/models/filter.model';
-import { Router, ActivatedRoute } from '@angular/router';
-import {Permissions} from "../../_core/enums/role.enum";
-import {AuthenticationComponent} from "../../_core/components/base/authentication.component";
-
+import { ActivatedRoute } from '@angular/router';
+import { Permissions } from '../../_core/enums/role.enum';
+import { AuthenticationComponent } from '../../_core/components/base/authentication.component';
+import { APPConfig } from '../../_core/APP-config';
+import { DialogService } from 'src/app/_core/components/dialog/dialog.service';
 @Component({
 	selector: 'app-banner',
 	templateUrl: './banner.component.html',
@@ -36,11 +36,13 @@ export class BannerComponent extends AuthenticationComponent implements OnInit {
 	};
 	templates: Array<TemplateModel> = TemplatesConfig;
 	search: FilterSearchModel = new FilterSearchModel();
+	imageServerUrl: string = APPConfig.imageServerUrl;
 	constructor(
 		injector: Injector,
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService,
-		private activatedRoute: ActivatedRoute
+		private activatedRoute: ActivatedRoute,
+		private dialogSvc: DialogService
 	) {
 		super(injector);
 	}
@@ -95,33 +97,34 @@ export class BannerComponent extends AuthenticationComponent implements OnInit {
 	}
 
 	deleteBanner(id: string) {
-		const params = new InputRequestOption();
-		params.params = {
-			id: id,
-		};
-		this.crudSvc
-			.delete(APIConfig.Banner.Delete, params)
-			.subscribe((response) => {
-				this.getBanners();
-				if (response.code == 200) {
-					let filterParams = {
-						languageId: this.search.languageId,
-					};
-					this.router
-						.navigate([], {
-							relativeTo: this.activatedRoute,
-							queryParams: filterParams,
-							queryParamsHandling: 'merge',
-						})
-						.then(() => {
-							this.getBanners();
-							this.toastrSvc.success(response.message);
-						});
-					this.toastrSvc.success(response.message);
-				} else {
-					this.toastrSvc.error(response.message);
-				}
-			});
+		this.dialogSvc.setStateDialog();
+		// const params = new InputRequestOption();
+		// params.params = {
+		// 	id: id,
+		// };
+		// this.crudSvc
+		// 	.delete(APIConfig.Banner.Delete, params)
+		// 	.subscribe((response) => {
+		// 		this.getBanners();
+		// 		if (response.code == 200) {
+		// 			let filterParams = {
+		// 				languageId: this.search.languageId,
+		// 			};
+		// 			this.router
+		// 				.navigate([], {
+		// 					relativeTo: this.activatedRoute,
+		// 					queryParams: filterParams,
+		// 					queryParamsHandling: 'merge',
+		// 				})
+		// 				.then(() => {
+		// 					this.getBanners();
+		// 					this.toastrSvc.success(response.message);
+		// 				});
+		// 			this.toastrSvc.success(response.message);
+		// 		} else {
+		// 			this.toastrSvc.error(response.message);
+		// 		}
+		// 	});
 	}
 
 	changeLanguage(e) {

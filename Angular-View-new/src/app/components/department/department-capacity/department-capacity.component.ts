@@ -18,7 +18,8 @@ export class DepartmentCapacityComponent implements OnInit {
 	description: string;
 	image: string;
 	@Input("capacityProducts") capacityProducts: Array<ProductModel>;
-
+	defaultImage =
+		"https://i1.wp.com/www.uminahairandbeauty.com.au/wp-content/uploads/2018/08/background-wallpaper-noisy-gray-light-and-white-color-small-random-spots-texture.jpg?fit=256%2C256&ssl=1";
 	constructor(
 		private httpSvc: HttpService,
 		@Inject(DOCUMENT) private document: Document

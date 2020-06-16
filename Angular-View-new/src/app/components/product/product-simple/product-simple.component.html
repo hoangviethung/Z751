@@ -1,17 +1,19 @@
-<div class="item-product">
+<div class="item-product" productSimple>
 	<a [routerLink]="[product.url]">
 		<figure>
 			<div class="img ov-h">
 				<img
-					src="{{ product.image }}"
-					alt="{{ product.title }}"
 					class="ofcv"
+					*ngIf="product"
+					[defaultImage]="defaultImage"
+					[lazyLoad]="product.image"
+					alt="{{ product.title }}"
 				/>
 			</div>
 			<figcaption class="description d-f">
-				<h3>{{ product.title }}</h3>
+				<h3 class="lcl lcl-1">{{ product.title }}</h3>
 				<span class="view-detail text-right">{{
-					"ResourceKeys.ViewDetail" | translate
+					"ViewDetail" | translate
 				}}</span>
 			</figcaption>
 		</figure>

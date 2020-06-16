@@ -1,16 +1,19 @@
 <footer>
 	<div class="container">
 		<div class="title-footer tt-u fw-700 cl-white">
-			{{ "ResourceKeys.PageTitleShort" | translate }}
+			{{ "PageTitleShort" | translate }}
 		</div>
 		<div class="row">
 			<div class="col-lg-3 col-sm-6">
 				<div class="address">
 					<div class="img">
-						<img src="/assets/images/icons/headquater.svg" alt="" />
+						<img
+							[defaultImage]="defaultImage"
+							[lazyLoad]="'/assets/images/icons/headquater.svg'"
+						/>
 					</div>
 					<div class="content">
-						<h4>{{ "ResourceKeys.Headquarter" | translate }}</h4>
+						<h4>{{ "Headquarter" | translate }}</h4>
 						<p *ngIf="headquater">
 							{{ headquater.address }}
 						</p>
@@ -21,10 +24,13 @@
 			<div class="col-lg-3 col-sm-6">
 				<div class="address">
 					<div class="img">
-						<img src="/assets/images/icons/office.svg" alt="" />
+						<img
+							[defaultImage]="defaultImage"
+							[lazyLoad]="'/assets/images/icons/office.svg'"
+						/>
 					</div>
 					<div class="content">
-						<h4>{{ "ResourceKeys.OppositeOffice" | translate }}</h4>
+						<h4>{{ "OppositeOffice" | translate }}</h4>
 						<p *ngIf="AddressOppositeOffice">
 							{{ AddressOppositeOffice.address }}
 						</p>
@@ -35,7 +41,7 @@
 			<div class="col-lg-4 col-md-8">
 				<div class="subscribe">
 					<h4>
-						{{ "ResourceKeys.WebsiteRelative" | translate }}
+						{{ "WebsiteRelative" | translate }}
 					</h4>
 					<form action="#">
 						<div class="form-group">
@@ -93,17 +99,17 @@
 			</div>
 			<div class="col-lg-2 col-md-4">
 				<div class="connect-count">
-					<h4>{{ "ResourceKeys.Visits" | translate }}</h4>
+					<h4>{{ "Visits" | translate }}</h4>
 					<ul>
 						<li>
-							{{ "ResourceKeys.Day" | translate }}:
+							{{ "Day" | translate }}:
 							<span>1000</span>
-							{{ "ResourceKeys.CountUnit" | translate }}
+							{{ "CountUnit" | translate }}
 						</li>
 						<li>
-							{{ "ResourceKeys.Month" | translate }}:
+							{{ "Month" | translate }}:
 							<span>1000</span>
-							{{ "ResourceKeys.CountUnit" | translate }}
+							{{ "CountUnit" | translate }}
 						</li>
 					</ul>
 				</div>
@@ -114,7 +120,7 @@
 <div class="copyright">
 	<div class="container">
 		<div class="d-f fw-w">
-			<p class="cl-white">Copyright © 2019 751</p>
+			<p class="cl-white">Copyright © 2019 Công ty 751</p>
 			<p class="cl-white ml-at">
 				All rights reserved | Designed by Web4G
 			</p>

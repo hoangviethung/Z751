@@ -1,21 +1,18 @@
-import {
-	HttpClient,
-} from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
 import { FolderModel } from '../model/folder.model';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
 import { FolderEventModel } from '../model/folder-event.model';
+import { UploadPath, File, Folder } from './path';
 
 export interface IFolderService {
 	gets(path: string);
 	create(name: string);
 }
 
-
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
-
 export class FolderService implements IFolderService {
 	// Parent folder is used for create sub-folder
 	event: FolderEventModel;
@@ -23,58 +20,68 @@ export class FolderService implements IFolderService {
 	eventChange: Subject<FolderEventModel> = new Subject<FolderEventModel>();
 
 	setEvent(event: FolderEventModel) {
-		event.path = event.path.replace("http://27.71.234.45:8080/upload/", "");
+		event.path = event.path.replace(`${UploadPath}`, '');
 		return this.eventChange.next(event);
 	}
 
-	constructor(
-		private http: HttpClient
-	) {
+	constructor(private http: HttpClient) {
 		this.eventChange.subscribe((value) => {
-			this.event = value
+			this.event = value;
 		});
 	}
 
-	gets(path: string = "") {
-		path = path.replace("http://27.71.234.45:8080/upload/", "");
-		return this.http.get("http://27.71.234.45:8080/api/Folder/gets?folder=" + path)
+	gets(path: string = '') {
+		path = path.replace(`${UploadPath}`, '');
+		return this.http.get(`${Folder.gets}?folder=` + path);
 	}
 
 	create(name: string) {
-		return this.http.post<Object>("http://27.71.234.45:8080/api/Folder/add", {
-			path: name
-		})
+		return this.http.post<Object>(`${Folder.add}`, {
+			path: name,
+		});
 	}
 
 	update(path: string, newPath: string) {
-		path = path.replace("http://27.71.234.45:8080/upload/", "");
-		newPath = newPath.replace("http://27.71.234.45:8080/upload/", "");
-		return this.http.post<Object>("http://27.71.234.45:8080/api/Folder/edit", {
-			path: path, newPath: newPath
-		})
+		path = path.replace(`${UploadPath}`, '');
+		newPath = newPath.replace(`${UploadPath}`, '');
+		return this.http.post<Object>(`${Folder.edit}`, {
+			path: path,
+			newPath: newPath,
+		});
 	}
 
 	delete(path: string) {
-		path = path.replace("http://27.71.234.45:8080/upload/", "");
-		return this.http.post<Object>("http://27.71.234.45:8080/api/Folder/delete?folder=" + path, {
-		})
+		path = path.replace(`${UploadPath}`, '');
+		return this.http.post<Object>(`${Folder.delete}?folder=` + path, {});
 	}
 
-	randomId(folders: FolderModel[], parentId: string, level: number, currentFolder: FolderModel): FolderModel[] {
+	randomId(
+		folders: FolderModel[],
+		parentId: string,
+		level: number,
+		currentFolder: FolderModel
+	): FolderModel[] {
 		folders.forEach((element, i) => {
-			element.level = level
-			element.id = parentId + i
+			element.level = level;
+			element.id = parentId + i;
 			if (element.items != null) {
-				element.items = this.randomId(element.items, element.id + "-", level + 1, currentFolder)
+				element.items = this.randomId(
+					element.items,
+					element.id + '-',
+					level + 1,
+					currentFolder
+				);
 				// Expanded current folder if it contains active folder
 				if (currentFolder) {
-					var activeFolder = element.items.filter(o => o.path == currentFolder.path)
+					var activeFolder = element.items.filter(
+						(o) => o.path == currentFolder.path
+					);
 					if (activeFolder.length > 0) {
-						element.isExpanded = true
+						element.isExpanded = true;
 					}
 				}
 			}
-		})
+		});
 		return folders;
 	}
 
@@ -85,9 +92,12 @@ export class FolderService implements IFolderService {
 			}
 
 			if (element.items != null) {
-				currentFolder = this.getActiveFolder(element.items, currentFolder);
+				currentFolder = this.getActiveFolder(
+					element.items,
+					currentFolder
+				);
 			}
-		})
+		});
 
 		return currentFolder;
 	}

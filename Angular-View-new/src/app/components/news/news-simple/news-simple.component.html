@@ -2,17 +2,15 @@
 	<a [routerLink]="[news.url]">
 		<figure class="d-f fw-w">
 			<div class="img ov-h">
-				<img class="ofcv" src="{{ news.image }}" alt="" />
+				<img class="ofcv" *ngIf="news" [defaultImage]="defaultImage" [lazyLoad]="news.image"
+					alt="{{ news.title }}">
 			</div>
 			<figcaption class="col">
 				<div class="box-content">
 					<h3 class="lcl lcl-2 fw-700">{{ news.title }}</h3>
 					<time>{{ news.order | date: "dd-MM-yyyy" | translate}}</time>
-					<div
-						class="lcl lcl-3 description"
-						[innerHTML]="news.description"
-					></div>
-					<span>{{ "ResourceKeys.ReadNews" | translate}}</span>
+					<div class="lcl lcl-3 description" [innerHTML]="news.description"></div>
+					<span>{{ "ReadNews" | translate}}</span>
 				</div>
 			</figcaption>
 		</figure>

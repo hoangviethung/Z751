@@ -3,7 +3,7 @@
 		<div class="swiper-wrapper">
 			<div class="swiper-slide" *ngFor="let banner of banners">
 				<a routerLink="{{ banner.link }}">
-					<img src="{{ banner.resourcePath }}" alt="" />
+					<img src="{{ banner.resourcePath }}" alt="{{banner.altImage}}" />
 				</a>
 			</div>
 		</div>

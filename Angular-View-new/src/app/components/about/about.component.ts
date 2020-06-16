@@ -23,7 +23,8 @@ export class AboutComponent implements OnInit {
 	missionVision: ArticleModel;
 	currentLanguage: string;
 	aboutLetter: SectionModel;
-
+	defaultImage =
+		"./assets/images/preload.jpg";
 	constructor(
 		private httpSvc: HttpService,
 		private pageInfoSvc: PageInfoService,

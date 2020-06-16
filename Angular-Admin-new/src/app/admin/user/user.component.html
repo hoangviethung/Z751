@@ -1,64 +1,73 @@
 <div class="block-content" *ngIf="!isShowPopupAddEdit && !isShowPopupChangPass">
 	<div class="block-control ai-c">
-		<a *ngIf="canAction(featureName, permissions.Add)" class="btn btn-success btn-add"
-		   (click)="onOpenPopupAddEdit(true)"
-		>Thêm mới</a
+		<a
+			*ngIf="canAction(featureName, permissions.Add)"
+			class="btn btn-success btn-add"
+			(click)="onOpenPopupAddEdit(true)"
+			>Thêm mới</a
 		>
 	</div>
 	<div class="block-table">
 		<table class="table table-bordered table-striped">
 			<thead>
-			<tr>
-				<th class="ta-c">#</th>
-				<th class="ta-c">Tên tài khoản</th>
-				<th class="ta-c">Email</th>
-				<th class="ta-c">Thuộc bộ quyền</th>
-				<th class="ta-c">Ngày tạo</th>
-				<th class="ta-c">Trạng thái</th>
-				<th class="ta-c">Thao tác</th>
-			</tr>
+				<tr>
+					<th class="ta-c">#</th>
+					<th class="ta-c">Tên tài khoản</th>
+					<th class="ta-c">Email</th>
+					<th class="ta-c">Thuộc bộ quyền</th>
+					<th class="ta-c">Ngày tạo</th>
+					<th class="ta-c">Trạng thái</th>
+					<th class="ta-c">Thao tác</th>
+				</tr>
 			</thead>
 			<tbody>
-			<tr class="row-user" *ngFor="let user of users; let i = index">
-				<td class="ta-c">{{ i + 1 }}</td>
-				<td class="ta-c">{{ user.userName }}</td>
-				<td class="ta-c">{{ user.email }}</td>
-				<td class="ta-c">{{ user.roles }}</td>
-				<td class="ta-c">{{ user.dayOfBirth }}</td>
-				<td class="ta-c">
-					<label class="checkbox-custom jc-c">
-						<input
-							class="check-box"
-							type="checkbox"
-							name="isActive"
-							disabled
-							checked="{{ user.isActive ? 'checked' : '' }}"
-						/>
-					</label>
-				</td>
-				<td class="ta-c">
-					<div class="table-buttons">
-						<a *ngIf="canAction(featureName, permissions.Edit)"
-							class="btn btn-outline-success"
-							(click)="onOpenPopupAddEdit(true, user, true)"
-						>
-							<span class="lnr lnr-pencil"></span>
-						</a>
-						<a *ngIf="canAction(featureName, permissions.Edit)"
-							class="btn btn-outline-info"
-							(click)="onOpenPopupChangePass(true, user)"
-						>
-							<span class="lnr lnr-text-size"></span>
-						</a>
-						<span *ngIf="canAction(featureName, permissions.Delete)"
-							class="btn btn-outline-danger btn-remove"
-							(click)="deleteUser(user.userName)"
-						>
+				<tr class="row-user" *ngFor="let user of users; let i = index">
+					<td class="ta-c">{{ i + 1 }}</td>
+					<td class="ta-c">{{ user.userName }}</td>
+					<td class="ta-c">{{ user.email }}</td>
+					<td class="ta-c">{{ user.roles }}</td>
+					<td class="ta-c">
+						{{ user.dayOfBirth | date: "dd/MM/yyyy HH:mm" }}
+					</td>
+					<td class="ta-c">
+						<label class="checkbox-custom jc-c">
+							<input
+								class="check-box"
+								type="checkbox"
+								name="isActive"
+								disabled
+								checked="{{ user.isActive ? 'checked' : '' }}"
+							/>
+						</label>
+					</td>
+					<td class="ta-c">
+						<div class="table-buttons">
+							<a
+								*ngIf="canAction(featureName, permissions.Edit)"
+								class="btn btn-outline-success"
+								(click)="onOpenPopupAddEdit(true, user, true)"
+							>
+								<span class="lnr lnr-pencil"></span>
+							</a>
+							<a
+								*ngIf="canAction(featureName, permissions.Edit)"
+								class="btn btn-outline-info"
+								(click)="onOpenPopupChangePass(true, user)"
+							>
+								<span class="lnr lnr-text-size"></span>
+							</a>
+							<span
+								*ngIf="
+									canAction(featureName, permissions.Delete)
+								"
+								class="btn btn-outline-danger btn-remove"
+								(click)="deleteUser(user.userName)"
+							>
 								<span class="lnr lnr-trash"></span>
 							</span>
-					</div>
-				</td>
-			</tr>
+						</div>
+					</td>
+				</tr>
 			</tbody>
 		</table>
 	</div>

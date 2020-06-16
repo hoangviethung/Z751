@@ -2,10 +2,11 @@
 	.w4g-loading {
 		height: 700px;
 	}
+
 </style>
 
 <app-header></app-header>
-<main [class]="loading ? 'w4g-wrapper w4g-loading' : 'w4g-wrapper'">
+<main [ngClass]="loading ? 'w4g-wrapper w4g-loading' : 'w4g-wrapper'">
 	<div id="hotline">
 		<a href="tel:{{ phone }}" class="fcc">
 			<img src="/assets/images/phone.png" alt="" />

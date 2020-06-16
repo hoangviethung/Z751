@@ -16,4 +16,5 @@ export class ArticleModel {
 	seName: string;
 	title: string;
 	url: string;
+	relateds: Array<ArticleModel>;
 }

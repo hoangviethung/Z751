@@ -2,8 +2,11 @@ import { Component, OnInit, Input, ViewChild, Inject } from "@angular/core";
 import { SwiperConfigInterface, SwiperDirective } from "ngx-swiper-wrapper";
 import { DOCUMENT } from "@angular/common";
 import { Category } from "src/core/models/Category.model";
-import { HttpService, InputRequestOption } from "src/core/services/http.service";
-import { API } from 'src/core/configs/api';
+import {
+	HttpService,
+	InputRequestOption,
+} from "src/core/services/http.service";
+import { API } from "src/core/configs/api";
 
 @Component({
 	selector: "app-index-department",
@@ -21,6 +24,10 @@ export class IndexDepartmentComponent implements OnInit {
 			delay: 3500,
 			disableOnInteraction: false,
 		},
+		// Disable preloading of all images
+		preloadImages: false,
+		// Enable lazy loading
+		lazy: true,
 		breakpoints: {
 			768: {
 				slidesPerView: 3,
@@ -31,18 +38,19 @@ export class IndexDepartmentComponent implements OnInit {
 			},
 		},
 		navigation: {
-			nextEl: ".swiper-button-next",
-			prevEl: ".swiper-button-prev",
+			nextEl: ".index-slider-departments .swiper-button-next",
+			prevEl: ".index-slider-departments .swiper-button-prev",
 		},
 	};
 	departments: Array<Category>;
 	@Input("language") currentLanguage: string;
 	@ViewChild(SwiperDirective, { static: false }) swiperView: SwiperDirective;
-
+	defaultImage =
+		"https://i1.wp.com/www.uminahairandbeauty.com.au/wp-content/uploads/2018/08/background-wallpaper-noisy-gray-light-and-white-color-small-random-spots-texture.jpg?fit=256%2C256&ssl=1";
 	constructor(
 		private httpSvc: HttpService,
 		@Inject(DOCUMENT) private documentDom: Document
-	) { }
+	) {}
 
 	ngOnInit() {
 		this.getDepartments();
@@ -91,11 +99,13 @@ export class IndexDepartmentComponent implements OnInit {
 	getDepartments() {
 		const option = new InputRequestOption();
 		option.params = {
-			templates: '4'
-		}
-		this.httpSvc.get(API.Category.Get_by_Templates, option).subscribe((result) => {
-			this.departments = result.data;
-			this.departments.shift();
-		});
+			templates: "4",
+		};
+		this.httpSvc
+			.get(API.Category.Get_by_Templates, option)
+			.subscribe((result) => {
+				this.departments = result.data;
+				this.departments.shift();
+			});
 	}
 }

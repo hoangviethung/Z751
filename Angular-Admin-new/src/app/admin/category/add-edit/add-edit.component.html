@@ -51,7 +51,7 @@
 								*ngFor="let category of categories"
 								[value]="category.id"
 							>
-								{{ category.parentName }} {{ category.title }}
+								{{ category.parentName }}{{ category.title }}
 							</mat-option>
 						</mat-select>
 					</mat-form-field>
@@ -65,7 +65,23 @@
 						name="title"
 						[(ngModel)]="category.title"
 						(keyup)="setAliasTitleToUrl()"
+						name="categoryTitle"
+						required
+						#categoryTitle="ngModel"
 					/>
+					<div
+						*ngIf="
+							categoryTitle.invalid &&
+							(categoryTitle.dirty ||
+								categoryTitle.touched ||
+								titleError)
+						"
+						class="alert alert-danger w-100"
+					>
+						<div *ngIf="categoryTitle.errors?.required">
+							Vui lòng nhập tiêu đề danh mục.
+						</div>
+					</div>
 				</div>
 				<div class="form-group col-lg-12">
 					<label>Đường dẫn *</label>
@@ -80,150 +96,137 @@
 							type="text"
 							name="sename"
 							[(ngModel)]="category.seName"
+							name="categoryseName"
+							required
+							#categoryseName="ngModel"
 						/>
-					</div>
-				</div>
-				<div class="form-group col-lg-12">
-					<label>Đường dẫn mới</label>
-					<input
-						class="form-control"
-						type="text"
-						placeholder="Nhập đường dẫn mới"
-						name="externalurl"
-						[(ngModel)]="category.externalUrl"
-					/>
-				</div>
-				<div class="form-group col-lg-12">
-					<label>Link ảnh đại diện *</label>
-					<div class="input-group input-type-file">
-						<input
-							class="form-control"
-							type="text"
-							placeholder="Nhập đường dẫn ảnh đại diện"
-							name="image"
-							[(ngModel)]="category.image"
-						/>
-						<a
-							class="btn btn-info btn-choose-image"
-							(click)="isShowPopupUploadfile(true)"
+						<div
+							*ngIf="
+								categoryseName.invalid &&
+								(categoryseName.dirty ||
+									categoryseName.touched ||
+									urlError)
+							"
+							class="alert alert-danger w-100"
 						>
-							<span class="lnr lnr-camera"></span>
-						</a>
+							<div *ngIf="categoryseName.errors?.required">
+								Vui lòng nhập đường đẫn danh mục
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="form-group col-lg-12">
-					<div class="form-group">
-						<label>Chọn mẫu template</label>
-						<mat-form-field>
-							<mat-select
-								name="template"
-								[(ngModel)]="category.template"
-								(valueChange)="
-									showProductGroups(category.template)
+			</div>
+			<div class="form-group col-lg-12">
+				<div class="form-group">
+					<label>Chọn mẫu template</label>
+					<mat-form-field>
+						<mat-select
+							name="template"
+							[(ngModel)]="category.template"
+							(valueChange)="showProductGroups(category.template)"
+						>
+							<mat-option
+								*ngFor="
+									let template of templates;
+									let i = index
 								"
+								[value]="template.id"
 							>
-								<mat-option
-									*ngFor="
-										let template of templates;
-										let i = index
-									"
-									[value]="template.id"
-								>
-									{{ template.title }}
-								</mat-option>
-							</mat-select>
-						</mat-form-field>
-					</div>
-					<div class="form-group" *ngIf="isShowProductGroup">
-						<label for="">Chọn nhóm sản phẩm</label>
-						<mat-form-field>
-							<mat-select
-								multiple
-								[formControl]="productGroupsControl"
-								(valueChange)="updateCategoryProductsGroups()"
-							>
-								<mat-option
-									*ngFor="let productGroup of productGroups"
-									[value]="productGroup.id"
-								>
-									{{ productGroup.name }}</mat-option
-								>
-							</mat-select>
-						</mat-form-field>
-					</div>
+								{{ template.title }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
 				</div>
-				<!-- <div class="form-group col-lg-6">
+				<div class="form-group" *ngIf="isShowProductGroup">
+					<label for="">Chọn nhóm sản phẩm</label>
+					<mat-form-field>
+						<mat-select
+							multiple
+							[formControl]="productGroupsControl"
+							(valueChange)="updateCategoryProductsGroups()"
+						>
+							<mat-option
+								*ngFor="let productGroup of productGroups"
+								[value]="productGroup.id"
+							>
+								{{ productGroup.name }}</mat-option
+							>
+						</mat-select>
+					</mat-form-field>
+				</div>
+			</div>
+			<!-- <div class="form-group col-lg-6">
 					<label>Vị trí</label>
 					<input class="form-control" type="number" placeholder="Sắp xếp vị trí trang" name="order"
 						[(ngModel)]="category.order" />
 				</div> -->
-				<div class="form-group col-lg-12">
-					<label>Mô tả *</label>
-					<app-ckeditor
-						[data]="category.description"
-						(change)="onChangeEmitter($event)"
-					>
-					</app-ckeditor>
-				</div>
+			<div class="form-group col-lg-12">
+				<label>Mô tả *</label>
+				<app-ckeditor
+					[data]="category.description"
+					(change)="onChangeEmitter($event)"
+				>
+				</app-ckeditor>
 			</div>
 		</div>
-		<div class="content" tab-id="item-2">
-			<div class="row">
-				<div class="form-group col-lg-6">
-					<label>Meta Title *</label>
-					<input
-						class="form-control"
-						type="text"
-						name="metatitle"
-						[(ngModel)]="category.metaTitle"
-					/>
-				</div>
-				<div class="w-100"></div>
-				<div class="form-group col-lg-6">
-					<label>Meta Image *</label>
-					<input
-						class="form-control"
-						type="text"
-						name="metaimage"
-						[(ngModel)]="category.metaImage"
-					/>
-				</div>
-				<div class="w-100"></div>
-				<div class="form-group col-lg-6">
-					<label>Meta Description</label>
-					<input
-						class="form-control"
-						type="text"
-						name="metadescription"
-						[(ngModel)]="category.metaDescription"
-					/>
-				</div>
-				<div class="w-100"></div>
-				<div class="form-group col-lg-6">
-					<label>Meta Keywords </label>
-					<input
-						class="form-control"
-						type="text"
-						name="metakeywords"
-						[(ngModel)]="category.metaKeywords"
-					/>
-				</div>
+	</div>
+	<div class="content" tab-id="item-2">
+		<div class="row">
+			<div class="form-group col-lg-6">
+				<label>Meta Title *</label>
+				<input
+					class="form-control"
+					type="text"
+					name="metatitle"
+					[(ngModel)]="category.metaTitle"
+				/>
+			</div>
+			<div class="w-100"></div>
+			<div class="form-group col-lg-6">
+				<label>Meta Image *</label>
+				<input
+					class="form-control"
+					type="text"
+					name="metaimage"
+					[(ngModel)]="category.metaImage"
+				/>
+			</div>
+			<div class="w-100"></div>
+			<div class="form-group col-lg-6">
+				<label>Meta Description</label>
+				<input
+					class="form-control"
+					type="text"
+					name="metadescription"
+					[(ngModel)]="category.metaDescription"
+				/>
+			</div>
+			<div class="w-100"></div>
+			<div class="form-group col-lg-6">
+				<label>Meta Keywords </label>
+				<input
+					class="form-control"
+					type="text"
+					name="metakeywords"
+					[(ngModel)]="category.metaKeywords"
+				/>
 			</div>
 		</div>
-		<!-- <div class="content" tab-id="item-3">
+	</div>
+	<!-- <div class="content" tab-id="item-3">
 			<p>3</p>
 		</div> -->
-	</div>
-	<div class="popup-upload" *ngIf="isShowUpload">
-		<iframe
-			id="uploadfile"
-			width="100%"
-			height="100%"
-			src="http://27.71.234.45:5000/"
-			frameborder="0"
-		></iframe>
-		<div class="close-popup" (click)="isShowPopupUploadfile(false)">
-			<img src="./assets/images/icons/close.png" alt="" />
-		</div>
+</div>
+<div class="popup-upload" *ngIf="isShowUpload">
+	<iframe
+		id="uploadfile"
+		width="100%"
+		height="100%"
+		src="http://27.71.234.45:5000/"
+		frameborder="0"
+	></iframe>
+	<div class="close-popup" (click)="isShowPopupUploadfile(false)">
+		<img src="./assets/images/icons/close.png" alt="" />
 	</div>
 </div>
+<!-- </div> -->

@@ -9,6 +9,8 @@ import { ArticleModel } from "src/core/models/Article.model";
 })
 export class IndexNewsComponent implements OnInit {
 	newsItems: Array<ArticleModel>;
+	defaultImage =
+		"./assets/images/preload.jpg";
 	@Input("language") currentLanguage: string;
 	@Input("background") background: string;
 	@Input("pageTitle") pageTitle: string;

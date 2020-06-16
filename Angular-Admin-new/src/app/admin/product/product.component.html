@@ -55,7 +55,8 @@
 		</div>
 	</div>
 	<div class="block-buttons">
-		<a *ngIf="canAction(featureName, permissions.Add)"
+		<a
+			*ngIf="canAction(featureName, permissions.Add)"
 			class="btn btn-success btn-add"
 			[routerLink]="['/admin/products/add']"
 		>
@@ -104,17 +105,19 @@
 				</label>
 			</td>
 			<td class="ta-c">
-				{{ product.updateDate | date: "hh:mm:ss \n dd/MM/yyyy" }}
+				{{ product.updateDate | date: "dd/MM/yyyy HH:mm" }}
 			</td>
 			<td class="ta-c">
 				<div class="table-buttons">
-					<a *ngIf="canAction(featureName, permissions.Edit)"
+					<a
+						*ngIf="canAction(featureName, permissions.Edit)"
 						class="btn btn-outline-success btn-edit"
 						[routerLink]="['/admin/products/edit', product.id]"
 					>
 						<span class="lnr lnr-pencil"></span>
 					</a>
-					<span *ngIf="canAction(featureName, permissions.Delete)"
+					<span
+						*ngIf="canAction(featureName, permissions.Delete)"
 						class="btn btn-outline-danger btn-remove"
 						(click)="deleteProduct(product.id)"
 					>

@@ -17,8 +17,11 @@ import { CloseMenuDirective } from "../../../core/directives/close-menu.directiv
 import { IndexNewsItemDirective } from "../../../core/directives/index-news-item.directive";
 import { IndexProductItemDirective } from "../../../core/directives/index-product-item.directive";
 import { ToggleMenuDirective } from "../../../core/directives/toggle-menu.directive";
-import { ToggleSubMenuDirective } from "../../../core/directives/toggle-sub-menu.directive";
+import { CloseSubMenuDirective } from "../../../core/directives/toggle-sub-menu.directive";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { LazyLoadImageModule } from "ng-lazyload-image";
+import { ProductDirective } from "../product/product-simple/product.directive";
+import { HeaderService } from './header/header.service';
 
 @NgModule({
 	declarations: [
@@ -31,7 +34,8 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 		IndexNewsItemDirective,
 		IndexProductItemDirective,
 		ToggleMenuDirective,
-		ToggleSubMenuDirective,
+		CloseSubMenuDirective,
+		ProductDirective,
 	],
 	imports: [
 		CommonModule,
@@ -41,6 +45,7 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 		FormsModule,
 		SwiperModule,
 		MatProgressBarModule,
+		LazyLoadImageModule,
 	],
 	exports: [
 		CommonModule,
@@ -61,11 +66,14 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 		IndexNewsItemDirective,
 		IndexProductItemDirective,
 		ToggleMenuDirective,
-		ToggleSubMenuDirective,
+		CloseSubMenuDirective,
 		MatProgressBarModule,
+		LazyLoadImageModule,
+		ProductDirective,
 	],
 	providers: [
 		HttpService,
+		HeaderService,
 		PageInfoService,
 		UtilitiesService,
 		TranslateService,

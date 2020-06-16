@@ -1,4 +1,4 @@
-import {Component, Injector, OnInit} from '@angular/core';
+import { Component, Injector, OnInit } from '@angular/core';
 import {
 	HttpService,
 	InputRequestOption,
@@ -13,8 +13,9 @@ import { ToastrService } from 'ngx-toastr';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
-import {Permissions} from "../../_core/enums/role.enum";
-import {AuthenticationComponent} from "../../_core/components/base/authentication.component";
+import { Permissions } from '../../_core/enums/role.enum';
+import { AuthenticationComponent } from '../../_core/components/base/authentication.component';
+import { FilterSearchModel } from 'src/app/_core/models/filter.model';
 export enum Menu {
 	main = 0,
 	footer = 1,
@@ -26,7 +27,7 @@ export enum Menu {
 	templateUrl: './menu.component.html',
 	styleUrls: ['./menu.component.scss'],
 })
-export class MenuComponent  extends AuthenticationComponent implements OnInit {
+export class MenuComponent extends AuthenticationComponent implements OnInit {
 	public featureName: string = 'ManageMenu';
 	public permissions = Permissions;
 
@@ -39,6 +40,7 @@ export class MenuComponent  extends AuthenticationComponent implements OnInit {
 	templates: Array<TemplateModel> = TemplatesConfig;
 	languageControl = new FormControl();
 	typeMenu: string;
+	search: FilterSearchModel = new FilterSearchModel();
 
 	constructor(
 		injector: Injector,
@@ -50,6 +52,7 @@ export class MenuComponent  extends AuthenticationComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
+		this.isShowPopup = false;
 		this.activatedRoute.params.subscribe((params) => {
 			this.typeMenu = Menu[params.menuTitle];
 			this.getMenus();
@@ -57,25 +60,36 @@ export class MenuComponent  extends AuthenticationComponent implements OnInit {
 		this.languages = JSON.parse(localStorage.getItem('languages'));
 	}
 
-	getMenus(languageId = '1') {
-		const params = new InputRequestOption();
-		params.params = {
-			type: this.typeMenu,
-			languageId: languageId,
-		};
-		this.httpSvc
-			.get(APIConfig.Menu.Gets, params)
-			.pipe(map((response) => response.data))
-			.subscribe((menus) => {
-				this.menus = menus;
-				this.menus.forEach((element) => {
-					this.menus.forEach((item) => {
-						if (item.id == element.parentId) {
-							element.parentName = item.title;
-						}
+	getMenus() {
+		this.activatedRoute.queryParams.subscribe((queryParams) => {
+			const defaultParams = {
+				languageId: this.search.languageId,
+				type: this.typeMenu,
+			};
+			for (const key in queryParams) {
+				if (queryParams.hasOwnProperty(key)) {
+					defaultParams[key] = queryParams[key];
+				}
+				if (key == 'languageId') {
+					this.search[key] = queryParams[key];
+				}
+			}
+			const opts = new InputRequestOption();
+			opts.params = defaultParams;
+			this.httpSvc
+				.get(APIConfig.Menu.Gets, opts)
+				.pipe(map((response) => response.data))
+				.subscribe((menus) => {
+					this.menus = menus;
+					this.menus.forEach((element) => {
+						this.menus.forEach((item) => {
+							if (item.id == element.parentId) {
+								element.parentName = item.title;
+							}
+						});
 					});
 				});
-			});
+		});
 	}
 
 	deleteMenu(id) {
@@ -86,8 +100,7 @@ export class MenuComponent  extends AuthenticationComponent implements OnInit {
 			.subscribe((response) => {
 				if (response.code === 200) {
 					this.activatedRoute.params.subscribe((params) => {
-						const type = Menu[params.menuTitle];
-						this.getMenus(type);
+						this.getMenus();
 					});
 					this.toastrSvc.success(response.message);
 				} else {
@@ -110,15 +123,22 @@ export class MenuComponent  extends AuthenticationComponent implements OnInit {
 	onClosePopup(status: boolean) {
 		this.isShowPopup = status;
 		this.activatedRoute.params.subscribe((params) => {
-			const type = Menu[params.menuTitle];
-			this.getMenus(type);
+			this.getMenus();
 		});
 	}
 
-	fetchMenu(e) {
-		this.activatedRoute.params.subscribe((params) => {
-			const type = Menu[params.menuTitle];
-			this.getMenus(e);
-		});
+	changeLanguage(e) {
+		let filterParams = {
+			languageId: e,
+		};
+		this.router
+			.navigate([], {
+				relativeTo: this.activatedRoute,
+				queryParams: filterParams,
+				queryParamsHandling: 'merge',
+			})
+			.then(() => {
+				this.getMenus();
+			});
 	}
 }

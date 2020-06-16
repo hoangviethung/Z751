@@ -37,7 +37,11 @@
 					*ngFor="let missionVisionImage of missionVisionImages"
 				>
 					<figure>
-						<img src="{{ missionVisionImage.path }}" alt="" />
+						<img
+							*ngIf="missionVisionImages"
+							[defaultImage]="defaultImage"
+							[lazyLoad]="missionVisionImage.path"
+						/>
 						<figcaption>
 							<h5>{{ missionVisionImage.name }}</h5>
 							<p>{{ missionVisionImage.alt }}</p>
@@ -57,7 +61,14 @@
 	<!-- system -->
 	<section class="system pd-70">
 		<figure>
+<<<<<<< HEAD
 			<img src="/assets/images/test/gray.jpg" alt="" />
+=======
+			<img
+				[defaultImage]="defaultImage"
+				[lazyLoad]="'./assets/images/about/system.png'"
+			/>
+>>>>>>> master
 		</figure>
 	</section>
 

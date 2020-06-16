@@ -42,7 +42,6 @@ export class FormContactComponent implements OnInit {
 	}
 
 	validationForm(value: any) {
-		console.log(value);
 		let result: boolean;
 		// const name = value.contactName;
 		// const phone = value.contactPhone;
