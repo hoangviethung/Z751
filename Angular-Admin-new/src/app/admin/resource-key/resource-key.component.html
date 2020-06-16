@@ -17,7 +17,7 @@
 					<td>{{ resource.value.vi }}</td>
 					<td>{{ resource.value.en }}</td>
 					<td class="ta-c">
-						<a
+						<a *ngIf="canAction(featureName, permissions.Edit)"
 							class="btn btn-outline-success"
 							(click)="onOpenPopup(true, resource)"
 						>

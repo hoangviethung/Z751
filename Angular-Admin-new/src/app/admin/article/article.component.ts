@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import { InputRequestOption } from 'src/app/_core/services/http.service';
 import { APIConfig } from 'src/app/_core/API-config';
 import { ArticleModel } from 'src/app/_core/models/article.model';
@@ -10,13 +10,18 @@ import { FilterSearchModel } from 'src/app/_core/models/filter.model';
 import { UtilService } from 'src/app/_core/services/util.service';
 import { PaginationModel } from 'src/app/_core/models/pagination';
 import { ActivatedRoute, Router } from '@angular/router';
+import {AuthenticationComponent} from "../../_core/components/base/authentication.component";
+import {Permissions} from "../../_core/enums/role.enum";
 
 @Component({
 	selector: 'app-article',
 	templateUrl: './article.component.html',
 	styleUrls: ['./article.component.scss'],
 })
-export class ArticleComponent implements OnInit {
+export class ArticleComponent extends AuthenticationComponent implements OnInit {
+	public featureName: string = 'ManageNews';
+	public permissions = Permissions;
+
 	articles: Array<ArticleModel>;
 	languages: Array<LanguageModel>;
 	search: FilterSearchModel = new FilterSearchModel();
@@ -28,12 +33,14 @@ export class ArticleComponent implements OnInit {
 	page: number;
 
 	constructor(
+		injector: Injector,
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService,
 		private utilSvc: UtilService,
-		private activatedRoute: ActivatedRoute,
-		private router: Router
-	) {}
+		private activatedRoute: ActivatedRoute
+	) {
+		super(injector);
+	}
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();
@@ -123,13 +130,13 @@ export class ArticleComponent implements OnInit {
 	}
 
 	filterArticle() {
+		this.pagination.page = 1;
 		let filterParams = {
 			languageId: this.search.languageId,
 			categoryId: this.search.categoryId,
 			text: this.search.keywords,
-			page: null,
+			page: this.pagination.page,
 		};
-		this.pagination.page = 1;
 		this.router.navigate([], {
 			relativeTo: this.activatedRoute,
 			queryParams: filterParams,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import { CrudService } from 'src/app/_core/services/crud.service';
 import { APIConfig } from 'src/app/_core/API-config';
 import { InputRequestOption } from 'src/app/_core/services/http.service';
@@ -10,13 +10,18 @@ import { ToastrService } from 'ngx-toastr';
 import { CategoryModel } from 'src/app/_core/models/category.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationModel } from 'src/app/_core/models/pagination';
+import {AuthenticationComponent} from "../../_core/components/base/authentication.component";
+import {Permissions} from "../../_core/enums/role.enum";
 
 @Component({
 	selector: 'app-product',
 	templateUrl: './product.component.html',
 	styleUrls: ['./product.component.scss'],
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent extends AuthenticationComponent implements OnInit {
+	public featureName: string = 'ManageProduct';
+	public permissions = Permissions;
+
 	products: ProductModel[] = [];
 	languages: LanguageModel[] = [];
 	search: FilterSearchModel = new FilterSearchModel();
@@ -27,12 +32,14 @@ export class ProductComponent implements OnInit {
 	page: number;
 
 	constructor(
+		injector: Injector,
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService,
 		private utilSvc: UtilService,
-		private activatedRoute: ActivatedRoute,
-		private router: Router
-	) {}
+		private activatedRoute: ActivatedRoute
+	) {
+		super(injector);
+	}
 
 	ngOnInit(): void {
 		this.languages = this.utilSvc.getLanguages();

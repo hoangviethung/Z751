@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import {
 	HttpService,
 	InputRequestOption,
@@ -13,6 +13,8 @@ import { ToastrService } from 'ngx-toastr';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
+import {Permissions} from "../../_core/enums/role.enum";
+import {AuthenticationComponent} from "../../_core/components/base/authentication.component";
 export enum Menu {
 	main = 0,
 	footer = 1,
@@ -24,7 +26,10 @@ export enum Menu {
 	templateUrl: './menu.component.html',
 	styleUrls: ['./menu.component.scss'],
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent  extends AuthenticationComponent implements OnInit {
+	public featureName: string = 'ManageMenu';
+	public permissions = Permissions;
+
 	menus: Array<MenuModel>;
 	menu: MenuModel;
 	isShowPopup: boolean = false;
@@ -36,10 +41,13 @@ export class MenuComponent implements OnInit {
 	typeMenu: string;
 
 	constructor(
+		injector: Injector,
 		private httpSvc: HttpService,
 		private activatedRoute: ActivatedRoute,
 		private toastrSvc: ToastrService
-	) {}
+	) {
+		super(injector);
+	}
 
 	ngOnInit(): void {
 		this.activatedRoute.params.subscribe((params) => {

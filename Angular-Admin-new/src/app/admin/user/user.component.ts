@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import {Component, OnInit, AfterViewInit, Injector} from '@angular/core';
 import {
 	HttpService,
 	InputRequestOption,
@@ -8,23 +8,30 @@ import { map } from 'rxjs/operators';
 import { UserModel } from 'src/app/_core/models/user.model';
 import { ToastrService } from 'ngx-toastr';
 import { CookieService } from 'src/app/_core/services/cookie.service';
+import {AuthenticationComponent} from "../../_core/components/base/authentication.component";
+import {Permissions} from "../../_core/enums/role.enum";
 
 @Component({
 	selector: 'app-user',
 	templateUrl: './user.component.html',
 	styleUrls: ['./user.component.scss'],
 })
-export class UserComponent implements OnInit {
+export class UserComponent extends AuthenticationComponent implements OnInit {
+	public featureName: string = 'ManageUsers';
+	public permissions = Permissions;
+
 	users: Array<UserModel>;
 	user: UserModel;
 	isEdit: boolean;
 	isShowPopupAddEdit: boolean = false;
 	isShowPopupChangPass: boolean = false;
 	constructor(
+		injector: Injector,
 		private httpSvc: HttpService,
-		private toastrSvc: ToastrService,
-		private cookieSvc: CookieService
-	) {}
+		private toastrSvc: ToastrService
+	) {
+		super(injector);
+	}
 
 	ngOnInit(): void {
 		this.getUsers();

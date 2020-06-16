@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Injector, OnInit} from '@angular/core';
 import { ProductGroupModel } from 'src/app/_core/models/product-groups';
 import {
 	HttpService,
@@ -11,47 +11,62 @@ import { ToastrService } from 'ngx-toastr';
 import { TemplateModel } from 'src/app/_core/models/template.model';
 import { TemplatesConfig } from 'src/app/_core/templates-config';
 import { FormControl } from '@angular/forms';
+import { FilterSearchModel } from 'src/app/_core/models/filter.model';
+import { Router, ActivatedRoute } from '@angular/router';
+import {Permissions} from "../../_core/enums/role.enum";
+import {AuthenticationComponent} from "../../_core/components/base/authentication.component";
 @Component({
 	selector: 'app-product-groups',
 	templateUrl: './product-groups.component.html',
 	styleUrls: ['./product-groups.component.scss'],
 })
-export class ProductGroupsComponent implements OnInit {
+export class ProductGroupsComponent extends AuthenticationComponent implements OnInit {
+	public featureName: string = 'ManageProductGroup';
+	public permissions = Permissions;
+
 	isShowPopup: boolean = false;
 	isEdit: boolean;
 	languages: Array<LanguageModel>;
 	productGroups: Array<ProductGroupModel>;
 	productGroup: ProductGroupModel;
 	templates: Array<TemplateModel> = TemplatesConfig;
-	languageControl = new FormControl();
+	search: FilterSearchModel = new FilterSearchModel();
 	constructor(
+		injector: Injector,
 		private httpSvc: HttpService,
-		private toastrSvc: ToastrService
-	) {}
+		private toastrSvc: ToastrService,
+		private activatedRoute: ActivatedRoute
+	) {
+		super(injector);
+	}
 
 	ngOnInit(): void {
 		this.getProductGroups();
 		this.languages = JSON.parse(localStorage.getItem('languages'));
 	}
 
-	getProductGroups(languageId?) {
-		const params = new InputRequestOption();
-		if (languageId) {
-			params.params = {
-				languageId: languageId,
+	getProductGroups() {
+		this.activatedRoute.queryParams.subscribe((queryParams) => {
+			const defaultParams = {
+				languageId: this.search.languageId,
 			};
-		} else {
-			params.params = {
-				languageId: '1',
-			};
-		}
-
-		this.httpSvc
-			.get(APIConfig.ProductGroup.Gets, params)
-			.pipe(map((response) => response.data))
-			.subscribe((prodcutGroups) => {
-				this.productGroups = prodcutGroups;
-			});
+			for (const key in queryParams) {
+				if (queryParams.hasOwnProperty(key)) {
+					defaultParams[key] = queryParams[key];
+				}
+				if (key == 'languageId') {
+					this.search[key] = queryParams[key];
+				}
+			}
+			const opts = new InputRequestOption();
+			opts.params = defaultParams;
+			this.httpSvc
+				.get(APIConfig.ProductGroup.Gets, opts)
+				.pipe(map((response) => response.data))
+				.subscribe((prodcutGroups) => {
+					this.productGroups = prodcutGroups;
+				});
+		});
 	}
 
 	onOpenPopup(status, itemEdit?, isEdit?) {
@@ -86,8 +101,18 @@ export class ProductGroupsComponent implements OnInit {
 				}
 			});
 	}
-
-	fetchProductGroup(e) {
-		this.getProductGroups(e);
+	changeLanguage(e) {
+		let filterParams = {
+			languageId: e,
+		};
+		this.router
+			.navigate([], {
+				relativeTo: this.activatedRoute,
+				queryParams: filterParams,
+				queryParamsHandling: 'merge',
+			})
+			.then(() => {
+				this.getProductGroups();
+			});
 	}
 }

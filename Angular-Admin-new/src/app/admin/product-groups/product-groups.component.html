@@ -4,20 +4,19 @@
 			<mat-form-field>
 				<mat-select
 					name="language"
-					[formControl]="languageControl"
-					(ngModelChange)="fetchProductGroup($event)"
-					[ngModel]="1"
+					(valueChange)="changeLanguage($event)"
+					[ngModel]="search.languageId.toString()"
 				>
 					<mat-option
 						*ngFor="let language of languages"
-						[value]="language.id"
+						[value]="language.id.toString()"
 					>
 						{{ language.name }}
 					</mat-option>
 				</mat-select>
 			</mat-form-field>
 		</div>
-		<a class="btn btn-success btn-add" (click)="onOpenPopup(true)"
+		<a *ngIf="canAction(featureName, permissions.Add)" class="btn btn-success btn-add" (click)="onOpenPopup(true)"
 			>Thêm mới</a
 		>
 	</div>
@@ -47,13 +46,13 @@
 				</td>
 				<td class="ta-c">
 					<div class="table-buttons">
-						<span
+						<span *ngIf="canAction(featureName, permissions.Edit)"
 							class="btn btn-outline-success btn-edit"
 							(click)="onOpenPopup(true, productGroup, true)"
 						>
 							<span class="lnr lnr-pencil"></span>
 						</span>
-						<span
+						<span *ngIf="canAction(featureName, permissions.Delete)"
 							class="btn btn-outline-danger btn-remove"
 							(click)="deleteProductGroup(productGroup.id)"
 						>

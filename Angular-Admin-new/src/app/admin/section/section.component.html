@@ -1,6 +1,26 @@
 <ng-container *ngIf="!isShowPopup">
+	<div class="block-control ai-c">
+		<div class="block-filters mr-at d-f ai-c fw-w">
+			<div class="form-group mb-0">
+				<mat-form-field *ngIf="languageCurrent">
+					<mat-select
+						name="language"
+						[ngModel]="languageCurrent"
+						(valueChange)="changeLanguage($event)"
+					>
+						<mat-option
+							*ngFor="let language of languages"
+							[value]="language.id"
+						>
+							{{ language.name }}
+						</mat-option>
+					</mat-select>
+				</mat-form-field>
+			</div>
+		</div>
+	</div>
 	<div class="block-table">
-		<table class="table">
+		<table class="table" *ngIf="sections">
 			<tr class="table-info">
 				<th class="column-number ta-c">#</th>
 				<th>Tên mục</th>
@@ -11,7 +31,7 @@
 				<td>{{ section.orderTitle }}</td>
 				<td class="ta-c">
 					<div class="table-buttons">
-						<span
+						<span *ngIf="canAction(featureName, permissions.Edit)"
 							class="btn btn-outline-success btn-edit"
 							(click)="onOpenPopup(true, section)"
 						>
