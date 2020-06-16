@@ -8,4 +8,5 @@ export class MenuModel {
 	parentId: number;
 	title: string;
 	type: number;
+	children: MenuModel[];
 }

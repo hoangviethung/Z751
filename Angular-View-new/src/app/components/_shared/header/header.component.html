@@ -36,8 +36,8 @@
 							<ul class="lst-n pl-0 d-f" *ngIf="menus">
 								<ng-container *ngFor="let menu of menus">
 									<li
-										class="nav-item"
 										*ngIf="menu.parentId == -99"
+										[class]="menu.children.length>0 ? 'has-sub nav-item':'nav-item'"
 									>
 										<a
 											*ngIf="menu.link == ''"
@@ -54,18 +54,14 @@
 										>
 											{{ menu.title }}
 										</a>
-										<div class="nav-sub lst-n pl-0">
+										<div class="nav-sub lst-n pl-0" *ngIf="menu.children">
 											<div class="nav-item">
 												<ng-container
 													*ngFor="
-														let childMenu of menus
+														let childMenu of menu.children
 													"
 												>
 													<a
-														*ngIf="
-															childMenu.parentId ==
-															menu.id
-														"
 														class="nav-link"
 														routerLink="{{
 															childMenu.link
@@ -76,7 +72,7 @@
 													</a>
 												</ng-container>
 											</div>
-											<div class="nav-sub-close mobile">
+											<div class="nav-sub-close mobile" appCloseSubMenu>
 												<img
 													[defaultImage]="
 														defaultImage
