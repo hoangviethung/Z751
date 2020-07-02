@@ -1,12 +1,22 @@
-import { Directive, ElementRef, OnInit, HostListener } from "@angular/core";
+import {
+	Directive,
+	ElementRef,
+	OnInit,
+	HostListener,
+	AfterViewInit,
+} from "@angular/core";
 
 @Directive({
 	selector: "[productSimple]",
 })
-export class ProductDirective implements OnInit {
+export class ProductDirective implements OnInit, AfterViewInit {
 	constructor(private elementRef: ElementRef) {}
 
 	ngOnInit() {
+		this.calculateSize();
+	}
+	
+	ngAfterViewInit() {
 		this.calculateSize();
 	}
 

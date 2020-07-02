@@ -35,6 +35,8 @@ export class AddEditComponent implements OnInit {
 	productGroupCapacities: ProductGroupModel = new ProductGroupModel();
 	isShowUpload: boolean = false;
 	previewUrlTemp: string;
+	productTitleError = false;
+	productUrlError = false;
 
 	constructor(
 		private crudSvc: CrudService,
@@ -128,48 +130,66 @@ export class AddEditComponent implements OnInit {
 	}
 
 	updateProduct(method: string) {
-		this.product.languageId = Number(this.product.languageId);
-		this.product.order = moment(this.product.order).format();
+		if (
+			this.product.title == '' ||
+			this.product.title == null ||
+			this.product.seName == '' ||
+			this.product.seName == null
+		) {
+			this.productTitleError = true;
+			this.productUrlError = true;
+		} else {
+			this.productTitleError = false;
+			this.productUrlError = false;
 
-		for (const key of Object.keys(this.product)) {
-			if (this.product[key] != null) {
-				if (String(this.product[key]).length <= 0 && key != 'images') {
-					// this.product[key] = null;
+			this.product.languageId = Number(this.product.languageId);
+			this.product.order = moment(this.product.order).format();
+
+			for (const key of Object.keys(this.product)) {
+				if (this.product[key] != null) {
+					if (
+						String(this.product[key]).length <= 0 &&
+						key != 'images'
+					) {
+						// this.product[key] = null;
+						delete this.product[key];
+					}
+				} else {
 					delete this.product[key];
 				}
-			} else {
-				delete this.product[key];
 			}
-		}
-		const params = new InputRequestOption();
-		params.body = this.product;
+			const params = new InputRequestOption();
+			params.body = this.product;
 
-		this.crudSvc
-			.add(APIConfig.Product[method], params)
-			.subscribe((response) => {
-				if (response.code == 200) {
-					if (method == 'Update') {
-						this.toastrSvc.success(
-							'Chỉnh sửa sản phẩm thành công !!!'
-						);
+			this.crudSvc
+				.add(APIConfig.Product[method], params)
+				.subscribe((response) => {
+					if (response.code == 200) {
+						if (method == 'Update') {
+							this.toastrSvc.success(
+								'Chỉnh sửa sản phẩm thành công !!!'
+							);
+						} else {
+							this.toastrSvc.success(
+								'Thêm mới sản phẩm thành công !!!'
+							);
+						}
+						this.router.navigate(['/admin/products']);
 					} else {
-						this.toastrSvc.success(
-							'Thêm mới sản phẩm thành công !!!'
-						);
+						if (method == 'Update') {
+							this.toastrSvc.error(
+								'Đã có lỗi xẩy ra khi chỉnh sửa !!!'
+							);
+						} else {
+							this.toastrSvc.error(
+								'Đã có lỗi xẩy ra khi thêm mới !!!'
+							);
+						}
 					}
-					this.router.navigate(['/admin/products']);
-				} else {
-					if (method == 'Update') {
-						this.toastrSvc.error(
-							'Đã có lỗi xẩy ra khi chỉnh sửa !!!'
-						);
-					} else {
-						this.toastrSvc.error(
-							'Đã có lỗi xẩy ra khi thêm mới !!!'
-						);
-					}
-				}
-			});
+				});
+		}
+
+		//
 	}
 
 	setAliasTitleToUrl() {

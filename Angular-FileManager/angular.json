@@ -39,7 +39,7 @@
 							"extractLicenses": true,
 							"vendorChunk": false,
 							"buildOptimizer": true,
-							"deleteOutputPath": false,
+							"deleteOutputPath": true,
 							"budgets": [
 								{
 									"type": "initial",

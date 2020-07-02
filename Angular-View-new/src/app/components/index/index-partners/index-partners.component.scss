@@ -21,10 +21,14 @@
 
 .swiper-button-prev,
 .swiper-button-next {
+	position: absolute;
 	background: none;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	top: 50%;
+	transform: translateY(-50%);
+	
 
 	&:after {
 		content: none;

@@ -8,6 +8,16 @@
 	&:after {
 		content: none;
 	}
+}
+
+.index-slider-departments {
+	padding: 0 35px;
+	position: relative;
+	.swiper-button-prev,
+	.swiper-button-next {
+		position: absolute;
+		top: 50%;
+	}
 
 	.swiper-button-prev {
 		left: 0;
@@ -16,13 +26,4 @@
 	.swiper-button-next {
 		right: 0;
 	}
-
-	.index-slider-departments {
-		position: relative;
-		padding: 0 35px;
-	}
-}
-
-.index-slider-departments {
-	position: relative;
 }

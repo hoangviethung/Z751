@@ -19,9 +19,8 @@
 			<mat-form-field>
 				<mat-select
 					name="language"
-					[formControl]="languageControl"
 					[(ngModel)]="menu.languageId"
-					(ngModelChange)="onChangeLanguge($event)"
+					(valueChange)="onChangeLanguge($event)"
 				>
 					<mat-option
 						*ngFor="let language of languages"
@@ -54,9 +53,23 @@
 				type="text"
 				placeholder="Nhập tiêu đề"
 				[(ngModel)]="menu.title"
+				name="menuTitle"
+				required
+				#menuTitle="ngModel"
 			/>
+			<div
+				*ngIf="
+					menuTitle.invalid &&
+					(menuTitle.dirty || menuTitle.touched || menuTitleError)
+				"
+				class="alert alert-danger w-100"
+			>
+				<div *ngIf="menuTitle.errors?.required">
+					Vui lòng nhập tiêu đề menu.
+				</div>
+			</div>
 		</div>
-		<div class="form-group col-12">
+		<!-- <div class="form-group col-12">
 			<label>Hình ảnh</label>
 			<input
 				class="form-control"
@@ -70,7 +83,7 @@
 				(click)="isShowPopupUploadfile(true)"
 				>Chọn ảnh</a
 			>
-		</div>
+		</div> -->
 		<div class="form-group col-12">
 			<label>Đường dẫn *</label>
 			<input

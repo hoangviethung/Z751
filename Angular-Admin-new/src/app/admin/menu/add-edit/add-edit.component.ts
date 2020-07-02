@@ -35,6 +35,8 @@ export class AddEditComponent implements OnInit {
 	menuControl = new FormControl();
 	typeMenuControl = new FormControl();
 	isShowUpload: boolean = false;
+	menuTitleError = false;
+
 	constructor(
 		private httpSvc: HttpService,
 		private toastrSvc: ToastrService,
@@ -91,43 +93,55 @@ export class AddEditComponent implements OnInit {
 	}
 
 	addMenu() {
-		this.activatedRoute.params.subscribe((paramsTypeMenu) => {
-			const typeMenu = Menu[paramsTypeMenu.menuTitle];
-			this.menu.typeId = Number(typeMenu);
-		});
+		if (this.menu.title == '' || this.menu.title == null) {
+			this.menuTitleError = true;
+		} else {
+			this.menuTitleError = false;
 
-		const params = new InputRequestOption();
-		params.body = this.menu;
-		const add = this.httpSvc
-			.post(APIConfig.Menu.Add, params)
-			.subscribe((response) => {
-				if (response.code == 200) {
-					add.unsubscribe();
-					this.close.emit(false);
-					this.toastrSvc.success(response.message);
-				} else {
-					this.toastrSvc.error(response.message);
-				}
+			this.activatedRoute.params.subscribe((paramsTypeMenu) => {
+				const typeMenu = Menu[paramsTypeMenu.menuTitle];
+				this.menu.typeId = Number(typeMenu);
 			});
+
+			const params = new InputRequestOption();
+			params.body = this.menu;
+			const add = this.httpSvc
+				.post(APIConfig.Menu.Add, params)
+				.subscribe((response) => {
+					if (response.code == 200) {
+						add.unsubscribe();
+						this.close.emit(false);
+						this.toastrSvc.success(response.message);
+					} else {
+						this.toastrSvc.error(response.message);
+					}
+				});
+		}
 	}
 
 	updateMenu() {
-		const params = new InputRequestOption();
-		params.body = this.menu;
-		this.activatedRoute.params.subscribe((params) => {
-			const typeMenu = Menu[params.menuTitle];
-			this.menu.typeId = Number(typeMenu);
-		});
-		this.httpSvc
-			.post(APIConfig.Menu.Update, params)
-			.subscribe((response) => {
-				if (response.code === 200) {
-					this.close.emit(false);
-					this.toastrSvc.success(response.message);
-				} else {
-					this.toastrSvc.error(response.message);
-				}
+		if (this.menu.title == '' || this.menu.title == null) {
+			this.menuTitleError = true;
+		} else {
+			this.menuTitleError = false;
+
+			const params = new InputRequestOption();
+			params.body = this.menu;
+			this.activatedRoute.params.subscribe((params) => {
+				const typeMenu = Menu[params.menuTitle];
+				this.menu.typeId = Number(typeMenu);
 			});
+			this.httpSvc
+				.post(APIConfig.Menu.Update, params)
+				.subscribe((response) => {
+					if (response.code === 200) {
+						this.close.emit(false);
+						this.toastrSvc.success(response.message);
+					} else {
+						this.toastrSvc.error(response.message);
+					}
+				});
+		}
 	}
 
 	isShowPopupUploadfile(isShow: boolean) {

@@ -27,6 +27,7 @@ export class AddEditComponent implements OnInit {
 	productsControl = new FormControl();
 	languageControl = new FormControl();
 	templates: Array<TemplateModel> = TemplatesConfig;
+	titleError = false;
 	constructor(
 		private httpSvc: HttpService,
 		private toastrSvc: ToastrService
@@ -56,34 +57,51 @@ export class AddEditComponent implements OnInit {
 
 	updateProdcutGroup() {
 		this.productGroup.languageId = Number(this.productGroup.languageId);
-		const params = new InputRequestOption();
-		params.body = this.productGroup;
-		this.httpSvc
-			.post(APIConfig.ProductGroup.Update, params)
-			.subscribe((response) => {
-				if (response.code == 200) {
-					this.toastrSvc.success(response.message);
-					this.close.emit(false);
-				} else {
-					this.toastrSvc.error(response.message);
-				}
-			});
+		if (this.productGroup.name == '' || this.productGroup.name == null) {
+			this.titleError = true;
+		} else {
+			this.titleError = false;
+			this.productGroup.languageId = Number(this.productGroup.languageId);
+			const params = new InputRequestOption();
+			params.body = this.productGroup;
+			this.httpSvc
+				.post(APIConfig.ProductGroup.Update, params)
+				.subscribe((response) => {
+					if (response.code == 200) {
+						this.toastrSvc.success(response.message);
+						this.close.emit(false);
+					} else {
+						this.titleError = true;
+						console.log(this.titleError);
+
+						this.toastrSvc.error(response.message);
+					}
+				});
+		}
 	}
 
 	addProdcutGroup() {
-		const params = new InputRequestOption();
 		this.productGroup.languageId = Number(this.productGroup.languageId);
-		params.body = this.productGroup;
-		this.httpSvc
-			.post(APIConfig.ProductGroup.Add, params)
-			.subscribe((response) => {
-				if (response.code == 200) {
-					this.close.emit(false);
-					this.toastrSvc.success(response.message);
-				} else {
-					this.toastrSvc.error(response.message);
-				}
-			});
+		if (this.productGroup.name == '' || this.productGroup.name == null) {
+			this.titleError = true;
+		} else {
+			this.titleError = false;
+			
+			const params = new InputRequestOption();
+			this.productGroup.languageId = Number(this.productGroup.languageId);
+			params.body = this.productGroup;
+			this.httpSvc
+				.post(APIConfig.ProductGroup.Add, params)
+				.subscribe((response) => {
+					if (response.code == 200) {
+						this.close.emit(false);
+						this.toastrSvc.success(response.message);
+					} else {
+						this.titleError = true;
+						this.toastrSvc.error(response.message);
+					}
+				});
+		}
 	}
 
 	checkData() {

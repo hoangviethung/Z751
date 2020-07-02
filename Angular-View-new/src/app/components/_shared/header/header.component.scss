@@ -131,17 +131,17 @@ header {
 
 				>.nav-link {
 					padding: 7px 0;
-					font-size: 13px;
+					font-size: 12px;
 					color: white;
 					border-bottom: 2px solid transparent;
 					transition: all 0.2s ease-in-out;
+					white-space: nowrap;
 				}
 
 				&.has-sub {
 					>.nav-link {
 						position: relative;
 						padding-right: 15px;
-
 						&:after {
 							position: absolute;
 							top: 50%;
@@ -296,10 +296,6 @@ header {
 			option {
 				color: map-get($mau, main);
 			}
-		}
-
-		@media (min-width: 1200px) {
-			padding: 7px 25px;
 		}
 	}
 }

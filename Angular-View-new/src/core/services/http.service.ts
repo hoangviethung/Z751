@@ -34,7 +34,7 @@ export class InputRequestOption {
 export class HttpService {
 	public currentLanguage: string = "vi";
 
-	constructor(private http: HttpClient, private langSvc: LanguageService) {}
+	constructor(private http: HttpClient, private langSvc: LanguageService, ) {}
 
 	get(url: string, opts?: InputRequestOption): Observable<any> {
 		const option = this.getDefaultRequestJsonOption(opts);
@@ -88,7 +88,7 @@ export class HttpService {
 			// server-side error
 			errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
 		}
-		window.alert(errorMessage);
+		console.log(errorMessage);
 		return throwError(errorMessage);
 	}
 }

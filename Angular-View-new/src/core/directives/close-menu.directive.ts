@@ -27,12 +27,17 @@ export class CloseMenuDirective implements OnInit {
 		};
 
 		anchor.addEventListener("click", () => {
-			getNavbar(anchor).classList.remove("active");
-			overlay.classList.remove("active");
-			body.removeAttribute("style");
-			navSubs.forEach((sub) => {
-				sub.classList.remove("active");
-			});
+			const href = anchor.getAttribute('href')
+			if(href == null){
+				anchor.nextElementSibling.classList.add('active')
+			} else {
+				getNavbar(anchor).classList.remove("active");
+				overlay.classList.remove("active");
+				body.removeAttribute("style");
+				navSubs.forEach((sub) => {
+					sub.classList.remove("active");
+				});
+			}
 		});
 	}
 }

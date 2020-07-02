@@ -24,6 +24,9 @@ export class AddEditComponent implements OnInit {
 	templates: Array<TemplateModel> = TemplatesConfig;
 	languageControl = new FormControl();
 	isShowUpload: boolean = false;
+
+	resourcePathError = false;
+
 	constructor(
 		private crudSvc: CrudService,
 		private toastrSvc: ToastrService
@@ -35,38 +38,57 @@ export class AddEditComponent implements OnInit {
 
 	addBanner() {
 		this.banner.languageId = Number(this.banner.languageId);
-		const params = new InputRequestOption();
-		params.body = this.banner;
-		this.crudSvc.add(APIConfig.Banner.Add, params).subscribe((response) => {
-			this.close.emit(false);
-			if (response.code == 200) {
-				this.toastrSvc.success(response.message);
-			} else {
-				this.toastrSvc.error(response.message);
-			}
-		});
+		if (
+			this.banner.resourcePath == '' ||
+			this.banner.resourcePath == null
+		) {
+			this.resourcePathError = true;
+		} else {
+			this.resourcePathError = false;
+			const params = new InputRequestOption();
+			params.body = this.banner;
+			this.crudSvc
+				.add(APIConfig.Banner.Add, params)
+				.subscribe((response) => {
+					this.close.emit(false);
+					if (response.code == 200) {
+						this.toastrSvc.success(response.message);
+					} else {
+						this.toastrSvc.error(response.message);
+					}
+				});
+		}
 	}
 
 	updateBanner() {
 		this.banner.languageId = Number(this.banner.languageId);
-		const params = new InputRequestOption();
-		params.body = this.banner;
-		this.crudSvc
-			.update(APIConfig.Banner.Update, params)
-			.subscribe((response) => {
-				this.close.emit(false);
-				if (response.code == 200) {
-					this.toastrSvc.success(response.message);
-				} else {
-					this.toastrSvc.error(response.message);
-				}
-			});
+		if (
+			this.banner.resourcePath == '' ||
+			this.banner.resourcePath == null
+		) {
+			this.resourcePathError = true;
+		} else {
+			this.resourcePathError = false;
+			this.banner.languageId = Number(this.banner.languageId);
+			const params = new InputRequestOption();
+			params.body = this.banner;
+			this.crudSvc
+				.update(APIConfig.Banner.Update, params)
+				.subscribe((response) => {
+					this.close.emit(false);
+					if (response.code == 200) {
+						this.toastrSvc.success(response.message);
+					} else {
+						this.toastrSvc.error(response.message);
+					}
+				});
+		}
 	}
 
 	closePopup(status) {
 		this.close.emit(status);
 	}
-	
+
 	isShowPopupUploadfile(isShow: boolean) {
 		if (isShow == true) {
 			this.isShowUpload = true;
