@@ -113,17 +113,17 @@
 								<div class="ckf-upload-dropzone-grid">
 									<div class="ckf-upload-dropzone-grid-a">
 										<p id="ckf-label-548" class="ckf-upload-status">Select files to upload</p>
-										<p class="ckf-upload-progress-text" style="display: none;"><span
-												class="ckf-upload-progress-text-files"></span> <span
-												class="ckf-upload-progress-text-bytes"></span></p>
+										<p class="ckf-upload-progress-text" *ngIf="progress != 0">
+											<span class="ckf-upload-progress-text-files">Uploaded files: {{progress}} of {{totalFiles}}</span>
+											<!-- <span class="ckf-upload-progress-text-bytes">(0 B of 4.4 MB)</span> -->
+										</p>
 									</div>
 									<div class="ckf-upload-dropzone-grid-b">
 										<div
 											class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-icon-ckf-plus ui-btn-icon-left">
 											Add Files
 											<input type="file" tabindex="-1" data-icon="ckf-plus" data-ckf-button="add"
-												#asdasdasdasd id="ck-upload-custom" name="fileupload" multiple
-												(change)="addFile($event)">
+												#triggerBtnClick name="fileupload" multiple (change)="addFile($event)">
 										</div>
 										<div
 											class="ui-btn ui-input-btn ui-corner-all ui-shadow ui-icon-ckf-cancel ui-btn-icon-left">
@@ -143,8 +143,8 @@
 									<div class="ckf-progress">
 										<div class="ckf-progress-message ckf-hidden"></div>
 										<div class="ckf-progress-wrap ckf-progress-indeterminate" role="progressbar"
-											aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-											<div class="ckf-progress-bar" style="width:0%;"></div>
+											aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+											<div class="ckf-progress-bar" [ngStyle]="{'width': totalFiles == progress ? 100 : progress * 100 / totalFiles + '%' }"></div>
 										</div>
 									</div>
 								</div>
@@ -158,8 +158,8 @@
 					</div>
 				</div>
 				<!-------------------------- Board ---------------------------->
-				<app-board *ngIf="currentFolder" [currentFolder]="currentFolder"
-					[isLoadingBoard]="isLoadingBoard" (reloadToggle)="isLoadingBoard=$event"></app-board>
+				<app-board *ngIf="currentFolder" [currentFolder]="currentFolder" [isLoadingBoard]="isLoadingBoard"
+					(reloadToggle)="isLoadingBoard=$event"></app-board>
 			</div>
 		</div>
 	</div>
@@ -171,5 +171,3 @@
 		<!-- placeholder for ckf891 -->
 	</div>
 </body>
-
-<router-outlet></router-outlet>

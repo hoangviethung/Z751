@@ -3,18 +3,20 @@
 		class="ckf-files-view ckf-files-view-borders ui-body-inherit ui-listview ckf-files-thumbs ckf-files-thumbs-xs"
 		aria-label="Files pane" style="min-height: 638px;">
 		<li *ngFor="let item of files" [attr.id]="item.id"
-			class="fileHover != null ? 'ckf-file-item ui-li-has-thumb ckf-file-show-thumb' : 'ckf-file-item ui-li-has-thumb'"
-			style="width: 150px; height: 150px;" data-icon="false" role="presentation" clickDirective [file]="item">
-			<a href="javascript:void(0)"
-				[class]="activeFiles.indexOf(item) != -1 ? 'lckf-files-inner ui-btn ut-btn-active' : 'lckf-files-inner ui-btn'"
-				tabindex="-1" draggable="true" role="listitem" [attr.aria-label]="item.name"
+			[class]="fileHover == item ? 'ckf-file-item ui-li-has-thumb ckf-file-show-thumb' : 'ckf-file-item ui-li-has-thumb'"
+			style="width: 150px; height: 150px;" data-icon="false" role="presentation" clickDirective [file]="item"
+			[SelectedFiles]="activeFiles" (toogleSelectedFiles)="onActiveFiles($event)">
+			<a href="javascript:void(0)" [class]="onActiveClass(item)"
+				[tabindex]="activeFiles.indexOf(item)"
+				draggable="true" role="listitem" [attr.aria-label]="item.name"
 				[attr.aria-describedby]="'ckf-file-desc-' + item.id"
 				[attr.data-ckf-drag-preview]="'ckf-drag-prev-' + item.id" [attr.data-ckf-view]="item.id"
 				[contextMenu]="basicMenu" [contextMenuSubject]="item">
 				<img id="ckf-drag-prev-{{item.id}}" class="ui-li-thumb" alt="" src="{{item.path}}" draggable="true"
-					[attr.data-ckf-drag-preview]="'ckf-drag-prev-' + item.id" (mouseenter)="mouseEnter(item) "
-					(mouseleave)="mouseLeave(item)">
-				<input class="path-image-item" value="{{item.pathName}}">
+					[attr.data-ckf-drag-preview]="'ckf-drag-prev-' + item.id"
+
+					><!-- (mouseenter)="mouseEnter(item)" (mouseleave)="mouseLeave(item)" -->
+				<input class="path-image-item" value="{{item.pathName.replace('dist/browser/', '')}}">
 				<div class="ckf-file-desc ui-bar-a" draggable="true">
 					<h2 title="{{item.name}}" dir="auto">{{item.name}}</h2>
 					<p draggable="true" id="ckf-file-desc-{{item.id}}"

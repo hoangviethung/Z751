@@ -30,7 +30,6 @@ export class FoldersComponent implements OnInit {
 	ngOnInit() {}
 
 	onLeftClick($event, item) {
-		$event.target.classList.add('ui-btn-active');
 		this.valueUpdate.emit(item);
 	}
 

@@ -40,12 +40,7 @@ export class BoardComponent implements OnInit {
 
 	ngOnChanges(changes: SimpleChanges) {
 		console.log(changes);
-		// console.log(this.isLoadingBoard)
-		// if (this.isLoadingBoard) {
 		this.getFiles();
-		// 	this.isLoadingBoard = false
-		// 	this.reloadToggle.emit(this.isLoadingBoard)
-		// }
 	}
 
 	getFiles() {
@@ -54,6 +49,7 @@ export class BoardComponent implements OnInit {
 			.subscribe((element: any) => {
 				// Make random Id
 				this.files = this.fileSvc.randomId(element.data, 'c');
+				console.log(this.files);
 			});
 	}
 
@@ -86,7 +82,7 @@ export class BoardComponent implements OnInit {
 	renameFile($event) {}
 
 	copyNameFile($event) {
-		console.log($event.item.path);
+		// console.log($event.item.path);
 	}
 
 	deleteFile($event) {
@@ -94,5 +90,18 @@ export class BoardComponent implements OnInit {
 			this.getFiles();
 			this.toastrSvc.success('Xóa file thành công !!!');
 		});
+	}
+
+	onActiveClass(item) {
+		// console.log(item)
+		if (this.activeFiles.indexOf(item) !== -1) {
+			return 'ckf-files-inner ui-btn ui-btn-active';
+		}
+
+		return 'ckf-files-inner ui-btn';
+	}
+
+	onActiveFiles($event) {
+		this.activeFiles = $event;
 	}
 }

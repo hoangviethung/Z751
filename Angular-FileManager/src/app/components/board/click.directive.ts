@@ -5,6 +5,8 @@ import {
 	Injectable,
 	Inject,
 	ElementRef,
+	EventEmitter,
+	Output,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
@@ -15,6 +17,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ClickDirective {
 	@Input() file;
+	@Input() SelectedFiles;
+	@Output() toogleSelectedFiles = new EventEmitter<any>();
 	timer: any = 0;
 	isSingleClick = false;
 	times = 0;
@@ -25,13 +29,22 @@ export class ClickDirective {
 		private elementRef: ElementRef
 	) {}
 
-	@HostListener('click') onClicked() {
-		this.isSingleClick = true;
-		setTimeout(() => {
-			if (this.isSingleClick) {
-				// doTheStuffHere();
+	@HostListener('click', ['$event']) onClicked(event) {
+		if (event.shiftKey) {
+			this.SelectedFiles.push(this.file);
+		} else if (event.ctrlKey) {
+			const index: number = this.SelectedFiles.indexOf(this.file);
+			if (index !== -1) {
+				this.SelectedFiles.splice(index, 1);
+			} else {
+				this.SelectedFiles.push(this.file);
 			}
-		}, 250);
+		} else {
+			this.SelectedFiles = [];
+			this.SelectedFiles.push(this.file);
+		}
+
+		this.toogleSelectedFiles.emit(this.SelectedFiles);
 	}
 
 	// COPPY PATH URL IMAGE
@@ -41,6 +54,7 @@ export class ClickDirective {
 		url.select();
 		url.focus();
 		url.setSelectionRange(0, 99999);
+		console.log(url)
 		document.execCommand('copy');
 		this.toastrSvc.success(`Đã coppy !!!`);
 	}
