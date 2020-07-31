@@ -25,10 +25,13 @@
 
 		.swiper-button-prev,
 		.swiper-button-next {
+			cursor: pointer;
+			position: absolute;
 			width: 38px;
 			height: 38px;
 			background-size: cover;
-
+			top: 50%;
+			transform: translateY(-50%);
 			&:after {
 				content: "";
 				background-size: cover;
