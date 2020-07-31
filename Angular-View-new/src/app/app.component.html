@@ -1,8 +1,14 @@
 <style>
-	.w4g-loading {
-		height: 700px;
+	.w4g-wrapper {
+		transition: .3s all ease-in-out;
+		opacity: 1;
 	}
 
+	.w4g-loading {
+		height: 100vh;
+		opacity: 0;
+		transition: .3s all ease-in-out;
+	}
 </style>
 
 <app-header></app-header>
@@ -25,6 +31,6 @@
 				[color]="'#dc2424'"
 			></mat-progress-bar>
 		</div> -->
-<!-- <div class="loading-overlay" *ngIf="loading">
+<div class="loading-overlay" *ngIf="loading">
 	<mat-progress-bar mode="indeterminate"></mat-progress-bar>
-</div> -->
+</div>
