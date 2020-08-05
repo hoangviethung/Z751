@@ -9,15 +9,17 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="img">
-						<img
-							[defaultImage]="defaultImage"
-							[lazyLoad]="indexAbout.image"
-							alt="{{ indexAbout.title }}"
-						/>
+						<img [defaultImage]="defaultImage" [lazyLoad]="indexAbout.image" alt="{{ indexAbout.title }}" />
 					</div>
 				</div>
 				<div class="col-lg-6">
 					<div class="content" [innerHTML]="indexAbout.content"></div>
+					<div class="btn-wrapper d-f">
+						<a [routerLink]="['/about']" class="btn-red btn-viewmore">
+							{{ "ViewMore" | translate }}
+							<img [defaultImage]="defaultImage" [lazyLoad]="'/assets/images/icons/icon_viewmore.svg'" />
+						</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -30,17 +32,10 @@
 				</h2>
 			</div>
 			<div class="row">
-				<div
-					class="col-lg-3 col-6 col-item"
-					*ngFor="let item of indexCoreValues.images"
-				>
+				<div class="col-lg-3 col-6 col-item" *ngFor="let item of indexCoreValues.images">
 					<div class="item">
 						<div class="img ta-c">
-							<img
-								[defaultImage]="defaultImage"
-								[lazyLoad]="item.path"
-								alt="{{ item.alt }}"
-							/>
+							<img [defaultImage]="defaultImage" [lazyLoad]="item.path" alt="{{ item.alt }}" />
 						</div>
 						<div class="description ta-c">
 							<h3 class="tt-u">

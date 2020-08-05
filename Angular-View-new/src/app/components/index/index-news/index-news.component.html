@@ -7,20 +7,11 @@
 		</div>
 		<div class="news-list clearfix">
 			<ng-container *ngFor="let item of newsItems; let i = index">
-				<div
-					class="news-item"
-					[ngClass]="{ 'news-big': i == 0 }"
-					*ngIf="i < 5"
-					appIndexNewsItem
-				>
+				<div class="news-item" [ngClass]="{ 'news-big': i == 0 }" *ngIf="i < 5" appIndexNewsItem>
 					<a [routerLink]="[item.url]" class="d-f fw-w">
 						<div class="img ov-h">
-							<img
-								*ngIf="newsItems"
-								[defaultImage]="defaultImage"
-								[lazyLoad]="item.image"
-								alt="{{ item.title }}"
-							/>
+							<img *ngIf="newsItems" [defaultImage]="defaultImage" [lazyLoad]="item.image"
+								alt="{{ item.title }}" />
 						</div>
 						<div class="description">
 							<h3>{{ item.title }}</h3>
@@ -39,10 +30,7 @@
 		<div class="btn-wrapper d-f jc-fe">
 			<a [routerLink]="['/news']" class="btn-red btn-viewmore">
 				{{ "ViewMore" | translate }}
-				<img
-					[defaultImage]="defaultImage"
-					[lazyLoad]="'/assets/images/icons/icon_viewmore.svg'"
-				/>
+				<img [defaultImage]="defaultImage" [lazyLoad]="'/assets/images/icons/icon_viewmore.svg'" />
 			</a>
 		</div>
 	</div>

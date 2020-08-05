@@ -29,7 +29,6 @@
 
 		.content {
 			font-size: 18px;
-
 			p,
 			ul,
 			ol,
@@ -37,6 +36,18 @@
 				font-size: inherit;
 				color: #707070;
 			}
+			p {
+				margin-top: 10px;
+				overflow: hidden;
+				display: -webkit-box;
+				text-overflow: ellipsis;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 5;
+			}
+		}
+
+		.btn-wrapper {
+			margin-top: 25px;
 		}
 
 		@media (max-width: 1199.98px) {
