@@ -2,7 +2,7 @@
 ::ng-deep {
 	.container-description {
 		h2 {
-			font-size: 24px;
+			font-size: 30px;
 			color: map-get($mau, main);
 			text-transform: uppercase;
 		}
@@ -42,7 +42,7 @@
 				display: -webkit-box;
 				text-overflow: ellipsis;
 				-webkit-box-orient: vertical;
-				-webkit-line-clamp: 5;
+				-webkit-line-clamp: 7;
 			}
 		}
 
@@ -53,7 +53,7 @@
 		@media (max-width: 1199.98px) {
 			h2,
 			h3 {
-				font-size: 21px;
+				font-size: 24px;
 			}
 
 			h3 {
@@ -83,7 +83,8 @@
 
 	.container-symbol {
 		h2 {
-			font-size: 24px;
+			color: map-get($mau, main);
+			font-size: 30px;
 		}
 
 		.row {
@@ -124,7 +125,7 @@
 
 		@media (max-width: 1199.98px) {
 			h2 {
-				font-size: 21px;
+				font-size: 24px;
 			}
 
 			.item {

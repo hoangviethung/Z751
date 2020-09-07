@@ -10,7 +10,7 @@ export class DialogService {
 	constructor() {}
 
 	setStateDialog() {
-		this.dialogSubject.next(true);\
+		this.dialogSubject.next(true);
 		console.log(this.dialogSubject);
 	}
 

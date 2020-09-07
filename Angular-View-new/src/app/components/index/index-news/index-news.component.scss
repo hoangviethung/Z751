@@ -4,6 +4,9 @@
 	margin: -15px -10px 15px -10px;
 	// background-color: rgba(#f3f3f3, 0.48);
 }
+.main-title {
+	color: map-get($mau, main);
+}
 
 .news-item {
 	width: 50%;

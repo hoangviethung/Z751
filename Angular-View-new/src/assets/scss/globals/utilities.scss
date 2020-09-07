@@ -59,7 +59,8 @@ main {
 	position: relative;
 	margin-bottom: 70px;
 	padding: 5px 0;
-
+	// color: map-get($mau, main);
+	// text-align: center;
 	&.tag-line {
 		&:after {
 			position: absolute;

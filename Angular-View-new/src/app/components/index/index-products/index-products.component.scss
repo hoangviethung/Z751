@@ -1,5 +1,11 @@
+@import "../../../../assets/scss/abstracts/variables.scss";
+
 .row {
 	margin-bottom: -20px;
+}
+
+.main-title {
+	color: map-get($mau, main);
 }
 
 .col-product {
